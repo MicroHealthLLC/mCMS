@@ -62,7 +62,11 @@ end
 
 gem 'devise'
 gem "omniauth-office365", github: 'jcarbo/omniauth-office365'
-# gem "omniauth-github"
+#omniauth authentification
+gem "devise_ldap_authenticatable"
+gem "omniauth-facebook"
+gem "omniauth-github"
+gem "omniauth-twitter"
 
 gem 'therubyracer', platforms: :ruby
 gem 'execjs'
@@ -82,6 +86,8 @@ gem "paranoia", "~> 2.2.0.pre"
 gem "figaro"
 gem 'prawn-rails'
 gem "survey", github: 'dierbro/survey'
+
+
 
 #installing adapter gems based on database.yml
 require 'erb'

@@ -1,6 +1,7 @@
 <%= form_for resource, as: resource_name, url: session_path(resource_name), html: {id: 'login-form', class: "smart-form client-form" } do |f| %>
     <header>
       Sign In  with <%= link_to 'OFFICE365', '/users/auth/office365'  %> OR
+      Sign In  with <%= link_to 'GITHUB', '/users/auth/github'  %> OR
     </header>
 
     <fieldset>
