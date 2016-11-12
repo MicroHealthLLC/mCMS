@@ -14,7 +14,14 @@
           </div>
       <% end %>
       <%= f.hidden_field :user_id %>
-
+      <div class="form-group">
+        <div class="col-md-3 pull-right">
+          <label class="toggle">
+            <%= f.check_box :is_private %>
+            <i data-swchon-text="ON" data-swchoff-text="OFF"></i><%= f.label t(:private) %>
+          </label>
+        </div>
+      </div>
       <div class="form-group">
         <%= f.label t(:other_skill), class: 'col-md-2 control-label' %>
         <div class="col-md-9">

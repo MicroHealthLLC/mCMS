@@ -14,6 +14,7 @@ class Task < ApplicationRecord
   accepts_nested_attributes_for :task_attachments, reject_if: :all_blank, allow_destroy: true
 
   scope :root, -> {where(sub_task_id: nil)}
+  scope :not_private, -> {where(is_private: false)}
   scope :not_related, -> {where(related_to_id: nil)}
   belongs_to :case, optional: true, foreign_key: :related_to_id
 
@@ -66,7 +67,7 @@ class Task < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:title, :description, :related_to_id, :related_to_type, :task_type_id, :task_status_type_id, :priority_id, :assigned_to_id, :for_individual_id,
+    [:title, :description, :related_to_id, :related_to_type, :is_private, :task_type_id, :task_status_type_id, :priority_id, :assigned_to_id, :for_individual_id,
      :date_start, :date_due, :user_id, :date_completed,  :sub_task_id,
      task_attachments_attributes: [Attachment.safe_attributes]]
   end

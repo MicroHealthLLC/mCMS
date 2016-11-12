@@ -221,6 +221,7 @@ en:
   surveys: Surveys
   cases: Cases
   title: Title
+  private: Private
   task: Task
   tasks: Tasks
   date: date

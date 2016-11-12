@@ -4,7 +4,7 @@ class Document < ApplicationRecord
   belongs_to :case, optional: true, foreign_key: :related_to_id
 
   validates_presence_of :title
-
+  scope :not_private, -> {where(is_private: false)}
   scope :not_related, -> {where(related_to_id: nil)}
 
   has_many :document_attachments, foreign_key: :owner_id
@@ -28,7 +28,7 @@ class Document < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:title, :description, :related_to_id, :related_to_type, :user_id, :document_type_id, :date, document_attachments_attributes: [Attachment.safe_attributes]]
+    [:title, :description, :related_to_id, :related_to_type, :user_id, :document_type_id, :date, :is_private, document_attachments_attributes: [Attachment.safe_attributes]]
   end
 
   def to_pdf(pdf)

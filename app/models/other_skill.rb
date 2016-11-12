@@ -3,7 +3,7 @@ class OtherSkill < ApplicationRecord
 
   has_many :skill_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :skill_attachments, reject_if: :all_blank, allow_destroy: true
-
+  scope :not_private, -> {where(is_private: false)}
 
   validates_presence_of :name
 
@@ -18,7 +18,7 @@ class OtherSkill < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:user_id, :name, :date_received, :date_expired, :note, skill_attachments_attributes: [Attachment.safe_attributes]]
+    [:user_id, :name, :date_received, :is_private, :date_expired, :note, skill_attachments_attributes: [Attachment.safe_attributes]]
   end
 
   def to_pdf(pdf)

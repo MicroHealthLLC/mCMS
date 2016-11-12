@@ -18,6 +18,7 @@ class Case < ApplicationRecord
   has_many :case_notes, foreign_key: :owner_id
 
   scope :root, -> {where(subcase_id: nil)}
+  scope :not_private, -> {where(is_private: false)}
 
   validates_presence_of :title
 
@@ -71,7 +72,7 @@ class Case < ApplicationRecord
 
   def self.safe_attributes
     [
-        :title, :description, :case_type_id, :assigned_to_id, :priority_id, :subcase_id,
+        :title, :description, :case_type_id, :is_private, :assigned_to_id, :priority_id, :subcase_id,
         :date_start, :date_due, :date_completed, :case_status_id, :note, :case_category_type_id
     ]
   end

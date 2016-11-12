@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161007085810) do
+ActiveRecord::Schema.define(version: 20161112183206) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type_id"
@@ -61,13 +61,14 @@ ActiveRecord::Schema.define(version: 20161007085810) do
     t.date     "date_due"
     t.date     "date_completed"
     t.integer  "assigned_to_id"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
     t.integer  "subcase_id"
     t.text     "note",                limit: 65535
     t.integer  "case_status_type_id"
     t.integer  "case_category_id"
     t.text     "description",         limit: 65535
+    t.boolean  "is_private",                        default: false
   end
 
   create_table "certifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -137,20 +138,6 @@ ActiveRecord::Schema.define(version: 20161007085810) do
     t.string   "file"
   end
 
-  create_table "contact_links", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.integer  "contact_to_id"
-    t.integer  "contact_from_id"
-    t.integer  "contact_type_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  create_table "contact_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "contacts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.boolean  "emergency_contact"
     t.text     "note",              limit: 65535
@@ -198,10 +185,11 @@ ActiveRecord::Schema.define(version: 20161007085810) do
     t.integer  "document_type_id"
     t.date     "date"
     t.string   "attachment"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                                     null: false
+    t.datetime "updated_at",                                     null: false
     t.integer  "related_to_id"
     t.string   "related_to_type"
+    t.boolean  "is_private",                     default: false
   end
 
   create_table "educations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -226,7 +214,6 @@ ActiveRecord::Schema.define(version: 20161007085810) do
     t.text     "note",                 limit: 65535
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
-    t.index ["extend_demography_id"], name: "index_emails_on_extend_demography_id", using: :btree
   end
 
   create_table "enabled_modules", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -234,14 +221,6 @@ ActiveRecord::Schema.define(version: 20161007085810) do
     t.boolean  "status",     default: true
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
-  end
-
-  create_table "entended_demographics", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.integer  "identification_id"
-    t.integer  "owner_id"
-    t.string   "owner_type"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
   end
 
   create_table "enumerations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -253,23 +232,15 @@ ActiveRecord::Schema.define(version: 20161007085810) do
     t.string  "position_name", limit: 30
   end
 
-  create_table "ethnicities", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string   "ethnicity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "extend_demographies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "user_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.integer  "identification_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "type"
     t.integer  "department_id"
     t.integer  "contact_id"
     t.integer  "organization_id"
     t.integer  "affiliation_id"
-    t.index ["identification_id"], name: "index_extend_demographies_on_identification_id", using: :btree
     t.index ["user_id"], name: "index_extend_demographies_on_user_id", using: :btree
   end
 
@@ -280,12 +251,6 @@ ActiveRecord::Schema.define(version: 20161007085810) do
     t.text     "note",                 limit: 65535
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
-  end
-
-  create_table "genders", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string   "gender"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "identifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -346,8 +311,9 @@ ActiveRecord::Schema.define(version: 20161007085810) do
     t.integer  "owner_id"
     t.text     "note",       limit: 65535
     t.integer  "user_id"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+    t.boolean  "is_private",               default: false
     t.index ["owner_id"], name: "index_notes_on_owner_id", using: :btree
     t.index ["type"], name: "index_notes_on_type", using: :btree
     t.index ["user_id"], name: "index_notes_on_user_id", using: :btree
@@ -373,8 +339,9 @@ ActiveRecord::Schema.define(version: 20161007085810) do
     t.date     "date_expired"
     t.text     "note",          limit: 65535
     t.string   "file"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.boolean  "is_private",                  default: false
   end
 
   create_table "phones", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -424,6 +391,8 @@ ActiveRecord::Schema.define(version: 20161007085810) do
     t.text     "home_page_content", limit: 65535
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.string   "setting_type"
+    t.text     "value",             limit: 65535
   end
 
   create_table "social_media", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -516,22 +485,16 @@ ActiveRecord::Schema.define(version: 20161007085810) do
     t.date     "date_due"
     t.integer  "user_id"
     t.date     "date_completed"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.datetime "created_at",                                        null: false
+    t.datetime "updated_at",                                        null: false
     t.integer  "assigned_to_id"
     t.integer  "for_individual_id"
     t.integer  "task_status_type_id"
     t.integer  "sub_task_id"
     t.integer  "related_to_id"
     t.string   "related_to_type"
+    t.boolean  "is_private",                        default: false
     t.index ["user_id"], name: "index_tasks_on_user_id", using: :btree
-  end
-
-  create_table "user_organizations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.integer  "user_id"
-    t.integer  "organization_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -569,8 +532,6 @@ ActiveRecord::Schema.define(version: 20161007085810) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   end
 
-  add_foreign_key "emails", "extend_demographies"
-  add_foreign_key "extend_demographies", "identifications"
   add_foreign_key "extend_demographies", "users"
   add_foreign_key "job_details", "departments"
   add_foreign_key "job_details", "roles"
