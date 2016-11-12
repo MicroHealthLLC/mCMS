@@ -17,6 +17,7 @@ class Task < ApplicationRecord
   scope :not_private, -> {where(is_private: false)}
   scope :not_related, -> {where(related_to_id: nil)}
   belongs_to :case, optional: true, foreign_key: :related_to_id
+  default_scope -> {where(is_private: false).or(where(private_author_id: User.current.id)) }
 
   validates_presence_of :title
 
@@ -61,6 +62,13 @@ class Task < ApplicationRecord
   def visible?
     User.current.permitted_users.include? user
   end
+  before_create :check_private_author
+
+  def check_private_author
+    if self.is_private
+      self.private_author_id = User.current.id
+    end
+  end
 
   def can?(*args)
     owner? or args.map{|action| User.current.allowed_to?(action) }.include?(true) or assigned_to == User.current or for_individual == User.current
@@ -68,7 +76,7 @@ class Task < ApplicationRecord
 
   def self.safe_attributes
     [:title, :description, :related_to_id, :related_to_type, :is_private, :task_type_id, :task_status_type_id, :priority_id, :assigned_to_id, :for_individual_id,
-     :date_start, :date_due, :user_id, :date_completed,  :sub_task_id,
+     :date_start, :date_due, :user_id, :private_author_id, :date_completed,  :sub_task_id,
      task_attachments_attributes: [Attachment.safe_attributes]]
   end
 

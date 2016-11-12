@@ -10,9 +10,20 @@ class Document < ApplicationRecord
   has_many :document_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :document_attachments, reject_if: :all_blank, allow_destroy: true
 
+  default_scope -> {where(is_private: false).or(where(private_author_id: User.current.id)) }
+
+
   after_save :send_notification
   def send_notification
     UserMailer.document_notification(self).deliver_now
+  end
+
+  before_create :check_private_author
+
+  def check_private_author
+    if self.is_private
+      self.private_author_id = User.current.id
+    end
   end
 
   def document_type
@@ -28,7 +39,7 @@ class Document < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:title, :description, :related_to_id, :related_to_type, :user_id, :document_type_id, :date, :is_private, document_attachments_attributes: [Attachment.safe_attributes]]
+    [:title, :description, :related_to_id, :related_to_type, :user_id, :document_type_id, :date, :private_author_id, :is_private, document_attachments_attributes: [Attachment.safe_attributes]]
   end
 
   def to_pdf(pdf)

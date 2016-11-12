@@ -1,5 +1,6 @@
 class Case < ApplicationRecord
   belongs_to :assigned_to, class_name: 'User', optional: true
+  belongs_to :private_author, class_name: 'User', foreign_key: :private_author_id, optional: true
   belongs_to :priority_type, optional: true, foreign_key: :priority_id
   belongs_to :case_type, optional: true
   belongs_to :case_category, optional: true, foreign_key: :case_category_type_id
@@ -20,7 +21,17 @@ class Case < ApplicationRecord
   scope :root, -> {where(subcase_id: nil)}
   scope :not_private, -> {where(is_private: false)}
 
+  default_scope -> {where(is_private: false).or(where(private_author_id: User.current.id)) }
+
   validates_presence_of :title
+  before_create :check_private_author
+
+  def check_private_author
+    if self.is_private
+      self.private_author_id = User.current.id
+    end
+  end
+
 
   def redirection
     subcase_id ? Case.find(subcase_id) : self
@@ -72,7 +83,7 @@ class Case < ApplicationRecord
 
   def self.safe_attributes
     [
-        :title, :description, :case_type_id, :is_private, :assigned_to_id, :priority_id, :subcase_id,
+        :title, :description, :case_type_id, :is_private, :private_author_id, :assigned_to_id, :priority_id, :subcase_id,
         :date_start, :date_due, :date_completed, :case_status_id, :note, :case_category_type_id
     ]
   end

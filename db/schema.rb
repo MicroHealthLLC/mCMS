@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161112183206) do
+ActiveRecord::Schema.define(version: 20161112201909) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type_id"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20161112183206) do
     t.integer  "case_category_id"
     t.text     "description",         limit: 65535
     t.boolean  "is_private",                        default: false
+    t.integer  "private_author_id"
   end
 
   create_table "certifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -180,16 +181,17 @@ ActiveRecord::Schema.define(version: 20161112183206) do
 
   create_table "documents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "title"
-    t.text     "description",      limit: 65535
+    t.text     "description",       limit: 65535
     t.integer  "user_id"
     t.integer  "document_type_id"
     t.date     "date"
     t.string   "attachment"
-    t.datetime "created_at",                                     null: false
-    t.datetime "updated_at",                                     null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.integer  "related_to_id"
     t.string   "related_to_type"
-    t.boolean  "is_private",                     default: false
+    t.boolean  "is_private",                      default: false
+    t.integer  "private_author_id"
   end
 
   create_table "educations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -309,11 +311,12 @@ ActiveRecord::Schema.define(version: 20161112183206) do
   create_table "notes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "type"
     t.integer  "owner_id"
-    t.text     "note",       limit: 65535
+    t.text     "note",              limit: 65535
     t.integer  "user_id"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.boolean  "is_private",               default: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.boolean  "is_private",                      default: false
+    t.integer  "private_author_id"
     t.index ["owner_id"], name: "index_notes_on_owner_id", using: :btree
     t.index ["type"], name: "index_notes_on_type", using: :btree
     t.index ["user_id"], name: "index_notes_on_user_id", using: :btree
@@ -337,11 +340,12 @@ ActiveRecord::Schema.define(version: 20161112183206) do
     t.string   "name"
     t.date     "date_received"
     t.date     "date_expired"
-    t.text     "note",          limit: 65535
+    t.text     "note",              limit: 65535
     t.string   "file"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
-    t.boolean  "is_private",                  default: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.boolean  "is_private",                      default: false
+    t.integer  "private_author_id"
   end
 
   create_table "phones", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -494,6 +498,7 @@ ActiveRecord::Schema.define(version: 20161112183206) do
     t.integer  "related_to_id"
     t.string   "related_to_type"
     t.boolean  "is_private",                        default: false
+    t.integer  "private_author_id"
     t.index ["user_id"], name: "index_tasks_on_user_id", using: :btree
   end
 

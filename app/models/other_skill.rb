@@ -6,7 +6,14 @@ class OtherSkill < ApplicationRecord
   scope :not_private, -> {where(is_private: false)}
 
   validates_presence_of :name
+  before_create :check_private_author
+  default_scope -> {where(is_private: false).or(where(private_author_id: User.current.id)) }
 
+  def check_private_author
+    if self.is_private
+      self.private_author_id = User.current.id
+    end
+  end
 
   after_save :send_notification
   def send_notification
@@ -18,7 +25,7 @@ class OtherSkill < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:user_id, :name, :date_received, :is_private, :date_expired, :note, skill_attachments_attributes: [Attachment.safe_attributes]]
+    [:user_id, :name, :date_received, :is_private, :private_author_id, :date_expired, :note, skill_attachments_attributes: [Attachment.safe_attributes]]
   end
 
   def to_pdf(pdf)
