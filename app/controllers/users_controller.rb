@@ -29,6 +29,12 @@ class UsersController < ApplicationController
     redirect_to user_path(@user)
   end
 
+  def attachments
+    @user.update(params.require(:user).permit(user_attachments_attributes: [Attachment.safe_attributes]))
+    @user.save
+    redirect_to user_path(@user)
+  end
+
   def change_basic_info
     if @user.update(params.require(:user).permit(User.safe_attributes + [:admin]))
       flash[:notice] = I18n.t('notice_successful_update')

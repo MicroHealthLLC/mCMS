@@ -89,6 +89,7 @@ Rails.application.routes.draw do
     member do
       put 'change_password'
       put 'change_basic_info'
+      put 'attachments'
       post 'image_upload'
       get 'remove_image'
     end

@@ -30,9 +30,12 @@ class User < ApplicationRecord
   has_many :positions
   has_many :tasks
   has_many :assigned_tasks, class_name: 'Task', foreign_key: :assigned_to_id
-
-
   has_many :checklist_answers
+
+
+  has_many :user_attachments, foreign_key: :owner_id
+  accepts_nested_attributes_for :user_attachments, reject_if: :all_blank, allow_destroy: true
+
 
   after_update :check_status
 
