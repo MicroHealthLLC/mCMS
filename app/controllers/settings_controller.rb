@@ -5,6 +5,7 @@ class SettingsController < ApplicationController
 
   def index
     @setting = Setting.first || Setting.new
+    @theme_setting= Setting.theme
   end
 
   def create
@@ -21,6 +22,21 @@ class SettingsController < ApplicationController
     EnabledModule.where(name: selected_modules).update_all({status: true})
     EnabledModule.where(name: rejected_modules).update_all({status: false})
     redirect_to settings_path
+  end
+
+  def set_theme
+    theme = Setting.get_theme
+    hash = {
+        theme_style: "#{params[:theme_style] ? params[:theme_style] : 'smart-style-0'}",
+        header: "#{params[:header] ? 'fixed-header' : ''}",
+        container: "#{params[:container] ? 'container' : ''}",
+        footer: "#{params[:footer] ? 'fixed-page-footer' : ''}",
+        topmenu: "#{params[:topmenu] ? 'menu-on-top' : '' }"
+    }
+    theme.value = hash.to_json
+    theme.save
+    redirect_to settings_path
+
   end
 
   private

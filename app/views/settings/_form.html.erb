@@ -2,6 +2,7 @@
   <ul>
     <li><a id="link-tabs-general" href="#tabs-home" >Home page</a></li>
     <li><a id="link-tabs-modules" href="#tabs-module">Module page</a></li>
+    <li><a id="link-tabs-modules" href="#tabs-theme">Themes</a></li>
   </ul>
   <div id='tabs-home' >
     <%= form_for(setting, url: settings_path, html: { method: 'post',  class: 'form-horizontal' }) do |f| %>
@@ -30,9 +31,17 @@
       <% end %>
     </div>
   </div>
+
+  <div id='tabs-theme' >
+    <div class="row">
+      <div class="col-xs-12">
+        <%= render partial: 'cms_theme' %>
+      </div>
+    </div>
+  </div>
 </div>
-<script>
-  $( function() {
-    $tabs = $( "#tabs" ).tabs();
-  } );
-</script>
+  <script>
+    $( function() {
+      $tabs = $( "#tabs" ).tabs();
+    } );
+  </script>

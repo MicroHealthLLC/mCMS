@@ -131,6 +131,7 @@ Rails.application.routes.draw do
   resources :settings, only: [:index, :create] do
     collection do
       post 'set_modules'
+      post 'set_theme'
     end
   end
 end

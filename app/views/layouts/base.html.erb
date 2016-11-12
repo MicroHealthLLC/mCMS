@@ -15,6 +15,16 @@
   <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
+  <style>
+    .smart-style-5
+    {
+      background: url(/assets/glass.jpg) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+  </style>
 
   <!-- We recommend you use "your_style.css" to override SmartAdmin
        specific styles this will also ensure you retrain your customization with each SmartAdmin update.
@@ -49,7 +59,8 @@
   * 'fixed-page-footer' - Fixes footer
   * 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 -->
-<body class="">
+
+<body class="<%= Setting.theme.values.join(' ') %>">
 
 <!-- HEADER -->
 <%= render partial: 'shared/header' %>
