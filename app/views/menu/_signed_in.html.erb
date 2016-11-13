@@ -89,6 +89,12 @@
       </li>
   <% end %>
 
+ <% if true %>
+      <li class="<%= menu_active?('forum') %>">
+        <a href="<%= '/forum' %>" title="<%= t(:forum) %>"><i class="fa fa-lg fa-fw fa-forumbee"></i><span class="menu-item-parent"><%= t(:forum) %></span></a>
+      </li>
+  <% end %>
+
 
   <% if User.current.admin? %>
       <%= render partial: 'menu/admin' %>

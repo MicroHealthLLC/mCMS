@@ -91,6 +91,9 @@ gem "survey", github: 'dierbro/survey'
 gem 'irwi', :git => 'git://github.com/alno/irwi.git'
 gem 'bluecloth'
 
+#FORUM SYS
+gem 'thredded', '~> 0.8.2'
+
 
 #installing adapter gems based on database.yml
 require 'erb'
