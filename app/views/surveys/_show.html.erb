@@ -1,5 +1,6 @@
 <div class="survey-title">
   <h2><%= survey.name %></h2>
+  <p><b>Survey Type:</b><%= survey.survey_type %></p>
   <p><small><%= survey.description.html_safe %></small></p>
   <ul>
     <% survey.questions.each_with_index do |question, index| %>
