@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161112201909) do
+ActiveRecord::Schema.define(version: 20161113073552) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type_id"
@@ -103,12 +103,13 @@ ActiveRecord::Schema.define(version: 20161112201909) do
   create_table "checklist_templates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "checklist_type"
     t.integer  "user_id"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "title"
-    t.text     "description",     limit: 65535
+    t.text     "description",              limit: 65535
     t.integer  "related_to_id"
     t.string   "related_to_type"
+    t.integer  "checklist_status_type_id"
   end
 
   create_table "checklist_users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|

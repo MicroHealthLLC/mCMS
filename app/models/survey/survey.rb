@@ -18,6 +18,8 @@ class Survey::Survey < ActiveRecord::Base
 
   belongs_to :survey_type, optional: true
 
+  belongs_to :case, optional: true, foreign_key: :related_to_id
+
   accepts_nested_attributes_for :questions,
                                 :reject_if => ->(q) { q[:text].blank? },
                                 :allow_destroy => true
@@ -56,8 +58,9 @@ class Survey::Survey < ActiveRecord::Base
   end
 
   def available_for_participant?(participant)
-    current_number_of_attempts = self.attempts.for_participant(participant).size
     upper_bound = self.attempts_number
+    current_number_of_attempts = participant ? self.attempts.for_participant(participant).size : upper_bound
+
     return !((current_number_of_attempts >= upper_bound) && (upper_bound != 0))
   end
 

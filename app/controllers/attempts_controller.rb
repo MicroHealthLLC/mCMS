@@ -37,6 +37,7 @@ class AttemptsController < ApplicationController
       @attempt.participant =  User.current
     end
 
+    @participant = @attempt.participant
 
     if @attempt.valid? && @attempt.save
       if params[:case_id]

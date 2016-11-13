@@ -1,5 +1,7 @@
 class ChecklistTemplate < ApplicationRecord
   belongs_to :user
+  belongs_to :checklist_status_type, optional: true
+
   has_many :checklists, dependent: :destroy
   has_many :checklist_users, dependent: :destroy
   accepts_nested_attributes_for :checklists, reject_if: :all_blank, allow_destroy: true
@@ -18,6 +20,15 @@ class ChecklistTemplate < ApplicationRecord
   def checklist_notes
     ChecklistNote.where(owner_id: self.id)
   end
+
+  def checklist_status_type
+    if checklist_status_type_id
+      super
+    else
+      ChecklistStatusType.default
+    end
+  end
+
 
   def notes(user_id)
     checklist_notes.where(user_id: user_id)

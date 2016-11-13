@@ -11,6 +11,8 @@ module PivotTableHelper
       when 'position' then render_position
       when 'task' then render_task
       when 'checklist' then render_checklist
+      when 'case' then render_case
+      when 'survey' then render_survey
       else
         render_user
     end
@@ -50,7 +52,14 @@ module PivotTableHelper
   end
 
   def render_checklist
+    ChecklistTemplate.includes(:user).
+        references(:user).map do |ct|
+      {
+          user: ct.user,
+          title: ct.title
 
+      }
+    end
   end
 
   def render_document
@@ -85,6 +94,33 @@ module PivotTableHelper
           name: affiliation.name,
           affiliation_type: affiliation.affiliation_type
 
+      }
+    end
+  end
+
+  def render_case
+    Case.unscoped.includes(:assigned_to, :case_type, :case_status_type).
+        references(:assigned_to, :case_type, :case_status_type).map do |c|
+      {
+          user: c.assigned_to,
+          title: c.title,
+          category: c.case_category_type,
+          status: c.case_status_type,
+          date_start: c.date_start,
+          date_due: c.date_due,
+          priority: c.priority_type,
+          case_type: c.case_type
+      }
+    end
+  end
+
+  def render_survey
+    Survey::Survey.includes( :survey_type).
+        references(:survey_type).map do |survey|
+      {
+          name: survey.name,
+          attempts_number: survey.attempts_number,
+          survey_type: survey.survey_type
       }
     end
   end

@@ -137,6 +137,7 @@ en:
   enumeration_social_media_type: Social media enumeration
   enumeration_certification_type: Certification enumeration
   enumeration_contact_type: Relationship
+  enumeration_checklist_status_type: Checklist status
   enumeration_country_type: Country enumeration
   enumeration_citizenship_type: Citizenship enumeration
   enumeration_department_type: Department enumeration
