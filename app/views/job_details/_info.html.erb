@@ -1,10 +1,10 @@
 <div class="col-xs-12">
 
-  <h4> Department information: <%= department = job_detail.department %></h4>
+  <h4> Organization information: <%= org = job_detail.organization %></h4>
 
 
 
-  <% department.grouped_by_role.each do |role, job_details| %>
+  <% org.grouped_by_role.each do |role, job_details| %>
       <h4> <%= role %> </h4>
       <ul>
         <% job_details.each do |jd| %>

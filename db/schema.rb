@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161113100930) do
+ActiveRecord::Schema.define(version: 20161113113021) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type_id"
@@ -283,12 +283,11 @@ ActiveRecord::Schema.define(version: 20161113100930) do
 
   create_table "job_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "user_id"
-    t.integer  "department_id"
     t.integer  "role_id"
-    t.text     "note",          limit: 65535
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
-    t.index ["department_id"], name: "index_job_details_on_department_id", using: :btree
+    t.text     "note",            limit: 65535
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "organization_id"
     t.index ["role_id"], name: "index_job_details_on_role_id", using: :btree
     t.index ["user_id"], name: "index_job_details_on_user_id", using: :btree
   end
@@ -779,7 +778,6 @@ ActiveRecord::Schema.define(version: 20161113100930) do
   end
 
   add_foreign_key "extend_demographies", "users"
-  add_foreign_key "job_details", "departments"
   add_foreign_key "job_details", "roles"
   add_foreign_key "job_details", "users"
   add_foreign_key "thredded_messageboard_users", "thredded_messageboards"
