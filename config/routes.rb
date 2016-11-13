@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  wiki_root '/wiki'
   resources :checklist_notes, except: [:index], controller: :notes
   resources :survey_notes, except: [:index], controller: :notes
   resources :case_notes, except: [:index], controller: :notes

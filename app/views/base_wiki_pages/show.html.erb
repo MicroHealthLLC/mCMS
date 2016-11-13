@@ -1,0 +1,17 @@
+<%= wiki_page_style %>
+
+<h1><%=h @page.title %></h1>
+  
+<%= wiki_page_info %>
+<%= wiki_page_actions %>
+  
+<div class="wiki_content">
+  <%=wiki_content @page.content %>
+</div>
+
+<p>
+  <strong><%= t('attachments') %>:</strong>
+  <% @page.wiki_page_attachments.each do |attachment| %>
+      <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+  <% end %>
+</p>

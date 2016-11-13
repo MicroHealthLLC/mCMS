@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161113073552) do
+ActiveRecord::Schema.define(version: 20161113085243) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type_id"
@@ -536,6 +536,31 @@ ActiveRecord::Schema.define(version: 20161113073552) do
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+  end
+
+  create_table "wiki_page_versions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer  "page_id",                       null: false
+    t.integer  "updator_id"
+    t.integer  "number"
+    t.string   "comment"
+    t.string   "path"
+    t.string   "title"
+    t.text     "content",    limit: 4294967295
+    t.datetime "updated_at"
+    t.index ["page_id"], name: "index_wiki_page_versions_on_page_id", using: :btree
+    t.index ["updator_id"], name: "index_wiki_page_versions_on_updator_id", using: :btree
+  end
+
+  create_table "wiki_pages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer  "creator_id"
+    t.integer  "updator_id"
+    t.string   "path"
+    t.string   "title"
+    t.text     "content",    limit: 4294967295
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["creator_id"], name: "index_wiki_pages_on_creator_id", using: :btree
+    t.index ["path"], name: "index_wiki_pages_on_path", unique: true, using: :btree
   end
 
   add_foreign_key "extend_demographies", "users"

@@ -87,6 +87,9 @@ gem "figaro"
 gem 'prawn-rails'
 gem "survey", github: 'dierbro/survey'
 
+# WIKI IRNO
+gem 'irwi', :git => 'git://github.com/alno/irwi.git'
+gem 'bluecloth'
 
 
 #installing adapter gems based on database.yml

@@ -81,8 +81,13 @@
           </li>
       <% end %>
 
-  <% end %>
 
+  <% end %>
+  <% if true %>
+      <li class="<%= menu_active?('wiki') %>">
+        <a href="<%= '/wiki' %>" title="<%= t(:wiki) %>"><i class="fa fa-lg fa-fw fa-file-text"></i><span class="menu-item-parent"><%= t(:wiki) %></span></a>
+      </li>
+  <% end %>
 
 
   <% if User.current.admin? %>
