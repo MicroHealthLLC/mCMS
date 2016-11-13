@@ -5,8 +5,6 @@ class Department < ApplicationRecord
 
 
   has_one :department_extend_demography
-  has_many :job_details
-
   has_many :department_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :department_attachments, reject_if: :all_blank, allow_destroy: true
 
@@ -79,10 +77,6 @@ class Department < ApplicationRecord
 
   def name
     "#{id} #{department_type}"
-  end
-
-  def grouped_by_role
-    job_details.group_by{|j| j.role.to_s }
   end
 
   def to_pdf(pdf)

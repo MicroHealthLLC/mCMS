@@ -4,6 +4,8 @@ class Organization < ApplicationRecord
   belongs_to :organization_type
   has_one :organization_extend_demography, :dependent => :destroy
 
+  has_many :job_details
+
 
   has_many :organization_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :organization_attachments, reject_if: :all_blank, allow_destroy: true
@@ -19,6 +21,10 @@ class Organization < ApplicationRecord
     else
       OrganizationType.default
     end
+  end
+
+  def grouped_by_role
+    job_details.group_by{|j| j.role.to_s }
   end
 
   def to_s
