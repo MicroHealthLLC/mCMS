@@ -8,14 +8,14 @@ module ApplicationHelper
   end
 
   def authoring(created, author, options={})
-    t(:label_added_time_by, :author => author, :age => time_tag(created)).html_safe
+    t(:label_added_time_by, :author => author, :age => time_tag_value(created)).html_safe
   end
 
   def link_to_user(user)
 
   end
 
-  def time_tag(time)
+  def time_tag_value(time)
     text = distance_of_time_in_words(Time.now, time)
     content_tag('abbr', text, :title => I18n.l(time))
   end

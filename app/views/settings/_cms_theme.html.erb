@@ -39,7 +39,15 @@
       $('body').removeClass("smart-style-3");
       $('body').removeClass("smart-style-4");
       $('body').removeClass("smart-style-5");
-      $('body').addClass(id)
+      $('body').addClass(id);
+
+      $('html').removeClass("smart-style-0");
+      $('html').removeClass("smart-style-1");
+      $('html').removeClass("smart-style-2");
+      $('html').removeClass("smart-style-3");
+      $('html').removeClass("smart-style-4");
+      $('html').removeClass("smart-style-5");
+      $('html').addClass(id)
     })
     $('#smart-fixed-header').on('change', function(){
       if($(this).prop('checked'))
