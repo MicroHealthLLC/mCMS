@@ -210,4 +210,8 @@ module ApplicationHelper
     Survey::Answer.where(option_id: option_id).count
   end
 
+  def can_connect_with?(type)
+    ENV["#{type}_KEY".upcase].present?
+  end
+
 end

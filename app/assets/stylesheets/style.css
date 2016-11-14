@@ -33,6 +33,12 @@ label, legend, .jarviswidget header h2 strong, a{
     padding: 10px;
 }
 
+.center_global
+{
+    margin-top: 50vh; /* poussé de la moitié de hauteur de viewport */
+    transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
+}
+
 .btn {
     margin-left: 10px;
 }

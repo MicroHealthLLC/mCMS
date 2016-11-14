@@ -12,6 +12,7 @@
  *
   *= require bootstrap.min.css
   *= require font-awesome.min.css
+  *= require bootstrap-social
 
   <!-- SmartAdmin Styles : Caution! DO NOT change the order -->
   *= require smartadmin-production-plugins.min.css
