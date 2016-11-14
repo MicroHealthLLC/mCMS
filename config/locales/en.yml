@@ -225,6 +225,7 @@ en:
   cases: Cases
   my_cases: My cases
   title: Title
+  summary: Summary
   private: Private
   task: Task
   tasks: Tasks

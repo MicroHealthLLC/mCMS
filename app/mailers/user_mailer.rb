@@ -46,6 +46,12 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: "Education ##{@education.id}")
   end
 
+  def new_notification(object)
+    @user = object.user
+    @object = object
+    mail(to: @user.email, subject: "New ##{@object.id}")
+  end
+
   def language_notification(object)
     @user = object.user
     @language = object

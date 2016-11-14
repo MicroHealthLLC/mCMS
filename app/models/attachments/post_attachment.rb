@@ -1,0 +1,3 @@
+class PostAttachment < Attachment
+
+end
