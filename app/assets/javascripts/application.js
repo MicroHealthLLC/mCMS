@@ -34,24 +34,31 @@ $(function(){
         theme: "bootstrap"
     });
 
-    $('#ul_menu').on('click', function(){
-        if(readCookie('admin_menu')){
-            eraseCookie('admin_menu');
+
+    handle_menu('admin')
+    handle_menu('case')
+    handle_menu('profile')
+})
+
+function handle_menu(id)
+{
+    $('#ul_'+id).on('click', function(){
+        eraseCookie('profile_menu');
+        eraseCookie('case_menu');
+        if(readCookie(id+'_menu')){
+            eraseCookie(id+'_menu');
         }
         else
         {
-            createCookie('admin_menu', true, 7);
+            createCookie(id+'_menu', true, 7);
         }
     });
-    set_ul_menu()
-})
 
-function set_ul_menu()
-{
-    if(readCookie('admin_menu'))
+    if(readCookie(id+'_menu'))
     {
-        $('#admin_menu').addClass('display_block');
+        $('#'+id+'_menu').addClass('display_block');
     }
+
 }
 
 function createCookie(name,value,days) {
