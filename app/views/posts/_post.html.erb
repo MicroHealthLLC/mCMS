@@ -1,0 +1,12 @@
+<article class="news-article">
+  <header>
+    <h3><%= avatar(post.user) %>
+      <%= link_to h(post.title), post_path(post) %>
+      <%= "(#{t(:label_x_comments, :count => post.post_notes.count)})" if post.post_notes.count > 0 %>
+    </h3>
+    <p class="author"><%= authoring post.created_at, post.user %></p>
+  </header>
+  <div class="wiki">
+    <%= post.summary.html_safe %>
+  </div>
+</article>

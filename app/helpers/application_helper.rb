@@ -3,6 +3,23 @@ module ApplicationHelper
     args.map{|action| current_user.allowed_to? action }.include?(true)
   end
 
+  def avatar(user)
+    image_tag user.profile_image
+  end
+
+  def authoring(created, author, options={})
+    t(:label_added_time_by, :author => author, :age => time_tag(created)).html_safe
+  end
+
+  def link_to_user(user)
+
+  end
+
+  def time_tag(time)
+    text = distance_of_time_in_words(Time.now, time)
+    content_tag('abbr', text, :title => I18n.l(time))
+  end
+
   def delete_link(url, options={})
     options = {
         :method => :delete,

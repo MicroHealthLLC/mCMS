@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.order('id DESC').paginate(page: params[:page], per_page: 25)
   end
 
   # GET /posts/1
@@ -83,11 +83,11 @@ class PostsController < ApplicationController
   end
 
   def authorize_edit
-    raise Unauthorized unless @posts.can?(:edit_posts, :manage_posts, :manage_roles)
+    raise Unauthorized unless @post.can?(:edit_posts, :manage_posts, :manage_roles)
   end
 
   def authorize_delete
-    raise Unauthorized unless @posts.can?(:delete_posts, :manage_posts, :manage_roles)
+    raise Unauthorized unless @post.can?(:delete_posts, :manage_posts, :manage_roles)
   end
 
 end

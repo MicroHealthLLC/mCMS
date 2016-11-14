@@ -234,6 +234,8 @@ en:
   wiki: wiki
   attachment: Attachment
   attachments: Attachments
+  label_x_comments: Comments (%{count})
+  label_added_time_by: "Added by %{author} %{age} ago"
 
   button_save: Save
   button_cancel: Cancel
