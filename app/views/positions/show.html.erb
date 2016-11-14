@@ -11,19 +11,14 @@
     <%= @position.position_description.html_safe %>
   </p>
 
+    <p>
+    <strong>Organization:</strong>
+    <%= @position.organization %>
+  </p>
+
   <p>
     <strong>Location:</strong>
     <%= @position.location %>
-  </p>
-
-  <p>
-    <strong><%= t('salary') %>:</strong>
-    <%= @position.salary %>
-  </p>
-
-  <p>
-    <strong><%= t('pay_rate') %>:</strong>
-    <%= @position.pay_rate_type %>
   </p>
 
   <p>

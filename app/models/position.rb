@@ -1,6 +1,6 @@
 class Position < ApplicationRecord
   belongs_to :user
-  belongs_to :department
+  belongs_to :organization
   belongs_to :pay_rate_type, optional: true, foreign_key: :pay_rate_id
   belongs_to :employment_type, optional: true
   belongs_to :location_type, optional: true
@@ -9,7 +9,7 @@ class Position < ApplicationRecord
   has_many :position_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :position_attachments, reject_if: :all_blank, allow_destroy: true
 
-  validates_presence_of :department_id, :user_id
+  validates_presence_of :organization_id, :user_id
 
   validates_presence_of :title
   after_save :send_notification
@@ -46,7 +46,7 @@ class Position < ApplicationRecord
   def self.safe_attributes
     [:user_id, :title, :position_description,
      :location_type_id, :special_requirement, :note,
-     :date_start, :date_end, :department_id, :salary, :pay_rate_id, :employment_type_id,
+     :date_start, :date_end, :organization_id, :salary, :pay_rate_id, :employment_type_id,
      position_attachments_attributes: [Attachment.safe_attributes]]
   end
 
@@ -59,8 +59,6 @@ class Position < ApplicationRecord
     pdf.text "<b>Special requirement: </b> #{special_requirement}", :inline_format =>  true
     pdf.text "<b>Date start: </b> #{date_start}", :inline_format =>  true
     pdf.text "<b>Date end: </b> #{date_end}", :inline_format =>  true
-    pdf.text "<b>Pay: </b> #{salary}", :inline_format =>  true
-    pdf.text "<b>Pay rate: </b> #{pay_rate_type}", :inline_format =>  true
     pdf.text "<b>Employment type: </b> #{employment_type}", :inline_format =>  true
     pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
   end
@@ -74,8 +72,8 @@ class Position < ApplicationRecord
     output<<"<b>Special requirement: </b> #{special_requirement}<br/>"
     output<<"<b>Date start: </b> #{date_start}<br/>"
     output<<"<b>Date end: </b> #{date_end}<br/>"
-    output<<"<b>Pay: </b> #{salary}<br/>"
-    output<<"<b>Pay rate: </b> #{pay_rate_type}<br/>"
+    # output<<"<b>Pay: </b> #{salary}<br/>"
+    # output<<"<b>Pay rate: </b> #{pay_rate_type}<br/>"
     output<<"<b>Employment type: </b> #{employment_type}<br/>"
     output<<"<b>Note: </b> #{note}<br/>"
 

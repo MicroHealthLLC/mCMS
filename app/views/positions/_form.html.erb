@@ -39,9 +39,9 @@
       </div>
 
       <div class="form-group">
-        <%= f.label t('departments'), class: 'col-md-2 control-label' %>
+        <%= f.label t('organization'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :department_id, options_for_select(Department.all.map{|dep| [dep.department_type, dep.id] }, selected: position.department_id), {},{ class: 'form-control'} %>
+          <%= f.select :organization_id, options_for_select(Organization.all.map{|dep| [dep.organization_type, dep.id] }, selected: position.organization_id), {},{ class: 'form-control'} %>
         </div>
       </div>
 
@@ -49,20 +49,6 @@
         <%= f.label :special_requirement , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.text_field :special_requirement , class: 'form-control' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:salary) , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :salary , class: 'form-control' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:pay_rate) , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :pay_rate_id, PayRateType.active.pluck(:name, :id),{} , {class: 'form-control'} %>
         </div>
       </div>
 
