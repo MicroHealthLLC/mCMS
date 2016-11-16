@@ -190,6 +190,8 @@ en:
   answer: Answer
   pay_rate: Pay rate
   employment_type: Employment type
+  appointment_type: Appointment type
+  appointment_status: Appointment status
   salary: Pay
   login: Username
   email: Email
@@ -206,6 +208,7 @@ en:
   new_affiliation: New Affiliation
   organizations: Organizations
   affiliations: Affiliations
+  appointments: Appointments
   affiliation_type: Affiliation type
   organization: Organization
   organization_type: Organization Type

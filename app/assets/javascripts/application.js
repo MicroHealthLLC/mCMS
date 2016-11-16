@@ -27,17 +27,46 @@
 
 //= require ckeditor-jquery
 //= require plugin/select2/select2.min.js
+//= require clockpicker.js
 
 $(function(){
     $('.date_picker').datepicker({ dateFormat: 'dd-mm-yy' })
     $( ".use_select2" ).select2({
         theme: "bootstrap"
     });
-
+    $(document).ready(function(){
+        $('.clockpicker').clockpicker({autoclose:true});
+    })
 
     handle_menu('admin')
     handle_menu('case')
     handle_menu('profile')
+
+
+    $(".user_autocomplete").autocomplete({
+        //source: availableTags
+
+        source: function (request, response) {
+            $.ajax({
+                url: "/users.json?q="+ request.term,
+                dataType: "json",
+                success: function (data) {
+                    d = data;
+                    res = [];
+                    for (i = 0; i < d.length; i++) {
+                        value = d[i]['login'];
+                        res.push({label: value, value: value, id: d[i]['id']})
+                    }
+                    response(res)
+                }
+            });
+        },
+        minLength: 2,
+        select: function (event, ui) {
+            $(this).next().val(ui.item.id)
+            $(this).next().next().val('User')
+        }
+    });
 })
 
 function handle_menu(id)

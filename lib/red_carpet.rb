@@ -116,6 +116,14 @@ RedCarpet::AccessControl.map do |map|
     map.permission :delete_cases, {:cases => [:destroy]},  :read => true
     map.permission :manage_cases, {:cases => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
+
+  map.project_module :appointments do |map|
+    map.permission :view_appointments, {:appointments => [:index]},  :read => true
+    map.permission :create_appointments, {:appointments => [:new, :create]},  :read => true
+    map.permission :edit_appointments, {:appointments => [:edit, :update]},  :read => true
+    map.permission :delete_appointments, {:appointments => [:destroy]},  :read => true
+    map.permission :manage_appointments, {:appointments => [:new, :create, :edit, :update, :destroy]},  :read => true
+  end
   
  # map.project_module :checklists do |map|
  #    map.permission :view_checklists, {:checklists => [:index]},  :read => true
@@ -137,6 +145,8 @@ RedCarpet::AccessControl.map do |map|
                                    :positions => [:index,:new, :create, :edit, :update, :destroy],
                                    :surveys => [:index,:new, :create, :edit, :update, :destroy, :show],
                                    :tasks => [:index,:new, :create, :edit, :update, :destroy],
+                                   :cases => [:index,:new, :create, :edit, :update, :destroy],
+                                   :appointments => [:index,:new, :create, :edit, :update, :destroy],
                                    :checklists => [:index,:new, :create, :edit, :update, :destroy],
 
 

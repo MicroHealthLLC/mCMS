@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :appointments
   resources :posts
   wiki_root '/wiki'
   mount Thredded::Engine => '/forum'
@@ -36,6 +37,10 @@ Rails.application.routes.draw do
     resources :department_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
   resources :contacts do
+    collection do
+      match 'search', via: [:get, :post]
+    end
+    
     resources :contact_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
   resources :affiliations do

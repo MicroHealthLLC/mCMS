@@ -24,5 +24,7 @@
   *= require dataTables/jquery.dataTables
   *= require buttons.dataTables.min
   *= require pivot
+  *= require clockpicker
+  *= require easy-autocomplete.min
   *= require style.css
  */

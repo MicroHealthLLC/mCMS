@@ -1,0 +1,2 @@
+class AppointmentAttachment < Attachment
+end

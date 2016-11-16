@@ -1,0 +1,29 @@
+<h1>Appointments</h1>
+
+<%= link_to('New Appointment', new_appointment_path , class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_appointments, :manage_appointments, :manage_roles) %>
+
+<table class="table table-bordered table-responsive">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Appointment type</th>
+    <th>Appointment status</th>
+    <th>Date</th>
+    <th>With who</th>
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @appointments.each do |appointment| %>
+      <tr>
+        <td><%= appointment.title %></td>
+        <td><%= appointment.appointment_type_id %></td>
+        <td><%= appointment.appointment_status_id %></td>
+        <td><%= appointment.date %></td>
+
+        <td><%= appointment.with_who %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

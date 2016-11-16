@@ -83,8 +83,6 @@ module ApplicationHelper
   def html_title(*args)
     if args.empty?
       title = @html_title || []
-      title << @project.name if @project
-      title << Setting.app_title unless Setting.app_title == title.last
       title.reject(&:blank?).join(' - ')
     else
       @html_title ||= []

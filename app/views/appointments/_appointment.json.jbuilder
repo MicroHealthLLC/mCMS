@@ -1,0 +1,2 @@
+json.extract! appointment, :id, :title, :description, :appointment_type_id, :date, :appointment_status_id, :user_id, :with_who_id, :with_who_type, :created_at, :updated_at
+json.url appointment_url(appointment, format: :json)

@@ -1,0 +1,39 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to 'Delete',  appointment_path(@appointment), class: 'btn btn-danger pull-right',
+              :method => :delete,
+              :data => {:confirm => t(:text_are_you_sure)}
+  %>
+  <%= link_to t('button_edit'), edit_appointment_path(@appointment), class: 'btn btn-success pull-right' %>
+  <%= link_to t('button_cancel'), appointments_path, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_print'), appointment_path(@appointment, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+</div>
+
+<p>
+  <strong>Title:</strong>
+  <%= @appointment.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @appointment.description.html_safe %>
+</p>
+
+<p>
+  <strong>Appointment type:</strong>
+  <%= @appointment.appointment_type %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @appointment.date_time %>
+</p>
+
+<p>
+  <strong>Appointment status:</strong>
+  <%= @appointment.appointment_status %>
+</p>
+
+<p>
+  <strong>With who:</strong>
+  <%= @appointment.with_who %>
+</p>

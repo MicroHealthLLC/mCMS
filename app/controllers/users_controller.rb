@@ -4,7 +4,14 @@ class UsersController < ApplicationController
 
   before_filter :require_admin, only: [:destroy]
   def index
-    @users = User.all
+    respond_to do |format|
+      format.html{@users = User.all}
+      format.json{
+        render json: User.where("login like ?", "%#{params[:q]}%").select('id, login ').to_json
+
+      }
+    end
+
   end
 
   def show
