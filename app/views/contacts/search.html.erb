@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-xs-12">
+    <%= text_field_tag :contact_search, '', class: 'form-control contact-autocomplete' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 contact_result">
+</div>
+</div>
+
+<script>
+  $(function(){
+    $(".contact-autocomplete").autocomplete({
+      //source: availableTags
+
+      source: function (request, response) {
+        $.ajax({
+          url: "/contacts.json?q="+ request.term,
+          dataType: "json",
+          success: function (data) {
+            response(data)
+          }
+        });
+      },
+      minLength: 2,
+      select: function (event, ui) {
+        $.getScript('/contacts/'+ui.item.id+'.js')
+      }
+    });
+  })
+</script>

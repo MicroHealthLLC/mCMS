@@ -9,12 +9,26 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.visible :view_contacts
+    respond_to do |format|
+      format.html{@contacts = Contact.visible :view_contacts}
+      format.json{
+        q = params[:q].to_s.downcase
+        contacts = Contact.where('LOWER(first_name) LIKE ? ', "%#{q}%").
+            or(Contact.where('LOWER(last_name) LIKE ? ', "%#{q}%")).
+            or(Contact.where('LOWER(middle_name) LIKE ? ', "%#{q}%")).map{|contact| {id: contact.id, value: contact.name, label: contact.name}}.to_json
+        render json: contacts
+      }
+    end
+
   end
 
   # GET /contacts/1
   # GET /contacts/1.json
   def show
+    respond_to do |format|
+      format.html{}
+      format.js{}
+    end
   end
 
   # GET /contacts/new
@@ -61,6 +75,10 @@ class ContactsController < ApplicationController
       format.html { redirect_to contacts_url, notice: 'Contact was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def search
+
   end
 
   private
