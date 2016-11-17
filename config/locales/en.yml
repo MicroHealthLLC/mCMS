@@ -232,7 +232,8 @@ en:
   private: Private
   task: Task
   tasks: Tasks
-  date: date
+  label_date: date
+  label_time: time
   forum: forum
   wiki: wiki
   attachment: Attachment
