@@ -20,65 +20,74 @@ class CreateThredded < ActiveRecord::Migration
         t.index [:sluggable_type], name: :index_friendly_id_slugs_on_sluggable_type
       end
     end
-
-    create_table :thredded_categories do |t|
-      t.references :messageboard, null: false
-      t.string :name, limit: 191, null: false
-      t.string :description, limit: 255
-      t.timestamps null: false
-      t.string :slug, limit: 191, null: false
-      t.index [:messageboard_id, :slug], name: :index_thredded_categories_on_messageboard_id_and_slug, unique: true
-      t.index [:messageboard_id], name: :index_thredded_categories_on_messageboard_id
+    unless table_exists?(:thredded_categories)
+      create_table :thredded_categories do |t|
+        t.references :messageboard, null: false
+        t.string :name, limit: 191, null: false
+        t.string :description, limit: 255
+        t.timestamps null: false
+        t.string :slug, limit: 191, null: false
+        t.index [:messageboard_id, :slug], name: :index_thredded_categories_on_messageboard_id_and_slug, unique: true
+        t.index [:messageboard_id], name: :index_thredded_categories_on_messageboard_id
+      end
     end
     DbTextSearch::CaseInsensitive.add_index connection, :thredded_categories, :name, name: :thredded_categories_name_ci
 
-    create_table :thredded_messageboards do |t|
-      t.string :name, limit: 191, null: false
-      t.string :slug, limit: 191
-      t.text :description
-      t.integer :topics_count, default: 0
-      t.integer :posts_count, default: 0
-      t.integer :position, null: false
-      t.references :last_topic
-      t.references :messageboard_group
-      t.timestamps null: false
-      t.index [:messageboard_group_id], name: :index_thredded_messageboards_on_messageboard_group_id
-      t.index [:slug], name: :index_thredded_messageboards_on_slug
+    unless table_exists?(:thredded_messageboards)
+      create_table :thredded_messageboards do |t|
+        t.string :name, limit: 191, null: false
+        t.string :slug, limit: 191
+        t.text :description
+        t.integer :topics_count, default: 0
+        t.integer :posts_count, default: 0
+        t.integer :position, null: false
+        t.references :last_topic
+        t.references :messageboard_group
+        t.timestamps null: false
+        t.index [:messageboard_group_id], name: :index_thredded_messageboards_on_messageboard_group_id
+        t.index [:slug], name: :index_thredded_messageboards_on_slug
+      end
     end
 
-    create_table :thredded_post_notifications do |t|
-      t.string :email, limit: 191, null: false
-      t.references :post, null: false
-      t.timestamps null: false
-      t.string :post_type, limit: 191
-      t.index [:post_id, :post_type], name: :index_thredded_post_notifications_on_post
+    unless table_exists?(:thredded_post_notifications)
+      create_table :thredded_post_notifications do |t|
+        t.string :email, limit: 191, null: false
+        t.references :post, null: false
+        t.timestamps null: false
+        t.string :post_type, limit: 191
+        t.index [:post_id, :post_type], name: :index_thredded_post_notifications_on_post
+      end
     end
 
-    create_table :thredded_posts do |t|
-      t.integer :user_id, limit: 4
-      t.text :content, limit: 65_535
-      t.string :ip, limit: 255
-      t.string :source, limit: 255, default: 'web'
-      t.references :postable, null: false
-      t.references :messageboard, null: false
-      t.integer :moderation_state, null: false
-      t.timestamps null: false
-      t.index [:moderation_state, :updated_at],
-              order: { updated_at: :asc },
-              name:  :index_thredded_posts_for_display
-      t.index [:messageboard_id], name: :index_thredded_posts_on_messageboard_id
-      t.index [:postable_id], name: :index_thredded_posts_on_postable_id
-      t.index [:postable_id], name: :index_thredded_posts_on_postable_id_and_postable_type
-      t.index [:user_id], name: :index_thredded_posts_on_user_id
+    unless table_exists?(:thredded_posts)
+      create_table :thredded_posts do |t|
+        t.integer :user_id, limit: 4
+        t.text :content, limit: 65_535
+        t.string :ip, limit: 255
+        t.string :source, limit: 255, default: 'web'
+        t.references :postable, null: false
+        t.references :messageboard, null: false
+        t.integer :moderation_state, null: false
+        t.timestamps null: false
+        t.index [:moderation_state, :updated_at],
+                order: { updated_at: :asc },
+                name:  :index_thredded_posts_for_display
+        t.index [:messageboard_id], name: :index_thredded_posts_on_messageboard_id
+        t.index [:postable_id], name: :index_thredded_posts_on_postable_id
+        t.index [:postable_id], name: :index_thredded_posts_on_postable_id_and_postable_type
+        t.index [:user_id], name: :index_thredded_posts_on_user_id
+      end
     end
     DbTextSearch::FullText.add_index connection, :thredded_posts, :content, name: :thredded_posts_content_fts
 
-    create_table :thredded_private_posts do |t|
-      t.references :user
-      t.text :content, limit: 65_535
-      t.references :postable, null: false
-      t.string :ip, limit: 255
-      t.timestamps null: false
+    unless table_exists?(:thredded_private_posts)
+      create_table :thredded_private_posts do |t|
+        t.references :user
+        t.text :content, limit: 65_535
+        t.references :postable, null: false
+        t.string :ip, limit: 255
+        t.timestamps null: false
+      end
     end
 
     create_table :thredded_private_topics do |t|
