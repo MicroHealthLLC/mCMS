@@ -6,6 +6,10 @@
           <a href="<%= cases_path %>" title="<%= t(:cases) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent"><%= t(:cases) %></span></a>
         </li>
 
+         <li class="<%= menu_active?('cases') %>">
+          <a href="<%= cases_path %>" title="<%= t(:cases) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent"><%= t(:cases) %></span></a>
+        </li>
+
         <% if module_enabled? 'checklists' %>
             <li class="<%= menu_active?('checklists') %>">
               <a href="<%= checklist_templates_path %>" title="<%= t(:checklists) %>"><i class="fa fa-lg fa-fw fa-check"></i> <span class="menu-item-parent"><%= t(:checklists) %></span></a>
@@ -29,13 +33,6 @@
               <a href="<%= documents_path %>" title="<%= t(:documents) %>"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent"><%= t(:documents) %></span></a>
             </li>
         <% end %>
-
-        <% if module_enabled? 'cases' %>
-            <li class="<%= menu_active?('cases') %>">
-              <a href="<%= cases_path %>" title="<%= t(:cases) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent"><%= t(:cases) %></span></a>
-            </li>
-        <% end %>
-
       </ul>
     </li>
 
