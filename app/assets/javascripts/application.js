@@ -10,6 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery2
 //= require jquery
 //= require jquery_ujs
 //   JQUERY VALIDATE -->
@@ -28,7 +29,8 @@
 //= require ckeditor-jquery
 //= require plugin/select2/select2.min.js
 //= require clockpicker.js
-
+//= require cable
+//= require turbolinks
 $(function(){
     $('.date_picker').datepicker({ dateFormat: 'dd-mm-yy' })
     $( ".use_select2" ).select2({
@@ -115,3 +117,43 @@ function eraseCookie(name) {
     createCookie(name,"",-1);
 }
 
+/*
+ * CHAT
+ */
+
+$.filter_input = $('#filter-chat-list');
+$.chat_users_container = $('#chat-container > .chat-list-body')
+$.chat_users = $('#chat-users')
+$.chat_list_btn = $('#chat-container > .chat-list-open-close');
+$.chat_body = $('#chat-body');
+
+/*
+ * LIST FILTER (CHAT)
+ */
+
+// custom css expression for a case-insensitive contains()
+jQuery.expr[':'].Contains = function(a, i, m) {
+    return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
+};
+
+function listFilter(list) {// header is any element, list is an unordered list
+    // create and add the filter form to the header
+
+    $.filter_input.change(function() {
+        var filter = $(this).val();
+        if (filter) {
+            // this finds all links in a list that contain the input,
+            // and hide the ones not containing the input while showing the ones that do
+            $.chat_users.find("a:not(:Contains(" + filter + "))").parent().slideUp();
+            $.chat_users.find("a:Contains(" + filter + ")").parent().slideDown();
+        } else {
+            $.chat_users.find("li").slideDown();
+        }
+        return false;
+    }).keyup(function() {
+        // fire the above change event after every letter
+        $(this).change();
+
+    });
+
+}

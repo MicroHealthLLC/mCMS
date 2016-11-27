@@ -41,8 +41,3 @@
 //   MAIN APP JS FILE -->
 //=  require app.min.js
 
-//   SmartChat UI : plugin -->
-//=  require smart-chat-ui/smart.chat.ui.min.js
-//=  require smart-chat-ui/smart.chat.manager.min.js
-
-

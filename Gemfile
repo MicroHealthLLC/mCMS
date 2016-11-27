@@ -93,7 +93,8 @@ gem 'bluecloth'
 
 #FORUM SYS
 gem 'thredded', '~> 0.8.2'
-
+# Redis
+gem 'redis', '~> 3.2'
 
 #installing adapter gems based on database.yml
 require 'erb'

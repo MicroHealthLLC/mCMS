@@ -24,6 +24,14 @@ Rails.application.routes.draw do
 
   get 'settings/edit'
   get 'home/index'
+  get 'home/chat'
+  mount ActionCable.server => '/cable'
+  resources :chat_rooms, param: :token, only: [:show] do
+    collection do
+      get 'create_or_find'
+    end
+  end
+
   root to: "home#index"
   get 'home/all_informations', as: 'all_informations'
 

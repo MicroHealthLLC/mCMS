@@ -1,0 +1,12 @@
+
+<li class="message">
+  <%= avatar(message.user) %>
+  <div class="message-text">
+    <time>
+      <%= message.timestamp %>
+    </time> <a href="#" class="username"><%= message.user.name %></a>
+    <%= message.body %>
+  </div>
+</li>
+</ul>
+

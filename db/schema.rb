@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161114123156) do
+ActiveRecord::Schema.define(version: 20161127185004) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type_id"
@@ -34,6 +34,20 @@ ActiveRecord::Schema.define(version: 20161114123156) do
     t.text     "note",                limit: 65535
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
+  end
+
+  create_table "appointments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "title"
+    t.text     "description",           limit: 65535
+    t.integer  "appointment_type_id"
+    t.date     "date"
+    t.string   "time"
+    t.integer  "appointment_status_id"
+    t.integer  "user_id"
+    t.integer  "with_who_id"
+    t.string   "with_who_type"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "attachments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -81,6 +95,16 @@ ActiveRecord::Schema.define(version: 20161114123156) do
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "file"
+  end
+
+  create_table "chat_rooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "receiver_id"
+    t.string   "token"
+    t.index ["user_id"], name: "index_chat_rooms_on_user_id", using: :btree
   end
 
   create_table "checklist_answers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -320,6 +344,16 @@ ActiveRecord::Schema.define(version: 20161114123156) do
     t.datetime "updated_at",                     null: false
   end
 
+  create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.text     "body",         limit: 65535
+    t.integer  "user_id"
+    t.integer  "chat_room_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["chat_room_id"], name: "index_messages_on_chat_room_id", using: :btree
+    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
+  end
+
   create_table "notes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "type"
     t.integer  "owner_id"
@@ -382,7 +416,7 @@ ActiveRecord::Schema.define(version: 20161114123156) do
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
     t.integer  "location_type_id"
-    t.integer  "department_id"
+    t.integer  "organization_id"
     t.string   "salary"
     t.integer  "pay_rate_id"
     t.integer  "employment_type_id"
@@ -728,16 +762,16 @@ ActiveRecord::Schema.define(version: 20161114123156) do
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
-    t.string   "email",                                default: "",    null: false
-    t.string   "login",                                default: "",    null: false
-    t.text     "note",                   limit: 65535
-    t.boolean  "state",                                default: false
-    t.boolean  "admin",                                default: false
-    t.string   "encrypted_password",                   default: "",    null: false
+    t.string   "email",                                  default: "",    null: false
+    t.string   "login",                                  default: "",    null: false
+    t.text     "note",                     limit: 65535
+    t.boolean  "state",                                  default: false
+    t.boolean  "admin",                                  default: false
+    t.string   "encrypted_password",                     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                        default: 0,     null: false
+    t.integer  "sign_in_count",                          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -746,15 +780,17 @@ ActiveRecord::Schema.define(version: 20161114123156) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.integer  "failed_attempts",                      default: 0,     null: false
+    t.integer  "failed_attempts",                        default: 0,     null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
-    t.datetime "created_at",                                           null: false
-    t.datetime "updated_at",                                           null: false
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
     t.string   "avatar"
     t.datetime "deleted_at"
     t.string   "provider"
     t.string   "uid"
+    t.string   "database_authenticatable"
+    t.string   "ldap_authenticatable",                                   null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["deleted_at"], name: "index_users_on_deleted_at", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -787,9 +823,12 @@ ActiveRecord::Schema.define(version: 20161114123156) do
     t.index ["path"], name: "index_wiki_pages_on_path", unique: true, using: :btree
   end
 
+  add_foreign_key "chat_rooms", "users"
   add_foreign_key "extend_demographies", "users"
   add_foreign_key "job_details", "roles"
   add_foreign_key "job_details", "users"
+  add_foreign_key "messages", "chat_rooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "thredded_messageboard_users", "thredded_messageboards"
   add_foreign_key "thredded_messageboard_users", "thredded_user_details"
 end

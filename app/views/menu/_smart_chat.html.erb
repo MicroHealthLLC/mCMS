@@ -1,0 +1,38 @@
+<li class="chat-users top-menu-invisible">
+  <a href="#"><i class="fa fa-lg fa-fw fa-comment-o"><em class="bg-color-pink flash animated">!</em></i> <span class="menu-item-parent"> User ChatRoom</span></a>
+  <ul>
+    <li>
+      <!-- DISPLAY USERS -->
+      <div class="display-users">
+
+        <input class="form-control chat-user-filter" placeholder="Filter" type="text">
+
+        <% User.where.not(id: current_user.id ).each do |user | %>
+            <a href="<%= create_or_find_chat_rooms_path(user_id: user.id) %>" class="usr"
+               data-chat-id="cha1"
+               data-chat-fname="<%= user.first_name %>"
+               data-chat-lname="<%= user.last_name %>"
+               data-chat-status="online"
+               data-chat-alertmsg=""
+               data-chat-alertshow="true"
+               data-rel="popover-hover"
+               data-placement="right"
+               data-html="true"
+               data-content="
+											<div class='usr-card'>
+												<%= "#{avatar(user)}" %>
+												<div class='usr-card-content'>
+													<h3><%= user.login %></h3>
+													<p></p>
+												</div>
+											</div>
+										"
+            >
+              <i></i><%= user.profile_name %>
+            </a>
+        <% end %>
+      </div>
+      <!-- END DISPLAY USERS -->
+    </li>
+  </ul>
+</li>

@@ -1,0 +1,32 @@
+<!-- new widget -->
+<div class="jarviswidget jarviswidget-color-blueDark" id="wid-id-1" data-widget-editbutton="false" data-widget-fullscreenbutton="false">
+
+  <header>
+    <span class="widget-icon"> <i class="fa fa-comments txt-color-white"></i> </span>
+    <h2> SmartChat </h2>
+
+  </header>
+
+  <!-- widget div-->
+  <div>
+    <!-- end widget edit box -->
+
+    <div class="widget-body widget-hide-overflow no-padding">
+      <div id="messages" data-chat-room-id="<%= @chat_room.id %>" class="chat-body custom-scroll">
+        <%= render @chat_room.messages %>
+      </div>
+
+      <%= form_for @message, url: '#' do |f| %>
+          <%= hidden_field_tag 'chat_room_id', @chat_room.id %>
+          <div class="form-group">
+            <%= f.text_area :body, class: 'form-control' %>
+            <small class="text-muted">From 2 to 1000 characters</small>
+          </div>
+
+          <%= f.submit "Post", class: 'btn btn-sm btn-primary pull-right' %>
+      <% end %>
+
+
+    </div>
+  </div>
+</div>

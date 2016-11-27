@@ -13,6 +13,9 @@ class User < ApplicationRecord
   has_one :core_demographic
   accepts_nested_attributes_for :core_demographic
 
+  has_many :chat_rooms, dependent: :destroy
+  has_many :messages, dependent: :destroy
+
   has_one :user_extend_demography
   has_one :job_detail
 
