@@ -136,10 +136,12 @@ en:
   enumeration_pay_rate_type: Pay rate enumeration
   enumeration_social_media_type: Social media enumeration
   enumeration_certification_type: Certification enumeration
+  enumeration_case_status_type: Case status
   enumeration_contact_type: Relationship
   enumeration_checklist_status_type: Checklist status
   enumeration_country_type: Country enumeration
   enumeration_citizenship_type: Citizenship enumeration
+  enumeration_issued_by_type : Issued by type
   enumeration_department_type: Department enumeration
   enumeration_document_type: Document enumeration
   enumeration_education_type: Education enumeration
