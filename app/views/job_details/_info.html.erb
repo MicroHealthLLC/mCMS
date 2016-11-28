@@ -4,12 +4,14 @@
 
 
 
-  <% org.grouped_by_role.each do |role, job_details| %>
-      <h4> <%= role %> </h4>
-      <ul>
-        <% job_details.each do |jd| %>
-            <li> <%= jd.user %> </li>
-        <% end %>
-      </ul>
+  <% if org %>
+      <% org.grouped_by_role.each do |role, job_details| %>
+          <h4> <%= role %> </h4>
+          <ul>
+            <% job_details.each do |jd| %>
+                <li> <%= jd.user %> </li>
+            <% end %>
+          </ul>
+      <% end %>
   <% end %>
 </div>
