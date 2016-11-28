@@ -1,4 +1,9 @@
 <%= wiki_page_style -%>
+<div class="col-md-4 pull-right">
+  <%= text_field_tag :new_page, '', class: 'form-control col-md-3', placeholder: 'New title page' %>
+  <%= link_to( 'New Page', '#', class: 'btn btn-primary pull-right margin-bottom-10', id: 'new_page_link')%>
+</div>
+
 
 <h1><%=wt 'All pages' %></h1>
 
@@ -9,3 +14,11 @@
     <% end -%>
   <% end -%>
 </ul>
+
+<script>
+  $(function(){
+      $('#new_page_link').on('click', function(){
+          window.location.href = "/wiki/new/"+$('#new_page').val()
+      })
+  })
+</script>
