@@ -46,11 +46,6 @@
               <a href="<%= affiliations_path %>" title="<%= t(:affiliations) %>"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent"><%= t(:affiliations) %></span></a>
             </li>
         <% end %>
-        <% if module_enabled? 'appointments' %>
-            <li class="<%= menu_active?('appointments') %>">
-              <a href="<%= appointments_path %>" title="<%= t(:appointments) %>"><i class="fa fa-lg fa-fw fa-calendar"></i> <span class="menu-item-parent"><%= t(:appointments) %></span></a>
-            </li>
-        <% end %>
       </ul>
     </li>
 <% else %>

@@ -43,8 +43,10 @@ class Appointment < ApplicationRecord
   end
 
   def with_who=(user_or_contact)
-    self.with_who_id = user_or_contact.id
-    self.with_who_type = user_or_contact.class
+    if user_or_contact.class == User
+      self.with_who_id = user_or_contact.try(:id)
+      self.with_who_type = user_or_contact.class
+    end
   end
 
 
