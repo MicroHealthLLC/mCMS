@@ -27,12 +27,12 @@
       </li>
   <% end %>
 
+  <%= render partial: 'menu/smart_chat' %>
 
   <% if User.current.admin? %>
       <%= render partial: 'menu/admin' %>
   <% end %>
 
-  <%= render partial: 'menu/smart_chat' %>
 
 
 </ul>
