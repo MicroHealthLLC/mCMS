@@ -1,11 +1,14 @@
 class AppointmentsController < ApplicationController
   before_action  :authenticate_user!
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
+  before_action :authorize, only: [:new, :create]
+  before_action :authorize_edit, only: [:edit, :update]
+  before_action :authorize_delete, only: [:destroy]
 
   # GET /appointments
   # GET /appointments.json
   def index
-    @appointments = Appointment.visible(:view_appointments)
+    @appointments = Appointment.where(user_id: User.current.id)
   end
 
   # GET /appointments/1

@@ -17,7 +17,7 @@
   <tbody>
   <% @appointments.each do |appointment| %>
       <tr>
-        <td><%= appointment.title %></td>
+        <td><%= link_to appointment.title, appointment_path(appointment) %></td>
         <td><%= appointment.appointment_type_id %></td>
         <td><%= appointment.appointment_status_id %></td>
         <td><%= appointment.date %></td>

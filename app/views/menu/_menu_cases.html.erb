@@ -45,4 +45,10 @@
           <a href="<%= cases_path(my: User.current.id) %>" title="<%= t(:my_cases) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent"><%= t(:my_cases) %></span></a>
         </li>
     <% end %>
+
+    <% if module_enabled? 'appointments' %>
+        <li class="<%= menu_active?('appointments') %>">
+          <a href="<%= appointments_path %>" title="<%= t(:my_appointments) %>"><i class="fa fa-lg fa-fw fa-calendar"></i> <span class="menu-item-parent"><%= t(:my_appointments) %></span></a>
+        </li>
+    <% end %>
 <% end %>

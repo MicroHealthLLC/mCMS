@@ -56,9 +56,15 @@ class Appointment < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Apoinjtment ##{id}", :style => :bold}
-    user.to_pdf_brief_info(pdf)
-    end
+    pdf.font_size(25){  pdf.text "Apointment ##{id}", :style => :bold}
+    pdf.text "<b>Description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+    pdf.text "<b>Appointment type: </b> #{appointment_type}", :inline_format =>  true
+    pdf.text "<b>Appointment status: </b> #{appointment_status}", :inline_format =>  true
+    pdf.text "<b>Date: </b> #{date}", :inline_format =>  true
+    pdf.text "<b>Time: </b> #{time}", :inline_format =>  true
+    pdf.text "<b>With: </b> #{with_who}", :inline_format =>  true
+
+  end
 
   def for_mail
     output = ""
