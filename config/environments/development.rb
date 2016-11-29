@@ -26,6 +26,10 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  #ACTION CABLE
+  config.action_cable.allowed_request_origins = [ 'localhost:3000', /http:\/\/localhost:*/ ]
+
+
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 

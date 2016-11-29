@@ -31,18 +31,18 @@
 //= require clockpicker.js
 //= require cable
 //= require turbolinks
-$(function(){
-    $('.date_picker').datepicker({ dateFormat: 'dd-mm-yy' })
+
+document.addEventListener("turbolinks:load", function() {
+    // initialize persistent state
+    $('.date_picker').datepicker({ dateFormat: 'dd-mm-yy' });
     $( ".use_select2" ).select2({
         theme: "bootstrap"
     });
-    $(document).ready(function(){
-        $('.clockpicker').clockpicker({autoclose:true});
-    })
+    $('.clockpicker').clockpicker({autoclose:true});
 
-    handle_menu('admin')
-    handle_menu('case')
-    handle_menu('profile')
+    handle_menu('admin');
+    handle_menu('case');
+    handle_menu('profile');
 
 
     $(".user_autocomplete").autocomplete({
@@ -70,6 +70,7 @@ $(function(){
         }
     });
 })
+
 
 function handle_menu(id)
 {
