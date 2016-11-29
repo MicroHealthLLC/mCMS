@@ -8,7 +8,7 @@ class AppointmentsController < ApplicationController
   # GET /appointments
   # GET /appointments.json
   def index
-    @appointments = Appointment.where(user_id: User.current.id)
+    @appointments = Appointment.not_related.where(user_id: User.current.id)
   end
 
   # GET /appointments/1
@@ -18,7 +18,8 @@ class AppointmentsController < ApplicationController
 
   # GET /appointments/new
   def new
-    @appointment = Appointment.new(user_id: User.current.id)
+    @appointment = Appointment.new(user_id: User.current.id,
+                                   related_to_id: params[:related_to])
   end
 
   # GET /appointments/1/edit

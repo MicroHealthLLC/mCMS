@@ -27,7 +27,7 @@ Rails.application.configure do
   end
 
   #ACTION CABLE
-  config.action_cable.allowed_request_origins = [ 'localhost:3000', /http:\/\/localhost:*/ ]
+  config.action_cable.allowed_request_origins = [ 'localhost:3000', 'cms.microhealthllc.com', /http:\/\/localhost:*/ ]
 
 
   config.action_mailer.delivery_method = :letter_opener

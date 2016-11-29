@@ -15,6 +15,7 @@ class Case < ApplicationRecord
   has_many :surveys, foreign_key: :assigned_to_id, class_name: 'SurveyCase'
   has_many :documents, foreign_key: :related_to_id, class_name: 'Document'
   has_many :checklists, foreign_key: :assigned_to_id, class_name: 'ChecklistCase'
+  has_many :appointments, foreign_key: :related_to_id, class_name: 'Appointment'
 
   has_many :case_notes, foreign_key: :owner_id
 

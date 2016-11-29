@@ -2,6 +2,7 @@ class Appointment < ApplicationRecord
   belongs_to :user
   belongs_to :appointment_type, optional: true
   belongs_to :appointment_status, optional: true
+  belongs_to :case, optional: true, foreign_key: :related_to_id
 
   has_many :appointment_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :appointment_attachments, reject_if: :all_blank, allow_destroy: true
@@ -10,6 +11,8 @@ class Appointment < ApplicationRecord
   validates_presence_of :date, :time, :title, :description, :with_who_id, :with_who_type
 
   attr_accessor :with_who
+
+  scope :not_related, -> {where(related_to_id: nil)}
 
   def visible?
     User.current == user
@@ -51,8 +54,9 @@ class Appointment < ApplicationRecord
 
 
   def self.safe_attributes
-    [:title, :description, :time, :appointment_type_id, :appointment_status_id,
-     :user_id, :date]
+    [:title, :description, :time,
+     :appointment_type_id, :appointment_status_id,
+     :user_id, :date, :related_to_id]
   end
 
   def to_pdf(pdf)

@@ -27,6 +27,7 @@ class CasesController < ApplicationController
     @documents   = @case.documents
     @checklists  = @case.checklists.map(&:checklist_template)
     @notes       = @case.case_notes
+    @appointments= @case.appointments
   end
 
   # GET /cases/new
