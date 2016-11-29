@@ -1,6 +1,18 @@
 class WikiPagesController < ApplicationController
   acts_as_wiki_pages_controller
 
+  def new_page_title
+    if request.post?
+      p = params[:wiki_page][:title]
+      wiki_page = WikiPage.where(title: p).first
+      if wiki_page.nil?
+        redirect_to "/wiki/new/#{p}"
+      else
+        flash[:error] = "Page already exist"
+      end
+    end
+  end
+
   # Check is it allowed for current user to see current page. Designed to be redefined by application programmer
   def show_allowed?
     true

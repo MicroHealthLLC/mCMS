@@ -208,6 +208,7 @@ en:
   notice_successful_delete: Successful deletion.
   new_organization: New Organization
   new_affiliation: New Affiliation
+  new_wiki: New wiki
   organizations: Organizations
   affiliations: Affiliations
   appointments: Appointments
@@ -239,6 +240,7 @@ en:
   label_time: time
   forum: forum
   wiki: wiki
+  next: Next
   attachment: Attachment
   attachments: Attachments
   label_x_comments: Comments (%{count})
