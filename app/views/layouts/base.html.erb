@@ -12,9 +12,16 @@
 
   <!-- Basic Styles -->
   <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'thredded', 'data-turbolinks-track': 'reload' %>
   <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <% if params[:controller] == 'chat_rooms' %>
+      <%= javascript_include_tag 'chat', 'data-turbolinks-track': 'reload' %>
 
+  <% end %>
+
+
+  <meta name="turbolinks-cache-control" content="no-cache">
   <style>
     .smart-style-5
     {
@@ -90,7 +97,7 @@
   </div>
 </div>
 <!-- END MAIN PANEL -->
-<%= render partial: 'shared/shortcuts' %>
+<%#= render partial: 'shared/shortcuts' %>
 <!-- PAGE FOOTER -->
 <div class="page-footer">
   <%= render partial: 'shared/footer' %>

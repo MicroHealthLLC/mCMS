@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 module Thredded
   class ApplicationController < ::ApplicationController
-    layout :thredded_layout
+    layout 'base'
     include ::Thredded::UrlsHelper
     include Pundit
 

@@ -53,7 +53,7 @@
     <div id="logout" class="btn-header transparent pull-right">
       <span>
         <% if user_signed_in? and session[:employee_id]%>
-            <%= link_to employee_path(User.current), title: "Log off from #{User.current.login}", :method => :delete do %>
+            <%= link_to "/employees/#{User.current}", title: "Log off from #{User.current.login}", :method => :delete do %>
                     <i class="fa fa-times-circle"></i>
             <% end %>
         <% end %>

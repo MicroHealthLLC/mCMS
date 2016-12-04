@@ -2,32 +2,32 @@
   <a href="#" id="ul_admin"><i class="fa fa-lg fa-fw fa-gears"></i> <span class="menu-item-parent">Administration</span></a>
   <ul id="admin_menu">
     <li>
-      <%= link_to "Users", users_path %>
+      <%= link_to "Users", '/users' %>
     </li>
     <li>
-      <%= link_to "Enumeration", enumerations_path %>
+      <%= link_to "Enumeration", '/enumerations' %>
     </li>
     <li>
-      <%= link_to "Roles", roles_path %>
+      <%= link_to "Roles", '/roles' %>
     </li>
     <li>
-      <a href="<%= organizations_path %>" title="<%= t(:organizations) %>"> <span class="menu-item-parent"><%= t(:organizations) %></span></a>
+      <a href="<%= '/organizations' %>" title="<%= t(:organizations) %>"> <span class="menu-item-parent"><%= t(:organizations) %></span></a>
     </li>
     <!--<li>-->
-      <!--<a href="<%= departments_path %>" title="<%= t(:departments) %>"><span class="menu-item-parent"><%= t(:departments) %></span></a>-->
+      <!--<a href="<%= '/departments' %>" title="<%= t(:departments) %>"><span class="menu-item-parent"><%= t(:departments) %></span></a>-->
     <!--</li>-->
    <li>
-      <a href="<%= checklist_templates_path %>" title="<%= t(:checklists) %>"><span class="menu-item-parent"><%= t(:checklists) %></span></a>
+      <a href="<%= '/checklist_templates' %>" title="<%= t(:checklists) %>"><span class="menu-item-parent"><%= t(:checklists) %></span></a>
     </li>
     <li>
-      <a href="<%= pivot_table_index_path %>" title="<%= 'Pivot table' %>"><span class="menu-item-parent"><%= 'Pivot table' %></span></a>
+      <a href="/pivot_table/index" title="<%= 'Pivot table' %>"><span class="menu-item-parent"><%= 'Pivot table' %></span></a>
     </li>
     <li>
-      <%= link_to "Setting", settings_path %>
+      <%= link_to "Setting", '/settings' %>
     </li>
     <% if module_enabled? 'surveys' %>
         <li class="<%= menu_active?('surveys') %>">
-          <a href="<%= surveys_path %>" title="<%= t(:surveys) %>"><span class="menu-item-parent"><%= t(:surveys) %></span></a>
+          <a href="<%= '/surveys' %>" title="<%= t(:surveys) %>"><span class="menu-item-parent"><%= t(:surveys) %></span></a>
         </li>
     <% end %>
 

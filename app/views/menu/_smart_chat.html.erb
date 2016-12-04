@@ -7,8 +7,8 @@
 
         <input class="form-control chat-user-filter" placeholder="Filter" type="text">
 
-        <% User.where.not(id: current_user.id ).each do |user | %>
-            <a href="<%= create_or_find_chat_rooms_path(user_id: user.id) %>" class="usr"
+        <% User.recently_active.where.not(id: current_user.id ).each do |user | %>
+            <a href="<%= "/chat_rooms/create_or_find?user_id=#{user.id}" %>" class="usr"
                data-chat-id="cha1"
                data-chat-fname="<%= user.first_name || user.login %>"
                data-chat-lname="<%= user.last_name %>"

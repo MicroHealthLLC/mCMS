@@ -2,7 +2,7 @@
 
   <% if can?(:manage_roles) %>
       <li class="<%= menu_active?('employees') %>">
-        <a href="<%= employees_path %>" title="<%= t 'label_search' %>"><i class="fa fa-lg fa-fw fa-users"></i> <span class="menu-item-parent"><%= t :label_search %></span></a>
+        <a href="<%= "/employees" %>" title="<%= t 'label_search' %>"><i class="fa fa-lg fa-fw fa-users"></i> <span class="menu-item-parent"><%= t :label_search %></span></a>
       </li>
   <% end %>
 
@@ -15,7 +15,7 @@
       </li>
   <% end %>
 
- <% if true %>
+ <% if current_user == User.current %>
       <li class="<%= menu_active?('forum') %>">
         <a href="<%= '/forum' %>" title="<%= t(:forum) %>"><i class="fa fa-lg fa-fw fa-forumbee"></i><span class="menu-item-parent"><%= t(:forum) %></span></a>
       </li>
@@ -23,7 +23,7 @@
 
  <% if true %>
       <li class="<%= menu_active?('posts') %>">
-        <a href="<%= posts_path %>" title="<%= 'news' %>"><i class="fa fa-lg fa-fw fa-newspaper-o"></i><span class="menu-item-parent"><%= 'news' %></span></a>
+        <a href="/posts" title="<%= 'news' %>"><i class="fa fa-lg fa-fw fa-newspaper-o"></i><span class="menu-item-parent"><%= 'news' %></span></a>
       </li>
   <% end %>
 

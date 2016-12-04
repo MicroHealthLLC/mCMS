@@ -247,5 +247,9 @@ class User < ApplicationRecord
     {}
   end
 
+  def self.recently_active
+    where('last_seen_at > ?', 5.minutes.ago)
+  end
+
   mount_uploader :avatar, AvatarUploader
 end
