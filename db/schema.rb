@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161203190954) do
+ActiveRecord::Schema.define(version: 20161204111230) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type_id"
@@ -101,10 +101,11 @@ ActiveRecord::Schema.define(version: 20161203190954) do
   create_table "chat_rooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "title"
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.integer  "receiver_id"
     t.string   "token"
+    t.boolean  "message_seen", default: true
     t.index ["user_id"], name: "index_chat_rooms_on_user_id", using: :btree
   end
 

@@ -5,8 +5,13 @@ class ChatRoomsController < ApplicationController
   def create_or_find
     receiver = User.find params[:user_id]
     @chat_room = ChatRoom.where(user_id: current_user.id).where(receiver_id: receiver.id).or(ChatRoom.where(user_id: receiver.id).where(receiver_id: current_user.id)).first
-
     @chat_room = ChatRoom.where(user_id: current_user.id).where(receiver_id: receiver.id).first_or_create if @chat_room.nil?
+    unless @chat_room.message_seen
+      if @chat_room.messages.last.user_id != current_user.id
+        @chat_room.message_seen = true
+        @chat_room.save
+      end
+    end
     redirect_to chat_room_path(token: @chat_room.token)
   rescue ActiveRecord::RecordNotFound
     render_404

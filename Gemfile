@@ -96,6 +96,9 @@ gem 'thredded', '~> 0.8.2'
 # Redis
 gem 'redis', '~> 3.2'
 
+#Notification
+gem 'toastr-rails'
+
 #installing adapter gems based on database.yml
 require 'erb'
 require 'yaml'

@@ -26,5 +26,6 @@
   *= require pivot
   *= require clockpicker
   *= require easy-autocomplete.min
+  *= require toastr
   *= require style.css
  */

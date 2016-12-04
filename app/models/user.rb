@@ -92,9 +92,13 @@ class User < ApplicationRecord
     User.where(admin: false)
   end
 
-  def has_unread_message?(receiver)
+  def has_unread_message(receiver)
     chat_room = ChatRoom.where(user_id: self.id).where(receiver_id: receiver.id).or(ChatRoom.where(user_id: receiver.id).where(receiver_id: self.id)).first
-    !chat_room.message_seen?
+    unless chat_room.message_seen?
+      if chat_room.messages.last.user_id != self.id
+        chat_room.messages.last.body
+      end
+    end
   end
 
   def self.current=(user)
