@@ -116,7 +116,11 @@ function listFilter(list) {// header is any element, list is an unordered list
         $(this).change();
 
     });
+}
 
+var get_recently_connected_person = function(){
+    $.getScript('/users/recently_connected')
+    setTimeout(function(){get_recently_connected_person()}, 30000)
 }
 
 var named_function = function(){
@@ -160,6 +164,7 @@ var named_function = function(){
         }
     });
 
+    get_recently_connected_person()
     console.log("It works on each visit!")
 };
 

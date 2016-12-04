@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action  :authenticate_user!
-  before_action :find_user, except: [:index, :new, :create]
+  before_action :find_user, except: [:index, :new, :create, :recently_connected]
 
   before_filter :require_admin, only: [:destroy]
   def index
@@ -11,7 +11,14 @@ class UsersController < ApplicationController
 
       }
     end
+  end
 
+  def recently_connected
+    respond_to do |format|
+      format.js{
+        @recently_connected = User.recently_active.where.not(id: current_user.id )
+      }
+    end
   end
 
   def show

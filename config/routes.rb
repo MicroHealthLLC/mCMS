@@ -104,6 +104,9 @@ Rails.application.routes.draw do
     end
   end
   resources :users, only: [:index, :show, :destroy] do
+    collection do
+      match 'recently_connected', via: [:post, :get]
+    end
     member do
       put 'change_password'
       put 'change_basic_info'
