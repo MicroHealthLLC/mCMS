@@ -12,7 +12,7 @@
     <!-- end widget edit box -->
 
     <div class="widget-body widget-hide-overflow no-padding">
-      <div id="messages" data-chat-room-id="<%= @chat_room.id %>" data-current-user='<%= current_user.id %>' class="chat-body custom-scroll">
+      <div id="messages" data-chat-room-id="<%= @chat_room.id %>" data-current-user='<%= current_user.id %>'  data-user-to='<%= @chat_room.user_id == current_user.id ? @chat_room.receiver_id : @chat_room.user_id %>' class="chat-body custom-scroll">
         <%= render @chat_room.messages %>
       </div>
 

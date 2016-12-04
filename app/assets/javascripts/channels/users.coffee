@@ -12,4 +12,5 @@ jQuery(document).on 'turbolinks:load', ->
 # Called when the subscription has been terminated by the server
 
       received: (data) ->
-        toastr.success(data['message'], '<a href="/chat_rooms/create_or_find?user_id='+ $(data['message']).data('user-id')+ '" >' + $(data['message']).data('owner') + '</a> Says')
+        if $('#messages').data('user-to') != $(data['message']).data('user-id')
+          toastr.success(data['message'], '<a href="/chat_rooms/create_or_find?user_id='+ $(data['message']).data('user-id')+ '" >' + $(data['message']).data('owner') + '</a> Says')
