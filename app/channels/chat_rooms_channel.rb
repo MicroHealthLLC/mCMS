@@ -10,5 +10,11 @@ class ChatRoomsChannel < ApplicationCable::Channel
 
   def send_message(data)
     current_user.messages.create!(body: data['message'], chat_room_id: data['chat_room_id'])
+    ChatRoom.where(id: data['chat_room_id']).first.update(message_seen: false)
+  end
+
+  def update_message(data)
+    chat_room = ChatRoom.where(id: data['chat_room_id']).first
+    chat_room.update(message_seen: true)
   end
 end

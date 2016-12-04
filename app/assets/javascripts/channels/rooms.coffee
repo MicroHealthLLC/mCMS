@@ -18,9 +18,15 @@ jQuery(document).on 'turbolinks:load', ->
       received: (data) ->
         messages.append data['message']
         messages_to_bottom()
+        if messages.data('current-user') != $(data['message']).data('owner')
+          App.global_chat.update_message messages.data('chat-room-id')
 
       send_message: (message, chat_room_id) ->
         @perform 'send_message', message: message, chat_room_id: chat_room_id
+
+      update_message: (chat_room_id) ->
+        console.log('update chat_room')
+        @perform 'update_message', chat_room_id: chat_room_id
 
 
     $('#new_message').submit (e) ->
@@ -31,3 +37,8 @@ jQuery(document).on 'turbolinks:load', ->
         textarea.val('')
       e.preventDefault()
       return false
+
+    $(document).keypress (e) ->
+      if e.which == 13
+        $('#new_message').trigger('submit')
+      return

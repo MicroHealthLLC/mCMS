@@ -20,5 +20,9 @@
 										"
     >
       <i></i><%= user.profile_name.strip.presence || user.login %>
+      <% if current_user.has_unread_message?(user) %>
+          <em class='flash animated pull-right'><i class="fa fa-bell-o"></i></em>
+
+      <% end %>
     </a>
 <% end %>
