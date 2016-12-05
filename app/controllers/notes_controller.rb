@@ -65,8 +65,8 @@ class NotesController < ApplicationController
              :case_note
            elsif params[:task_note]
              :task_note
-           elsif params[:new_note]
-             :new_note
+           elsif params[:post_note]
+             :post_note
            else
              :note
            end
@@ -82,7 +82,7 @@ class NotesController < ApplicationController
       case_url(@note.object)
     elsif params[:task_note]
       task_url(@note.object)
-   elsif params[:new_note]
+   elsif params[:post_note]
       note_url(@note.object)
     else
       root_path

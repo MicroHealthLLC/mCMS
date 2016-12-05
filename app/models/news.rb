@@ -17,6 +17,10 @@ class News < ApplicationRecord
     true
   end
 
+  def to_s
+   title
+  end
+
   def self.safe_attributes
     [
         :user_id, :title, :summary, :description,

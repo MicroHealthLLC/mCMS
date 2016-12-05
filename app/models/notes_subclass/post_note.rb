@@ -1,8 +1,8 @@
 class PostNote < Note
-  belongs_to :post, foreign_key: :owner_id, class_name: 'Post'
+  belongs_to :news, foreign_key: :owner_id, class_name: 'News'
 
   def object
-    post
+    news
   end
 
 end
