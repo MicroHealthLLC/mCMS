@@ -91,12 +91,12 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_other_skills, {:other_skills => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
 
-   map.project_module :posts do |map|
-    map.permission :view_posts, {:posts => [:index]},  :read => true
-    map.permission :create_posts, {:posts => [:new, :create]},  :read => true
-    map.permission :edit_posts, {:posts => [:edit, :update]},  :read => true
-    map.permission :delete_posts, {:posts => [:destroy]},  :read => true
-    map.permission :manage_posts, {:posts => [:new, :create, :edit, :update, :destroy]},  :read => true
+   map.project_module :news do |map|
+    map.permission :view_news, {:news => [:index]}, :read => true
+    map.permission :create_news, {:news => [:new, :create]}, :read => true
+    map.permission :edit_news, {:news => [:edit, :update]}, :read => true
+    map.permission :delete_news, {:news => [:destroy]}, :read => true
+    map.permission :manage_news, {:news => [:new, :create, :edit, :update, :destroy]}, :read => true
   end
 
    map.project_module :tasks do |map|

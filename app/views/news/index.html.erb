@@ -1,0 +1,7 @@
+<h1>News</h1>
+<%= link_to( 'New News', new_news_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_news, :manage_roles, :manage_news)%>
+
+<% @news.each do |news| %>
+    <%= render partial: 'news', locals: {news: news} %>
+<% end %>
+<%= will_paginate @news, renderer: BootstrapPagination::Rails %>

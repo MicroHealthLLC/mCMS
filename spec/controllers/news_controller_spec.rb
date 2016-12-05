@@ -40,7 +40,7 @@ RSpec.describe NewsController, type: :controller do
     it "assigns all posts as @posts" do
       new = New.create! valid_attributes
       get :index, params: {}, session: valid_session
-      expect(assigns(:posts)).to eq([new])
+      expect(assigns(:news)).to eq([new])
     end
   end
 

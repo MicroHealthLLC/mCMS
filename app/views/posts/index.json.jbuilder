@@ -1,1 +1,0 @@
-json.array! @news, partial: 'posts/posts', as: :posts

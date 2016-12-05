@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :appointments
-  resources :posts, path: :news
+  resources :news
   match '/wiki_pages/new_page_title', via: [:get, :post]
   wiki_root '/wiki'
   mount Thredded::Engine => '/forum'

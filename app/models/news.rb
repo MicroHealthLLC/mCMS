@@ -1,4 +1,4 @@
-class Post < ApplicationRecord
+class News < ApplicationRecord
   belongs_to :user
   has_many :post_notes, foreign_key: :owner_id, dependent: :destroy
 
@@ -20,7 +20,7 @@ class Post < ApplicationRecord
   def self.safe_attributes
     [
         :user_id, :title, :summary, :description,
-        new_attachments_attributes: [Attachment.safe_attributes]
+        post_attachments_attributes: [Attachment.safe_attributes]
     ]
   end
 
