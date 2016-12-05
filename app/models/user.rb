@@ -40,6 +40,10 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :user_attachments, reject_if: :all_blank, allow_destroy: true
 
 
+  before_create do
+    self.ldap_authenticatable= '' if self.ldap_authenticatable.to_s.blank?
+  end
+
   after_update :check_status
 
   validates_uniqueness_of :login, :email
@@ -57,6 +61,7 @@ class User < ApplicationRecord
       user.email = "#{auth.uid}@#{auth.provider}.com"
       user.login = "#{auth.uid}@#{auth.provider}.com"
       user.password = Devise.friendly_token[0,20]
+      user.ldap_authenticatable= ''
     end
   end
 
@@ -68,6 +73,7 @@ class User < ApplicationRecord
       user.email = email
       user.login = jwt['name']
       user.password = Devise.friendly_token[0,20]
+      user.ldap_authenticatable= ''
     end
   end
 
