@@ -99,6 +99,9 @@ gem 'redis', '~> 3.2'
 #Notification
 gem 'toastr-rails'
 
+# postmark for emails
+gem 'postmark-rails'
+
 #installing adapter gems based on database.yml
 require 'erb'
 require 'yaml'
