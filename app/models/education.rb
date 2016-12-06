@@ -6,7 +6,7 @@ class Education < ApplicationRecord
 
   after_save :send_notification
   def send_notification
-    UserMailer.education_notification(self).deliver_now
+    UserMailer.education_notification(self).deliver_later
   end
 
   def visible?

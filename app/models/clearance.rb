@@ -6,7 +6,7 @@ class Clearance < ApplicationRecord
   accepts_nested_attributes_for :clearance_attachments, reject_if: :all_blank, allow_destroy: true
   after_save :send_notification
   def send_notification
-    UserMailer.clearance_notification(self).deliver_now
+    UserMailer.clearance_notification(self).deliver_later
   end
 
   def clearence_type

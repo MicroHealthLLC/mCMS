@@ -8,7 +8,7 @@ class Contact < ApplicationRecord
 
   after_save :send_notification
   def send_notification
-    UserMailer.contact_notification(self).deliver_now
+    UserMailer.contact_notification(self).deliver_later
   end
 
 

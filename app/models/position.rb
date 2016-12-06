@@ -15,7 +15,7 @@ class Position < ApplicationRecord
   after_save :send_notification
 
   def send_notification
-    UserMailer.position_notification(self).deliver_now
+    UserMailer.position_notification(self).deliver_later
   end
 
   def pay_rate_type

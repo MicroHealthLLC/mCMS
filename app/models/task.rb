@@ -28,7 +28,7 @@ class Task < ApplicationRecord
   end
 
   def send_notification
-    UserMailer.task_notification(self).deliver_now
+    UserMailer.task_notification(self).deliver_later
   end
 
   def priority_type

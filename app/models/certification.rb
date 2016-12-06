@@ -7,7 +7,7 @@ class Certification < ApplicationRecord
 
   after_save :send_notification
   def send_notification
-    UserMailer.certification_notification(self).deliver_now
+    UserMailer.certification_notification(self).deliver_later
   end
 
   def certification_type

@@ -15,7 +15,7 @@ class Document < ApplicationRecord
 
   after_save :send_notification
   def send_notification
-    UserMailer.document_notification(self).deliver_now
+    UserMailer.document_notification(self).deliver_later
   end
 
   before_create :check_private_author

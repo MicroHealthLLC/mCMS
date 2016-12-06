@@ -17,7 +17,7 @@ class OtherSkill < ApplicationRecord
 
   after_save :send_notification
   def send_notification
-    UserMailer.skill_notification(self).deliver_now
+    UserMailer.skill_notification(self).deliver_later
   end
 
   def visible?
