@@ -120,32 +120,11 @@ Rails.application.routes.draw do
     resources :user_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
 
-  resources :employees, except: [:edit] do
+  resources :employees, path: :persons, except: [:edit] do
     member do
       get 'log_in'
     end
-
     get 'home/index', as: 'home'
-    resources :educations
-    resources :tasks
-    resources :languages
-    resources :positions
-    resources :other_skills
-    resources :clearances
-    resources :certifications
-    resources :departments do
-      resources :department_extend_demographies, only: [:create, :update], controller: :extend_demographies
-    end
-    resources :contacts do
-      resources :contact_extend_demographies, only: [:create, :update], controller: :extend_demographies
-    end
-    resources :affiliations do
-      resources :affiliation_extend_demographies,  only: [:create, :update], controller: :extend_demographies
-    end
-    resources :organizations do
-      resources :organization_extend_demographies, only: [:create, :update], controller: :extend_demographies
-    end
-    resources :documents
   end
 
   resources :enumerations

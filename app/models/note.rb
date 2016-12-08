@@ -20,4 +20,13 @@ class Note < ApplicationRecord
 
   end
 
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Note ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
+    pdf.text "<b>Created at: </b> #{created_at.to_date}", :inline_format =>  true
+    pdf.text "<b>Belongs to: </b> #{object}", :inline_format =>  true
+    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+
+  end
+
 end

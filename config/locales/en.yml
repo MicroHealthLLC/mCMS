@@ -163,6 +163,8 @@ en:
   enumeration_role_type: Role
   enumeration_state_type: State
   enumeration_new_label: New value
+  enumeration_case_type: Case type
+  enumeration_case_category_type: Case category type
   education_type: Education
   educations: Educations
   languages: Languages
@@ -230,7 +232,7 @@ en:
   question: Question
   surveys: Surveys
   cases: Cases
-  cases: Cases support
+  cases_support: Cases support
   my_cases: My cases
   title: Title
   summary: Summary

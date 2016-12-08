@@ -1,4 +1,2 @@
 <h1>Appointments</h1>
-
-<%= link_to('New Appointment', new_appointment_path , class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_appointments, :manage_appointments, :manage_roles) %>
 <%= render partial: 'list' %>

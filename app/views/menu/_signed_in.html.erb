@@ -2,7 +2,7 @@
 
   <% if can?(:manage_roles) %>
       <li class="<%= menu_active?('employees') %>">
-        <a href="<%= "/employees" %>" title="<%= t 'label_search' %>"><i class="fa fa-lg fa-fw fa-users"></i> <span class="menu-item-parent"><%= t :label_search %></span></a>
+        <a href="<%= "/persons" %>" title="<%= t 'label_search' %>"><i class="fa fa-lg fa-fw fa-users"></i> <span class="menu-item-parent"><%= t :label_search %></span></a>
       </li>
   <% end %>
 

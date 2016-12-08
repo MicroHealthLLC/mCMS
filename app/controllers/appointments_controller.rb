@@ -8,7 +8,7 @@ class AppointmentsController < ApplicationController
   # GET /appointments
   # GET /appointments.json
   def index
-    @appointments = Appointment.not_related.where(user_id: User.current.id)
+    @appointments = Appointment.my_appointments
   end
 
   # GET /appointments/1
