@@ -1,4 +1,7 @@
 <ul>
+  <li class="<%= menu_active?('home') %>">
+    <a href="<%= "/" %>" title="Home"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Home</span></a>
+  </li>
 
   <% if can?(:manage_roles) %>
       <li class="<%= menu_active?('employees') %>">
