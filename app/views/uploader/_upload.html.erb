@@ -1,15 +1,56 @@
+<style>
+  /* styles de base si JS est activé */
+  .js .input-file-container {
+    position: relative;
+    width: 225px;
+  }
+
+  .js .input-file {
+    position: absolute;
+    top: 0; left: 0;
+    width: 225px;
+    padding: 14px 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  /* quelques styles d'interactions */
+  .js .input-file:hover + .input-file-trigger,
+  .js .input-file:focus + .input-file-trigger,
+  .js .input-file-trigger:hover,
+  .js .input-file-trigger:focus {
+    background: #34495E;
+    color: #39D2B4;
+  }
+
+  /* styles du retour visuel */
+  .file-return {
+    margin: 0;
+  }
+  .file-return:not(:empty) {
+    margin: 1em 0;
+  }
+  .js .file-return {
+    font-style: italic;
+    font-size: .9em;
+    font-weight: bold;
+  }
+  /* on complète l'information d'un contenu textuel
+     uniquement lorsque le paragraphe n'est pas vide */
+  .js .file-return:not(:empty):before {
+    content: "Selected file: ";
+    font-style: normal;
+    font-weight: normal;
+  }
+</style>
+
 <%= form_for :image, url: image_upload_user_path(@user), :html => {method: :post,  :multipart => true, :id => "fileupload"  } do |f| %>
     <h4></h4>
-
-    <div class="input-group">
-      <input id="fileupload" type="file" name="images">
-          <span class="input-group-btn">
-            <!--<button class="btn btn-secondary fileinput-button" type="button"><i class="fa fa-times" aria-hidden="true"></i>
-            </button>-->
-          </span>
-    </div>
-
-    <br>
+    <label for="fileupload" class="input input-file-container" >
+      <div class=" btn btn-primary" >  <input id="fileupload" type="file" class="input-file" name="images" />
+        <i class="fa fa-picture-o input-file-trigger"></i> <%= 'Upload' %>
+      </div>
+    </label>
 <% end %>
 
 <script id="template-upload" type="text/x-tmpl">
@@ -19,7 +60,28 @@
   </div>
 </script>
 
+
 <script>
+  // ajout de la classe JS à HTML
+  document.querySelector("html").classList.add('js');
+
+  // initialisation des variables
+  var fileInput  = document.querySelector( ".input-file" ),
+      button     = document.querySelector( ".input-file-trigger" )
+
+  // action lorsque la "barre d'espace" ou "Entrée" est pressée
+  button.addEventListener( "keydown", function( event ) {
+    if ( event.keyCode == 13 || event.keyCode == 32 ) {
+      fileInput.focus();
+    }
+  });
+
+  // action lorsque le label est cliqué
+  button.addEventListener( "click", function( event ) {
+    fileInput.focus();
+    return false;
+  });
+
   /*jslint unparam: true */
   /*global window, $ */
   $(function () {
