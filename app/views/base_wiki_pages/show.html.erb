@@ -1,12 +1,17 @@
-<%= wiki_page_style %>
+<%= wiki_page_actions %>
+<h1>
+  <% if @page.parent %>
+      <%= link_to @page.parent.title,  @page.parent %> >
+  <% end %>
 
-<h1><%=h @page.title %></h1>
+  <%=h @page.title %>
+</h1>
   
 <%= wiki_page_info %>
-<%= wiki_page_actions %>
+
   
 <div class="wiki_content">
-  <%=wiki_content @page.content %>
+  <%=wiki_content @page.content.html_safe %>
 </div>
 
 <p>

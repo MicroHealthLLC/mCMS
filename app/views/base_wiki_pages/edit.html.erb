@@ -8,34 +8,15 @@
     </div>
 <% end %>
 
-<fieldset>
-  <legend>Set Affiliation</legend>
-  <%= wiki_page_form do |f| %>
-      <%= f.hidden_field :previous_version_number, :value => f.object.last_version_number %>
-      <%= hidden_field_tag :path, @page.path %>
-
-      <p><%=wt 'Title:' %><br /><%= f.text_field :title, class: 'form-control' %></p>
-
-      <%# If our 'content' contains newlines, Erubis will indent them (to make the
-      produced HTML look nicer). However those indenting spaces *will* appear
-      in the textarea in the user's browser and will get POSTed by the browser
-      when submitting the form and thus would get written to the wiki content
-      into the database.  The gsub's below replace the linebreaks ('\r\n')
-      with UTF8 linefeeds (same way HAML solves this problem), which are
-      ignored by Erubis and should be correctly displayed as linebreaks by
-      modern browsers. %>
-      <%= f.text_area(:content, class: 'ckeditor') %> </p>
-      <%#<p><%#=wt 'Content:' %><br /><%#= f.text_area(:content, :value => f.object.content.gsub("\n", '&#x000A;').gsub("\r",'')).html_safe %#></p>%>
-      <p><%=wt 'Comment on this change (optional):' %><br /><%= f.text_field :comment, class: 'form-control' %></p>
-      <%= render partial: 'base_wiki_pages/wiki_page_attachments', locals: {f: f} %>
-
-      <div class="form-group" >
-        <div class="col-md-11">
-          <input type="submit" name="save" value="<%=wt 'Save page' %>" class="submit pull-right btn btn-primary" />
-          <input type="submit" name="preview" value="<%=wt 'Preview' %>" class="submit pull-right btn btn-success" />
-          <input type="submit" name="cancel" value="<%=wt 'Cancel' %>" class="submit pull-right btn btn-warning" />
-        </div>
-      </div>
-  <% end %>
-
-</fieldset>
+<section id="widget-grid" class="form_task_user">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: '/base_wiki_pages/form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'Wiki',
+                     wid_title: 'New wiki'
+                 } %>
+    </article>
+  </div>
+</section>
