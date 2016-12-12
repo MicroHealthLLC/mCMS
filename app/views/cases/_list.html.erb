@@ -2,6 +2,9 @@
 <table class="table table-responsive table-bordered">
   <thead>
   <tr>
+    <% if User.current.can?(:manage_roles) and params[:my] %>
+        <th>Assigned to</th>
+    <% end %>
     <th>Title</th>
     <th>Priority</th>
     <th>Type</th>
@@ -18,6 +21,9 @@
   <% if @cases.any? %>
       <% @cases.each do |c| %>
           <tr>
+            <% if User.current.can?(:manage_roles) and params[:my] %>
+                <td><%= link_to_user(c.assigned_to) %></td>
+            <% end %>
             <td><%= link_to(c.title, case_path(c) ) %></td>
             <td><%= c.priority_type %></td>
             <td><%= c.case_type %></td>
