@@ -3,7 +3,18 @@
     <%= @participant.class %> there are not Active Surveys right now.
   </p>
 <% elsif @survey.available_for_participant?(@participant) %>
-  <%= render 'form' %>
+    <section id="widget-grid" class="show_customer_account">
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'form',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'Survey',
+                         wid_title: 'New Survey'
+                     } %>
+        </article>
+      </div>
+    </section>
 <% else %>
   <p>
     <%= @participant.class %> spent all the possible attempts to answer this Survey

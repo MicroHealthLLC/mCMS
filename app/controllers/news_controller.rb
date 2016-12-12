@@ -12,7 +12,7 @@ class NewsController < ApplicationController
   # GET /news
   # GET /news.json
   def index
-    @news = News.order('id DESC').paginate(page: params[:page], per_page: 25)
+    @news = News.includes(:user).order('id DESC').paginate(page: params[:page], per_page: 25)
   end
 
   # GET /news/1
@@ -72,7 +72,7 @@ class NewsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_news
-    @news = News.find(params[:id])
+    @news = News.includes(:user, :post_attachments).find(params[:id])
   rescue ActiveRecord::RecordNotFound
     render_404
   end

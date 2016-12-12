@@ -27,6 +27,9 @@ class Case < ApplicationRecord
   validates_presence_of :title
   before_create :check_private_author
 
+  def self.include_enumerations
+    includes(:case_type, :case_status_type, :case_category_type, :priority_type)
+  end
   def check_private_author
     if self.is_private
       self.private_author_id = User.current.id

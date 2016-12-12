@@ -16,7 +16,10 @@ class UsersController < ApplicationController
   def recently_connected
     respond_to do |format|
       format.js{
-        @recently_connected = User.recently_active.where.not(id: current_user.id )
+        @recently_connected = User.
+            recently_active.
+            includes(:core_demographic).
+            where.not(id: current_user.id )
       }
     end
   end

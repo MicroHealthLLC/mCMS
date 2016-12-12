@@ -65,7 +65,9 @@ class CertificationsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_certification
-      @certification = Certification.find(params[:id])
+      @certification = Certification.
+          includes(:certification_type, :certification_attachments).
+          find(params[:id])
     rescue ActiveRecord::RecordNotFound
       render_404
     end

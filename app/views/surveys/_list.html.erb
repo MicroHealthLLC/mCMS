@@ -15,7 +15,11 @@
           <tr>
             <td><%= link_to survey.name, survey_path(survey) %></td>
             <td><%= survey.survey_type %></td>
-            <td><%= survey.attempts.where(participant_id: User.current.id).count %></td>
+            <% if params[:controller] == 'cases' %>
+                <td><%= survey.attempts.where(participant: @case).count %></td>
+            <% else %>
+                <td><%= survey.attempts.where(participant: User.current).count %></td>
+            <% end %>
             <td><%= survey.attempts.last.answers.last.updated_at.strftime('%d/%m/%y %H:%M') rescue '' %></td>
 
             <% if params[:controller] == 'cases' %>

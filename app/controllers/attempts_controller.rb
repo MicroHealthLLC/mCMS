@@ -6,10 +6,11 @@ class AttemptsController < ApplicationController
   before_filter :normalize_attempts_data, :only => :create
 
   def index
+    scope = @survey.attempts.includes(:answers=>[:option,:question=> [:survey, :options=>[:question]]])
     if params[:case_id]
-      @attempts = @survey.attempts.where(participant_type: 'Case', participant_id: params[:case_id])
+      @attempts = scope.where(participant_type: 'Case', participant_id: params[:case_id])
     else
-      @attempts = @survey.attempts.where(participant_type: 'User', participant_id: User.current)
+      @attempts = scope.where(participant: User.current)
     end
 
   end
@@ -31,7 +32,7 @@ class AttemptsController < ApplicationController
 
   def create
     @attempt = @survey.attempts.new(attempt_params)
-    if params[:case_id]
+    if params[:case_id].present?
       @attempt.participant =  Case.find(params[:case_id])
     else
       @attempt.participant =  User.current
@@ -59,7 +60,7 @@ class AttemptsController < ApplicationController
   private
 
   def load_active_survey
-    @survey =  Survey::Survey.find(params[:survey_id])
+    @survey =  Survey::Survey.includes(:questions=> [:options]).find(params[:survey_id])
   rescue ActiveRecord::RecordNotFound
     render_404
   end

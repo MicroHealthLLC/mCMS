@@ -10,9 +10,9 @@ class CasesController < ApplicationController
   # GET /cases.json
   def index
     if User.current.can?(:manage_roles) and params[:my]
-      @cases = Case.root.order('title desc').paginate(page: params[:page], per_page: 25)
+      @cases = Case.root.include_enumerations.order('title desc').paginate(page: params[:page], per_page: 25)
     else
-      @cases = Case.root.where(assigned_to_id: User.current.id ).order('title desc').paginate(page: params[:page], per_page: 25)
+      @cases = Case.root.include_enumerations.where(assigned_to_id: User.current.id ).order('title desc').paginate(page: params[:page], per_page: 25)
     end
   end
 

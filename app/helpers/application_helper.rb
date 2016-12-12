@@ -178,7 +178,11 @@ module ApplicationHelper
   end
 
   def the_chosen_one?( answer, option)
-    if answer.option_id == option.id then 'chosen' else nil end
+    answer.option_id == option.id ? 'chosen' : nil
+  end
+
+  def correct_answer?(answer, option)
+   ( answer.option_id == option.id && answer.correct? ) ? 'chosen' : ''
   end
 
   def get_color_of_option( answer, option)

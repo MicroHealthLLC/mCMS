@@ -5,7 +5,7 @@ class EmployeesController < ApplicationController
 
   def index
     @users =  if current_user.allowed_to?(:manage_roles)
-                User.employees
+                User.employees.includes(:core_demographic)
               else
                 where(id: current_user.id)
               end

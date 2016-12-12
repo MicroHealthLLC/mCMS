@@ -8,13 +8,15 @@ class ChecklistsController < ApplicationController
   # before_action :authorize, only: [:index, :show, :save]
 
   def index
+    scope = ChecklistTemplate.not_related
     if User.current.admin?
-      @checklists = ChecklistTemplate.not_related.order('id DESC').paginate(page: params[:page], per_page: 25)
-
+      scope = scope.order('id DESC')
     else
-      @checklists = ChecklistTemplate.not_related.joins(:checklist_users).
-          where("#{ChecklistUser.table_name}.assigned_to_id = ? ", User.current.id).order('title DESC').paginate(page: params[:page], per_page: 25)
+      scope = scope.joins(:checklist_users).
+          where("#{ChecklistUser.table_name}.assigned_to_id = ? ", User.current.id).
+          order('title DESC')
     end
+    @checklist = scope.paginate(page: params[:page], per_page: 25)
   end
 
   def new_note
@@ -108,7 +110,7 @@ class ChecklistsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_checklist_template
-    @checklist = ChecklistTemplate.find(params[:id])
+    @checklist = ChecklistTemplate.includes(:checklists).find(params[:id])
   rescue ActiveRecord::RecordNotFound
     render_404
   end

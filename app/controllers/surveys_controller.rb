@@ -6,7 +6,7 @@ class SurveysController < ApplicationController
     if User.current.admin?
       @surveys = Survey::Survey.not_related.order('id DESC').paginate(page: params[:page], per_page: 25)
     else
-      @surveys = Survey::Survey.not_related.includes(:survey_users).
+      @surveys = Survey::Survey.not_related.includes(:survey_users).includes(:survey_notes, :questions=> [:options]).
           references(:survey_users).where("#{SurveyUser.table_name}.assigned_to_id = ?", User.current.id ).order('name DESC').paginate(page: params[:page], per_page: 25)
     end
   end
@@ -75,7 +75,7 @@ class SurveysController < ApplicationController
   end
 
   def load_survey
-    @survey = Survey::Survey.find(params[:id])
+    @survey = Survey::Survey.includes(:survey_notes, :questions=> [:options]).find(params[:id])
   end
 
   def survey_params
