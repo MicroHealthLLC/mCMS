@@ -21,12 +21,12 @@
                  } %>
     </article>
   </div>
-</section>
 
-<%= link_to('Add subCase', new_case_path(subcase_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:manage_roles, :add_cases)  %>
-<section id="widget-grid" class="relations_account">
+  <%= link_to('Add subCase', new_case_path(subcase_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:manage_roles, :add_cases)  %>
+
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
       <%= render partial: 'list',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
@@ -35,10 +35,10 @@
                  } %>
     </article>
   </div>
-</section>
 
-<%= link_to 'New note', new_note_path(type: 'CaseNote', owner_id: @case.id), class: 'btn btn-primary pull-right btn-edition' %>
-<section id="widget-grid" class="form_note_list">
+
+  <%= link_to 'New note', new_note_path(type: 'CaseNote', owner_id: @case.id), class: 'btn btn-primary pull-right btn-edition' %>
+
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'notes/notes',
@@ -50,11 +50,11 @@
                  } %>
     </article>
   </div>
-</section>
 
-<% if module_enabled?('tasks') %>
-    <%= link_to( 'New task', new_task_path(related_to: @case.id, type: 'case'), class: 'btn btn-primary pull-right btn-edition') if can?(:create_tasks, :manage_roles) %>
-    <section id="widget-grid" class="checklists_account">
+
+  <% if module_enabled?('tasks') %>
+      <%= link_to( 'New task', new_task_path(related_to: @case.id, type: 'case'), class: 'btn btn-primary pull-right btn-edition') if can?(:create_tasks, :manage_roles) %>
+
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'tasks/sub_tasks',
@@ -65,12 +65,12 @@
                      } %>
         </article>
       </div>
-    </section>
-<% end %>
 
-<% if module_enabled?('documents') %>
-    <%= link_to('New document', new_document_path(related_to: @case.id, type: 'case'), class: 'btn btn-primary pull-right btn-edition') if can?(:create_documents, :manage_roles) %>
-    <section id="widget-grid" class="checklists_account">
+  <% end %>
+
+  <% if module_enabled?('documents') %>
+      <%= link_to('New document', new_document_path(related_to: @case.id, type: 'case'), class: 'btn btn-primary pull-right btn-edition') if can?(:create_documents, :manage_roles) %>
+
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'documents/list',
@@ -82,29 +82,29 @@
                      } %>
         </article>
       </div>
-    </section>
-<% end %>
 
-<% if module_enabled?('appointments') %>
-    <%= link_to('New appointment', new_appointment_path(related_to: @case.id, type: 'case'), class: 'btn btn-primary pull-right btn-edition') if can?(:create_appointments, :manage_roles) %>
-    <section id="widget-grid" class="checklists_account">
+  <% end %>
+
+  <% if module_enabled?('appointments') %>
+      <%= link_to('New appointment', new_appointment_path(related_to: @case.id, type: 'case'), class: 'btn btn-primary pull-right btn-edition') if can?(:create_appointments, :manage_roles) %>
+
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'appointments/list',
                      layout: 'shared/smart_widget_wrapper',
                      locals: {
-                         appointments: @appointments,
+                             appointments: @appointments,
                              wid_id: 'appointments',
                              wid_title: 'appointments'
                      } %>
         </article>
       </div>
-    </section>
-<% end %>
 
-<% if module_enabled?('surveys') %>
-    <%= link_to 'New survey', new_assign_survey_case_path(@case.id), class: 'btn btn-primary pull-right btn-edition' %>
-    <section id="widget-grid" class="checklists_account">
+  <% end %>
+
+  <% if module_enabled?('surveys') %>
+      <%= link_to 'New survey', new_assign_survey_case_path(@case.id), class: 'btn btn-primary pull-right btn-edition' %>
+
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'surveys/list',
@@ -115,11 +115,11 @@
                      } %>
         </article>
       </div>
-    </section>
-<% end %>
-<% if module_enabled?('checklists') %>
-    <%= link_to 'New checklist', new_assign_case_path(@case.id), class: 'btn btn-primary pull-right btn-edition' %>
-    <section id="widget-grid" class="checklists_account">
+
+  <% end %>
+  <% if module_enabled?('checklists') %>
+      <%= link_to 'New checklist', new_assign_case_path(@case.id), class: 'btn btn-primary pull-right btn-edition' %>
+
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'checklists/list',
@@ -130,6 +130,7 @@
                      } %>
         </article>
       </div>
-    </section>
 
-<% end %>
+
+  <% end %>
+</section>

@@ -12,7 +12,7 @@ module ApplicationHelper
   end
 
   def link_to_user(user)
-    link_to user.login, user
+    link_to( user.login, user) if user
   end
 
   def time_tag_value(time)
