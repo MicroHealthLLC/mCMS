@@ -12,7 +12,7 @@ class CasesController < ApplicationController
     if User.current.can?(:manage_roles) and params[:my]
       @cases = Case.root.include_enumerations.order('title desc').paginate(page: params[:page], per_page: 25)
     else
-      @cases = Case.root.include_enumerations.where(assigned_to_id: User.current.id ).order('title desc').paginate(page: params[:page], per_page: 25)
+      @cases = Case.root.include_enumerations.where('assigned_to_id= ? OR user_id= ?', User.current.id,  User.current.id ).order('title desc').paginate(page: params[:page], per_page: 25)
     end
   end
 
@@ -32,7 +32,8 @@ class CasesController < ApplicationController
 
   # GET /cases/new
   def new
-    @case = Case.new(assigned_to_id: User.current.id, subcase_id: params[:subcase_id])
+    @case = Case.new(assigned_to_id: User.current.id,
+                     subcase_id: params[:subcase_id], user_id: User.current.id)
   end
 
   # GET /cases/1/edit
@@ -73,7 +74,7 @@ class CasesController < ApplicationController
   # POST /cases.json
   def create
     @case = Case.new(case_params)
-
+    @case.user_id =   User.current.id
     respond_to do |format|
       if @case.save
         format.html { redirect_to back_url, notice: 'Case was successfully created.' }

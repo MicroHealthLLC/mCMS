@@ -3,7 +3,7 @@
   <thead>
   <tr>
     <% if User.current.can?(:manage_roles) and params[:my] %>
-        <th>Assigned to</th>
+        <th>Client</th>
     <% end %>
     <th>Title</th>
     <th>Priority</th>
@@ -22,7 +22,7 @@
       <% @cases.each do |c| %>
           <tr>
             <% if User.current.can?(:manage_roles) and params[:my] %>
-                <td><%= link_to_user(c.assigned_to) %></td>
+                <td><%= link_to_user(c.user) %></td>
             <% end %>
             <td><%= link_to(c.title, case_path(c) ) %></td>
             <td><%= c.priority_type %></td>
