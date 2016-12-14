@@ -2,24 +2,22 @@
 <table class="table table-bordered table-responsive">
   <thead>
   <tr>
+    <th>Assigned to</th>
     <th>Title</th>
     <th>Appointment type</th>
     <th>Appointment status</th>
     <th>Date</th>
-    <th>With who</th>
-
   </tr>
   </thead>
 
   <tbody>
   <% @appointments.each do |appointment| %>
       <tr>
+        <td><%= appointment.user == User.current ? appointment.with_who : appointment.user %></td> %></td>
         <td><%= link_to appointment.title, appointment_path(appointment) %></td>
         <td><%= appointment.appointment_type %></td>
         <td><%= appointment.appointment_status %></td>
         <td><%= appointment.date %></td>
-
-        <td><%= appointment.with_who %></td>
       </tr>
   <% end %>
   </tbody>
