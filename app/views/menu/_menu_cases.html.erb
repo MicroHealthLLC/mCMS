@@ -35,6 +35,24 @@
               <a href="/documents" title="<%= t(:documents) %>"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent"><%= t(:documents) %></span></a>
             </li>
         <% end %>
+
+        <% if true %>
+            <li class="<%= menu_active?('wiki') %>">
+              <a href="<%= '/wiki/all' %>" title="<%= t(:wiki) %>"><i class="fa fa-lg fa-fw fa-file-text"></i><span class="menu-item-parent"><%= t(:wiki) %></span></a>
+            </li>
+        <% end %>
+
+        <% if current_user == User.current %>
+            <li class="<%= menu_active?('forum') %>">
+              <a href="<%= '/forum' %>" title="<%= t(:forum) %>"><i class="fa fa-lg fa-fw fa-forumbee"></i><span class="menu-item-parent"><%= t(:forum) %></span></a>
+            </li>
+        <% end %>
+
+        <% if true %>
+            <li class="<%= menu_active?('posts') %>">
+              <a href="/news" title="<%= 'news' %>"><i class="fa fa-lg fa-fw fa-newspaper-o"></i><span class="menu-item-parent"><%= 'news' %></span></a>
+            </li>
+        <% end %>
       </ul>
     </li>
 
