@@ -1,5 +1,6 @@
 class Case < ApplicationRecord
   belongs_to :assigned_to, class_name: 'User', optional: true
+  belongs_to :user, optional: true
   belongs_to :private_author, class_name: 'User', foreign_key: :private_author_id, optional: true
   belongs_to :priority_type, optional: true, foreign_key: :priority_id
   belongs_to :case_type, optional: true
@@ -60,8 +61,6 @@ class Case < ApplicationRecord
   before_destroy do
     sub_cases.update_all(subcase_id: nil)
   end
-
-  def user; assigned_to; end
 
   def case_status_type
     if case_status_type_id
