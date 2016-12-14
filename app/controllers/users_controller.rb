@@ -24,6 +24,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def search_users
+    q = params[:q]
+    respond_to do |format|
+      format.js{
+        @recently_connected = User.
+            where('login like ? OR email like ?', "#{q}%",  "#{q}%").
+            includes(:core_demographic).
+            where.not(id: current_user.id )
+      }
+    end
+  end
+
   def show
     @profile       = @user.profile
     @educations    = @user.educations

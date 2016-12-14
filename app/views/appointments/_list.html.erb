@@ -13,7 +13,7 @@
   <tbody>
   <% @appointments.each do |appointment| %>
       <tr>
-        <td><%= appointment.user == User.current ? appointment.with_who : appointment.user %></td> %></td>
+        <td><%= appointment.with_who %></td>
         <td><%= link_to appointment.title, appointment_path(appointment) %></td>
         <td><%= appointment.appointment_type %></td>
         <td><%= appointment.appointment_status %></td>

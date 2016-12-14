@@ -97,32 +97,27 @@ $.chat_body = $('#chat-body');
 jQuery.expr[':'].Contains = function(a, i, m) {
     return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
 };
-
-function listFilter(list) {// header is any element, list is an unordered list
-    // create and add the filter form to the header
-
-    $.filter_input.change(function() {
-        var filter = $(this).val();
-        if (filter) {
-            // this finds all links in a list that contain the input,
-            // and hide the ones not containing the input while showing the ones that do
-            $.chat_users.find("a:not(:Contains(" + filter + "))").parent().slideUp();
-            $.chat_users.find("a:Contains(" + filter + ")").parent().slideDown();
-        } else {
-            $.chat_users.find("li").slideDown();
-        }
-        return false;
-    }).keyup(function() {
-        // fire the above change event after every letter
-        $(this).change();
-
-    });
-}
-
+var get_recently_connected = true
 var get_recently_connected_person = function(){
-    $.getScript('/users/recently_connected')
-    setTimeout(function(){get_recently_connected_person()}, 30000)
+    if(get_recently_connected)
+    {
+        $.getScript('/users/recently_connected')
+        setTimeout(function(){get_recently_connected_person()}, 30000)
+    }
+    else
+        setTimeout(function(){get_recently_connected_person()}, 5000)
 }
+
+$('.chat-user-filter').on('focus', function(){
+    get_recently_connected = false
+});
+$('.chat-user-filter').on('blur', function(){
+    setTimeout(function(){ get_recently_connected= true; }, 5000)
+})
+
+$('#chat-user-filter').on('change', function(){
+    $.getScript('/users/search_users.js?q='+$(this).val())
+})
 
 var named_function = function(){
     $('a').attr('data-turbolinks', "false");
