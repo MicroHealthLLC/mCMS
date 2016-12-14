@@ -16,7 +16,7 @@ class ChecklistsController < ApplicationController
           where("#{ChecklistUser.table_name}.assigned_to_id = ? ", User.current.id).
           order('title DESC')
     end
-    @checklist = scope.paginate(page: params[:page], per_page: 25)
+    @checklists = scope.paginate(page: params[:page], per_page: 25)
   end
 
   def new_note
