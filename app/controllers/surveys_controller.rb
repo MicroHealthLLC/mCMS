@@ -3,12 +3,16 @@ class SurveysController < ApplicationController
   before_filter :load_survey, :only => [:show, :edit, :update, :new_note, :destroy]
 
   def index
+    scope = Survey::Survey.not_related
     if User.current.admin?
-      @surveys = Survey::Survey.not_related.order('id DESC').paginate(page: params[:page], per_page: 25)
+      scope = scope.order('id DESC')
     else
-      @surveys = Survey::Survey.not_related.includes(:survey_users).includes(:survey_notes, :questions=> [:options]).
-          references(:survey_users).where("#{SurveyUser.table_name}.assigned_to_id = ?", User.current.id ).order('name DESC').paginate(page: params[:page], per_page: 25)
+      scope = scope.includes(:survey_users).includes(:survey_notes, :questions=> [:options]).
+          references(:survey_users).
+          where("#{SurveyUser.table_name}.assigned_to_id = ?", User.current.id ).
+          order('name DESC')
     end
+    @surveys = scope.paginate(page: params[:page], per_page: 25)
   end
 
   def new_assign

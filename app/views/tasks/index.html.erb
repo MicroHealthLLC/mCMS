@@ -2,3 +2,4 @@
 
 <%= link_to('New Task', new_task_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_tasks, :manage_tasks, :manage_roles) %>
 <%= render 'sub_tasks' %>
+<%= will_paginate @tasks, renderer: BootstrapPagination::Rails %>

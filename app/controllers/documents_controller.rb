@@ -9,7 +9,7 @@ class DocumentsController < ApplicationController
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.not_related.visible :view_documents
+    @documents = Document.not_related.visible(:view_documents).paginate(page: params[:page], per_page: 25)
   end
 
   # GET /documents/1

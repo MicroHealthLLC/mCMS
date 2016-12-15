@@ -8,7 +8,7 @@ class AppointmentsController < ApplicationController
   # GET /appointments
   # GET /appointments.json
   def index
-    @appointments = Appointment.my_appointments
+    @appointments = Appointment.my_appointments.paginate(page: params[:page], per_page: 25)
   end
 
   # GET /appointments/1
