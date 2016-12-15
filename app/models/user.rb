@@ -52,7 +52,7 @@ class User < ApplicationRecord
 
 
   def check_status
-    UserMailer.account_activated(self).deliver_now if self.account_active? and self.state_was == false
+    UserMailer.account_activated(self).deliver_later if self.account_active? and self.state_was == false
   end
 
   def self.from_omniauth(auth)

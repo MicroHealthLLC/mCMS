@@ -20,7 +20,8 @@ class TasksController < ApplicationController
   # GET /tasks/1.json
   def show
     @notes = @task.task_notes
-     @tasks = @task.sub_tasks
+    @tasks = @task.sub_tasks
+    session[:employee_id] = @task.user.id if current_user.allowed_to?(:manage_roles)
   end
 
   # GET /tasks/new

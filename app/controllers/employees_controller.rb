@@ -17,14 +17,17 @@ class EmployeesController < ApplicationController
 
   def new
     @user = User.new
+    @user.core_demographic = CoreDemographic.new
   end
 
   def create
     @user = User.new(params.require(:user).permit(employee_params))
     if @user.save
-      UserMailer.welcome_email(@user, params[:user][:password]).deliver_now
+      UserMailer.welcome_email(@user, params[:user][:password]).deliver_later
+      redirect_to users_url
+    else
+      render 'new'
     end
-    redirect_to users_url
   end
 
   def update

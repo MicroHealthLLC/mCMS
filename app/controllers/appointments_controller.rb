@@ -14,6 +14,7 @@ class AppointmentsController < ApplicationController
   # GET /appointments/1
   # GET /appointments/1.json
   def show
+    session[:employee_id] = @appointment.user.id if current_user.allowed_to?(:manage_roles)
   end
 
   # GET /appointments/new
