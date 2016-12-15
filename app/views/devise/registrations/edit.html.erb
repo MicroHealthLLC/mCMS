@@ -14,7 +14,7 @@
                      layout: 'shared/smart_widget_wrapper',
                      locals: {
                          wid_id: 'job_detail_info',
-                         wid_title: "Department Info: #{ User.current.job_detail.role}",
+                         wid_title: "Role Info: #{ User.current.role.try(:role_type)}",
                          job_detail: User.current.job_detail
                      } %>
       <% end %>

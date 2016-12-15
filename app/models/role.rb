@@ -1,6 +1,7 @@
 class Role < ApplicationRecord
   belongs_to :role_type
   has_many :job_details
+  has_many :users
 
   class PermissionsAttributeCoder
     def self.load(str)

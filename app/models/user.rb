@@ -18,6 +18,7 @@ class User < ApplicationRecord
 
   has_one :user_extend_demography
   has_one :job_detail
+  belongs_to :role, optional: true
 
   # HAS MANY
   has_many :affiliations
@@ -203,15 +204,20 @@ class User < ApplicationRecord
   end
 
   def self.safe_attributes_with_password_with_core_demographic_without_state
-    [:login, :email, :password, :password_confirmation, core_demographic_attributes: [CoreDemographic.safe_attributes]]
+    [:login, :email, :password, :password_confirmation, :role_id,
+     core_demographic_attributes: [CoreDemographic.safe_attributes]]
   end
 
   def self.safe_attributes_with_password
-    [:login, :state, :email, :password, :password_confirmation, core_demographic_attributes: [CoreDemographic.safe_attributes]]
+    [:login, :state, :email, :role_id,
+     :password, :password_confirmation,
+     core_demographic_attributes: [CoreDemographic.safe_attributes]]
   end
 
   def self.admin_safe_attributes
-    [:login, :state, :email, :password, :password_confirmation, :admin, core_demographic_attributes: [CoreDemographic.safe_attributes]]
+    [:login, :state, :email, :role_id,
+     :password, :password_confirmation,
+     :admin, core_demographic_attributes: [CoreDemographic.safe_attributes]]
   end
 
   def active_for_authentication?
@@ -229,6 +235,9 @@ class User < ApplicationRecord
 
   def permissions
     return all_permissions if self.admin?
+    if role
+      return role.try( :permissions ) || []
+    end
     return [] unless job_detail
     job_detail.role.try( :permissions ) || []
   end
