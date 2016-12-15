@@ -5,6 +5,9 @@ class CoreDemographic < ApplicationRecord
   belongs_to :citizenship_type, optional: true
   belongs_to :ethnicity_type, foreign_key: :ethnicity_id, optional: true
 
+  after_save do
+    user.touch
+  end
   # validates_presence_of :user
 
   def religion_type

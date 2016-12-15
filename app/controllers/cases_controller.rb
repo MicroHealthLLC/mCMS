@@ -11,7 +11,7 @@ class CasesController < ApplicationController
   def index
     scope = Case.root.include_enumerations
     if User.current.can?(:manage_roles) and params[:my]
-      scope = scope.order('title desc')
+      scope = scope.where(assigned_to_id: @user).order('title desc')
     else
       scope = scope.where('assigned_to_id= ? OR user_id= ?', User.current.id,  User.current.id ).order('title desc')
     end

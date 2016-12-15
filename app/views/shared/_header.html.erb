@@ -7,7 +7,9 @@
 
   </div>
   <% if session[:employee_id] %>
-      <%= render_employee_information.html_safe %>
+      <%= cache User.current do %>
+          <%= render_employee_information.html_safe %>
+      <% end %>
   <% end %>
   <!-- end projects dropdown -->
 

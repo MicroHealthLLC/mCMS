@@ -239,6 +239,7 @@ en:
   private: Private
   task: Task
   tasks: Tasks
+  my_tasks: My tasks
   label_date: date
   label_time: time
   forum: forum
