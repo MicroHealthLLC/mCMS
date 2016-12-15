@@ -38,7 +38,8 @@ module ApplicationHelper
   end
 
   def render_employee_information
-    output = '<div class="col-xs-8 margin-top-10" style="float: left; font-weight: bold;">'
+
+    output = "<div class='col-xs-8 margin-top-10' style='float: left; #{ Setting.theme_style == 'smart-style-1' ? 'color:white; ' : '' } font-weight: bold;'>"
     output<< "<div class='col-xs-2' style='top: -4px;' >#{image_tag(User.current.profile_image, size: '35x35', class:'pull-right')}</div>"
     output<< "<div class='col-xs-2' >#{User.current.name}</div>"
     output<< "<div class='col-xs-2' >#{User.current.gender}</div>"
