@@ -21,7 +21,10 @@ class TasksController < ApplicationController
   def show
     @notes = @task.task_notes
     @tasks = @task.sub_tasks
-    session[:employee_id] = @task.user.id if current_user.allowed_to?(:manage_roles)
+    if current_user.allowed_to?(:manage_roles) and @task.user
+      session[:employee_id] = @task.user.id
+      User.current = @task.user
+    end
   end
 
   # GET /tasks/new

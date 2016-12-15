@@ -21,7 +21,10 @@ class CasesController < ApplicationController
   # GET /cases/1
   # GET /cases/1.json
   def show
-    session[:employee_id] = @case.user.id if current_user.allowed_to?(:manage_roles)
+    if current_user.allowed_to?(:manage_roles) and @case.user
+      session[:employee_id] = @case.user.id
+      User.current = @case.user
+    end
     @cases     = @case.sub_cases
     @relations = @case.relations
 

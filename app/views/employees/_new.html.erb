@@ -62,7 +62,7 @@
       <div class="form-group">
         <label class="col-md-2 control-label">automatic password generation</label>
         <div class="col-md-9">
-          <%= check_box_tag :auto_password %>
+          <%= check_box_tag :auto_password, true, '1' %>
         </div>
       </div>
 
@@ -142,8 +142,12 @@
       }
       $('#user_password').val(str)
       $('#user_password_confirmation').val(str)
-
     })
+
+
+    str = Math.random().toString(36)
+    $('#user_password').val(str)
+    $('#user_password_confirmation').val(str)
 
   });
 </script>
