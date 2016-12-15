@@ -10,7 +10,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.not_related.root.
+    @tasks = Task.root.
         where(assigned_to: @user).
         or(Task.root.where(for_individual: @user) ).
         paginate(page: params[:page], per_page: 25)
