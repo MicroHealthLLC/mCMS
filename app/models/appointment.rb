@@ -15,7 +15,7 @@ class Appointment < ApplicationRecord
   scope :not_related, -> {where(related_to_id: nil)}
 
   scope :my_appointment_created, -> { where(user_id: User.current.id)}
-  scope :my_appointment_for_me, -> { where(with_who_id: User.current.id).where(with_who_type: "#{User.class}")}
+  scope :my_appointment_for_me, -> { where(with_who_id: User.current.id).where(with_who_type: "User")}
 
   def visible?
     User.current == user
