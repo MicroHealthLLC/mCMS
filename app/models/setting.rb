@@ -1,7 +1,8 @@
 class Setting < ApplicationRecord
 
   def self.theme
-    JSON.parse(get_theme.value ||  {theme_style: 'smart-style-0' }.to_json )
+    return @theme if @theme
+    @theme = JSON.parse(get_theme.value ||  {theme_style: 'smart-style-0' }.to_json )
   end
 
   def self.ldap_active?
