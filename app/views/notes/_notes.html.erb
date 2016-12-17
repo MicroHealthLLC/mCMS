@@ -1,7 +1,12 @@
 <table class="table table-bordered table-responsive">
   <thead>
   <tr>
-    <th>User</th>
+
+    <% if defined?(use_belongs_to) %>
+        <th>Belongs to</th>
+    <% else %>
+        <th><%= t('label_user') %></th>
+    <% end %>
     <th>Date</th>
     <th>Note</th>
     <th colspan="2"></th>
@@ -12,7 +17,11 @@
   <% if notes.any? %>
       <% notes.each do |note| %>
           <tr>
-            <td><%= link_to note.user, note %></td>
+            <% if defined?(use_belongs_to) %>
+                <td><%= link_to note.object, note.object %></td>
+            <% else %>
+                <td><%= link_to note.user, note %></td>
+            <% end %>
             <td><%= note.updated_at.to_date %></td>
             <td><%= note.note.to_s.html_safe %></td>
           </tr>

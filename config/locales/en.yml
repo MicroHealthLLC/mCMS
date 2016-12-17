@@ -1,270 +1,43 @@
 en:
-  date:
-    formats:
-      # Use the strftime parameters for formats.
-      # When no format has been given, it uses default.
-      # You can provide other formats here if you like!
-      default: "%m/%d/%Y"
-      short: "%b %d"
-      long: "%B %d, %Y"
-
-    day_names: [Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday]
-    abbr_day_names: [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
-
-    # Don't forget the nil at the beginning; there's no such thing as a 0th month
-    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
-    abbr_month_names: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
-    # Used in date_select and datime_select.
-    order:
-      - :year
-      - :month
-      - :day
-
-  time:
-    formats:
-      default: "%m/%d/%Y %I:%M %p"
-      time: "%I:%M %p"
-      short: "%d %b %H:%M"
-      long: "%B %d, %Y %H:%M"
-    am: "am"
-    pm: "pm"
-
-  datetime:
-    distance_in_words:
-      half_a_minute: "half a minute"
-      less_than_x_seconds:
-        one:   "less than 1 second"
-        other: "less than %{count} seconds"
-      x_seconds:
-        one:   "1 second"
-        other: "%{count} seconds"
-      less_than_x_minutes:
-        one:   "less than a minute"
-        other: "less than %{count} minutes"
-      x_minutes:
-        one:   "1 minute"
-        other: "%{count} minutes"
-      about_x_hours:
-        one:   "about 1 hour"
-        other: "about %{count} hours"
-      x_hours:
-        one:   "1 hour"
-        other: "%{count} hours"
-      x_days:
-        one:   "1 day"
-        other: "%{count} days"
-      about_x_months:
-        one:   "about 1 month"
-        other: "about %{count} months"
-      x_months:
-        one:   "1 month"
-        other: "%{count} months"
-      about_x_years:
-        one:   "about 1 year"
-        other: "about %{count} years"
-      over_x_years:
-        one:   "over 1 year"
-        other: "over %{count} years"
-      almost_x_years:
-        one:   "almost 1 year"
-        other: "almost %{count} years"
-
-  number:
-    format:
-      separator: "."
-      delimiter: ""
-      precision: 3
-
-    human:
-      format:
-        delimiter: ""
-        precision: 3
-      storage_units:
-        format: "%n %u"
-        units:
-          byte:
-            one: "Byte"
-            other: "Bytes"
-          kb: "KB"
-          mb: "MB"
-          gb: "GB"
-          tb: "TB"
-
-# Used in array.to_sentence.
-  support:
-    array:
-      sentence_connector: "and"
-      skip_last_comma: false
-
-  activerecord:
-    errors:
-      template:
-        header:
-          one:    "1 error prohibited this %{model} from being saved"
-          other:  "%{count} errors prohibited this %{model} from being saved"
-      messages:
-        inclusion: "is not included in the list"
-        exclusion: "is reserved"
-        invalid: "is invalid"
-        confirmation: "doesn't match confirmation"
-        accepted: "must be accepted"
-        empty: "cannot be empty"
-        blank: "cannot be blank"
-        too_long: "is too long (maximum is %{count} characters)"
-        too_short: "is too short (minimum is %{count} characters)"
-        wrong_length: "is the wrong length (should be %{count} characters)"
-        taken: "has already been taken"
-        not_a_number: "is not a number"
-        not_a_date: "is not a valid date"
-        greater_than: "must be greater than %{count}"
-        greater_than_or_equal_to: "must be greater than or equal to %{count}"
-        equal_to: "must be equal to %{count}"
-        less_than: "must be less than %{count}"
-        less_than_or_equal_to: "must be less than or equal to %{count}"
-        odd: "must be odd"
-        even: "must be even"
-        greater_than_start_date: "must be greater than start date"
-        not_same_project: "doesn't belong to the same project"
-        circular_dependency: "This relation would create a circular dependency"
-        cant_link_an_issue_with_a_descendant: "An issue cannot be linked to one of its subtasks"
-        earlier_than_minimum_start_date: "cannot be earlier than %{date} because of preceding issues"
-
-  enumerations_label: Enumerations
-  enumeration_address_type: Address
-  enumeration_affiliation_type: Affiliation
-  enumeration_clearence_type: Clearance
-  enumeration_pay_rate_type: Pay rate
-  enumeration_social_media_type: Social media
-  enumeration_certification_type: Certification
-  enumeration_case_status_type: Case status
-  enumeration_contact_type: Relationship
-  enumeration_checklist_status_type: Checklist status
-  enumeration_country_type: Country
-  enumeration_citizenship_type: Citizenship
-  enumeration_issued_by_type : Issued by type
-  enumeration_department_type: Department
-  enumeration_document_type: Document
-  enumeration_education_type: Education
-  enumeration_priority_type: Priority
-  enumeration_task_type: Task
-  enumeration_employment_type: Employment
-  enumeration_email_type: Email
-  enumeration_ethnicity_type: Ethnicity
-  enumeration_fax_type: Fax
-  enumeration_gender_type: Gender
-  enumeration_survey_type: Survey
-  enumeration_identification_type: Identification
-  enumeration_location_type: Location
-  enumeration_language_type: Language
-  enumeration_proficiency_type: Proficiency
-  enumeration_phone_type: Phone
-  enumeration_organization_type: Organization
-  enumeration_religion_type: Religion type
-  enumeration_role_type: Role
-  enumeration_state_type: State
-  enumeration_new_label: New value
-  enumeration_case_type: Case type
-  enumeration_case_category_type: Case category type
-  education_type: Education
-  educations: Educations
-  languages: Languages
-  education_certification: Certification
-  education_other_skill: Other skill
-  education_date_received: Date received
-  education_date_expired: Date expired
-  education_clearence: Clearance
-  other_skill: Skill
-  other_skills: Skills
-  label_default: Default
-  label_active: Active
-  label_name: Name
-  label_address: Address
-  label_contact: Contact
-  label_on: On
-  label_off: Off
-  label_note: note
-  label_email_type: Email type
-  label_fax_type: Fax type
-  label_phone_type: Phone type
-  label_search: Search
-  position_description: Position description
-  proficiency: Proficiency
-  language_type: Language Type
-  language: Language
-  answer: Answer
-  pay_rate: Pay rate
-  employment_type: Employment type
-  appointment_type: Appointment type
-  appointment_status: Appointment status
-  salary: Pay
-  login: Username
-  email: Email
-  fax: Fax
-  phone: Phone Number
-  label_user: User
+ #DEFAULT SETTING
   label_no_data: No data to display
   text_are_you_sure: Are you sure to delete this record?
   notice_successful_create: Successful creation.
   notice_successful_update: Successful update.
   error_update: Error on update.
   notice_successful_delete: Successful deletion.
-  new_organization: New Organization
-  new_affiliation: New Affiliation
-  new_wiki: New wiki
-  organizations: Organizations
-  affiliations: Affiliations
-  my_appointments: My appointments
-  appointments: Appointments
-  affiliation_type: Affiliation type
-  organization: Organization
-  organization_type: Organization Type
-  clearences: Clearances
-  certifications: Certifications
-  document_type: Document type
-  documents: Documents
-  employees: Persons
-  new_employee: New person
-  positions: Positions
-  departments: Departments
-  checklists: Checklists
-  contacts: Contacts
-  description: Description
-  question: Question
-  surveys: Surveys
-  cases: Cases
-  cases_support: Cases support
-  my_cases: My cases
-  title: Title
-  summary: Summary
-  private: Private
-  task: Task
-  tasks: Tasks
-  my_tasks: My tasks
-  label_date: date
-  label_time: time
-  forum: forum
-  wiki: wiki
-  next: Next
   attachment: Attachment
   attachments: Attachments
   label_x_comments: Comments (%{count})
   label_added_time_by: "Added by %{author} %{age} ago"
 
-  button_save: Save
-  button_cancel: Cancel
-  button_print: Print
-  button_create: Create
-  button_edit: Edit
-  notice_not_authorized: Not authorized
-  notice_file_not_found: Page does not exist
-
   text_enumeration_destroy_question: "%{count} objects are assigned to the value “%{name}”."
   text_enumeration_category_reassign_to: 'Reassign them to this value:'
   actionview_instancetag_blank_option:  Please select
 
-  label_permissions: Permissions
-  label_employees: Employees
+ # Education
+  education_type: Education
+  educations: Educations
+  education_other_skill: Other skill
+  education_date_received: Date received
+  education_date_expired: Date expired
+  education_clearence: Clearance
+  education_certification: Certification
+ # TASK
 
+ # EMPLOYEE
+  employees: Clients
+  new_employee: New client
+  employment_type: Client type
+  label_employees: Client
+  change_employee_info: Change Client Information
+
+ # USER.
+  login: Username
+  email: Email
+  fax: Fax
+  phone: Phone Number
+  label_user: User
   profile:
     profile: profile
     name: Name
@@ -280,10 +53,91 @@ en:
     current_password: Current password
     password_confirmation: Password confirmation
 
-  errors:
-    messages:
-      carrierwave_processing_error: "Cannot resize image."
-      carrierwave_integrity_error: "Not an image."
-      carrierwave_download_error: "Couldn't download image."
-      extension_whitelist_error: "You are not allowed to upload %{extension} files, allowed types: %{allowed_types}"
-      extension_blacklist_error: "You are not allowed to upload %{extension} files, prohibited types: %{prohibited_types}"
+ # LANGUAGE
+
+ # CERTIFICATION
+
+ # CONTACT
+
+ # NOTES
+
+ # INSURANCE
+
+ # APPOINTMENT
+  my_appointments: My appointments
+  appointments: Appointments
+  appointment_type: Appointment type
+  appointment_status: Appointment status
+ # CASES
+  cases: Cases
+  cases_support: Cases support
+  my_cases: My cases
+
+ # TASK
+  task: Task
+  tasks: Tasks
+  my_tasks: My tasks
+ # OTHER
+
+  languages: Languages
+  other_skill: Skill
+  other_skills: Skills
+  label_default: Default
+  label_active: Active
+  label_name: Name
+  label_address: Address
+  label_contact: Contact
+  label_on: On
+  label_off: Off
+  label_note: note
+  label_note_plural: notes
+  label_email_type: Email type
+  label_fax_type: Fax type
+  label_phone_type: Phone type
+  label_search: Search
+  position_description: Position description
+  proficiency: Proficiency
+  language_type: Language Type
+  language: Language
+  answer: Answer
+  pay_rate: Pay rate
+
+  salary: Pay
+
+#WIKI
+  new_wiki: New wiki
+ # AFFILIATION
+  new_affiliation: New Affiliation
+
+
+  affiliations: Affiliations
+  affiliation_type: Affiliation type
+  #ORGANIZATION
+  new_organization: New Organization
+  organizations: Organizations
+  organization: Organization
+  organization_type: Organization Type
+  #CLEARANCE
+  clearences: Clearances
+  certifications: Certifications
+  #DOCUMENTS
+  document_type: Document type
+  documents: Documents
+
+  positions: Positions
+  departments: Departments
+  checklists: Checklists
+  contacts: Contacts
+  description: Description
+  question: Question
+  surveys: Surveys
+  title: Title
+  summary: Summary
+  private: Private
+  label_date: date
+  label_time: time
+  forum: forum
+  wiki: wiki
+  role: Role
+  label_permissions: Permissions
+

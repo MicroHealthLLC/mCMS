@@ -1,0 +1,30 @@
+<h1>Note</h1>
+<fieldset>
+  <legend>Filter</legend>
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <%= form_tag '', method: 'get', class: 'form-horizontal' do %>
+          <div class=" col-xs-12 col-sm-6 col-md-4 col-lg-3">
+            <%= select_tag :note_type, options_for_select(['']+ Note.subclasses.map(&:to_s), selected: params[:note_type]), {class: 'form-control' } %>
+          </div>
+          <%= submit_tag t('label_search'), class: 'btn btn-primary pull-right' %>
+      <% end %>
+    </div>
+  </div>
+</fieldset>
+<section id="widget-grid" class="form_task_user">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'notes',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     notes: @notes,
+                     wid_id: 'notes',
+                     wid_title: 'Notes',
+                     use_belongs_to: true
+
+                 } %>
+    </article>
+  </div>
+</section>
+<%= will_paginate @notes, renderer: BootstrapPagination::Rails %>

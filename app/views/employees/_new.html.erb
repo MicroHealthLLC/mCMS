@@ -1,7 +1,7 @@
 <%= form_for(user, url: employees_path, html: { method: :post, class: 'form-horizontal', id: 'smart-form-register' }) do |f| %>
 
     <fieldset>
-      <legend>Change User Information</legend>
+      <legend><%= t('change_employee_info') %></legend>
       <% if user.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -53,7 +53,7 @@
       </div>
 
       <div class="form-group">
-        <label class="col-md-2 control-label">Email</label>
+        <label class="col-md-2 control-label"><%= t(:email) %></label>
         <div class="col-md-9">
           <%= f.email_field :email, placeholder: 'Email' , class: 'form-control' %>
         </div>
@@ -67,14 +67,14 @@
       </div>
 
       <div class="form-group">
-        <label class="col-md-2 control-label">Password</label>
+        <label class="col-md-2 control-label"><%= t('profile.password') %></label>
         <div class="col-md-9">
           <%= f.password_field :password, autocomplete: "off", placeholder: 'Password' , class: 'form-control' %>
         </div>
       </div>
 
       <div class="form-group">
-        <label class="col-md-2 control-label">Password confirmation</label>
+        <label class="col-md-2 control-label"><%= t('profile.password_confirmation') %></label>
         <div class="col-md-9">
           <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: 'Password confirmation' , class: 'form-control' %>
         </div>
@@ -91,7 +91,7 @@
       <% end %>
 
       <div class="form-group">
-        <label class="col-md-2 control-label">Role</label>
+        <label class="col-md-2 control-label"><%= t('role') %></label>
         <div class="col-md-9">
           <%= f.select :role_id, options_for_select(Role.active.map{|r| [r.role_type, r.id]}, selected: f.object.role.try(:id)), {}, {class: 'form-control'} %>
         </div>
@@ -135,19 +135,18 @@
     });
 
     $('#auto_password').on('change', function(){
+      generate_random_password()
+    })
+    generate_random_password()
+  });
+
+    function generate_random_password(){
       str =''
-      if($(this).prop('checked'))
+      if($('#auto_password').prop('checked'))
       {
         str = Math.random().toString(36)
       }
-      $('#user_password').val(str)
-      $('#user_password_confirmation').val(str)
-    })
-
-
-    str = Math.random().toString(36)
-    $('#user_password').val(str)
-    $('#user_password_confirmation').val(str)
-
-  });
+      $('#user_password').val(str);
+      $('#user_password_confirmation').val(str);
+    }
 </script>

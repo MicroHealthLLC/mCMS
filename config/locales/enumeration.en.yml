@@ -1,0 +1,37 @@
+en:
+  enumerations_label: Enumerations
+  enumeration_address_type: Address
+  enumeration_affiliation_type: Affiliation
+  enumeration_clearence_type: Clearance
+  enumeration_pay_rate_type: Pay rate
+  enumeration_social_media_type: Social media
+  enumeration_certification_type: Certification
+  enumeration_case_status_type: Case status
+  enumeration_contact_type: Relationship
+  enumeration_checklist_status_type: Checklist status
+  enumeration_country_type: Country
+  enumeration_citizenship_type: Citizenship
+  enumeration_issued_by_type : Issued by type
+  enumeration_department_type: Department
+  enumeration_document_type: Document
+  enumeration_education_type: Education
+  enumeration_priority_type: Priority
+  enumeration_task_type: Task
+  enumeration_employment_type: Employment
+  enumeration_email_type: Email
+  enumeration_ethnicity_type: Ethnicity
+  enumeration_fax_type: Fax
+  enumeration_gender_type: Gender
+  enumeration_survey_type: Survey
+  enumeration_identification_type: Identification
+  enumeration_location_type: Location
+  enumeration_language_type: Language
+  enumeration_proficiency_type: Proficiency
+  enumeration_phone_type: Phone
+  enumeration_organization_type: Organization
+  enumeration_religion_type: Religion type
+  enumeration_role_type: Role
+  enumeration_state_type: State
+  enumeration_new_label: New value
+  enumeration_case_type: Case type
+  enumeration_case_category_type: Case category type

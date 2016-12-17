@@ -2,6 +2,11 @@ class NotesController < ApplicationController
   before_action  :authenticate_user!
   before_action :set_note, only: [:update, :edit, :show, :destroy]
 
+  def index
+    scope = Note.where(type: params[:note_type])
+    @notes = scope.where(user_id: User.current.id).paginate(page: params[:page], per_page: 25)
+  end
+
   def new
     @note = Note.new(type: params[:type], owner_id: params[:owner_id], user_id: User.current.id)
   rescue

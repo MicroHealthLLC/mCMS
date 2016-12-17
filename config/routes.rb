@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :case_notes, except: [:index], controller: :notes
   resources :task_notes, except: [:index], controller: :notes
   resources :post_notes, except: [:index], controller: :notes
-  resources :notes, except: [:index]
+  resources :notes
 
   resources :cases do
     member do

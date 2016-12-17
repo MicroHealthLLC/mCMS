@@ -30,3 +30,9 @@ class Note < ApplicationRecord
   end
 
 end
+
+require_dependency 'task_note'
+require_dependency 'checklist_note'
+require_dependency 'post_note'
+require_dependency 'case_note'
+require_dependency 'survey_note'
