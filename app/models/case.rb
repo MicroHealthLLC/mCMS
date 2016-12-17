@@ -21,6 +21,7 @@ class Case < ApplicationRecord
   has_many :case_notes, foreign_key: :owner_id
 
   scope :root, -> {where(subcase_id: nil)}
+  scope :subcases, -> {where.not(subcase_id: nil)}
   scope :not_private, -> {where(is_private: false)}
 
   default_scope -> {where(is_private: false).or(where(private_author_id: User.current.id)) }

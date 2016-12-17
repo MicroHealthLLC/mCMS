@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   resources :notes
 
   resources :cases do
+    collection do
+      get 'subcases'
+    end
     member do
       get 'delete_sub_case_relation'
       get 'delete_relation'

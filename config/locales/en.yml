@@ -70,6 +70,7 @@ en:
   appointment_status: Appointment status
  # CASES
   cases: Cases
+  subcases: SubCases
   cases_support: Cases support
   my_cases: My cases
 

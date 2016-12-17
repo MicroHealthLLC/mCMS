@@ -18,6 +18,17 @@ class CasesController < ApplicationController
     @cases = scope.paginate(page: params[:page], per_page: 25)
   end
 
+  def subcases
+    scope = Case.subcases.include_enumerations
+    if User.current.can?(:manage_roles) and params[:my]
+      scope = scope.where(assigned_to_id: @user).order('title desc')
+    else
+      scope = scope.where('assigned_to_id= ? OR user_id= ?', User.current.id,  User.current.id ).order('title desc')
+    end
+    @cases = scope.paginate(page: params[:page], per_page: 25)
+    render 'cases/index'
+  end
+
   # GET /cases/1
   # GET /cases/1.json
   def show
