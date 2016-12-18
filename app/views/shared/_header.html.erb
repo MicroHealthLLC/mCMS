@@ -1,8 +1,9 @@
 <header id="header">
+
   <div id="logo-group">
 
     <!-- PLACE YOUR LOGO HERE -->
-    <span id="logo1" style="margin: 10px;"> <%= link_to "#{image_tag( "logo.png", alt:"mCMS")} mCMS".html_safe , root_path %> </span>
+    <span id="logo1" style="margin: 10px;"> <%= link_to "#{image_tag( "logo.png", alt: '' )} #{Setting['application_name']}".html_safe , root_path %> </span>
     <!-- END LOGO PLACEHOLDER -->
 
   </div>

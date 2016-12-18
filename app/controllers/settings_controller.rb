@@ -12,6 +12,9 @@ class SettingsController < ApplicationController
     @setting = Setting.first || Setting.new
     @setting.attributes= setting_params
     @setting.save
+
+    Setting['application_name'] = params['application_name']
+    Setting['email_from'] = params['email_from']
     redirect_to settings_path
   end
 
