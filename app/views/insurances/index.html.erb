@@ -1,0 +1,5 @@
+<h1><%= t('insurance') %></h1>
+
+<%= link_to( t('new_insurance'), new_insurance_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_insurances, :manage_roles, :manage_insurances)%>
+
+<%= render 'list', insurances: @insurances %>

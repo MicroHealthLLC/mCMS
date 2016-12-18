@@ -15,9 +15,16 @@ en:
   text_enumeration_category_reassign_to: 'Reassign them to this value:'
   actionview_instancetag_blank_option:  Please select
 
+ # INSURANCE
+  insurance: Insurance
+  insurance_plural: Insurances
+  new_insurance: New insurance
+  edit_insurance: Edit insurance
+
  # Education
   education_type: Education
   educations: Educations
+  new_education: New education
   education_other_skill: Other skill
   education_date_received: Date received
   education_date_expired: Date expired

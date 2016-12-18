@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :insurances do
+    resources :insurance_extend_demographies, only: [:create, :update], controller: :extend_demographies
+  end
   resources :appointments
   resources :news
   match '/wiki_pages/new_page_title', via: [:get, :post]

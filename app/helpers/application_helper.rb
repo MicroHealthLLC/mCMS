@@ -29,6 +29,10 @@ module ApplicationHelper
     link_to "<i class='fa fa-lg fa-trash-o'></i>".html_safe, url, options
   end
 
+  def format_date datetime
+    datetime.strftime(t('date.formats.default'))
+  end
+
   def show_link(object, options={})
     link_to "<i class='fa fa-lg fa-eye'></i>".html_safe, object, options
   end

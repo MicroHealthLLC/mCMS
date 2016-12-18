@@ -1,0 +1,23 @@
+<table class="table table-responsive table-bordered">
+  <thead>
+  <tr>
+    <th><%= t :insurance %></th>
+    <th><%= 'created at' %></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if insurances.any? %>
+      <% insurances.each do |insurance| %>
+          <tr>
+            <td><%= link_to insurance.name, insurance_path(insurance) %></td>
+            <td><%= format_date insurance.created_at %></td>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161205183509) do
+ActiveRecord::Schema.define(version: 20161218101904) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type_id"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20161205183509) do
     t.text     "description",         limit: 65535
     t.boolean  "is_private",                        default: false
     t.integer  "private_author_id"
+    t.integer  "user_id"
   end
 
   create_table "certifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -270,6 +271,7 @@ ActiveRecord::Schema.define(version: 20161205183509) do
     t.integer  "contact_id"
     t.integer  "organization_id"
     t.integer  "affiliation_id"
+    t.integer  "insurance_id"
     t.index ["user_id"], name: "index_extend_demographies_on_user_id", using: :btree
   end
 
@@ -305,6 +307,12 @@ ActiveRecord::Schema.define(version: 20161205183509) do
     t.datetime "updated_at",                           null: false
     t.integer  "extend_demography_id"
     t.integer  "issued_by_type_id"
+  end
+
+  create_table "insurances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "job_details", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -526,6 +534,39 @@ ActiveRecord::Schema.define(version: 20161205183509) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["assigned_to_id"], name: "index_survey_users_on_assigned_to_id", using: :btree
+  end
+
+  create_table "talking_stick_participants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "name"
+    t.string   "ip"
+    t.string   "guid"
+    t.datetime "joined_at"
+    t.datetime "last_seen"
+    t.integer  "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["guid"], name: "index_talking_stick_participants_on_guid", using: :btree
+    t.index ["room_id"], name: "index_talking_stick_participants_on_room_id", using: :btree
+  end
+
+  create_table "talking_stick_rooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "name"
+    t.datetime "last_used"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "slug"
+  end
+
+  create_table "talking_stick_signals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer  "room_id"
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.string   "signal_type"
+    t.text     "data",         limit: 65535
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["recipient_id"], name: "index_talking_stick_signals_on_recipient_id", using: :btree
+    t.index ["sender_id"], name: "index_talking_stick_signals_on_sender_id", using: :btree
   end
 
   create_table "task_notes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
@@ -794,6 +835,7 @@ ActiveRecord::Schema.define(version: 20161205183509) do
     t.string   "database_authenticatable"
     t.string   "ldap_authenticatable",                                   null: false
     t.datetime "last_seen_at"
+    t.integer  "role_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
     t.index ["deleted_at"], name: "index_users_on_deleted_at", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
@@ -819,9 +861,10 @@ ActiveRecord::Schema.define(version: 20161205183509) do
     t.integer  "updator_id"
     t.string   "path"
     t.string   "title"
-    t.text     "content",    limit: 4294967295
+    t.text     "content",     limit: 4294967295
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sub_page_id"
     t.index ["creator_id"], name: "index_wiki_pages_on_creator_id", using: :btree
     t.index ["path"], name: "index_wiki_pages_on_path", unique: true, using: :btree
   end

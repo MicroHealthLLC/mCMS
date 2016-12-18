@@ -1,0 +1,30 @@
+<%= form_for(insurance, html: { class: 'form-horizontal' }) do |f| %>
+    <% if insurance.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(insurance.errors.count, "error") %> prohibited this insurance from being saved:</h2>
+
+          <ul>
+            <% insurance.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <fieldset>
+      <legend><%= t('insurance') %></legend>
+
+      <div class="form-group">
+        <%= f.label t('label_name'), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :name , class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= link_to t('button_cancel'), insurances_path, class: 'btn btn-warning pull-right' %>
+          <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+    </fieldset>
+<% end %>
