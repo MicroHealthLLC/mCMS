@@ -13,3 +13,31 @@
     </li>
   </ul>
 </li>
+
+<script>
+  $(document).ready(function(){
+    var get_recently_connected = true;
+    var get_recently_connected_person = function(){
+      if(get_recently_connected)
+      {
+        $.getScript('/users/recently_connected')
+        setTimeout(function(){get_recently_connected_person()}, 30000)
+      }
+      else
+        setTimeout(function(){get_recently_connected_person()}, 5000)
+    }
+
+    $('.chat-user-filter').on('focus', function(){
+      get_recently_connected = false
+    });
+    $('.chat-user-filter').on('blur', function(){
+      setTimeout(function(){ get_recently_connected= true; }, 5000)
+    })
+
+    $('#chat-user-filter').on('change', function(){
+      $.getScript('/users/search_users.js?q='+$(this).val())
+    })
+    get_recently_connected_person()
+
+  })
+</script>

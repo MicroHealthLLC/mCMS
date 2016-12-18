@@ -1,4 +1,4 @@
-<div class="row center_global">
+<div class="row">
 
   <div class="col-xs-12 col-md-5 ">
     <% if can_connect_with?(:facebook) %>
@@ -51,7 +51,7 @@
           </div>
         </section>
         <section>
-          <% if ENV['RECAPTCHA_PUBLIC_KEY']  %>
+          <% if ENV['RECAPTCHA_PUBLIC_KEY'].present? %>
               <%= recaptcha_tags :public_key => ENV['RECAPTCHA_PUBLIC_KEY'] %>
           <% end %>
         </section>

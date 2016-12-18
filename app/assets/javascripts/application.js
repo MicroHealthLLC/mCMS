@@ -97,28 +97,6 @@ $.chat_body = $('#chat-body');
 jQuery.expr[':'].Contains = function(a, i, m) {
     return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
 };
-var get_recently_connected = true
-var get_recently_connected_person = function(){
-    if(get_recently_connected)
-    {
-        $.getScript('/users/recently_connected')
-        setTimeout(function(){get_recently_connected_person()}, 30000)
-    }
-    else
-        setTimeout(function(){get_recently_connected_person()}, 5000)
-}
-
-$('.chat-user-filter').on('focus', function(){
-    get_recently_connected = false
-});
-$('.chat-user-filter').on('blur', function(){
-    setTimeout(function(){ get_recently_connected= true; }, 5000)
-})
-
-$('#chat-user-filter').on('change', function(){
-    $.getScript('/users/search_users.js?q='+$(this).val())
-})
-
 var named_function = function(){
     $('a').attr('data-turbolinks', "false");
 
@@ -159,8 +137,6 @@ var named_function = function(){
             $(this).next().next().val('User')
         }
     });
-
-    get_recently_connected_person()
     console.log("It works on each visit!")
 };
 
