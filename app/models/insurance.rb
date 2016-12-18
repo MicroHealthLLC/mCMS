@@ -10,6 +10,10 @@ class Insurance < ApplicationRecord
     insurance_extend_demography || InsuranceExtendDemography.new(insurance_id: self.id)
   end
 
+  def to_s
+    name
+  end
+
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.text "Affiliation ##{id}", :style => :bold}
     user.to_pdf_brief_info(pdf)

@@ -1,0 +1,3 @@
+class UserInsuranceAttachment < Attachment
+
+end

@@ -25,6 +25,7 @@ class Position < ApplicationRecord
       PayRateType.default
     end
   end
+
   def employment_type
     if employment_type_id
       super

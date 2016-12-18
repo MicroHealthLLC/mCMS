@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161218101904) do
+ActiveRecord::Schema.define(version: 20161218165832) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type_id"
@@ -802,6 +802,16 @@ ActiveRecord::Schema.define(version: 20161218101904) do
     t.integer  "page",        default: 1, null: false
     t.datetime "read_at",                 null: false
     t.index ["user_id", "postable_id"], name: "thredded_user_topic_read_states_user_postable", unique: true, using: :btree
+  end
+
+  create_table "user_insurances", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer  "user_id"
+    t.integer  "insurance_id"
+    t.integer  "insurance_type_id"
+    t.string   "insurance_identifier"
+    t.text     "note",                 limit: 65535
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|

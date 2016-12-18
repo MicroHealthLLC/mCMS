@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :user_insurances
   resources :insurances do
     resources :insurance_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end

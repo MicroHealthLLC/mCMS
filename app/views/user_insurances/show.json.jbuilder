@@ -1,0 +1,1 @@
+json.partial! "user_insurances/user_insurance", user_insurance: @user_insurance

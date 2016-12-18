@@ -47,6 +47,11 @@
                   <a href="/affiliations" title="<%= t(:affiliations) %>"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent"><%= t(:affiliations) %></span></a>
                 </li>
             <% end %>
+            <% if module_enabled? 'insurances' %>
+                <li class="<%= menu_active?('user_insurances') %>">
+                  <a href="/user_insurances" title="<%= t(:insurance_plural) %>"><i class="fa fa-lg fa-fw fa-shield"></i> <span class="menu-item-parent"><%= t(:insurance_plural) %></span></a>
+                </li>
+            <% end %>
           </ul>
         </li>
     <% end %>

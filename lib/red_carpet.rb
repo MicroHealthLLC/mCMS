@@ -3,6 +3,7 @@ require 'red_carpet/access_control'
 
 # Permissions
 RedCarpet::AccessControl.map do |map|
+  # profile user
   map.project_module :educations do |map|
     map.permission :view_educations,   {:educations => [:index]},  :read => true
     map.permission :create_educations, {:educations => [:new, :create]},  :read => true
@@ -18,22 +19,6 @@ RedCarpet::AccessControl.map do |map|
     map.permission :delete_languages, {:languages => [:destroy]},  :read => true
     map.permission :manage_languages, {:languages => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
-  
-  # map.project_module :departments do |map|
-  #   map.permission :view_departments,   {:departments => [:index]},  :read => true
-  #   map.permission :create_departments, {:departments => [:new, :create]},  :read => true
-  #   map.permission :edit_departments,   {:departments => [:edit, :update]},  :read => true
-  #   map.permission :delete_departments, {:departments => [:destroy]},  :read => true
-  #   map.permission :manage_departments, {:departments => [:new, :create, :edit, :update, :destroy]},  :read => true
-  # end
-  #
-  # map.project_module :organizations do |map|
-  #   map.permission :view_organizations, {:organizations => [:index]},  :read => true
-  #   map.permission :create_organizations, {:organizations => [:new, :create]},  :read => true
-  #   map.permission :edit_organizations, {:organizations => [:edit, :update]},  :read => true
-  #   map.permission :delete_organizations, {:organizations => [:destroy]},  :read => true
-  #   map.permission :manage_organizations, {:organizations => [:new, :create, :edit, :update, :destroy]},  :read => true
-  # end
 
   map.project_module :affiliations do |map|
     map.permission :view_affiliations, {:affiliations => [:index]},  :read => true
@@ -49,14 +34,6 @@ RedCarpet::AccessControl.map do |map|
     map.permission :edit_positions, {:positions => [:edit, :update]},  :read => true
     map.permission :delete_positions, {:positions => [:destroy]},  :read => true
     map.permission :manage_positions, {:positions => [:new, :create, :edit, :update, :destroy]},  :read => true
-  end
-
-  map.project_module :document do |map|
-    map.permission :view_documents,   {:documents => [:index]},  :read => true
-    map.permission :create_documents, {:documents => [:new, :create]},  :read => true
-    map.permission :edit_documents,   {:documents => [ :edit, :update]},  :read => true
-    map.permission :delete_documents, {:documents => [ :destroy]},  :read => true
-    map.permission :manage_documents, {:documents => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :contacts do |map|
@@ -83,12 +60,49 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_clearances, {:clearances => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
 
+   map.project_module :insurances do |map|
+    map.permission :view_insurance, {:user_insurances => [:index]},  :read => true
+    map.permission :create_insurance, {:user_insurances => [:new, :create]},  :read => true
+    map.permission :edit_insurance, {:user_insurances => [:edit, :update]},  :read => true
+    map.permission :delete_insurance, {:user_insurances => [:destroy]},  :read => true
+    map.permission :manage_insurance, {:user_insurances => [:new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
   map.project_module :other_skills do |map|
     map.permission :view_other_skills, {:other_skills => [:index]},  :read => true
     map.permission :create_other_skills, {:other_skills => [:new, :create]},  :read => true
     map.permission :edit_other_skills, {:other_skills => [:edit, :update]},  :read => true
     map.permission :delete_other_skills, {:other_skills => [:destroy]},  :read => true
     map.permission :manage_other_skills, {:other_skills => [:new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
+
+  
+  # map.project_module :departments do |map|
+  #   map.permission :view_departments,   {:departments => [:index]},  :read => true
+  #   map.permission :create_departments, {:departments => [:new, :create]},  :read => true
+  #   map.permission :edit_departments,   {:departments => [:edit, :update]},  :read => true
+  #   map.permission :delete_departments, {:departments => [:destroy]},  :read => true
+  #   map.permission :manage_departments, {:departments => [:new, :create, :edit, :update, :destroy]},  :read => true
+  # end
+  #
+  # map.project_module :organizations do |map|
+  #   map.permission :view_organizations, {:organizations => [:index]},  :read => true
+  #   map.permission :create_organizations, {:organizations => [:new, :create]},  :read => true
+  #   map.permission :edit_organizations, {:organizations => [:edit, :update]},  :read => true
+  #   map.permission :delete_organizations, {:organizations => [:destroy]},  :read => true
+  #   map.permission :manage_organizations, {:organizations => [:new, :create, :edit, :update, :destroy]},  :read => true
+  # end
+  
+  
+  # case user
+
+  map.project_module :document do |map|
+    map.permission :view_documents,   {:documents => [:index]},  :read => true
+    map.permission :create_documents, {:documents => [:new, :create]},  :read => true
+    map.permission :edit_documents,   {:documents => [ :edit, :update]},  :read => true
+    map.permission :delete_documents, {:documents => [ :destroy]},  :read => true
+    map.permission :manage_documents, {:documents => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
 
    map.project_module :news do |map|
@@ -124,6 +138,22 @@ RedCarpet::AccessControl.map do |map|
     map.permission :delete_appointments, {:appointments => [:destroy]},  :read => true
     map.permission :manage_appointments, {:appointments => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
+
+ map.project_module :surveys do |map|
+    map.permission :view_surveys, {:surveys => [:index]},  :read => true
+    map.permission :create_surveys, {:surveys => [:new, :create]},  :read => true
+    map.permission :edit_surveys, {:surveys => [:edit, :update]},  :read => true
+    map.permission :delete_surveys, {:surveys => [:destroy]},  :read => true
+    map.permission :manage_surveys, {:surveys => [:new, :create, :edit, :update, :destroy]},  :read => true
+  end
+  
+ map.project_module :wikis do |map|
+    map.permission :view_wikis, {:wikis => [:index]},  :read => true
+    map.permission :create_wikis, {:wikis => [:new, :create]},  :read => true
+    map.permission :edit_wikis, {:wikis => [:edit, :update]},  :read => true
+    map.permission :delete_wikis, {:wikis => [:destroy]},  :read => true
+    map.permission :manage_wikis, {:wikis => [:new, :create, :edit, :update, :destroy]},  :read => true
+  end
   
  # map.project_module :checklists do |map|
  #    map.permission :view_checklists, {:checklists => [:index]},  :read => true
@@ -139,6 +169,7 @@ RedCarpet::AccessControl.map do |map|
                                    :languages => [:index,:new, :create, :edit, :update, :destroy],
                                    :affiliations => [:index,:new, :create, :edit, :update, :destroy],
                                    :clearances => [:index,:new, :create, :edit, :update, :destroy],
+                                   :user_insurances => [:index,:new, :create, :edit, :update, :destroy],
                                    :certifications => [:index,:new, :create, :edit, :update, :destroy],
                                    :contacts => [:index,:new, :create, :edit, :update, :destroy],
                                    :document => [:index,:new, :create, :edit, :update, :destroy],

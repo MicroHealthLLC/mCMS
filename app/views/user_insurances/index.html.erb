@@ -1,0 +1,24 @@
+<h1><%= t('insurance_plural') %></h1>
+
+
+<%= link_to(t('new_insurance'), new_user_insurance_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_insurances, :manage_insurances, :manage_roles) %>
+<table class="table table-bordered table-responsive">
+
+  <thead>
+    <tr>
+      <th>Insurance</th>
+      <th>Insurance type</th>
+      <th>Insurance identifier</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user_insurances.each do |user_insurance| %>
+      <tr>
+        <td><%= user_insurance.insurance %></td>
+        <td><%= user_insurance.insurance_type %></td>
+        <td><%= user_insurance.insurance_identifier %></td>
+       </tr>
+    <% end %>
+  </tbody>
+</table>

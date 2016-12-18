@@ -79,6 +79,7 @@ class PositionsController < ApplicationController
   def position_params
     params.require(:position).permit(Position.safe_attributes)
   end
+
   def authorize_edit
     raise Unauthorized unless @position.can?(:edit_positions, :manage_positions, :manage_roles)
   end
