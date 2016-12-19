@@ -30,9 +30,13 @@ Rails.application.configure do
   config.action_cable.allowed_request_origins = [ 'localhost:3000', 'cms.microhealthllc.com', /http:\/\/localhost:*/, /https:\/\/cms.microhealthllc.com/]
 
 
-  config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-
+  # config.action_mailer.delivery_method = :letter_opener
+  if File.exist?("#{Rails.root}/config/emails.yml")
+    emails = YAML::load(File.open("#{Rails.root}/config/emails.yml"))
+    config.action_mailer.delivery_method = emails['email_delivery']['delivery_method']
+    config.action_mailer.postmark_settings = emails['email_delivery']['smtp_settings']
+    config.action_mailer.default_url_options = emails['action_mailer_config'].symbolize_keys
+  end
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 

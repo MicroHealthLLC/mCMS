@@ -74,9 +74,13 @@ Rails.application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.action_mailer.delivery_method = :postmark
-  config.action_mailer.postmark_settings = { :api_token => "28a64c61-d50a-4984-bae6-54a0ed2f1abf" }
 
+  if File.exist?("#{Rails.root}/config/emails.yml")
+    emails = YAML::load(File.open("#{Rails.root}/config/emails.yml"))
+    config.action_mailer.delivery_method = emails['email_delivery']['delivery_method']
+    config.action_mailer.postmark_settings = emails['email_delivery']['smtp_settings']
+    config.action_mailer.default_url_options = emails['action_mailer_config'].symbolize_keys
+  end
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
