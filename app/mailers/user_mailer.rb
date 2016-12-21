@@ -2,7 +2,7 @@ class UserMailer < ApplicationMailer
   def welcome_email(user, password= nil)
     @user = user
     @password = password
-    mail(to: @user.email, subject: 'Welcome to mHRM')
+    mail(to: @user.email, subject: "Welcome to #{Setting['application_name']}")
   end
 
   def account_activated(user)
