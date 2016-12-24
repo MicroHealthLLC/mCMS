@@ -1,5 +1,4 @@
-<h1>Tasks</h1>
-
-<%= link_to('New Task', new_task_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_tasks, :manage_tasks, :manage_roles) and !(User.current.allowed_to?(:manage_roles) and session[:employee_id].nil?) %>
+<h1><%= t(:tasks) %></h1>
+<%#= link_to('New Task', new_task_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_tasks, :manage_tasks, :manage_roles) and !(User.current.allowed_to?(:manage_roles) and session[:employee_id].nil?) %>
 <%= render 'sub_tasks' %>
 <%= will_paginate @tasks, renderer: BootstrapPagination::Rails %>

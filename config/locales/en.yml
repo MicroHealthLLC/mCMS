@@ -36,7 +36,7 @@ en:
   employees: Clients
   new_employee: New client
   employment_type: Client type
-  label_employees: Client
+  label_employee: Client
   change_employee_info: Change Client Information
 
  # USER.
@@ -60,6 +60,12 @@ en:
     current_password: Current password
     password_confirmation: Password confirmation
 
+ # DOCUMENTS
+  documents: documents
+  document: document
+  document_type: Document type
+  new_document: 'New document'
+  edi_document: 'Editing document'
  # LANGUAGE
 
  # CERTIFICATION
@@ -76,10 +82,16 @@ en:
   appointment_type: Appointment type
   appointment_status: Appointment status
  # CASES
+  case: Case
   cases: Cases
   subcases: SubCases
   cases_support: Cases support
   my_cases: My cases
+  edit_case: 'Edit case'
+  new_case: "New case"
+  case_category: 'Case category'
+  case_type: Case type
+  case_relationship: Case relationship
 
  # TASK
   task: Task
@@ -128,18 +140,25 @@ en:
   #CLEARANCE
   clearences: Clearances
   certifications: Certifications
-  #DOCUMENTS
-  document_type: Document type
-  documents: Documents
 
   positions: Positions
   departments: Departments
+  checklist: Checklist
   checklists: Checklists
+  checklist_template: Checklist Templates
   contacts: Contacts
   description: Description
+  priority: priority
   question: Question
   surveys: Surveys
   title: Title
+  status: Status
+  assigned_to: Assigned to
+  type: Type
+  category: Category
+  date_due: Date due
+  date_start: Date start
+  date_completed: Date completed
   summary: Summary
   private: Private
   label_date: date
@@ -148,4 +167,3 @@ en:
   wiki: wiki
   role: Role
   label_permissions: Permissions
-

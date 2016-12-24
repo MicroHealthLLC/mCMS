@@ -1,5 +1,5 @@
 <fieldset>
-  <legend>Checklist Templates</legend>
+  <legend><%= t('checklist_template') %></legend>
   <%= simple_form_for(checklist, url: new_assign_case_path(@case), html: {method: 'post', class: 'form-horizontal' }) do |f| %>
       <% data = checklist
          if data.errors.any? %>
@@ -17,7 +17,7 @@
 
 
       <div class="form-group">
-        <%= f.label 'Checklist', class: 'col-md-2 control-label' %>
+        <%= f.label t('checklist'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.select :checklist_template_id, options_for_select(@checklists.map{|c| [c.title, c.id]  }, selected: f.object.checklist_template_id),{}, {class: 'form-control'} %>
         </div>

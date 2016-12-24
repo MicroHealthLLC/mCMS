@@ -1,5 +1,5 @@
 <fieldset>
-  <legend>Case relationship</legend>
+  <legend><%= t('case_relationship') %></legend>
   <%= simple_form_for(case_relation, url: new_relation_case_path(@case), html: {method: 'post', class: 'form-horizontal' }) do |f| %>
       <% data = case_relation
          if data.errors.any? %>
@@ -31,14 +31,14 @@
       </div>
 
       <div class="form-group option_select" id="relation_Task" <%= f.object.relation_type != 'Task' ? 'hidden' :'' %>>
-        <%= f.label 'Task', class: 'col-md-2 control-label' %>
+        <%= f.label t('task'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= select_tag :task_id, options_for_select(@tasks, selected: f.object.relation_id), {class: 'form-control  select2', style: 'padding: 0'} %>
         </div>
       </div>
 
       <div class="form-group option_select" id="relation_Case" <%= f.object.relation_type != 'Case' ? 'hidden' :'' %>>
-        <%= f.label 'Case', class: 'col-md-2 control-label' %>
+        <%= f.label t('case'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= select_tag :case_id, options_for_select(@cases, selected: f.object.relation_id), {class: 'form-control  select2', style: 'padding: 0'} %>
         </div>

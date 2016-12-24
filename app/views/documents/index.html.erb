@@ -1,5 +1,5 @@
-<h1>Documents</h1>
+<h1><%= t('documents') %> ></h1>
 
-<%= link_to( 'New Document', new_document_path, class: 'btn btn-primary pull-right margin-bottom-10')  if can?(:create_documents, :manage_roles, :manage_documents)%>
+<%#= link_to( 'New Document', new_document_path, class: 'btn btn-primary pull-right margin-bottom-10')  if can?(:create_documents, :manage_roles, :manage_documents)%>
 <%= render partial: 'documents/list', locals: {documents: @documents} %>
 <%= will_paginate @documents, renderer: BootstrapPagination::Rails %>

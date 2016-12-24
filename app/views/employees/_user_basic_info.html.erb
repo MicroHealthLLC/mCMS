@@ -1,7 +1,7 @@
 <%= form_for(User.current, url: employee_path(User.current), html: {method: 'put', class: 'form-horizontal', id: 'smart-form-register' }) do |f| %>
 
     <fieldset>
-      <legend>Change User Information</legend>
+      <legend><%= t('change_employee_info') %></legend>
 
       <div class="form-group">
         <label class="col-md-2 control-label">Email</label>

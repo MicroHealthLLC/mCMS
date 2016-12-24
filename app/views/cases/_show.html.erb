@@ -1,56 +1,56 @@
 <div class="col-xs-12">
   <p>
-    <strong>Title:</strong>
+    <strong><%= t('title') %>:</strong>
     <%= @case.title %>
   </p>
 
  <p>
-    <strong>Description:</strong>
+    <strong><%= t('description') %>:</strong>
     <%= @case.description.to_s.html_safe %>
   </p>
 
   <p>
-    <strong>Priority:</strong>
+    <strong><%= t('priority') %>:</strong>
     <%= @case.priority_type %>
   </p>
 
   <p>
-    <strong>Type:</strong>
+    <strong><%= t('type') %>:</strong>
     <%= @case.case_type %>
   </p>
 
   <p>
-    <strong>Assigned to:</strong>
+    <strong><%= t('assigned_to') %>:</strong>
     <%= @case.assigned_to %>
   </p>
 
   <p>
-    <strong>Status:</strong>
+    <strong><%= t('status') %>:</strong>
     <%= @case.case_status_type %>
   </p>
 
   <p>
-    <strong>Category:</strong>
+    <strong><%= t('category') %>:</strong>
     <%= @case.case_category_type %>
   </p>
 
   <p>
-    <strong>Date start:</strong>
+    <strong><%= t('date_start') %>:</strong>
     <%= @case.date_start %>
   </p>
 
   <p>
-    <strong>Date due:</strong>
+    <strong><%= t('date_due') %>:</strong>
     <%= @case.date_due %>
   </p>
 
   <p>
-    <strong>Date complete:</strong>
+    <strong><%= t('date_completed') %>:</strong>
     <%= @case.date_completed %>
   </p>
 
   <p>
-    <strong>Note:</strong>
+    <strong><%= t('label_note') %>:</strong>
     <%= @case.note.to_s.html_safe %>
   </p>
 </div>

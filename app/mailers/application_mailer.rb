@@ -1,4 +1,7 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: Setting['email_from']
   layout 'mailer'
+  def mail(headers = {}, &block)
+    headers.merge!(from: Setting['email_from'])
+    super
+  end
 end

@@ -10,23 +10,23 @@
 <div class="col-xs-12">
 
   <p>
-    <strong>Title:</strong>
+    <strong><%= t('title') %>:</strong>
     <%= @document.title %>
   </p>
 
 
  <p>
-    <strong>Description:</strong>
+    <strong><%= t('description') %>:</strong>
     <%= @document.description.html_safe %>
   </p>
 
   <p>
-    <strong>Document type:</strong>
+    <strong><%= t('document_type') %>:</strong>
     <%= @document.document_type %>
   </p>
 
   <p>
-    <strong>Date:</strong>
+    <strong><%= t('label_date') %>:</strong>
     <%= @document.date %>
   </p>
 
