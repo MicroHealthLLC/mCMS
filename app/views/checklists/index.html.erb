@@ -2,8 +2,8 @@
 <h1>Checklists</h1>
 <% if User.current.admin? %>
     <%= link_to( 'New checklist', new_checklist_template_path, class: 'btn btn-primary pull-right margin-bottom-10')%>
-<% else %>
-    <%= link_to( 'New checklist', new_assign_checklist_templates_path, class: 'btn btn-primary pull-right margin-bottom-10')%>
+<%  else %>
+    <%#= link_to( 'New checklist', new_assign_checklist_templates_path, class: 'btn btn-primary pull-right margin-bottom-10')%>
 <% end %>
 <%= render 'list' %>
 

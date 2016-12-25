@@ -62,22 +62,22 @@ class WikiPagesController < ApplicationController
 
   # Check is it allowed for current user to see current page. Designed to be redefined by application programmer
   def show_allowed?
-    true
+    can?(:manage_wikis, :manages_roles)
   end
 
   # Check is it allowed for current user see current page history. Designed to be redefined by application programmer
   def history_allowed?
-    User.current.admin?
+    can?(:manage_wikis, :manages_roles)
   end
 
   # Check is it allowed for current user edit current page. Designed to be redefined by application programmer
   def edit_allowed?
-    User.current.admin?
+    can?(:manage_wikis, :manages_roles)
   end
 
   # Check is it allowed for current user destroy current page. Designed to be redefined by application programmer
   def destroy_allowed?
-    edit_allowed?
+    can?(:manage_wikis, :manages_roles)
   end
 
   def permitted_page_params

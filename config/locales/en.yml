@@ -73,11 +73,17 @@ en:
  # CONTACT
 
  # NOTES
-
+  note: Note
+  notes: Notes
+  new_note: New note
+  label_note: note
+  label_note_plural: notes
+  add_note: "Add note"
  # INSURANCE
 
  # APPOINTMENT
   my_appointments: My appointments
+  new_appointment: New appointment
   appointments: Appointments
   appointment_type: Appointment type
   appointment_status: Appointment status
@@ -114,11 +120,16 @@ en:
   case_category: 'Case category'
   case_type: Case type
   case_relationship: Case relationship
+  add_subcase: 'Add subCase'
 
  # TASK
-  task: Task
-  tasks: Tasks
-  my_tasks: My tasks
+  task: Action
+  tasks: Actions
+  my_tasks: My actions
+  new_task: New action
+  edit_task: 'Edit action'
+  sub_tasks: 'Sub actions'
+  add_sub_task: "Add sub action"
  # OTHER
 
   languages: Languages
@@ -131,8 +142,6 @@ en:
   label_contact: Contact
   label_on: On
   label_off: Off
-  label_note: note
-  label_note_plural: notes
   label_email_type: Email type
   label_fax_type: Fax type
   label_phone_type: Phone type
@@ -165,14 +174,19 @@ en:
 
   positions: Positions
   departments: Departments
+
+  #CHECKLIST
   checklist: Checklist
   checklists: Checklists
   checklist_template: Checklist Templates
+  new_checklist: 'New checklist'
+
   contacts: Contacts
   description: Description
   priority: priority
   question: Question
   surveys: Surveys
+  new_survey: 'New survey'
   title: Title
   status: Status
   assigned_to: Assigned to

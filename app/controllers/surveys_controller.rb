@@ -3,7 +3,7 @@ class SurveysController < ApplicationController
   before_filter :load_survey, :only => [:show, :edit, :update, :new_note, :destroy]
 
   def index
-    scope = Survey::Survey.not_related
+    scope = Survey::Survey
     if User.current.admin?
       scope = scope.order('id DESC')
     else

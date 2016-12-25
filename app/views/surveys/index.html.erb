@@ -2,7 +2,7 @@
 <% if User.current.admin? %>
     <%= link_to( 'New Survey', new_survey_path, class: 'btn btn-primary pull-right margin-bottom-10')%>
 <% else %>
-    <%= link_to( 'New Survey', new_assign_surveys_path, class: 'btn btn-primary pull-right margin-bottom-10')%>
+    <%#= link_to( 'New Survey', new_assign_surveys_path, class: 'btn btn-primary pull-right margin-bottom-10')%>
 <% end %>
 <%= render 'list' %>
 <%= will_paginate @surveys, renderer: BootstrapPagination::Rails %>

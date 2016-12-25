@@ -147,12 +147,8 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_surveys, {:surveys => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
   
- map.project_module :wikis do |map|
-    map.permission :view_wikis, {:wikis => [:index]},  :read => true
-    map.permission :create_wikis, {:wikis => [:new, :create]},  :read => true
-    map.permission :edit_wikis, {:wikis => [:edit, :update]},  :read => true
-    map.permission :delete_wikis, {:wikis => [:destroy]},  :read => true
-    map.permission :manage_wikis, {:wikis => [:new, :create, :edit, :update, :destroy]},  :read => true
+  map.project_module :wikis do |map|
+    map.permission :manage_wikis, {:wikis => [:new, :create, :edit, :update, :history, :compare, :add_attachment, :destroy]},  :read => true
   end
   
  map.project_module :needs do |map|
@@ -188,25 +184,26 @@ RedCarpet::AccessControl.map do |map|
  # end
 
   map.project_module :employee do |map|
-    map.permission :manage_roles, {:employees => [:index],
-                                   :educations => [:index,:new, :create, :edit, :update, :destroy],
-                                   :languages => [:index,:new, :create, :edit, :update, :destroy],
-                                   :affiliations => [:index,:new, :create, :edit, :update, :destroy],
-                                   :clearances => [:index,:new, :create, :edit, :update, :destroy],
-                                   :user_insurances => [:index,:new, :create, :edit, :update, :destroy],
-                                   :certifications => [:index,:new, :create, :edit, :update, :destroy],
-                                   :contacts => [:index,:new, :create, :edit, :update, :destroy],
-                                   :document => [:index,:new, :create, :edit, :update, :destroy],
-                                   :positions => [:index,:new, :create, :edit, :update, :destroy],
-                                   :surveys => [:index,:new, :create, :edit, :update, :destroy, :show],
-                                   :tasks => [:index,:new, :create, :edit, :update, :destroy],
-                                   :cases => [:index,:new, :create, :edit, :update, :destroy],
-                                   :appointments => [:index,:new, :create, :edit, :update, :destroy],
-                                   :needs => [:index,:new, :create, :edit, :update, :destroy],
-                                   :plans => [:index,:new, :create, :edit, :update, :destroy],
-                                   :goals => [:index,:new, :create, :edit, :update, :destroy],
-                                   :checklists => [:index,:new, :create, :edit, :update, :destroy],
-
+    map.permission :manage_roles, {
+        :employees => [:index],
+        :educations => [:index,:new, :create, :edit, :update, :destroy],
+        :languages => [:index,:new, :create, :edit, :update, :destroy],
+        :affiliations => [:index,:new, :create, :edit, :update, :destroy],
+        :clearances => [:index,:new, :create, :edit, :update, :destroy],
+        :user_insurances => [:index,:new, :create, :edit, :update, :destroy],
+        :certifications => [:index,:new, :create, :edit, :update, :destroy],
+        :contacts => [:index,:new, :create, :edit, :update, :destroy],
+        :document => [:index,:new, :create, :edit, :update, :destroy],
+        :positions => [:index,:new, :create, :edit, :update, :destroy],
+        :surveys => [:index,:new, :create, :edit, :update, :destroy, :show],
+        :tasks => [:index,:new, :create, :edit, :update, :destroy],
+        :cases => [:index,:new, :create, :edit, :update, :destroy],
+        :appointments => [:index,:new, :create, :edit, :update, :destroy],
+        :needs => [:index,:new, :create, :edit, :update, :destroy],
+        :plans => [:index,:new, :create, :edit, :update, :destroy],
+        :goals => [:index,:new, :create, :edit, :update, :destroy],
+        :checklists => [:index,:new, :create, :edit, :update, :destroy],
+        :wikis => [:new, :create, :edit, :update, :history, :compare, :add_attachment, :destroy]
 
     },  :read => true
   end

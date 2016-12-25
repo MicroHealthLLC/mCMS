@@ -17,12 +17,12 @@
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
                          wid_id: 'info',
-                         wid_title: 'case'
+                         wid_title: t('case')
                  } %>
     </article>
   </div>
 
-  <%= link_to('Add subCase', new_case_path(subcase_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:manage_roles, :add_cases)  %>
+  <%= link_to(t('add_subcase'), new_case_path(subcase_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:manage_roles, :add_cases)  %>
 
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -37,7 +37,7 @@
   </div>
 
 
-  <%= link_to 'New note', new_note_path(type: 'CaseNote', owner_id: @case.id), class: 'btn btn-primary pull-right btn-edition' %>
+  <%= link_to t('new_note'), new_note_path(type: 'CaseNote', owner_id: @case.id), class: 'btn btn-primary pull-right btn-edition'  if can?(:create_notes, :manage_roles) %>
 
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -53,7 +53,7 @@
 
 
   <% if module_enabled?('tasks') %>
-      <%= link_to( 'New task', new_task_path(related_to: @case.id, type: 'case'), class: 'btn btn-primary pull-right btn-edition') if can?(:create_tasks, :manage_roles) %>
+      <%= link_to( t('new_task'), new_task_path(related_to: @case.id, type: 'case'), class: 'btn btn-primary pull-right btn-edition') if can?(:create_tasks, :manage_roles) %>
 
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -61,7 +61,7 @@
                      layout: 'shared/smart_widget_wrapper',
                      locals: {
                              wid_id: 'tasks',
-                             wid_title: 'tasks'
+                             wid_title: t('tasks')
                      } %>
         </article>
       </div>
@@ -69,7 +69,7 @@
   <% end %>
 
   <% if module_enabled?('documents') %>
-      <%= link_to('New document', new_document_path(related_to: @case.id, type: 'case'), class: 'btn btn-primary pull-right btn-edition') if can?(:create_documents, :manage_roles) %>
+      <%= link_to(t('new_document'), new_document_path(related_to: @case.id, type: 'case'), class: 'btn btn-primary pull-right btn-edition') if can?(:create_documents, :manage_roles) %>
 
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -86,7 +86,7 @@
   <% end %>
 
  <% if module_enabled?('needs') %>
-      <%= link_to('New need', new_need_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_needs, :manage_roles) %>
+      <%= link_to(t('new_need'), new_need_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_needs, :manage_roles) %>
 
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -103,7 +103,7 @@
   <% end %>
 
  <% if module_enabled?('goals') %>
-      <%= link_to('New goal', new_goal_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_goals, :manage_roles) %>
+      <%= link_to(t('new_goal'), new_goal_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_goals, :manage_roles) %>
 
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -120,7 +120,7 @@
   <% end %>
 
  <% if module_enabled?('plans') %>
-      <%= link_to('New plan', new_plan_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_plans, :manage_roles) %>
+      <%= link_to(t('new_plan'), new_plan_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_plans, :manage_roles) %>
 
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -137,7 +137,7 @@
   <% end %>
 
   <% if module_enabled?('appointments') %>
-      <%= link_to('New appointment', new_appointment_path(related_to: @case.id, type: 'case'), class: 'btn btn-primary pull-right btn-edition') if can?(:create_appointments, :manage_roles) %>
+      <%= link_to(t('new_appointment'), new_appointment_path(related_to: @case.id, type: 'case'), class: 'btn btn-primary pull-right btn-edition') if can?(:create_appointments, :manage_roles) %>
 
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -154,7 +154,7 @@
   <% end %>
 
   <% if module_enabled?('surveys') %>
-      <%= link_to 'New survey', new_assign_survey_case_path(@case.id), class: 'btn btn-primary pull-right btn-edition' %>
+      <%= link_to t('new_survey'), new_assign_survey_case_path(@case.id), class: 'btn btn-primary pull-right btn-edition'  if can?(:create_surveys, :manage_roles) %>
 
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -169,7 +169,7 @@
 
   <% end %>
   <% if module_enabled?('checklists') %>
-      <%= link_to 'New checklist', new_assign_case_path(@case.id), class: 'btn btn-primary pull-right btn-edition' %>
+      <%= link_to t('new_checklist'), new_assign_case_path(@case.id), class: 'btn btn-primary pull-right btn-edition'  if can?(:create_checklists, :manage_roles) %>
 
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
