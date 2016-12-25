@@ -13,5 +13,9 @@ class CreatePlans < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+    modules = %w{plans goals needs}
+    modules.each do |em|
+      EnabledModule.create(name: em)
+    end
   end
 end

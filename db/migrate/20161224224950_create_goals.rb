@@ -7,7 +7,7 @@ class CreateGoals < ActiveRecord::Migration[5.0]
       t.text :description
       t.date :date_start
       t.date :date_due
-      t.date :date_complete
+      t.date :date_completed
       t.integer :user_id
       t.integer :case_id
 

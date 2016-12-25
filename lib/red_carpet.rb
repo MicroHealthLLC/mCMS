@@ -155,6 +155,30 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_wikis, {:wikis => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
   
+ map.project_module :needs do |map|
+    map.permission :view_needs, {:needs => [:index]},  :read => true
+    map.permission :create_needs, {:needs => [:new, :create]},  :read => true
+    map.permission :edit_needs, {:needs => [:edit, :update]},  :read => true
+    map.permission :delete_needs, {:needs => [:destroy]},  :read => true
+    map.permission :manage_needs, {:needs => [:new, :create, :edit, :update, :destroy]},  :read => true
+  end
+  
+ map.project_module :goals do |map|
+    map.permission :view_goals, {:goals => [:index]},  :read => true
+    map.permission :create_goals, {:goals => [:new, :create]},  :read => true
+    map.permission :edit_goals, {:goals => [:edit, :update]},  :read => true
+    map.permission :delete_goals, {:goals => [:destroy]},  :read => true
+    map.permission :manage_goals, {:goals => [:new, :create, :edit, :update, :destroy]},  :read => true
+  end
+  
+ map.project_module :plans do |map|
+    map.permission :view_plans, {:plans => [:index]},  :read => true
+    map.permission :create_plans, {:plans => [:new, :create]},  :read => true
+    map.permission :edit_plans, {:plans => [:edit, :update]},  :read => true
+    map.permission :delete_plans, {:plans => [:destroy]},  :read => true
+    map.permission :manage_plans, {:plans => [:new, :create, :edit, :update, :destroy]},  :read => true
+  end
+  
  # map.project_module :checklists do |map|
  #    map.permission :view_checklists, {:checklists => [:index]},  :read => true
  #    map.permission :create_checklists, {:checklists => [:new, :create]},  :read => true
@@ -178,6 +202,9 @@ RedCarpet::AccessControl.map do |map|
                                    :tasks => [:index,:new, :create, :edit, :update, :destroy],
                                    :cases => [:index,:new, :create, :edit, :update, :destroy],
                                    :appointments => [:index,:new, :create, :edit, :update, :destroy],
+                                   :needs => [:index,:new, :create, :edit, :update, :destroy],
+                                   :plans => [:index,:new, :create, :edit, :update, :destroy],
+                                   :goals => [:index,:new, :create, :edit, :update, :destroy],
                                    :checklists => [:index,:new, :create, :edit, :update, :destroy],
 
 
