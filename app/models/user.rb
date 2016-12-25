@@ -78,6 +78,10 @@ class User < ApplicationRecord
     end
   end
 
+  def principal_role
+    return 'Admin' if admin?
+    role.try(:role_type) || 'No role defined'
+  end
 
   def self.visible
     if User.current.allowed_to?(:manage_roles)
@@ -238,8 +242,7 @@ class User < ApplicationRecord
     if role
       return role.try( :permissions ) || []
     end
-    return [] unless job_detail
-    job_detail.role.try( :permissions ) || []
+    []
   end
 
   def to_pdf(pdf)

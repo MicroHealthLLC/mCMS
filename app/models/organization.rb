@@ -24,7 +24,7 @@ class Organization < ApplicationRecord
   end
 
   def grouped_by_role
-    job_details.group_by{|j| j.role.to_s }
+    job_details.map(&:user).group_by{|u| u.principal_role }
   end
 
   def to_s
