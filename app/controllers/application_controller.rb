@@ -7,9 +7,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_user
+  before_action :set_enabled_modules
   before_action :module_visible
   layout 'base'
 
+  def set_enabled_modules
+    @enabled_modules =  EnabledModule.active.pluck(:name).to_set
+  end
 
   def set_user
     if user_signed_in?

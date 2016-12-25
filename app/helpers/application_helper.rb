@@ -179,7 +179,7 @@ module ApplicationHelper
   end
 
   def module_enabled?(module_name)
-    EnabledModule.where(name: module_name).where(status: true).present?
+    @enabled_modules.include?(module_name)
   end
 
   def the_chosen_one?( answer, option)

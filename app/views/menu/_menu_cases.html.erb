@@ -21,6 +21,12 @@
                 </li>
             <% end %>
 
+            <% if module_enabled? 'needs' %>
+                <li class="<%= menu_active?('needs') %>">
+                  <a href="/needs" title="<%= t(:needs) %>"><i class="fa fa-lg fa-fw fa-cubes"></i> <span class="menu-item-parent"><%= t(:needs) %></span></a>
+                </li>
+            <% end %>
+
             <% if module_enabled? 'checklists' %>
                 <li class="<%= menu_active?('checklists') %>">
                   <a href="/checklist_templates" title="<%= t(:checklists) %>"><i class="fa fa-lg fa-fw fa-check"></i> <span class="menu-item-parent"><%= t(:checklists) %></span></a>

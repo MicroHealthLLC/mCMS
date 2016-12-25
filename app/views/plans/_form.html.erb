@@ -1,0 +1,19 @@
+<%= simple_form_for(@plan) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :priority_type_id %>
+    <%= f.input :plan_status_id %>
+    <%= f.input :description %>
+    <%= f.input :date_start %>
+    <%= f.input :date_due %>
+    <%= f.input :date_completed %>
+    <%= f.input :user_id %>
+    <%= f.input :case_id %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

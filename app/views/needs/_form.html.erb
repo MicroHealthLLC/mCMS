@@ -1,0 +1,73 @@
+<%= form_for(need, html: { class: 'form-horizontal' }) do |f| %>
+    <% if need.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(need.errors.count, "error") %> prohibited this need from being saved:</h2>
+
+          <ul>
+            <% need.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <fieldset>
+      <legend><%= t('need') %></legend>
+
+      <%= f.hidden_field :user_id %>
+
+      <div class="form-group">
+        <%= f.label t(:need) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :need_enum_id, options_for_select(NeedEnum.active.pluck(:name, :id), selected: f.object.need_enum.try(:id)), {} , {class: 'form-control'} %>
+        </div>
+      </div>
+
+       <div class="form-group">
+        <%= f.label t(:priority) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :priority_type_id, options_for_select(PriorityType.active.pluck(:name, :id), selected: f.object.priority_type.try(:id)), {} , {class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:need_status) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :need_status_id, options_for_select(NeedStatus.active.pluck(:name, :id), selected: f.object.need_status.try(:id)), {} , {class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t('description'), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :description , class: 'form-control ckeditor' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label t('date_due') , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_due , class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:date_completed) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_completed , class: 'form-control date_picker' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label t(:date_identified) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_identified , class: 'form-control date_picker' %>
+        </div>
+      </div>
+      </div>
+
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= link_to t('button_cancel'), need_back_url(f.object), class: 'btn btn-warning pull-right' %>
+          <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+<% end %>
+</fieldset>

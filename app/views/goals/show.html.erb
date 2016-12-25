@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @goal.name %>
+</p>
+
+<p>
+  <strong>Priority type:</strong>
+  <%= @goal.priority_type_id %>
+</p>
+
+<p>
+  <strong>Goal status:</strong>
+  <%= @goal.goal_status_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @goal.description %>
+</p>
+
+<p>
+  <strong>Date start:</strong>
+  <%= @goal.date_start %>
+</p>
+
+<p>
+  <strong>Date due:</strong>
+  <%= @goal.date_due %>
+</p>
+
+<p>
+  <strong>Date complete:</strong>
+  <%= @goal.date_complete %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @goal.user_id %>
+</p>
+
+<p>
+  <strong>Case:</strong>
+  <%= @goal.case_id %>
+</p>
+
+<%= link_to 'Edit', edit_goal_path(@goal) %> |
+<%= link_to 'Back', goals_path %>

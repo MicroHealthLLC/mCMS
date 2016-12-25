@@ -1,0 +1,2 @@
+json.extract! goal, :id, :name, :priority_type_id, :goal_status_id, :description, :date_start, :date_due, :date_complete, :user_id, :case_id, :created_at, :updated_at
+json.url goal_url(goal, format: :json)

@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @plan.name %>
+</p>
+
+<p>
+  <strong>Priority type:</strong>
+  <%= @plan.priority_type_id %>
+</p>
+
+<p>
+  <strong>Plan status:</strong>
+  <%= @plan.plan_status_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @plan.description %>
+</p>
+
+<p>
+  <strong>Date start:</strong>
+  <%= @plan.date_start %>
+</p>
+
+<p>
+  <strong>Date due:</strong>
+  <%= @plan.date_due %>
+</p>
+
+<p>
+  <strong>Date completed:</strong>
+  <%= @plan.date_completed %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @plan.user_id %>
+</p>
+
+<p>
+  <strong>Case:</strong>
+  <%= @plan.case_id %>
+</p>
+
+<%= link_to 'Edit', edit_plan_path(@plan) %> |
+<%= link_to 'Back', plans_path %>

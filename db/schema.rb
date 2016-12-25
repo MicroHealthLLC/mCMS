@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161218165832) do
+ActiveRecord::Schema.define(version: 20161224184024) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type_id"
@@ -362,6 +362,20 @@ ActiveRecord::Schema.define(version: 20161218165832) do
     t.datetime "updated_at",                 null: false
     t.index ["chat_room_id"], name: "index_messages_on_chat_room_id", using: :btree
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
+  end
+
+  create_table "needs", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.integer  "need_enum_id"
+    t.integer  "priority_type_id"
+    t.integer  "need_status_id"
+    t.text     "description",      limit: 65535
+    t.date     "date_due"
+    t.date     "date_completed"
+    t.date     "date_identified"
+    t.integer  "user_id"
+    t.integer  "case_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "news", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|

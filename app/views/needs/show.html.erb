@@ -1,0 +1,47 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to 'Delete', need_path(@need), class: 'btn btn-danger pull-right',
+              :method => :delete,
+              :data => {:confirm => t(:text_are_you_sure)}
+  %>
+  <%= link_to 'Edit', edit_need_path(@need), class: 'btn btn-success pull-right' %>
+  <%= link_to( "Add note", new_note_path(type: 'PostNote', owner_id: @need.id), class: 'btn btn-success pull-right') if can?(:add_notes, :manage_roles) %>
+  <%= link_to t('button_cancel'), needs_path, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_print'), need_path(@need, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+</div>
+<div class="col-xs-12">
+<p>
+  <strong>Need enum:</strong>
+  <%= @need.need_enum %>
+</p>
+
+<p>
+  <strong>Priority:</strong>
+  <%= @need.priority_type %>
+</p>
+
+<p>
+  <strong>Need status:</strong>
+  <%= @need.need_status %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @need.description.html_safe %>
+</p>
+
+<p>
+  <strong>Date due:</strong>
+  <%= @need.date_due %>
+</p>
+
+<p>
+  <strong><%= t('date_completed') %>:</strong>
+  <%= @need.date_completed %>
+</p>
+  
+<p>
+  <strong><%= t('date_identified') %>:</strong>
+  <%= @need.date_complete %>
+</p>
+  
+</div>
