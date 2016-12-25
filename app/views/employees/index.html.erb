@@ -10,6 +10,7 @@
     <th><%= t 'profile.last_name' %></th>
     <th><%= t 'profile.gender' %></th>
     <th><%= t :email %></th>
+    <th><%= t 'profile.birthday' %></th>
     <th><%= 'Active' %></th>
     <td></td>
 
@@ -22,6 +23,7 @@
     <th><%= t 'profile.last_name' %></th>
     <th><%= t 'profile.gender' %></th>
     <th><%= t :email %></th>
+    <th><%= t 'profile.birthday' %></th>
     <th><%= 'Active' %></th>
     <th></th>
 
@@ -38,6 +40,7 @@
             <td><%= user.last_name %></td>
             <td><%= user.gender %></td>
             <td><%= user.email %></td>
+            <td><%= user.birthday %></td>
             <td><%= user.active? %></td>
             <td><%= link_to('<i class="fa fa-download"></i>'.html_safe, all_informations_path(format: 'pdf')) %></td>
           </tr>
