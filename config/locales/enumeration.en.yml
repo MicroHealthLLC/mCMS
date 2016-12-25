@@ -36,3 +36,7 @@ en:
   enumeration_case_type: Case type
   enumeration_case_category_type: Case category type
   enumeration_insurance_type: Insurance type
+  enumeration_need: Need
+  enumeration_need_status: Need status
+  enumeration_goal_status: Goal status
+  enumeration_plan_status: Plan status

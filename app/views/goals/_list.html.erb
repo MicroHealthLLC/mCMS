@@ -1,0 +1,31 @@
+<table class="table table-responsive table-bordered">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Priority type</th>
+    <th>Goal status</th>
+    <th>Date start</th>
+    <th>Date due</th>
+    <th>Date completed</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if @goals.any? %>
+      <% @goals.each do |goal| %>
+          <tr>
+            <td><%= link_to goal.name, goal %></td>
+            <td><%= goal.priority_type %></td>
+            <td><%= goal.goal_status %></td>
+            <td><%= goal.date_start %></td>
+            <td><%= goal.date_due %></td>
+            <td><%= goal.date_completed %></td>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

@@ -19,7 +19,8 @@ class NeedsController < ApplicationController
 
   # GET /needs/new
   def new
-    @need = Need.new(user_id: User.current.id)
+    @need = Need.new(user_id: User.current.id,
+                     case_id: params[:case_id])
   end
 
   # GET /needs/1/edit

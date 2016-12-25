@@ -1,14 +1,14 @@
-class PriorityType < Enumeration
-  has_many :tasks
+class GoalStatus < Enumeration
+  has_many :goals
 
-  OptionName = :enumeration_priority_type
+  OptionName = :enumeration_goal_status
 
   def option_name
     OptionName
   end
 
   def objects
-    Task.where(:priority_id => self.id)
+    Goal.where(:goal_status_id => self.id)
   end
 
   def objects_count
@@ -16,6 +16,6 @@ class PriorityType < Enumeration
   end
 
   def transfer_relations(to)
-    objects.update_all(:priority_id => to.id)
+    objects.update_all(:goal_status_id => to.id)
   end
 end

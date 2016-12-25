@@ -85,6 +85,57 @@
 
   <% end %>
 
+ <% if module_enabled?('needs') %>
+      <%= link_to('New need', new_need_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_needs, :manage_roles) %>
+
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'needs/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                             needs: @needs,
+                             wid_id: 'needs',
+                             wid_title: 'needs'
+                     } %>
+        </article>
+      </div>
+
+  <% end %>
+
+ <% if module_enabled?('goals') %>
+      <%= link_to('New goal', new_goal_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_goals, :manage_roles) %>
+
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'goals/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                             goals: @goals,
+                             wid_id: 'goals',
+                             wid_title: 'goals'
+                     } %>
+        </article>
+      </div>
+
+  <% end %>
+
+ <% if module_enabled?('plans') %>
+      <%= link_to('New plan', new_plan_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_plans, :manage_roles) %>
+
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'plans/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                             plans: @plans,
+                             wid_id: 'plans',
+                             wid_title: 'plans'
+                     } %>
+        </article>
+      </div>
+
+  <% end %>
+
   <% if module_enabled?('appointments') %>
       <%= link_to('New appointment', new_appointment_path(related_to: @case.id, type: 'case'), class: 'btn btn-primary pull-right btn-edition') if can?(:create_appointments, :manage_roles) %>
 

@@ -1,49 +1,48 @@
-<p id="notice"><%= notice %></p>
+<div class="col-xs-12 btn-edition">
+  <%= link_to 'Delete', goal_path(@goal), class: 'btn btn-danger pull-right',
+              :method => :delete,
+              :data => {:confirm => t(:text_are_you_sure)}
+  %>
+  <%= link_to 'Edit', edit_goal_path(@goal), class: 'btn btn-success pull-right' %>
+  <%= link_to( "Add note", new_note_path(type: 'GoalNote', owner_id: @goal.id), class: 'btn btn-success pull-right') if can?(:add_notes, :manage_roles) %>
+  <%= link_to t('button_cancel'), goals_path, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_print'), goal_path(@goal, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+</div>
+<div class="col-xs-12">
+  <p>
+    <strong>Name:</strong>
+    <%= @goal.name %>
+  </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @goal.name %>
-</p>
+  <p>
+    <strong>Priority type:</strong>
+    <%= @goal.priority_type %>
+  </p>
 
-<p>
-  <strong>Priority type:</strong>
-  <%= @goal.priority_type_id %>
-</p>
+  <p>
+    <strong>Goal status:</strong>
+    <%= @goal.goal_status %>
+  </p>
 
-<p>
-  <strong>Goal status:</strong>
-  <%= @goal.goal_status_id %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @goal.description.html_safe %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @goal.description %>
-</p>
+  <p>
+    <strong>Date start:</strong>
+    <%= @goal.date_start %>
+  </p>
 
-<p>
-  <strong>Date start:</strong>
-  <%= @goal.date_start %>
-</p>
+  <p>
+    <strong>Date due:</strong>
+    <%= @goal.date_due %>
+  </p>
 
-<p>
-  <strong>Date due:</strong>
-  <%= @goal.date_due %>
-</p>
+  <p>
+    <strong>Date complete:</strong>
+    <%= @goal.date_completed %>
+  </p>
+</div>
 
-<p>
-  <strong>Date complete:</strong>
-  <%= @goal.date_complete %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @goal.user_id %>
-</p>
-
-<p>
-  <strong>Case:</strong>
-  <%= @goal.case_id %>
-</p>
-
-<%= link_to 'Edit', edit_goal_path(@goal) %> |
-<%= link_to 'Back', goals_path %>
+<%= render partial: 'notes/notes', locals: {notes: @goal.goal_notes} %>

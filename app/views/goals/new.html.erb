@@ -1,5 +1,13 @@
-<h1>New Goal</h1>
-
-<%= render 'form', goal: @goal %>
-
-<%= link_to 'Back', goals_path %>
+<section id="widget-grid" class="show_customer_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     goal: @goal,
+                     wid_id: 'goal',
+                     wid_title: t('new_goal')
+                 } %>
+    </article>
+  </div>
+</section>

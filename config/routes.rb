@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :plans
+  resources :goals
+  resources :needs
   resources :user_insurances
   resources :insurances do
     resources :insurance_extend_demographies, only: [:create, :update], controller: :extend_demographies
@@ -13,6 +16,9 @@ Rails.application.routes.draw do
   resources :case_notes, except: [:index], controller: :notes
   resources :task_notes, except: [:index], controller: :notes
   resources :post_notes, except: [:index], controller: :notes
+  resources :plan_notes, except: [:index], controller: :notes
+  resources :goal_notes, except: [:index], controller: :notes
+  resources :need_notes, except: [:index], controller: :notes
   resources :notes
 
   resources :cases do

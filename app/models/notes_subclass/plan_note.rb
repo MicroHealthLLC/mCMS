@@ -1,8 +1,8 @@
-class PostNote < Note
-  belongs_to :news, foreign_key: :owner_id, class_name: 'News'
+class PlanNote < Note
+  belongs_to :plan, foreign_key: :owner_id, class_name: 'Plan'
 
   def object
-    news
+    plan
   end
 
 end

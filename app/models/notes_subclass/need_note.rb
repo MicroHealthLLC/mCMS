@@ -1,8 +1,8 @@
-class GoalNote < Note
-  belongs_to :goal, foreign_key: :owner_id, class_name: 'Goal'
+class NeedNote < Note
+  belongs_to :need, foreign_key: :owner_id, class_name: 'Need'
 
   def object
-    goal
+    need
   end
 
 end

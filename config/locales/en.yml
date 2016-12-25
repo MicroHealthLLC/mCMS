@@ -81,6 +81,28 @@ en:
   appointments: Appointments
   appointment_type: Appointment type
   appointment_status: Appointment status
+
+  # NEEDS
+  need: Need
+  needs: Needs
+  new_need: New need
+  edit_need: Edit need
+  need_status: Need status
+
+ # GOALS
+  goal: Goal
+  goals: Goals
+  new_goal: New goal
+  edit_goal: Edit goal
+  goal_status: goal status
+
+# PLANS
+  plan: plan
+  plans: Plans
+  new_plan: New plan
+  edit_plan: Edit plan
+  plan_status: plan status
+
  # CASES
   case: Case
   cases: Cases
@@ -159,6 +181,7 @@ en:
   date_due: Date due
   date_start: Date start
   date_completed: Date completed
+  date_identified: Date identified
   summary: Summary
   private: Private
   label_date: date

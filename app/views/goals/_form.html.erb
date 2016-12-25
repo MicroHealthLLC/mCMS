@@ -1,19 +1,79 @@
-<%= simple_form_for(@goal) do |f| %>
-  <%= f.error_notification %>
+<%= form_for(goal, html: { class: 'form-horizontal' }) do |f| %>
+    <% if goal.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(goal.errors.count, "error") %> prohibited this goal from being saved:</h2>
 
-  <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :priority_type_id %>
-    <%= f.input :goal_status_id %>
-    <%= f.input :description %>
-    <%= f.input :date_start %>
-    <%= f.input :date_due %>
-    <%= f.input :date_complete %>
-    <%= f.input :user_id %>
-    <%= f.input :case_id %>
-  </div>
+          <ul>
+            <% goal.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <fieldset>
+      <legend><%= t('goal') %></legend>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+      <%= f.hidden_field :user_id %>
+      <%= f.hidden_field :case_id %>
+
+
+      <div class="form-group">
+        <%= f.label t(:label_name), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :name , class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:priority) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :priority_type_id, options_for_select(PriorityType.active.pluck(:name, :id), selected: f.object.priority_type.try(:id)), {} , {class: 'form-control'} %>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.label t(:goal_status) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :goal_status_id, options_for_select(GoalStatus.active.pluck(:name, :id), selected: f.object.goal_status.try(:id)), {} , {class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t('description'), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :description , class: 'form-control ckeditor' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t('date_start') , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_start , class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.label t('date_due') , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_due , class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:date_completed) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_completed , class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= link_to t('button_cancel'), goals_path, class: 'btn btn-warning pull-right' %>
+          <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
 <% end %>
+</fieldset>
+

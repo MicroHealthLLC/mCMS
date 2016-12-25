@@ -1,5 +1,14 @@
-<p id="notice"><%= notice %></p>
-
+<div class="col-xs-12 btn-edition">
+  <%= link_to 'Delete', plan_path(@plan), class: 'btn btn-danger pull-right',
+              :method => :delete,
+              :data => {:confirm => t(:text_are_you_sure)}
+  %>
+  <%= link_to 'Edit', edit_plan_path(@plan), class: 'btn btn-success pull-right' %>
+  <%= link_to( "Add note", new_note_path(type: 'PlanNote', owner_id: @plan.id), class: 'btn btn-success pull-right') if can?(:add_notes, :manage_roles) %>
+  <%= link_to t('button_cancel'), plans_path, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_print'), plan_path(@plan, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+</div>
+<div class="col-xs-12">
 <p>
   <strong>Name:</strong>
   <%= @plan.name %>
@@ -7,17 +16,17 @@
 
 <p>
   <strong>Priority type:</strong>
-  <%= @plan.priority_type_id %>
+  <%= @plan.priority_type %>
 </p>
 
 <p>
   <strong>Plan status:</strong>
-  <%= @plan.plan_status_id %>
+  <%= @plan.plan_status %>
 </p>
 
 <p>
   <strong>Description:</strong>
-  <%= @plan.description %>
+  <%= @plan.description.html_safe %>
 </p>
 
 <p>
@@ -34,16 +43,8 @@
   <strong>Date completed:</strong>
   <%= @plan.date_completed %>
 </p>
+  
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @plan.user_id %>
-</p>
 
-<p>
-  <strong>Case:</strong>
-  <%= @plan.case_id %>
-</p>
-
-<%= link_to 'Edit', edit_plan_path(@plan) %> |
-<%= link_to 'Back', plans_path %>
+<%= render partial: 'notes/notes', locals: {notes: @goal.goal_notes} %>

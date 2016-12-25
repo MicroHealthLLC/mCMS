@@ -8,10 +8,10 @@ class Need < ApplicationRecord
 
   def self.safe_attributes
     [ :need_enum_id, :priority_type_id, :user_id, :need_status_id,
-      :description, :date_completed, :date_due, :date_identified
+      :description, :date_completed, :date_due, :date_identified, :case_id
     ]
   end
-
+  has_many :need_notes, foreign_key: :owner_id
   def need_enum
     if need_enum_id
       super

@@ -27,6 +27,18 @@
                 </li>
             <% end %>
 
+             <% if module_enabled? 'goals' %>
+                <li class="<%= menu_active?('goals') %>">
+                  <a href="/goals" title="<%= t(:goals) %>"><i class="fa fa-lg fa-fw fa-bullseye"></i> <span class="menu-item-parent"><%= t(:goals) %></span></a>
+                </li>
+            <% end %>
+
+             <% if module_enabled? 'plans' %>
+                <li class="<%= menu_active?('plans') %>">
+                  <a href="/plans" title="<%= t(:plans) %>"><i class="fa fa-lg fa-fw fa-map"></i> <span class="menu-item-parent"><%= t(:plans) %></span></a>
+                </li>
+            <% end %>
+
             <% if module_enabled? 'checklists' %>
                 <li class="<%= menu_active?('checklists') %>">
                   <a href="/checklist_templates" title="<%= t(:checklists) %>"><i class="fa fa-lg fa-fw fa-check"></i> <span class="menu-item-parent"><%= t(:checklists) %></span></a>

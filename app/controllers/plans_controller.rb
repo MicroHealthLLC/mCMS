@@ -1,10 +1,14 @@
 class PlansController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
+  before_action :authorize, only: [:new, :create]
+  before_action :authorize_edit, only: [:edit, :update]
+  before_action :authorize_delete, only: [:destroy]
 
   # GET /plans
   # GET /plans.json
   def index
-    @plans = Plan.all
+    @plans = Plan.where(user_id: User.current.id)
   end
 
   # GET /plans/1
@@ -14,7 +18,8 @@ class PlansController < ApplicationController
 
   # GET /plans/new
   def new
-    @plan = Plan.new
+    @plan = Plan.new(user_id: User.current.id,
+                     case_id: params[:case_id])
   end
 
   # GET /plans/1/edit
@@ -62,13 +67,22 @@ class PlansController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_plan
-      @plan = Plan.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_plan
+    @plan = Plan.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def plan_params
-      params.require(:plan).permit(:name, :priority_type_id, :plan_status_id, :description, :date_start, :date_due, :date_completed, :user_id, :case_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def plan_params
+    params.require(:plan).permit(Plan.safe_attributes)
+  end
+  def authorize_edit
+    raise Unauthorized unless @plan.can?(:edit_plans, :manage_plans, :manage_roles)
+  end
+
+  def authorize_delete
+    raise Unauthorized unless @plan.can?(:delete_plans, :manage_plans, :manage_roles)
+  end
 end

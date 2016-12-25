@@ -18,6 +18,8 @@ class Case < ApplicationRecord
   has_many :checklists, foreign_key: :assigned_to_id, class_name: 'ChecklistCase'
   has_many :appointments, foreign_key: :related_to_id, class_name: 'Appointment'
   has_many :needs
+  has_many :plans
+  has_many :goals
 
   has_many :case_notes, foreign_key: :owner_id
 

@@ -1,10 +1,14 @@
 class GoalsController < ApplicationController
+  before_action  :authenticate_user!
   before_action :set_goal, only: [:show, :edit, :update, :destroy]
+  before_action :authorize, only: [:new, :create]
+  before_action :authorize_edit, only: [:edit, :update]
+  before_action :authorize_delete, only: [:destroy]
 
   # GET /goals
   # GET /goals.json
   def index
-    @goals = Goal.all
+    @goals = Goal.where(user_id: User.current.id)
   end
 
   # GET /goals/1
@@ -14,7 +18,8 @@ class GoalsController < ApplicationController
 
   # GET /goals/new
   def new
-    @goal = Goal.new
+    @goal = Goal.new(user_id: User.current.id,
+                     case_id: params[:case_id])
   end
 
   # GET /goals/1/edit
@@ -62,13 +67,24 @@ class GoalsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_goal
-      @goal = Goal.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_goal
+    @goal = Goal.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def goal_params
-      params.require(:goal).permit(:name, :priority_type_id, :goal_status_id, :description, :date_start, :date_due, :date_complete, :user_id, :case_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def goal_params
+    params.require(:goal).permit(Goal.safe_attributes)
+  end
+
+  def authorize_edit
+    raise Unauthorized unless @goal.can?(:edit_goals, :manage_goals, :manage_roles)
+  end
+
+  def authorize_delete
+    raise Unauthorized unless @goal.can?(:delete_goals, :manage_goals, :manage_roles)
+  end
+  
 end

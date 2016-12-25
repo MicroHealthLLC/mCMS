@@ -1,0 +1,31 @@
+<table class="table table-responsive table-bordered">
+  <thead>
+  <tr>
+    <th><%= t('label_name') %></th>
+    <th><%= t('priority') %></th>
+    <th><%= t('plan_status') %></th>
+    <th><%= t('date_start') %></th>
+    <th><%= t('date_due') %></th>
+    <th><%= t('date_completed') %></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if @plans.any? %>
+      <% @plans.each do |plan| %>
+          <tr>
+            <td><%= link_to plan.name, plan %></td>
+            <td><%= plan.priority_type %></td>
+            <td><%= plan.plan_status %></td>
+            <td><%= plan.date_start %></td>
+            <td><%= plan.date_due %></td>
+            <td><%= plan.date_completed %></td>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
