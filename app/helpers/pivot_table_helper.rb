@@ -13,6 +13,8 @@ module PivotTableHelper
       when 'checklist' then render_checklist
       when 'case' then render_case
       when 'survey' then render_survey
+      when 'appointment' then render_appointment
+      when 'note' then render_note
       else
         render_user
     end
@@ -37,11 +39,10 @@ module PivotTableHelper
   end
 
   def render_position
-    Position.includes(:user, :department).
-        references(:user, :department).map do |position|
+    Position.includes(:user=> [:core_demographic]).
+        references(:user=> [:core_demographic]).map do |position|
       {
           user: position.user,
-          department: position.department,
           salary: position.salary,
           pay_rate: position.pay_rate_type,
           location: position.location_type,
@@ -121,6 +122,28 @@ module PivotTableHelper
           name: survey.name,
           attempts_number: survey.attempts_number,
           survey_type: survey.survey_type
+      }
+    end
+  end
+
+   def render_appointment
+    Appointment.includes( :appointment_type, :appointment_status, :user=> [:core_demographic]).
+        map do |appointment|
+      {
+          user: appointment.user,
+          title: appointment.title,
+          date: appointment.date,
+          appointment_type: appointment.appointment_type,
+          appointment_status: appointment.appointment_status
+      }
+    end
+  end
+
+   def render_note
+    Note.includes(:user=> :core_demographic).map do |note|
+      {
+          user: note.user,
+          belongs_to: note.for_type
       }
     end
   end

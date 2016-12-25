@@ -20,6 +20,16 @@ class Note < ApplicationRecord
 
   end
 
+  def for_type
+    case type
+      when 'TaskNote' then I18n.t('task')
+      when 'SurveyNote' then I18n.t('survey')
+      when 'PostNote' then I18n.t('news')
+      when 'CaseNote' then I18n.t('case')
+      when 'ChecklistNote' then I18n.t('checklist')
+    end
+  end
+
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.text "Note ##{id}", :style => :bold}
     user.to_pdf_brief_info(pdf)

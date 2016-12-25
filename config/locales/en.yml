@@ -155,7 +155,7 @@ en:
 
   salary: Pay
 
-#WIKI
+  #WIKI
   new_wiki: New wiki
  # AFFILIATION
   new_affiliation: New Affiliation
@@ -169,12 +169,16 @@ en:
   organization: Organization
   organization_type: Organization Type
   #CLEARANCE
-  clearences: Clearances
+  clearances: Clearances
   certifications: Certifications
 
   positions: Positions
   departments: Departments
 
+  # News
+  news : news
+  new_news: New news
+  edit_news: Edit news
   #CHECKLIST
   checklist: Checklist
   checklists: Checklists
@@ -185,6 +189,7 @@ en:
   description: Description
   priority: priority
   question: Question
+  survey: Survey
   surveys: Surveys
   new_survey: 'New survey'
   title: Title
