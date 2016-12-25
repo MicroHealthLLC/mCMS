@@ -8,7 +8,7 @@ class Plan < ApplicationRecord
   def self.safe_attributes
     [
         :priority_type_id, :user_id, :plan_status_id, :name,
-        :description, :date_completed, :date_due,  :case_id
+        :description, :date_completed, :date_due, :date_start,  :case_id
     ]
   end
 
@@ -27,4 +27,18 @@ class Plan < ApplicationRecord
       PlanStatus.default
     end
   end
+
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Plan ##{id}", :style => :bold}
+
+    pdf.text "<b>Name: </b> #{name}", :inline_format =>  true
+    pdf.text "<b>Description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+    pdf.text "<b>Goal status: </b> #{plan_status}", :inline_format =>  true
+    pdf.text "<b>Priority: </b> #{priority_type}", :inline_format =>  true
+
+    pdf.text "<b>Date start: </b> #{date_start}", :inline_format =>  true
+    pdf.text "<b>Date due: </b> #{date_due}", :inline_format =>  true
+    pdf.text "<b>Date completed: </b> #{date_completed}", :inline_format =>  true
+  end
+
 end
