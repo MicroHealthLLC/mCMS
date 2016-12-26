@@ -1,8 +1,8 @@
 class CasesController < ApplicationController
   before_action  :authenticate_user!
-  before_action :set_case, only: [:new_assign_survey, :new_assign, :show, :edit, :update, :destroy, :new_relation, :delete_sub_case_relation]
+  before_action :set_case, only: [:new_assign_survey, :watchers, :new_assign, :show, :edit, :update, :destroy, :new_relation, :delete_sub_case_relation]
 
-  before_action :authorize, only: [:new, :create]
+  before_action :authorize, only: [:new, :create, :watchers]
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
 
@@ -48,6 +48,27 @@ class CasesController < ApplicationController
     @needs       = @case.needs
     @plans       = @case.plans
     @goals       = @case.goals
+    @watchers    = @case.watchers.includes(:user=> :core_demographic)
+  end
+
+  def watchers
+    @watchers = @case.watchers.pluck :user_id
+    if request.post?
+      if params[:case_watcher]
+        w = User.where(id: params[:case_watcher].map(&:to_i)).pluck :id
+        w.each do |watcher|
+          next if @watchers.include?(watcher)
+          CaseWatcher.create(user_id: watcher, case_id: @case.id)
+        end
+      end
+      deleted_watcher = @watchers - w
+      @case.watchers.where(user_id: deleted_watcher).delete_all
+
+      redirect_to case_url(@case)
+    else
+      @users = User.includes(:core_demographic).all
+    end
+
   end
 
   # GET /cases/new

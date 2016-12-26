@@ -1,0 +1,23 @@
+<table class="table table-responsive table-bordered">
+  <thead>
+  <tr>
+    <% if params[:controller] == 'cases' %>
+        <th><%= t('label_user') %></th>
+    <% else %>
+        <th><%= t('case') %></th>
+    <% end %>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% case_watchers.each do |case_watcher| %>
+      <tr>
+        <% if params[:controller] == 'cases' %>
+            <td><%= case_watcher.user %></td>
+        <% else %>
+            <td><%= link_to case_watcher.case, case_watcher.case %></td>
+        <% end %>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

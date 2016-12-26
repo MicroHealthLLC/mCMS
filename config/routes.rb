@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :case_watchers, only: [:index]
   resources :plans
   resources :goals
   resources :needs
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
       get 'subcases'
     end
     member do
+      match 'watchers', via: [:post, :get]
       get 'delete_sub_case_relation'
       get 'delete_relation'
       match 'new_relation', via: [:post, :get]

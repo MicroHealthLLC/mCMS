@@ -21,6 +21,8 @@ class Case < ApplicationRecord
   has_many :plans
   has_many :goals
 
+  has_many :watchers, class_name: 'CaseWatcher'
+
   has_many :case_notes, foreign_key: :owner_id
 
   scope :root, -> {where(subcase_id: nil)}

@@ -1,0 +1,16 @@
+<div class="row">
+  <%= form_tag ''  do %>
+      <% @users.all.each do |user| %>
+          <div class="col-xs-2">
+            <%= check_box_tag 'case_watcher[]', user.id, @watchers.include?( user.id) %> <%= user %>
+          </div>
+      <% end %>
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= link_to t('button_cancel'), case_url(@case), class: 'btn btn-warning pull-right' %>
+          <%= submit_tag t('button_save'), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+  <% end %>
+
+</div>

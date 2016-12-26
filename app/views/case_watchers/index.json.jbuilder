@@ -1,0 +1,1 @@
+json.array! @case_watchers, partial: 'case_watchers/case_watcher', as: :case_watcher
