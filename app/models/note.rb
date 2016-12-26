@@ -27,6 +27,10 @@ class Note < ApplicationRecord
       when 'PostNote' then I18n.t('news')
       when 'CaseNote' then I18n.t('case')
       when 'ChecklistNote' then I18n.t('checklist')
+      when 'AppointmentNote' then I18n.t('appointments')
+      when 'NeedNote' then I18n.t('need')
+      when 'GoalNote' then I18n.t('goal')
+      when 'PlanNote' then I18n.t('plan')
     end
   end
 
@@ -46,3 +50,7 @@ require_dependency 'checklist_note'
 require_dependency 'post_note'
 require_dependency 'case_note'
 require_dependency 'survey_note'
+require_dependency 'appointment_note'
+require_dependency 'goal_note'
+require_dependency 'plan_note'
+require_dependency 'need_note'

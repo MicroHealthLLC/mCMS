@@ -78,6 +78,8 @@ class NotesController < ApplicationController
              :goal_note
             elsif params[:plan_note]
              :plan_note
+           elsif params[:appointment_note]
+             :appointment_note
            else
              :note
            end
@@ -101,6 +103,8 @@ class NotesController < ApplicationController
       goal_url(@note.object)
     elsif params[:plan_note]
       plan_url(@note.object)
+     elsif params[:appointment_note]
+      appointment_url(@note.object)
     else
       root_path
     end

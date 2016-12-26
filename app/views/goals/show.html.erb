@@ -4,7 +4,7 @@
               :data => {:confirm => t(:text_are_you_sure)}
   %>
   <%= link_to 'Edit', edit_goal_path(@goal), class: 'btn btn-success pull-right' %>
-  <%= link_to( "Add note", new_note_path(type: 'GoalNote', owner_id: @goal.id), class: 'btn btn-success pull-right') if can?(:add_notes, :manage_roles) %>
+  <%= link_to( t('add_note'), new_note_path(type: 'GoalNote', owner_id: @goal.id), class: 'btn btn-success pull-right') if can?(:add_notes, :manage_roles) %>
   <%= link_to t('button_cancel'), goals_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), goal_path(@goal, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 </div>

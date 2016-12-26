@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161224184024) do
+ActiveRecord::Schema.define(version: 20161224225033) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type_id"
@@ -296,6 +296,20 @@ ActiveRecord::Schema.define(version: 20161224184024) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
   end
 
+  create_table "goals", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "name"
+    t.integer  "priority_type_id"
+    t.integer  "goal_status_id"
+    t.text     "description",      limit: 65535
+    t.date     "date_start"
+    t.date     "date_due"
+    t.date     "date_completed"
+    t.integer  "user_id"
+    t.integer  "case_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
   create_table "identifications", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.string   "identification_number"
     t.boolean  "status"
@@ -435,6 +449,20 @@ ActiveRecord::Schema.define(version: 20161224184024) do
     t.text     "note",                 limit: 65535
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
+  end
+
+  create_table "plans", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
+    t.string   "name"
+    t.integer  "priority_type_id"
+    t.integer  "plan_status_id"
+    t.text     "description",      limit: 65535
+    t.date     "date_start"
+    t.date     "date_due"
+    t.date     "date_completed"
+    t.integer  "user_id"
+    t.integer  "case_id"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
   end
 
   create_table "positions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|

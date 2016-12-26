@@ -8,7 +8,7 @@ class AppointmentsController < ApplicationController
   # GET /appointments
   # GET /appointments.json
   def index
-    @appointments = Appointment.my_appointments.paginate(page: params[:page], per_page: 25)
+    @appointments = Appointment.includes(:user=> :core_demographic).my_appointments.paginate(page: params[:page], per_page: 25)
   end
 
   # GET /appointments/1
@@ -76,7 +76,8 @@ class AppointmentsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_appointment
-    @appointment = Appointment.find(params[:id])
+    @appointment = Appointment.includes(:appointment_notes, :user=> :core_demographic).
+        find(params[:id])
   rescue ActiveRecord::RecordNotFound
     render_404
   end

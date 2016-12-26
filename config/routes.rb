@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :plan_notes, except: [:index], controller: :notes
   resources :goal_notes, except: [:index], controller: :notes
   resources :need_notes, except: [:index], controller: :notes
+  resources :appointment_notes, except: [:index], controller: :notes
   resources :notes
 
   resources :cases do
