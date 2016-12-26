@@ -209,3 +209,8 @@ en:
   wiki: wiki
   role: Role
   label_permissions: Permissions
+
+
+  watchers: Watchers
+  watcher: Watcher
+  manage_watcher: Manage Watcher
