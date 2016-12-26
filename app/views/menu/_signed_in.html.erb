@@ -31,7 +31,9 @@
           </li>
       <% end %>
   <% end %>
-
+  <li>
+    <a href="conference/new_conference"><i class="fa fa-lg fa-fw fa-video-camera"></i><span class="menu-item-parent">New conference</span></a>
+  </li>
   <%= render partial: 'menu/smart_chat' %>
 
   <% if User.current.admin? %>

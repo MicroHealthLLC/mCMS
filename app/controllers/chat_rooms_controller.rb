@@ -21,6 +21,11 @@ class ChatRoomsController < ApplicationController
      @message = Message.new
   end
 
+  def conference
+    redirect_to "/conference/#{rand(36**52).to_s(36)}" unless params[:appear_id]
+    @appear_id= params[:appear_id]
+  end
+
   private
 
   def set_chat_room

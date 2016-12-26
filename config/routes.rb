@@ -43,6 +43,8 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'home/chat'
   mount ActionCable.server => '/cable'
+  get 'conference/new_conference', to: 'chat_rooms#conference'
+  get 'conference/:appear_id', to: 'chat_rooms#conference'
   resources :chat_rooms, param: :token, only: [:show] do
     collection do
       get 'create_or_find'
