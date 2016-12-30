@@ -8,22 +8,22 @@ class Case < ApplicationRecord
   belongs_to :case_status_type, optional: true
   belongs_to :case, optional: true, foreign_key: :subcase_id
 
-  has_many :sub_cases, foreign_key: :subcase_id, class_name: 'Case'
-  has_many :relations, foreign_key: :case_id, class_name: 'CaseRelation'
+  has_many :sub_cases, foreign_key: :subcase_id, class_name: 'Case', dependent: :destroy
+  has_many :relations, foreign_key: :case_id, class_name: 'CaseRelation', dependent: :destroy
 
 
-  has_many :tasks, foreign_key: :related_to_id, class_name: 'Task'
-  has_many :surveys, foreign_key: :assigned_to_id, class_name: 'SurveyCase'
-  has_many :documents, foreign_key: :related_to_id, class_name: 'Document'
-  has_many :checklists, foreign_key: :assigned_to_id, class_name: 'ChecklistCase'
-  has_many :appointments, foreign_key: :related_to_id, class_name: 'Appointment'
-  has_many :needs
-  has_many :plans
-  has_many :goals
+  has_many :tasks, foreign_key: :related_to_id, class_name: 'Task', dependent: :destroy
+  has_many :surveys, foreign_key: :assigned_to_id, class_name: 'SurveyCase', dependent: :destroy
+  has_many :documents, foreign_key: :related_to_id, class_name: 'Document', dependent: :destroy
+  has_many :checklists, foreign_key: :assigned_to_id, class_name: 'ChecklistCase', dependent: :destroy
+  has_many :appointments, foreign_key: :related_to_id, class_name: 'Appointment', dependent: :destroy
+  has_many :needs, dependent: :destroy
+  has_many :plans, dependent: :destroy
+  has_many :goals, dependent: :destroy
 
-  has_many :watchers, class_name: 'CaseWatcher'
+  has_many :watchers, class_name: 'CaseWatcher', dependent: :destroy
 
-  has_many :case_notes, foreign_key: :owner_id
+  has_many :case_notes, foreign_key: :owner_id, dependent: :destroy
 
   scope :root, -> {where(subcase_id: nil)}
   scope :subcases, -> {where.not(subcase_id: nil)}

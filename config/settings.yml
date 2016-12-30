@@ -4,6 +4,8 @@ email_from:
   default: "from@example.com"
 conference_url:
   default: "https://www.appear.in/$room_number$"
+open_new_tab_url:
+  default: true
 email_header:
   default: ""
 email_footer:

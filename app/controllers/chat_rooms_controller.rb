@@ -22,8 +22,12 @@ class ChatRoomsController < ApplicationController
   end
 
   def conference
-    redirect_to "/conference/#{rand(36**52).to_s(36)}" unless params[:appear_id]
-    @appear_id= params[:appear_id]
+    if Setting['open_new_tab_url'] == 'true'
+      redirect_to Setting['conference_url'].sub('$room_number$', rand(36**52).to_s(36) )
+    else
+      redirect_to "/conference/#{rand(36**52).to_s(36)}" unless params[:appear_id]
+      @appear_id= params[:appear_id]
+    end
   end
 
   private

@@ -16,6 +16,7 @@ class SettingsController < ApplicationController
     Setting['application_name'] = params['application_name']
     Setting['email_from'] = params['email_from']
     Setting['conference_url'] = params['conference_url']
+    Setting['open_new_tab_url'] = params['open_new_tab_url']
     redirect_to settings_path
   end
 
