@@ -1,0 +1,16 @@
+<% if module_enabled?('documents') %>
+    <%= link_to(t('new_document'), new_document_path(related_to: @case.id, type: 'case'), class: 'btn btn-primary pull-right btn-edition') if can?(:create_documents, :manage_roles) %>
+
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= render partial: 'documents/list',
+                   layout: 'shared/smart_widget_wrapper',
+                   locals: {
+                           documents: @documents,
+                           wid_id: 'documents',
+                           wid_title: 'documents'
+                   } %>
+      </article>
+    </div>
+
+<% end %>

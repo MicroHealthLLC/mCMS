@@ -11,19 +11,9 @@
               <a href="/cases/subcases" title="<%= t(:subcases) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent"><%= t(:subcases) %></span></a>
             </li>
 
-              <li>
-              <a href="/case_watchers" title="<%= t(:watchers) %>"><i class="fa fa-lg fa-fw fa-eye"></i><span class="menu-item-parent"><%= t(:watchers) %></span></a>
-            </li>
-
             <li class="<%= menu_active?('notes') %>">
               <a href="/notes" title="<%= t(:label_note_plural) %>"><i class="fa fa-lg fa-fw fa-sticky-note-o"></i> <span class="menu-item-parent"><%= t(:label_note_plural) %></span></a>
             </li>
-
-            <% if module_enabled? 'appointments' %>
-                <li class="<%= menu_active?('appointments') %>">
-                  <a href="/appointments" title="<%= t(:appointments) %>"><i class="fa fa-lg fa-fw fa-calendar"></i> <span class="menu-item-parent"><%= t(:appointments) %></span></a>
-                </li>
-            <% end %>
 
             <% if module_enabled? 'needs' %>
                 <li class="<%= menu_active?('needs') %>">
@@ -31,21 +21,15 @@
                 </li>
             <% end %>
 
-             <% if module_enabled? 'goals' %>
+            <% if module_enabled? 'goals' %>
                 <li class="<%= menu_active?('goals') %>">
                   <a href="/goals" title="<%= t(:goals) %>"><i class="fa fa-lg fa-fw fa-bullseye"></i> <span class="menu-item-parent"><%= t(:goals) %></span></a>
                 </li>
             <% end %>
 
-             <% if module_enabled? 'plans' %>
+            <% if module_enabled? 'plans' %>
                 <li class="<%= menu_active?('plans') %>">
                   <a href="/plans" title="<%= t(:plans) %>"><i class="fa fa-lg fa-fw fa-map"></i> <span class="menu-item-parent"><%= t(:plans) %></span></a>
-                </li>
-            <% end %>
-
-            <% if module_enabled? 'checklists' %>
-                <li class="<%= menu_active?('checklists') %>">
-                  <a href="/checklist_templates" title="<%= t(:checklists) %>"><i class="fa fa-lg fa-fw fa-check"></i> <span class="menu-item-parent"><%= t(:checklists) %></span></a>
                 </li>
             <% end %>
 
@@ -55,17 +39,34 @@
                 </li>
             <% end %>
 
+            <% if module_enabled? 'documents' %>
+                <li class="<%= menu_active?('documents') %>">
+                  <a href="/documents" title="<%= t(:documents) %>"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent"><%= t(:documents) %></span></a>
+                </li>
+            <% end %>
+
+            <% if module_enabled? 'checklists' %>
+                <li class="<%= menu_active?('checklists') %>">
+                  <a href="/checklist_templates" title="<%= t(:checklists) %>"><i class="fa fa-lg fa-fw fa-check"></i> <span class="menu-item-parent"><%= t(:checklists) %></span></a>
+                </li>
+            <% end %>
+
+            <% if module_enabled? 'appointments' %>
+                <li class="<%= menu_active?('appointments') %>">
+                  <a href="/appointments" title="<%= t(:appointments) %>"><i class="fa fa-lg fa-fw fa-calendar"></i> <span class="menu-item-parent"><%= t(:appointments) %></span></a>
+                </li>
+            <% end %>
+
             <% if module_enabled? 'surveys' %>
                 <li class="<%= menu_active?('surveys') %>">
                   <a href="/surveys" title="<%= t(:surveys) %>"><i class="fa fa-lg fa-fw fa-question"></i><span class="menu-item-parent"><%= t(:surveys) %></span></a>
                 </li>
             <% end %>
 
-            <% if module_enabled? 'documents' %>
-                <li class="<%= menu_active?('documents') %>">
-                  <a href="/documents" title="<%= t(:documents) %>"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent"><%= t(:documents) %></span></a>
-                </li>
-            <% end %>
+            <li>
+              <a href="/case_watchers" title="<%= t(:watchers) %>"><i class="fa fa-lg fa-fw fa-eye"></i><span class="menu-item-parent"><%= t(:watchers) %></span></a>
+            </li>
+
           </ul>
         </li>
 

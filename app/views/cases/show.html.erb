@@ -16,175 +16,23 @@
       <%= render partial: 'show',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     wid_id: 'info',
-                     wid_title: t('case')
+                         wid_id: 'info',
+                         wid_title: t('case')
                  } %>
     </article>
   </div>
 </section>
-<%= link_to t(:manage_watcher), watchers_case_path(@case), class: 'btn btn-primary pull-right btn-edition'  if can?(:manage_roles) %>
-
-<div class="row">
-  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <%= render partial: 'case_watchers/list',
-               layout: 'shared/smart_widget_wrapper',
-               locals: {
-                   case_watchers: @watchers,
-                   wid_id: 'case_watchers',
-                   wid_title: 'Watchers'
-               } %>
-  </article>
-</div>
-
-<%= link_to(t('add_subcase'), new_case_path(subcase_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:manage_roles, :add_cases)  %>
-
-<div class="row">
-  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-    <%= render partial: 'list',
-               layout: 'shared/smart_widget_wrapper',
-               locals: {
-                   wid_id: 'subcases',
-                   wid_title: 'Sub cases'
-               } %>
-  </article>
-</div>
 
 
-<%= link_to t('new_note'), new_note_path(type: 'CaseNote', owner_id: @case.id), class: 'btn btn-primary pull-right btn-edition'  if can?(:create_notes, :manage_roles) %>
 
-<%= render partial: 'notes/notes', locals: {notes: @notes} %>
-
-
-<% if module_enabled?('tasks') %>
-    <%= link_to( t('new_task'), new_task_path(related_to: @case.id, type: 'case'), class: 'btn btn-primary pull-right btn-edition') if can?(:create_tasks, :manage_roles) %>
-
-    <div class="row">
-      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <%= render partial: 'tasks/sub_tasks',
-                   layout: 'shared/smart_widget_wrapper',
-                   locals: {
-                       wid_id: 'tasks',
-                       wid_title: t('tasks')
-                   } %>
-      </article>
-    </div>
-
-<% end %>
-
-<% if module_enabled?('documents') %>
-    <%= link_to(t('new_document'), new_document_path(related_to: @case.id, type: 'case'), class: 'btn btn-primary pull-right btn-edition') if can?(:create_documents, :manage_roles) %>
-
-    <div class="row">
-      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <%= render partial: 'documents/list',
-                   layout: 'shared/smart_widget_wrapper',
-                   locals: {
-                       documents: @documents,
-                       wid_id: 'documents',
-                       wid_title: 'documents'
-                   } %>
-      </article>
-    </div>
-
-<% end %>
-
-<% if module_enabled?('needs') %>
-    <%= link_to(t('new_need'), new_need_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_needs, :manage_roles) %>
-
-    <div class="row">
-      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <%= render partial: 'needs/list',
-                   layout: 'shared/smart_widget_wrapper',
-                   locals: {
-                       needs: @needs,
-                       wid_id: 'needs',
-                       wid_title: 'needs'
-                   } %>
-      </article>
-    </div>
-
-<% end %>
-
-<% if module_enabled?('goals') %>
-    <%= link_to(t('new_goal'), new_goal_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_goals, :manage_roles) %>
-
-    <div class="row">
-      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <%= render partial: 'goals/list',
-                   layout: 'shared/smart_widget_wrapper',
-                   locals: {
-                       goals: @goals,
-                       wid_id: 'goals',
-                       wid_title: 'goals'
-                   } %>
-      </article>
-    </div>
-
-<% end %>
-
-<% if module_enabled?('plans') %>
-    <%= link_to(t('new_plan'), new_plan_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_plans, :manage_roles) %>
-
-    <div class="row">
-      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <%= render partial: 'plans/list',
-                   layout: 'shared/smart_widget_wrapper',
-                   locals: {
-                       plans: @plans,
-                       wid_id: 'plans',
-                       wid_title: 'plans'
-                   } %>
-      </article>
-    </div>
-
-<% end %>
-
-<% if module_enabled?('appointments') %>
-    <%= link_to(t('new_appointment'), new_appointment_path(related_to: @case.id, type: 'case'), class: 'btn btn-primary pull-right btn-edition') if can?(:create_appointments, :manage_roles) %>
-
-    <div class="row">
-      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <%= render partial: 'appointments/list',
-                   layout: 'shared/smart_widget_wrapper',
-                   locals: {
-                       appointments: @appointments,
-                       wid_id: 'appointments',
-                       wid_title: 'appointments'
-                   } %>
-      </article>
-    </div>
-
-<% end %>
-
-<% if module_enabled?('surveys') %>
-    <%= link_to t('new_survey'), new_assign_survey_case_path(@case.id), class: 'btn btn-primary pull-right btn-edition'  if can?(:create_surveys, :manage_roles) %>
-
-    <div class="row">
-      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <%= render partial: 'surveys/list',
-                   layout: 'shared/smart_widget_wrapper',
-                   locals: {
-                       wid_id: 'surveys',
-                       wid_title: 'surveys'
-                   } %>
-      </article>
-    </div>
-
-<% end %>
-<% if module_enabled?('checklists') %>
-    <%= link_to t('new_checklist'), new_assign_case_path(@case.id), class: 'btn btn-primary pull-right btn-edition'  if can?(:create_checklists, :manage_roles) %>
-
-    <div class="row">
-      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <%= render partial: 'checklists/list',
-                   layout: 'shared/smart_widget_wrapper',
-                   locals: {
-                       wid_id: 'checklists',
-                       wid_title: 'checklists'
-                   } %>
-      </article>
-    </div>
-
-
-<% end %>
+<%= render partial: 'cases/show_case/subcases' %>
+<%= render partial: 'cases/show_case/notes' %>
+<%= render partial: 'cases/show_case/needs' %>
+<%= render partial: 'cases/show_case/goals' %>
+<%= render partial: 'cases/show_case/plans' %>
+<%= render partial: 'cases/show_case/tasks' %>
+<%= render partial: 'cases/show_case/documents' %>
+<%= render partial: 'cases/show_case/checklists' %>
+<%= render partial: 'cases/show_case/appointments' %>
+<%= render partial: 'cases/show_case/surveys' %>
+<%= render partial: 'cases/show_case/watcher' %>

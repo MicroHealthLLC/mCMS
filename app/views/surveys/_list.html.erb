@@ -13,7 +13,13 @@
   <% if @surveys.any? %>
       <% @surveys.each do |survey| %>
           <tr>
-            <td><%= link_to survey.name, survey_path(survey) %></td>
+            <td>
+              <% if User.current.allowed_to?(:manage_roles) %>
+                  <%= link_to survey.name, survey_path(survey) %>
+              <% else %>
+                  <%= link_to survey.name, attempts_path(survey_id: survey.id) %>
+              <% end %>
+            </td>
             <td><%= survey.survey_type %></td>
             <% if params[:controller] == 'cases' %>
                 <td><%= survey.attempts.where(participant: @case).count %></td>

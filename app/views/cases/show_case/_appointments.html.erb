@@ -1,0 +1,17 @@
+
+<% if module_enabled?('appointments') %>
+    <%= link_to(t('new_appointment'), new_appointment_path(related_to: @case.id, type: 'case'), class: 'btn btn-primary pull-right btn-edition') if can?(:create_appointments, :manage_roles) %>
+
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= render partial: 'appointments/list',
+                   layout: 'shared/smart_widget_wrapper',
+                   locals: {
+                           appointments: @appointments,
+                           wid_id: 'appointments',
+                           wid_title: 'appointments'
+                   } %>
+      </article>
+    </div>
+
+<% end %>

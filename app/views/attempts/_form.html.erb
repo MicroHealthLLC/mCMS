@@ -1,20 +1,29 @@
 <h1>Survey <%= @survey.name %></h1>
-<%= form_for(@attempt, :url => attempt_scope(@attempt)) do |f| %>
+<%= form_for(@attempt, :url => attempt_scope(@attempt), html: { class: 'form-horizontal' }) do |f| %>
     <%= hidden_field_tag :survey_id, @survey.id %>
     <%= hidden_field_tag :case_id, params[:case_id] %>
-  <%= f.fields_for :answers do |builder| %>
-    <ul>
-      <% @survey.questions.each_with_index do |question, index| %>
-        <li>
-          <p><%= question.text %></p>
-          <%= hidden_field_tag "survey_attempt[answers_attributes][#{index}][question_id]", question.id %>
-          <% question.options.each do |option| %>
-            <%= check_box_tag "survey_attempt[answers_attributes][#{index}][option_id][]", option.id %>
-            <%= option.text %>
+    <%= f.fields_for :answers do |builder| %>
+        <ol class="questions">
+          <% @survey.questions.each_with_index do |question, index| %>
+              <li>
+                <p class="question"> <%= question.text %> </p>
+                <ul class="options">
+                  <%= hidden_field_tag "survey_attempt[answers_attributes][#{index}][question_id]", question.id %>
+                  <% question.options.each do |option| %>
+                      <li class="radio">
+                        <label>
+                          <%= check_box_tag "survey_attempt[answers_attributes][#{index}][option_id][]", option.id %>
+                          <%= option.text %>
+                        </label>
+                      </li>
+                  <% end -%>
+                </ul>
           <% end -%>
-        </li>
-      <% end -%>
-    </ul>
-  <% end -%>
-  <%= f.submit "Submit", class: 'btn btn-primary' %>
+        </ol>
+    <% end -%>
+    <div class="form-group" >
+      <div class="col-md-11">
+        <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
+      </div>
+    </div>
 <% end -%>

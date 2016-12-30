@@ -174,7 +174,13 @@ module PivotTableHelper
   end
 
   def render_contact
-
+    Contact.includes(:user, :contact_type).
+        references(:user, :contact_type).map do |object|
+      {
+          user: object.user,
+          contact_type: object.contact_type
+      }
+    end
   end
 
   def render_education

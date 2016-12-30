@@ -1,0 +1,17 @@
+
+<% if module_enabled?('checklists') %>
+    <%= link_to t('new_checklist'), new_assign_case_path(@case.id), class: 'btn btn-primary pull-right btn-edition'  if can?(:create_checklists, :manage_roles) %>
+
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= render partial: 'checklists/list',
+                   layout: 'shared/smart_widget_wrapper',
+                   locals: {
+                           wid_id: 'checklists',
+                           wid_title: 'checklists'
+                   } %>
+      </article>
+    </div>
+
+
+<% end %>
