@@ -2,10 +2,10 @@
 <div id="output">
 
 </div>
-<%= javascript_include_tag 'smart_admin/pivottable.js' %>
+<%= javascript_include_tag 'smart_admin/pivottable' %>
 <% if params[:for_table] %>
     <script>
-      $(function(){
+      $(document).ready(function(){
         $("#output").pivotUI(
             [
               <% render_pivot_information(params[:for_table]).each do |hash| %>

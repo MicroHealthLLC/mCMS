@@ -4,11 +4,6 @@
     <%= @case.title %>
   </p>
 
- <p>
-    <strong><%= t('description') %>:</strong>
-    <%= @case.description.to_s.html_safe %>
-  </p>
-
   <p>
     <strong><%= t('priority') %>:</strong>
     <%= @case.priority_type %>
@@ -27,6 +22,11 @@
   <p>
     <strong><%= t('status') %>:</strong>
     <%= @case.case_status_type %>
+  </p>
+
+    <p>
+    <strong><%= t(:case_type) %>:</strong>
+    <%= @case.case_type %>
   </p>
 
   <p>
