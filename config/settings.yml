@@ -2,6 +2,8 @@ application_name:
   default: "mCMS"
 email_from:
   default: "from@example.com"
+conference_url:
+  default: "https://www.appear.in/$room_number$"
 email_header:
   default: ""
 email_footer:

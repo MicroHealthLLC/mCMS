@@ -15,7 +15,7 @@
   <tbody>
     <% @user_insurances.each do |user_insurance| %>
       <tr>
-        <td><%= user_insurance.insurance %></td>
+        <td><%= link_to user_insurance.insurance, user_insurance %></td>
         <td><%= user_insurance.insurance_type %></td>
         <td><%= user_insurance.insurance_identifier %></td>
        </tr>
