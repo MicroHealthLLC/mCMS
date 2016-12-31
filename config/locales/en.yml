@@ -113,7 +113,6 @@ en:
   case: Case
   cases: Cases
   subcases: SubCases
-  cases_support: Cases support
   my_cases: My cases
   edit_case: 'Edit case'
   new_case: "New case"
@@ -121,6 +120,13 @@ en:
   case_type: Case type
   case_relationship: Case relationship
   add_subcase: 'Add subCase'
+
+ # CASES Support
+  cases_support: Case support
+  cases_supports: Case supports
+  edit_cases_support: 'Edit case support'
+  new_cases_support: "New case support"
+  case_support_type: Case support type
 
  # TASK
   task: Action
