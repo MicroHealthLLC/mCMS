@@ -3,8 +3,14 @@ class NotesController < ApplicationController
   before_action :set_note, only: [:update, :edit, :show, :destroy]
 
   def index
-    scope = Note.where(type: params[:note_type])
+    scope = Note
+    scope = scope.where(type: params[:note_type]) if params[:note_type]
     @notes = scope.where(user_id: User.current.id).paginate(page: params[:page], per_page: 25)
+  end
+
+  def get_template_note
+    @note_id = params[:note_id]
+    @note_template = NoteTemplate.find(params[:note_template_id]) rescue nil
   end
 
   def new

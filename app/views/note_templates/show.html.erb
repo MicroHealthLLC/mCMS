@@ -1,0 +1,19 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to 'Delete',  note_template_path(@note_template), class: 'btn btn-danger pull-right',
+              :method => :delete,
+              :data => {:confirm => t(:text_are_you_sure)}
+  %>
+  <%= link_to 'Edit', edit_note_template_path(@note_template), class: 'btn btn-success pull-right' %>
+  <%= link_to t('button_cancel'), note_templates_path, class: 'btn btn-warning pull-right' %>
+ </div>
+
+<p>
+  <strong>Title:</strong>
+  <%= @note_template.title %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @note_template.note.html_safe %>
+</p>
+</div>

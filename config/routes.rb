@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :note_templates
   resources :case_supports do
   resources :case_support_extend_demographies, only: [:create, :update], controller: :extend_demographies
 end
@@ -25,7 +26,11 @@ end
   resources :need_notes, except: [:index], controller: :notes
   resources :appointment_notes, except: [:index], controller: :notes
   resources :document_notes, except: [:index], controller: :notes
-  resources :notes
+  resources :notes do
+    collection do
+      get 'get_template_note'
+    end
+  end
 
   resources :cases do
     collection do
