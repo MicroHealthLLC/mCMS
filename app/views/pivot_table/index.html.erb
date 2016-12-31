@@ -2,7 +2,9 @@
 <div id="output">
 
 </div>
-<%= javascript_include_tag 'smart_admin/pivottable' %>
+<%= javascript_include_tag 'smart_admin/c3_renderers.min' %>
+<%= javascript_include_tag 'smart_admin/d3_renderers.min' %>
+<%= javascript_include_tag 'smart_admin/pivot' %>
 <% if params[:for_table] %>
     <script>
       $(document).ready(function(){
