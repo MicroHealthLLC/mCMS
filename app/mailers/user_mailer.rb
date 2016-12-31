@@ -75,10 +75,4 @@ class UserMailer < ApplicationMailer
     @task = object
     mail(to: @user.email, subject: "Task ##{@task.id}")
   end
-
-  def journal_notification(object)
-    @user = object.assigned_to
-    @survey = object
-    mail(to: @user.email, subject: "Survey ##{object.id}")
-  end
 end
