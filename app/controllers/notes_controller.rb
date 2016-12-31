@@ -18,7 +18,7 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        format.html { redirect_to url_back, notice: I18n.t(:notice_successful_create) }
+        format.html { redirect_to @note.object, notice: I18n.t(:notice_successful_create) }
       else
         format.html { render :edit }
       end
@@ -36,7 +36,7 @@ class NotesController < ApplicationController
   def update
     respond_to do |format|
       if @note.update(note_params)
-        format.html { redirect_to  url_back, notice: I18n.t(:notice_successful_update) }
+        format.html { redirect_to  @note.object, notice: I18n.t(:notice_successful_update) }
       else
         format.html { render :edit }
       end
@@ -72,42 +72,19 @@ class NotesController < ApplicationController
              :task_note
            elsif params[:post_note]
              :post_note
-            elsif params[:need_note]
+           elsif params[:need_note]
              :need_note
-            elsif params[:goal_note]
+           elsif params[:goal_note]
              :goal_note
-            elsif params[:plan_note]
+           elsif params[:plan_note]
              :plan_note
            elsif params[:appointment_note]
              :appointment_note
+           elsif params[:document_note]
+             :document_note
            else
              :note
            end
     params.require(type).permit(Note.safe_attributes)
-  end
-
-  def url_back
-    if params[:checklist_note]
-      checklist_template_path(@note.object)
-    elsif params[:survey_note]
-      survey_url(@note.object)
-    elsif params[:case_note]
-      case_url(@note.object)
-    elsif params[:task_note]
-      task_url(@note.object)
-    elsif params[:post_note]
-     news_url(@note.object)
-    elsif params[:need_note]
-      need_url(@note.object)
-    elsif params[:goal_note]
-      goal_url(@note.object)
-    elsif params[:plan_note]
-      plan_url(@note.object)
-     elsif params[:appointment_note]
-      appointment_url(@note.object)
-    else
-      root_path
-    end
-
   end
 end

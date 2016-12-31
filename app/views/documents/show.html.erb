@@ -3,6 +3,7 @@
               :method => :delete,
               :data => {:confirm => t(:text_are_you_sure)}
   %>
+  <%= link_to( t('add_note'), new_note_path(type: 'DocumentNote', owner_id: @document.id), class: 'btn btn-success pull-right') if can?(:add_notes, :manage_roles) %>
   <%= link_to 'Edit', edit_document_path(@document), class: 'btn btn-success pull-right' %>
   <%= link_to t('button_cancel'), back_url(@document), class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), document_path(@document, format: 'pdf'), class: 'btn btn-primary pull-right' %>
@@ -37,3 +38,4 @@
     <% end %>
   </p>
 </div>
+<%= render partial: 'notes/notes', locals: {notes: @document.document_notes} %>

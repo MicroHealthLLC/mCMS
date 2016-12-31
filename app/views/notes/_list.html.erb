@@ -1,3 +1,13 @@
+<style>
+  .note_span{
+    cursor: pointer;
+    color: blue;
+  }
+  .all_notes
+  {
+    display: none;
+  }
+</style>
 <table class="table table-bordered table-responsive">
   <thead>
   <tr>
@@ -23,7 +33,9 @@
                 <td><%= link_to note.user, note %></td>
             <% end %>
             <td><%= note.updated_at.to_date %></td>
-            <td><%= note.note.to_s.html_safe %></td>
+            <td><%= display_note(note.note.to_s) %></td>
+            <td><%= show_link(note) %></td>
+            <td><%= delete_link(note) %></td>
           </tr>
       <% end %>
 
@@ -34,3 +46,16 @@
   <% end %>
   </tbody>
 </table>
+
+<script>
+  $(document).ready(function(){
+    $('.link_label_less').on('click', function(){
+      $(this).parents('td').find('.all_notes').hide();
+      $(this).parents('td').find('.less_notes').show();
+    });
+    $('.link_label_more').on('click', function(){
+      $(this).parents('td').find('.less_notes').hide();
+      $(this).parents('td').find('.all_notes').show();
+    });
+  })
+</script>

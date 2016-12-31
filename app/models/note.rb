@@ -3,6 +3,7 @@ class Note < ApplicationRecord
   scope :not_private, -> {where(is_private: false)}
   default_scope -> {where(is_private: false).or(where(private_author_id: User.current.id)) }
 
+  validates_presence_of :type, :owner_id
 
   def self.safe_attributes
     [:user_id, :owner_id, :type, :note, :is_private, :private_author_id]
@@ -22,15 +23,18 @@ class Note < ApplicationRecord
 
   def for_type
     case type
-      when 'TaskNote' then I18n.t('task')
-      when 'SurveyNote' then I18n.t('survey')
-      when 'PostNote' then I18n.t('news')
-      when 'CaseNote' then I18n.t('case')
-      when 'ChecklistNote' then I18n.t('checklist')
-      when 'AppointmentNote' then I18n.t('appointments')
-      when 'NeedNote' then I18n.t('need')
-      when 'GoalNote' then I18n.t('goal')
-      when 'PlanNote' then I18n.t('plan')
+      when 'TaskNote'           then I18n.t('task')
+      when 'SurveyNote'         then I18n.t('survey')
+      when 'PostNote'           then I18n.t('news')
+      when 'CaseNote'           then I18n.t('case')
+      when 'ChecklistNote'      then I18n.t('checklist')
+      when 'AppointmentNote'    then I18n.t('appointments')
+      when 'NeedNote'           then I18n.t('need')
+      when 'GoalNote'           then I18n.t('goal')
+      when 'PlanNote'           then I18n.t('plan')
+      when 'DocumentNote'       then I18n.t('document')
+      else
+        I18n.t('label_note')
     end
   end
 
@@ -40,7 +44,6 @@ class Note < ApplicationRecord
     pdf.text "<b>Created at: </b> #{created_at.to_date}", :inline_format =>  true
     pdf.text "<b>Belongs to: </b> #{object}", :inline_format =>  true
     pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
-
   end
 
 end

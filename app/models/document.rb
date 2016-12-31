@@ -7,6 +7,8 @@ class Document < ApplicationRecord
   scope :not_private, -> {where(is_private: false)}
   scope :not_related, -> {where(related_to_id: nil)}
 
+  has_many :document_notes, foreign_key: :owner_id
+
   has_many :document_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :document_attachments, reject_if: :all_blank, allow_destroy: true
 
@@ -57,6 +59,10 @@ class Document < ApplicationRecord
     output<< "<b>Description: </b> #{description}<br/>"
     output<< "<b>Document type: </b> #{document_type}<br/>"
     output.html_safe
+  end
+
+  def to_s
+    title
   end
 
 end
