@@ -1,24 +1,19 @@
 <fieldset>
-  <legend>Contact</legend>
-  <%= form_for(contact, html: { class: 'form-horizontal',  :multipart => true }) do |f| %>
-      <% if contact.errors.any? %>
+  <legend>Case support</legend>
+  <%= form_for(case_support, html: { class: 'form-horizontal',  :multipart => true }) do |f| %>
+      <% if case_support.errors.any? %>
           <div id="error_explanation">
-            <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+            <h2><%= pluralize(case_support.errors.count, "error") %> prohibited this case support from being saved:</h2>
 
             <ul>
-              <% contact.errors.full_messages.each do |message| %>
+              <% case_support.errors.full_messages.each do |message| %>
                   <li><%= message %></li>
               <% end %>
             </ul>
           </div>
       <% end %>
       <%= f.hidden_field :user_id %>
-      <div class="form-group">
-        <%= f.label t('enumeration_contact_type'), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :contact_type_id, options_for_select(ContactType.active.pluck(:name, :id), selected: f.object.contact_type.try(:id)), {},{ class: 'form-control'} %>
-        </div>
-      </div>
+      <%= f.hidden_field :case_id %>
       <div class="form-group">
         <%= f.label t('profile.first_name'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
@@ -39,14 +34,12 @@
           <%= f.text_field :last_name, placeholder: 'Last name', class: 'form-control' %>
         </div>
       </div>
-
       <div class="form-group">
-        <%= f.label :emergency_contact, class: 'col-md-2 control-label' %>
+        <%= f.label t('case_support_type'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :emergency_contact, [['Yes', true], ['No', false]] ,{},  {class: 'form-control'} %>
+          <%= f.select :case_support_type_id, options_for_select(CaseSupportType.active.pluck(:name, :id), selected: f.object.case_support_type.try(:id)), {},{ class: 'form-control'} %>
         </div>
       </div>
-
       <div class="form-group">
         <%= f.label :note , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
@@ -58,17 +51,17 @@
         <div class="col-md-12">
           <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
         </div>
-        <%= f.simple_fields_for :contact_attachments do |attachment| %>
+        <%= f.simple_fields_for :case_support_attachments do |attachment| %>
             <%= render 'attachments/attachment_show', :f => attachment %>
         <% end %>
         <div id="attachment_fields" class="col-md-2 margin-top-10 " style="padding-right: 2px;" >
-          <%= link_to_add_association 'add file', f, :contact_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+          <%= link_to_add_association 'add file', f, :case_support_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
         </div>
       </div>
 
       <div class="form-group" >
         <div class="col-md-11">
-          <%= link_to t('button_cancel'), contacts_url, class: 'btn btn-warning pull-right' %>
+          <%= link_to t('button_cancel'), f.object.case, class: 'btn btn-warning pull-right' %>
           <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
         </div>
       </div>

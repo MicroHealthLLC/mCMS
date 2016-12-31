@@ -31,7 +31,7 @@ class Contact < ApplicationRecord
   end
 
   def name
-    "#{first_name} #{middle_name} #{last_name}".gsub('  ', ' ')
+    "#{first_name} #{middle_name} #{last_name}".tr('  ', ' ')
   end
 
   def to_pdf(pdf)

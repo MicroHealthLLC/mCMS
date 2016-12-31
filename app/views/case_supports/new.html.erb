@@ -1,0 +1,13 @@
+<section id="widget-grid" class="checklists_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     case_support: @case_support,
+                     wid_id: 'case_suport',
+                     wid_title: t('new_case_support')
+                 } %>
+    </article>
+  </div>
+</section>

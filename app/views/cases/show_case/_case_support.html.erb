@@ -1,0 +1,13 @@
+<%= link_to(t('new_cases_support'), new_case_support_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_cases, :manage_roles) %>
+
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render partial: 'case_supports/list',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                   case_supports: @case_supports,
+                   wid_id: 'case_support',
+                   wid_title: t('case_supports')
+               } %>
+  </article>
+</div>

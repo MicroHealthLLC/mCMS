@@ -1,0 +1,3 @@
+class CaseSupportAttachment < Attachment
+
+end

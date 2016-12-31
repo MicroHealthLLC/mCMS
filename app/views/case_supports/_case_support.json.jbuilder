@@ -1,0 +1,2 @@
+json.extract! case_support, :id, :user_id, :case_id, :first_name, :middle_name, :last_name, :case_support_type_id, :note, :created_at, :updated_at
+json.url case_support_url(case_support, format: :json)

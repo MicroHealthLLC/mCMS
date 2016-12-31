@@ -1,0 +1,1 @@
+json.partial! "case_supports/case_support", case_support: @case_support

@@ -1,0 +1,27 @@
+<table class="table table-responsive table-bordered">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>User</th>
+    <th>Case</th>
+    <th>Case support type</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if case_supports.present? %>
+      <% case_supports.each do |case_support| %>
+          <tr>
+            <td><%= link_to case_support.name, case_support%></td>
+            <td><%= case_support.user %></td>
+            <td><%= case_support.case %></td>
+            <td><%= case_support.case_support_type %></td>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

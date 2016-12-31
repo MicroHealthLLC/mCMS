@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :case_supports do
+  resources :case_support_extend_demographies, only: [:create, :update], controller: :extend_demographies
+end
   resources :case_watchers, only: [:index]
   resources :plans
   resources :goals

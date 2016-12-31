@@ -1,0 +1,12 @@
+<h1><%= t('cases_supports') %></h1>
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render partial: 'list',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                   case_supports: @case_supports,
+                   wid_id: 'case_support',
+                   wid_title: t('case_supports')
+               } %>
+  </article>
+</div>
