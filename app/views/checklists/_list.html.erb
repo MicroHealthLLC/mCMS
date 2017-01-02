@@ -14,7 +14,7 @@
   <tbody>
   <% if @checklists.any? %>
       <% @checklists.each do |checklist_case| %>
-          <% checklist_template = checklist_case.checklist_template  %>
+          <% checklist_template = checklist_case.is_a?(ChecklistCase) ? checklist_case.checklist_template : checklist_case  %>
           <tr>
             <% if User.current.admin? %>
                 <td><%= link_to checklist_template.title, checklist_template_path(checklist_template ) %></td>

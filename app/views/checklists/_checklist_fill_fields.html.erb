@@ -1,5 +1,4 @@
 <% checklist_answer = ChecklistAnswer.where(checklist_id: checklist.id,
-                                            checklist_case_id: @checklist.try(:id),
                                             user_id: User.current.id).first_or_initialize %>
 <div class="nested-fields row margin-top-5">
   <fieldset>
