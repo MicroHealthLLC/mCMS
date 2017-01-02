@@ -16,8 +16,7 @@ class EmployeesController < ApplicationController
   end
 
   def new
-    rt = RoleType.default
-    r = Role.where(role_type_id: rt.id).first
+    r = Role.where(role_type_id: RoleType.default.try(:id)).first
     @user = User.new(state: true, role_id: r.try(:id))
     @user.core_demographic = CoreDemographic.new
   end

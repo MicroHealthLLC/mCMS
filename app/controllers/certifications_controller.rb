@@ -3,12 +3,13 @@ class CertificationsController < ApplicationController
   before_action :set_certification, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
   before_action :authorize, only: [:new, :create]
+  before_action :authorize_show, only: [:show]
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
   # GET /certifications
   # GET /certifications.json
   def index
-    @certifications = Certification.visible :view_certifications
+    @certifications = Certification.visible
   end
 
   # GET /certifications/1
@@ -63,19 +64,23 @@ class CertificationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_certification
-      @certification = Certification.
-          includes(:certification_type, :certification_attachments).
-          find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      render_404
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_certification
+    @certification = Certification.
+        includes(:certification_type, :certification_attachments).
+        find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def certification_params
-      params.require(:certification).permit(Certification.safe_attributes)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def certification_params
+    params.require(:certification).permit(Certification.safe_attributes)
+  end
+
+  def authorize_show
+    raise Unauthorized unless @certification.can?(:view_certifications, :manage_certifications, :manage_roles)
+  end
 
   def authorize_edit
     raise Unauthorized unless @certification.can?(:edit_certifications, :manage_certifications, :manage_roles)

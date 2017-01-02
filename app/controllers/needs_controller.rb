@@ -9,7 +9,7 @@ class NeedsController < ApplicationController
   # GET /needs
   # GET /needs.json
   def index
-    @needs = Need.where(user_id: User.current.id)
+    @needs = Need.visible
   end
 
   # GET /needs/1

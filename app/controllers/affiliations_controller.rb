@@ -3,6 +3,7 @@ class AffiliationsController < ApplicationController
   before_action :set_affiliation, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
   before_action :authorize, only: [:new, :create]
+  before_action :authorize_show, only: [:show]
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
 
@@ -10,7 +11,7 @@ class AffiliationsController < ApplicationController
   # GET /affiliations
   # GET /affiliations.json
   def index
-    @affiliations = Affiliation.visible(:view_affiliations)
+    @affiliations = Affiliation.visible
   end
 
   # GET /affiliations/1
@@ -68,17 +69,21 @@ class AffiliationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_affiliation
-      @affiliation = Affiliation.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      render_404
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_affiliation
+    @affiliation = Affiliation.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def affiliation_params
-      params.require(:affiliation).permit(Affiliation.safe_attributes)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def affiliation_params
+    params.require(:affiliation).permit(Affiliation.safe_attributes)
+  end
+
+  def authorize_show
+    raise Unauthorized unless @affiliation.can?(:view_affiliations, :manage_affiliations, :manage_roles)
+  end
 
   def authorize_edit
     raise Unauthorized unless @affiliation.can?(:edit_affiliations, :manage_affiliations, :manage_roles)
@@ -87,5 +92,5 @@ class AffiliationsController < ApplicationController
   def authorize_delete
     raise Unauthorized unless @affiliation.can?(:delete_affiliations, :manage_affiliations, :manage_roles)
   end
-  
+
 end

@@ -10,7 +10,7 @@ class CaseSupportsController < ApplicationController
   # GET /case_supports
   # GET /case_supports.json
   def index
-    @case_supports = CaseSupport.where(user_id: User.current.id)
+    @case_supports = CaseSupport.visible
   end
 
   # GET /case_supports/1

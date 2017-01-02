@@ -3,13 +3,14 @@ class EducationsController < ApplicationController
   before_action :set_education, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
   before_action :authorize, only: [:new, :create]
+  before_action :authorize_show, only: [:show]
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
 
   # GET /educations
   # GET /educations.json
   def index
-    @educations = Education.visible(:view_educations)
+    @educations = Education.visible
   end
 
   # GET /educations/1
@@ -77,6 +78,10 @@ class EducationsController < ApplicationController
 
   def authorize_edit
     raise Unauthorized unless @education.can?(:edit_educations, :manage_educations, :manage_roles)
+  end
+
+  def authorize_show
+    raise Unauthorized unless @education.can?(:view_educations, :manage_educations, :manage_roles)
   end
 
   def authorize_delete

@@ -1,7 +1,7 @@
 <div class="col-xs-12 btn-edition">
-  <%= link_to 'Delete',  checklist_case_path(@checklist_case), class: 'btn btn-danger pull-right',
+  <%= link_to( 'Delete',  checklist_case_path(@checklist_case), class: 'btn btn-danger pull-right',
               :method => :delete,
-              :data => {:confirm => t(:text_are_you_sure)}
+              :data => {:confirm => t(:text_are_you_sure)}) if can?(:delete_checklists, :manage_checklists, :manage_roles)
   %>
   <%= link_to t('button_cancel'), :back, class: 'btn btn-warning pull-right' %>
   <%= link_to( t('add_note'), new_note_path(type: 'ChecklistNote', owner_id: @checklist_case.id), class: 'btn btn-success pull-right') if can?(:add_notes, :manage_roles) %>

@@ -3,6 +3,7 @@ class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
   before_action :authorize, only: [:new, :create]
+  before_action :authorize_show, only: [:show]
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
 
@@ -10,7 +11,7 @@ class ContactsController < ApplicationController
   # GET /contacts.json
   def index
     respond_to do |format|
-      format.html{@contacts = Contact.visible :view_contacts}
+      format.html{@contacts = Contact.visible}
       format.json{
         q = params[:q].to_s.downcase
         contacts = Contact.where('LOWER(first_name) LIKE ? ', "%#{q}%").
@@ -65,7 +66,7 @@ class ContactsController < ApplicationController
       end
     end
   end
-  
+
 
   # DELETE /contacts/1
   # DELETE /contacts/1.json
@@ -82,17 +83,21 @@ class ContactsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_contact
-      @contact = Contact.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      render_404
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_contact
+    @contact = Contact.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def contact_params
-      params.require(:contact).permit(Contact.safe_attributes)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def contact_params
+    params.require(:contact).permit(Contact.safe_attributes)
+  end
+
+  def authorize_show
+    raise Unauthorized unless @contact.can?(:view_contacts, :manage_contacts, :manage_roles)
+  end
 
   def authorize_edit
     raise Unauthorized unless @contact.can?(:edit_contacts, :manage_contacts, :manage_roles)

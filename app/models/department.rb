@@ -21,9 +21,6 @@ class Department < ApplicationRecord
   validates_presence_of :department_type_id
   validates_uniqueness_of :department_type_id
 
-  scope :visible, lambda {|action|  User.current.allowed_to?(action) ? for_employees :  where(user_id: User.current.id) }
-  scope :for_employees, -> {where(user_id: User.employees.pluck(:id))}
-
   def self.safe_attributes
     [:user_id, :note, :date_start, :date_end, :department_type_id,
      :organization_id, department_attachments_attributes: [Attachment.safe_attributes]]

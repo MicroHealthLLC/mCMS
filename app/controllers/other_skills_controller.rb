@@ -3,13 +3,14 @@ class OtherSkillsController < ApplicationController
   before_action  :authenticate_user!
   before_action :set_other_skill, only: [:show, :edit, :update, :destroy]
   before_action :authorize, only: [:new, :create]
+  before_action :authorize_show, only: [:show]
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
-  
+
   # GET /other_skills
   # GET /other_skills.json
   def index
-    @other_skills = OtherSkill.visible :view_other_skills
+    @other_skills = OtherSkill.visible
   end
 
   # GET /other_skills/1
@@ -63,17 +64,21 @@ class OtherSkillsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_other_skill
-      @other_skill = OtherSkill.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      render_404
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_other_skill
+    @other_skill = OtherSkill.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def other_skill_params
-      params.require(:other_skill).permit(OtherSkill.safe_attributes)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def other_skill_params
+    params.require(:other_skill).permit(OtherSkill.safe_attributes)
+  end
+
+  def authorize_show
+    raise Unauthorized unless @other_skill.can?(:view_other_skills, :manage_other_skills, :manage_roles)
+  end
 
   def authorize_edit
     raise Unauthorized unless @other_skill.can?(:edit_other_skills, :manage_other_skills, :manage_roles)

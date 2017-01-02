@@ -1,9 +1,9 @@
 <div class="col-xs-12 btn-edition">
-  <%= link_to 'Delete', goal_path(@goal), class: 'btn btn-danger pull-right',
+  <%= link_to( 'Delete', goal_path(@goal), class: 'btn btn-danger pull-right',
               :method => :delete,
-              :data => {:confirm => t(:text_are_you_sure)}
+              :data => {:confirm => t(:text_are_you_sure)})  if can?(:delete_goals, :manage_goals, :manage_roles)
   %>
-  <%= link_to 'Edit', edit_goal_path(@goal), class: 'btn btn-success pull-right' %>
+  <%= link_to 'Edit', edit_goal_path(@goal), class: 'btn btn-success pull-right' if can?(:edit_goals, :manage_goals, :manage_roles) %>
   <%= link_to( t('add_note'), new_note_path(type: 'GoalNote', owner_id: @goal.id), class: 'btn btn-success pull-right') if can?(:add_notes, :manage_roles) %>
   <%= link_to t('button_cancel'), goals_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), goal_path(@goal, format: 'pdf'), class: 'btn btn-primary pull-right' %>

@@ -3,13 +3,14 @@ class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
   before_action :authorize, only: [:new, :create]
+  before_action :authorize_show, only: [:show]
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
 
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.visible(:view_documents).paginate(page: params[:page], per_page: 25)
+    @documents = Document.visible.paginate(page: params[:page], per_page: 25)
   end
 
   # GET /documents/1
@@ -65,17 +66,22 @@ class DocumentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_document
-      @document = Document.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      render_404
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_document
+    @document = Document.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def document_params
-      params.require(:document).permit(Document.safe_attributes)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def document_params
+    params.require(:document).permit(Document.safe_attributes)
+  end
+
+  def authorize_show
+    raise Unauthorized unless @document.can?(:view_documents, :manage_documents, :manage_roles)
+  end
+
   def authorize_edit
     raise Unauthorized unless @document.can?(:edit_documents, :manage_documents, :manage_roles)
   end

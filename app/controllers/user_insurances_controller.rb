@@ -3,14 +3,14 @@ class UserInsurancesController < ApplicationController
   before_action :set_user_insurance, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
   before_action :authorize, only: [:new, :create]
+  before_action :authorize_show, only: [:show]
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
 
   # GET /user_insurances
   # GET /user_insurances.json
   def index
-    @user_insurances = UserInsurance.where(user_id: User.current.id).
-        paginate(page: params[:page], per_page: 25)
+    @user_insurances = UserInsurance.visible.paginate(page: params[:page], per_page: 25)
   end
 
   # GET /user_insurances/1
@@ -78,6 +78,10 @@ class UserInsurancesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_insurance_params
     params.require(:user_insurance).permit(UserInsurance.safe_attributes)
+  end
+
+  def authorize_show
+    raise Unauthorized unless @user_insurance.can?(:view_insurances, :manage_insurances, :manage_roles)
   end
 
   def authorize_edit

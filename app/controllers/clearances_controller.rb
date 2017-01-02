@@ -4,12 +4,13 @@ class ClearancesController < ApplicationController
   before_action :set_clearance, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
   before_action :authorize, only: [:new, :create]
+  before_action :authorize_show, only: [:show]
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
   # GET /clearances
   # GET /clearances.json
   def index
-    @clearances = Clearance.visible :view_clearances
+    @clearances = Clearance.visible
   end
 
   # GET /clearances/1
@@ -75,6 +76,10 @@ class ClearancesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def clearance_params
     params.require(:clearance).permit(Clearance.safe_attributes)
+  end
+
+  def authorize_show
+    raise Unauthorized unless @clearance.can?(:view_clearances, :manage_clearances, :manage_roles)
   end
 
   def authorize_edit

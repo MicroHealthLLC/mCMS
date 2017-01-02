@@ -3,6 +3,7 @@ class PositionsController < ApplicationController
   before_action :set_position, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
   before_action :authorize, only: [:new, :create]
+  before_action :authorize_show, only: [:show]
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
 
@@ -10,7 +11,7 @@ class PositionsController < ApplicationController
   # GET /positions
   # GET /positions.json
   def index
-    @positions = Position.visible(:view_positions)
+    @positions = Position.visible
   end
 
   # GET /positions/1
@@ -78,6 +79,10 @@ class PositionsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def position_params
     params.require(:position).permit(Position.safe_attributes)
+  end
+
+  def authorize_show
+    raise Unauthorized unless @position.can?(:view_positions, :manage_positions, :manage_roles)
   end
 
   def authorize_edit
