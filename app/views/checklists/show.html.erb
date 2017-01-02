@@ -16,14 +16,10 @@
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
                          checklist: @checklist,
+                         case_id: defined?(case_id) ? case_id : nil ,
                          wid_id: 'checklist',
                          wid_title: 'New checklist'
                  } %>
     </article>
   </div>
 </section>
-
-<% notes = checklist.notes(User.current.id) %>
-<% if notes.any? %>
-    <%= render partial: 'notes/notes', locals: {notes: checklist.notes(User.current.id)} %>
-<% end %>

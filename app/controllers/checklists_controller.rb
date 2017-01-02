@@ -1,26 +1,22 @@
 class ChecklistsController < ApplicationController
   before_action  :authenticate_user!
-  before_action :set_checklist_template, only: [:new_note, :show, :edit, :update, :destroy, :save]
+  before_action :set_checklist_template, only: [:show, :edit, :update, :destroy, :save]
 
   before_action :require_admin, except: [:index, :show,
-                                         :save, :new_assign,
-                                         :destroy, :new_note] # ...
+                                         :save, :new_assign, :display,
+                                         :destroy] # ...
   # before_action :authorize, only: [:index, :show, :save]
 
   def index
-    scope = ChecklistTemplate.not_related
     if User.current.admin?
-      scope = scope.order('id DESC')
+      scope = ChecklistTemplate.order('id DESC')
     else
-      scope = scope.joins(:checklist_users).
-          where("#{ChecklistUser.table_name}.assigned_to_id = ? ", User.current.id).
-          order('title DESC')
+
+      scope = ChecklistCase.includes(:checklist_template).references(:checklist_template).
+          where("#{ChecklistCase.table_name}.assigned_to_id = :user ",
+                user: User.current.id)
     end
     @checklists = scope.paginate(page: params[:page], per_page: 25)
-  end
-
-  def new_note
-    @note = ChecklistNote.new(user_id: User.current.id, owner_id: @checklist.id)
   end
 
   def new_assign
@@ -40,22 +36,6 @@ class ChecklistsController < ApplicationController
 
   def show
 
-  end
-
-  def save
-    if params[:checklist_answer]
-      params[:checklist_answer].each do |key, answer|
-        checklist_id = answer[:checklist_id]
-        checklist_template_id = answer[:checklist_template_id]
-        user_id = answer[:user_id]
-        res = ChecklistAnswer.where(user_id: user_id)
-                  .where(checklist_id: checklist_id )
-                  .where(checklist_template_id: checklist_template_id ).first_or_initialize
-        res.update(answer.permit!)
-      end
-    end
-
-    redirect_to checklist_templates_url, notice: 'Template was successfully updated.'
   end
 
   def new

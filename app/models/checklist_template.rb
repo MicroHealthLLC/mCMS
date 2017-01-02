@@ -4,6 +4,7 @@ class ChecklistTemplate < ApplicationRecord
 
   has_many :checklists, dependent: :destroy
   has_many :checklist_users, dependent: :destroy
+  has_many :checklist_cases, dependent: :destroy
   accepts_nested_attributes_for :checklists, reject_if: :all_blank, allow_destroy: true
 
   has_many :checklist_answers, dependent: :destroy
@@ -12,14 +13,9 @@ class ChecklistTemplate < ApplicationRecord
 
   scope :not_related, -> {where(related_to_id: nil)}
 
-
   validates_presence_of :title
 
   CHECKLIST_TYPE = ['', 'Task']
-
-  def checklist_notes
-    ChecklistNote.where(owner_id: self.id)
-  end
 
   def checklist_status_type
     if checklist_status_type_id
@@ -27,11 +23,6 @@ class ChecklistTemplate < ApplicationRecord
     else
       ChecklistStatusType.default
     end
-  end
-
-
-  def notes(user_id)
-    checklist_notes.where(user_id: user_id)
   end
 
   def self.safe_attributes

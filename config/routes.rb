@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
+  resources :checklist_cases, only: [:destroy, :show, :update]
   resources :note_templates
   resources :case_supports do
-  resources :case_support_extend_demographies, only: [:create, :update], controller: :extend_demographies
-end
+    resources :case_support_extend_demographies, only: [:create, :update], controller: :extend_demographies
+  end
   resources :case_watchers, only: [:index]
   resources :plans
   resources :goals
@@ -76,7 +77,7 @@ end
     collection do
       match 'search', via: [:get, :post]
     end
-    
+
     resources :contact_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
   resources :affiliations do
@@ -123,9 +124,9 @@ end
   resources :checklist_templates, controller: :checklists do
     member do
       match 'save', via: [:patch, :put, :post]
-      get 'new_note'
     end
     collection do
+      get 'display'
       get 'new_assign'
       post 'new_assign'
     end

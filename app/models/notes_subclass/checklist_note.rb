@@ -1,7 +1,7 @@
 class ChecklistNote < Note
-  belongs_to :checklist_template, foreign_key: :owner_id
+  belongs_to :checklist_case, foreign_key: :owner_id
 
   def object
-    checklist_template
+    checklist_case
   end
 end

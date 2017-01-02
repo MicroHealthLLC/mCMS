@@ -2,6 +2,9 @@
   <thead>
   <tr>
     <th>Title</th>
+    <% unless User.current.admin? %>
+        <th>Case</th>
+    <% end %>
     <th>checklist type</th>
     <th>Number of checklist</th>
     <th colspan="3"></th>
@@ -10,9 +13,15 @@
 
   <tbody>
   <% if @checklists.any? %>
-      <% @checklists.each do |checklist_template| %>
+      <% @checklists.each do |checklist_case| %>
+          <% checklist_template = checklist_case.checklist_template  %>
           <tr>
-            <td><%= link_to checklist_template.title, checklist_template_path(checklist_template) %></td>
+            <% if User.current.admin? %>
+                <td><%= link_to checklist_template.title, checklist_template_path(checklist_template ) %></td>
+            <% else %>
+                <td><%= link_to checklist_template.title, checklist_case_path(checklist_case) %></td>
+                <td><%= checklist_case.case %></td>
+            <% end %>
             <td><%= checklist_template.checklist_type %></td>
             <td><%= checklist_template.checklists.count %></td>
 
