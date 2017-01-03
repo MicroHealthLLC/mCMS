@@ -5,38 +5,43 @@
   %>
   <%= link_to t('button_edit'), edit_appointment_path(@appointment), class: 'btn btn-success pull-right' %>
   <%= link_to( t('add_note'), new_note_path(type: 'AppointmentNote', owner_id: @appointment.id), class: 'btn btn-success pull-right') if can?(:add_notes, :manage_roles) %>
+  <%= link_to( 'Add capture', new_appointment_capture_path(appointment_id: @appointment.id), class: 'btn btn-success pull-right') if can?(:add_notes, :manage_roles) %>
   <%= link_to t('button_cancel'), back_url(@appointment), class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), appointment_path(@appointment, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 </div>
+<div class="row">
 
-<p>
-  <strong>Title:</strong>
-  <%= @appointment.title %>
-</p>
+  <p>
+    <strong>Title:</strong>
+    <%= @appointment.title %>
+  </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @appointment.description.html_safe %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @appointment.description.html_safe %>
+  </p>
 
-<p>
-  <strong>Appointment type:</strong>
-  <%= @appointment.appointment_type %>
-</p>
+  <p>
+    <strong>Appointment type:</strong>
+    <%= @appointment.appointment_type %>
+  </p>
 
-<p>
-  <strong>Date:</strong>
-  <%= @appointment.date_time %>
-</p>
+  <p>
+    <strong>Date:</strong>
+    <%= @appointment.date_time %>
+  </p>
 
-<p>
-  <strong>Appointment status:</strong>
-  <%= @appointment.appointment_status %>
-</p>
+  <p>
+    <strong>Appointment status:</strong>
+    <%= @appointment.appointment_status %>
+  </p>
 
-<p>
-  <strong>With who:</strong>
-  <%= @appointment.with_who %>
-</p>
+  <p>
+    <strong>With who:</strong>
+    <%= @appointment.with_who %>
+  </p>
+
+</div>
+<%= render partial: 'appointment_captures/list', locals: {appointment_captures: @appointment.appointment_captures} %>
 
 <%= render partial: 'notes/notes', locals: {notes: @appointment.appointment_notes} %>

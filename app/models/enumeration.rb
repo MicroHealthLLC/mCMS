@@ -132,6 +132,7 @@ class Enumeration < ActiveRecord::Base
 end
 
 # Force load the subclasses in development mode
+require_dependency 'assessment'
 require_dependency 'address_type'
 require_dependency 'affiliation_type'
 require_dependency 'appointment_status'
@@ -146,6 +147,7 @@ require_dependency 'contact_type'
 require_dependency 'country_type'
 require_dependency 'checklist_status_type'
 require_dependency 'department_type'
+require_dependency 'disposition'
 require_dependency 'document_type'
 require_dependency 'education_type'
 require_dependency 'email_type'
@@ -165,6 +167,7 @@ require_dependency 'organization_type'
 require_dependency 'phone_type'
 require_dependency 'priority_type'
 require_dependency 'plan_status'
+require_dependency 'procedure'
 require_dependency 'proficiency_type'
 require_dependency 'pay_rate_type'
 require_dependency 'role_type'

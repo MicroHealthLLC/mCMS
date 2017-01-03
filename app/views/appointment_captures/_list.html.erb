@@ -1,0 +1,27 @@
+<table  class="table table-bordered table-responsive">
+  <thead>
+  <tr>
+    <th>Assessment</th>
+    <th>Disposition</th>
+    <th>Procedure</th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if appointment_captures.present? %>
+      <% appointment_captures.each do |appointment_capture| %>
+          <tr>
+            <td><%= appointment_capture.assessment  %></td>
+            <td><%= appointment_capture.disposition %></td>
+            <td><%= appointment_capture.procedure   %></td>
+            <td><%= show_link appointment_capture %></td>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
