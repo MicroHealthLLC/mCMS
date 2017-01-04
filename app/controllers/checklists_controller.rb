@@ -11,10 +11,10 @@ class ChecklistsController < ApplicationController
     if User.current.admin?
       scope = ChecklistTemplate.order('id DESC')
     else
-
+      cases = Case.root
+      cases = cases.where('assigned_to_id= ? OR user_id= ?', User.current.id,  User.current.id ).order('title desc')
       scope = ChecklistCase.includes(:checklist_template).references(:checklist_template).
-          where("#{ChecklistCase.table_name}.assigned_to_id = :user ",
-                user: User.current.id)
+          where(assigned_to_id:  cases.pluck(:id))
     end
     @checklists = scope.paginate(page: params[:page], per_page: 25)
   end
