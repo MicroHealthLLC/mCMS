@@ -1,4 +1,5 @@
 <fieldset>
+  <legend></legend>
   <%= form_for(@page, { as: :page, url: url_for(action: :update), html: { class: 'form-horizontal', method: :post } }) do |f| %>
       <%= f.hidden_field :previous_version_number, :value => f.object.last_version_number %>
 

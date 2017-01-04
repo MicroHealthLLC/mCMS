@@ -16,7 +16,6 @@ class ExtendDemography < ApplicationRecord
   has_many :social_media, foreign_key: :extend_demography_id
   accepts_nested_attributes_for :social_media, reject_if: :all_blank, allow_destroy: true
 
-
   def object
 
   end
@@ -26,7 +25,7 @@ class ExtendDemography < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:user_id, :department_id, :owner_type, :owner_id,
+    [:user_id, :department_id, :type, :contact_id, :organization_id, :affiliation_id, :insurance_id, :case_support_id,
      social_media_attributes: [SocialMedium.safe_attributes],
      emails_attributes: [Email.safe_attributes],
      addresses_attributes: [Address.safe_attributes],

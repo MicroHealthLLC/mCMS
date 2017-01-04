@@ -32,7 +32,7 @@
       <% end %>
   <% end %>
   <li>
-    <a href="/conference/new_conference"><i class="fa fa-lg fa-fw fa-video-camera"></i><span class="menu-item-parent">New conference</span></a>
+    <a href="/conference/new_conference" <%= "target=_blank" if Setting['open_new_tab_url'] == 'true' %>><i class="fa fa-lg fa-fw fa-video-camera"></i><span class="menu-item-parent">New conference</span></a>
   </li>
   <%= render partial: 'menu/smart_chat' %>
 

@@ -2,7 +2,7 @@
 <table class="table table-bordered table-responsive">
   <thead>
   <tr>
-    <th>Client</th>
+    <% if params[:controller] != 'cases' %><th>Client</th> <% end %>
     <th>Title</th>
     <th>Appointment type</th>
     <th>Appointment status</th>
@@ -13,7 +13,7 @@
   <tbody>
   <% @appointments.each do |appointment| %>
       <tr>
-        <td><%= appointment.user %></td>
+        <% if params[:controller] != 'cases' %>   <td><%= appointment.user %></td>    <% end %>
         <td><%= link_to appointment.title, appointment_path(appointment) %></td>
         <td><%= appointment.appointment_type %></td>
         <td><%= appointment.appointment_status %></td>

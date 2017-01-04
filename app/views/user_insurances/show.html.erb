@@ -7,37 +7,39 @@
   <%= link_to t('button_cancel'), user_insurances_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), user_insurance_path(@user_insurance, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 </div>
+<div class="row" >
+  <p>
+    <strong>User:</strong>
+    <%= @user_insurance.user %>
+  </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @user_insurance.user %>
-</p>
+  <p>
+    <strong>Insurance:</strong>
+    <%= @user_insurance.insurance %>
+  </p>
 
-<p>
-  <strong>Insurance:</strong>
-  <%= @user_insurance.insurance %>
-</p>
+  <p>
+    <strong>Insurance type:</strong>
+    <%= @user_insurance.insurance_type %>
+  </p>
 
-<p>
-  <strong>Insurance type:</strong>
-  <%= @user_insurance.insurance_type %>
-</p>
+  <p>
+    <strong>Insurance ID:</strong>
+    <%= @user_insurance.insurance_identifier %>
+  </p>
 
-<p>
-  <strong>Insurance ID:</strong>
-  <%= @user_insurance.insurance_identifier %>
-</p>
+  <p>
+    <strong>Note:</strong>
+    <%= @user_insurance.note.html_safe %>
+  </p>
 
-<p>
-  <strong>Note:</strong>
-  <%= @user_insurance.note.html_safe %>
-</p>
-
-<p>
-  <strong><%= t('attachments') %>:</strong>
-  <% @user_insurance.user_insurance_attachments.each do |attachment| %>
-      <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-  <% end %>
-</p>
+  <p>
+    <strong><%= t('attachments') %>:</strong>
+    <% @user_insurance.user_insurance_attachments.each do |attachment| %>
+        <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+    <% end %>
+  </p>
 
 </div>
+
+<%= render_extend_demography_information(@user_insurance.insurance.insurance_extend_demography) if @user_insurance.insurance %>

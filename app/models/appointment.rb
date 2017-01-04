@@ -19,6 +19,10 @@ class Appointment < ApplicationRecord
   scope :my_appointment_created, -> { where(user_id: User.current.id)}
   scope :my_appointment_for_me, -> { where(with_who_id: User.current.id).where(with_who_type: "User")}
 
+  def to_s
+    title
+  end
+
   def visible?
     User.current == user
   end

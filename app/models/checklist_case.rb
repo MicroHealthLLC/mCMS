@@ -14,4 +14,8 @@ class ChecklistCase < ApplicationRecord
     end
   end
 
+  def to_s
+    self.case
+  end
+
 end

@@ -18,9 +18,7 @@
           %>
 
           <tr>
-            <td>
-              <%= link_to survey.name, attempts_path(survey_id: survey.id) %>
-            </td>
+            <td>  <%= survey.name %>  </td>
             <td>   <%= @case %>   </td>
             <td><%= survey.survey_type %></td>
             <td><%= survey.attempts.where(participant: @case).count %></td>

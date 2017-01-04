@@ -5,7 +5,9 @@ email_from:
 conference_url:
   default: "https://www.appear.in/$room_number$"
 open_new_tab_url:
-  default: true
+  default: 'true'
+use_iframe:
+  default: 'true'
 email_header:
   default: ""
 email_footer:
