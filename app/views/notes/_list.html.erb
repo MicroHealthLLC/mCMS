@@ -1,16 +1,16 @@
 <style>
-  .note_span{
-    cursor: pointer;
-    color: blue;
-  }
-  .all_notes
-  {
-    display: none;
-  }
+    .note_span{
+        cursor: pointer;
+        color: blue;
+    }
+    .all_notes
+    {
+        display: none;
+    }
 </style>
-<table class="table table-bordered table-responsive">
+<table class="display  projects-table table  table-striped table-bordered table-hover" cellspacing="0" width="100%" id="notes_table">
   <thead>
-  <tr>
+  <tr id="notes_input">
 
     <% if defined?(use_belongs_to) %>
         <th>Belongs to</th>
@@ -19,8 +19,10 @@
     <% end %>
     <th>Date</th>
     <th>Note</th>
-    <th colspan="2"></th>
+    <th ></th>
+    <th ></th>
   </tr>
+
   </thead>
 
   <tbody>
@@ -28,7 +30,7 @@
       <% notes.each do |note| %>
           <tr>
             <% if defined?(use_belongs_to) %>
-                <td><%= link_to note.object, note.object %></td>
+                <td><%= link_to( note.object.to_s, note.object) if note.object %></td>
             <% else %>
                 <td><%= link_to note.user, note %></td>
             <% end %>
@@ -48,14 +50,29 @@
 </table>
 
 <script>
-  $(document).ready(function(){
-    $('.link_label_less').on('click', function(){
-      $(this).parents('td').find('.all_notes').hide();
-      $(this).parents('td').find('.less_notes').show();
-    });
-    $('.link_label_more').on('click', function(){
-      $(this).parents('td').find('.less_notes').hide();
-      $(this).parents('td').find('.all_notes').show();
-    });
-  })
+    $(document).ready(function(){
+        $('.link_label_less').on('click', function(){
+            $(this).parents('td').find('.all_notes').hide();
+            $(this).parents('td').find('.less_notes').show();
+        });
+        $('.link_label_more').on('click', function(){
+            $(this).parents('td').find('.less_notes').hide();
+            $(this).parents('td').find('.all_notes').show();
+        });
+
+
+        table = $('#notes_table').DataTable({ //Brtip
+//      "bStateSave": true,
+            display: [[0, 'desc']],
+            "bDestroy": true,
+            "sDom": "<'dt-toolbar'" +
+            "<'col-sm-5 col-xs-8'f>" + //search box
+            "<'col-sm-2 col-sm-offset-4 col-xs-2 'C>"+// drop down size
+            "<'col-sm-1 col-xs-2 'l>>"+// drop down size
+            "t"+ // the table
+            "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+            "iDisplayLength": 10
+
+        });
+    } );
 </script>
