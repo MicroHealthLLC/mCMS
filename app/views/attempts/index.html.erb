@@ -5,7 +5,7 @@
   </h2>
   <% if @attempts.any? %>
       <% @attempts.each_with_index do |attempt, index| %>
-          <h3><%= "ATTEMPT ##{index + 1}" %> <em><%= format_date attempt.created_at %></em></h3>
+          <h3><%= "ATTEMPT ##{index + 1}" %> <em><%= format_date(attempt.answers.first.created_at) if attempt.answers.first %></em></h3>
           <ol class="questions">
             <% attempt.answers.each do |answer| %>
                 <li>
