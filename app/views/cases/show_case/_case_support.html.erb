@@ -1,4 +1,5 @@
 <%= link_to(t('new_cases_support'), new_case_support_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_cases, :manage_roles) %>
+<%= link_to(t('label_search'), search_case_supports_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_cases, :manage_roles) %>
 
 <div class="row">
   <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

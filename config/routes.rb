@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   resources :checklist_cases, only: [:destroy, :show, :update]
   resources :note_templates
   resources :case_supports do
+    collection do
+      match 'search', via: [:get, :post]
+    end
     resources :case_support_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
   resources :case_watchers, only: [:index]

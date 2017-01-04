@@ -1,0 +1,2 @@
+<% @case_support.case_id = params[:case_id] %>
+$('.contact_result').html("<%= escape_javascript(render partial: 'form', locals: {case_support: @case_support}) %>");

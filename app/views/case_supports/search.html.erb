@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-xs-12">
+    <%= text_field_tag :contact_search, '', class: 'form-control case_support-autocomplete' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 contact_result">
+  </div>
+</div>
+
+<script>
+  $(function(){
+    $(".case_support-autocomplete").autocomplete({
+      //source: availableTags
+
+      source: function (request, response) {
+        $.ajax({
+          url: "/case_supports.json?q="+ request.term,
+          dataType: "json",
+          success: function (data) {
+            response(data)
+          }
+        });
+      },
+      minLength: 2,
+      select: function (event, ui) {
+        $.getScript('/case_supports/'+ui.item.id+'.js?case_id=<%= params[:case_id] %>')
+      }
+    });
+  })
+</script>

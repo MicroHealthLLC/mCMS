@@ -7,6 +7,9 @@ class CaseSupport < ApplicationRecord
   has_many :case_support_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :case_support_attachments, reject_if: :all_blank, allow_destroy: true
 
+  scope :not_show_in_search, ->{ where(not_show_in_search: false)}
+
+
   validates_presence_of :case_id, :user_id
 
   def extend_informations

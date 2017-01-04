@@ -10,12 +10,31 @@ class CaseSupportsController < ApplicationController
   # GET /case_supports
   # GET /case_supports.json
   def index
-    @case_supports = CaseSupport.visible
+    respond_to do |format|
+      format.html{ @case_supports = CaseSupport.visible}
+      format.json{
+        q = params[:q].to_s.downcase
+        contacts = CaseSupport.not_show_in_search.where('LOWER(first_name) LIKE ? ', "%#{q}%").
+            or(CaseSupport.not_show_in_search.where('LOWER(last_name) LIKE ? ', "%#{q}%")).
+            or(CaseSupport.not_show_in_search.where('LOWER(middle_name) LIKE ? ', "%#{q}%")).map{|contact| {id: contact.id, value: contact.name, label: contact.name}}.to_json
+        render json: contacts
+      }
+
+    end
   end
 
   # GET /case_supports/1
   # GET /case_supports/1.json
   def show
+    respond_to do |format|
+      format.html{}
+      format.js{
+        @case_support = @case_support.dup
+        @case_support.user_id = User.current.id
+        @case_support.case_id = params[:case_id]
+        @case_support.not_show_in_search = true
+      }
+    end
   end
 
   # GET /case_supports/new

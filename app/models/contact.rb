@@ -6,6 +6,8 @@ class Contact < ApplicationRecord
   has_many :contact_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :contact_attachments, reject_if: :all_blank, allow_destroy: true
 
+  scope :not_show_in_search, ->{ where(not_show_in_search: false)}
+
   after_save :send_notification
   def send_notification
     UserMailer.contact_notification(self).deliver_later
@@ -22,7 +24,7 @@ class Contact < ApplicationRecord
 
 
   def self.safe_attributes
-    [:emergency_contact, :first_name, :middle_name, :last_name,
+    [:emergency_contact, :first_name, :middle_name, :last_name, :not_show_in_search, 
      :note, :contact_type_id, :user_id, contact_attachments_attributes: [Attachment.safe_attributes]]
   end
 

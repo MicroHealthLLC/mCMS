@@ -3,7 +3,7 @@ class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
   before_action :authorize, only: [:new, :create]
-  before_action :authorize_show, only: [:show]
+  # before_action :authorize_show, only: [:show]
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
 
@@ -14,9 +14,9 @@ class ContactsController < ApplicationController
       format.html{@contacts = Contact.visible}
       format.json{
         q = params[:q].to_s.downcase
-        contacts = Contact.where('LOWER(first_name) LIKE ? ', "%#{q}%").
-            or(Contact.where('LOWER(last_name) LIKE ? ', "%#{q}%")).
-            or(Contact.where('LOWER(middle_name) LIKE ? ', "%#{q}%")).map{|contact| {id: contact.id, value: contact.name, label: contact.name}}.to_json
+        contacts = Contact.not_show_in_search.where('LOWER(first_name) LIKE ? ', "%#{q}%").
+            or(Contact.not_show_in_search.where('LOWER(last_name) LIKE ? ', "%#{q}%")).
+            or(Contact.not_show_in_search.where('LOWER(middle_name) LIKE ? ', "%#{q}%")).map{|contact| {id: contact.id, value: contact.name, label: contact.name}}.to_json
         render json: contacts
       }
     end
@@ -28,7 +28,12 @@ class ContactsController < ApplicationController
   def show
     respond_to do |format|
       format.html{}
-      format.js{}
+      format.js{
+        @contact = @contact.dup
+        @contact.user_id = User.current.id
+        @contact.not_show_in_search = true
+
+      }
     end
   end
 
