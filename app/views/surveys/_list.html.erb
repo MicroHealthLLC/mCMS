@@ -5,7 +5,11 @@
     <th>Survey type</th>
     <th>Attempts</th>
     <th>Last updated</th>
-    <th colspan="4"></th>
+    <th></th>
+    <th></th>
+    <% if User.current.admin? %>
+        <th></th>
+    <% end %>
   </tr>
   </thead>
 
