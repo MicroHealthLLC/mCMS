@@ -12,5 +12,10 @@
                    } %>
       </article>
     </div>
+    <script>
+        $(document).ready(function(){
+            <% if @documents.present? %>  initDataTable('documents_table') <% end %>
+        } );
+    </script>
 
 <% end %>

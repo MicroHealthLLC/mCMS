@@ -12,5 +12,10 @@
                    } %>
       </article>
     </div>
+    <script>
+        $(document).ready(function(){
+            <% if @goals.present? %>  initDataTable('goals_table') <% end %>
+        } );
+    </script>
 
 <% end %>

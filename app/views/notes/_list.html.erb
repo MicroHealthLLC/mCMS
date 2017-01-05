@@ -59,20 +59,6 @@
             $(this).parents('td').find('.less_notes').hide();
             $(this).parents('td').find('.all_notes').show();
         });
-
-
-        table = $('#notes_table').DataTable({ //Brtip
-//      "bStateSave": true,
-            display: [[0, 'desc']],
-            "bDestroy": true,
-            "sDom": "<'dt-toolbar'" +
-            "<'col-sm-5 col-xs-8'f>" + //search box
-            "<'col-sm-2 col-sm-offset-4 col-xs-2 'C>"+// drop down size
-            "<'col-sm-1 col-xs-2 'l>>"+// drop down size
-            "t"+ // the table
-            "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
-            "iDisplayLength": 10
-
-        });
+        <%  if notes.present? %> initDataTable('notes_table') <% end %>
     } );
 </script>

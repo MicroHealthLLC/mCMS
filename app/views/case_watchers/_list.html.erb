@@ -1,4 +1,4 @@
-<table class="table table-responsive table-bordered">
+<table class="table table-responsive table-bordered" id="case_watchers_table">
   <thead>
   <tr>
     <% if params[:controller] == 'cases' %>
@@ -10,13 +10,19 @@
   </thead>
 
   <tbody>
-  <% case_watchers.each do |case_watcher| %>
-      <tr>
-        <% if params[:controller] == 'cases' %>
-            <td><%= case_watcher.user %></td>
-        <% else %>
-            <td><%= link_to case_watcher.case, case_watcher.case %></td>
-        <% end %>
+  <% if case_watchers.present? %>
+      <% case_watchers.each do |case_watcher| %>
+          <tr>
+            <% if params[:controller] == 'cases' %>
+                <td><%= case_watcher.user %></td>
+            <% else %>
+                <td><%= link_to case_watcher.case, case_watcher.case %></td>
+            <% end %>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
       </tr>
   <% end %>
   </tbody>

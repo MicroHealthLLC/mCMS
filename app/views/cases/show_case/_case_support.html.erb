@@ -12,3 +12,8 @@
                } %>
   </article>
 </div>
+<script>
+    $(document).ready(function(){
+        <% if @case_supports.present? %>  initDataTable('case_supports_table') <% end %>
+    } );
+</script>

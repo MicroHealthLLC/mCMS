@@ -1,4 +1,4 @@
-<table class="table table-bordered table-responsive">
+<table class="table table-bordered table-responsive" id="tasks_table">
   <thead>
   <tr>
     <% if User.current.can?(:manage_roles) %>
@@ -11,7 +11,6 @@
     <th>Date start</th>
     <th>Date due</th>
     <th>Date completed</th>
-    <th colspan="2"></th>
   </tr>
   </thead>
 

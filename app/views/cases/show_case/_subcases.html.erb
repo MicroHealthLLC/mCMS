@@ -4,7 +4,7 @@
 <div class="row">
   <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-    <%= render partial: 'list',
+    <%= render partial: 'cases/list',
                layout: 'shared/smart_widget_wrapper',
                locals: {
                        wid_id: 'subcases',
@@ -12,3 +12,8 @@
                } %>
   </article>
 </div>
+<script>
+    $(document).ready(function(){
+        <% if @cases.present? %>  initDataTable('cases_table') <% end %>
+    } );
+</script>
