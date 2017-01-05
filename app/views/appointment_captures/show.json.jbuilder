@@ -1,0 +1,1 @@
+json.partial! "appointment_captures/appointment_capture", appointment_capture: @appointment_capture

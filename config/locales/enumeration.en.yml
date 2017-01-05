@@ -44,3 +44,6 @@ en:
   enumeration_appointment_status: Appointment status
   enumeration_appointment_type: Appointment type
   enumeration_case_support_type: Case support type
+  enumeration_assessment: Assessment
+  enumeration_disposition: Disposition
+  enumeration_procedure: Procedure

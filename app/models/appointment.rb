@@ -5,6 +5,7 @@ class Appointment < ApplicationRecord
   belongs_to :case, optional: true, foreign_key: :related_to_id
 
   has_many :appointment_notes, foreign_key: :owner_id
+  has_many :appointment_captures
 
   has_many :appointment_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :appointment_attachments, reject_if: :all_blank, allow_destroy: true

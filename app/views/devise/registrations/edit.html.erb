@@ -6,26 +6,24 @@
       <%= render partial: 'edit_password',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     wid_id: 'password',
-                     wid_title: 'Change password'
+                         wid_id: 'password',
+                         wid_title: 'Change password'
                  } %>
-      <% if User.current.job_detail %>
-          <%= render partial: 'job_details/info',
-                     layout: 'shared/smart_widget_wrapper',
-                     locals: {
+      <%= render partial: 'job_details/info',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
                          wid_id: 'job_detail_info',
                          wid_title: "Role Info: #{ User.current.principal_role}",
                          job_detail: User.current.job_detail
-                     } %>
-      <% end %>
+                 } %>
     </article>
     <article class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
       <%= render partial: 'core_demographics/form',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     wid_id: 'profile',
-                     wid_title: 'profile',
-                     core_demographic: @core_demographic
+                         wid_id: 'profile',
+                         wid_title: 'profile',
+                         core_demographic: @core_demographic
                  } %>
     </article>
 
@@ -33,9 +31,9 @@
       <%= render partial: 'extend_demographies/form',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     wid_id: 'extend_demography',
-                     wid_title: 'More informations',
-                     extend_demography: User.current.extend_informations
+                         wid_id: 'extend_demography',
+                         wid_title: 'More informations',
+                         extend_demography: User.current.extend_informations
                  } %>
     </article>
 

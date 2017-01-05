@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :appointment_captures, except: [:index]
   resources :checklist_cases, only: [:destroy, :show, :update]
   resources :note_templates
   resources :case_supports do

@@ -2,7 +2,9 @@
 <table class="table table-bordered table-responsive" id="appointments_table">
   <thead>
   <tr>
-    <% if params[:controller] != 'cases' %><th>Client</th> <% end %>
+    <% if User.current.can?(:manage_roles) %>
+        <th>Client</th>
+    <% end %>
     <th>Title</th>
     <th>Appointment type</th>
     <th>Appointment status</th>
@@ -11,13 +13,20 @@
   </thead>
 
   <tbody>
-  <% @appointments.each do |appointment| %>
-      <tr>
-        <% if params[:controller] != 'cases' %>   <td><%= appointment.user %></td>    <% end %>
-        <td><%= link_to appointment.title, appointment_path(appointment) %></td>
-        <td><%= appointment.appointment_type %></td>
-        <td><%= appointment.appointment_status %></td>
-        <td><%= appointment.date %></td>
+  <% if @appointments.present? %>
+      <% @appointments.each do |appointment| %>
+          <tr>
+            <% if User.current.can?(:manage_roles) %> <td><%= appointment.user %></td>    <% end %>
+            <td><%= link_to appointment.title, appointment_path(appointment) %></td>
+            <td><%= appointment.appointment_type %></td>
+            <td><%= appointment.appointment_status %></td>
+            <td><%= appointment.date %></td>
+          </tr>
+      <% end %>
+
+  <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
       </tr>
   <% end %>
   </tbody>
