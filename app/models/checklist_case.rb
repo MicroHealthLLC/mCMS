@@ -15,7 +15,7 @@ class ChecklistCase < ApplicationRecord
   end
 
   def to_s
-    self.case
+    self.checklist_template
   end
 
 end
