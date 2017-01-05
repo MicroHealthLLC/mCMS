@@ -26,7 +26,7 @@ class CaseSupport < ApplicationRecord
 
   def self.safe_attributes
     [
-        :first_name, :middle_name, :last_name, :case_id,
+        :first_name, :middle_name, :last_name, :case_id, :not_show_in_search,
         :note, :case_support_type_id, :user_id,
         case_support_attachments_attributes: [Attachment.safe_attributes]
     ]
