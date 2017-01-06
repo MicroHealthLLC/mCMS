@@ -1,5 +1,5 @@
 
-<%= link_to(t('add_subcase'), new_case_path(subcase_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:manage_roles, :add_cases)  %>
+<%= link_to(t('add_subcase'), new_case_path(subcase_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:manage_roles, :create_cases, :manage_cases)  %>
 
 <div class="row">
   <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

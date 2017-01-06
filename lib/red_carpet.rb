@@ -119,8 +119,14 @@ RedCarpet::AccessControl.map do |map|
     map.permission :edit_tasks, {:tasks => [:edit, :update]},  :read => true
     map.permission :delete_tasks, {:tasks => [:destroy]},  :read => true
     map.permission :manage_tasks, {:tasks => [:new, :create, :edit, :update, :destroy]},  :read => true
-    map.permission :add_notes, {:tasks => [:add_note, :new_note]},  :read => true
-    map.permission :view_notes, {:tasks => [:view_notes]},  :read => true
+  end
+
+   map.project_module :notes do |map|
+    map.permission :view_notes, {:notes => [:index]},  :read => true
+    map.permission :add_notes, {:notes => [:new, :create]},  :read => true
+    map.permission :edit_notes, {:notes => [:edit, :update]},  :read => true
+    map.permission :delete_notes, {:notes => [:destroy]},  :read => true
+    map.permission :manage_notes, {:notes => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :cases do |map|

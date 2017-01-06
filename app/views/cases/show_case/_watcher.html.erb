@@ -1,5 +1,5 @@
 
-<%= link_to t(:manage_watcher), watchers_case_path(@case), class: 'btn btn-primary pull-right btn-edition'  if can?(:manage_roles) %>
+<%= link_to t(:manage_watcher), watchers_case_path(@case), class: 'btn btn-primary pull-right btn-edition'  if can?(:manage_roles, :manage_watchers, :create_watchers) %>
 <div class="row">
   <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <%= render partial: 'case_watchers/list',

@@ -5,7 +5,7 @@ class ApplicationRecord < ActiveRecord::Base
   scope :visible, -> { where(user_id: User.current.id) }
 
   def can?(*args)
-    owner? or args.map{|action| User.current.allowed_to? action }.include?(true)
+    owner? and args.map{|action| User.current_user.allowed_to? action }.include?(true)
   end
 
   def owner?

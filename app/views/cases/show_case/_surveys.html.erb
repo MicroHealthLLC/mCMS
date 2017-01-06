@@ -1,5 +1,5 @@
 <% if module_enabled?('surveys') %>
-    <%= link_to t('new_survey'), new_assign_survey_case_path(@case.id), class: 'btn btn-primary pull-right btn-edition'  if can?(:create_surveys, :manage_roles) %>
+    <%= link_to t('new_survey'), new_assign_survey_case_path(@case.id), class: 'btn btn-primary pull-right btn-edition'  if can?(:create_surveys, :manage_roles, :manage_surveys) %>
 
     <div class="row">
       <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

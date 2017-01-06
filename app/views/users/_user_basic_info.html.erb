@@ -27,7 +27,7 @@
       <div class="form-group">
         <label class="col-md-2 control-label">Role</label>
         <div class="col-md-9">
-          <%= f.select :role_id, options_for_select(Role.active.map{|r| [r.role_type, r.id]}, selected: f.object.role.try(:id)), {}, {class: 'form-control'} %>
+          <%= f.select :role_id, options_for_select(Role.active.map{|r| [r.role_type, r.id]}.insert(0, ['']), selected: f.object.role.try(:id)), {}, {class: 'form-control'} %>
         </div>
       </div>
 

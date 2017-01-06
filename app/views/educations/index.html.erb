@@ -1,5 +1,5 @@
 <h1><%= t('educations') %></h1>
 
-<%= link_to( t('new_education'), new_education_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_educations, :manage_roles, :manage_educations)%>
+<%= link_to( t('new_education'), new_education_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_educations, :manage_roles, :manage_educations) %>
 
 <%= render 'list', educations: @educations %>

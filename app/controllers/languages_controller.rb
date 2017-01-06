@@ -79,6 +79,11 @@ class LanguagesController < ApplicationController
   def language_params
     params.require(:language).permit(Language.safe_attributes)
   end
+
+  def authorize_show
+    raise Unauthorized unless @language.can?(:view_languages, :manage_languages, :manage_roles)
+  end
+
   def authorize_edit
     raise Unauthorized unless @language.can?(:edit_languages, :manage_languages, :manage_roles)
   end

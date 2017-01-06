@@ -1,0 +1,9 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to( 'Delete', education_path(@education), class: 'btn btn-danger pull-right',
+              :method => :delete,
+              :data => {:confirm => t(:text_are_you_sure)}) if @education.can?(:manage_roles, :manages_educations, :delete_educations)
+  %>
+  <%= link_to( 'Edit', edit_education_path(@education), class: 'btn btn-success pull-right') if @education.can?(:manage_roles, :manages_educations, :edit_educations) %>
+  <%= link_to t('button_cancel'), educations_path, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_print'), education_path(@education, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+</div>

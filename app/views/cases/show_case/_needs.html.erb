@@ -1,6 +1,6 @@
 
 <% if module_enabled?('needs') %>
-    <%= link_to(t('new_need'), new_need_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_needs, :manage_roles) %>
+    <%= link_to(t('new_need'), new_need_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_needs, :manage_roles, :manage_needs) %>
 
     <div class="row">
       <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

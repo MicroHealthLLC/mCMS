@@ -29,6 +29,11 @@ class Role < ApplicationRecord
   def to_s
     role_type.to_s
   end
+
+  def self.default
+    Role.where(role_type_id: RoleType.default.try(:id) ).first
+  end
+
   def setable_permissions
     setable_permissions = RedCarpet::AccessControl.permissions - RedCarpet::AccessControl.public_permissions
     setable_permissions

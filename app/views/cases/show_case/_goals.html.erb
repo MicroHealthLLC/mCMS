@@ -1,5 +1,5 @@
 <% if module_enabled?('goals') %>
-    <%= link_to(t('new_goal'), new_goal_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_goals, :manage_roles) %>
+    <%= link_to(t('new_goal'), new_goal_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_goals, :manage_roles, :manage_goals) %>
 
     <div class="row">
       <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

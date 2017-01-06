@@ -17,6 +17,7 @@ class ApplicationController < ActionController::Base
 
   def set_user
     if user_signed_in?
+      User.current_user = current_user
       if params[:user_id]
         @user = User.find params[:user_id]
         User.current = current_user

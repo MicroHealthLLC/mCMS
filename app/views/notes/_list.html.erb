@@ -36,8 +36,8 @@
             <% end %>
             <td><%= note.updated_at.to_date %></td>
             <td><%= display_note(note.note.to_s) %></td>
-            <td><%= show_link(note) %></td>
-            <td><%= delete_link(note) %></td>
+            <td><%= show_link(note) if note.can?(:manage_roles, :manage_notes, :edit_notes)  %></td>
+            <td><%= delete_link(note) if note.can?(:manage_roles, :manage_notes, :delete_notes)  %></td>
           </tr>
       <% end %>
 

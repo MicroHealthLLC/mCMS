@@ -1,80 +1,77 @@
-<% if !User.current.allowed_to?(:manage_roles) or session[:employee_id] %>
-    <%= cache do %>
-        <li>
-          <a href="#" id="ul_case"><i class="fa fa-lg fa-fw fa-square"></i> <span class="menu-item-parent">Cases</span></a>
-          <ul id="case_menu">
-            <li class="<%= menu_active?('cases') %>">
-              <a href="/cases" title="<%= t(:cases) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent"><%= t(:cases) %></span></a>
-            </li>
-
-            <li>
-              <a href="/cases/subcases" title="<%= t(:subcases) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent"><%= t(:subcases) %></span></a>
-            </li>
-
-             <li>
-              <a href="/case_supports" title="<%= t(:cases_support) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent"><%= t(:cases_support) %></span></a>
-            </li>
-
-            <li class="<%= menu_active?('notes') %>">
-              <a href="/notes" title="<%= t(:label_note_plural) %>"><i class="fa fa-lg fa-fw fa-sticky-note-o"></i> <span class="menu-item-parent"><%= t(:label_note_plural) %></span></a>
-            </li>
-
-            <% if module_enabled? 'needs' %>
-                <li class="<%= menu_active?('needs') %>">
-                  <a href="/needs" title="<%= t(:needs) %>"><i class="fa fa-lg fa-fw fa-cubes"></i> <span class="menu-item-parent"><%= t(:needs) %></span></a>
-                </li>
-            <% end %>
-
-            <% if module_enabled? 'goals' %>
-                <li class="<%= menu_active?('goals') %>">
-                  <a href="/goals" title="<%= t(:goals) %>"><i class="fa fa-lg fa-fw fa-bullseye"></i> <span class="menu-item-parent"><%= t(:goals) %></span></a>
-                </li>
-            <% end %>
-
-            <% if module_enabled? 'plans' %>
-                <li class="<%= menu_active?('plans') %>">
-                  <a href="/plans" title="<%= t(:plans) %>"><i class="fa fa-lg fa-fw fa-map"></i> <span class="menu-item-parent"><%= t(:plans) %></span></a>
-                </li>
-            <% end %>
-
-            <% if module_enabled?( 'tasks') %>
-                <li class="<%= menu_active?('tasks') %>">
-                  <a href="/tasks" title="<%= t :tasks %>"><i class="fa fa-lg fa-fw fa-tasks"></i> <span class="menu-item-parent"><%= t(:tasks) %></span></a>
-                </li>
-            <% end %>
-
-            <% if module_enabled? 'documents' %>
-                <li class="<%= menu_active?('documents') %>">
-                  <a href="/documents" title="<%= t(:documents) %>"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent"><%= t(:documents) %></span></a>
-                </li>
-            <% end %>
-
-            <% if module_enabled? 'checklists' %>
-                <li class="<%= menu_active?('checklists') %>">
-                  <a href="/checklist_templates" title="<%= t(:checklists) %>"><i class="fa fa-lg fa-fw fa-check"></i> <span class="menu-item-parent"><%= t(:checklists) %></span></a>
-                </li>
-            <% end %>
-
-            <% if module_enabled? 'appointments' %>
-                <li class="<%= menu_active?('appointments') %>">
-                  <a href="/appointments" title="<%= t(:appointments) %>"><i class="fa fa-lg fa-fw fa-calendar"></i> <span class="menu-item-parent"><%= t(:appointments) %></span></a>
-                </li>
-            <% end %>
-
-            <% if module_enabled? 'surveys' %>
-                <li class="<%= menu_active?('surveys') %>">
-                  <a href="/surveys" title="<%= t(:surveys) %>"><i class="fa fa-lg fa-fw fa-question"></i><span class="menu-item-parent"><%= t(:surveys) %></span></a>
-                </li>
-            <% end %>
-
-            <li>
-              <a href="/case_watchers" title="<%= t(:watchers) %>"><i class="fa fa-lg fa-fw fa-eye"></i><span class="menu-item-parent"><%= t(:watchers) %></span></a>
-            </li>
-
-          </ul>
+<% if !User.current.allowed_to?(:manage_roles) %>
+    <li>
+      <a href="#" id="ul_case"><i class="fa fa-lg fa-fw fa-square"></i> <span class="menu-item-parent">Cases</span></a>
+      <ul id="case_menu">
+        <li class="<%= menu_active?('cases') %>">
+          <a href="/cases" title="<%= t(:cases) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent"><%= t(:cases) %></span></a>
         </li>
 
-    <% end %>
+        <li>
+          <a href="/cases/subcases" title="<%= t(:subcases) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent"><%= t(:subcases) %></span></a>
+        </li>
+
+        <li>
+          <a href="/case_supports" title="<%= t(:cases_support) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent"><%= t(:cases_support) %></span></a>
+        </li>
+
+        <li class="<%= menu_active?('notes') %>">
+          <a href="/notes" title="<%= t(:label_note_plural) %>"><i class="fa fa-lg fa-fw fa-sticky-note-o"></i> <span class="menu-item-parent"><%= t(:label_note_plural) %></span></a>
+        </li>
+
+        <% if module_enabled? 'needs' %>
+            <li class="<%= menu_active?('needs') %>">
+              <a href="/needs" title="<%= t(:needs) %>"><i class="fa fa-lg fa-fw fa-cubes"></i> <span class="menu-item-parent"><%= t(:needs) %></span></a>
+            </li>
+        <% end %>
+
+        <% if module_enabled? 'goals' %>
+            <li class="<%= menu_active?('goals') %>">
+              <a href="/goals" title="<%= t(:goals) %>"><i class="fa fa-lg fa-fw fa-bullseye"></i> <span class="menu-item-parent"><%= t(:goals) %></span></a>
+            </li>
+        <% end %>
+
+        <% if module_enabled? 'plans' %>
+            <li class="<%= menu_active?('plans') %>">
+              <a href="/plans" title="<%= t(:plans) %>"><i class="fa fa-lg fa-fw fa-map"></i> <span class="menu-item-parent"><%= t(:plans) %></span></a>
+            </li>
+        <% end %>
+
+        <% if module_enabled?( 'tasks') %>
+            <li class="<%= menu_active?('tasks') %>">
+              <a href="/tasks" title="<%= t :tasks %>"><i class="fa fa-lg fa-fw fa-tasks"></i> <span class="menu-item-parent"><%= t(:tasks) %></span></a>
+            </li>
+        <% end %>
+
+        <% if module_enabled? 'documents' %>
+            <li class="<%= menu_active?('documents') %>">
+              <a href="/documents" title="<%= t(:documents) %>"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent"><%= t(:documents) %></span></a>
+            </li>
+        <% end %>
+
+        <% if module_enabled? 'checklists' %>
+            <li class="<%= menu_active?('checklists') %>">
+              <a href="/checklist_templates" title="<%= t(:checklists) %>"><i class="fa fa-lg fa-fw fa-check"></i> <span class="menu-item-parent"><%= t(:checklists) %></span></a>
+            </li>
+        <% end %>
+
+        <% if module_enabled? 'appointments' %>
+            <li class="<%= menu_active?('appointments') %>">
+              <a href="/appointments" title="<%= t(:appointments) %>"><i class="fa fa-lg fa-fw fa-calendar"></i> <span class="menu-item-parent"><%= t(:appointments) %></span></a>
+            </li>
+        <% end %>
+
+        <% if module_enabled? 'surveys' %>
+            <li class="<%= menu_active?('surveys') %>">
+              <a href="/surveys" title="<%= t(:surveys) %>"><i class="fa fa-lg fa-fw fa-question"></i><span class="menu-item-parent"><%= t(:surveys) %></span></a>
+            </li>
+        <% end %>
+
+        <li>
+          <a href="/case_watchers" title="<%= t(:watchers) %>"><i class="fa fa-lg fa-fw fa-eye"></i><span class="menu-item-parent"><%= t(:watchers) %></span></a>
+        </li>
+
+      </ul>
+    </li>
 <% else %>
     <% if module_enabled? 'cases' %>
         <li class="<%= menu_active?('cases') %>">

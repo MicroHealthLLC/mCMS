@@ -1,9 +1,9 @@
 <div class="col-xs-12 btn-edition">
-  <%= link_to 'Delete',  note_path(@note), class: 'btn btn-danger pull-right',
+  <%= link_to('Delete',  note_path(@note), class: 'btn btn-danger pull-right',
               :method => :delete,
-              :data => {:confirm => t(:text_are_you_sure)}
+              :data => {:confirm => t(:text_are_you_sure)}) if @note.can?(:delete_notes, :manage_notes, :manage_roles)
   %>
-  <%= link_to 'Edit', edit_note_path(@note), class: 'btn btn-success pull-right' %>
+  <%= link_to 'Edit', edit_note_path(@note), class: 'btn btn-success pull-right'  if @note.can?(:delete_notes, :manage_notes, :manage_roles) %>
   <%= link_to t('button_cancel'), @note.object, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), note_path(@note, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 </div>

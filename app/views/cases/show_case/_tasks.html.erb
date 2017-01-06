@@ -1,6 +1,6 @@
 
 <% if module_enabled?('tasks') %>
-    <%= link_to( t('new_task'), new_task_path(related_to: @case.id, type: 'case'), class: 'btn btn-primary pull-right btn-edition') if can?(:create_tasks, :manage_roles) %>
+    <%= link_to( t('new_task'), new_task_path(related_to: @case.id, type: 'case'), class: 'btn btn-primary pull-right btn-edition') if can?(:create_tasks, :manage_roles, :manage_tasks) %>
 
     <div class="row">
       <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

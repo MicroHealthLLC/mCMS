@@ -120,6 +120,14 @@ class User < ApplicationRecord
     RequestStore.store[:current_user] ||= User.new
   end
 
+  def self.current_user=(user)
+    RequestStore.store[:user] = user
+  end
+
+  def self.current_user
+    RequestStore.store[:user] ||= User.new
+  end
+
   def checklist_template_answers(template_id)
     checklist_answers.where(checklist_template_id: template_id)
   end
@@ -155,7 +163,7 @@ class User < ApplicationRecord
 
   def all_permissions
     @allowed_permissions ||= begin
-      RedCarpet::AccessControl.permissions.collect {|p| p.name}
+      RedCarpet::AccessControl.permissions.collect {|p| p.name}.to_set
     end
   end
 
@@ -204,7 +212,7 @@ class User < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:login, :state, :email]
+    [:login, :state, :email, :role_id]
   end
 
   def self.safe_attributes_with_password_with_core_demographic_without_state
@@ -238,11 +246,21 @@ class User < ApplicationRecord
   end
 
   def permissions
-    return all_permissions if self.admin?
-    if role
-      return role.try( :permissions ) || []
+    @user_permission ||= begin
+      if self.admin?
+        @user_permission = all_permissions
+      elsif role
+        @user_permission =  (role.try( :permissions ) || []).to_set
+      else
+        @user_permission = [].to_set
+      end
     end
-    []
+  end
+
+  def role
+    @user_role ||= begin
+      super || Role.default
+    end
   end
 
   def to_pdf(pdf)
