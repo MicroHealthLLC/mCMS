@@ -18,6 +18,7 @@ en:
  # INSURANCE
   insurance: Insurance
   insurance_plural: Insurances
+  insurances: Insurances
   new_insurance: New insurance
   edit_insurance: Edit insurance
 
@@ -40,6 +41,7 @@ en:
   change_employee_info: Change Client Information
 
  # USER.
+  user_subscription: User subscription
   login: Username
   email: Email
   fax: Fax
@@ -114,6 +116,7 @@ en:
   cases: Cases
   subcases: SubCases
   my_cases: My cases
+  case_suport: Case support
   edit_case: 'Edit case'
   new_case: "New case"
   case_category: 'Case category'
@@ -212,7 +215,7 @@ en:
   label_date: date
   label_time: time
   forum: forum
-  wiki: wiki
+  wiki: Wiki
   role: Role
   label_permissions: Permissions
   label_more: "More"
@@ -221,3 +224,6 @@ en:
   watchers: Watchers
   watcher: Watcher
   manage_watcher: Manage Watcher
+
+  chat_room: ChatRoom
+  new_conference: New conference

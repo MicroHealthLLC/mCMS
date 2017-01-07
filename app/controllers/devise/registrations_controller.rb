@@ -5,9 +5,14 @@ class Devise::RegistrationsController < DeviseController
   prepend_before_action :check_captcha, only: [:create] if ENV['RECAPTCHA_PUBLIC_KEY'].present? # Change this to be any actions you want to protect.
   # GET /resource/sign_up
   def new
-    build_resource({})
-    yield resource if block_given?
-    respond_with resource
+    if @enabled_modules.include?('user_subscription')
+      build_resource({})
+      yield resource if block_given?
+      respond_with resource
+    else
+      redirect_to root_path
+    end
+
   end
 
   # POST /resource
@@ -51,7 +56,7 @@ class Devise::RegistrationsController < DeviseController
     if resource_updated
       if is_flashing_format?
         flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
-          :update_needs_confirmation : :updated
+            :update_needs_confirmation : :updated
         set_flash_message :notice, flash_key
       end
       bypass_sign_in resource, scope: resource_name
@@ -85,8 +90,8 @@ class Devise::RegistrationsController < DeviseController
 
   def update_needs_confirmation?(resource, previous)
     resource.respond_to?(:pending_reconfirmation?) &&
-      resource.pending_reconfirmation? &&
-      previous != resource.unconfirmed_email
+        resource.pending_reconfirmation? &&
+        previous != resource.unconfirmed_email
   end
 
   # By default we want to require a password checks on update.

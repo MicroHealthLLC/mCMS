@@ -11,35 +11,12 @@
 
   <%= render partial: 'menu/menu_profile' %>
   <%= render partial: 'menu/menu_cases' %>
+  <%= render partial: 'menu/other_links' %>
 
-  <% if User.current.allowed_to?(:manage_roles) %>
-      <% if true %>
-          <li class="<%= menu_active?('wiki') %>">
-            <a href="<%= '/wiki/all' %>" title="<%= t(:wiki) %>"><i class="fa fa-lg fa-fw fa-file-text"></i><span class="menu-item-parent"><%= t(:wiki) %></span></a>
-          </li>
-      <% end %>
-
-      <% if current_user == User.current %>
-          <li class="<%= menu_active?('forum') %>">
-            <a href="<%= '/forum' %>" title="<%= t(:forum) %>"><i class="fa fa-lg fa-fw fa-forumbee"></i><span class="menu-item-parent"><%= t(:forum) %></span></a>
-          </li>
-      <% end %>
-
-      <% if true %>
-          <li class="<%= menu_active?('posts') %>">
-            <a href="/news" title="<%= 'news' %>"><i class="fa fa-lg fa-fw fa-newspaper-o"></i><span class="menu-item-parent"><%= 'news' %></span></a>
-          </li>
-      <% end %>
+  <% if module_enabled? 'chat_room' %>
+      <%= render partial: 'menu/smart_chat' %>
   <% end %>
-  <li>
-    <a href="/conference/new_conference" <%= "target=_blank" if Setting['open_new_tab_url'] == 'true' %>><i class="fa fa-lg fa-fw fa-video-camera"></i><span class="menu-item-parent">New conference</span></a>
-  </li>
-  <%= render partial: 'menu/smart_chat' %>
-
   <% if User.current.admin? %>
       <%= render partial: 'menu/admin' %>
   <% end %>
-
-
-
 </ul>

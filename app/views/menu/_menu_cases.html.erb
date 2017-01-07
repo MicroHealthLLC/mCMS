@@ -5,18 +5,22 @@
         <li class="<%= menu_active?('cases') %>">
           <a href="/cases" title="<%= t(:cases) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent"><%= t(:cases) %></span></a>
         </li>
-
-        <li>
-          <a href="/cases/subcases" title="<%= t(:subcases) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent"><%= t(:subcases) %></span></a>
-        </li>
+        <% if module_enabled? 'subcases' %>
+            <li>
+              <a href="/cases/subcases" title="<%= t(:subcases) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent"><%= t(:subcases) %></span></a>
+            </li>
+        <% end %>
+        <% if module_enabled? 'case_supports' %>
 
         <li>
           <a href="/case_supports" title="<%= t(:cases_support) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent"><%= t(:cases_support) %></span></a>
         </li>
-
-        <li class="<%= menu_active?('notes') %>">
-          <a href="/notes" title="<%= t(:label_note_plural) %>"><i class="fa fa-lg fa-fw fa-sticky-note-o"></i> <span class="menu-item-parent"><%= t(:label_note_plural) %></span></a>
-        </li>
+            <% end %>
+        <% if module_enabled? 'notes' %>
+            <li class="<%= menu_active?('notes') %>">
+              <a href="/notes" title="<%= t(:label_note_plural) %>"><i class="fa fa-lg fa-fw fa-sticky-note-o"></i> <span class="menu-item-parent"><%= t(:label_note_plural) %></span></a>
+            </li>
+        <%end %>
 
         <% if module_enabled? 'needs' %>
             <li class="<%= menu_active?('needs') %>">
@@ -73,19 +77,19 @@
       </ul>
     </li>
 <% else %>
-    <% if module_enabled? 'cases' %>
+    <% if module_enabled? 'my_cases' %>
         <li class="<%= menu_active?('cases') %>">
           <a href="/cases?my=<%= User.current.id %>" title="<%= t(:my_cases) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent"><%= t(:my_cases) %></span></a>
         </li>
     <% end %>
 
-    <% if module_enabled? 'appointments' %>
+    <% if module_enabled? 'my_appointments' %>
         <li class="<%= menu_active?('appointments') %>">
           <a href="/appointments" title="<%= t(:my_appointments) %>"><i class="fa fa-lg fa-fw fa-calendar"></i> <span class="menu-item-parent"><%= t(:my_appointments) %></span></a>
         </li>
     <% end %>
 
-    <% if module_enabled?( 'tasks') %>
+    <% if module_enabled?( 'my_tasks') %>
         <li class="<%= menu_active?('tasks') %>">
           <a href="/tasks" title="<%= t :my_tasks %>"><i class="fa fa-lg fa-fw fa-tasks"></i> <span class="menu-item-parent"><%= t(:my_tasks) %></span></a>
         </li>
