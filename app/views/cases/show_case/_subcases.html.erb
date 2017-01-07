@@ -1,19 +1,20 @@
+<% if module_enabled?('subcases') %>
+    <%= link_to(t('add_subcase'), new_case_path(subcase_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:manage_roles, :create_cases, :manage_cases)  %>
 
-<%= link_to(t('add_subcase'), new_case_path(subcase_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:manage_roles, :create_cases, :manage_cases)  %>
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-<div class="row">
-  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-
-    <%= render partial: 'cases/list',
-               layout: 'shared/smart_widget_wrapper',
-               locals: {
+        <%= render partial: 'cases/list',
+                   layout: 'shared/smart_widget_wrapper',
+                   locals: {
                        wid_id: 'subcases',
                        wid_title: 'Sub cases'
-               } %>
-  </article>
-</div>
-<script>
-    $(document).ready(function(){
+                   } %>
+      </article>
+    </div>
+    <script>
+      $(document).ready(function(){
         <% if @cases.present? %>  initDataTable('cases_table') <% end %>
-    } );
-</script>
+      } );
+    </script>
+<% end %>

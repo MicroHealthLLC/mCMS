@@ -1,18 +1,19 @@
-
-<%= link_to t(:manage_watcher), watchers_case_path(@case), class: 'btn btn-primary pull-right btn-edition'  if can?(:manage_roles, :manage_watchers, :create_watchers) %>
-<div class="row">
-  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <%= render partial: 'case_watchers/list',
-               layout: 'shared/smart_widget_wrapper',
-               locals: {
+<% if module_enabled?('watchers') %>
+    <%= link_to t(:manage_watcher), watchers_case_path(@case), class: 'btn btn-primary pull-right btn-edition'  if can?(:manage_roles, :manage_watchers, :create_watchers) %>
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= render partial: 'case_watchers/list',
+                   layout: 'shared/smart_widget_wrapper',
+                   locals: {
                        case_watchers: @watchers,
                        wid_id: 'case_watchers',
                        wid_title: 'Watchers'
-               } %>
-  </article>
-</div>
-<script>
-    $(document).ready(function(){
+                   } %>
+      </article>
+    </div>
+    <script>
+      $(document).ready(function(){
         <% if @watchers.present? %>  initDataTable('watchers_table') <% end %>
-    } );
-</script>
+      } );
+    </script>
+<% end %>
