@@ -1,17 +1,15 @@
 FactoryGirl.define do
-  factory :manager_role do
-    id 1
-    name "Manager role"
+  factory :role do
     state true
-    note "MyText"
   end
 
-   factory :client_role do
-    id 2
-    name "Client role"
-    state true
-    note "MyText"
+  factory :case_manager_role, :parent => :role do
+    role_type_id 21
+    permissions [:manage_roles]
   end
 
+  factory :client_role, :parent => :role do
+    role_type_id 25
+  end
 
 end

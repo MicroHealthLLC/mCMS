@@ -1,30 +1,23 @@
 FactoryGirl.define do
-  factory :admin, class: User do
-    email 'admin@example.net'
-    login 'admin'
-    note nil
-    state true
-    admin true
-    role_id nil
-  end
-
   factory :user do
-    email 'admin@example.net'
-    login 'admin'
-    note nil
-    state true
-    admin false
-    role_id 2
+    sequence(:email) {|n| "user#{n}@example.com" }
+    password              "poipoipoi"
+    password_confirmation "poipoipoi"
+    sequence(:login) {|n| "User#{n}" }
   end
 
- factory :case_manager, class: User do
-    email 'admin@example.net'
-    login 'admin'
-    note nil
-    state true
-    admin false
-    role_id 1
+  factory :admin, :parent => :user do
+    admin true
   end
 
+  factory :case_manager, :parent => :user do
+    admin false
+    role FactoryGirl.create :case_manager_role
+  end
+
+  factory :client, :parent => :user do
+    admin false
+    role FactoryGirl.create :client_role
+  end
 
 end

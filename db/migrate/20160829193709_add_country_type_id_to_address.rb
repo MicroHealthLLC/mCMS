@@ -2,7 +2,7 @@ class AddCountryTypeIdToAddress < ActiveRecord::Migration[5.0]
   def change
     add_column :addresses, :country_id, :integer
     add_column :addresses, :state_id, :integer
-    
+
     ["Afghanistan",
      "Albania",
      "Algeria",
@@ -225,7 +225,7 @@ class AddCountryTypeIdToAddress < ActiveRecord::Migration[5.0]
     
      "Zambia",
      "Zimbabwe"].each do |val|
-      CountryType.create(name: val)
+      CountryType.where(name: val).first_or_create rescue nil
     end
 
   end

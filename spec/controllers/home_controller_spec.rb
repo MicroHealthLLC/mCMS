@@ -15,18 +15,14 @@ RSpec.describe HomeController, type: :controller do
   end
 
   describe "User admin Logged in" do
-    before(:each) do
-      admin_user = User.where(admin: true).first
-      sign_in(admin_user)
-    end
-
-    it "allows authenticated access" do
-      get :index
-      expect(response).to be_success
+    login_admin
+    it "should have a current_user" do
+      expect(@admin.id).to_not eq(nil)
     end
 
     it "The User is an admin" do
-      expect(User.current.admin).to eq(true)
+      get :index
+      expect(@admin.admin).to eq(true)
     end
   end
 

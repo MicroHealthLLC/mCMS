@@ -31,31 +31,32 @@ RSpec.describe EducationsController, type: :controller do
     skip("Add a hash of attributes invalid for your model")
   }
 
+  let(:get_educations) {
+     @educations = Education.visible
+  }
+
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # EducationsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET #index" do
+    login_client
+    before(:each) do
+      @education_enum = FactoryGirl.create(:enumeration)
+      @education = FactoryGirl.create(:education, user_id: @user.id, education_type_id: @education_enum.id)
+    end
+
     it "assigns all educations as @educations" do
-      education = Education.create! valid_attributes
       get :index, params: {}, session: valid_session
-      expect(assigns(:educations)).to eq([education])
+      expect(get_educations).to eq([@education])
     end
   end
 
   describe "GET #show" do
     it "assigns the requested education as @education" do
-      education = Education.create! valid_attributes
-      get :show, params: {id: education.to_param}, session: valid_session
-      expect(assigns(:education)).to eq(education)
-    end
-  end
-
-  describe "GET #new" do
-    it "assigns a new education as @education" do
-      get :new, params: {}, session: valid_session
-      expect(assigns(:education)).to be_a_new(Education)
+      get :show, params: {id: @education.to_param}, session: valid_session
+      expect(assigns(:education)).to eq(@education)
     end
   end
 

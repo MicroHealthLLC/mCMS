@@ -11,7 +11,10 @@ require 'devise'
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include Devise::Test::ControllerHelpers, :type => :controller
+  config.include Devise::TestHelpers, :type => :view
   config.extend ControllerMacros, :type => :controller
+  # include Warden::Test::Helpers
+  # Warden.test_mode!
 end
 # Add additional requires below this line. Rails is not loaded until this point!
 
