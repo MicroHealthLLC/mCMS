@@ -8,7 +8,7 @@ module CasesHelper
   end
 
   def case_back_url obj
-    obj.subcase_id ? obj.case : documents_path
+    obj.subcase_id ? obj.case : cases_path
   end
 
 end

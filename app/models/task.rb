@@ -70,9 +70,9 @@ class Task < ApplicationRecord
     end
   end
 
-  def can?(*args)
-    owner? or args.map{|action| User.current.allowed_to?(action) }.include?(true) or assigned_to == User.current or for_individual == User.current
-  end
+  # def can?(*args)
+  #   owner? and args.map{|action| User.current.allowed_to?(action) }.include?(true) or assigned_to == User.current or for_individual == User.current
+  # end
 
   def self.safe_attributes
     [:title, :description, :related_to_id, :related_to_type, :is_private, :task_type_id, :task_status_type_id, :priority_id, :assigned_to_id, :for_individual_id,

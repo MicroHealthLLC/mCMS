@@ -36,6 +36,20 @@
         </div>
 
         <div class="form-group">
+          <%= f.label 'Issue date', class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.text_field :issue_date , class: 'form-control date_picker' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label 'Expiration date', class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.text_field :expiration_date , class: 'form-control date_picker' %>
+          </div>
+        </div>
+
+        <div class="form-group">
           <%= f.label :note , class: 'col-md-2 control-label' %>
           <div class="col-md-9">
             <%= f.text_area :note , class: 'form-control ckeditor' %>

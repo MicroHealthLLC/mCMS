@@ -11,6 +11,11 @@ class AppointmentsController < ApplicationController
     @appointments = Appointment.includes(:user=> :core_demographic).my_appointments.paginate(page: params[:page], per_page: 25)
   end
 
+  def my
+    @appointments = Appointment.includes(:user=> :core_demographic).my_appointments.paginate(page: params[:page], per_page: 25)
+    render 'appointments/index'
+  end
+
   # GET /appointments/1
   # GET /appointments/1.json
   def show

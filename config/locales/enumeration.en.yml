@@ -8,6 +8,7 @@ en:
   enumeration_certification_type: Certification
   enumeration_case_status_type: Case status
   enumeration_contact_type: Relationship
+  enumeration_contact_status: Contact status
   enumeration_checklist_status_type: Checklist status
   enumeration_country_type: Country
   enumeration_citizenship_type: Citizenship
@@ -41,6 +42,7 @@ en:
   enumeration_need_status: Need status
   enumeration_goal_status: Goal status
   enumeration_plan_status: Plan status
+  enumeration_support_status: Support status
   enumeration_appointment_status: Appointment status
   enumeration_appointment_type: Appointment type
   enumeration_case_support_type: Case support type

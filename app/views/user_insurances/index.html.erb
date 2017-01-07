@@ -9,6 +9,8 @@
       <th>Insurance</th>
       <th>Insurance type</th>
       <th>Insurance identifier</th>
+      <th>Issue date</th>
+      <th>Expiration date</th>
     </tr>
   </thead>
 
@@ -18,6 +20,8 @@
         <td><%= link_to user_insurance.insurance, user_insurance %></td>
         <td><%= user_insurance.insurance_type %></td>
         <td><%= user_insurance.insurance_identifier %></td>
+        <td><%= user_insurance.issue_date %></td>
+        <td><%= user_insurance.expiration_date %></td>
        </tr>
     <% end %>
   </tbody>

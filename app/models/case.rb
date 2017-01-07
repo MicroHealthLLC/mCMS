@@ -13,7 +13,7 @@ class Case < ApplicationRecord
 
 
   has_many :tasks, foreign_key: :related_to_id, class_name: 'Task', dependent: :destroy
-  has_many :surveys, foreign_key: :assigned_to_id, class_name: 'SurveyCase', dependent: :destroy
+  has_many :survey_cases, foreign_key: :assigned_to_id, dependent: :destroy
   has_many :documents, foreign_key: :related_to_id, class_name: 'Document', dependent: :destroy
   has_many :checklists, foreign_key: :assigned_to_id, class_name: 'ChecklistCase', dependent: :destroy
   has_many :appointments, foreign_key: :related_to_id, class_name: 'Appointment', dependent: :destroy
@@ -38,6 +38,11 @@ class Case < ApplicationRecord
   def self.include_enumerations
     includes(:case_type, :case_status_type, :case_category_type, :priority_type)
   end
+
+  def surveys
+    survey_cases
+  end
+
   def check_private_author
     if self.is_private
       self.private_author_id = User.current.id

@@ -1,36 +1,37 @@
 <%= render partial: 'action_menu' %>
 <div class="row">
+  <div class="col-xs-12">
+    <p>
+      <strong>Title:</strong>
+      <%= @appointment.title %>
+    </p>
 
-  <p>
-    <strong>Title:</strong>
-    <%= @appointment.title %>
-  </p>
+    <p>
+      <strong>Description:</strong>
+      <%= @appointment.description.html_safe %>
+    </p>
 
-  <p>
-    <strong>Description:</strong>
-    <%= @appointment.description.html_safe %>
-  </p>
+    <p>
+      <strong>Appointment type:</strong>
+      <%= @appointment.appointment_type %>
+    </p>
 
-  <p>
-    <strong>Appointment type:</strong>
-    <%= @appointment.appointment_type %>
-  </p>
+    <p>
+      <strong>Date:</strong>
+      <%= @appointment.date_time %>
+    </p>
 
-  <p>
-    <strong>Date:</strong>
-    <%= @appointment.date_time %>
-  </p>
+    <p>
+      <strong>Appointment status:</strong>
+      <%= @appointment.appointment_status %>
+    </p>
 
-  <p>
-    <strong>Appointment status:</strong>
-    <%= @appointment.appointment_status %>
-  </p>
+    <p>
+      <strong>With who:</strong>
+      <%= @appointment.with_who %>
+    </p>
 
-  <p>
-    <strong>With who:</strong>
-    <%= @appointment.with_who %>
-  </p>
-
+  </div>
 </div>
 
 <section id="widget-grid" class="show_customer_account">
@@ -39,16 +40,16 @@
       <%= render partial: 'appointment_captures/list',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                         appointment_captures: @appointment.appointment_captures,
-                         wid_id: 'capture',
-                         wid_title: 'Captures'
+                     appointment_captures: @appointment.appointment_captures,
+                     wid_id: 'capture',
+                     wid_title: 'Captures'
                  } %>
     </article>
   </div>
   <script>
-      $(document).ready(function(){
-          <% if  @appointment.appointment_captures.present? %>  initDataTable('appointments_table'); <% end %>
-      } );
+    $(document).ready(function(){
+      <% if  @appointment.appointment_captures.present? %>  initDataTable('appointments_table'); <% end %>
+    } );
   </script>
 </section>
 <%= render partial: 'notes/notes', locals: {notes: @appointment.appointment_notes} %>

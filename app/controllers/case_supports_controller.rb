@@ -2,7 +2,7 @@ class CaseSupportsController < ApplicationController
   before_action  :authenticate_user!
   before_action :set_case_support, only: [:show, :edit, :update, :destroy]
 
-  before_action :authorize, only: [:new, :create]
+  before_action :authorize, only: [:new, :create, :search ]
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
 
@@ -12,14 +12,6 @@ class CaseSupportsController < ApplicationController
   def index
     respond_to do |format|
       format.html{ @case_supports = CaseSupport.visible}
-      format.json{
-        q = params[:q].to_s.downcase
-        contacts = CaseSupport.not_show_in_search.where('LOWER(first_name) LIKE ? ', "%#{q}%").
-            or(CaseSupport.not_show_in_search.where('LOWER(last_name) LIKE ? ', "%#{q}%")).
-            or(CaseSupport.not_show_in_search.where('LOWER(middle_name) LIKE ? ', "%#{q}%")).map{|contact| {id: contact.id, value: contact.name, label: contact.name}}.to_json
-        render json: contacts
-      }
-
     end
   end
 
@@ -86,6 +78,19 @@ class CaseSupportsController < ApplicationController
     end
   end
 
+  def search
+    respond_to do |format|
+      format.html {}
+      format.json{
+        q = params[:q].to_s.downcase
+        contacts = CaseSupport.not_show_in_search.where('LOWER(first_name) LIKE ? ', "%#{q}%").
+            or(CaseSupport.not_show_in_search.where('LOWER(last_name) LIKE ? ', "%#{q}%")).
+            or(CaseSupport.not_show_in_search.where('LOWER(middle_name) LIKE ? ', "%#{q}%")).map{|contact| {id: contact.id, value: contact.name, label: contact.name}}.to_json
+        render json: contacts
+      }
+    end
+  end
+
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_case_support
@@ -97,10 +102,6 @@ class CaseSupportsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def case_support_params
     params.require(:case_support).permit(CaseSupport.safe_attributes)
-  end
-
-  def authorize
-    super('cases', 'new')
   end
 
   def authorize_edit

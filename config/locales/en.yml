@@ -207,7 +207,9 @@ en:
   type: Type
   category: Category
   date_due: Date due
+  date_end: Date end
   date_start: Date start
+  date_started: Date started
   date_completed: Date completed
   date_identified: Date identified
   summary: Summary

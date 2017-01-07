@@ -1,6 +1,7 @@
 class Contact < ApplicationRecord
   belongs_to :contact_type
   belongs_to :user
+  belongs_to :contact_status, optional: true
   has_one :contact_extend_demography
 
   has_many :contact_attachments, foreign_key: :owner_id
@@ -23,9 +24,19 @@ class Contact < ApplicationRecord
   end
 
 
+ def contact_status
+    if contact_status_id
+      super
+    else
+      ContactStatus.default
+    end
+  end
+
+
   def self.safe_attributes
     [:emergency_contact, :first_name, :middle_name, :last_name, :not_show_in_search, 
-     :note, :contact_type_id, :user_id, contact_attachments_attributes: [Attachment.safe_attributes]]
+     :note, :contact_type_id, :user_id, :date_started , :date_ended , :contact_status_id,
+     contact_attachments_attributes: [Attachment.safe_attributes]]
   end
 
   def extend_informations

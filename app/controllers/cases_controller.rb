@@ -40,7 +40,7 @@ class CasesController < ApplicationController
     @relations = @case.relations
 
     @tasks       = @case.tasks
-    @surveys     = @case.surveys.map(&:survey)
+    @surveys     = @case.survey_cases
     @documents   = @case.documents
     @checklists  = @case.checklists.map(&:checklist_template)
     @notes       = @case.case_notes
@@ -65,7 +65,6 @@ class CasesController < ApplicationController
       end
       deleted_watcher = @watchers - w
       @case.watchers.where(user_id: deleted_watcher).delete_all
-
       redirect_to case_url(@case)
     else
       @users = User.includes(:core_demographic).all

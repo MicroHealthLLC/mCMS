@@ -41,6 +41,30 @@
           <%= f.select :case_support_type_id, options_for_select(CaseSupportType.active.pluck(:name, :id), selected: f.object.case_support_type.try(:id)), {},{ class: 'form-control'} %>
         </div>
       </div>
+
+      <div class="form-group">
+        <%= f.label t('support_status'), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :support_status_id, options_for_select(SupportStatus.active.pluck(:name, :id), selected: f.object.support_status.try(:id)), {},{ class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:date_started), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_started , class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:date_end), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_ended , class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+
+
       <div class="form-group">
         <%= f.label :note , class: 'col-md-2 control-label' %>
         <div class="col-md-9">

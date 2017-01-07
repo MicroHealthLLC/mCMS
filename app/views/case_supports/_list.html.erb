@@ -5,6 +5,9 @@
     <th>User</th>
     <th>Case</th>
     <th>Case support type</th>
+    <th>support status</th>
+    <th>date started</th>
+    <th>date ended</th>
   </tr>
   </thead>
 
@@ -16,6 +19,9 @@
             <td><%= case_support.user %></td>
             <td><%= case_support.case %></td>
             <td><%= case_support.case_support_type %></td>
+            <td><%= case_support.support_status %></td>
+            <td><%= case_support.date_started %></td>
+            <td><%= case_support.date_ended %></td>
           </tr>
       <% end %>
   <% else %>

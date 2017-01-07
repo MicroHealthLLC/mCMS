@@ -2,6 +2,7 @@ class CaseSupport < ApplicationRecord
   belongs_to :case_support_type, optional: true
   belongs_to :user
   belongs_to :case
+  belongs_to :support_status, optional: true
   has_one :case_support_extend_demography
 
   has_many :case_support_attachments, foreign_key: :owner_id
@@ -16,7 +17,15 @@ class CaseSupport < ApplicationRecord
     case_support_extend_demography || CaseSupportExtendDemography.new(case_support_id: self.id)
   end
 
-  def case_support_type
+  def support_status
+    if support_status_id
+      super
+    else
+      SupportStatus.default
+    end
+  end
+
+   def case_support_type
     if case_support_type_id
       super
     else
@@ -27,7 +36,7 @@ class CaseSupport < ApplicationRecord
   def self.safe_attributes
     [
         :first_name, :middle_name, :last_name, :case_id, :not_show_in_search,
-        :note, :case_support_type_id, :user_id,
+        :note, :case_support_type_id, :user_id, :date_started, :date_ended, :support_status_id,
         case_support_attachments_attributes: [Attachment.safe_attributes]
     ]
   end

@@ -13,7 +13,7 @@
   <% if @surveys.any? %>
       <% @surveys.each do |survey| %>
           <tr>
-            <td>   <%= link_to survey.name, survey_path(survey) %>  </td>
+            <td> <%= link_to survey.name, survey_path(survey) %>  </td>
             <td><%= survey.survey_type %></td>
             <td><%= survey.attempts.where(participant: User.current).count %></td>
             <td><%= survey.attempts.last.answers.last.updated_at.strftime('%d/%m/%y %H:%M') rescue '' %></td>

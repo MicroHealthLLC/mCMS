@@ -38,10 +38,11 @@ RedCarpet::AccessControl.map do |map|
 
   map.project_module :contacts do |map|
     map.permission :view_contacts, {:contacts => [:index]},  :read => true
+    map.permission :search_contact, {:contacts => [:search]},  :read => true
     map.permission :create_contacts, {:contacts => [:new, :create]},  :read => true
     map.permission :edit_contacts, {:contacts => [:edit, :update]},  :read => true
     map.permission :delete_contacts, {:contacts => [:destroy]},  :read => true
-    map.permission :manage_contacts, {:contacts => [:new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_contacts, {:contacts => [:search, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :certifications do |map|
@@ -60,7 +61,7 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_clearances, {:clearances => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
 
-   map.project_module :insurances do |map|
+  map.project_module :insurances do |map|
     map.permission :view_insurance, {:user_insurances => [:index]},  :read => true
     map.permission :create_insurance, {:user_insurances => [:new, :create]},  :read => true
     map.permission :edit_insurance, {:user_insurances => [:edit, :update]},  :read => true
@@ -77,7 +78,7 @@ RedCarpet::AccessControl.map do |map|
   end
 
 
-  
+
   # map.project_module :departments do |map|
   #   map.permission :view_departments,   {:departments => [:index]},  :read => true
   #   map.permission :create_departments, {:departments => [:new, :create]},  :read => true
@@ -93,8 +94,8 @@ RedCarpet::AccessControl.map do |map|
   #   map.permission :delete_organizations, {:organizations => [:destroy]},  :read => true
   #   map.permission :manage_organizations, {:organizations => [:new, :create, :edit, :update, :destroy]},  :read => true
   # end
-  
-  
+
+
   # case user
 
   map.project_module :document do |map|
@@ -105,7 +106,7 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_documents, {:documents => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
 
-   map.project_module :news do |map|
+  map.project_module :news do |map|
     map.permission :view_news, {:news => [:index]}, :read => true
     map.permission :create_news, {:news => [:new, :create]}, :read => true
     map.permission :edit_news, {:news => [:edit, :update]}, :read => true
@@ -113,7 +114,7 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_news, {:news => [:new, :create, :edit, :update, :destroy]}, :read => true
   end
 
-   map.project_module :tasks do |map|
+  map.project_module :tasks do |map|
     map.permission :view_tasks, {:tasks => [:index]},  :read => true
     map.permission :create_tasks, {:tasks => [:new, :create]},  :read => true
     map.permission :edit_tasks, {:tasks => [:edit, :update]},  :read => true
@@ -121,7 +122,7 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_tasks, {:tasks => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
 
-   map.project_module :notes do |map|
+  map.project_module :notes do |map|
     map.permission :view_notes, {:notes => [:index]},  :read => true
     map.permission :add_notes, {:notes => [:new, :create]},  :read => true
     map.permission :edit_notes, {:notes => [:edit, :update]},  :read => true
@@ -131,63 +132,85 @@ RedCarpet::AccessControl.map do |map|
 
   map.project_module :cases do |map|
     map.permission :view_cases, {:cases => [:index]},  :read => true
+    map.permission :my_cases, {:cases => [:my]},  :read => true
     map.permission :create_cases, {:cases => [:new, :create]},  :read => true
     map.permission :edit_cases, {:cases => [:edit, :update]},  :read => true
     map.permission :delete_cases, {:cases => [:destroy]},  :read => true
-    map.permission :manage_cases, {:cases => [:watchers, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_cases, {:cases => [:my, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
+  map.project_module :case_watchers do |map|
+    map.permission :manage_case_watchers, {:case_watchers => [:index], :cases=> [:watchers]},  :read => true
+  end
+
+  map.project_module :case_supports do |map|
+    map.permission :view_case_supports, {:case_supports => [:index]},  :read => true
+    map.permission :create_case_supports, {:case_supports => [:new, :create]},  :read => true
+    map.permission :edit_case_supports, {:case_supports => [:edit, :update]},  :read => true
+    map.permission :delete_case_supports, {:case_supports => [:destroy]},  :read => true
+    map.permission :search_case_supports, {:case_supports => [:search]},  :read => true
+    map.permission :manage_case_supports, {:case_supports => [:search, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :appointments do |map|
     map.permission :view_appointments, {:appointments => [:index]},  :read => true
+    map.permission :my_appointments, {:appointments => [:my]},  :read => true
     map.permission :create_appointments, {:appointments => [:new, :create]},  :read => true
     map.permission :edit_appointments, {:appointments => [:edit, :update]},  :read => true
     map.permission :delete_appointments, {:appointments => [:destroy]},  :read => true
-    map.permission :manage_appointments, {:appointments => [:new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_appointments, {:appointments => [:my, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
- map.project_module :surveys do |map|
+  map.project_module :surveys do |map|
     map.permission :view_surveys, {:surveys => [:index]},  :read => true
     map.permission :create_surveys, {:surveys => [:new, :create]},  :read => true
     map.permission :edit_surveys, {:surveys => [:edit, :update]},  :read => true
     map.permission :delete_surveys, {:surveys => [:destroy]},  :read => true
     map.permission :manage_surveys, {:surveys => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
-  
+
   map.project_module :wikis do |map|
     map.permission :manage_wikis, {:wikis => [:new, :create, :edit, :update, :history, :compare, :add_attachment, :destroy]},  :read => true
   end
-  
- map.project_module :needs do |map|
+
+  map.project_module :needs do |map|
     map.permission :view_needs, {:needs => [:index]},  :read => true
     map.permission :create_needs, {:needs => [:new, :create]},  :read => true
     map.permission :edit_needs, {:needs => [:edit, :update]},  :read => true
     map.permission :delete_needs, {:needs => [:destroy]},  :read => true
     map.permission :manage_needs, {:needs => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
-  
- map.project_module :goals do |map|
+
+  map.project_module :goals do |map|
     map.permission :view_goals, {:goals => [:index]},  :read => true
     map.permission :create_goals, {:goals => [:new, :create]},  :read => true
     map.permission :edit_goals, {:goals => [:edit, :update]},  :read => true
     map.permission :delete_goals, {:goals => [:destroy]},  :read => true
     map.permission :manage_goals, {:goals => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
-  
- map.project_module :plans do |map|
+
+  map.project_module :plans do |map|
     map.permission :view_plans, {:plans => [:index]},  :read => true
     map.permission :create_plans, {:plans => [:new, :create]},  :read => true
     map.permission :edit_plans, {:plans => [:edit, :update]},  :read => true
     map.permission :delete_plans, {:plans => [:destroy]},  :read => true
     map.permission :manage_plans, {:plans => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
-  
- # map.project_module :checklists do |map|
- #    map.permission :view_checklists, {:checklists => [:index]},  :read => true
- #    map.permission :create_checklists, {:checklists => [:new, :create]},  :read => true
- #    map.permission :edit_checklists, {:checklists => [:edit, :update]},  :read => true
- #    map.permission :delete_checklists, {:checklists => [:destroy]},  :read => true
- #    map.permission :manage_checklists, {:checklists => [:new, :create, :edit, :update, :destroy]},  :read => true
- # end
+
+  # map.project_module :checklists do |map|
+  #    map.permission :view_checklists, {:checklists => [:index]},  :read => true
+  #    map.permission :create_checklists, {:checklists => [:new, :create]},  :read => true
+  #    map.permission :edit_checklists, {:checklists => [:edit, :update]},  :read => true
+  #    map.permission :delete_checklists, {:checklists => [:destroy]},  :read => true
+  #    map.permission :manage_checklists, {:checklists => [:new, :create, :edit, :update, :destroy]},  :read => true
+  # end
+
+  map.project_module :chat_room do |map|
+    map.permission :make_chat, {:chat_rooms => [:create_or_find, :show]},  :read => true
+    map.permission :conference, {:chat_rooms => [:conference]},  :read => true
+  end
+
+
 
   map.project_module :employee do |map|
     map.permission :manage_roles, {
@@ -198,14 +221,20 @@ RedCarpet::AccessControl.map do |map|
         :clearances => [:index,:new, :create, :edit, :update, :destroy],
         :user_insurances => [:index,:new, :create, :edit, :update, :destroy],
         :certifications => [:index,:new, :create, :edit, :update, :destroy],
-        :contacts => [:index,:new, :create, :edit, :update, :destroy],
+        :contacts => [:search, :index,:new, :create, :edit, :update, :destroy, :search],
+        :chat_rooms => [:conference, :show, :create_or_find],
         :document => [:index,:new, :create, :edit, :update, :destroy],
+        :other_skills => [:index,:new, :create, :edit, :update, :destroy],
         :positions => [:index,:new, :create, :edit, :update, :destroy],
         :surveys => [:index,:new, :create, :edit, :update, :destroy, :show],
         :tasks => [:index,:new, :create, :edit, :update, :destroy],
-        :cases => [:watchers, :index,:new, :create, :edit, :update, :destroy],
-        :appointments => [:index,:new, :create, :edit, :update, :destroy],
+        :cases => [:my, :watchers, :index,:new, :create, :edit, :update, :destroy],
+        :case_supports => [:search, :index,:new, :create, :edit, :update, :destroy],
+        :case_watchers => [:index],
+        :appointments => [:y, :index,:new, :create, :edit, :update, :destroy],
         :needs => [:index,:new, :create, :edit, :update, :destroy],
+        :news => [:index,:new, :create, :edit, :update, :destroy],
+        :notes => [:index,:new, :create, :edit, :update, :destroy],
         :plans => [:index,:new, :create, :edit, :update, :destroy],
         :goals => [:index,:new, :create, :edit, :update, :destroy],
         :checklists => [:index,:new, :create, :edit, :update, :destroy],
