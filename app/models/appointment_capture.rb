@@ -9,7 +9,7 @@ class AppointmentCapture < ApplicationRecord
 
   def self.safe_attributes
     [
-        :user_id, :appointment_id, :assessment_id, :disposition_id, :procedure_id, :note
+        :user_id, :appointment_id, :assessment_id, :disposition_id, :procedure_id, :note, :date_recorded
     ]
   end
 
