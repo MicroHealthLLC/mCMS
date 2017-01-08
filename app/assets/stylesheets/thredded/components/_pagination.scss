@@ -1,0 +1,26 @@
+.thredded--pagination {
+  border-top: $thredded-base-border;
+  margin-top: $thredded-base-spacing;
+  padding-top: $thredded-base-spacing;
+  text-align: center;
+
+  > span {
+    color: $thredded-secondary-text-color;
+    display: inline-block;
+    margin-right: $thredded-small-spacing;
+
+    > a {
+      color: $thredded-text-color;
+      display: inline-block;
+
+      &:focus,
+      &:hover {
+        color: $thredded-action-color;
+      }
+    }
+
+    &.current, > a {
+      padding: ($thredded-small-spacing / 2) $thredded-small-spacing;
+    }
+  }
+}

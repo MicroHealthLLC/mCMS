@@ -1,0 +1,88 @@
+.thredded--navigation--search {
+  margin-right: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  @include thredded-media-tablet-and-down {
+    position: initial;
+    margin-bottom: $thredded-small-spacing;
+  }
+
+  label {
+    display: none;
+  }
+
+  input[type="search"] {
+    box-shadow: none;
+    width: 100%;
+
+    @include thredded-media-desktop-and-up {
+      $line-height: 1rem;
+      $padding-x: 0.75rem;
+      background: transparent;
+      border-color: transparent;
+      font-size: $thredded-font-size-small;
+      line-height: $line-height;
+      min-width: 13rem;
+      text-align: right;
+      width: auto;
+      padding: 0.9375rem 0.75rem 0.875rem 0.75rem;
+      margin: -1px (-$padding-x) 0 0;
+      // Webkit adds an extra padding that we need to remove.
+      -webkit-margin-end: -($padding-x + 0.75rem);
+
+      &, &:focus {
+        transition: background, border-color, box-shadow, min-width 0.15s ease-out 0s;
+      }
+
+      &:focus {
+        background: $thredded-background-color;
+        box-shadow: none;
+        margin-right: 0;
+        -webkit-margin-end: 0;
+        min-width: 16rem;
+        text-align: left;
+      }
+
+      &:hover {
+        border-color: transparent;
+        box-shadow: none;
+      }
+
+      &::-webkit-search-decoration,
+      &::-webkit-search-cancel-button,
+      &::-webkit-search-results-button,
+      &::-webkit-search-results-decoration {
+        // Remove excessive padding on Safari.
+        max-height: $line-height;
+      }
+
+      &::placeholder {
+        color: $thredded-secondary-nav-color;
+        transition: $thredded-action-transition;
+        height: inherit;
+        line-height: inherit;
+        // Firefox applies default opacity of 0.54, while all the other browsers use 1.
+        // See https://bugzilla.mozilla.org/show_bug.cgi?id=556145
+        opacity: 1;
+      }
+
+      &:hover:not(:focus) {
+        cursor: pointer;
+        &::placeholder {
+          color: $thredded-nav-hover-color;
+        }
+      }
+
+      &:focus {
+        border-color: $thredded-base-border-color;
+      }
+    }
+  }
+
+  [type="submit"] {
+    display: none;
+  }
+}

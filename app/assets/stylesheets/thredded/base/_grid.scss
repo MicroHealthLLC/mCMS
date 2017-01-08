@@ -1,0 +1,45 @@
+@mixin thredded-media-mobile {
+  @media screen and (max-width: map-get($thredded-grid-breakpoint-max-widths, mobile)) {
+    @content;
+  }
+}
+
+@mixin thredded-media-tablet-and-down {
+  @media screen and (max-width: map-get($thredded-grid-breakpoint-max-widths, tablet)) {
+    @content;
+  }
+}
+
+@mixin thredded-media-tablet-and-up {
+  @media screen and (min-width: map-get($thredded-grid-breakpoint-max-widths, mobile) + 0.00001rem) {
+    @content;
+  }
+}
+
+@mixin thredded-media-tablet {
+  @include thredded-media-tablet-and-up {
+    @include thredded-media-tablet-and-down {
+      @content;
+    }
+  }
+}
+
+@mixin thredded-media-desktop-and-up {
+  @media screen and (min-width: map-get($thredded-grid-breakpoint-max-widths, tablet) + 0.00001rem) {
+    @content;
+  }
+}
+
+@mixin thredded-media-avatar-breakout {
+  @media (min-width: $thredded-grid-container-max-width + 4rem) {
+    @content;
+  }
+}
+
+@mixin thredded--clearfix {
+  &::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+}

@@ -11,14 +11,14 @@
         </li>
     <% end %>
 
-    <% if module_enabled? 'news' %>
+    <% if module_enabled?('news') %>
         <li class="<%= menu_active?('news') %>">
           <a href="/news" title="<%= 'news' %>"><i class="fa fa-lg fa-fw fa-newspaper-o"></i><span class="menu-item-parent"><%= 'news' %></span></a>
         </li>
     <% end %>
 <% end %>
 
-<% if module_enabled? 'new_conference' && can?(:manage_roles, :conference)%>
+<% if module_enabled?( 'new_conference') && can?(:manage_roles, :conference)%>
     <li>
       <a href="/conference/new_conference" <%= "target=_blank" if Setting['open_new_tab_url'] == 'true' %>><i class="fa fa-lg fa-fw fa-video-camera"></i><span class="menu-item-parent">New conference</span></a>
     </li>

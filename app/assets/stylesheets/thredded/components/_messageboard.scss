@@ -1,0 +1,55 @@
+.thredded--messageboard {
+  @extend %thredded--link;
+  border: $thredded-base-border;
+  display: block;
+  margin-bottom: $thredded-base-spacing;
+  padding: $thredded-base-spacing;
+  position: relative;
+
+  header {
+    margin-bottom: $thredded-small-spacing;
+  }
+
+  &:hover {
+    background-color: rgba($thredded-brand, 0.035);
+  }
+}
+
+.thredded--messageboard--title {
+  @extend %thredded--heading;
+  display: inline-block;
+  float: left;
+  font-size: 1.125rem; // 18px
+  line-height: 1.2;
+  margin-bottom: 0;
+  margin-right: $thredded-small-spacing;
+  vertical-align: baseline;
+}
+
+.thredded--messageboard--meta {
+  @extend %thredded--heading;
+  color: $thredded-secondary-text-color;
+  display: inline-block;
+  font-weight: normal;
+  margin-bottom: 0;
+  vertical-align: baseline;
+}
+
+.thredded--messageboard--description {
+  @extend %thredded--paragraph;
+  clear: both;
+  margin-bottom: $thredded-small-spacing / 2;
+  color: $thredded-text-color;
+}
+
+.thredded--messageboard--byline {
+  @extend %thredded--paragraph;
+  color: $thredded-secondary-text-color;
+  font-size: 0.875em;
+  font-weight: normal;
+  margin-bottom: 0;
+}
+
+.thredded--messageboards--actions {
+  @extend %thredded--buttons-list;
+}
