@@ -77,10 +77,6 @@ class AppointmentCapturesController < UserCasesController
     params.require(:appointment_capture).permit(AppointmentCapture.safe_attributes)
   end
 
-  def authorize
-    super('appointments', 'new')
-  end
-
   def authorize_edit
     raise Unauthorized unless @appointment.can?(:edit_appointments, :manage_appointments, :manage_roles)
   end
