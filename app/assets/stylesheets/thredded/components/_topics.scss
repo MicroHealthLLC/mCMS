@@ -14,7 +14,7 @@
 .thredded--topics--title {
   @extend %thredded--heading;
   display: inline;
-  font-size: 1.125rem; // 18px
+  //font-size: 1.125rem; // 18px
   line-height: 1.5;
 
   a {
@@ -36,7 +36,7 @@
   line-height: 1rem;
 
   li {
-    font-size: .5rem;
+    //font-size: .5rem;
     display: inline-block;
     color: $thredded-text-color;
     background-color: lighten($thredded-text-color, 55%);
@@ -52,7 +52,7 @@
 .thredded--topics--started-by,
 .thredded--topics--updated-by {
   color: $thredded-secondary-text-color;
-  font-size: $thredded-font-size-small;
+  //font-size: $thredded-font-size-small;
   font-style: normal;
 
   a {
@@ -94,7 +94,7 @@
 
 .thredded--topics--moderation-state {
   padding: 0.3em 0.5em;
-  font-size: $thredded-font-size-small;
+  //font-size: $thredded-font-size-small;
   font-style: normal;
 }
 
@@ -102,7 +102,7 @@
   border-radius: 50%;
   display: inline-block;
   font-weight: 900;
-  font-size: 0.8rem;
+  //font-size: 0.8rem;
   height: 2rem;
   left: -3rem;
   line-height: 2rem;

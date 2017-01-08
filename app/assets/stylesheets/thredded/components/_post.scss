@@ -27,7 +27,7 @@
 
 .thredded--post--topic {
   @extend %thredded--heading;
-  font-size: $thredded-base-font-size * 1.25; // 24px
+  //font-size: $thredded-base-font-size * 1.25; // 24px
   line-height: 1.2;
   margin-bottom: $thredded-small-spacing / 2;
 }
@@ -37,7 +37,7 @@
 .thredded--post--user-and-topic {
   @extend %thredded--heading;
   display: inline;
-  font-size: 1.125rem; // 18px
+  //font-size: 1.125rem; // 18px
   line-height: 1.2;
   margin-right: $thredded-inline-spacing;
 
@@ -54,14 +54,14 @@
 
 .thredded--post--created-at {
   @extend %thredded--paragraph;
-  font-size: $thredded-font-size-small;
+  //font-size: $thredded-font-size-small;
   color: $thredded-secondary-text-color;
   display: inline-block;
 }
 
 .thredded--post--edit,
 .thredded--post--delete {
-  font-size: $thredded-font-size-small;
+  //font-size: $thredded-font-size-small;
   @extend %thredded--link;
 }
 
@@ -70,7 +70,7 @@
 }
 
 .thredded--post--content {
-  font-size: 1.063rem; // 17px
+  //font-size: 1.063rem; // 17px
   line-height: 1.65;
   word-break: break-word;
   a {

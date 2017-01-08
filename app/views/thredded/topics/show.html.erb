@@ -23,7 +23,7 @@
       <div class="thredded--topic-delete--wrapper">
         <%= button_to t('thredded.topics.delete_topic'), topic.destroy_path, method: :delete,
                       form_class: 'thredded--topic-delete-form',
-                      class: 'thredded--button',
+                      class: 'thredded--button btn-danger',
                       'data-confirm' => t('thredded.topics.delete_confirm') %>
       </div>
     <% end %>

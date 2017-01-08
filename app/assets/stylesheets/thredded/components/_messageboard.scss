@@ -19,7 +19,7 @@
   @extend %thredded--heading;
   display: inline-block;
   float: left;
-  font-size: 1.125rem; // 18px
+  //font-size: 1.125rem; // 18px
   line-height: 1.2;
   margin-bottom: 0;
   margin-right: $thredded-small-spacing;
@@ -45,7 +45,7 @@
 .thredded--messageboard--byline {
   @extend %thredded--paragraph;
   color: $thredded-secondary-text-color;
-  font-size: 0.875em;
+  //font-size: 0.875em;
   font-weight: normal;
   margin-bottom: 0;
 }

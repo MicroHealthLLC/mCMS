@@ -13,7 +13,7 @@
   <%= render partial: 'menu/menu_cases' %>
   <%= render partial: 'menu/other_links' %>
 
-  <% if module_enabled? 'chat_room' and can?(:manage_roles, :make_chat) %>
+  <% if module_enabled?('chat_room') and can?(:manage_roles, :make_chat) %>
       <%= render partial: 'menu/smart_chat' %>
   <% end %>
 

@@ -10,16 +10,16 @@
 
 .thredded--topic-header--title {
   @extend %thredded--heading;
-  font-size: 1.25rem;
+  //font-size: 1.25rem;
   line-height: 1.2;
   margin-bottom: $thredded-small-spacing / 2;
   @include thredded-media-tablet-and-up {
-    font-size: 1.5rem;
+    //font-size: 1.5rem;
   }
 }
 
 .thredded--topic-header--started-by {
-  font-size: $thredded-font-size-small;
+  //font-size: $thredded-font-size-small;
   color: $thredded-secondary-text-color;
   font-style: normal;
   a {
@@ -29,13 +29,13 @@
 
 .thredded--topic-header--edit-topic {
   @extend %thredded--link;
-  font-size: $thredded-font-size-small;
+  //font-size: $thredded-font-size-small;
   margin-left: 0.4rem;
 }
 
 .thredded--topic-header--follow-info {
   color: $thredded-secondary-text-color;
-  font-size: $thredded-font-size-small;
+  //font-size: $thredded-font-size-small;
   font-style: normal;
   @include thredded-media-desktop-and-up {
     float: right;
@@ -82,7 +82,7 @@
 }
 
 .thredded--topic-followers {
-  font-size: $thredded-font-size-small;
+  //font-size: $thredded-font-size-small;
   color: $thredded-secondary-text-color;
 }
 
