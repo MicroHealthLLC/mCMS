@@ -1,10 +1,22 @@
 <div class="row">
-  <div class="col-xs-12 hidden-xs col-sm-1 col-md-2">
-  </div>
-  <div class="col-xs-12 col-sm-10 col-md-8">
-    <%= @setting.home_page_content.html_safe if @setting.home_page_content %>
-    <%= render partial: 'devise/sessions/form' unless user_signed_in? %>
-  </div>
+
+  <% if user_signed_in? %>
+      <div class="col-xs-12 hidden-xs col-sm-1 col-md-1">  </div>
+      <div class="col-xs-12 col-sm-10 col-md-8">
+        <%= @setting.home_page_content.html_safe if @setting.home_page_content %>>
+      </div>
+      <div class="col-xs-12 hidden-xs col-sm-1 col-md-3">
+        <% News.last(5).each do |news| %>
+            <%= render partial: 'news/news', locals: {news: news} %>
+        <% end %>
+      </div>
+  <% else  %>
+      <div class="col-xs-12 hidden-xs col-sm-1 col-md-2">  </div>
+      <div class="col-xs-12 col-sm-10 col-md-8">
+        <%= @setting.home_page_content.html_safe if @setting.home_page_content %>
+        <%= render partial: 'devise/sessions/form' %>
+      </div>
+  <% end %>
 </div>
 
 
