@@ -4,7 +4,7 @@
   box-shadow: $thredded-form-box-shadow;
   color: $thredded-form-color;
   font-family: $thredded-base-font-family;
-  font-size: $thredded-base-font-size;
+
   padding: $thredded-small-spacing;
   transition: border-color;
 
@@ -32,7 +32,6 @@
   select {
     display: block;
     font-family: $thredded-base-font-family;
-    font-size: $thredded-base-font-size;
   }
 
   label {
