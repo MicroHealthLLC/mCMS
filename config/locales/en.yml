@@ -130,6 +130,8 @@ en:
   edit_cases_support: 'Edit case support'
   new_cases_support: "New case support"
   case_support_type: Case support type
+  support_status: Support status
+
 
  # TASK
   task: Action

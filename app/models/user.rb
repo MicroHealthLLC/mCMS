@@ -98,9 +98,10 @@ class User < ApplicationRecord
       User.where(id: User.current.id)
     end
   end
-
   def self.employees
-    User.where(admin: false)
+    r = Role.pluck(:id) - Role.where("permissions like ?", "%manage_roles%").pluck(:id)
+    r<< nil
+    User.where(admin: false).where(role_id: r)
   end
 
   def has_unread_message(receiver)
