@@ -14,5 +14,8 @@ module MHRM
 
     config.autoload_paths += Dir[Rails.root.join('lib')]
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{*/}')]
+    config.autoload_paths += Dir[Rails.root.join('app', 'controllers/admin')]
+    config.autoload_paths += Dir[Rails.root.join('app', 'controllers/cases')]
+    config.autoload_paths += Dir[Rails.root.join('app', 'controllers/profiles')]
   end
 end

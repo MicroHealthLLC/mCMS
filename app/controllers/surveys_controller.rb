@@ -1,5 +1,5 @@
 class SurveysController < ApplicationController
-
+  before_action  :authenticate_user!
   before_filter :load_survey, :only => [:show, :edit, :update, :new_note, :destroy]
 
   def index

@@ -16,7 +16,7 @@
 
       source: function (request, response) {
         $.ajax({
-          url: "/contacts.json?q="+ request.term,
+          url: "/contacts/search.json?q="+ request.term,
           dataType: "json",
           success: function (data) {
             response(data)

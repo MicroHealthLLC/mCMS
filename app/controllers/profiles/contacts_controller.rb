@@ -12,13 +12,6 @@ class ContactsController < ApplicationController
   def index
     respond_to do |format|
       format.html{@contacts = Contact.visible}
-      format.json{
-        q = params[:q].to_s.downcase
-        contacts = Contact.not_show_in_search.where('LOWER(first_name) LIKE ? ', "%#{q}%").
-            or(Contact.not_show_in_search.where('LOWER(last_name) LIKE ? ', "%#{q}%")).
-            or(Contact.not_show_in_search.where('LOWER(middle_name) LIKE ? ', "%#{q}%")).map{|contact| {id: contact.id, value: contact.name, label: contact.name}}.to_json
-        render json: contacts
-      }
     end
 
   end
@@ -84,7 +77,16 @@ class ContactsController < ApplicationController
   end
 
   def search
-
+    respond_to do |format|
+      format.html{}
+      format.json{
+        q = params[:q].to_s.downcase
+        contacts = Contact.not_show_in_search.where('LOWER(first_name) LIKE ? ', "%#{q}%").
+            or(Contact.not_show_in_search.where('LOWER(last_name) LIKE ? ', "%#{q}%")).
+            or(Contact.not_show_in_search.where('LOWER(middle_name) LIKE ? ', "%#{q}%")).map{|contact| {id: contact.id, value: contact.name, label: contact.name}}.to_json
+        render json: contacts
+      }
+    end
   end
 
   private
