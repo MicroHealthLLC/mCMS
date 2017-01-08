@@ -11,7 +11,7 @@ class Contact < ApplicationRecord
 
   after_save :send_notification
   def send_notification
-    UserMailer.contact_notification(self).deliver_later
+    UserMailer.contact_notification(self).deliver_later unless self.not_show_in_search
   end
 
 
