@@ -1,0 +1,32 @@
+<table class="table table-responsive table-bordered" id="checklist_table">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <% unless params[:controller] == 'cases' %>
+        <th>Case</th>
+    <% end %>
+    <th>checklist type</th>
+    <th>Number of checklist</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if @checklists.any? %>
+      <% @checklists.each do |checklist_case| %>
+          <% checklist_template = checklist_case.is_a?(ChecklistCase) ? checklist_case.checklist_template : checklist_case  %>
+          <tr>
+            <td><%= link_to checklist_template.title, checklist_case_path(checklist_case) %></td>
+            <% unless params[:controller] == 'cases' %>
+                <td><%= checklist_case.case %></td>
+            <% end %>
+            <td><%= checklist_template.checklist_type %></td>
+            <td><%= checklist_template.checklists.count %></td>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

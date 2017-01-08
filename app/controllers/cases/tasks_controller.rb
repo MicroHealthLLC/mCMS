@@ -1,8 +1,8 @@
-class TasksController < ApplicationController
-  before_action  :authenticate_user!
-  before_action :set_task, only: [:show, :edit, :update, :destroy, :new_note, :add_note, :delete_sub_task_relation]
-  # before_action :find_optional_user
-  before_action :authorize, only: [:new, :create, :add_note, :new_note]
+class TasksController < UserCasesController
+
+  before_action :set_task, only: [:show, :edit, :update, :destroy,
+                                  :delete_sub_task_relation]
+
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
 
@@ -14,6 +14,14 @@ class TasksController < ApplicationController
         where(assigned_to: @user).
         or(Task.root.where(for_individual: @user) ).
         paginate(page: params[:page], per_page: 25)
+  end
+
+  def my
+    @tasks = Task.root.
+        where(assigned_to: @user).
+        or(Task.root.where(for_individual: @user) ).
+        paginate(page: params[:page], per_page: 25)
+    render 'tasks/index'
   end
 
   # GET /tasks/1
@@ -35,22 +43,6 @@ class TasksController < ApplicationController
                      sub_task_id: params[:sub_task_id],
                      related_to_id: params[:related_to],
                      related_to_type: params[:type])
-  end
-
-  def add_note
-    @note = TaskNote.new(user_id: @user.id)
-  end
-
-  def new_note
-    @note = TaskNote.new(params.require(:task_note).permit(TaskNote.safe_attributes))
-    @note.task_id = @task.id
-    respond_to do |format|
-      if @note.save
-        format.html { redirect_to @task, notice: 'Task Note was successfully created.' }
-       else
-        format.html { render :edit }
-       end
-    end
   end
 
   # GET /tasks/1/edit

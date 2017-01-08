@@ -1,5 +1,5 @@
-class NotesController < ApplicationController
-  before_action  :authenticate_user!
+class NotesController < UserCasesController
+
   before_action :set_note, only: [:update, :edit, :show, :destroy]
 
   def index

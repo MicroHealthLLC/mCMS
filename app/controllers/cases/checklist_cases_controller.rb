@@ -1,6 +1,13 @@
-class ChecklistCasesController < ApplicationController
-  before_action  :authenticate_user!
-  before_action :set_checklist_case
+class ChecklistCasesController < UserCasesController
+  before_action :set_checklist_case, only: [:show, :update, :destroy]
+
+  def index
+    cases = Case.root
+    cases = cases.where('assigned_to_id= ? OR user_id= ?', User.current.id,  User.current.id ).order('title desc')
+    scope = ChecklistCase.includes(:checklist_template).references(:checklist_template).
+        where(assigned_to_id:  cases.pluck(:id))
+    @checklists = scope.paginate(page: params[:page], per_page: 25)
+  end
 
   def show
   end

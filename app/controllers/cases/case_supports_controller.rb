@@ -1,4 +1,4 @@
-class CaseSupportsController < ApplicationController
+class CaseSupportsController < UserCasesController
   before_action  :authenticate_user!
   before_action :set_case_support, only: [:show, :edit, :update, :destroy]
 

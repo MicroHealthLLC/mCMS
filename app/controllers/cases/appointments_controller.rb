@@ -1,7 +1,5 @@
-class AppointmentsController < ApplicationController
-  before_action  :authenticate_user!
+class AppointmentsController < UserCasesController
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
-  before_action :authorize, only: [:new, :create]
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
 

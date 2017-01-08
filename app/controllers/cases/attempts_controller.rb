@@ -1,4 +1,4 @@
-class AttemptsController < ApplicationController
+class AttemptsController < UserCasesController
 
   helper 'surveys'
 
@@ -16,7 +16,7 @@ class AttemptsController < ApplicationController
   end
 
   def new
-    if params[:c] == 'cases'
+    if params[:case_id]
       c = Case.find(params[:case_id])
       @participant = c # you have to decide what to do here
     else
@@ -28,6 +28,8 @@ class AttemptsController < ApplicationController
       @attempt = @survey.attempts.new
       @attempt.answers.build
     end
+    redirect_to surveys_path unless @attempt.can_do_one_more_attempt?(@participant)
+
   end
 
   def create

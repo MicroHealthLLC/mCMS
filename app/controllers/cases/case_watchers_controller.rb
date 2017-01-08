@@ -1,6 +1,5 @@
-class CaseWatchersController < ApplicationController
-  before_action  :authenticate_user!
-  # before_action :authorize
+class CaseWatchersController < UserCasesController
+
   # GET /case_watchers
   # GET /case_watchers.json
   def index

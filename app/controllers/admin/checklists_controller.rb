@@ -1,21 +1,11 @@
 class ChecklistsController < ApplicationController
   before_action  :authenticate_user!
-  before_action :set_checklist_template, only: [:show, :edit, :update, :destroy, :save]
+  before_action :set_checklist_template, only: [:show, :edit, :update, :destroy]
 
-  before_action :require_admin, except: [:index, :show,
-                                         :save, :new_assign, :display,
-                                         :destroy] # ...
-  # before_action :authorize, only: [:index, :show, :save]
+  before_action :require_admin
 
   def index
-    if User.current.admin?
-      scope = ChecklistTemplate.order('id DESC')
-    else
-      cases = Case.root
-      cases = cases.where('assigned_to_id= ? OR user_id= ?', User.current.id,  User.current.id ).order('title desc')
-      scope = ChecklistCase.includes(:checklist_template).references(:checklist_template).
-          where(assigned_to_id:  cases.pluck(:id))
-    end
+    scope = ChecklistTemplate.order('id DESC')
     @checklists = scope.paginate(page: params[:page], per_page: 25)
   end
 
@@ -73,13 +63,7 @@ class ChecklistsController < ApplicationController
   end
 
   def destroy
-    if User.current.admin?
-      @checklist.destroy
-    else
-      ChecklistUser.where(assigned_to_id: User.current.id, checklist_template_id: @checklist.id).delete_all
-      ChecklistAnswer.where(checklist_template_id: @checklist.id, user_id: User.current.id).delete_all
-    end
-
+    @checklist.destroy
     respond_to do |format|
       format.html { redirect_to checklist_templates_url, notice: 'Template was successfully destroyed.' }
       format.json { head :no_content }
@@ -98,11 +82,6 @@ class ChecklistsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def checklist_template_params
     params.require(:checklist_template).permit(ChecklistTemplate.safe_attributes)
-  end
-
-  def checklist_template_save_params
-    params[:checklist_template][:checklist_answers_attributes] = params[:checklist_template][:checklists_attributes]
-    params.require(:checklist_template).permit(ChecklistTemplate.safe_attributes_with_save)
   end
 
   def back_url

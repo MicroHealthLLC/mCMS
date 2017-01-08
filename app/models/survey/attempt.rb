@@ -43,6 +43,15 @@ class Survey::Attempt < ActiveRecord::Base
     return scores.first.score
   end
 
+  def can_do_one_more_attempt?(participant)
+    attempts = self.class.for_survey(survey).for_participant(participant)
+    upper_bound = self.survey.attempts_number
+
+    if attempts.size >= upper_bound && upper_bound != 0
+      return false
+    end
+    true
+  end
   private
 
   def check_number_of_attempts_by_survey

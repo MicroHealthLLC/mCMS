@@ -1,8 +1,6 @@
-class CasesController < ApplicationController
-  before_action  :authenticate_user!
+class CasesController < UserCasesController
   before_action :set_case, only: [:new_assign_survey, :watchers, :new_assign, :show, :edit, :update, :destroy, :new_relation, :delete_sub_case_relation]
 
-  before_action :authorize, only: [:new, :create, :watchers]
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
 
@@ -87,7 +85,7 @@ class CasesController < ApplicationController
       @checklist = ChecklistCase.new(params.require(:checklist_case).permit!)
 
       if @checklist.save
-        redirect_to checklist_template_path(@checklist.checklist_template)
+        redirect_to checklist_case_path(@checklist)
       else
         @checklists = ChecklistTemplate.order('title ASC') - ChecklistTemplate.where(id: ChecklistCase.where(assigned_to_id: @case.id).pluck(:checklist_template_id))
       end

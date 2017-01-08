@@ -39,9 +39,7 @@ class ApplicationController < ActionController::Base
   end
 
   def module_visible
-    if EnabledModule.where(name: params[:controller], status: false).present?
-      render_404
-    end
+    render_404 if EnabledModule.where(name: params[:controller], status: false).present?
   end
 
   def authorize(ctrl = params[:controller], action = params[:action])
