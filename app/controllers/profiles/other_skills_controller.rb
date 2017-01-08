@@ -1,9 +1,8 @@
-class OtherSkillsController < ApplicationController
+class OtherSkillsController < UserProfilesController
 
-  before_action  :authenticate_user!
   before_action :set_other_skill, only: [:show, :edit, :update, :destroy]
-  before_action :authorize, only: [:new, :create]
-  before_action :authorize_show, only: [:show]
+
+
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
 

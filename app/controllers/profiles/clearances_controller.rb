@@ -1,10 +1,9 @@
-class ClearancesController < ApplicationController
+class ClearancesController < UserProfilesController
 
-  before_action  :authenticate_user!
   before_action :set_clearance, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
-  before_action :authorize, only: [:new, :create]
-  before_action :authorize_show, only: [:show]
+
+
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
   # GET /clearances

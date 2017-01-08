@@ -1,4 +1,4 @@
-class UserprofilesController < ApplicationController
+class UserProfilesController < ApplicationController
   before_action  :authenticate_user!
   before_action :authorize
 end
