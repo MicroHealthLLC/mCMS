@@ -21,6 +21,10 @@ class AppointmentCapture < ApplicationRecord
     end
   end
 
+  def to_s
+    assessment
+  end
+
   def disposition
     if disposition_id
       super
