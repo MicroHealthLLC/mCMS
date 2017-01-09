@@ -28,6 +28,10 @@ class Plan < ApplicationRecord
     end
   end
 
+  def to_s
+    name
+  end
+
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.text "Plan ##{id}", :style => :bold}
 

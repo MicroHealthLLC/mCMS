@@ -36,6 +36,10 @@ class Need < ApplicationRecord
     end
   end
 
+  def to_s
+    need_enum
+  end
+
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.text "Need ##{id}", :style => :bold}
 
