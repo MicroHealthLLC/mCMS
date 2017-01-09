@@ -137,6 +137,9 @@ class User < ApplicationRecord
     user_extend_demography || UserExtendDemography.new(user_id: self.id)
   end
 
+  def can?(*args)
+    args.map{|action| User.current_user.allowed_to? action }.include?(true)
+  end
 
   def allowed_to?(action)
     if action.is_a? Hash
