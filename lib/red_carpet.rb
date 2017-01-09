@@ -137,10 +137,10 @@ RedCarpet::AccessControl.map do |map|
   map.project_module :notes do |map|
     map.permission :view_notes, {:notes => [:index]},  :read => true
     map.permission :show_notes, {:notes => [:show]},  :read => true
-    map.permission :add_notes, {:notes => [:new, :create]},  :read => true
-    map.permission :edit_notes, {:notes => [:edit, :update]},  :read => true
+    map.permission :add_notes, {:notes => [:get_template_note, :new, :create]},  :read => true
+    map.permission :edit_notes, {:notes => [:get_template_note, :edit, :update]},  :read => true
     map.permission :delete_notes, {:notes => [:destroy]},  :read => true
-    map.permission :manage_notes, {:notes => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_notes, {:notes => [:get_template_note, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :cases do |map|
@@ -259,7 +259,7 @@ RedCarpet::AccessControl.map do |map|
         :appointment_captures => [:show, :new, :create, :edit, :update, :destroy],
         :needs => [:index, :show, :new, :create, :edit, :update, :destroy],
         :news => [:index, :show, :new, :create, :edit, :update, :destroy],
-        :notes => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :notes => [:index, :show, :new, :create, :edit, :update, :destroy, :get_template_note],
         :plans => [:index, :show, :new, :create, :edit, :update, :destroy],
         :goals => [:index, :show, :new, :create, :edit, :update, :destroy],
         :checklist_cases => [:index, :show, :new, :create, :edit, :update, :destroy],
