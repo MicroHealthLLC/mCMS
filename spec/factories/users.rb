@@ -3,7 +3,8 @@ FactoryGirl.define do
     sequence(:email) {|n| "user#{n}@example.com" }
     password              "poipoipoi"
     password_confirmation "poipoipoi"
-    sequence(:login) {|n| "User#{n}" }
+    sequence(:login) {|n| "user#{n}" }
+    state true
   end
 
   factory :admin, :parent => :user do
