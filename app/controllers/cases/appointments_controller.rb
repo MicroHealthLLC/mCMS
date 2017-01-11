@@ -22,19 +22,19 @@ class AppointmentsController < UserCasesController
       User.current = @appointment.user
     end
     @case =  @appointment.case
-    update_rails = @appointment.updated_at
+    update_rails = @appointment.updated_at.to_date
     if @case
-      @tasks       = @case.tasks.where(updated_at: update_rails)
-      @surveys     = @case.survey_cases.where(updated_at: update_rails)
-      @documents   = @case.documents.where(updated_at: update_rails)
-      @checklists  = @case.checklists.where(updated_at: update_rails).map(&:checklist_template)
-      @notes       = @case.case_notes.where(updated_at: update_rails)
-      @appointments= @case.appointments.where(updated_at: update_rails).where.not(id: @appointment.id)
-      @needs       = @case.needs.where(updated_at: update_rails)
-      @plans       = @case.plans.where(updated_at: update_rails)
-      @goals       = @case.goals.where(updated_at: update_rails)
-      @watchers    = @case.watchers.where(updated_at: update_rails).includes(:user=> :core_demographic)
-      @case_supports = @case.case_supports.where(updated_at: update_rails)
+      @tasks       = @case.tasks.where('date(updated_at) = ?', update_rails)
+      @surveys     = @case.survey_cases.where('date(updated_at) = ?', update_rails)
+      @documents   = @case.documents.where('date(updated_at) = ?', update_rails)
+      @checklists  = @case.checklists.where('date(updated_at) = ?', update_rails).map(&:checklist_template)
+      @notes       = @case.case_notes.where('date(updated_at) = ?', update_rails)
+      @appointments= @case.appointments.where('date(updated_at) = ?', update_rails).where.not(id: @appointment.id)
+      @needs       = @case.needs.where('date(updated_at) = ?', update_rails)
+      @plans       = @case.plans.where('date(updated_at) = ?', update_rails)
+      @goals       = @case.goals.where('date(updated_at) = ?', update_rails)
+      @watchers    = @case.watchers.where('date(updated_at) = ?', update_rails).includes(:user=> :core_demographic)
+      @case_supports = @case.case_supports.where('date(updated_at) = ?', update_rails)
     end
   end
 
