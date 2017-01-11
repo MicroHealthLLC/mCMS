@@ -3,7 +3,9 @@
   <tr>
     <th>Name</th>
     <th>User</th>
-    <th>Case</th>
+    <% unless params[:controller] == 'cases' %>
+        <th>Case</th>
+    <% end %>
     <th>Case support type</th>
     <th>support status</th>
     <th>date started</th>
@@ -17,7 +19,9 @@
           <tr>
             <td><%= link_to case_support.name, case_support%></td>
             <td><%= case_support.user %></td>
-            <td><%= case_support.case %></td>
+            <% unless params[:controller] == 'cases' %>
+                <td><%= case_support.case %></td>
+            <% end %>
             <td><%= case_support.case_support_type %></td>
             <td><%= case_support.support_status %></td>
             <td><%= case_support.date_started %></td>

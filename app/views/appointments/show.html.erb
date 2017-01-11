@@ -53,3 +53,17 @@
   </script>
 </section>
 <%= render partial: 'notes/notes', locals: {notes: @appointment.appointment_notes} %>
+
+<% if @case %>
+    <%= render( partial: 'cases/show_case/case_support') if @case_supports.present?.present? %>
+    <%= render( partial: 'cases/show_case/notes') if @notes.present? %>
+    <%= render( partial: 'cases/show_case/needs') if @needs.present? %>
+    <%= render( partial: 'cases/show_case/goals')if @goals.present? %>
+    <%= render( partial: 'cases/show_case/plans') if @plans.present? %>
+    <%= render( partial: 'cases/show_case/tasks') if  @tasks.present? %>
+    <%= render( partial: 'cases/show_case/documents') if @documents.present? %>
+    <%= render( partial: 'cases/show_case/checklists') if @checklists.present? %>
+    <%= render( partial: 'cases/show_case/appointments') if @appointments.present? %>
+    <%= render( partial: 'cases/show_case/surveys') if @surveys.present? %>
+    <%= render( partial: 'cases/show_case/watcher') if @watchers.present? %>
+<%end %>
