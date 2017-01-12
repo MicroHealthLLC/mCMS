@@ -50,13 +50,14 @@ class AttemptsController < UserCasesController
     @participant = @attempt.participant
 
     if @attempt.valid? && @attempt.save
-      if params[:case_id]
-        redirect_to view_context.new_attempt(survey_id: @survey.id, case_id: params[:case_id]), alert: I18n.t("attempts_controller.#{action_name}")
-
-      else
-        redirect_to view_context.new_attempt(survey_id: @survey.id), alert: I18n.t("attempts_controller.#{action_name}")
-
-      end
+      # if params[:case_id]
+      #   redirect_to view_context.new_attempt(survey_id: @survey.id, case_id: params[:case_id]), alert: I18n.t("attempts_controller.#{action_name}")
+      #
+      # else
+      #   redirect_to view_context.new_attempt(survey_id: @survey.id), alert: I18n.t("attempts_controller.#{action_name}")
+      #
+      # end
+      redirect_to survey_attempt_url(@attempt)
        else
       render :action => :new
     end
