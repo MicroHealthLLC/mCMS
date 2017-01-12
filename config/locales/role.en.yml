@@ -16,4 +16,4 @@ en:
   permission_manage_tasks:  Manage actions
   
   project_module_employee: Clients
-  permission_manage_roles: Manage clients
+  permission_manage_roles: Manage Roles

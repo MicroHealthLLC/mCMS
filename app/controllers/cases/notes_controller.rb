@@ -88,6 +88,8 @@ class NotesController < UserCasesController
              :appointment_note
            elsif params[:document_note]
              :document_note
+            elsif params[:attempt_note]
+             :attempt_note
            else
              :note
            end

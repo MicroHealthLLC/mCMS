@@ -8,17 +8,19 @@ class AttemptsController < UserCasesController
   def index
     scope = @survey.attempts.includes(:answers=>[:option,:question=> [:survey, :options=>[:question]]])
     if params[:case_id]
+      @case = Case.find( params[:case_id])
       @attempts = scope.where(participant_type: 'Case', participant_id: params[:case_id])
     else
       @attempts = scope.where(participant: User.current)
     end
-
+  rescue ActiveRecord::RecordNotFound
+    render_404
   end
 
   def new
     if params[:case_id]
-      c = Case.find(params[:case_id])
-      @participant = c # you have to decide what to do here
+      @case = Case.find(params[:case_id])
+      @participant = @case # you have to decide what to do here
     else
       @participant = User.current # you have to decide what to do here
     end
@@ -29,7 +31,12 @@ class AttemptsController < UserCasesController
       @attempt.answers.build
     end
     redirect_to surveys_path unless @attempt.can_do_one_more_attempt?(@participant)
+  end
 
+  def show
+    @attempt = Survey::Attempt.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render_404
   end
 
   def create
@@ -53,10 +60,6 @@ class AttemptsController < UserCasesController
        else
       render :action => :new
     end
-  end
-
-  def show
-
   end
 
   private

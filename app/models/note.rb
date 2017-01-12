@@ -25,7 +25,7 @@ class Note < ApplicationRecord
     case type
       when 'TaskNote'           then I18n.t('task')
       when 'SurveyNote'         then I18n.t('survey')
-      when 'PostNote'           then I18n.t('news')
+      when 'PostNote'           then 'News'
       when 'CaseNote'           then I18n.t('case')
       when 'ChecklistNote'      then I18n.t('checklist')
       when 'AppointmentNote'    then I18n.t('appointments')
@@ -33,6 +33,7 @@ class Note < ApplicationRecord
       when 'GoalNote'           then I18n.t('goal')
       when 'PlanNote'           then I18n.t('plan')
       when 'DocumentNote'       then I18n.t('document')
+      when 'AttemptNote'       then 'Attempt'
       else
         I18n.t('label_note')
     end
@@ -58,3 +59,4 @@ require_dependency 'goal_note'
 require_dependency 'plan_note'
 require_dependency 'need_note'
 require_dependency 'document_note'
+require_dependency 'attempt_note'

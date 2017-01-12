@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   resources :need_notes, except: [:index], controller: :notes
   resources :appointment_notes, except: [:index], controller: :notes
   resources :document_notes, except: [:index], controller: :notes
+  resources :attempt_notes, controller: :notes
   resources :notes do
     collection do
       get 'get_template_note'
@@ -122,6 +123,7 @@ Rails.application.routes.draw do
     end
   end
   resources :survey_survey,  controller: :surveys
+  resources :survey_attempt,  controller: :attempts
 
 
   # Routes For Admin

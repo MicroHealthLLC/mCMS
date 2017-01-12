@@ -12,9 +12,9 @@
                   <% question.options.each do |option| %>
                       <li class="radio">
                         <label>
-                          <%= check_box_tag "survey_attempt[answers_attributes][#{index}][option_id][]", option.id %>
-                          <%= option.text %>
+                          <%= radio_button_tag "survey_attempt[answers_attributes][#{index}][option_id][]", option.id %>
                         </label>
+                        <%= option.text %>
                       </li>
                   <% end -%>
                 </ul>

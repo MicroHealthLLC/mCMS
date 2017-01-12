@@ -1,0 +1,22 @@
+<%= render partial: 'attempt_action_menu', locals:{attempt: attempt} %>
+<h3><%= "ATTEMPT #{defined?(index) ? "##{index + 1}" : nil}" %> <em><%= format_date(attempt.answers.first.created_at) if attempt.answers.first %></em></h3>
+<ol class="questions">
+  <% attempt.answers.each do |answer| %>
+      <li>
+        <p class="question"> <%= answer.question.text %> </p>
+        <ul class="options">
+          <% answer.question.options.each do |option| %>
+              <li class="radio">
+                <label>
+                  <%= radio_button_tag '', '', the_chosen_one?(answer, option), disabled: true %>
+                </label>
+                <% color = get_color_of_option(answer, option) %>
+                <span class="<%= color %> <%= correct_answer?(answer, option) %>"> <%= option.text %> <%= get_weight(option) %> </span>
+
+                <p class="answers-number"> <%= number_of_people_who_also_answered(option.id) %> </p>
+              </li>
+          <% end %>
+        </ul>
+      </li>
+  <% end %>
+</ol>

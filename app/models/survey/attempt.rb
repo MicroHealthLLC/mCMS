@@ -11,6 +11,7 @@ class Survey::Attempt < ActiveRecord::Base
   belongs_to :survey
   belongs_to :participant, :polymorphic => true
   has_many :answers, :dependent => :destroy
+  has_many :attempt_notes, foreign_key: :owner_id
   accepts_nested_attributes_for :answers,
     :reject_if => ->(q) { q[:question_id].blank? || q[:option_id].blank? }
 
@@ -52,6 +53,11 @@ class Survey::Attempt < ActiveRecord::Base
     end
     true
   end
+
+  def to_s
+    "ATTEMPT FOR #{survey}"
+  end
+
   private
 
   def check_number_of_attempts_by_survey
@@ -66,4 +72,6 @@ class Survey::Attempt < ActiveRecord::Base
   def collect_scores
     self.score = self.answers.map(&:value).reduce(:+) || 0
   end
+
+
 end

@@ -244,7 +244,7 @@ RedCarpet::AccessControl.map do |map|
         :clearances => [:index, :show, :new, :create, :edit, :update, :destroy],
         :user_insurances => [:index, :show, :new, :create, :edit, :update, :destroy],
         :certifications => [:index, :show, :new, :create, :edit, :update, :destroy],
-        :contacts => [:search, :index, :show, :new, :create, :edit, :update, :destroy, :search],
+        :contacts => [:search, :index, :show, :new, :create, :edit, :update, :destroy],
         :chat_rooms => [:conference, :show, :create_or_find],
         :document => [:index,:new,  :show, :create, :edit, :update, :destroy],
         :other_skills => [:index,:new,  :show, :create, :edit, :update, :destroy],

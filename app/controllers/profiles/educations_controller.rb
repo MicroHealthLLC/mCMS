@@ -67,11 +67,6 @@ class EducationsController < UserProfilesController
     # Use callbacks to share common setup or constraints between actions.
     def set_education
       @education = Education.find(params[:id])
-        ap @education
-        puts '***********************************************************************'
-        ap User.current
-        puts '***********************************************************************'
-        puts '***********************************************************************'
     rescue ActiveRecord::RecordNotFound
       render_404
     end

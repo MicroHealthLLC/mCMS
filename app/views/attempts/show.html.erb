@@ -1,0 +1,4 @@
+<% unless User.current.admin? %>
+    <%= render partial: 'show', locals: {attempt: @attempt} %>
+    <%= render partial: 'notes/notes', locals: {notes: @attempt.attempt_notes} %>
+<% end %>

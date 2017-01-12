@@ -1,3 +1,4 @@
+<%= render partial: 'action_menu' %>
 <div class="container">
   <h2 class="survey-title">
     <%= @survey.name %>
@@ -5,26 +6,7 @@
   </h2>
   <% if @attempts.any? %>
       <% @attempts.each_with_index do |attempt, index| %>
-          <h3><%= "ATTEMPT ##{index + 1}" %> <em><%= format_date(attempt.answers.first.created_at) if attempt.answers.first %></em></h3>
-          <ol class="questions">
-            <% attempt.answers.each do |answer| %>
-                <li>
-                  <p class="question"> <%= answer.question.text %> </p>
-                  <ul class="options">
-                    <% answer.question.options.each do |option| %>
-                        <li class="radio">
-                          <label>
-                            <%= radio_button_tag '', '', the_chosen_one?(answer, option), disabled: true %>
-                            <% color = get_color_of_option(answer, option) %>
-                            <span class="<%= color %> <%= correct_answer?(answer, option) %>"> <%= option.text %> <%= get_weight(option) %> </span>
-                          </label>
-                          <p class="answers-number"> <%= number_of_people_who_also_answered(option.id) %> </p>
-                        </li>
-                    <% end %>
-                  </ul>
-                </li>
-            <% end %>
-          </ol>
+          <%= render partial: 'show', locals: {attempt: attempt, index: index} %>
           <hr/>
       <% end %>
   <% end %>
