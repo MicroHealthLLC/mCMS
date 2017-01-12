@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :checklist_cases, only: [:index, :destroy, :show, :update]
   resources :note_templates
   resources :case_supports do
+    member do
+      get 'remove'
+    end
     collection do
       match 'search', via: [:get, :post]
     end
@@ -79,6 +82,9 @@ Rails.application.routes.draw do
     resources :department_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
   resources :contacts do
+    member do
+      get 'remove'
+    end
     collection do
       match 'search', via: [:get, :post]
     end

@@ -1,9 +1,7 @@
 class CaseSupportsController < UserCasesController
-  before_action  :authenticate_user!
-  before_action :set_case_support, only: [:show, :edit, :update, :destroy]
+  before_action :set_case_support, only: [:remove, :show, :edit, :update, :destroy]
 
-  before_action :authorize, only: [:new, :create, :search ]
-  before_action :authorize_edit, only: [:edit, :update]
+  before_action :authorize_edit, only: [:remove, :edit, :update]
   before_action :authorize_delete, only: [:destroy]
 
 
@@ -53,6 +51,13 @@ class CaseSupportsController < UserCasesController
       end
     end
   end
+
+  def remove
+    @case_support.status = params[:back] ? true : false
+    @case_support.save
+    redirect_to case_support_path(@case_support)
+  end
+
 
   # PATCH/PUT /case_supports/1
   # PATCH/PUT /case_supports/1.json

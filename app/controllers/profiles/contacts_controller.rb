@@ -1,8 +1,8 @@
 class ContactsController < UserProfilesController
 
-  before_action :set_contact, only: [:show, :edit, :update, :destroy]
+  before_action :set_contact, only: [:remove, :show, :edit, :update, :destroy]
 
-  before_action :authorize_edit, only: [:edit, :update]
+  before_action :authorize_edit, only: [:remove, :edit, :update]
   before_action :authorize_delete, only: [:destroy]
 
   # GET /contacts
@@ -11,7 +11,6 @@ class ContactsController < UserProfilesController
     respond_to do |format|
       format.html{@contacts = Contact.visible}
     end
-
   end
 
   # GET /contacts/1
@@ -26,6 +25,12 @@ class ContactsController < UserProfilesController
 
       }
     end
+  end
+
+  def remove
+    @contact.status = params[:back] ? true : false
+    @contact.save
+    redirect_to contact_path(@contact)
   end
 
   # GET /contacts/new

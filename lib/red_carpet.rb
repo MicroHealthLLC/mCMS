@@ -45,9 +45,9 @@ RedCarpet::AccessControl.map do |map|
     map.permission :show_contacts, {:contacts => [:show]},  :read => true
     map.permission :search_contact, {:contacts => [:search]},  :read => true
     map.permission :create_contacts, {:contacts => [:new, :create]},  :read => true
-    map.permission :edit_contacts, {:contacts => [:edit, :update]},  :read => true
+    map.permission :edit_contacts, {:contacts => [:remove, :edit, :update]},  :read => true
     map.permission :delete_contacts, {:contacts => [:destroy]},  :read => true
-    map.permission :manage_contacts, {:contacts => [:index, :show, :search, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_contacts, {:contacts => [:remove, :index, :show, :search, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :certifications do |map|
@@ -162,10 +162,10 @@ RedCarpet::AccessControl.map do |map|
     map.permission :view_case_supports, {:case_supports => [:index]},  :read => true
     map.permission :show_case_supports, {:case_supports => [:show]},  :read => true
     map.permission :create_case_supports, {:case_supports => [:new, :create]},  :read => true
-    map.permission :edit_case_supports, {:case_supports => [:edit, :update]},  :read => true
+    map.permission :edit_case_supports, {:case_supports => [:remove, :edit, :update]},  :read => true
     map.permission :delete_case_supports, {:case_supports => [:destroy]},  :read => true
     map.permission :search_case_supports, {:case_supports => [:search]},  :read => true
-    map.permission :manage_case_supports, {:case_supports => [:index, :show, :search, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_case_supports, {:case_supports => [:remove, :index, :show, :search, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :appointments do |map|
@@ -244,7 +244,7 @@ RedCarpet::AccessControl.map do |map|
         :clearances => [:index, :show, :new, :create, :edit, :update, :destroy],
         :user_insurances => [:index, :show, :new, :create, :edit, :update, :destroy],
         :certifications => [:index, :show, :new, :create, :edit, :update, :destroy],
-        :contacts => [:search, :index, :show, :new, :create, :edit, :update, :destroy],
+        :contacts => [:search, :index, :show, :new, :create, :edit, :update, :destroy, :remove],
         :chat_rooms => [:conference, :show, :create_or_find],
         :document => [:index,:new,  :show, :create, :edit, :update, :destroy],
         :other_skills => [:index,:new,  :show, :create, :edit, :update, :destroy],

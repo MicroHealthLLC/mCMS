@@ -17,6 +17,15 @@ class CaseSupport < ApplicationRecord
     case_support_extend_demography || CaseSupportExtendDemography.new(case_support_id: self.id)
   end
 
+  def removed?
+    !status
+  end
+
+  def self.visible
+    super.where(status: true)
+  end
+
+
   def support_status
     if support_status_id
       super

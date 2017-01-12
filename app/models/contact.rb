@@ -14,6 +14,13 @@ class Contact < ApplicationRecord
     UserMailer.contact_notification(self).deliver_later unless self.not_show_in_search
   end
 
+  def self.visible
+    super.where(status: true)
+  end
+
+  def removed?
+    !status
+  end
 
   def contact_type
     if contact_type_id
