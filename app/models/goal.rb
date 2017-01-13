@@ -4,6 +4,12 @@ class Goal < ApplicationRecord
   belongs_to :priority_type, optional: true
   belongs_to :goal_status, optional: true
 
+  has_many :need_goals
+  has_many :needs, through: :need_goals
+
+  has_many :goal_plans
+  has_many :plans, through: :goal_plans
+
   has_many :goal_notes, foreign_key: :owner_id
 
   validates_presence_of :name
@@ -12,6 +18,10 @@ class Goal < ApplicationRecord
         :priority_type_id, :user_id, :goal_status_id, :name,
         :description, :date_completed, :date_due, :date_start,  :case_id
     ]
+  end
+
+  def available_plans
+    self.case.try(:plans) || []
   end
 
   def priority_type

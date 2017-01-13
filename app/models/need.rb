@@ -6,12 +6,21 @@ class Need < ApplicationRecord
   belongs_to :need_status, optional: true
 
 
+  has_many :need_goals
+  has_many :goals, through: :need_goals
+
+  has_many :need_notes, foreign_key: :owner_id
+
   def self.safe_attributes
     [ :need_enum_id, :priority_type_id, :user_id, :need_status_id,
       :description, :date_completed, :date_due, :date_identified, :case_id
     ]
   end
-  has_many :need_notes, foreign_key: :owner_id
+
+  def available_goals
+    self.case.try(:goals) || []
+  end
+
   def need_enum
     if need_enum_id
       super

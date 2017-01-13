@@ -1,0 +1,5 @@
+<% if @goal %>
+$('#btn_<%= @goal_id %>').html("<button class='btn goals-btn btn-danger' onclick='btn_clicked(<%= @goal_id %>)'> <%= t('button_remove') %></button>");
+<% else %>
+$('#btn_<%= @goal_id %>').html("<button class='btn goals-btn btn-success' onclick='btn_clicked(<%= @goal_id %>)'> <%= 'Add' %></button>");
+<% end %>

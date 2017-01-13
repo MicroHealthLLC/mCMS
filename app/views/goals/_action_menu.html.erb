@@ -7,4 +7,5 @@
   <%= link_to( t('add_note'), new_note_path(type: 'GoalNote', owner_id: @goal.id), class: 'btn btn-success pull-right') if can?(:add_notes, :manage_roles) %>
   <%= link_to t('button_cancel'), goal_back_url(@goal), class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), goal_path(@goal, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+  <%= link_to 'Manage Plans', links_goal_path(@goal), class: 'btn btn-primary pull-right' %>
 </div>

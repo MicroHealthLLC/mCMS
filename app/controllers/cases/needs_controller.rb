@@ -1,8 +1,8 @@
 class NeedsController < UserCasesController
 
-  before_action :set_need, only: [:show, :edit, :update, :destroy]
+  before_action :set_need, only: [:links, :add_goal, :show, :edit, :update, :destroy]
 
-  before_action :authorize_edit, only: [:edit, :update]
+  before_action :authorize_edit, only: [:edit, :update, :links, :add_goal]
   before_action :authorize_delete, only: [:destroy]
 
 
@@ -15,6 +15,30 @@ class NeedsController < UserCasesController
   # GET /needs/1
   # GET /needs/1.json
   def show
+    @goals = @need.goals
+  end
+
+  def links
+    @goals = @need.goals
+    @available_goals = @need.available_goals
+  end
+
+  def add_goal
+    respond_to do |format|
+      format.js{
+        @goal_id = params[:goal_id]
+        g = @need.need_goals.where(goal_id: @goal_id)
+        if g.present?
+          g.delete_all
+        else
+          @goal = Goal.find(@goal_id)
+          @available_goals = @need.available_goals
+          if @available_goals.include?(@goal)
+            @need.goals<< @goal
+          end
+        end
+      }
+    end
   end
 
   # GET /needs/new

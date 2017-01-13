@@ -12,9 +12,18 @@ Rails.application.routes.draw do
     resources :case_support_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
   resources :case_watchers, only: [:index]
-  resources :plans
-  resources :goals
-  resources :needs
+  resources :plans do
+    match 'links', via: [:get, :post], on: :member
+    match 'add_action', via: [:get], on: :member
+  end
+  resources :goals do
+    match 'links', via: [:get, :post], on: :member
+    match 'add_plan', via: [:get], on: :member
+  end
+  resources :needs do
+    match 'links', via: [:get], on: :member
+    match 'add_goal', via: [:get], on: :member
+  end
   resources :user_insurances
   resources :insurances do
     resources :insurance_extend_demographies, only: [:create, :update], controller: :extend_demographies

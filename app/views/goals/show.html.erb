@@ -1,39 +1,64 @@
 <%= render partial: 'action_menu' %>
-<div class="col-xs-12">
-  <p>
-    <strong>Name:</strong>
-    <%= @goal.name %>
-  </p>
+<div class="row">
+  <div class="col-xs-12">
+    <p>
+      <strong>Name:</strong>
+      <%= @goal.name %>
+    </p>
 
-  <p>
-    <strong>Priority type:</strong>
-    <%= @goal.priority_type %>
-  </p>
+    <p>
+      <strong>Priority type:</strong>
+      <%= @goal.priority_type %>
+    </p>
 
-  <p>
-    <strong>Goal status:</strong>
-    <%= @goal.goal_status %>
-  </p>
+    <p>
+      <strong>Goal status:</strong>
+      <%= @goal.goal_status %>
+    </p>
 
-  <p>
-    <strong>Description:</strong>
-    <%= @goal.description.html_safe %>
-  </p>
+    <p>
+      <strong>Description:</strong>
+      <%= @goal.description.html_safe %>
+    </p>
 
-  <p>
-    <strong>Date start:</strong>
-    <%= @goal.date_start %>
-  </p>
+    <p>
+      <strong>Date start:</strong>
+      <%= @goal.date_start %>
+    </p>
 
-  <p>
-    <strong>Date due:</strong>
-    <%= @goal.date_due %>
-  </p>
+    <p>
+      <strong>Date due:</strong>
+      <%= @goal.date_due %>
+    </p>
 
-  <p>
-    <strong>Date complete:</strong>
-    <%= @goal.date_completed %>
-  </p>
+    <p>
+      <strong>Date complete:</strong>
+      <%= @goal.date_completed %>
+    </p>
+  </div>
 </div>
+
+
+<% if module_enabled?('plans') %>
+    <%#= link_to(t('new_goal'), new_goal_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_goals, :manage_roles, :manage_goals) %>
+
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= render partial: 'plans/list',
+                   layout: 'shared/smart_widget_wrapper',
+                   locals: {
+                       plans: @plans,
+                       wid_id: 'plans',
+                       wid_title: 'plans'
+                   } %>
+      </article>
+    </div>
+    <script>
+      $(document).ready(function(){
+        <% if @plans.present? %>  initDataTable('plans_table') <% end %>
+      } );
+    </script>
+
+<% end %>
 
 <%= render partial: 'notes/notes', locals: {notes: @goal.goal_notes} %>

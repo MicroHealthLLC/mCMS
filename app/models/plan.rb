@@ -5,6 +5,10 @@ class Plan < ApplicationRecord
   belongs_to :plan_status, optional: true
   validates_presence_of :name
   has_many :plan_notes, foreign_key: :owner_id
+
+  has_many :goal_plans
+  has_many :goals, through: :goal_plans
+
   def self.safe_attributes
     [
         :priority_type_id, :user_id, :plan_status_id, :name,

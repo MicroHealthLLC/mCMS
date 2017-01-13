@@ -1,6 +1,6 @@
 class GoalsController <  UserCasesController
 
-  before_action :set_goal, only: [:show, :edit, :update, :destroy]
+  before_action :set_goal, only: [:links, :add_plan, :show, :edit, :update, :destroy]
 
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
@@ -14,6 +14,30 @@ class GoalsController <  UserCasesController
   # GET /goals/1
   # GET /goals/1.json
   def show
+    @plans = @goal.plans
+  end
+
+  def links
+    @plans = @goal.plans
+    @available_plans = @goal.available_plans
+  end
+
+  def add_plan
+    respond_to do |format|
+      format.js{
+        @plan_id = params[:plan_id]
+        g = @goal.goal_plans.where(plan_id: @plan_id)
+        if g.present?
+          g.delete_all
+        else
+          @plan = Plan.find(@plan_id)
+          @available_plans = @goal.available_plans
+          if @available_plans.include?(@plan)
+            @goal.plans<< @plan
+          end
+        end
+      }
+    end
   end
 
   # GET /goals/new
