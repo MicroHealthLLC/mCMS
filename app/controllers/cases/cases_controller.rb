@@ -48,7 +48,7 @@ class CasesController < UserCasesController
     @goals       = @case.goals
     @watchers    = @case.watchers.includes(:user=> :core_demographic)
 
-    @case_supports = @case.case_supports
+    @case_supports = @case.case_supports.active
   end
 
   def watchers

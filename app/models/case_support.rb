@@ -22,8 +22,13 @@ class CaseSupport < ApplicationRecord
   end
 
   def self.visible
-    super.where(status: true)
+    super.active
   end
+
+  def self.active
+    where(status: true)
+  end
+
 
 
   def support_status

@@ -34,7 +34,7 @@ class AppointmentsController < UserCasesController
       @plans       = @case.plans.where('date(updated_at) = ?', update_rails)
       @goals       = @case.goals.where('date(updated_at) = ?', update_rails)
       @watchers    = @case.watchers.where('date(updated_at) = ?', update_rails).includes(:user=> :core_demographic)
-      @case_supports = @case.case_supports.where('date(updated_at) = ?', update_rails)
+      @case_supports = @case.case_supports.active.where('date(updated_at) = ?', update_rails)
     end
   end
 
