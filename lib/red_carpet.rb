@@ -197,27 +197,27 @@ RedCarpet::AccessControl.map do |map|
     map.permission :view_needs, {:needs => [:index]},  :read => true
     map.permission :show_needs, {:needs => [:show]},  :read => true
     map.permission :create_needs, {:needs => [:new, :create]},  :read => true
-    map.permission :edit_needs, {:needs => [:edit, :update]},  :read => true
+    map.permission :edit_needs, {:needs => [:links, :add_goal, :edit, :update]},  :read => true
     map.permission :delete_needs, {:needs => [:destroy]},  :read => true
-    map.permission :manage_needs, {:needs => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_needs, {:needs => [:links, :add_goal, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :goals do |map|
     map.permission :view_goals, {:goals => [:index]},  :read => true
     map.permission :show_goals, {:goals => [:show]},  :read => true
     map.permission :create_goals, {:goals => [:new, :create]},  :read => true
-    map.permission :edit_goals, {:goals => [:edit, :update]},  :read => true
+    map.permission :edit_goals, {:goals => [:links, :add_plan, :edit, :update]},  :read => true
     map.permission :delete_goals, {:goals => [:destroy]},  :read => true
-    map.permission :manage_goals, {:goals => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_goals, {:goals => [:links, :add_plan, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :plans do |map|
     map.permission :view_plans, {:plans => [:index]},  :read => true
     map.permission :show_plans, {:plans => [:show]},  :read => true
     map.permission :create_plans, {:plans => [:new, :create]},  :read => true
-    map.permission :edit_plans, {:plans => [:edit, :update]},  :read => true
+    map.permission :edit_plans, {:plans => [:links, :add_action, :edit, :update]},  :read => true
     map.permission :delete_plans, {:plans => [:destroy]},  :read => true
-    map.permission :manage_plans, {:plans => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_plans, {:plans => [:links, :add_action, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :checklists do |map|
@@ -257,11 +257,11 @@ RedCarpet::AccessControl.map do |map|
         :case_watchers => [:index],
         :appointments => [:my, :index, :show, :new, :create, :edit, :update, :destroy],
         :appointment_captures => [:show, :new, :create, :edit, :update, :destroy],
-        :needs => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :needs => [:links, :add_goal,:index, :show, :new, :create, :edit, :update, :destroy],
         :news => [:index, :show, :new, :create, :edit, :update, :destroy],
         :notes => [:index, :show, :new, :create, :edit, :update, :destroy, :get_template_note],
-        :plans => [:index, :show, :new, :create, :edit, :update, :destroy],
-        :goals => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :plans => [:links, :add_action, :index, :show, :new, :create, :edit, :update, :destroy],
+        :goals => [:links, :add_plan, :index, :show, :new, :create, :edit, :update, :destroy],
         :checklist_cases => [:index, :show, :new, :create, :edit, :update, :destroy],
         :wikis => [:new, :index, :show, :create, :edit, :update, :history, :compare, :add_attachment, :destroy]
 
