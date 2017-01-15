@@ -9,6 +9,9 @@ class Task < ApplicationRecord
   has_many :task_notes, foreign_key: :owner_id, dependent: :destroy
   has_many :sub_tasks, class_name: 'Task', foreign_key: :sub_task_id
 
+  has_many :plan_tasks
+  has_many :plans, through: :plan_tasks
+
 
   has_many :task_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :task_attachments, reject_if: :all_blank, allow_destroy: true

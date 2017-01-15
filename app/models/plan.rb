@@ -9,11 +9,20 @@ class Plan < ApplicationRecord
   has_many :goal_plans
   has_many :goals, through: :goal_plans
 
+
+  has_many :plan_tasks
+  has_many :tasks, through: :plan_tasks
+
+
   def self.safe_attributes
     [
         :priority_type_id, :user_id, :plan_status_id, :name,
         :description, :date_completed, :date_due, :date_start,  :case_id
     ]
+  end
+
+  def available_tasks
+    self.case.try(:tasks) || []
   end
 
   def priority_type

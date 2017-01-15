@@ -1,41 +1,64 @@
 <%= render partial: 'action_menu' %>
-<div class="col-xs-12">
-<p>
-  <strong>Name:</strong>
-  <%= @plan.name %>
-</p>
+<div class="row">
+  <div class="col-xs-12">
+    <p>
+      <strong>Name:</strong>
+      <%= @plan.name %>
+    </p>
 
-<p>
-  <strong>Priority type:</strong>
-  <%= @plan.priority_type %>
-</p>
+    <p>
+      <strong>Priority type:</strong>
+      <%= @plan.priority_type %>
+    </p>
 
-<p>
-  <strong>Plan status:</strong>
-  <%= @plan.plan_status %>
-</p>
+    <p>
+      <strong>Plan status:</strong>
+      <%= @plan.plan_status %>
+    </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @plan.description.html_safe %>
-</p>
+    <p>
+      <strong>Description:</strong>
+      <%= @plan.description.html_safe %>
+    </p>
 
-<p>
-  <strong>Date start:</strong>
-  <%= @plan.date_start %>
-</p>
+    <p>
+      <strong>Date start:</strong>
+      <%= @plan.date_start %>
+    </p>
 
-<p>
-  <strong>Date due:</strong>
-  <%= @plan.date_due %>
-</p>
+    <p>
+      <strong>Date due:</strong>
+      <%= @plan.date_due %>
+    </p>
 
-<p>
-  <strong>Date completed:</strong>
-  <%= @plan.date_completed %>
-</p>
-  
+    <p>
+      <strong>Date completed:</strong>
+      <%= @plan.date_completed %>
+    </p>
+
+  </div>
 </div>
+<% if module_enabled?('tasks') %>
+    <%#= link_to(t('new_goal'), new_goal_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_goals, :manage_roles, :manage_goals) %>
+
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= render partial: 'tasks/list',
+                   layout: 'shared/smart_widget_wrapper',
+                   locals: {
+                       tasks: @tasks,
+                       wid_id: 'tasks',
+                       wid_title: 'tasks'
+                   } %>
+      </article>
+    </div>
+    <script>
+      $(document).ready(function(){
+        <% if @tasks.present? %>  initDataTable('plans_table') <% end %>
+      } );
+    </script>
+
+<% end %>
 
 
 <%= render partial: 'notes/notes', locals: {notes: @plan.plan_notes} %>

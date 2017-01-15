@@ -1,7 +1,7 @@
 class PlansController < UserCasesController
-  before_action :set_plan, only: [:show, :edit, :update, :destroy]
+  before_action :set_plan, only: [:links, :add_action,  :show, :edit, :update, :destroy]
 
-  before_action :authorize_edit, only: [:edit, :update]
+  before_action :authorize_edit, only: [:links, :add_action, :edit, :update]
   before_action :authorize_delete, only: [:destroy]
 
   # GET /plans
@@ -13,8 +13,31 @@ class PlansController < UserCasesController
   # GET /plans/1
   # GET /plans/1.json
   def show
+    @tasks = @plan.tasks
   end
 
+  def links
+    @tasks = @plan.tasks
+    @available_actions = @plan.available_tasks
+  end
+
+  def add_action
+    respond_to do |format|
+      format.js{
+        @task_id = params[:task_id]
+        g = @plan.plan_tasks.where(task_id: @task_id)
+        if g.present?
+          g.delete_all
+        else
+          @task = Task.find(@task_id)
+          @available_actions = @plan.available_tasks
+          if @available_actions.include?(@task)
+            @plan.plan_tasks<< PlanTask.new(task_id: @task.id, plan_id: @plan.id)
+          end
+        end
+      }
+    end
+  end
   # GET /plans/new
   def new
     @plan = Plan.new(user_id: User.current.id,

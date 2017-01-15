@@ -30,7 +30,7 @@
 </div>
 <script>
   $(document).ready(function(){
-    <% if @goals.present? %>  initDataTable('goals_table') <% end %>
+    <% if @available_goals.present? %>  initDataTable('goals_table') <% end %>
   })
   function btn_clicked(goal_id)
   {
