@@ -8,4 +8,5 @@
   <%= link_to t('button_cancel'), need_back_url(@need), class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), need_path(@need, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to 'Manage Goals', links_need_path(@need), class: 'btn btn-primary pull-right' %>
+  <%= link_to 'Show plans/actions', need_path(@need, format: 'js'),:remote => true, class: 'btn btn-primary pull-right' %>
 </div>
