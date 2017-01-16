@@ -52,6 +52,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
+  gem 'rails-controller-testing'
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'awesome_print', require: 'ap'
@@ -67,6 +68,7 @@ gem "devise_ldap_authenticatable"
 gem "omniauth-facebook"
 gem "omniauth-github"
 gem "omniauth-twitter"
+gem "omniauth-google-oauth2"
 
 gem 'therubyracer', platforms: :ruby
 gem 'execjs'

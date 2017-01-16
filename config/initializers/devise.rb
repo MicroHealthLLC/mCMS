@@ -262,7 +262,7 @@ Devise.setup do |config|
   config.omniauth :office365, ENV['OFFICE365_KEY'], ENV['OFFICE365_SECRET'], :scope => 'openid profile email https://outlook.office.com/mail.read', callback_url:  "#{ENV['CALLBACK_URL']}/users/auth/office365/callback"
   config.omniauth :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET']#, scope: 'email' #, callback_url:  "#{ENV['CALLBACK_URL']}/users/auth/facebook/callback/"
   config.omniauth :twitter, ENV['TWITTER_KEY'], ENV['TWITTER_SECRET'], scope: 'user:email', callback_url:  "#{ENV['CALLBACK_URL']}/users/auth/twitter/callback"
-  # config.omniauth :google, ENV['GOOGLE_KEY'], ENV['GOOGLE_SECRET'], scope: 'user:email'
+  config.omniauth :google_oauth2, ENV['GOOGLE_KEY'],  ENV['GOOGLE_SECRET']
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

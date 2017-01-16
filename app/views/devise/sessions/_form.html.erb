@@ -16,8 +16,8 @@
             <span class="fa fa-windows"></span> Sign in with Microsoft
         <% end %>
     <% end %>
-    <% if false #can_connect_with?(:google) %>
-        <%= link_to '/users/auth/google', class: "btn btn-block btn-social btn-google" do %>
+    <% if can_connect_with?(:google) %>
+        <%= link_to '/users/auth/google_oauth2', class: "btn btn-block btn-social btn-google" do %>
             <span class="fa fa-google-plus"></span> Sign in with Google
         <% end %>
     <% end %>
