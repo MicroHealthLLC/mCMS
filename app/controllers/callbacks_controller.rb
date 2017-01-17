@@ -18,7 +18,7 @@ class CallbacksController < Devise::OmniauthCallbacksController
       flash[:error] = 'Cannot create user because it is already deleted'
       redirect_to root_path
     else
-      session["omniauth.state"] = params['state']
+      # session["omniauth.state"] = params['state']
       @user = User.from_omniauth(request.env["omniauth.auth"])
       logger.warn 'OFFICE CREATE OR UPDATE USER'
       sign_in_and_redirect @user
