@@ -56,7 +56,9 @@ class User < ApplicationRecord
   end
 
   def self.user_deleted?(auth)
-    unscoped.where(provider: auth.provider, uid: auth.uid).present?
+    user = unscoped.where(provider: auth.provider, uid: auth.uid).first
+    return user.deleted? if user
+    false
   end
 
   def self.from_omniauth(auth)
