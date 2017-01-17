@@ -55,12 +55,16 @@ class User < ApplicationRecord
     UserMailer.account_activated(self).deliver_later if self.account_active? and self.state_was == false
   end
 
+  def self.user_deleted?(auth)
+    unscoped.where(provider: auth.provider, uid: auth.uid).present?
+  end
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
       user.uid = auth.uid
-      user.email = "#{auth.uid}@#{auth.provider}.com"
-      user.login = "#{auth.uid}@#{auth.provider}.com"
+      user.email = auth.info.email || "#{auth.uid}@#{auth.provider}.com"
+      user.login = auth.info.email || "#{auth.uid}@#{auth.provider}.com"
       user.password = Devise.friendly_token[0,20]
       user.ldap_authenticatable= ''
     end
