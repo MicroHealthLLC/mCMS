@@ -24,6 +24,7 @@ en:
 
  # Education
   education_type: Education
+  education: Education
   educations: Educations
   new_education: New education
   education_other_skill: Other skill
@@ -126,8 +127,8 @@ en:
   all_files: All files
 
  # CASES Support
-  cases_support: Case support
-  cases_supports: Case supports
+  cases_support: Case Support
+  cases_supports: Case Supports
   edit_cases_support: 'Edit case support'
   new_cases_support: "New case support"
   case_support_type: Case support type
