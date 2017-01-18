@@ -1,9 +1,9 @@
 <table class="table table-bordered table-responsive" id="tasks_table">
   <thead>
   <tr>
-    <% if User.current.can?(:manage_roles) %>
-         <th>Client</th>
-        <% end %>
+    <% if User.current.allowed_to?(:manage_roles) %>
+        <th>Client</th>
+    <% end %>
     <th>Title</th>
     <th>Task type</th>
     <th>Status</th>
@@ -18,7 +18,7 @@
   <% if @tasks.any? %>
       <% @tasks.each do |task| %>
           <tr>
-            <% if User.current.can?(:manage_roles) %>
+            <% if User.current.allowed_to?(:manage_roles) %>
                 <td><%= task.user %></td>
             <% end %>
             <td><%= link_to task.title, task %></td>

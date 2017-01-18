@@ -7,7 +7,7 @@
         </li>
         <% if module_enabled?( 'educations') && can?(:manage_roles, :view_educations, :manage_educations)%>
             <li class="<%= menu_active?('educations') %>">
-              <a href="/educations" title="<%= t(:educations) %>"><i class="fa fa-lg fa-fw fa-graduation-cap"></i> <span class="menu-item-parent"><%= t(:educations) %></span></a>
+              <a href="/educations" title="<%= t(:education) %>"><i class="fa fa-lg fa-fw fa-graduation-cap"></i> <span class="menu-item-parent"><%= t(:education) %></span></a>
             </li>
         <% end %>
         <% if module_enabled?( 'languages')  && can?(:manage_roles, :view_languages, :manage_languages) %>
@@ -48,7 +48,7 @@
         <% end %>
         <% if module_enabled?( 'insurances')  && can?(:manage_roles, :view_insurances, :manage_insurances) %>
             <li class="<%= menu_active?('user_insurances') %>">
-              <a href="/user_insurances" title="<%= t(:insurance_plural) %>"><i class="fa fa-lg fa-fw fa-shield"></i> <span class="menu-item-parent"><%= t(:insurance_plural) %></span></a>
+              <a href="/user_insurances" title="<%= t(:insurance) %>"><i class="fa fa-lg fa-fw fa-shield"></i> <span class="menu-item-parent"><%= t(:insurance) %></span></a>
             </li>
         <% end %>
       </ul>
