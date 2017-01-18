@@ -34,8 +34,8 @@
         <%= f.simple_fields_for :emails do |mail| %>
             <%= render 'extend_demographies/email_fields', :f => mail %>
         <% end %>
-        <div id="emails" class="col-xs-11 margin-top-10" style="padding-right: 2px; margin-left: 6px;">
-          <%= link_to_add_association 'add email', f, :emails, class: 'btn btn-success pull-right col-xs-4 col-sm-2 col-md-2', partial: 'extend_demographies/email_fields' %>
+        <div id="emails" class="col-xs-11 margin-top-10">
+          <%= link_to_add_association 'add email', f, :emails, class: 'btn btn-success  ', partial: 'extend_demographies/email_fields' %>
 
         </div>
       </div>
@@ -44,7 +44,7 @@
             <%= render 'extend_demographies/fax_fields', :f => fax %>
         <% end %>
         <div id="faxes" class="col-xs-11 margin-top-10" style="padding-right: 2px; margin-left: 6px;" >
-          <%= link_to_add_association 'add fax number', f, :faxes, class: 'btn btn-success pull-right col-xs-4 col-sm-2 col-md-2', partial: 'extend_demographies/fax_fields' %>
+          <%= link_to_add_association 'add fax number', f, :faxes, class: 'btn btn-success  ', partial: 'extend_demographies/fax_fields' %>
         </div>
       </div>
       <div id='tabs-phones' >
@@ -53,20 +53,20 @@
         <% end %>
 
         <div id="phones" class="col-xs-11 margin-top-10" style="padding-right: 2px; margin-left: 6px;" >
-          <%= link_to_add_association 'add phone', f, :phones, class: 'btn btn-success pull-right col-xs-4 col-sm-2 col-md-2', partial: 'extend_demographies/phone_fields' %>
+          <%= link_to_add_association 'add phone', f, :phones, class: 'btn btn-success  ', partial: 'extend_demographies/phone_fields' %>
         </div>
       </div>
 
       <% if !extend_demography.object.is_a?( Organization ) and  !extend_demography.object.is_a?(Affiliation)%>
-      <div id='tabs-identifications' >
-        <%= f.simple_fields_for :identifications do |identification| %>
-            <%= render 'extend_demographies/identification_fields', :f => identification %>
-        <% end %>
+          <div id='tabs-identifications' >
+            <%= f.simple_fields_for :identifications do |identification| %>
+                <%= render 'extend_demographies/identification_fields', :f => identification %>
+            <% end %>
 
-        <div id="identifications" class="col-xs-11 margin-top-10" style="padding-right: 2px; margin-left: 6px;" >
-          <%= link_to_add_association 'add identification', f, :identifications, class: 'btn btn-success pull-right col-xs-4 col-sm-2 col-md-2', partial: 'extend_demographies/identification_fields' %>
-        </div>
-      </div>
+            <div id="identifications" class="col-xs-11 margin-top-10" style="padding-right: 2px; margin-left: 6px;" >
+              <%= link_to_add_association 'add identification', f, :identifications, class: 'btn btn-success  ', partial: 'extend_demographies/identification_fields' %>
+            </div>
+          </div>
       <% end %>
 
       <div id='tabs-social_media' >
@@ -75,7 +75,7 @@
         <% end %>
 
         <div id="social_media" class="col-xs-11 margin-top-10" style="padding-right: 2px; margin-left: 6px;" >
-          <%= link_to_add_association 'add social media', f, :social_media, class: 'btn btn-success pull-right col-xs-4 col-sm-2 col-md-2', partial: 'extend_demographies/social_media_fields' %>
+          <%= link_to_add_association 'add social media', f, :social_media, class: 'btn btn-success  ', partial: 'extend_demographies/social_media_fields' %>
         </div>
       </div>
 
@@ -85,18 +85,23 @@
         <% end %>
 
         <div id="addresses" class="col-xs-11 margin-top-10" style="padding-right: 2px; margin-left: 6px;" >
-          <%= link_to_add_association 'add address', f, :addresses, class: 'btn btn-success pull-right col-xs-4 col-sm-2 col-md-2', partial: 'extend_demographies/address_fields' %>
+          <%= link_to_add_association 'add address', f, :addresses, class: 'btn btn-success  ', partial: 'extend_demographies/address_fields' %>
         </div>
       </div>
     </div>
     <div class="">
-      <div class="col-xs-11 margin-top-10" >
-        <%= f.submit t('button_save'), class: 'btn btn-primary pull-right col-xs-4 col-sm-2 col-md-2' %>
+      <div class="col-sm-4 col-md-3 col-lg-3"> </div>
+      <div class="col-sm-8 col-md-9 col-lg-9">
+        <div class="form-group" >
+          <div class="col-md-11" >
+            <%= f.submit t('button_save'), class: 'btn btn-primary pull-right col-xs-4 col-sm-2 col-md-2' %>
+          </div>
+        </div>
       </div>
     </div>
 <% end %>
 <script>
-  $( function() {
-    $tabs = $( "#tabs" ).tabs();
-  } );
+    $( function() {
+        $tabs = $( "#tabs" ).tabs();
+    } );
 </script>

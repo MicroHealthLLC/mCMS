@@ -89,11 +89,7 @@
 
         <div class="form-group" >
           <div class="col-md-11" >
-            <% unless f.object.new_record? %>
-                <%#= link_to t(:button_print), core_demographic_path(f.object, format: 'pdf'), class: 'btn btn-primary pull-right' %>
-            <% end %>
-
-            <%= f.submit t(:button_save), class: 'btn btn-primary pull-right', style: "margin-right: 15px" %>
+            <%= f.submit t(:button_save), class: 'btn btn-primary pull-right col-xs-4 col-sm-2 col-md-2' %>
           </div>
         </div>
 
