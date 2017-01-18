@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  # acts_as_paranoid
+  acts_as_paranoid
 
  # ldap_authenticatable
   devise :database_authenticatable, :registerable,
@@ -67,9 +67,13 @@ class User < ApplicationRecord
   end
 
   def self.user_deleted?(auth)
-    user = unscoped.where(provider: auth.provider, uid: auth.uid).first
+    user = get_user(auth)
     return user.deleted? if user
     false
+  end
+
+  def self.get_user(auth)
+    unscoped.where(provider: auth.provider, uid: auth.uid).or(User.unscoped.where(email: auth.info.email || "#{auth.uid}@#{auth.provider}.com")).first
   end
 
   def self.from_omniauth(auth)

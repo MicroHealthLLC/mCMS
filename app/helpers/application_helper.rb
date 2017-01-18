@@ -29,6 +29,10 @@ module ApplicationHelper
     link_to "<i class='fa fa-lg fa-trash-o'></i>".html_safe, url, options
   end
 
+  def restore_user_link(user)
+    link_to "<i class='fa fa-lg fa-recycle'></i>".html_safe, restore_user_path(user)
+  end
+
   def format_date datetime
     datetime.strftime(t('date.formats.default'))
   end

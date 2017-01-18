@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
   before_action  :authenticate_user!
-  before_action :find_user, except: [:index, :new, :create, :recently_connected]
+  before_action :find_user, except: [:restore, :index, :new, :create, :recently_connected]
 
   before_filter :require_admin, only: [:destroy]
   def index
     respond_to do |format|
-      format.html{@users = User.all}
+      format.html{@users = User.unscoped.all}
       format.json{
         render json: User.where("login like ?", "%#{params[:q]}%").select('id, login ').to_json
 
@@ -22,6 +22,14 @@ class UsersController < ApplicationController
             where.not(id: current_user.id )
       }
     end
+  end
+
+  def restore
+    u = User.unscoped.find params[:id]
+    u.restore
+    u.save
+    flash[:notice] = 'User restored'
+    redirect_to :back
   end
 
   def search_users
