@@ -14,10 +14,12 @@
     <%= @note.updated_at.to_date %>
   </p>
 
-  <p>
-    <strong>Belongs to:</strong>
-    <%= link_to @note.object.to_s, @note.object %>
-  </p>
+  <% if @note.object.class != News %>
+      <p>
+        <strong>Belongs to:</strong>
+        <%= link_to @note.object.to_s, @note.object %>
+      </p>
+  <% end %>
 
   <p>
     <strong>Note:</strong>
