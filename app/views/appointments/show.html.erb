@@ -30,7 +30,12 @@
       <strong>With who:</strong>
       <%= @appointment.with_who %>
     </p>
-
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @appointment.appointment_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
   </div>
 </div>
 

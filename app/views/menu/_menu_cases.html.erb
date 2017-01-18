@@ -55,6 +55,12 @@
             </li>
         <% end %>
 
+        <% if module_enabled?('all_files')  && can?(:manage_roles, :manage_cases) %>
+            <li class="<%= menu_active?('documents') %>">
+              <a href="/cases/all_files" title="<%= t(:all_files) %>"><i class="fa fa-lg fa-fw fa-files-o"></i> <span class="menu-item-parent"><%= t(:all_files) %></span></a>
+            </li>
+        <% end %>
+
         <% if module_enabled?( 'checklists')  && can?(:manage_roles, :view_checklists, :manage_checklists) %>
             <li class="<%= menu_active?('checklists') %>">
               <a href="/checklist_cases" title="<%= t(:checklists) %>"><i class="fa fa-lg fa-fw fa-check"></i> <span class="menu-item-parent"><%= t(:checklists) %></span></a>

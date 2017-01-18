@@ -151,7 +151,7 @@ RedCarpet::AccessControl.map do |map|
     map.permission :create_cases, {:cases => [:new, :create]},  :read => true
     map.permission :edit_cases, {:cases => [:edit, :update]},  :read => true
     map.permission :delete_cases, {:cases => [:destroy]},  :read => true
-    map.permission :manage_cases, {:cases => [:subcases, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_cases, {:cases => [:subcases, :all_files, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :case_watchers do |map|
@@ -252,7 +252,7 @@ RedCarpet::AccessControl.map do |map|
         :surveys => [:new_assign_survey, :index, :show, :new, :create, :edit, :update, :destroy, :show],
         :attempts => [:index, :show, :new, :create, :show],
         :tasks => [:index, :my, :show, :new, :create, :edit, :update, :destroy],
-        :cases => [:new_assign, :my, :subcases, :watchers, :index, :show, :new, :create, :edit, :update, :destroy],
+        :cases => [:new_assign, :my, :all_files, :subcases, :watchers, :index, :show, :new, :create, :edit, :update, :destroy],
         :case_supports => [:search, :index, :show, :new, :create, :edit, :update, :destroy],
         :case_watchers => [:index],
         :appointments => [:my, :index, :show, :new, :create, :edit, :update, :destroy],

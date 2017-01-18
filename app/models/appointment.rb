@@ -70,7 +70,7 @@ class Appointment < ApplicationRecord
   def self.safe_attributes
     [:title, :description, :time,
      :appointment_type_id, :appointment_status_id,
-     :user_id, :date, :related_to_id]
+     :user_id, :date, :related_to_id, appointment_attachments_attributes: [Attachment.safe_attributes]]
   end
 
   def to_pdf(pdf)

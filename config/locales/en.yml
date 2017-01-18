@@ -123,6 +123,7 @@ en:
   case_type: Case type
   case_relationship: Case relationship
   add_subcase: 'Add subCase'
+  all_files: All files
 
  # CASES Support
   cases_support: Case support

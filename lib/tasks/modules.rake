@@ -1,6 +1,11 @@
 namespace :modules do
   desc "Charge all modules"
   task pull_modules: :environment do
+    modules = ['', 'posts', 'case_suport']
+    modules.each do |em|
+      EnabledModule.where(name: em).delete_all
+    end
+
     puts 'Setting all modules activities'
     modules = []
     modules += %w{affiliations clearances certifications contacts educations}
@@ -10,7 +15,7 @@ namespace :modules do
     modules += %w{appointments forum wiki news insurances}
     modules += ['new_conference', 'chat_room', 'my_cases', 'my_appointments']
     modules += ['my_tasks', 'subcases', 'notes', 'watchers', 'case_support']
-    modules += ['user_subscription']
+    modules += ['user_subscription', 'all_files']
     modules.each do |em|
       EnabledModule.where(name: em).first_or_create
     end
@@ -18,10 +23,7 @@ namespace :modules do
   end
 
   task delete_modules: :environment do
-    modules = ['', 'posts', 'Chat_room', 'case_suport']
-    modules.each do |em|
-      EnabledModule.where(name: em).delete_all
-    end
+
   end
 
 

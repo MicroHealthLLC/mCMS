@@ -27,6 +27,15 @@ class CasesController < UserCasesController
     render 'cases/index'
   end
 
+  def all_files
+    @appointment_files = Appointment.my_appointments.map(&:appointment_attachments)
+    @document_files = Document.visible.map(&:document_attachments)
+    @task_files = Task.
+        where(assigned_to: @user).
+        or(Task.root.where(for_individual: @user) ).map(&:task_attachments)
+    @files = @appointment_files.flatten + @document_files.flatten + @task_files.flatten
+  end
+
   # GET /cases/1
   # GET /cases/1.json
   def show

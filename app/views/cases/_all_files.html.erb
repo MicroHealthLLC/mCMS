@@ -1,0 +1,29 @@
+
+<table class="table table-responsive table-bordered" id="files_table">
+  <thead>
+  <tr>
+    <th><%= 'module' %></th>
+    <th><%= 'file name' %></th>
+    <th><%= 'date' %></th>
+    <th><%=  'by who'  %></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @files.each do |attachment| %>
+      <tr>
+        <td>      <%= attachment.owner %>    </td>
+        <td>      <%= link_to(attachment.read_attribute(:file), attachment.file_url) %>    </td>
+        <td>      <%= format_date attachment.created_at %>    </td>
+        <td>      <%= attachment.owner.user %>    </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+    $(document).ready(function(){
+         initDataTable('files_table')
+    } );
+</script>
+
