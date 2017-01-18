@@ -5,7 +5,7 @@ class CaseSupport < ApplicationRecord
   belongs_to :support_status, optional: true
   has_one :case_support_extend_demography
 
-  has_many :case_support_attachments, foreign_key: :owner_id
+  has_many :case_support_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :case_support_attachments, reject_if: :all_blank, allow_destroy: true
 
   scope :not_show_in_search, ->{ where(not_show_in_search: false)}

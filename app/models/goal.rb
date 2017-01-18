@@ -4,13 +4,13 @@ class Goal < ApplicationRecord
   belongs_to :priority_type, optional: true
   belongs_to :goal_status, optional: true
 
-  has_many :need_goals
+  has_many :need_goals, dependent: :destroy
   has_many :needs, through: :need_goals
 
-  has_many :goal_plans
+  has_many :goal_plans, dependent: :destroy
   has_many :plans, through: :goal_plans
 
-  has_many :goal_notes, foreign_key: :owner_id
+  has_many :goal_notes, foreign_key: :owner_id, dependent: :destroy
 
   validates_presence_of :name
   def self.safe_attributes

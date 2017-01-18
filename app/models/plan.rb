@@ -4,13 +4,13 @@ class Plan < ApplicationRecord
   belongs_to :priority_type, optional: true
   belongs_to :plan_status, optional: true
   validates_presence_of :name
-  has_many :plan_notes, foreign_key: :owner_id
+  has_many :plan_notes, foreign_key: :owner_id, dependent: :destroy
 
-  has_many :goal_plans
+  has_many :goal_plans, dependent: :destroy
   has_many :goals, through: :goal_plans
 
 
-  has_many :plan_tasks
+  has_many :plan_tasks, dependent: :destroy
   has_many :tasks, through: :plan_tasks
 
 

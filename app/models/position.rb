@@ -6,7 +6,7 @@ class Position < ApplicationRecord
   belongs_to :location_type, optional: true
 
 
-  has_many :position_attachments, foreign_key: :owner_id
+  has_many :position_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :position_attachments, reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :organization_id, :user_id

@@ -5,7 +5,7 @@ class SettingsController < ApplicationController
 
   def index
     @setting = Setting.first || Setting.new
-    @theme_setting= Setting.theme
+    @theme_setting = Setting.theme
   end
 
   def create

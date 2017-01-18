@@ -9,7 +9,7 @@ class Document < ApplicationRecord
 
   has_many :document_notes, foreign_key: :owner_id
 
-  has_many :document_attachments, foreign_key: :owner_id
+  has_many :document_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :document_attachments, reject_if: :all_blank, allow_destroy: true
 
   default_scope -> {where(is_private: false).or(where(private_author_id: User.current.id)) }

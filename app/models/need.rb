@@ -6,10 +6,10 @@ class Need < ApplicationRecord
   belongs_to :need_status, optional: true
 
 
-  has_many :need_goals
+  has_many :need_goals,  dependent: :destroy
   has_many :goals, through: :need_goals
 
-  has_many :need_notes, foreign_key: :owner_id
+  has_many :need_notes, foreign_key: :owner_id, dependent: :destroy
 
   def self.safe_attributes
     [ :need_enum_id, :priority_type_id, :user_id, :need_status_id,

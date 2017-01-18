@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
 
-  acts_as_paranoid
+  # acts_as_paranoid
 
  # ldap_authenticatable
   devise :database_authenticatable, :registerable,
@@ -20,24 +20,35 @@ class User < ApplicationRecord
   has_one :job_detail
   belongs_to :role, optional: true
 
-  # HAS MANY
-  has_many :affiliations
-  has_many :certifications
-  has_many :clearances
-  has_many :contacts
-  has_many :other_skills
-  has_many :languages
-  has_many :educations
-  has_many :documents
-  has_many :organizations
-  has_many :departments
-  has_many :positions
-  has_many :tasks
+  # HAS MANY FOR PROFILE
+  has_many :affiliations, dependent: :destroy
+  has_many :certifications, dependent: :destroy
+  has_many :clearances, dependent: :destroy
+  has_many :contacts, dependent: :destroy
+  has_many :other_skills, dependent: :destroy
+  has_many :languages, dependent: :destroy
+  has_many :educations, dependent: :destroy
+  has_many :positions, dependent: :destroy
+  has_many :user_insurances, dependent: :destroy
+
+
+  #HAS MANY FO CASES
+  has_many :documents, dependent: :destroy
+  has_many :appointments, dependent: :destroy
+  has_many :organizations, dependent: :destroy
+  has_many :departments, dependent: :destroy
+  has_many :cases, dependent: :destroy
+  has_many :case_supports, dependent: :destroy
+  has_many :needs, dependent: :destroy
+  has_many :goals, dependent: :destroy
+  has_many :plans, dependent: :destroy
+
+  has_many :tasks, dependent: :destroy
   has_many :assigned_tasks, class_name: 'Task', foreign_key: :assigned_to_id
-  has_many :checklist_answers
+  has_many :checklist_answers, dependent: :destroy
 
 
-  has_many :user_attachments, foreign_key: :owner_id
+  has_many :user_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :user_attachments, reject_if: :all_blank, allow_destroy: true
 
 
