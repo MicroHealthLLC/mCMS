@@ -18,7 +18,7 @@
       <% @surveys.each do |survey| %>
           <tr>
             <td>
-              <%= link_to survey.name, attempts_path(survey_id: survey.id) %>
+              <%= link_to survey.name, survey %>
             </td>
             <td><%= survey.survey_type %></td>
             <% if params[:controller] == 'cases' %>

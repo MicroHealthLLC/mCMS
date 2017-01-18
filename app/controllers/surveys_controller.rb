@@ -1,7 +1,7 @@
 class SurveysController < ApplicationController
   before_action  :authenticate_user!
   before_filter :load_survey, :only => [:show, :edit, :update, :new_note, :destroy]
-
+  before_action :require_admin, only: [:show, :edit, :new, :create, :destroy, :update]
   def index
     scope = Survey::Survey
     if User.current.admin?
