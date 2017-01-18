@@ -158,6 +158,7 @@ Rails.application.routes.draw do
       match 'recently_connected', via: [:post, :get]
     end
     member do
+      get 'restore'
       put 'change_password'
       put 'change_basic_info'
       put 'attachments'
