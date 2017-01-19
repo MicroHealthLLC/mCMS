@@ -8,4 +8,5 @@
   <%= link_to t('button_cancel'), goal_back_url(@goal), class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), goal_path(@goal, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to 'Manage Plans', links_goal_path(@goal), class: 'btn btn-primary pull-right' %>
+  <%= link_to 'Link to needs', link_need_goal_path(@goal), class: 'btn btn-primary pull-right' %>
 </div>

@@ -25,6 +25,10 @@ class Plan < ApplicationRecord
     self.case.try(:tasks) || []
   end
 
+  def available_goals
+    self.case.try(:goals) || []
+  end
+
   def priority_type
     if priority_type_id
       super

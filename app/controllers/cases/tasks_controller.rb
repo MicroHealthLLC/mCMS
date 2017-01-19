@@ -1,6 +1,6 @@
 class TasksController < UserCasesController
 
-  before_action :set_task, only: [:show, :edit, :update, :destroy,
+  before_action :set_task, only: [:link_plan, :add_plan, :show, :edit, :update, :destroy,
                                   :delete_sub_task_relation]
 
   before_action :authorize_edit, only: [:edit, :update]
@@ -22,6 +22,30 @@ class TasksController < UserCasesController
         or(Task.root.where(for_individual: @user) ).
         paginate(page: params[:page], per_page: 25)
     render 'tasks/index'
+  end
+
+  def link_plan
+    @plans = @task.plans
+    @available_plans = @task.available_plans
+  end
+  
+
+  def add_plan
+    respond_to do |format|
+      format.js{
+        @plan_id = params[:plan_id]
+        g = @task.plan_tasks.where(plan_id: @plan_id)
+        if g.present?
+          g.delete_all
+        else
+          @plan = Plan.find(@plan_id)
+          @available_plans = @task.available_plans
+          if @available_plans.include?(@plan)
+            @task.plans<< @plan
+          end
+        end
+      }
+    end
   end
 
   # GET /tasks/1

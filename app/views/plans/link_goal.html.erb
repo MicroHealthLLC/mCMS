@@ -1,0 +1,39 @@
+<div class="col-xs-12 btn-edition">
+   <%= link_to t('button_cancel'), plan_path(@plan), class: 'btn btn-warning pull-right' %>
+
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <table id="action_table" class="table table-responsive table-bordered">
+      <thead>
+      <tr>
+        <th><%= t('goal') %></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @available_goals.each do |goal| %>
+          <tr>
+            <td><%= goal %></td>
+            <td id="btn_<%= goal.id %>">
+              <% if  @goals.include?(goal) %>
+                  <button class="btn btn-danger" onclick="btn_clicked(<%= goal.id %>)"> <%= t('button_remove')  %></button>
+              <% else %>
+                  <button class="btn btn-success" onclick="btn_clicked(<%= goal.id %>)" > <%= 'Add' %></button>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+  $(document).ready(function(){
+    <% if @available_actions.present? %>  initDataTable('action_table') <% end %>
+  })
+  function btn_clicked(action_id)
+  {
+    $.getScript('/plans/<%= @plan.id %>/add_goal.js?goal_id='+action_id )
+  }
+</script>

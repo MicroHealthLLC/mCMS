@@ -15,10 +15,17 @@ Rails.application.routes.draw do
   resources :plans do
     match 'links', via: [:get, :post], on: :member
     match 'add_action', via: [:get], on: :member
+
+    match 'link_goal', via: [:get, :post], on: :member
+    match 'add_goal', via: [:get], on: :member
+
   end
   resources :goals do
     match 'links', via: [:get, :post], on: :member
     match 'add_plan', via: [:get], on: :member
+
+    match 'link_need', via: [:get, :post], on: :member
+    match 'add_need', via: [:get], on: :member
   end
   resources :needs do
     match 'links', via: [:get], on: :member
@@ -119,6 +126,10 @@ Rails.application.routes.draw do
       post 'new_note'
       get 'add_note'
       get 'delete_sub_task_relation'
+
+      match 'link_plan', via: [:get, :post]
+      match 'add_plan', via: [:get]
+
     end
   end
   resources :documents

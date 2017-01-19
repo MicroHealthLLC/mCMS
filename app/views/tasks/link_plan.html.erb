@@ -1,0 +1,39 @@
+<div class="col-xs-12 btn-edition">
+   <%= link_to t('button_cancel'), task_path(@task), class: 'btn btn-warning pull-right' %>
+
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <table id="action_table" class="table table-responsive table-bordered">
+      <thead>
+      <tr>
+        <th><%= t('plan') %></th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @available_plans.each do |plan| %>
+          <tr>
+            <td><%= plan %></td>
+            <td id="btn_<%= plan.id %>">
+              <% if  @plans.include?(plan) %>
+                  <button class="btn btn-danger" onclick="btn_clicked(<%= plan.id %>)"> <%= t('button_remove')  %></button>
+              <% else %>
+                  <button class="btn btn-success" onclick="btn_clicked(<%= plan.id %>)" > <%= 'Add' %></button>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+  $(document).ready(function(){
+    <% if @available_plans.present? %>  initDataTable('action_table') <% end %>
+  })
+  function btn_clicked(action_id)
+  {
+    $.getScript('/tasks/<%= @task.id %>/add_plan.js?plan_id='+action_id )
+  }
+</script>

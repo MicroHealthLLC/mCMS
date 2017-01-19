@@ -1,0 +1,5 @@
+<% if @plan %>
+$('#btn_<%= @plan_id %>').html("<button class='btn plans-btn btn-danger' onclick='btn_clicked(<%= @plan_id %>)'> <%= t('button_remove') %></button>");
+<% else %>
+$('#btn_<%= @plan_id %>').html("<button class='btn plans-btn btn-success' onclick='btn_clicked(<%= @plan_id %>)'> <%= 'Add' %></button>");
+<% end %>

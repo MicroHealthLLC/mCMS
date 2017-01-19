@@ -24,8 +24,8 @@ class Goal < ApplicationRecord
     self.case.try(:plans) || []
   end
 
-  def all_needs
-    self.case.needs
+  def available_needs
+    self.case.try(:needs) || []
   end
 
   def priority_type

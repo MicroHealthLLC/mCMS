@@ -128,10 +128,10 @@ RedCarpet::AccessControl.map do |map|
   map.project_module :tasks do |map|
     map.permission :view_tasks, {:tasks => [:index]},  :read => true
     map.permission :show_tasks, {:tasks => [:show]},  :read => true
-    map.permission :create_tasks, {:tasks => [:new, :create]},  :read => true
+    map.permission :create_tasks, {:tasks => [:link_plan, :add_plan, :new, :create]},  :read => true
     map.permission :edit_tasks, {:tasks => [:edit, :update]},  :read => true
     map.permission :delete_tasks, {:tasks => [:destroy]},  :read => true
-    map.permission :manage_tasks, {:tasks => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_tasks, {:tasks => [:link_plan, :add_plan, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :notes do |map|
@@ -206,18 +206,18 @@ RedCarpet::AccessControl.map do |map|
     map.permission :view_goals, {:goals => [:index]},  :read => true
     map.permission :show_goals, {:goals => [:show]},  :read => true
     map.permission :create_goals, {:goals => [:new, :create]},  :read => true
-    map.permission :edit_goals, {:goals => [:links, :add_plan, :edit, :update]},  :read => true
+    map.permission :edit_goals, {:goals => [:link_need, :add_need, :links, :add_plan, :edit, :update]},  :read => true
     map.permission :delete_goals, {:goals => [:destroy]},  :read => true
-    map.permission :manage_goals, {:goals => [:links, :add_plan, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_goals, {:goals => [:link_need, :add_need, :links, :add_plan, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :plans do |map|
     map.permission :view_plans, {:plans => [:index]},  :read => true
     map.permission :show_plans, {:plans => [:show]},  :read => true
     map.permission :create_plans, {:plans => [:new, :create]},  :read => true
-    map.permission :edit_plans, {:plans => [:links, :add_action, :edit, :update]},  :read => true
+    map.permission :edit_plans, {:plans => [:link_goal, :add_goal,:links, :add_action, :edit, :update]},  :read => true
     map.permission :delete_plans, {:plans => [:destroy]},  :read => true
-    map.permission :manage_plans, {:plans => [:links, :add_action, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_plans, {:plans => [:link_goal, :add_goal, :links, :add_action, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :checklists do |map|
@@ -251,7 +251,7 @@ RedCarpet::AccessControl.map do |map|
         :positions => [:index, :show, :new, :create, :edit, :update, :destroy],
         :surveys => [:new_assign_survey, :index, :show, :new, :create, :edit, :update, :destroy, :show],
         :attempts => [:index, :show, :new, :create, :show],
-        :tasks => [:index, :my, :show, :new, :create, :edit, :update, :destroy],
+        :tasks => [:link_plan, :add_plan, :index, :my, :show, :new, :create, :edit, :update, :destroy],
         :cases => [:new_assign, :my, :all_files, :subcases, :watchers, :index, :show, :new, :create, :edit, :update, :destroy],
         :case_supports => [:search, :index, :show, :new, :create, :edit, :update, :destroy],
         :case_watchers => [:index],
@@ -260,8 +260,8 @@ RedCarpet::AccessControl.map do |map|
         :needs => [:links, :add_goal,:index, :show, :new, :create, :edit, :update, :destroy],
         :news => [:index, :show, :new, :create, :edit, :update, :destroy],
         :notes => [:index, :show, :new, :create, :edit, :update, :destroy, :get_template_note],
-        :plans => [:links, :add_action, :index, :show, :new, :create, :edit, :update, :destroy],
-        :goals => [:links, :add_plan, :index, :show, :new, :create, :edit, :update, :destroy],
+        :plans => [:link_goal, :add_goal,:links, :add_action, :index, :show, :new, :create, :edit, :update, :destroy],
+        :goals => [:link_need, :add_need, :links, :add_plan, :index, :show, :new, :create, :edit, :update, :destroy],
         :checklist_cases => [:index, :show, :new, :create, :edit, :update, :destroy],
         :wikis => [:new, :index, :show, :create, :edit, :update, :history, :compare, :add_attachment, :destroy]
 

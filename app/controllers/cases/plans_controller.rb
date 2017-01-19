@@ -1,5 +1,5 @@
 class PlansController < UserCasesController
-  before_action :set_plan, only: [:links, :add_action,  :show, :edit, :update, :destroy]
+  before_action :set_plan, only: [:links, :add_action, :link_goal, :add_goal,  :show, :edit, :update, :destroy]
 
   before_action :authorize_edit, only: [:links, :add_action, :edit, :update]
   before_action :authorize_delete, only: [:destroy]
@@ -33,6 +33,29 @@ class PlansController < UserCasesController
           @available_actions = @plan.available_tasks
           if @available_actions.include?(@task)
             @plan.plan_tasks<< PlanTask.new(task_id: @task.id, plan_id: @plan.id)
+          end
+        end
+      }
+    end
+  end
+
+  def link_goal
+    @goals = @plan.goals
+    @available_goals = @plan.available_goals
+  end
+
+  def add_goal
+    respond_to do |format|
+      format.js{
+        @goal_id = params[:goal_id]
+        g = @plan.goal_plans.where(goal_id: @goal_id)
+        if g.present?
+          g.delete_all
+        else
+          @goal = Goal.find(@goal_id)
+          @available_goals = @plan.available_goals
+          if @available_goals.include?(@goal)
+            @plan.goal_plans<< GoalPlan.new(goal_id: @goal.id, plan_id: @plan.id)
           end
         end
       }

@@ -1,6 +1,6 @@
 class GoalsController <  UserCasesController
 
-  before_action :set_goal, only: [:links, :add_plan, :show, :edit, :update, :destroy]
+  before_action :set_goal, only: [:link_need, :add_need, :links, :add_plan, :show, :edit, :update, :destroy]
 
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
@@ -22,6 +22,11 @@ class GoalsController <  UserCasesController
     @available_plans = @goal.available_plans
   end
 
+  def link_need
+    @needs = @goal.needs
+    @available_needs = @goal.available_needs
+  end
+
   def add_plan
     respond_to do |format|
       format.js{
@@ -34,6 +39,24 @@ class GoalsController <  UserCasesController
           @available_plans = @goal.available_plans
           if @available_plans.include?(@plan)
             @goal.plans<< @plan
+          end
+        end
+      }
+    end
+  end
+
+  def add_need
+    respond_to do |format|
+      format.js{
+        @need_id = params[:need_id]
+        g = @goal.need_goals.where(need_id: @need_id)
+        if g.present?
+          g.delete_all
+        else
+          @need = Need.find(@need_id)
+          @available_needs = @goal.available_needs
+          if @available_needs.include?(@need)
+            @goal.need_goals<< NeedGoal.new(goal_id: @goal.id, need_id: @need.id)
           end
         end
       }
@@ -110,5 +133,5 @@ class GoalsController <  UserCasesController
   def authorize_delete
     raise Unauthorized unless @goal.can?(:delete_goals, :manage_goals, :manage_roles)
   end
-  
+
 end

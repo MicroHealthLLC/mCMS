@@ -62,6 +62,10 @@ class Task < ApplicationRecord
     end
   end
 
+  def available_plans
+    self.case.try(:plans) || []
+  end
+
   def visible?
     User.current.permitted_users.include? user
   end

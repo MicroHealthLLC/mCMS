@@ -1,0 +1,5 @@
+<% if @need %>
+$('#btn_<%= @need_id %>').html("<button class='btn btn-danger' onclick='btn_clicked(<%= @need_id %>)'> <%= t('button_remove') %></button>");
+<% else %>
+$('#btn_<%= @need_id %>').html("<button class='btn btn-success' onclick='btn_clicked(<%= @need_id %>)'> <%= 'Add' %></button>");
+<% end %>
