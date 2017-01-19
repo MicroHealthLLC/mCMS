@@ -50,15 +50,18 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 #for Tests
 group :development, :test do
+  gem 'awesome_print', require: 'ap'
+  gem 'better_errors'
+  gem 'letter_opener'
+  gem 'binding_of_caller'
+end
+
+group :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'rails-controller-testing'
   gem 'factory_girl_rails'
   gem 'faker'
-  gem 'awesome_print', require: 'ap'
-  gem 'better_errors'
-  gem 'letter_opener'
-  gem 'binding_of_caller'
 end
 
 gem 'devise'

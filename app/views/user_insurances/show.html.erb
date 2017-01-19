@@ -1,9 +1,9 @@
 <div class="col-xs-12 btn-edition">
-  <%= link_to 'Delete',  user_insurance_path(@user_insurance), class: 'btn btn-danger pull-right',
+  <%= link_to( 'Delete',  user_insurance_path(@user_insurance), class: 'btn btn-danger pull-right',
               :method => :delete,
-              :data => {:confirm => t(:text_are_you_sure)}
+              :data => {:confirm => t(:text_are_you_sure)}) if @user_insurance.can?(:manage_roles, :delete_insurance, :manage_insurance)
   %>
-  <%= link_to 'Edit', edit_user_insurance_path(@user_insurance), class: 'btn btn-success pull-right' %>
+  <%= link_to 'Edit', edit_user_insurance_path(@user_insurance), class: 'btn btn-success pull-right' if @user_insurance.can?(:manage_roles, :edit_insurance, :manage_insurance) %>
   <%= link_to t('button_cancel'), user_insurances_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), user_insurance_path(@user_insurance, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 </div>
