@@ -1,16 +1,19 @@
 <div class="survey-title">
-  <h2><%= survey.name %></h2>
-  <p><b>Survey Type:</b><%= survey.survey_type %></p>
-  <p><b>Survey Status:</b><%= survey.active? ? 'Active' : (survey.finished? ? 'Finished' : 'Not active') %></p>
-  <p><small><%= survey.description.html_safe %></small></p>
-  <ul>
-    <% survey.questions.each_with_index do |question, index| %>
-        <li>
-          <p><%= question.text %></p>
-         <% question.options.each do |option| %>
-             <p> <%= option.text %></p>
-          <% end -%>
-        </li>
-    <% end -%>
-  </ul>
+  <div class="row">
+    <div class="col-xs-12">
+      <h2><%= survey.name %></h2>
+      <p><b>Survey Type:</b><%= survey.survey_type %></p>
+      <p><b>Survey Status:</b><%= survey.active? ? 'Active' : (survey.finished? ? 'Finished' : 'Not active') %></p>
+      <p><b>Description:</b><small><%= survey.description.html_safe %></small></p>
+      <% survey.questions.each_with_index do |question, index| %>
+          <hr/>
+          <div class="row">
+            <p>[<%= index + 1  %>]<%= question.text %></p>
+            <% question.options.each_with_index do |option, idx| %>
+                <div class="col-md-4"> (<%= idx + 1 %>) <%= option.text %></div>
+            <% end -%>
+          </div>
+      <% end -%>
+    </div>
+  </div>
 </div>

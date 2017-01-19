@@ -1,4 +1,4 @@
-class Survey::Question < ActiveRecord::Base
+class Survey::Question < ApplicationRecord
 
   self.table_name = "survey_questions"
 
