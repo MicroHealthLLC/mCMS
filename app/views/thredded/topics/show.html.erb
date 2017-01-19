@@ -8,7 +8,10 @@
                   id: dom_id(topic),
                   class: ['thredded--main-section', 'thredded--topic', *topic_css_classes(topic)] do %>
     <%= render 'thredded/topics/header', topic: topic %>
-    <%= render partial: 'thredded/posts/post', collection: @posts, cached: true %>
+        <%  @posts.to_ary.each do |post| %>
+            <%= render partial: 'thredded/posts/post', locals: {post: post } %>
+        <% end %>
+
     <% if policy(@new_post).create? %>
       <div class="thredded--post-form--wrapper">
         <h3 class="thredded--post-form--title">Add a post</h3>
