@@ -89,6 +89,9 @@ gem "figaro"
 gem 'prawn-rails'
 gem "survey", github: 'dierbro/survey'
 
+# For exception detection
+gem 'rollbar'
+
 # WIKI IRNO
 gem 'irwi', :git => 'git://github.com/alno/irwi.git'
 gem 'bluecloth'
