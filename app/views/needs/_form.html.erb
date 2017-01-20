@@ -17,6 +17,13 @@
       <%= f.hidden_field :case_id %>
 
       <div class="form-group">
+        <%= f.label t(:case), class: 'col-md-2 control-label' %>
+        <div class="col-md-9" style="padding-top: 7px">
+          <%= link_to f.object.case, f.object.case if f.object.case %>
+        </div>
+      </div>
+
+      <div class="form-group">
         <%= f.label t(:need) , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.select :need_enum_id, options_for_select(NeedEnum.active.pluck(:name, :id), selected: f.object.need_enum.try(:id)), {} , {class: 'form-control'} %>
