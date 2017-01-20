@@ -2,6 +2,7 @@
   <thead>
   <tr>
     <th><%= t(:title) %></th>
+    <th><%= t(:case) %></th>
     <th><%= t(:document_type)%></th>
     <th><%= t('label_date') %></th>
    </tr>
@@ -12,6 +13,7 @@
       <% documents.each do |document| %>
           <tr>
             <td><%= link_to document.title, document_path(document) %></td>
+            <td><%= link_to_case document.case %></td>
             <td><%= document.document_type %></td>
             <td><%= document.date %></td>
           </tr>

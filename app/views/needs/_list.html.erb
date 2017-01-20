@@ -2,6 +2,7 @@
   <thead>
   <tr>
     <th><%= t('need') %></th>
+    <th><%= t('case') %></th>
     <th><%= t('priority') %></th>
     <th><%= t('need_status') %></th>
     <th><%= t('date_due') %></th>
@@ -15,6 +16,7 @@
       <% @needs.each do |need| %>
           <tr>
             <td><%= link_to need.need_enum, need %></td>
+            <td><%= link_to_case need.case %></td>
             <td><%= need.priority_type %></td>
             <td><%= need.need_status %></td>
             <td><%= need.date_due %></td>

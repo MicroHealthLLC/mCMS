@@ -6,6 +6,7 @@
         <th>Client</th>
     <% end %>
     <th>Title</th>
+    <th>Related case</th>
     <th>Appointment type</th>
     <th>Appointment status</th>
     <th>Date</th>
@@ -18,6 +19,7 @@
           <tr>
             <% if User.current.can?(:manage_roles) %> <td><%= appointment.user %></td>    <% end %>
             <td><%= link_to appointment.title, appointment_path(appointment) %></td>
+            <td><%= link_to_case appointment.case %></td>
             <td><%= appointment.appointment_type %></td>
             <td><%= appointment.appointment_status %></td>
             <td><%= appointment.date %></td>

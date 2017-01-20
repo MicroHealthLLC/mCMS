@@ -2,6 +2,7 @@
   <thead>
   <tr>
     <th>Name</th>
+    <th>Case</th>
     <th>Priority type</th>
     <th>Goal status</th>
     <th>Date start</th>
@@ -15,6 +16,7 @@
       <% @goals.each do |goal| %>
           <tr>
             <td><%= link_to goal.name, goal %></td>
+            <td><%= link_to_case goal.case %></td>
             <td><%= goal.priority_type %></td>
             <td><%= goal.goal_status %></td>
             <td><%= goal.date_start %></td>

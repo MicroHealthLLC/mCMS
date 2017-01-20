@@ -2,6 +2,7 @@
   <thead>
   <tr>
     <th>Title</th>
+    <th>Case</th>
     <th>Task type</th>
     <th>Status</th>
     <th>Priority</th>
@@ -16,6 +17,7 @@
       <% tasks.each do |task| %>
           <tr>
             <td><%= link_to task.title, task %></td>
+            <td><%= link_to_case task.case %></td>
             <td><%= task.task_type %></td>
             <td><%= task.task_status_type %></td>
             <td><%= task.priority_type %></td>
