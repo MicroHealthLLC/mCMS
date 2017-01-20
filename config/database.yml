@@ -28,7 +28,7 @@ test:
 # PostgreSQL configuration example
 #production:
 #  adapter: postgresql
-#  database: mhrm
+#  database: mcms
 #  host: localhost
 #  username: postgres
 #  password: "postgres"
@@ -36,12 +36,12 @@ test:
 # SQLite3 configuration example
 #production:
 #  adapter: sqlite3
-#  database: db/mhrm.sqlite3
+#  database: db/mcms.sqlite3
 
 # SQL Server configuration example
 #production:
 #  adapter: sqlserver
-#  database: mhrm
+#  database: mcms
 #  host: localhost
 #  username: jenkins
 #  password: jenkins
