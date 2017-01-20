@@ -3,6 +3,10 @@ module ApplicationHelper
     args.map{|action| current_user.allowed_to? action }.include?(true)
   end
 
+  def link_to_case(case_object)
+    link_to case_object.to_s, case_object if case_object
+  end
+
   def avatar(user)
     image_tag user.profile_image
   end
