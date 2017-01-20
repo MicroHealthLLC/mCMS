@@ -24,30 +24,34 @@
               <a href="/notes" title="<%= t(:label_note_plural) %>"><i class="fa fa-lg fa-fw fa-sticky-note-o"></i> <span class="menu-item-parent"><%= t(:label_note_plural) %></span></a>
             </li>
         <%end %>
+        <li>
+          <a href="#"><i class="fa fa-flash"></i> N.G.P.A</a>
+          <ul>
+            <% if module_enabled?( 'needs')  && can?(:manage_roles, :view_needs, :manage_needs) %>
+                <li class="<%= menu_active?('needs') %>">
+                  <a href="/needs" title="<%= t(:needs) %>"><i class="fa fa-lg fa-fw fa-cubes"></i> <span class="menu-item-parent"><%= t(:needs) %></span></a>
+                </li>
+            <% end %>
 
-        <% if module_enabled?( 'needs')  && can?(:manage_roles, :view_needs, :manage_needs) %>
-            <li class="<%= menu_active?('needs') %>">
-              <a href="/needs" title="<%= t(:needs) %>"><i class="fa fa-lg fa-fw fa-cubes"></i> <span class="menu-item-parent"><%= t(:needs) %></span></a>
-            </li>
-        <% end %>
+            <% if module_enabled?('goals')  && can?(:manage_roles, :view_goals, :manage_goals) %>
+                <li class="<%= menu_active?('goals') %>">
+                  <a href="/goals" title="<%= t(:goals) %>"><i class="fa fa-lg fa-fw fa-bullseye"></i> <span class="menu-item-parent"><%= t(:goals) %></span></a>
+                </li>
+            <% end %>
 
-        <% if module_enabled?('goals')  && can?(:manage_roles, :view_goals, :manage_goals) %>
-            <li class="<%= menu_active?('goals') %>">
-              <a href="/goals" title="<%= t(:goals) %>"><i class="fa fa-lg fa-fw fa-bullseye"></i> <span class="menu-item-parent"><%= t(:goals) %></span></a>
-            </li>
-        <% end %>
+            <% if module_enabled?('plans')  && can?(:manage_roles, :view_plans, :manage_plans)%>
+                <li class="<%= menu_active?('plans') %>">
+                  <a href="/plans" title="<%= t(:plans) %>"><i class="fa fa-lg fa-fw fa-map"></i> <span class="menu-item-parent"><%= t(:plans) %></span></a>
+                </li>
+            <% end %>
 
-        <% if module_enabled?('plans')  && can?(:manage_roles, :view_plans, :manage_plans)%>
-            <li class="<%= menu_active?('plans') %>">
-              <a href="/plans" title="<%= t(:plans) %>"><i class="fa fa-lg fa-fw fa-map"></i> <span class="menu-item-parent"><%= t(:plans) %></span></a>
-            </li>
-        <% end %>
-
-        <% if module_enabled?( 'tasks') && can?(:manage_roles, :view_tasks, :manage_tasks) %>
-            <li class="<%= menu_active?('tasks') %>">
-              <a href="/tasks" title="<%= t :tasks %>"><i class="fa fa-lg fa-fw fa-tasks"></i> <span class="menu-item-parent"><%= t(:tasks) %></span></a>
-            </li>
-        <% end %>
+            <% if module_enabled?( 'tasks') && can?(:manage_roles, :view_tasks, :manage_tasks) %>
+                <li class="<%= menu_active?('tasks') %>">
+                  <a href="/tasks" title="<%= t :tasks %>"><i class="fa fa-lg fa-fw fa-tasks"></i> <span class="menu-item-parent"><%= t(:tasks) %></span></a>
+                </li>
+            <% end %>
+          </ul>
+        </li>
 
         <% if module_enabled?('documents')  && can?(:manage_roles, :view_documents, :manage_documents) %>
             <li class="<%= menu_active?('documents') %>">

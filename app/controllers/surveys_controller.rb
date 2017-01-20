@@ -7,9 +7,7 @@ class SurveysController < ApplicationController
     if User.current.admin?
       scope = scope.order('id DESC')
     else
-      case_scope = Case.root
-      case_scope = case_scope.where('assigned_to_id= :user OR user_id= :user', user: User.current.id )
-      scope = SurveyCase.where(assigned_to_id: case_scope.pluck(:id))
+      scope = SurveyCase.visible
     end
     @surveys = scope.paginate(page: params[:page], per_page: 25)
   end
