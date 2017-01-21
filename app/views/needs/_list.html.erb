@@ -1,8 +1,11 @@
+<% show_case = defined?(show_case_column) ? show_case_column : true %>
 <table class="table table-responsive table-bordered" id="needs_table">
   <thead>
   <tr>
     <th><%= t('need') %></th>
-    <th><%= t('case') %></th>
+    <% if show_case %>
+        <th><%= t('case') %></th>
+    <% end %>
     <th><%= t('priority') %></th>
     <th><%= t('need_status') %></th>
     <th><%= t('date_due') %></th>
@@ -16,7 +19,9 @@
       <% @needs.each do |need| %>
           <tr>
             <td><%= link_to need.need_enum, need %></td>
-            <td><%= link_to_case need.case %></td>
+            <% if show_case %>
+                <td><%= link_to_case need.case %></td>
+            <% end %>
             <td><%= need.priority_type %></td>
             <td><%= need.need_status %></td>
             <td><%= need.date_due %></td>

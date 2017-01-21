@@ -1,8 +1,9 @@
+<% show_case = defined?(show_case_column) ? show_case_column : true %>
 <table class="table table-responsive table-bordered" id="surveys_table">
   <thead>
   <tr>
     <th><%= t('label_name') %></th>
-    <% unless params[:controller] == 'cases' %>
+    <% if show_case %>
         <th><%= t('case') %></th>
     <% end %>
     <th><%= t('survey_type') %></th>
@@ -20,7 +21,7 @@
           %>
           <tr>
             <td><%= link_to survey.name, attempts_path(survey_id: survey.id, case_id: @case.id) %>  </td>
-            <% unless params[:controller] == 'cases' %>
+            <% if show_case %>
                 <td><%= link_to @case, @case %>   </td>
             <% end %>
             <td><%= survey.survey_type %></td>

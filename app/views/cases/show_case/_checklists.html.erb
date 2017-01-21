@@ -7,15 +7,15 @@
         <%= render partial: 'checklists/list',
                    layout: 'shared/smart_widget_wrapper',
                    locals: {
-                           wid_id: 'checklists',
-                           wid_title: 'checklists'
+                       show_case_column: false,
+                       wid_id: 'checklists',
+                       wid_title: 'checklists'
                    } %>
       </article>
     </div>
     <script>
-        $(document).ready(function(){
-            <% if @checklists.present? %>  initDataTable('checklists_table') <% end %>
-        } );
+      $(document).ready(function(){
+        <% if @checklists.present? %>  initDataTable('checklists_table') <% end %>
+      } );
     </script>
-
 <% end %>

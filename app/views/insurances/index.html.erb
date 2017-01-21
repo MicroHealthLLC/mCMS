@@ -1,5 +1,14 @@
-<h1><%= t('insurance') %></h1>
-
 <%= link_to( t('new_insurance'), new_insurance_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_insurances, :manage_roles, :manage_insurances)%>
-
-<%= render 'list', insurances: @insurances %>
+<section id="widget-grid" class="insurances_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     insurances: @insurances,
+                     wid_id: 'insurances',
+                     wid_title: t('insurance')
+                 } %>
+    </article>
+  </div>
+</section>

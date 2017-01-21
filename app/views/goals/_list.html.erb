@@ -1,8 +1,11 @@
+<% show_case = defined?(show_case_column) ? show_case_column : true %>
 <table class="table table-responsive table-bordered" id="goals_table">
   <thead>
   <tr>
     <th>Name</th>
-    <th>Case</th>
+    <% if show_case %>
+        <th>Case</th>
+    <% end %>
     <th>Priority type</th>
     <th>Goal status</th>
     <th>Date start</th>
@@ -16,7 +19,9 @@
       <% @goals.each do |goal| %>
           <tr>
             <td><%= link_to goal.name, goal %></td>
-            <td><%= link_to_case goal.case %></td>
+            <% if show_case %>
+                <td><%= link_to_case goal.case %></td>
+            <% end %>
             <td><%= goal.priority_type %></td>
             <td><%= goal.goal_status %></td>
             <td><%= goal.date_start %></td>

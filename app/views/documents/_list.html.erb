@@ -1,11 +1,14 @@
+<% show_case = defined?(show_case_column) ? show_case_column : true %>
 <table class="table table-bordered table-responsive" id="documents_table">
   <thead>
   <tr>
     <th><%= t(:title) %></th>
-    <th><%= t(:case) %></th>
+    <% if show_case %>
+        <th><%= t(:case) %></th>
+    <% end %>
     <th><%= t(:document_type)%></th>
     <th><%= t('label_date') %></th>
-   </tr>
+  </tr>
   </thead>
 
   <tbody>
@@ -13,7 +16,9 @@
       <% documents.each do |document| %>
           <tr>
             <td><%= link_to document.title, document_path(document) %></td>
-            <td><%= link_to_case document.case %></td>
+            <% if show_case %>
+                <td><%= link_to_case document.case %></td>
+            <% end %>
             <td><%= document.document_type %></td>
             <td><%= document.date %></td>
           </tr>

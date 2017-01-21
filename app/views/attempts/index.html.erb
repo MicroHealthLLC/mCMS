@@ -1,6 +1,12 @@
 <%= render partial: 'action_menu' %>
 <div class="container">
   <h2 class="survey-title">
+    <% if @case %>
+        <p>
+          <label><%= t('case') %>:</label>
+          <%= link_to_case @case %>
+        </p>
+    <% end %>
     <%= @survey.name %>
     <p><small><%= @survey.description.html_safe %></small></p>
   </h2>

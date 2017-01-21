@@ -6,9 +6,10 @@
         <%= render partial: 'plans/list',
                    layout: 'shared/smart_widget_wrapper',
                    locals: {
-                           plans: @plans,
-                           wid_id: 'plans',
-                           wid_title: 'plans'
+                       show_case_column: false,
+                       plans: @plans,
+                       wid_id: 'plans',
+                       wid_title: 'plans'
                    } %>
       </article>
     </div>

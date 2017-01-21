@@ -1,3 +1,4 @@
+<% show_case = defined?(show_case_column) ? show_case_column : true %>
 <table class="table table-bordered table-responsive" id="tasks_table">
   <thead>
   <tr>
@@ -5,7 +6,9 @@
         <th>Client</th>
     <% end %>
     <th><%= t('title') %></th>
-    <th><%= t('case') %></th>
+    <% if show_case %>
+        <th><%= t('case') %></th>
+    <% end %>
     <th><%= t('task_type') %></th>
     <th><%= t('status') %></th>
     <th><%= t('priority') %></th>
@@ -23,7 +26,9 @@
                 <td><%= task.user %></td>
             <% end %>
             <td><%= link_to task.title, task %></td>
-            <td><%= link_to_case task.case %></td>
+            <% if show_case %>
+                <td><%= link_to_case task.case %></td>
+            <% end %>
             <td><%= task.task_type %></td>
             <td><%= task.task_status_type %></td>
             <td><%= task.priority_type %></td>

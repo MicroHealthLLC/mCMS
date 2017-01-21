@@ -1,8 +1,9 @@
+<% show_case = defined?(show_case_column) ? show_case_column : true %>
 <table class="table table-responsive table-bordered" id="case_supports_table">
   <thead>
   <tr>
     <th><%= t('label_name')%></th>
-     <% unless params[:controller] == 'cases' %>
+    <% if show_case %>
         <th><%= t('case')%></th>
     <% end %>
     <th><%= t('case_support_type')%></th>
@@ -17,8 +18,8 @@
       <% case_supports.each do |case_support| %>
           <tr>
             <td><%= link_to case_support.name, case_support%></td>
-            <% unless params[:controller] == 'cases' %>
-                <td><%= case_support.case %></td>
+            <% if show_case %>
+                <td><%= link_to_case case_support.case %></td>
             <% end %>
             <td><%= case_support.case_support_type %></td>
             <td><%= case_support.support_status %></td>

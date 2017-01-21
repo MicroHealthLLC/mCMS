@@ -1,12 +1,13 @@
+<% show_case = defined?(show_case_column) ? show_case_column : true %>
 <style>
-    .note_span{
-        cursor: pointer;
-        color: blue;
-    }
-    .all_notes
-    {
-        display: none;
-    }
+  .note_span{
+    cursor: pointer;
+    color: blue;
+  }
+  .all_notes
+  {
+    display: none;
+  }
 </style>
 <table class="display  projects-table table  table-striped table-bordered table-hover" cellspacing="0" width="100%" id="notes_table">
   <thead>
@@ -17,7 +18,9 @@
     <% else %>
         <th><%= t('label_user') %></th>
     <% end %>
-    <th><%= t('case') %></th>
+    <% if show_case %>
+        <th><%= t('case') %></th>
+    <% end %>
     <th><%= t('label_date') %></th>
     <th><%= t('note') %></th>
     <th ></th>
@@ -34,7 +37,9 @@
             <% else %>
                 <td><%= link_to note.user, note %></td>
             <% end %>
-            <td><%= link_to_case note.object.try(:case) %></td>
+            <% if show_case %>
+                <td><%= link_to_case note.object.try(:case) %></td>
+            <% end %>
             <td><%= note.updated_at.to_date %></td>
             <td><%= display_note(note.note.to_s) %></td>
             <td><%= show_link(note) if note.can?(:manage_roles, :manage_notes, :edit_notes)  %></td>
@@ -51,15 +56,15 @@
 </table>
 
 <script>
-    $(document).ready(function(){
-        $('.link_label_less').on('click', function(){
-            $(this).parents('td').find('.all_notes').hide();
-            $(this).parents('td').find('.less_notes').show();
-        });
-        $('.link_label_more').on('click', function(){
-            $(this).parents('td').find('.less_notes').hide();
-            $(this).parents('td').find('.all_notes').show();
-        });
-        <%  if notes.present? %> initDataTable('notes_table') <% end %>
-    } );
+  $(document).ready(function(){
+    $('.link_label_less').on('click', function(){
+      $(this).parents('td').find('.all_notes').hide();
+      $(this).parents('td').find('.less_notes').show();
+    });
+    $('.link_label_more').on('click', function(){
+      $(this).parents('td').find('.less_notes').hide();
+      $(this).parents('td').find('.all_notes').show();
+    });
+    <%  if notes.present? %> initDataTable('notes_table') <% end %>
+  } );
 </script>

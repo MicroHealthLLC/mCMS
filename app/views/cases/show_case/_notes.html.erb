@@ -1,5 +1,17 @@
 <% if module_enabled?('notes') %>
     <%= link_to t('new_note'), new_note_path(type: 'CaseNote', owner_id: @case.id), class: 'btn btn-primary pull-right btn-edition'  if can?(:create_notes, :manage_roles, :manage_notes) %>
-
-    <%= render partial: 'notes/notes', locals: {notes: @notes} %>
+    <section id="widget-grid" class="form_user_notes">
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'notes/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         show_case_column: false,
+                         notes: @notes,
+                         wid_id: 'notes',
+                         wid_title: t('notes')
+                     } %>
+        </article>
+      </div>
+    </section>
 <% end %>
