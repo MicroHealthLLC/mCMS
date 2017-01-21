@@ -1,29 +1,15 @@
-
-<h1>clearances</h1>
 <%= link_to( 'New clearance', new_clearance_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_clearances)%>
-<table class="table table-responsive table-bordered">
-  <thead>
-  <tr>
-    <th>Clearance type</th>
-    <th>Date received</th>
-    <th>Date expired</th>
-  </tr>
-  </thead>
 
-  <tbody>
-  <% if @clearances.any? %>
-      <% @clearances.each do |clearance| %>
-          <tr>
-            <td><%= link_to clearance.clearence_type, clearance_path(clearance)%></td>
-            <td><%= clearance.date_received %></td>
-            <td><%= clearance.date_expired %></td>
-
-          </tr>
-      <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+<section id="widget-grid" class="clearances_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     clearances: @clearances,
+                     wid_id: 'clearances',
+                     wid_title: t('clearances')
+                 } %>
+    </article>
+  </div>
+</section>

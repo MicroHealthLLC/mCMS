@@ -17,6 +17,7 @@ en:
 
  # INSURANCE
   insurance: Insurance
+  insurance_type: Insurance Type
   insurance_plural: Insurances
   insurances: Insurances
   new_insurance: New insurance
@@ -26,18 +27,18 @@ en:
   education_type: Education
   education: Education
   educations: Educations
-  new_education: New education
-  education_other_skill: Other skill
-  education_date_received: Date received
-  education_date_expired: Date expired
+  new_education: New Education
+  education_other_skill: Other Skill
+  education_date_received: Date Received
+  education_date_expired: Date Expired
   education_clearence: Clearance
   education_certification: Certification
  # TASK
 
  # EMPLOYEE
   employees: Clients
-  new_employee: New client
-  employment_type: Client type
+  new_employee: New Client
+  employment_type: Client Type
   label_employee: Client
   change_employee_info: Change Client Information
 
@@ -51,10 +52,10 @@ en:
   profile:
     profile: profile
     name: Name
-    first_name: First name
-    middle_name: Middle name
-    last_name: Last name
-    birthday: Birth date
+    first_name: First Name
+    middle_name: Middle Name
+    last_name: Last Name
+    birthday: Birth Date
     gender: Gender
     religion: Religion
     ethnicity: Ethnicity
@@ -64,74 +65,76 @@ en:
     password_confirmation: Password confirmation
 
  # DOCUMENTS
-  documents: documents
-  document: document
-  document_type: Document type
-  new_document: 'New document'
-  edi_document: 'Editing document'
+  documents: Documents
+  document: Document
+  document_type: Document Type
+  new_document: 'New Document'
+  edi_document: 'Editing Document'
  # LANGUAGE
 
  # CERTIFICATION
 
  # CONTACT
+  emergency_contact: Emergency Contact
+  relationship: Relationship
 
  # NOTES
   note: Note
   notes: Notes
-  new_note: New note
-  label_note: note
-  label_note_plural: notes
-  add_note: "Add note"
+  new_note: New Note
+  label_note: Note
+  label_note_plural: Notes
+  add_note: "Add Note"
  # INSURANCE
 
  # APPOINTMENT
-  my_appointments: My appointments
-  new_appointment: New appointment
+  my_appointments: My Appointments
+  new_appointment: New Appointment
   appointments: Appointments
-  appointment_type: Appointment type
-  appointment_status: Appointment status
+  appointment_type: Appointment Type
+  appointment_status: Appointment Status
 
   # NEEDS
   need: Need
   needs: Needs
-  new_need: New need
-  edit_need: Edit need
-  need_status: Need status
+  new_need: New Need
+  edit_need: Edit Need
+  need_status: Need Status
 
  # GOALS
   goal: Goal
   goals: Goals
   new_goal: New goal
   edit_goal: Edit goal
-  goal_status: goal status
+  goal_status: Goal Status
 
 # PLANS
-  plan: plan
+  plan: Plan
   plans: Plans
   new_plan: New plan
   edit_plan: Edit plan
-  plan_status: plan status
+  plan_status: Plan Status
 
  # CASES
   case: Case
   cases: Cases
   subcases: SubCases
-  my_cases: My cases
-  case_suport: Case support
-  edit_case: 'Edit case'
-  new_case: "New case"
-  case_category: 'Case category'
-  case_type: Case type
-  case_relationship: Case relationship
+  my_cases: My Cases
+  case_suport: Case Support
+  edit_case: 'Edit Case'
+  new_case: "New Case"
+  case_category: 'Case Category'
+  case_type: Case Type
+  case_relationship: Case Relationship
   add_subcase: 'Add subCase'
-  all_files: All files
+  all_files: All Files
 
  # CASES Support
   cases_support: Case Support
   cases_supports: Case Supports
-  edit_cases_support: 'Edit case support'
-  new_cases_support: "New case support"
-  case_support_type: Case support type
+  edit_cases_support: 'Edit Case Support'
+  new_cases_support: "New Case Support"
+  case_support_type: Case Support Type
   support_status: Support status
 
 
@@ -141,6 +144,7 @@ en:
   my_tasks: My actions
   new_task: New action
   edit_task: 'Edit action'
+  task_type: 'Action Type'
   sub_tasks: 'Sub actions'
   add_sub_task: "Add sub action"
  # OTHER
@@ -155,11 +159,11 @@ en:
   label_contact: Contact
   label_on: On
   label_off: Off
-  label_email_type: Email type
-  label_fax_type: Fax type
-  label_phone_type: Phone type
+  label_email_type: Email Type
+  label_fax_type: Fax Type
+  label_phone_type: Phone Type
   label_search: Search
-  position_description: Position description
+  position_description: Position Description
   proficiency: Proficiency
   language_type: Language Type
   language: Language
@@ -196,36 +200,41 @@ en:
   checklist: Checklist
   checklists: Checklists
   checklist_template: Checklist Templates
+  checklist_type: Checklist Type
   new_checklist: 'New checklist'
 
   contacts: Contacts
   description: Description
-  priority: priority
+  priority: Priority
   question: Question
   survey: Survey
+  survey_type: Survey Type
+  attempts: Attempts
   surveys: Surveys
   new_survey: 'New survey'
   title: Title
+  last_updated: Last updated
   status: Status
-  assigned_to: Assigned to
+  assigned_to: Assigned To
   type: Type
   category: Category
-  date_due: Date due
-  date_end: Date end
-  date_start: Date start
-  date_started: Date started
-  date_completed: Date completed
-  date_identified: Date identified
+  date_due: Date Due
+  date_end: Date End
+  date_start: Date Start
+  date_started: Date Started
+  date_completed: Date Completed
+  date_identified: Date Identified
   summary: Summary
   private: Private
-  label_date: date
-  label_time: time
-  forum: forum
+  label_date: Date
+  label_time: Time
+  forum: Forum
   wiki: Wiki
   role: Role
   label_permissions: Permissions
   label_more: "More"
   label_less: "Less"
+  special_requirement: Special Requirement
 
   watchers: Watchers
   watcher: Watcher

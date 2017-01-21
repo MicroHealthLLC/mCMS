@@ -162,7 +162,7 @@ class User < ApplicationRecord
   end
 
   def can?(*args)
-    args.map{|action| User.current_user.allowed_to? action }.include?(true)
+    args.map{|action| allowed_to? action }.include?(true)
   end
 
   def allowed_to?(action)

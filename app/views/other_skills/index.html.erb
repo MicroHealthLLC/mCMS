@@ -1,29 +1,15 @@
-
-<h1><%= t :other_skills %></h1>
 <%= link_to( 'New skill', new_other_skill_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_other_skills)%>
-<table class="table table-responsive table-bordered">
-  <thead>
-  <tr>
-    <th>Name</th>
 
-    <th>Date received</th>
-    <th>Date expired</th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% if @other_skills.any? %>
-      <% @other_skills.each do |other_skill| %>
-          <tr>
-            <td><%= link_to other_skill.name, other_skill_path(other_skill)%></td>
-            <td><%= other_skill.date_received %></td>
-            <td><%= other_skill.date_expired %></td>
-          </tr>
-      <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+<section id="widget-grid" class="other_skills_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     other_skills: @other_skills,
+                     wid_id: 'other_skills',
+                     wid_title: t('other_skills')
+                 } %>
+    </article>
+  </div>
+</section>

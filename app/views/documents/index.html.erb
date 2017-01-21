@@ -1,5 +1,14 @@
-<h1><%= t('documents') %> </h1>
-
-<%#= link_to( 'New Document', new_document_path, class: 'btn btn-primary pull-right margin-bottom-10')  if can?(:create_documents, :manage_roles, :manage_documents)%>
-<%= render partial: 'documents/list', locals: {documents: @documents} %>
+<section id="widget-grid" class="documents_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     documents: @documents,
+                     wid_id: 'documents',
+                     wid_title: t('documents')
+                 } %>
+    </article>
+  </div>
+</section>
 <%= will_paginate @documents, renderer: BootstrapPagination::Rails %>

@@ -1,28 +1,14 @@
-<h1><%= t('insurance_plural') %></h1>
-
-
 <%= link_to(t('new_insurance'), new_user_insurance_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_insurances, :manage_insurances, :manage_roles) %>
-<table class="table table-bordered table-responsive">
 
-  <thead>
-    <tr>
-      <th>Insurance</th>
-      <th>Insurance type</th>
-      <th>Insurance identifier</th>
-      <th>Issue date</th>
-      <th>Expiration date</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @user_insurances.each do |user_insurance| %>
-      <tr>
-        <td><%= link_to user_insurance.insurance, user_insurance %></td>
-        <td><%= user_insurance.insurance_type %></td>
-        <td><%= user_insurance.insurance_identifier %></td>
-        <td><%= user_insurance.issue_date %></td>
-        <td><%= user_insurance.expiration_date %></td>
-       </tr>
-    <% end %>
-  </tbody>
-</table>
+<section id="widget-grid" class="insurances_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'insurances',
+                     wid_title: t('insurances')
+                 } %>
+    </article>
+  </div>
+</section>

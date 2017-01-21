@@ -1,32 +1,15 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Languages</h1>
-
-
 <%= link_to('New Language', new_language_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_languages, :manage_roles, :manage_languages) %>
 
-<table class="table table-responsive table-bordered">
-  <thead>
-  <tr>
-    <th>Language type</th>
-    <th>Proficiency</th>
-    <th>Date</th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% if @languages.any?  %>
-      <% @languages.each do |language| %>
-          <tr>
-            <td><%= link_to language.language_type, language %></td>
-            <td><%= language.proficiency_type %></td>
-            <td><%= language.updated_at.strftime("%d/%m/%y") %></td>
-          </tr>
-      <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+<section id="widget-grid" class="languages_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     languages: @languages,
+                     wid_id: 'languages',
+                     wid_title: t('languages')
+                 } %>
+    </article>
+  </div>
+</section>

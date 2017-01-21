@@ -3,9 +3,9 @@
   <thead>
   <tr>
     <th><%= 'Module' %></th>
-    <th><%= 'file name' %></th>
-    <th><%= 'date' %></th>
-    <th><%=  'by who'  %></th>
+    <th><%= t('case') %></th>
+    <th><%= 'File Name' %></th>
+    <th><%= 'Date' %></th>
   </tr>
   </thead>
 
@@ -13,9 +13,9 @@
   <% @files.each do |attachment| %>
       <tr>
         <td>      <%= link_to attachment.owner,  attachment.owner %>    </td>
+        <td>      <%= link_to_case attachment.owner.case %>    </td>
         <td>      <%= link_to(attachment.read_attribute(:file), attachment.file_url) %>    </td>
         <td>      <%= format_date attachment.created_at %>    </td>
-        <td>      <%= attachment.owner.user %>    </td>
       </tr>
   <% end %>
   </tbody>

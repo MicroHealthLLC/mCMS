@@ -1,3 +1,12 @@
-<h1><%= t('goals') %></h1>
-
-<%= render partial: 'list' %>
+<section id="widget-grid" class="goals_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'goals',
+                     wid_title: t('goals')
+                 } %>
+    </article>
+  </div>
+</section>

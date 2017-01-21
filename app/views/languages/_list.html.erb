@@ -1,0 +1,25 @@
+<table class="table table-responsive table-bordered">
+  <thead>
+  <tr>
+    <th><%= t('language_type') %></th>
+    <th><%= t(:proficiency) %></th>
+    <th><%= t('label_date') %></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if @languages.any?  %>
+      <% @languages.each do |language| %>
+          <tr>
+            <td><%= link_to language.language_type, language %></td>
+            <td><%= language.proficiency_type %></td>
+            <td><%= language.updated_at.strftime("%d/%m/%y") %></td>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

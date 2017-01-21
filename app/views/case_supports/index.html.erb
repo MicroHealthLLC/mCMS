@@ -1,11 +1,13 @@
-<div class="row">
-  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <%= render partial: 'list',
-               layout: 'shared/smart_widget_wrapper',
-               locals: {
-                   case_supports: @case_supports,
-                   wid_id: 'case_support',
-                   wid_title: t('cases_support')
-               } %>
-  </article>
-</div>
+<section id="widget-grid" class="case_support">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     case_supports: @case_supports,
+                     wid_id: 'case_support',
+                     wid_title: t('cases_support')
+                 } %>
+    </article>
+  </div>
+</section>

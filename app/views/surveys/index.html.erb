@@ -3,7 +3,19 @@
     <%= link_to( 'New Survey', new_survey_path, class: 'btn btn-primary pull-right margin-bottom-10')%>
     <%= render 'list' %>
 <% else %>
-    <%= render 'display_survey_case' %>
+    <section id="widget-grid" class="surveys_section">
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'display_survey_case',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         surveys: @surveys,
+                         wid_id: 'surveys',
+                         wid_title: t('surveys')
+                     } %>
+        </article>
+      </div>
+    </section>
     <%#= link_to( 'New Survey', new_assign_surveys_path, class: 'btn btn-primary pull-right margin-bottom-10')%>
 <% end %>
 

@@ -17,12 +17,12 @@
     <% else %>
         <th><%= t('label_user') %></th>
     <% end %>
-    <th>Date</th>
-    <th>Note</th>
+    <th><%= t('case') %></th>
+    <th><%= t('label_date') %></th>
+    <th><%= t('note') %></th>
     <th ></th>
     <th ></th>
   </tr>
-
   </thead>
 
   <tbody>
@@ -34,6 +34,7 @@
             <% else %>
                 <td><%= link_to note.user, note %></td>
             <% end %>
+            <td><%= link_to_case note.object.try(:case) %></td>
             <td><%= note.updated_at.to_date %></td>
             <td><%= display_note(note.note.to_s) %></td>
             <td><%= show_link(note) if note.can?(:manage_roles, :manage_notes, :edit_notes)  %></td>

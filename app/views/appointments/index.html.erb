@@ -1,3 +1,14 @@
-<h1>Appointments</h1>
-<%= render partial: 'list' %>
+<section id="widget-grid" class="appointments_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'appointments',
+                     wid_title: t('appointments')
+                 } %>
+    </article>
+  </div>
+</section>
+
 <%= will_paginate @appointments, renderer: BootstrapPagination::Rails %>

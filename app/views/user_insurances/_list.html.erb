@@ -1,0 +1,24 @@
+<table class="table table-bordered table-responsive">
+
+  <thead>
+  <tr>
+    <th><%= t('insurance') %></th>
+    <th><%= t('insurance_type') %></th>
+    <th>Insurance Identifier</th>
+    <th>Issue date</th>
+    <th>Expiration Date</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @user_insurances.each do |user_insurance| %>
+      <tr>
+        <td><%= link_to user_insurance.insurance, user_insurance %></td>
+        <td><%= user_insurance.insurance_type %></td>
+        <td><%= user_insurance.insurance_identifier %></td>
+        <td><%= user_insurance.issue_date %></td>
+        <td><%= user_insurance.expiration_date %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

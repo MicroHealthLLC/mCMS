@@ -1,4 +1,17 @@
-<h1><%= t(:tasks) %></h1>
+
 <%#= link_to('New Task', new_task_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_tasks, :manage_tasks, :manage_roles) and !(User.current.allowed_to?(:manage_roles) and session[:employee_id].nil?) %>
-<%= render 'sub_tasks' %>
+<section id="widget-grid" class="tasks_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     tasks: @tasks,
+                     wid_id: 'tasks',
+                     wid_title: t('tasks')
+                 } %>
+    </article>
+  </div>
+</section>
+
 <%= will_paginate @tasks, renderer: BootstrapPagination::Rails %>

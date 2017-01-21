@@ -1,36 +1,14 @@
-
-<h1>Positions</h1>
-
 <%= link_to('New Position', new_position_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_positions, :manage_positions, :manage_roles) %>
-<table class="table table-bordered table-responsive">
-  <thead>
-  <tr>
-    <th><%= t('title') %></th>
-    <th>Location</th>
-    <th>Special requirement</th>
-    <th>Date start</th>
-    <th>Date end</th>
-    <th><%= t('employment_type') %></th>
-   </tr>
-  </thead>
-
-  <tbody>
-  <% if @positions.any? %>
-      <% @positions.each do |position| %>
-          <tr>
-            <td><%= link_to position.title, position %></td>
-            <td><%= position.location_type %></td>
-            <td><%= position.special_requirement %></td>
-            <td><%= position.date_start %></td>
-            <td><%= position.date_end %></td>
-            <td><%= position.employment_type %></td>
-          </tr>
-      <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
-
+<section id="widget-grid" class="positions_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     positions: @positions,
+                     wid_id: 'positions',
+                     wid_title: t('positions')
+                 } %>
+    </article>
+  </div>
+</section>

@@ -1,4 +1,14 @@
+<section id="widget-grid" class="checklists_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'checklist',
+                     wid_title: t('checklists')
+                 } %>
+    </article>
+  </div>
+</section>
 
-<h1>Checklists</h1>
-<%= render 'list' %>
 <%= will_paginate @checklists, renderer: BootstrapPagination::Rails %>

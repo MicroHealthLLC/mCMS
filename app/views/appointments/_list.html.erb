@@ -3,13 +3,13 @@
   <thead>
   <tr>
     <% if User.current.can?(:manage_roles) %>
-        <th>Client</th>
+        <th><%= t('label_employee') %></th>
     <% end %>
-    <th>Title</th>
-    <th>Related case</th>
-    <th>Appointment type</th>
-    <th>Appointment status</th>
-    <th>Date</th>
+    <th><%= t('title') %></th>
+    <th><%= t('case') %></th>
+    <th><%= t :appointment_type %></th>
+    <th><%= t :appointment_status %></th>
+    <th><%= t('label_date') %></th>
   </tr>
   </thead>
 

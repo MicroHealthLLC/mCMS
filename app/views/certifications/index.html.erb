@@ -1,28 +1,15 @@
-
-<h1>Certifications</h1>
 <%= link_to( 'New Certification', new_certification_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_certifications)%>
-<table class="table table-responsive table-bordered">
-  <thead>
-  <tr>
-    <th>Certification type</th>
-    <th>Date received</th>
-    <th>Date expired</th>
-  </tr>
-  </thead>
 
-  <tbody>
-  <% if @certifications.any? %>
-      <% @certifications.each do |certification| %>
-          <tr>
-            <td><%= link_to certification.certification_type, certification_path(certification) %></td>
-             <td><%= certification.date_received %></td>
-            <td><%= certification.date_expired %></td>
-          </tr>
-      <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+<section id="widget-grid" class="certifications_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     certifications: @certifications,
+                     wid_id: 'certifications',
+                     wid_title: t('certifications')
+                 } %>
+    </article>
+  </div>
+</section>

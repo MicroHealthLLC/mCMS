@@ -1,0 +1,25 @@
+<table class="table table-responsive table-bordered">
+  <thead>
+  <tr>
+    <th><%= t('enumeration_certification_type') %></th>
+    <th><%= t('education_date_received') %></th>
+    <th><%= t('education_date_expired') %></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if @certifications.any? %>
+      <% @certifications.each do |certification| %>
+          <tr>
+            <td><%= link_to certification.certification_type, certification_path(certification) %></td>
+            <td><%= certification.date_received %></td>
+            <td><%= certification.date_expired %></td>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
