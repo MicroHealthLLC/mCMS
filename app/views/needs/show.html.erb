@@ -3,32 +3,32 @@
 <div class="row">
   <div class="col-xs-12">
     <p>
-      <strong>Case:</strong>
+      <strong><%= t('case') %>:</strong>
       <%= link_to_case @need.case %>
     </p>
 
     <p>
-      <strong>Need enum:</strong>
+      <strong><%= t('need') %>:</strong>
       <%= @need.need_enum %>
     </p>
 
     <p>
-      <strong>Priority:</strong>
+      <strong><%= t('priority') %>:</strong>
       <%= @need.priority_type %>
     </p>
 
     <p>
-      <strong>Need status:</strong>
+      <strong><%= t('need_status') %>:</strong>
       <%= @need.need_status %>
     </p>
 
     <p>
-      <strong>Description:</strong>
+      <strong><%= t('description') %>:</strong>
       <%= @need.description.html_safe %>
     </p>
 
     <p>
-      <strong>Date due:</strong>
+      <strong><%= t('date_due') %>:</strong>
       <%= @need.date_due %>
     </p>
 

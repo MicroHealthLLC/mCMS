@@ -135,7 +135,7 @@ en:
   edit_cases_support: 'Edit Case Support'
   new_cases_support: "New Case Support"
   case_support_type: Case Support Type
-  support_status: Support status
+  support_status: Support Status
 
 
  # TASK
@@ -206,6 +206,7 @@ en:
   contacts: Contacts
   description: Description
   priority: Priority
+  priority_type: Priority Type
   question: Question
   survey: Survey
   survey_type: Survey Type
@@ -220,6 +221,7 @@ en:
   category: Category
   date_due: Date Due
   date_end: Date End
+  date_ended: Date Ended
   date_start: Date Start
   date_started: Date Started
   date_completed: Date Completed

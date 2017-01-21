@@ -1,15 +1,14 @@
 <table class="table table-responsive table-bordered" id="case_supports_table">
   <thead>
   <tr>
-    <th>Name</th>
-    <th>User</th>
-    <% unless params[:controller] == 'cases' %>
-        <th>Case</th>
+    <th><%= t('label_name')%></th>
+     <% unless params[:controller] == 'cases' %>
+        <th><%= t('case')%></th>
     <% end %>
-    <th>Case support type</th>
-    <th>support status</th>
-    <th>date started</th>
-    <th>date ended</th>
+    <th><%= t('case_support_type')%></th>
+    <th><%= t('support_status')%></th>
+    <th><%= t('date_started')%></th>
+    <th><%= t('date_ended')%></th>
   </tr>
   </thead>
 
@@ -18,7 +17,6 @@
       <% case_supports.each do |case_support| %>
           <tr>
             <td><%= link_to case_support.name, case_support%></td>
-            <td><%= case_support.user %></td>
             <% unless params[:controller] == 'cases' %>
                 <td><%= case_support.case %></td>
             <% end %>

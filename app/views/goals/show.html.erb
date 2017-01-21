@@ -2,42 +2,42 @@
 <div class="row">
   <div class="col-xs-12">
     <p>
-      <strong>Case:</strong>
+      <strong><%= t('case') %>:</strong>
       <%= link_to_case @goal.case %>
     </p>
 
     <p>
-      <strong>Name:</strong>
+      <strong><%= t('label_name') %>:</strong>
       <%= @goal.name %>
     </p>
 
     <p>
-      <strong>Priority type:</strong>
+      <strong><%= t('priority_type') %> :</strong>
       <%= @goal.priority_type %>
     </p>
 
     <p>
-      <strong>Goal status:</strong>
+      <strong><%= t('goal_status') %>:</strong>
       <%= @goal.goal_status %>
     </p>
 
     <p>
-      <strong>Description:</strong>
+      <strong><%= t('description') %>:</strong>
       <%= @goal.description.html_safe %>
     </p>
 
     <p>
-      <strong>Date start:</strong>
+      <strong><%= t('date_start') %>:</strong>
       <%= @goal.date_start %>
     </p>
 
     <p>
-      <strong>Date due:</strong>
+      <strong><%= t('date_due') %>:</strong>
       <%= @goal.date_due %>
     </p>
 
     <p>
-      <strong>Date complete:</strong>
+      <strong><%= t('date_completed') %>:</strong>
       <%= @goal.date_completed %>
     </p>
   </div>
