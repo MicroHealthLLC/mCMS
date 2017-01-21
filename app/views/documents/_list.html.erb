@@ -1,4 +1,4 @@
-<table class="table table-bordered table-responsive" id="document_table">
+<table class="table table-bordered table-responsive" id="documents_table">
   <thead>
   <tr>
     <th><%= t(:title) %></th>
@@ -25,4 +25,11 @@
   <% end %>
   </tbody>
 </table>
+
+<script>
+  $(document).ready(function(){
+    <% if documents.present? %>  initDataTable('documents_table') <% end %>
+  } );
+</script>
+
 

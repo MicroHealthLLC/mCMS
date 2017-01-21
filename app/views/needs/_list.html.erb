@@ -31,3 +31,8 @@
   <% end %>
   </tbody>
 </table>
+<script>
+  $(document).ready(function(){
+    <%  if @needs.present? %> initDataTable('needs_table') <% end %>
+  } );
+</script>

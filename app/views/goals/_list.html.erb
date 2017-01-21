@@ -31,3 +31,9 @@
   <% end %>
   </tbody>
 </table>
+<script>
+  $(document).ready(function(){
+    <% if @goals.present? %>  initDataTable('goals_table') <% end %>
+  } );
+</script>
+

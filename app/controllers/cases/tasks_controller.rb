@@ -12,15 +12,13 @@ class TasksController < UserCasesController
   def index
     @tasks = Task.root.
         where(assigned_to: @user).
-        or(Task.root.where(for_individual: @user) ).
-        paginate(page: params[:page], per_page: 25)
+        or(Task.root.where(for_individual: @user) )
   end
 
   def my
     @tasks = Task.root.
         where(assigned_to: @user).
-        or(Task.root.where(for_individual: @user) ).
-        paginate(page: params[:page], per_page: 25)
+        or(Task.root.where(for_individual: @user) )
     render 'tasks/index'
   end
 

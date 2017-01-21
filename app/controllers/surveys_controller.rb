@@ -5,11 +5,11 @@ class SurveysController < ApplicationController
   def index
     scope = Survey::Survey
     if User.current.admin?
-      scope = scope.order('id DESC')
+      scope = scope.order('id DESC').paginate(page: params[:page], per_page: 25)
     else
       scope = SurveyCase.visible
     end
-    @surveys = scope.paginate(page: params[:page], per_page: 25)
+    @surveys = scope
   end
 
   def new_assign

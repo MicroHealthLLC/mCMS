@@ -33,3 +33,9 @@
   <% end %>
   </tbody>
 </table>
+
+<script>
+  $(document).ready(function(){
+    <% if @appointments.present? %>  initDataTable('appointments_table') <% end %>
+  } );
+</script>

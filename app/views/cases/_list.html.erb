@@ -40,4 +40,9 @@
   <% end %>
   </tbody>
 </table>
+<script>
+  $(document).ready(function(){
+    <% if @cases.present? %>  initDataTable('cases_table') <% end %>
+  } );
+</script>
 

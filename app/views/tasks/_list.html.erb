@@ -34,3 +34,9 @@
   <% end %>
   </tbody>
 </table>
+
+<script>
+  $(document).ready(function(){
+    <% if tasks.present? %>  initDataTable('tasks_table') <% end %>
+  } );
+</script>

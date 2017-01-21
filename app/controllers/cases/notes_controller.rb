@@ -5,7 +5,7 @@ class NotesController < UserCasesController
   def index
     scope = Note
     scope = scope.where(type: params[:note_type]) if params[:note_type]
-    @notes = scope.visible.paginate(page: params[:page], per_page: 25)
+    @notes = scope.visible#.paginate(page: params[:page], per_page: 25)
   end
 
   def get_template_note
