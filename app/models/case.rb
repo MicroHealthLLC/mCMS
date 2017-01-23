@@ -4,7 +4,7 @@ class Case < ApplicationRecord
   belongs_to :private_author, class_name: 'User', foreign_key: :private_author_id, optional: true
   belongs_to :priority_type, optional: true, foreign_key: :priority_id
   belongs_to :case_type, optional: true
-  belongs_to :case_category_type, optional: true, foreign_key: :case_category_type_id
+  belongs_to :case_category_type, optional: true, foreign_key: :case_category_id
   belongs_to :case_status_type, optional: true
   belongs_to :case, optional: true, foreign_key: :subcase_id
 
@@ -36,7 +36,8 @@ class Case < ApplicationRecord
   before_create :check_private_author
 
   def self.include_enumerations
-    includes(:case_type, :case_status_type, :case_category_type, :priority_type)
+    includes(:case_type, :case_status_type, :case_category_type, :priority_type).
+    references(:case_type, :case_status_type, :case_category_type, :priority_type)
   end
 
   def surveys

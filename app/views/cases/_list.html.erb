@@ -1,7 +1,22 @@
 <table class="table table-responsive table-bordered" id="cases_table">
   <thead>
   <tr>
-    <% if User.current.can?(:manage_roles) and params[:my] %>
+    <th class="hasinput" >
+      <input type="text" class="form-control" placeholder="ID" />
+    </th>
+    <th class="hasinput" ></th>
+    <th class="hasinput" ></th>
+
+    <th class="hasinput" ></th>
+    <th class="hasinput" ></th>
+    <th class="hasinput" ></th>
+
+    <th class="hasinput" ></th>
+    <th class="hasinput" ></th>
+
+  </tr>
+  <tr>
+    <% if User.current.can?(:manage_roles) %>
         <th><%= t('label_employee') %></th>
     <% end %>
     <th><%= t('title') %></th>
@@ -16,26 +31,6 @@
   </thead>
 
   <tbody>
-  <% if @cases.any? %>
-      <% @cases.each do |c| %>
-          <tr>
-            <% if User.current.can?(:manage_roles) and params[:my] %>
-                <td><%= link_to_user(c.user) %></td>
-            <% end %>
-            <td><%= link_to(c.title, case_path(c) ) %></td>
-            <td><%= c.priority_type %></td>
-            <td><%= c.case_type %></td>
-            <td><%= c.case_status_type %></td>
-            <td><%= c.case_category_type %></td>
-            <td><%= c.date_start %></td>
-            <td><%= c.date_due %></td>
-            <td><%= c.date_completed %></td>
-          </tr>
-      <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
-      </tr>
-  <% end %>
+
   </tbody>
 </table>
