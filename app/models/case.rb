@@ -43,6 +43,10 @@ class Case < ApplicationRecord
     survey_cases
   end
 
+  def visible
+    where('assigned_to_id= :user OR user_id= :user', user: User.current.id )
+  end
+
   def check_private_author
     if self.is_private
       self.private_author_id = User.current.id

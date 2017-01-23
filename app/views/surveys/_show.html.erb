@@ -8,7 +8,9 @@
       <% survey.questions.each_with_index do |question, index| %>
           <hr/>
           <div class="row">
-            <p>[<%= index + 1  %>]<%= question.text %></p>
+            <div class="col-xs-12">
+              <h3>[<%= index + 1  %>]<%= question.text %></h3>
+            </div>
             <% question.options.each_with_index do |option, idx| %>
                 <div class="col-md-4"> (<%= idx + 1 %>) <%= option.text %></div>
             <% end -%>

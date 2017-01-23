@@ -3,8 +3,14 @@ module ApplicationHelper
     args.map{|action| current_user.allowed_to? action }.include?(true)
   end
 
-  def link_to_case(case_object)
-    link_to case_object.to_s, case_object if case_object
+  def link_to_case(*args)
+    links = []
+    args.flatten.each do |case_object|
+      links<< link_to(case_object.to_s, case_object) if case_object
+    end
+    links.join('<br/>').html_safe
+  rescue Exception =>  e
+    ''
   end
 
   def avatar(user)

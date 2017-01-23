@@ -27,7 +27,6 @@
 //= require dataTables.buttons.min
 
 //= require ckeditor-jquery
-//= require ckeditor/config.js
 //= require plugin/select2/select2.min.js
 //= require clockpicker.js
 //= require toastr

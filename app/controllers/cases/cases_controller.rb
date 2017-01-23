@@ -11,7 +11,7 @@ class CasesController < UserCasesController
     if User.current.can?(:manage_roles) and params[:my]
       scope = scope.where(assigned_to_id: @user).order('title desc').paginate(page: params[:page], per_page: 25)
     else
-      scope = scope.where('assigned_to_id= ? OR user_id= ?', User.current.id,  User.current.id ).order('title desc')
+      scope = scope.visible.order('title desc')
     end
     @cases = scope
   end
