@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include DmsfHelper
   def can?(*args)
     args.map{|action| current_user.allowed_to? action }.include?(true)
   end

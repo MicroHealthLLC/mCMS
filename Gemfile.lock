@@ -126,6 +126,7 @@ GEM
       net-ldap (>= 0.6.0, <= 0.11)
     diff-lcs (1.2.5)
     erubis (2.7.0)
+    escape (0.0.4)
     execjs (2.7.0)
     factory_girl (4.7.0)
       activesupport (>= 3.0.0)
@@ -225,6 +226,11 @@ GEM
     omniauth-github (1.1.2)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.1)
+    omniauth-google-oauth2 (0.4.1)
+      jwt (~> 1.5.2)
+      multi_json (~> 1.3)
+      omniauth (>= 1.1.1)
+      omniauth-oauth2 (>= 1.3.1)
     omniauth-oauth (1.1.0)
       oauth
       omniauth (~> 1.0)
@@ -244,6 +250,7 @@ GEM
     postmark-rails (0.15.0)
       actionmailer (>= 3.0.0)
       postmark (~> 1.10.0)
+    pr_geohash (1.0.0)
     prawn (2.1.0)
       pdf-core (~> 0.6.1)
       ttfunk (~> 1.4.0)
@@ -258,8 +265,6 @@ GEM
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (2.0.1)
-    rack-mini-profiler (0.10.1)
-      rack (>= 1.2.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0.1)
@@ -307,6 +312,10 @@ GEM
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
     rinku (2.0.2)
+    rollbar (2.14.0)
+      multi_json
+    rsolr (1.1.2)
+      builder (>= 2.1.2)
     rspec (3.5.0)
       rspec-core (~> 3.5.0)
       rspec-expectations (~> 3.5.0)
@@ -360,6 +369,16 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sunspot (2.2.7)
+      pr_geohash (~> 1.0)
+      rsolr (>= 1.1.1, < 3)
+    sunspot_rails (2.2.7)
+      nokogiri
+      rails (>= 3)
+      sunspot (= 2.2.7)
+    sunspot_solr (2.2.7)
+    textractor (0.2.0)
+      escape (>= 0.0.4)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
@@ -449,25 +468,29 @@ DEPENDENCIES
   mysql2 (~> 0.3.11)
   omniauth-facebook
   omniauth-github
+  omniauth-google-oauth2
   omniauth-office365!
   omniauth-twitter
   paranoia (~> 2.2.0.pre)
   postmark-rails
   prawn-rails
   puma (~> 3.0)
-  rack-mini-profiler
   rails (~> 5.0.0, >= 5.0.0.1)
   rails-controller-testing
   recaptcha
   redis (~> 3.2)
   request_store
+  rollbar
   rspec
   rspec-rails
   sass-rails (~> 5.0)
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
+  sunspot_rails
+  sunspot_solr
   survey!
+  textractor
   therubyracer
   thredded (~> 0.8.2)
   toastr-rails

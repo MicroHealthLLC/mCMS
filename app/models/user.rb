@@ -102,6 +102,10 @@ class User < ApplicationRecord
     end
   end
 
+  def username
+    login
+  end
+
   def principal_role
     return 'Admin' if admin?
     role.try(:role_type) || 'No role defined'

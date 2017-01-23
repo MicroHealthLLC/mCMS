@@ -1,0 +1,5 @@
+<% if @view_style == "grid" %>
+  <%= render partial: "document_managers/documents_grid" %>
+<% else %>
+  <%= render partial: "document_managers/documents_list" %>
+<% end %>

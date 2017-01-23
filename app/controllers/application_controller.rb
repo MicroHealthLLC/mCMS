@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
   before_action :module_visible
   layout 'base'
 
+  include DmsfHelper
   def set_enabled_modules
     @enabled_modules =  EnabledModule.active.pluck(:name).to_set
   end
