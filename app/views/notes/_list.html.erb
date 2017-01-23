@@ -23,12 +23,6 @@
     <% end %>
     <th><%= t('label_date') %></th>
     <th><%= t('note') %></th>
-    <% if can?(:manage_roles, :manage_notes, :edit_notes) %>
-        <th ></th>
-    <% end %>
-    <% if can?(:manage_roles, :manage_notes, :delete_notes) %>
-        <th ></th>
-    <% end %>
   </tr>
   </thead>
 
@@ -46,12 +40,6 @@
             <% end %>
             <td><%= note.updated_at.to_date %></td>
             <td><%= display_note(note.note.to_s) %></td>
-            <% if note.can?(:manage_roles, :manage_notes, :edit_notes) %>
-                <td><%= show_link(note)   %></td>
-            <% end %>
-            <% if note.can?(:manage_roles, :manage_notes, :delete_notes) %>
-                <td><%= delete_link(note) %></td>
-            <% end %>
           </tr>
       <% end %>
 
