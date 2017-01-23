@@ -7,7 +7,7 @@
       <%= check_box_tag "checklist_answer_#{index}_status", checklist_answer.status, checklist_answer.status, name: "checklist_answer[#{index}][status]" %>
     </div>
     <div class="col-xs-6">
-      <%= checklist.description %>
+      <%= checklist.description.html_safe %>
     </div>
 
     <div class="col-xs-3">
