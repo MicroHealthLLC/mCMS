@@ -27,6 +27,7 @@
 //= require dataTables.buttons.min
 
 //= require ckeditor-jquery
+//= require ckeditor/config.js
 //= require plugin/select2/select2.min.js
 //= require clockpicker.js
 //= require toastr
@@ -114,8 +115,23 @@ jQuery.expr[':'].Contains = function(a, i, m) {
     return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase()) >= 0;
 };
 var named_function = function(){
-    $('a').attr('data-turbolinks', "false");
+    var config = {
+        toolbar:
+            [
+                ['Link', 'Unlink'],
+                [ 'Save', '-', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord',
+                    '-', 'Undo', 'Redo' ],
+                [ 'Bold', 'Italic', 'Underline',
+                    '-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+                '/',
+                ['NumberedList', 'BulletedList', '-' , 'Outdent', 'Indent', '-', 'Blockquote'],
+                ['Image', 'Table', 'HorizontalRule' , 'SpecialChar'],
+                ['Styles', 'Format']
+            ]
+    };
+    $('.ck-editor').ckeditor(config);
 
+    $('a').attr('data-turbolinks', "false");
     // initialize persistent state
     $('.date_picker').datepicker({ dateFormat: 'dd-mm-yy' });
 
