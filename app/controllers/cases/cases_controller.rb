@@ -49,7 +49,7 @@ class CasesController < UserCasesController
     @tasks       = @case.tasks
     @surveys     = @case.survey_cases
     @documents   = @case.documents
-    @checklists  = @case.checklists.map(&:checklist_template)
+    @checklists  = @case.checklists#.map(&:checklist_template)
     @notes       = @case.case_notes
     @appointments= @case.appointments
     @needs       = @case.needs
@@ -96,10 +96,10 @@ class CasesController < UserCasesController
       if @checklist.save
         redirect_to checklist_case_path(@checklist)
       else
-        @checklists = ChecklistTemplate.order('title ASC') - ChecklistTemplate.where(id: ChecklistCase.where(assigned_to_id: @case.id).pluck(:checklist_template_id))
+        @checklists = ChecklistTemplate.order('title ASC') #- ChecklistTemplate.where(id: ChecklistCase.where(assigned_to_id: @case.id).pluck(:checklist_template_id))
       end
     else
-      @checklists = ChecklistTemplate.order('title ASC') - ChecklistTemplate.where(id: ChecklistCase.where(assigned_to_id: @case.id).pluck(:checklist_template_id))
+      @checklists = ChecklistTemplate.order('title ASC') #- ChecklistTemplate.where(id: ChecklistCase.where(assigned_to_id: @case.id).pluck(:checklist_template_id))
       @checklist = ChecklistCase.new(assigned_to_id: @case.id)
     end
   end
