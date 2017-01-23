@@ -32,6 +32,10 @@ class Survey::Attempt < ApplicationRecord
   # callbacks
   before_create :collect_scores
 
+  def case
+    participant
+  end
+
   def correct_answers
     return self.answers.where(:correct => true)
   end
