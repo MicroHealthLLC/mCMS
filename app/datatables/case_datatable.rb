@@ -44,7 +44,12 @@ class CaseDatatable < AjaxDatatablesRails::Base
   end
 
   def get_raw_records
-    scope = Case.root.include_enumerations
+    scope = if @options[:subcases]
+              Case.subcases
+            else
+              Case.root
+            end
+    scope = scope.include_enumerations
     scope = if User.current.can?(:manage_roles)
               scope.where(assigned_to_id: User.current)
             else

@@ -1,7 +1,3 @@
-<% if params[:action] == 'index' and !(User.current.allowed_to?(:manage_roles) and session[:employee_id].nil?) %>
-    <%= link_to('New case', new_case_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_cases, :manage_cases) %>
-<% end %>
-
 <section id="widget-grid" class="cases_list">
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -17,7 +13,7 @@
 <script>
   $(document).ready(function(){
     var table = $('#cases_table').DataTable({
-      "ajax": "<%= cases_path(format: :json) %>",
+      "ajax": "<%= subcases_cases_path(format: :json) %>",
       processing: true,
       serverSide: true,
       responsive: true,
