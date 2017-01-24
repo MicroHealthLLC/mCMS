@@ -4,11 +4,13 @@ class EmployeesController < ApplicationController
   before_action  :authorize
 
   def index
-    @users =  if current_user.allowed_to?(:manage_roles)
-                User.employees.includes(:core_demographic=> :gender_type)
-              else
-                where(id: current_user.id).includes(:core_demographic=> :gender_type)
-              end
+    respond_to do |format|
+      format.html{}
+      format.json{
+        options = Hash.new
+        render json: EmployeeDatatable.new(view_context,options)
+      }
+    end
   end
 
   def show

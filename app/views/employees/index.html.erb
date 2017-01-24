@@ -1,28 +1,17 @@
 <h1><%= t(:employees) %></h1>
 <%= link_to t(:new_employee), new_employee_path, class: 'btn btn-primary pull-right margin-bottom-10' %>
 
-<table class="display  projects-table table  table-striped table-bordered table-hover" cellspacing="0" width="100%" id="users">
+<table class="display  projects-table table  table-striped table-bordered table-hover" cellspacing="0" width="100%" id="users_table">
   <thead>
-  <tr id="users_input">
-    <th>#</th>
-    <th><%= t 'profile.first_name' %></th>
-    <th><%= t 'profile.middle_name' %></th>
-    <th><%= t 'profile.last_name' %></th>
-    <th><%= t 'profile.gender' %></th>
-    <th><%= t :email %></th>
-    <th><%= t 'profile.birthday' %></th>
-    <th><%= 'Active' %></th>
-    <td></td>
-
-  </tr>
-
   <tr>
     <th>#</th>
     <th><%= t 'profile.first_name' %></th>
     <th><%= t 'profile.middle_name' %></th>
+
     <th><%= t 'profile.last_name' %></th>
     <th><%= t 'profile.gender' %></th>
     <th><%= t :email %></th>
+
     <th><%= t 'profile.birthday' %></th>
     <th><%= 'Active' %></th>
     <th></th>
@@ -31,86 +20,41 @@
   </thead>
 
   <tbody>
-  <% if @users.any? %>
-      <% @users.each do |user| %>
-          <tr>
-            <td><%= link_to user.id, log_in_employee_path(user) %></td>
-            <td><%= link_to user.first_name.to_s, log_in_employee_path(user)  %></td>
-            <td><%= user.middle_name %></td>
-            <td><%= user.last_name %></td>
-            <td><%= user.gender %></td>
-            <td><%= user.email %></td>
-            <td><%= user.birthday %></td>
-            <td><%= user.active? %></td>
-            <td><%= link_to('<i class="fa fa-download"></i>'.html_safe, all_informations_path(format: 'pdf')) %></td>
-          </tr>
-      <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
-      </tr>
-  <% end %>
 
   </tbody>
   <tfoot>
 
   </tfoot>
 </table>
-
 <script>
-
-  $(document).ready(function() {
-
-    var TableToolsInit = {
-      "oFeatures": {
-        "bCsv": true,
-        "bXls": true,
-        "bCopy": true,
-        "bPrint": true
-      },
-      "sPrintMessage": "",
-      "sTitle": "",
-      "sSwfPath": "../swf/ZeroClipboard.swf",
-      "iButtonHeight": 30,
-      "iButtonWidth": 30
-    }
-
-    TableToolsInit.sPrintMessage = "Print header message!";
-
-    $('#users_input th').each( function () {
-      var title = $(this).text();
-      $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
-    } );
-
-
-    table = $('#users').DataTable({ //Brtip
-//      "bStateSave": true,
-      display: [[0, 'desc']],
+  $(document).ready(function(){
+    var table = $('#users_table').DataTable({
+      "ajax": "<%= employees_path(format: :json) %>",
+      processing: true,
+      serverSide: true,
+      responsive: true,
+      display: [[0, 'asc']],
       "bDestroy": true,
+      "columns": [
+        { "searchable": true, "orderable": true },
+        { "searchable": true, "orderable": true },
+        { "searchable": true, "orderable": true },
+
+         { "searchable": true, "orderable": true },
+        { "searchable": true, "orderable": true },
+        { "searchable": true, "orderable": true },
+        { "searchable": true, "orderable": true },
+
+        { "searchable": false, "orderable": false },
+        { "searchable": false, "orderable": false }
+      ],
       "sDom": "<'dt-toolbar'" +
       "<'col-sm-5 col-xs-8'f>" + //search box
       "<'col-sm-2 col-sm-offset-4 col-xs-2 'C>"+// drop down size
       "<'col-sm-1 col-xs-2 'l>>"+// drop down size
       "t"+ // the table
       "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
-      "iDisplayLength": 10,
-      "oTableTools": {
-        "sSwfPath": "swf/copy_cvs_xls_pdf.swf",
-        "aButtons": [
-          {
-            "sButtonText": "CSV"
-          }
-        ]
-      }
-
-    });
-
-    // Apply the search
-    $("#users thead input").on( 'keyup change', function () {
-      table
-          .column( $(this).parent().index()+':visible' )
-          .search( this.value )
-          .draw();
-    });
+      "iDisplayLength": 10
+    })
   } );
 </script>

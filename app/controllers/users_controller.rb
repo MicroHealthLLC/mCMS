@@ -5,10 +5,10 @@ class UsersController < ApplicationController
   before_filter :require_admin, only: [:destroy]
   def index
     respond_to do |format|
-      format.html{@users = User.unscoped.all}
+      format.html{}
       format.json{
-        render json: User.where("login like ?", "%#{params[:q]}%").select('id, login ').to_json
-
+        options = Hash.new
+        render json: UserDatatable.new(view_context,options)
       }
     end
   end

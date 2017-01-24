@@ -2,27 +2,38 @@ class UserDatatable < AjaxDatatablesRails::Base
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name
-    @sortable_columns ||= []
+    @sortable_columns ||= %w{
+      User.id
+      User.login
+      User.email
+    }
   end
 
   def searchable_columns
     # Declare strings in this format: ModelName.column_name
-    @searchable_columns ||= []
+    @searchable_columns ||= %w{
+      User.id
+      User.login
+      User.email
+    }
   end
 
   private
 
   def data
-    records.map do |record|
+    records.map do |user|
       [
-        # comma separated list of the values for each cell of a table row
-        # example: record.attribute,
+          user.id ,
+          user.login,
+          user.email,
+          @view.show_link(user),
+          user.deleted? ?   @view.restore_user_link(user) :  @view.delete_link(user)
       ]
     end
   end
 
   def get_raw_records
-    # insert query here
+    User.unscoped
   end
 
   # ==== Insert 'presenter'-like methods below if necessary
