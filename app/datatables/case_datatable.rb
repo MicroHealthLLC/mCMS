@@ -51,7 +51,7 @@ class CaseDatatable < AjaxDatatablesRails::Base
     if User.current.can?(:manage_roles)
       records.map do |c|
         [
-            @view.link_to(c.title, @view.case_path(c) ),
+            @view.link_to( c.user.to_s , c.user),
             @view.link_to(c.title, @view.case_path(c) ),
             c.priority_type.to_s,
             c.case_type.to_s,
