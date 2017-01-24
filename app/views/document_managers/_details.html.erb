@@ -30,7 +30,7 @@
           <% @document.revisions.order("position asc").each do |revision| %>
             <% if revision.position != 0 %>
               <div class= "unstyled_link">
-                <%= link_to download_document_revision_path(document_id: params[:id], revision_id: revision.id), "data-no-turbolink" => true do %>
+                <%= link_to download_document_manager_revision_path(document_id: params[:id], revision_id: revision.id), "data-no-turbolink" => true do %>
                   <div class="document_listitem_hover">
                     <p>
                       <%= image_tag "icons/#{small_document_icon(revision.extension_type)}" %>
