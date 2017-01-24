@@ -114,7 +114,7 @@ class DocumentManagersController < ApplicationController
     @document = DocumentManager.find(params[:id])
     @category = @document.category
     @document.destroy
-    redirect_to @category
+    redirect_to document_managers_url
   end
 
   private
