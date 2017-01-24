@@ -33,7 +33,7 @@
       <br />
       <h4> Documents Uploaded </h4>
       <% @group.documents.each do |doc| %>
-        <%= render partial: "documents/document_list_item", locals: {doc: doc} %>
+        <%= render partial: "document_managers/document_list_item", locals: {doc: doc} %>
       <% end %>
     <% end %>
 
