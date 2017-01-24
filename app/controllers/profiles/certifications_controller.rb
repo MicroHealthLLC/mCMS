@@ -19,7 +19,7 @@ class CertificationsController < UserProfilesController
 
   # GET /certifications/new
   def new
-    @certification = Certification.new(user_id: @user.id)
+    @certification = Certification.new(user_id: User.current.id)
   end
 
   # GET /certifications/1/edit

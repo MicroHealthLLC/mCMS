@@ -19,7 +19,7 @@ class LanguagesController < UserProfilesController
 
   # GET /languages/new
   def new
-    @language = Language.new user_id: @user.id
+    @language = Language.new user_id: User.current.id
   end
 
   # GET /languages/1/edit

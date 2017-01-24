@@ -19,7 +19,7 @@ class OtherSkillsController < UserProfilesController
 
   # GET /other_skills/new
   def new
-    @other_skill = OtherSkill.new(user_id: @user.id)
+    @other_skill = OtherSkill.new(user_id: User.current.id)
   end
 
   # GET /other_skills/1/edit

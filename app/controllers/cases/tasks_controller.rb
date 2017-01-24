@@ -11,14 +11,14 @@ class TasksController < UserCasesController
   # GET /tasks.json
   def index
     @tasks = Task.root.
-        where(assigned_to: @user).
-        or(Task.root.where(for_individual: @user) )
+        where(assigned_to: User.current).
+        or(Task.root.where(for_individual: User.current) )
   end
 
   def my
     @tasks = Task.root.
-        where(assigned_to: @user).
-        or(Task.root.where(for_individual: @user) )
+        where(assigned_to: User.current).
+        or(Task.root.where(for_individual: User.current) )
     render 'tasks/index'
   end
 
@@ -59,9 +59,9 @@ class TasksController < UserCasesController
 
   # GET /tasks/new
   def new
-    @task = Task.new(user_id: @user.id,
-                     assigned_to_id: @user.id,
-                     for_individual_id: @user.id,
+    @task = Task.new(user_id: User.current.id,
+                     assigned_to_id: User.current.id,
+                     for_individual_id: User.current.id,
                      sub_task_id: params[:sub_task_id],
                      related_to_id: params[:related_to],
                      related_to_type: params[:type])
@@ -69,14 +69,14 @@ class TasksController < UserCasesController
 
   # GET /tasks/1/edit
   def edit
-    @note = TaskNote.new(user_id: @user.id)
+    @note = TaskNote.new(user_id: User.current.id)
   end
 
   # POST /tasks
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
-    @note = TaskNote.new(user_id: @user.id)
+    @note = TaskNote.new(user_id: User.current.id)
 
     respond_to do |format|
       if @task.save

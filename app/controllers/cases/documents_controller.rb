@@ -18,7 +18,7 @@ class DocumentsController < UserCasesController
 
   # GET /documents/new
   def new
-    @document = Document.new(user_id: @user.id,
+    @document = Document.new(user_id: User.current.id,
                              related_to_id: params[:related_to],
                              related_to_type: params[:type])
   end

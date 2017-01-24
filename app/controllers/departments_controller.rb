@@ -17,7 +17,7 @@ class DepartmentsController < ApplicationController
 
   # GET /departments/new
   def new
-    @department = Department.new user_id: @user.id
+    @department = Department.new user_id: User.current.id
   end
 
   # GET /departments/1/edit

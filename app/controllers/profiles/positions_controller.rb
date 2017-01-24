@@ -20,7 +20,7 @@ class PositionsController < UserProfilesController
 
   # GET /positions/new
   def new
-    @position = Position.new(user_id: @user.id)
+    @position = Position.new(user_id: User.current.id)
   end
 
   # GET /positions/1/edit

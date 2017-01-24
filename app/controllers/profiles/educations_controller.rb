@@ -20,7 +20,7 @@ class EducationsController < UserProfilesController
 
   # GET /educations/new
   def new
-    @education = Education.new(user_id: @user.id)
+    @education = Education.new(user_id: User.current.id)
   end
 
   # GET /educations/1/edit

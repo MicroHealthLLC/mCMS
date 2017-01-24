@@ -17,7 +17,7 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations/new
   def new
-    @organization = Organization.new(user_id: @user.id)
+    @organization = Organization.new(user_id: User.current.id)
   end
 
   # GET /organizations/1/edit

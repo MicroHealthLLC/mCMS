@@ -20,7 +20,7 @@ class AffiliationsController < UserProfilesController
 
   # GET /affiliations/new
   def new
-    @affiliation = Affiliation.new user_id: @user.id
+    @affiliation = Affiliation.new user_id: User.current.id
   end
 
   # GET /affiliations/1/edit
