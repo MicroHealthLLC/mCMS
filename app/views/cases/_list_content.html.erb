@@ -1,0 +1,40 @@
+<table class="table table-responsive table-bordered" id="cases_table">
+  <thead>
+  <tr>
+    <th><%= t('title') %></th>
+    <th><%= t('priority') %></th>
+    <th><%= t('type') %></th>
+    <th><%= t('status')%></th>
+    <th><%= t('category') %></th>
+    <th><%= t('date_start') %></th>
+    <th><%= t('date_due')%></th>
+    <th><%= t('date_completed') %></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% if @cases.any? %>
+      <% @cases.each do |c| %>
+          <tr>
+            <td><%= link_to(c.title, case_path(c) ) %></td>
+            <td><%= c.priority_type %></td>
+            <td><%= c.case_type %></td>
+            <td><%= c.case_status_type %></td>
+            <td><%= c.case_category_type %></td>
+            <td><%= c.date_start %></td>
+            <td><%= c.date_due %></td>
+            <td><%= c.date_completed %></td>
+          </tr>
+      <% end %>
+  <% else %>
+      <tr align="center">
+        <td colspan="11"><%= t('label_no_data') %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<script>
+    $(document).ready(function(){
+        <%  if @cases.present? %> initDataTable('cases_table') <% end %>
+    } );
+</script>

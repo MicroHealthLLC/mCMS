@@ -1,21 +1,6 @@
 <table class="table table-responsive table-bordered" id="cases_table">
   <thead>
   <tr>
-    <th class="hasinput" >
-      <input type="text" class="form-control" placeholder="ID" />
-    </th>
-    <th class="hasinput" ></th>
-    <th class="hasinput" ></th>
-
-    <th class="hasinput" ></th>
-    <th class="hasinput" ></th>
-    <th class="hasinput" ></th>
-
-    <th class="hasinput" ></th>
-    <th class="hasinput" ></th>
-
-  </tr>
-  <tr>
     <% if User.current.can?(:manage_roles) %>
         <th><%= t('label_employee') %></th>
     <% end %>

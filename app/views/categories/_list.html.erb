@@ -1,0 +1,22 @@
+<table class="table table-bordered">
+  <tr>
+    <th> Category Name </th>
+    <th> Private </th>
+    <th> Writable </th>
+    <th> Featured </th>
+    <th> Actions </th>
+  </tr>
+  <% @categories.each do |category| %>
+      <tr>
+        <td> <%= link_to category.name, category_path(category) %> </td>
+        <td> <%=  category.is_private %> </td>
+        <td> <%=  category.is_writable %> </td>
+        <td> <%=  category.is_featured %> </td>
+
+        <td>
+          <%= link_to "Edit", edit_category_path(category), :class => "btn btn-primary btn-xs" %>
+          <%= link_to "Delete", category_path(category), method: :delete, :class => "btn btn-primary btn-xs" %>
+        </td>
+      </tr>
+  <% end %>
+</table>

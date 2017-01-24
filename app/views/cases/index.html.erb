@@ -8,48 +8,44 @@
       <%= render partial: 'list',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     wid_id: 'case',
-                     wid_title: t('cases')
+                         wid_id: 'case',
+                         wid_title: t('cases')
                  } %>
     </article>
   </div>
 </section>
 <script>
-  $(document).ready(function(){
-    var table = $('#cases_table').DataTable({
-      "ajax": "<%= cases_path(format: :json) %>",
-      processing: true,
-      serverSide: true,
-      responsive: true,
-      display: [[0, 'asc']],
-      "bDestroy": true,
-      "columns": [
-        { "searchable": true, "orderable": true },
-        { "searchable": true, "orderable": true },
-        { "searchable": true, "orderable": true },
+    $(document).ready(function(){
+        var table = $('#cases_table').DataTable({
+            "ajax": "<%= cases_path(format: :json) %>",
+            processing: true,
+            serverSide: true,
+            responsive: true,
+            display: [[0, 'asc']],
+            "bDestroy": true,
+            "columns": [
+                <% if User.current.can?(:manage_roles) %>
+                { "searchable": true, "orderable": true },
+                <% end %>
+                { "searchable": true, "orderable": true },
+                { "searchable": true, "orderable": true },
+                { "searchable": true, "orderable": true },
 
-        { "searchable": true, "orderable": true },
-        { "searchable": true, "orderable": true },
-        { "searchable": true, "orderable": true },
+                { "searchable": true, "orderable": true },
+                { "searchable": true, "orderable": true },
+                { "searchable": true, "orderable": true },
 
-        { "searchable": true, "orderable": true },
-        { "searchable": true, "orderable": true }
-      ],
-      "sDom": "<'dt-toolbar'" +
-      "<'col-sm-5 col-xs-8'>" + //search box
-      "<'col-sm-2 col-sm-offset-4 col-xs-2 'C>"+// drop down size
-      "<'col-sm-1 col-xs-2 'l>>"+// drop down size
-      "t"+ // the table
-      "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
-      "iDisplayLength": 10
-    })
-    $("#cases_table thead th input[type=text],#cases_table thead th select").on( 'keyup change', function () {
-      table
-          .column( $(this).parent().index()+':visible' )
-          .search( this.value )
-          .draw();
-
+                { "searchable": true, "orderable": true },
+                { "searchable": true, "orderable": true }
+            ],
+            "sDom": "<'dt-toolbar'" +
+            "<'col-sm-5 col-xs-8'f>" + //search box
+            "<'col-sm-2 col-sm-offset-4 col-xs-2 'C>"+// drop down size
+            "<'col-sm-1 col-xs-2 'l>>"+// drop down size
+            "t"+ // the table
+            "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+            "iDisplayLength": 10
+        })
     } );
-  } );
 </script>
 

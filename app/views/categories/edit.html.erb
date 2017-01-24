@@ -1,13 +1,13 @@
-<div class="panel panel-default">
-  <ol class="breadcrumb">
-    <li><%= link_to "Home", categories_path %></li>
-    <li><%= link_to "Categories Index", manage_categories_path %></li>
-    <li class="active"> <%= "Editing #{@category.name}" %></li>
-  </ol>
-
-  <div class="panel-body">
-  <%= form_for @category, url: category_path(@category), method: :patch do |f| %>
-      <%= render partial: "form", locals: {f: f} %>
-  <% end %>
+<section id="widget-grid" class="categories_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                         category: @category,
+                         wid_id: 'category',
+                         wid_title: 'Edit category'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
