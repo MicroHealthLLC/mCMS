@@ -126,6 +126,7 @@ GEM
       net-ldap (>= 0.6.0, <= 0.11)
     diff-lcs (1.2.5)
     erubis (2.7.0)
+    escape (0.0.4)
     execjs (2.7.0)
     factory_girl (4.7.0)
       activesupport (>= 3.0.0)
@@ -203,6 +204,7 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    mysql2 (0.3.21)
     net-ldap (0.11)
     nio4r (1.2.1)
     nokogiri (1.6.8.1)
@@ -248,6 +250,7 @@ GEM
     postmark-rails (0.15.0)
       actionmailer (>= 3.0.0)
       postmark (~> 1.10.0)
+    pr_geohash (1.0.0)
     prawn (2.1.0)
       pdf-core (~> 0.6.1)
       ttfunk (~> 1.4.0)
@@ -311,6 +314,8 @@ GEM
     rinku (2.0.2)
     rollbar (2.14.0)
       multi_json
+    rsolr (1.1.2)
+      builder (>= 2.1.2)
     rspec (3.5.0)
       rspec-core (~> 3.5.0)
       rspec-expectations (~> 3.5.0)
@@ -364,7 +369,16 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.3.13)
+    sunspot (2.2.7)
+      pr_geohash (~> 1.0)
+      rsolr (>= 1.1.1, < 3)
+    sunspot_rails (2.2.7)
+      nokogiri
+      rails (>= 3)
+      sunspot (= 2.2.7)
+    sunspot_solr (2.2.7)
+    textractor (0.2.0)
+      escape (>= 0.0.4)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
@@ -425,7 +439,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activerecord-jdbcsqlite3-adapter
+  activerecord-jdbcmysql-adapter
   ajax-datatables-rails
   awesome_print
   better_errors
@@ -445,13 +459,13 @@ DEPENDENCIES
   figaro
   irwi!
   jbuilder (~> 2.5)
-  jdbc-sqlite3 (>= 3.8.10.1)
   jquery-datatables-rails
   jquery-fileupload-rails
   jquery-rails
   letter_opener
   listen (~> 3.0.5)
   mini_magick
+  mysql2 (~> 0.3.11)
   omniauth-facebook
   omniauth-github
   omniauth-google-oauth2
@@ -473,8 +487,10 @@ DEPENDENCIES
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3
+  sunspot_rails
+  sunspot_solr
   survey!
+  textractor
   therubyracer
   thredded (~> 0.8.2)
   toastr-rails

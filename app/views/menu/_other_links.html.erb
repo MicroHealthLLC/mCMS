@@ -16,6 +16,11 @@
           <a href="/news" title="<%= 'news' %>"><i class="fa fa-lg fa-fw fa-newspaper-o"></i><span class="menu-item-parent"><%= 'news' %></span></a>
         </li>
     <% end %>
+
+    <li class="<%= menu_active?('document_managers') %>">
+      <a href="/document_managers" title="<%= t 'document_managers' %>"><i class="fa fa-lg fa-fw fa-folder-open"></i><span class="menu-item-parent"><%= t 'document_managers' %></span></a>
+    </li>
+
 <% end %>
 
 <% if module_enabled?( 'new_conference') && can?(:manage_roles, :conference)%>

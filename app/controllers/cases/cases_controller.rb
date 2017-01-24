@@ -7,24 +7,25 @@ class CasesController < UserCasesController
   # GET /cases
   # GET /cases.json
   def index
-    scope = Case.root.include_enumerations
-    if User.current.can?(:manage_roles) and params[:my]
-      scope = scope.where(assigned_to_id: @user).order('title desc').paginate(page: params[:page], per_page: 25)
-    else
-      scope = scope.visible.order('title desc')
+    respond_to do |format|
+      format.html{}
+      format.json{
+        options = Hash.new
+        options[:admin] = false
+        render json: CaseDatatable.new(view_context,options)
+      }
     end
-    @cases = scope
   end
 
   def subcases
-    scope = Case.subcases.include_enumerations
-    if User.current.can?(:manage_roles) and params[:my]
-      scope = scope.where(assigned_to_id: @user).order('title desc')
-    else
-      scope = scope.where('assigned_to_id= ? OR user_id= ?', User.current.id,  User.current.id ).order('title desc')
+    respond_to do |format|
+      format.html{}
+      format.json{
+        options = Hash.new
+        options[:subcases] = true
+        render json: CaseDatatable.new(view_context,options)
+      }
     end
-    @cases = scope.paginate(page: params[:page], per_page: 25)
-    render 'cases/index'
   end
 
   def all_files

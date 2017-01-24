@@ -43,6 +43,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'bullet'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -145,4 +146,10 @@ if File.exist?(database_file)
 else
   warn("Please configure your config/database.yml first")
 end
-gem 'bullet'
+
+# Use textractor for parsing PDF and Word documents
+gem 'textractor'
+
+# Use Sunspot Rails and Sunspot Solr for our search engine
+gem 'sunspot_rails'
+gem 'sunspot_solr'

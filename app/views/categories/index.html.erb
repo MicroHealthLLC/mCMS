@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-xs-12">
+    <%= link_to 'New category', new_category_path, class: 'btn btn-primary pull-right' %>
+  </div>
+</div>
+<% if !@featured.nil? and @featured.length > 0 %>
+    <h3> Featured Categories </h3>
+    <%= render partial: "featured_categories", locals: {featured: @featured} %>
+<% end %>
+<% if !@latest_docs.nil? and @latest_docs.length > 0 %>
+    <hr />
+    <h3> Recent Documents </h3>
+    <%= render partial: "latest_documents", locals: {latest_docs: @latest_docs} %>
+<% end %>
