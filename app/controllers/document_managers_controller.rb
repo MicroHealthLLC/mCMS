@@ -64,7 +64,7 @@ class DocumentManagersController < ApplicationController
         @revision = Revision.new(file_name: revision_params.original_filename,
             file_type: revision_params.content_type,
             file_data: revision_params.read,
-            document_id: @document.id,
+            document_manager_id: @document.id,
             user_id: current_user.id,
             position: 0
           )

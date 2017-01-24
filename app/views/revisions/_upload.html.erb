@@ -20,12 +20,6 @@
             to this category.
           </div>
         <% end %>
-      <% elsif current_user.nil? %>
-        <div class="panel-heading">
-          Please
-          <%= link_to "sign in", "/auth/cas" %>
-          to upload documents!
-        </div>
       <% elsif @permitted_categories.nil? %>
         <div class="panel-heading">
           You do not have permission to upload any documents.

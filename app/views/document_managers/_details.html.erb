@@ -4,7 +4,7 @@
     <h3> <%= @document.title %> </h3>
     <p> <%= @document.description %> </p>
     <br />
-    <%= link_to download_document_path, "data-no-turbolink" => true do %>
+    <%= link_to download_document_manager_path, "data-no-turbolink" => true do %>
       <%= image_tag "icons/#{document_icon(@document.current_revision.extension_type)}" %>
       <h4> Download the latest revision here </h4>
     <% end %>
