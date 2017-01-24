@@ -1,0 +1,26 @@
+<div class="col-xs-12">
+  <p>
+    <strong><%= t('profile.first_name') %>:</strong>
+    <%= @category.name %>
+  </p>
+
+  <p>
+    <strong><%= t('description') %>:</strong>
+    <%= @category.description.html_safe %>
+  </p>
+
+  <p>
+    <strong><%= 'private' %>:</strong>
+    <%= @category.is_private %>
+  </p>
+
+  <p>
+    <strong><%= 'Writable' %>:</strong>
+    <%= @category.is_writable %>
+  </p>
+
+  <p>
+    <strong><%= 'Featured'%>:</strong>
+    <%= @category.is_featured %>
+  </p>
+</div>

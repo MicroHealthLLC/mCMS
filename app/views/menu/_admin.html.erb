@@ -10,7 +10,20 @@
     <li>
       <%= link_to "Roles", '/roles' %>
     </li>
-     <li>
+    <li>
+      <a href="#"><i class="fa fa-folder"></i> D.M.S </a>
+      <ul>
+        <li class="<%= menu_active?('categories') %>">
+          <%= link_to t(:categories), '/categories' %>
+        </li>
+
+       <li class="<%= menu_active?('groups') %>">
+          <%= link_to t(:groups), '/groups' %>
+        </li>
+
+      </ul>
+    </li>
+    <li>
       <%= link_to "Note template", '/note_templates' %>
     </li>
     <li>
@@ -21,7 +34,7 @@
       <a href="<%= '/checklist_templates' %>" title="<%= t(:checklists) %>"><span class="menu-item-parent"><%= t(:checklists) %></span></a>
     </li>
 
-   <li>
+    <li>
       <a href="<%= '/insurances' %>" title="<%= t(:insurance_plural) %>"><span class="menu-item-parent"><%= t(:insurance_plural) %></span></a>
     </li>
     <li>

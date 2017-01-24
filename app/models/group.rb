@@ -36,7 +36,7 @@ class Group < ApplicationRecord
     documents = Array.new
     categories = Category.where(group_id: id)
     categories.each do |cat| 
-      cat.documents.each do |doc|
+      cat.document_managers.each do |doc|
         documents << doc
       end
     end

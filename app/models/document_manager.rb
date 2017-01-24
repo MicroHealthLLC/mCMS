@@ -16,7 +16,7 @@ class DocumentManager < ApplicationRecord
   end
 
   def current_revision
-    Revision.where(document_id: id).order("position asc").first
+    Revision.where(document_manager_id: id).order("position asc").first
   end
 
   def total_downloads
@@ -24,7 +24,7 @@ class DocumentManager < ApplicationRecord
   end
 
   def self.latest_docs
-    latest = Revision.all.order("updated_at desc").to_a.reject { |rev| rev.document.is_private == true }
+    latest = Revision.all.order("updated_at desc").to_a.reject { |rev| rev.document_manager.is_private == true }
     latest = latest[0..7]
   end
 

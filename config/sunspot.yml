@@ -11,7 +11,7 @@ development:
   solr:
     solr_home: solr
     hostname: localhost
-    port: 8988
+    port: 8982
     log_level: INFO
     path: /solr/development
 

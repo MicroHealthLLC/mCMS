@@ -1,6 +1,6 @@
 class Revision < ApplicationRecord
 
-  belongs_to :document
+  belongs_to :document_manager
   belongs_to :user
 
   validates_presence_of :file_name, :file_type, :file_data
