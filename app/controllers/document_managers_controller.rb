@@ -1,5 +1,6 @@
 class DocumentManagersController < ApplicationController
 
+  before_action  :authenticate_user!
   before_filter :permitted_categories
 
   # Selection of categories the current user can view in the tree navigation
@@ -8,7 +9,13 @@ class DocumentManagersController < ApplicationController
   end
 
   def index
+    # Get all viewable categories
+    @categories = Category.roots.reject { |c| !category_viewable?(c) and c.is_private }
 
+    # Get featured categories and recently uploaded documents
+    #  making sure to hide private docs and categories
+    @featured = Category.featured
+    @latest_docs = DocumentManager.latest_docs
   end
 
   def show 

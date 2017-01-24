@@ -1,4 +1,5 @@
-class RevisionsController < ApplicationController 
+class RevisionsController < ApplicationController
+  before_action  :authenticate_user!
 
   def download
     # Get the request document revision

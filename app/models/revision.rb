@@ -16,6 +16,10 @@ class Revision < ApplicationRecord
     ext
   end
 
+  def document
+    document_manager
+  end
+
   def extract_text
     # Create a temporary file to read from 
     tempfile = Tempfile.new(file_name, :encoding => 'ascii-8bit')
