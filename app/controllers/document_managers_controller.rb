@@ -91,7 +91,7 @@ class DocumentManagersController < ApplicationController
     end
 
     if !category.nil?
-      redirect_to category_path(category, view_style: params[:view_style])
+      redirect_to document_managers_path
     else
       redirect_to root_path
     end
