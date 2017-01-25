@@ -2,6 +2,7 @@ class DocumentManager < ApplicationRecord
   belongs_to :user
   belongs_to :category
   has_many :revisions, dependent: :destroy
+  has_many :dms_documemnts, dependent: :destroy
 
   validates_presence_of :category
 

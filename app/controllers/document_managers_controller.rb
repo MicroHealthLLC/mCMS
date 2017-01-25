@@ -79,6 +79,10 @@ class DocumentManagersController < ApplicationController
           @document.destroy
           flash[:error] = "Unable to upload revision"
         else
+          d = DmsDocumemnt.new(document_manager_id: @document.id)
+          d.doc = params[:document][:revision][:file]
+          d.save
+
           # Extract text from file to provide search engine with searchable content
           @revision.extract_text
           @revision.save

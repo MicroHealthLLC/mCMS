@@ -29,7 +29,9 @@ class RevisionsController < ApplicationController
         user_id: current_user.id,
         position: 0
       )
-
+    d = DmsDocumemnt.new(document_manager_id: @document.id)
+    d.doc = params[:revision][:file]
+    d.save
     # Set this new revision as the current revision
     @revision.position = 0
     # Increase the position of all previous revisions
