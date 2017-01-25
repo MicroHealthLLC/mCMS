@@ -6,11 +6,16 @@ class AppointmentsController < UserCasesController
   # GET /appointments
   # GET /appointments.json
   def index
-    @appointments = Appointment.includes(:user=> :core_demographic).my_appointments#.paginate(page: params[:page], per_page: 25)
+    respond_to do |format|
+      format.html{}
+      format.json{
+        options = Hash.new
+        render json: AppointmentDatatable.new(view_context, options)
+      }
+    end
   end
 
   def my
-    @appointments = Appointment.includes(:user=> :core_demographic).my_appointments#.paginate(page: params[:page], per_page: 25)
     render 'appointments/index'
   end
 

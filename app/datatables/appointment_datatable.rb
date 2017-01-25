@@ -2,27 +2,83 @@ class AppointmentDatatable < AjaxDatatablesRails::Base
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name
-    @sortable_columns ||= []
+    @sortable_columns ||= %w{
+        Appointment.title
+        Enumeration.name
+        Enumeration.name
+        Appointment.date
+    }
+    if User.current.can?(:manage_roles)
+      @sortable_columns ||= %w{
+        CoreDemographic.first_name
+        Appointment.title
+        Enumeration.name
+        Enumeration.name
+        Appointment.date
+     }
+    else
+      @sortable_columns ||= %w{
+
+        Appointment.title
+        Enumeration.name
+        Enumeration.name
+        Appointment.date
+     }
+    end
   end
 
   def searchable_columns
     # Declare strings in this format: ModelName.column_name
-    @searchable_columns ||= []
+    if User.current.can?(:manage_roles)
+    @searchable_columns ||= %w{
+     CoreDemographic.first_name
+        Appointment.title
+        Enumeration.name
+        Enumeration.name
+        Appointment.date
+     }
+    else
+      @searchable_columns ||= %w{
+
+        Appointment.title
+        Enumeration.name
+        Enumeration.name
+        Appointment.date
+     }
+    end
+
   end
 
   private
 
   def data
-    records.map do |record|
-      [
-        # comma separated list of the values for each cell of a table row
-        # example: record.attribute,
-      ]
+    if User.current.can?(:manage_roles)
+      records.map do |appointment|
+        [
+            appointment.user.to_s ,
+            @view.link_to( appointment.title, @view.appointment_path(appointment) ),
+            appointment.appointment_type.to_s,
+            appointment.appointment_status.to_s,
+            appointment.date
+        ]
+      end
+    else
+      records.map do |appointment|
+        [
+            @view.link_to( appointment.title, @view.appointment_path(appointment) ),
+            appointment.appointment_type.to_s,
+            appointment.appointment_status.to_s,
+            appointment.date
+        ]
+      end
     end
   end
 
   def get_raw_records
-    # insert query here
+    Appointment.include_enumerations.
+        includes(:user=> :core_demographic).
+        references(:user=> :core_demographic).
+        my_appointments
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

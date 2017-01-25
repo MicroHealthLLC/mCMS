@@ -30,6 +30,11 @@ class Task < ApplicationRecord
     self.sub_tasks.update_all(sub_task_id: nil)
   end
 
+  def self.include_enumerations
+    includes(:case, :priority_type, :task_type, :task_status_type).
+        references(:case, :priority_type, :task_type, :task_status_type)
+  end
+
   def send_notification
     UserMailer.task_notification(self).deliver_later
   end

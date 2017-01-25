@@ -46,7 +46,7 @@ class EmployeeDatatable < AjaxDatatablesRails::Base
   end
 
   def get_raw_records
-    if User.current.allowed_to?(:manage_roles)
+    if User.current_user.allowed_to?(:manage_roles)
       User.employees.
           includes(:core_demographic=> :gender_type).
           references(:core_demographic=> :gender_type)

@@ -3,9 +3,14 @@ class NotesController < UserCasesController
   before_action :set_note, only: [:update, :edit, :show, :destroy]
 
   def index
-    scope = Note
-    scope = scope.where(type: params[:note_type]) if params[:note_type]
-    @notes = scope.visible#.paginate(page: params[:page], per_page: 25)
+    respond_to do |format|
+      format.html{}
+      format.json{
+        options = Hash.new
+        options[:admin] = false
+        render json: NoteDatatable.new(view_context,options)
+      }
+    end
   end
 
   def get_template_note

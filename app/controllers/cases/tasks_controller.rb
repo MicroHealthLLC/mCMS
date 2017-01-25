@@ -10,15 +10,16 @@ class TasksController < UserCasesController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.root.
-        where(assigned_to: User.current).
-        or(Task.root.where(for_individual: User.current) )
+    respond_to do |format|
+      format.html{}
+      format.json{
+        options = Hash.new
+        render json: TaskDatatable.new(view_context, options)
+      }
+    end
   end
 
   def my
-    @tasks = Task.root.
-        where(assigned_to: User.current).
-        or(Task.root.where(for_individual: User.current) )
     render 'tasks/index'
   end
 

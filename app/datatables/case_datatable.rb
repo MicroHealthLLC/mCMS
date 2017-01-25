@@ -32,21 +32,7 @@ class CaseDatatable < AjaxDatatablesRails::Base
   end
 
   private
-  # <% @cases.each do |c| %>
-  #         <tr>
-  # <% if User.current.can?(:manage_roles) and params[:my] %>
-  #     <td><%= link_to_user(c.user) %></td>
-  #           <% end %>
-  #           <td><%= link_to(c.title, case_path(c) ) %></td>
-  #           <td><%= c.priority_type %></td>
-  #     <td><%= c.case_type %></td>
-  #           <td><%= c.case_status_type %></td>
-  #     <td><%= c.case_category_type %></td>
-  #           <td><%= c.date_start %></td>
-  #     <td><%= c.date_due %></td>
-  #           <td><%= c.date_completed %></td>
-  #     </tr>
-  #     <% end %>
+
   def data
     if User.current.can?(:manage_roles)
       records.map do |c|

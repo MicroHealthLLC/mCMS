@@ -3,11 +3,10 @@
 <section id="widget-grid" class="tasks_section">
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <%= render partial: 'list',
+      <%= render partial: 'list_ajax',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     tasks: @tasks,
-                     wid_id: 'tasks',
+                     wid_id: 'actions',
                      wid_title: t('tasks')
                  } %>
     </article>

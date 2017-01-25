@@ -19,6 +19,7 @@ class ApplicationController < ActionController::Base
   def set_user
     if user_signed_in?
       User.current_user = current_user
+
       if params[:user_id]
         @user = User.find params[:user_id]
         User.current = current_user
@@ -33,7 +34,7 @@ class ApplicationController < ActionController::Base
         User.current = current_user
         @user = User.current
       end
-      current_user.update(last_seen_at:  Time.now )
+      current_user.update(last_seen_at:  Time.now ) if request.get?
     end
   rescue ActiveRecord::RecordNotFound
     render_404
