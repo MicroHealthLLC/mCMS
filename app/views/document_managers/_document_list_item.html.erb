@@ -2,10 +2,10 @@
   <div class= "unstyled_link">
     <%= link_to doc do %>
       <div class="document_listitem_hover">
-        <%= image_tag "icons/#{small_document_icon(doc.current_revision.extension_type)}" %>
+        <%= image_tag "icons/#{small_document_icon(doc.current_revision.try(:extension_type) || 'icon_other')}" %>
         <b> <%= "#{doc.title}" %> </b> <%= " - #{doc.description}" %>
         <div class="pull-right">
-          <%= "Date: #{doc.current_revision.updated_at.to_date}" %>
+          <%= "Date: #{doc.current_revision.updated_at.to_date rescue nil}" %>
         </div>
       </div>
     <% end %>
