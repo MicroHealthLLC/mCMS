@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :groups do
     member do
       post :add_member
+      post :remove_member
     end
     resources :memberships, only: [:new, :create, :update, :destroy] do
       member do

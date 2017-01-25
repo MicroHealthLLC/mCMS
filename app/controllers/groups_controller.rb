@@ -18,7 +18,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     if @group.save
       redirect_to @group
-    else 
+    else
       redirect_to "/"
     end
   end
@@ -41,6 +41,19 @@ class GroupsController < ApplicationController
     redirect_to edit_group_path(params[:id])
   end
 
+  def remove_member
+    @group = Group.find_by_id(params[:id])
+
+    @member = if "#{params[:membership][:level]}" == "#{Membership::LEVELS[:leader]}"
+                @group.leader_members.detect{|m| m.user_id.to_s ==  params[:membership][:user_id]}
+              else
+                @group.regular_members.detect{|m| m.user_id.to_s ==  params[:membership][:user_id]}
+              end
+
+    @member.delete if @member
+    redirect_to edit_group_path(params[:id])
+  end
+
   def destroy
     group = Group.find_by_id(params[:id])
     group.destroy
@@ -48,12 +61,12 @@ class GroupsController < ApplicationController
   end
 
   private
-    def group_params
-      params.require(:group).permit(:name)
-    end
+  def group_params
+    params.require(:group).permit(:name)
+  end
 
-    def leader_params
-      params.require(:membership).permit(:user_id, :level)
-    end
+  def leader_params
+    params.require(:membership).permit(:user_id, :level)
+  end
 
 end

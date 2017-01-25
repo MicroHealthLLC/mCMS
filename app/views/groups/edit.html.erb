@@ -9,10 +9,10 @@
     <div class="col-md-8">
       <div class="row">
         <%= form_for @group do |f| %>
-          <%= f.label :name %>
-          <%= f.text_field :name, :class => "form-control", placeholder: @group.name %>
-          <br />
-          <%= f.submit "submit", :class => "btn btn-default btn-xs" %>
+            <%= f.label :name %>
+            <%= f.text_field :name, :class => "form-control", placeholder: @group.name %>
+            <br />
+            <%= f.submit "submit", :class => "btn btn-default btn-xs" %>
         <% end %>
 
         <h3> Categories </h3>
@@ -23,10 +23,17 @@
         <hr />
 
         <%= form_for :membership, url: add_member_group_path(group_id: params[:id]) do |l| %>
-          <%= l.label :add_leader %>
-          <%= l.select :user_id, User.all.collect { |u| [u.username, u.id] }, {include_blank: true} %>
-          <%= l.hidden_field :level, value: Membership::LEVELS[:leader] %>
-          <%= l.submit "add", :class => "btn btn-default btn-xs" %>
+            <%= l.label :add_leader %>
+            <%= l.select :user_id, User.all.collect { |u| [u.username, u.id] }, {include_blank: true} %>
+            <%= l.hidden_field :level, value: Membership::LEVELS[:leader] %>
+            <%= l.submit "add", :class => "btn btn-default btn-xs" %>
+        <% end %>
+
+        <%= form_for :membership, url: remove_member_group_path(group_id: params[:id]) do |l| %>
+            <%= l.label :remove_leader %>
+            <%= l.select :user_id, @group.leaders.collect { |u| [u.username, u.id] }, {include_blank: true} %>
+            <%= l.hidden_field :level, value: Membership::LEVELS[:leader] %>
+            <%= l.submit "remove", :class => "btn btn-danger btn-xs" %>
         <% end %>
         <hr />
 
@@ -35,10 +42,17 @@
         <hr />
 
         <%= form_for :membership, url: add_member_group_path(group_id: params[:id]) do |m| %>
-          <%= m.label :add_member %>
-          <%= m.select :user_id, User.all.collect { |u| [u.username, u.id]}, {include_blank: true} %>
-          <%= m.hidden_field :level, value: Membership::LEVELS[:regular] %>
-          <%= m.submit "add", :class => "btn btn-default btn-xs" %>
+            <%= m.label :add_member %>
+            <%= m.select :user_id, User.all.collect { |u| [u.username, u.id]}, {include_blank: true} %>
+            <%= m.hidden_field :level, value: Membership::LEVELS[:regular] %>
+            <%= m.submit "add", :class => "btn btn-default btn-xs" %>
+        <% end %>
+
+        <%= form_for :membership, url: remove_member_group_path(group_id: params[:id]) do |l| %>
+            <%= l.label :remove_leader %>
+            <%= l.select :user_id, @group.members.collect { |u| [u.username, u.id] }, {include_blank: true} %>
+            <%= l.hidden_field :level, value: Membership::LEVELS[:regular] %>
+            <%= l.submit "remove", :class => "btn btn-danger btn-xs" %>
         <% end %>
 
       </div>
