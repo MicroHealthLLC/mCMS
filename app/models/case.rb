@@ -71,7 +71,7 @@ class Case < ApplicationRecord
     if case_category_id
       super
     else
-      PriorityType.default
+      CaseCategoryType.default
     end
   end
 

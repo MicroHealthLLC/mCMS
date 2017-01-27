@@ -37,7 +37,7 @@
       <!-- We are on the home page and have not selected a category; the user can specify which category to upload to -->
   <% elsif @permitted_categories %>
       <% if @permitted_categories.length > 0 %>
-          <%= f.select :category_id, @permitted_categories.all.collect { |c| [c.name, c.id] }, {include_black: true} %>
+          <%= f.select :category_id, @permitted_categories.collect { |c| [c.name, c.id] }, {include_black: true} %>
       <% else %>
           <!-- Database is empty or the user is not allowed to upload to any categories on the site -->
           <p> No categories exist. Please create a category to submit documents. </p>

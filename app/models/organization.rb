@@ -24,7 +24,7 @@ class Organization < ApplicationRecord
   end
 
   def grouped_by_role
-    job_details.map(&:user).group_by{|u| u.principal_role }
+    job_details.map(&:user).group_by{|u| u.try(:principal_role) }.compact
   end
 
   def to_s
