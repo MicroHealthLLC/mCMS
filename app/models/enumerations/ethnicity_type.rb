@@ -8,7 +8,7 @@ class EthnicityType < Enumeration
   end
 
   def objects
-    Department.where(:ethnicity_id => self.id)
+    CoreDemographic.where(:ethnicity_id => self.id)
   end
 
   def objects_count
