@@ -97,6 +97,10 @@ class User < ApplicationRecord
   validates_presence_of :login, :email
 
 
+  def self.include_enumerations
+    includes(:core_demographic=> :gender_type).
+        references(:core_demographic=> :gender_type)
+  end
   def check_status
     UserMailer.account_activated(self).deliver_later if self.account_active? and self.state_was == false
   end

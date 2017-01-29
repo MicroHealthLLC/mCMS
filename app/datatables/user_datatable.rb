@@ -6,6 +6,13 @@ class UserDatatable < AjaxDatatablesRails::Base
       User.id
       User.login
       User.email
+      CoreDemographic.first_name
+      CoreDemographic.middle_name
+      CoreDemographic.last_name
+      CoreDemographic.birth_date
+      Enumeration.name
+      Enumeration.name
+      User.state
     }
   end
 
@@ -15,6 +22,13 @@ class UserDatatable < AjaxDatatablesRails::Base
       User.id
       User.login
       User.email
+      CoreDemographic.first_name
+      CoreDemographic.middle_name
+      CoreDemographic.last_name
+      CoreDemographic.birth_date
+      Enumeration.name
+      Enumeration.name
+      User.state
     }
   end
 
@@ -26,6 +40,14 @@ class UserDatatable < AjaxDatatablesRails::Base
           user.id ,
           user.login,
           user.email,
+          user.first_name,
+          user.middle_name,
+          user.last_name,
+          user.birthday,
+          user.role.to_s,
+          user.gender.to_s,
+          user.state,
+
           user.deleted? ? '<i class="fa fa-eye-slash" aria-hidden="true"></i>' : @view.show_link(user) ,
           user.deleted? ?   @view.restore_user_link(user) :  @view.delete_link(user)
       ]
@@ -33,7 +55,7 @@ class UserDatatable < AjaxDatatablesRails::Base
   end
 
   def get_raw_records
-    User.unscoped
+    User.unscoped.include_enumerations
   end
 
   # ==== Insert 'presenter'-like methods below if necessary
