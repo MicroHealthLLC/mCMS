@@ -1,35 +1,16 @@
-<div class="panel panel-default">
-  <div class="pull-right">
-    <%= link_to "New Group", new_group_path, :class => "btn btn-primary btn-xs" %>
-  </div>
-
-  <div class="panel-body">
-    <table class="table table-bordered">
-      <tr>
-        <th> Group Name </th>
-        <th> Leaders </th>
-        <th> Members </th>
-        <th> Actions </th>
-      </tr>
-      <% @groups.each do |group| %>
-        <tr>
-          <td> <%= link_to group.name, group_path(group) %> </td>
-          <td> 
-            <% if group.leaders.length > 0 %>
-              <%= group.leader_names %>
-            <% end %>
-          </td>
-          <td> 
-            <% if group.members.length > 0 %>
-              <%= group.member_names %> 
-            <% end %>
-          </td>
-          <td> 
-            <%= link_to "Edit", edit_group_path(group), :class => "btn btn-primary btn-xs" %>
-            <%= link_to "Delete", group_path(group), method: :delete, :class => "btn btn-primary btn-xs" %>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
+<div class="pull-right">
+  <%= link_to "New Group", new_group_path, :class => "btn btn-primary" %>
 </div>
+
+<section id="widget-grid" class="show_group_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'groups',
+                     wid_title: 'Groups'
+                 } %>
+    </article>
+  </div>
+</section>

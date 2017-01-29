@@ -4,6 +4,10 @@ class Group < ApplicationRecord
   has_many :users, through: :memberships
   has_many :categories
 
+  def to_s
+    name
+  end
+
   def leaders
     leader_members.to_a.map! {|member| member.user}
   end

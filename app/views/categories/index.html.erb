@@ -3,4 +3,15 @@
     <%= link_to 'New category', new_category_path, class: 'btn btn-primary pull-right' %>
   </div>
 </div>
-<%= render partial: 'list' %>
+<section id="widget-grid" class="show_group_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'categories',
+                     wid_title: 'Categories'
+                 } %>
+    </article>
+  </div>
+</section>

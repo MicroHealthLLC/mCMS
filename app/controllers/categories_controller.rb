@@ -1,5 +1,9 @@
 class CategoriesController < ApplicationController
+  add_breadcrumb I18n.t('home'), :root_path
+  add_breadcrumb I18n.t('categories'), :categories_path
+
   before_action  :authenticate_user!
+  before_filter :set_category, only: [:edit, :update, :destroy, :show]
   before_filter :require_admin, except: [:index, :show]
 
   before_filter :permitted_categories
@@ -23,9 +27,9 @@ class CategoriesController < ApplicationController
   # GET /categories/:id
   def show
     # Get category and its subcategories
-    @category = Category.find params[:id]
+
     @subcategories = @category.children
-    
+
     # Check if category is restricted to group members only
     if @category.is_private
       if !category_viewable?(@category)
@@ -68,7 +72,6 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = Category.find_by_id(params[:id])
     # Get categories and groups for selection dropdowns
     @categories = Category.all.map {|cat| [cat.name, cat.id]}
     @categories.delete([@category.name, @category.id])
@@ -76,13 +79,12 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    @category = Category.find_by_id(params[:id])
     @category.update_attributes(category_params)
     redirect_to edit_category_path(@category)
   end
 
   def destroy
-    @category = Category.find_by_id(params[:id]).destroy
+    @category.destroy
     redirect_to manage_categories_path
   end
 
@@ -93,12 +95,20 @@ class CategoriesController < ApplicationController
   def subcategories
     @subcategories = Category.find(params[:id]).children.map{ |c| c.subcategories_json}
 
-    render json: @subcategories 
+    render json: @subcategories
   end
 
   private
-    def category_params
-      params.require(:category).permit(:name, :description,
-        :group_id, :parent_id, :is_featured, :is_private, :is_writable)
-    end
+
+  def set_category
+    @category = Category.find_by_id(params[:id])
+    add_breadcrumb @category, @category
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
+
+  def category_params
+    params.require(:category).permit(:name, :description,
+                                     :group_id, :parent_id, :is_featured, :is_private, :is_writable)
+  end
 end

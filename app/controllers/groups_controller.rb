@@ -1,5 +1,9 @@
 class GroupsController < ApplicationController
+  add_breadcrumb I18n.t('home'), :root_path
+  add_breadcrumb I18n.t('groups'), :groups_path
   before_action  :authenticate_user!
+
+  before_filter :set_group, only: [:show, :edit, :update, :destroy, :remove_member, :add_member]
   before_filter :require_admin, except: [:show]
 
   def index
@@ -7,7 +11,6 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @group = Group.find_by_id params[:id]
   end
 
   def new
@@ -24,11 +27,9 @@ class GroupsController < ApplicationController
   end
 
   def edit
-    @group = Group.find_by_id(params[:id])
   end
 
   def update
-    @group = Group.find_by_id(params[:id])
     @group.update_attributes(group_params)
     redirect_to @group
   end
@@ -42,8 +43,6 @@ class GroupsController < ApplicationController
   end
 
   def remove_member
-    @group = Group.find_by_id(params[:id])
-
     @member = if "#{params[:membership][:level]}" == "#{Membership::LEVELS[:leader]}"
                 @group.leader_members.detect{|m| m.user_id.to_s ==  params[:membership][:user_id]}
               else
@@ -55,12 +54,19 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-    group = Group.find_by_id(params[:id])
-    group.destroy
+    @group.destroy
     redirect_to groups_path
   end
 
   private
+
+  def set_group
+    @group = Group.find(params[:id])
+    add_breadcrumb @group, @group
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
+
   def group_params
     params.require(:group).permit(:name)
   end

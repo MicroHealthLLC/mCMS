@@ -14,6 +14,10 @@ class Category < ApplicationRecord
     categories = Category.where(parent_id: nil)
   end
 
+  def to_s
+    name
+  end
+
   # Is this category a root?
   def is_root?
     parent_id.nil?
