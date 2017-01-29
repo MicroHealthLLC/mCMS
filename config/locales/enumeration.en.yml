@@ -32,6 +32,7 @@ en:
   enumeration_identification_type: Identification
   enumeration_location_type: Location
   enumeration_language_type: Language
+  enumeration_language_status: Language Status
   enumeration_proficiency_type: Proficiency
   enumeration_phone_type: Phone
   enumeration_organization_type: Organization

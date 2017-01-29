@@ -2,6 +2,7 @@
   <thead>
   <tr>
     <th><%= t('language_type') %></th>
+    <th><%= t('language_status') %></th>
     <th><%= t(:proficiency) %></th>
     <th><%= t('label_date') %></th>
   </tr>
@@ -12,6 +13,7 @@
       <% @languages.each do |language| %>
           <tr>
             <td><%= link_to language.language_type, language %></td>
+            <td><%= language.language_status %></td>
             <td><%= language.proficiency_type %></td>
             <td><%= language.updated_at.strftime("%d/%m/%y") %></td>
           </tr>
