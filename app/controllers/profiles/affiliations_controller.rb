@@ -1,5 +1,5 @@
 class AffiliationsController < UserProfilesController
-
+  add_breadcrumb I18n.t(:affiliations), :affiliations_path
   before_action :set_affiliation, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
 
@@ -71,6 +71,7 @@ class AffiliationsController < UserProfilesController
   # Use callbacks to share common setup or constraints between actions.
   def set_affiliation
     @affiliation = Affiliation.find(params[:id])
+    add_breadcrumb @affiliation, @affiliation
   rescue ActiveRecord::RecordNotFound
     render_404
   end

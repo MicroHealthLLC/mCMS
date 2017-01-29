@@ -111,6 +111,9 @@ gem 'toastr-rails'
 # postmark for emails
 gem 'postmark-rails'
 
+# breadcrumbs
+gem "breadcrumbs_on_rails"
+
 #installing adapter gems based on database.yml
 require 'erb'
 require 'yaml'

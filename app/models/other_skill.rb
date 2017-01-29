@@ -28,6 +28,10 @@ class OtherSkill < ApplicationRecord
     [:user_id, :name, :date_received, :is_private, :private_author_id, :date_expired, :note, skill_attachments_attributes: [Attachment.safe_attributes]]
   end
 
+  def to_s
+    name
+  end
+
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.text "Skill ##{id}", :style => :bold}
     user.to_pdf_brief_info(pdf)

@@ -1,4 +1,5 @@
 en:
+  home: Home
  #DEFAULT SETTING
   label_no_data: No data to display
   text_are_you_sure: Are you sure to delete this record?

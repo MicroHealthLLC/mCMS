@@ -1,5 +1,5 @@
 class UserInsurancesController < UserProfilesController
-
+  add_breadcrumb I18n.t(:insurance_plural), :user_insurances_path
   before_action :set_user_insurance, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
 
@@ -70,6 +70,7 @@ class UserInsurancesController < UserProfilesController
   # Use callbacks to share common setup or constraints between actions.
   def set_user_insurance
     @user_insurance = UserInsurance.find(params[:id])
+    add_breadcrumb @user_insurance, @user_insurance
   rescue ActiveRecord::RecordNotFound
     render_404
   end

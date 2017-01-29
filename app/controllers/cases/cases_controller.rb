@@ -1,4 +1,7 @@
 class CasesController < UserCasesController
+  add_breadcrumb I18n.t(:cases), :cases_path
+
+
   before_action :set_case, only: [:new_assign_survey, :watchers, :new_assign, :show, :edit, :update, :destroy, :new_relation, :delete_sub_case_relation]
 
   before_action :authorize_edit, only: [:edit, :update]
@@ -207,6 +210,8 @@ class CasesController < UserCasesController
   # Use callbacks to share common setup or constraints between actions.
   def set_case
     @case = Case.find(params[:id])
+    add_breadcrumb @case.case.to_s, case_path(@case.case) if @case.case
+    add_breadcrumb @case.to_s, case_path(@case)
   rescue ActiveRecord::RecordNotFound
     render_404
   end

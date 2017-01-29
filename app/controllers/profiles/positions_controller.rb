@@ -1,4 +1,5 @@
 class PositionsController < UserProfilesController
+  add_breadcrumb I18n.t(:positions), :positions_path
   before_action :set_position, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
 
@@ -71,6 +72,7 @@ class PositionsController < UserProfilesController
   # Use callbacks to share common setup or constraints between actions.
   def set_position
     @position = Position.find(params[:id])
+    add_breadcrumb @position, @position
   rescue ActiveRecord::RecordNotFound
     render_404
   end

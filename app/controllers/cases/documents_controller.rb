@@ -1,5 +1,5 @@
 class DocumentsController < UserCasesController
-
+  add_breadcrumb I18n.t(:documents), :documents_path
   before_action :set_document, only: [:show, :edit, :update, :destroy]
 
   before_action :authorize_edit, only: [:edit, :update]
@@ -67,6 +67,7 @@ class DocumentsController < UserCasesController
   # Use callbacks to share common setup or constraints between actions.
   def set_document
     @document = Document.find(params[:id])
+    add_breadcrumb @document, document_path(@document)
   rescue ActiveRecord::RecordNotFound
     render_404
   end

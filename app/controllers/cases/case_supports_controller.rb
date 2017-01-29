@@ -1,4 +1,5 @@
 class CaseSupportsController < UserCasesController
+  add_breadcrumb I18n.t(:cases_supports), :case_supports_path
   before_action :set_case_support, only: [:remove, :show, :edit, :update, :destroy]
 
   before_action :authorize_edit, only: [:remove, :edit, :update]
@@ -100,6 +101,7 @@ class CaseSupportsController < UserCasesController
   # Use callbacks to share common setup or constraints between actions.
   def set_case_support
     @case_support = CaseSupport.find(params[:id])
+    add_breadcrumb @case_support, @case_support
   rescue ActiveRecord::RecordNotFound
     render_404
   end

@@ -22,6 +22,7 @@
 
     <th><%= t('label_date') %></th>
     <th><%= t('note') %></th>
+    <th><%= 'Action' %></th>
   </tr>
   </thead>
 
@@ -57,6 +58,7 @@
         { "searchable": true, "orderable": true },
 
 
+        { "searchable": false, "orderable": false },
         { "searchable": false, "orderable": false }
       ],
       "sDom": "<'dt-toolbar'" +

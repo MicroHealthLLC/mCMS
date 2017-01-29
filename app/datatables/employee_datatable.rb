@@ -46,11 +46,7 @@ class EmployeeDatatable < AjaxDatatablesRails::Base
   end
 
   def get_raw_records
-    if User.current_user.allowed_to?(:manage_roles)
-      User.employees.include_enumerations
-    else
-      User.where(id: User.current.id).include_enumerations
-    end
+    User.employees.include_enumerations
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

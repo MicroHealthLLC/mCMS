@@ -1,5 +1,5 @@
 class OtherSkillsController < UserProfilesController
-
+  add_breadcrumb I18n.t(:other_skills), :other_skills_path
   before_action :set_other_skill, only: [:show, :edit, :update, :destroy]
 
 
@@ -66,6 +66,7 @@ class OtherSkillsController < UserProfilesController
   # Use callbacks to share common setup or constraints between actions.
   def set_other_skill
     @other_skill = OtherSkill.find(params[:id])
+    add_breadcrumb @other_skill, @other_skill
   rescue ActiveRecord::RecordNotFound
     render_404
   end

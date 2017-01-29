@@ -27,7 +27,8 @@ class NoteDatatable < AjaxDatatablesRails::Base
           @view.link_to( note.object.to_s, note.object),
           @view.link_to_case( note.object.try(:case)),
           note.updated_at.to_date,
-          @view.display_note(note.note.to_s)
+          @view.display_note(note.note.to_s),
+          @view.show_link(note)
       ]
     end
   end

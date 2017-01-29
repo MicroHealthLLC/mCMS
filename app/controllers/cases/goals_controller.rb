@@ -1,5 +1,5 @@
 class GoalsController <  UserCasesController
-
+  add_breadcrumb I18n.t(:goals), :goals_path
   before_action :set_goal, only: [:link_need, :add_need, :links, :add_plan, :show, :edit, :update, :destroy]
 
   before_action :authorize_edit, only: [:edit, :update]
@@ -117,6 +117,7 @@ class GoalsController <  UserCasesController
   # Use callbacks to share common setup or constraints between actions.
   def set_goal
     @goal = Goal.find(params[:id])
+    add_breadcrumb @goal, goal_path(@goal)
   rescue ActiveRecord::RecordNotFound
     render_404
   end

@@ -1,5 +1,6 @@
 class EducationsController < UserProfilesController
 
+  add_breadcrumb I18n.t(:educations), :educations_path
   before_action :set_education, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
 
@@ -67,6 +68,7 @@ class EducationsController < UserProfilesController
     # Use callbacks to share common setup or constraints between actions.
     def set_education
       @education = Education.find(params[:id])
+      add_breadcrumb @education, @education
     rescue ActiveRecord::RecordNotFound
       render_404
     end

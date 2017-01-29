@@ -1,5 +1,5 @@
 class NeedsController < UserCasesController
-
+  add_breadcrumb I18n.t(:needs), :needs_path
   before_action :set_need, only: [:links, :add_goal, :show, :edit, :update, :destroy]
 
   before_action :authorize_edit, only: [:edit, :update, :links, :add_goal]
@@ -103,6 +103,7 @@ class NeedsController < UserCasesController
   # Use callbacks to share common setup or constraints between actions.
   def set_need
     @need = Need.find(params[:id])
+    add_breadcrumb @need, needs_path(@need)
   rescue ActiveRecord::RecordNotFound
     render_404
   end

@@ -51,6 +51,10 @@ class Position < ApplicationRecord
      position_attachments_attributes: [Attachment.safe_attributes]]
   end
 
+  def to_s
+    title
+  end
+
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.text "Position ##{id}", :style => :bold}
     user.to_pdf_brief_info(pdf)

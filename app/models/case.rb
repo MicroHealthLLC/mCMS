@@ -100,7 +100,6 @@ class Case < ApplicationRecord
   end
 
 
-
   def self.safe_attributes
     [
         :title, :description, :case_type_id, :is_private, :private_author_id, :assigned_to_id, :priority_id, :subcase_id,

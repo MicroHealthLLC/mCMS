@@ -1,4 +1,5 @@
 class PlansController < UserCasesController
+  add_breadcrumb I18n.t('plans'), :plans_path
   before_action :set_plan, only: [:links, :add_action, :link_goal, :add_goal,  :show, :edit, :update, :destroy]
 
   before_action :authorize_edit, only: [:links, :add_action, :edit, :update]
@@ -115,6 +116,7 @@ class PlansController < UserCasesController
   # Use callbacks to share common setup or constraints between actions.
   def set_plan
     @plan = Plan.find(params[:id])
+    add_breadcrumb @plan.to_s, @plan
   rescue ActiveRecord::RecordNotFound
     render_404
   end

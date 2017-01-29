@@ -27,6 +27,10 @@ class Education < ApplicationRecord
      education_attachments_attributes: [Attachment.safe_attributes]]
   end
 
+  def to_s
+    education_type
+  end
+
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.text "Education ##{id}", :style => :bold}
     user.to_pdf_brief_info(pdf)

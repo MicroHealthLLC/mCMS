@@ -1,4 +1,6 @@
 class AppointmentsController < UserCasesController
+  add_breadcrumb I18n.t(:appointments), :appointments_path
+
   before_action :set_appointment, only: [:show, :edit, :update, :destroy]
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
@@ -101,6 +103,7 @@ class AppointmentsController < UserCasesController
   def set_appointment
     @appointment = Appointment.includes(:appointment_notes, :user=> :core_demographic).
         find(params[:id])
+    add_breadcrumb @appointment.to_s, appointment_url(@appointment)
   rescue ActiveRecord::RecordNotFound
     render_404
   end

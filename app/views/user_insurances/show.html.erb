@@ -1,55 +1,57 @@
 <div class="col-xs-12 btn-edition">
   <%= link_to( 'Delete',  user_insurance_path(@user_insurance), class: 'btn btn-danger pull-right',
-              :method => :delete,
-              :data => {:confirm => t(:text_are_you_sure)}) if @user_insurance.can?(:manage_roles, :delete_insurance, :manage_insurance)
+               :method => :delete,
+               :data => {:confirm => t(:text_are_you_sure)}) if @user_insurance.can?(:manage_roles, :delete_insurance, :manage_insurance)
   %>
   <%= link_to 'Edit', edit_user_insurance_path(@user_insurance), class: 'btn btn-success pull-right' if @user_insurance.can?(:manage_roles, :edit_insurance, :manage_insurance) %>
   <%= link_to t('button_cancel'), user_insurances_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), user_insurance_path(@user_insurance, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 </div>
 <div class="row" >
-  <p>
-    <strong>User:</strong>
-    <%= @user_insurance.user %>
-  </p>
+  <div class="col-xs-12" >
+    <p>
+      <strong>User:</strong>
+      <%= @user_insurance.user %>
+    </p>
 
-  <p>
-    <strong>Insurance:</strong>
-    <%= @user_insurance.insurance %>
-  </p>
+    <p>
+      <strong>Insurance:</strong>
+      <%= @user_insurance.insurance %>
+    </p>
 
-  <p>
-    <strong>Insurance type:</strong>
-    <%= @user_insurance.insurance_type %>
-  </p>
+    <p>
+      <strong>Insurance type:</strong>
+      <%= @user_insurance.insurance_type %>
+    </p>
 
-  <p>
-    <strong>Insurance ID:</strong>
-    <%= @user_insurance.insurance_identifier %>
-  </p>
+    <p>
+      <strong>Insurance ID:</strong>
+      <%= @user_insurance.insurance_identifier %>
+    </p>
 
-  <p>
-    <strong>Issue date:</strong>
-    <%= @user_insurance.issue_date %>
-  </p>
+    <p>
+      <strong>Issue date:</strong>
+      <%= @user_insurance.issue_date %>
+    </p>
 
-  <p>
-    <strong>Expiration date:</strong>
-    <%= @user_insurance.expiration_date %>
-  </p>
+    <p>
+      <strong>Expiration date:</strong>
+      <%= @user_insurance.expiration_date %>
+    </p>
 
-  <p>
-    <strong>Note:</strong>
-    <%= @user_insurance.note.html_safe %>
-  </p>
+    <p>
+      <strong>Note:</strong>
+      <%= @user_insurance.note.html_safe %>
+    </p>
 
-  <p>
-    <strong><%= t('attachments') %>:</strong>
-    <% @user_insurance.user_insurance_attachments.each do |attachment| %>
-        <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-    <% end %>
-  </p>
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @user_insurance.user_insurance_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
 
+  </div>
 </div>
 
 <%= render_extend_demography_information(@user_insurance.insurance.insurance_extend_demography) if @user_insurance.insurance %>

@@ -22,6 +22,10 @@ class UserInsurance < ApplicationRecord
      user_insurance_attachments_attributes: [Attachment.safe_attributes]]
   end
 
+  def to_s
+    insurance
+  end
+
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.text "Insurance ##{id}", :style => :bold}
     user.to_pdf_brief_info(pdf)

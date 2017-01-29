@@ -54,6 +54,10 @@ class Contact < ApplicationRecord
     contact_extend_demography || ContactExtendDemography.new(contact_id: self.id)
   end
 
+  def to_s
+    name
+  end
+
   def name
     "#{first_name} #{middle_name} #{last_name}".tr('  ', ' ')
   end

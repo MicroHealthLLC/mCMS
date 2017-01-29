@@ -1,5 +1,5 @@
 class ContactsController < UserProfilesController
-
+  add_breadcrumb I18n.t(:contacts), :contacts_path
   before_action :set_contact, only: [:remove, :show, :edit, :update, :destroy]
 
   before_action :authorize_edit, only: [:remove, :edit, :update]
@@ -96,6 +96,7 @@ class ContactsController < UserProfilesController
   # Use callbacks to share common setup or constraints between actions.
   def set_contact
     @contact = Contact.find(params[:id])
+    add_breadcrumb @contact, @contact
   rescue ActiveRecord::RecordNotFound
     render_404
   end

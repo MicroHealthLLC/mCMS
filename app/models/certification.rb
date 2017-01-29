@@ -18,6 +18,10 @@ class Certification < ApplicationRecord
     end
   end
 
+  def to_s
+    certification_type
+  end
+
   def self.safe_attributes
     [:certification_type_id, :user_id, :date_received, :note, :date_expired,
      certification_attachments_attributes: [Attachment.safe_attributes]]

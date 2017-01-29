@@ -3,6 +3,7 @@ class CaseWatchersController < UserCasesController
   # GET /case_watchers
   # GET /case_watchers.json
   def index
+    add_breadcrumb I18n.t('watchers'), :case_watchers_path
     case_ids = Case.root.where('assigned_to_id= ? OR user_id= ?', User.current.id,  User.current.id ).pluck(:id)
 
     @case_watchers = CaseWatcher.where(case_id: case_ids).

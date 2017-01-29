@@ -1,5 +1,5 @@
 class ClearancesController < UserProfilesController
-
+  add_breadcrumb I18n.t(:clearances), :clearances_path
   before_action :set_clearance, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
 
@@ -68,6 +68,7 @@ class ClearancesController < UserProfilesController
   # Use callbacks to share common setup or constraints between actions.
   def set_clearance
     @clearance = Clearance.find(params[:id])
+    add_breadcrumb @clearance, @clearance
   rescue ActiveRecord::RecordNotFound
     render_404
   end

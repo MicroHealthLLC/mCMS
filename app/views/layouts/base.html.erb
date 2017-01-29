@@ -82,6 +82,11 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="no-padding">
           <%= render_flash_messages %>
+          <% if breadcrumbs.present? %>
+              <ol class="breadcrumb">
+                <%= render_breadcrumbs :tag => :li, :separator => "" %>
+              </ol>
+          <% end %>
           <%= yield %>
         </div>
         <div>

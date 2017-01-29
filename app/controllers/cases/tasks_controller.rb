@@ -1,5 +1,5 @@
 class TasksController < UserCasesController
-
+  add_breadcrumb I18n.t('tasks'), :tasks_path
   before_action :set_task, only: [:link_plan, :add_plan, :show, :edit, :update, :destroy,
                                   :delete_sub_task_relation]
 
@@ -124,6 +124,7 @@ class TasksController < UserCasesController
   # Use callbacks to share common setup or constraints between actions.
   def set_task
     @task = Task.find(params[:id])
+    add_breadcrumb @task.to_s, @task
   rescue ActiveRecord::RecordNotFound
     render_404
   end

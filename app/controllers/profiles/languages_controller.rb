@@ -1,4 +1,5 @@
 class LanguagesController < UserProfilesController
+  add_breadcrumb I18n.t(:languages), :languages_path
   before_action :set_language, only: [:show, :edit, :update, :destroy]
 
 
@@ -70,6 +71,7 @@ class LanguagesController < UserProfilesController
   # Use callbacks to share common setup or constraints between actions.
   def set_language
     @language = Language.find(params[:id])
+    add_breadcrumb @language, @language
   rescue ActiveRecord::RecordNotFound
     render_404
   end
