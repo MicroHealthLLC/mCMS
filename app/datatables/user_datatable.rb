@@ -10,7 +10,7 @@ class UserDatatable < AjaxDatatablesRails::Base
       CoreDemographic.middle_name
       CoreDemographic.last_name
       CoreDemographic.birth_date
-      Enumeration.name
+      Role.name
       Enumeration.name
       User.state
     }
@@ -26,7 +26,7 @@ class UserDatatable < AjaxDatatablesRails::Base
       CoreDemographic.middle_name
       CoreDemographic.last_name
       CoreDemographic.birth_date
-      Enumeration.name
+      Role.name
       Enumeration.name
       User.state
     }

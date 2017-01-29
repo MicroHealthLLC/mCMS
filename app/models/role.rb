@@ -27,7 +27,11 @@ class Role < ApplicationRecord
   scope :active, lambda { where(:state => true) }
 
   def to_s
-    role_type.to_s
+    name
+  end
+
+  before_save do
+    self.name = role_type.to_s
   end
 
   def self.default
