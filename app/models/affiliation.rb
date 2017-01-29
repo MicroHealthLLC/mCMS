@@ -2,6 +2,7 @@ class Affiliation < ApplicationRecord
   has_many :users
   belongs_to :user
   belongs_to :affiliation_type
+  belongs_to :affiliation_status, foreign_key: :status_id
   has_one :affiliation_extend_demography, :dependent => :destroy
 
 
@@ -15,7 +16,15 @@ class Affiliation < ApplicationRecord
     UserMailer.affiliation_notification(self).deliver_later
   end
 
-  def affiliation_type
+  def affiliation_status
+    if status_id
+      super
+    else
+      AffiliationStatus.default
+    end
+  end
+
+   def affiliation_type
     if affiliation_type_id
       super
     else
@@ -32,7 +41,7 @@ class Affiliation < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:name, :affiliation_type_id, :note, :user_id ]
+    [:name, :affiliation_type_id, :note, :user_id, :status_id ]
   end
 
   def extend_informations
@@ -43,7 +52,8 @@ class Affiliation < ApplicationRecord
     pdf.font_size(25){  pdf.text "Affiliation ##{id}", :style => :bold}
     user.to_pdf_brief_info(pdf)
     pdf.text "<b>name: </b> #{name}", :inline_format =>  true
-    pdf.text "<b>Affiliation type: </b> #{affiliation_type}", :inline_format =>  true
+    pdf.text "<b>Affiliation Type: </b> #{affiliation_type}", :inline_format =>  true
+    pdf.text "<b>Affiliation Status: </b> #{affiliation_status}", :inline_format =>  true
     pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
   end
 
@@ -52,6 +62,7 @@ class Affiliation < ApplicationRecord
     output<< "<h2>Affiliation ##{id} </h2>"
     output<< "<b>name: </b> #{name}<br/>"
     output<< "<b>Affiliation type: </b> #{affiliation_type}<br/>"
+    output<< "<b>Affiliation Status: </b> #{affiliation_status}<br/>"
     output<< "<b>Note: </b> #{note}<br/>"
 
     output.html_safe

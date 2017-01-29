@@ -13,7 +13,7 @@ class Appointment < ApplicationRecord
 
   validates_presence_of :date, :time, :title, :description, :with_who_id, :with_who_type
 
-  attr_accessor :with_who
+  # attr_accessor :with_who
 
   scope :not_related, -> {where(related_to_id: nil)}
 
@@ -73,7 +73,7 @@ class Appointment < ApplicationRecord
 
 
   def self.safe_attributes
-    [:title, :description, :time,
+    [:title, :description, :time, :with_who_id, :with_who_type,
      :appointment_type_id, :appointment_status_id,
      :user_id, :date, :related_to_id, appointment_attachments_attributes: [Attachment.safe_attributes]]
   end

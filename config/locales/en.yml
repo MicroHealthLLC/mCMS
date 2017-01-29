@@ -35,6 +35,7 @@ en:
   education: Education
   educations: Educations
   new_education: New Education
+  education_status: Education Status
   education_other_skill: Other Skill
   education_date_received: Date Received
   education_date_expired: Date Expired
@@ -183,8 +184,7 @@ en:
   new_wiki: New wiki
  # AFFILIATION
   new_affiliation: New Affiliation
-
-
+  affiliation_status: Affiliation Status
   affiliations: Affiliations
   affiliation_type: Affiliation type
   #ORGANIZATION

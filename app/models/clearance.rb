@@ -1,5 +1,6 @@
 class Clearance < ApplicationRecord
   belongs_to :clearence_type
+  belongs_to :clearence_status, foreign_key: :status_id
   belongs_to :user
 
   has_many :clearance_attachments, foreign_key: :owner_id
@@ -7,6 +8,14 @@ class Clearance < ApplicationRecord
   after_save :send_notification
   def send_notification
     UserMailer.clearance_notification(self).deliver_later
+  end
+
+  def clearence_status
+    if status_id
+      super
+    else
+      ClearenceStatus.default
+    end
   end
 
   def clearence_type
@@ -18,7 +27,7 @@ class Clearance < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:clearence_type_id, :user_id, :date_received, :note, :date_expired,
+    [:clearence_type_id, :user_id, :date_received, :note, :date_expired, :status_id,
      clearance_attachments_attributes: [Attachment.safe_attributes]]
   end
 
@@ -30,6 +39,7 @@ class Clearance < ApplicationRecord
     pdf.font_size(25){  pdf.text "Clearance ##{id}", :style => :bold}
     user.to_pdf_brief_info(pdf)
     pdf.text "<b>Clearance type: </b> #{clearence_type}", :inline_format =>  true
+    pdf.text "<b>Clearance Status: </b> #{clearence_status}", :inline_format =>  true
     pdf.text "<b>Date received: </b> #{date_received}", :inline_format =>  true
     pdf.text "<b>Date expired: </b> #{date_expired}", :inline_format =>  true
     pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
@@ -39,6 +49,7 @@ class Clearance < ApplicationRecord
     output = ""
     output<< "<h2>Clearance ##{id} </h2>"
     output<< "<b>Clearance type: </b> #{clearence_type}<br/>"
+    output<< "<b>Clearance Status: </b> #{clearence_status}<br/>"
     output<< "<b>Date received: </b> #{date_received}<br/>"
     output<< "<b>Date expired: </b> #{date_expired}<br/>"
     output<< "<b>Note: </b> #{note}<br/>"

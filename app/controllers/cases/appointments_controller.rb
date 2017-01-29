@@ -59,7 +59,7 @@ class AppointmentsController < UserCasesController
   # POST /appointments.json
   def create
     @appointment = Appointment.new(appointment_params)
-    @appointment.with_who = User.find(params[:appointment][:with_who_id]) rescue nil
+    # @appointment.with_who = User.find(params[:appointment][:with_who_id]) rescue nil
 
     respond_to do |format|
       if @appointment.save
@@ -75,7 +75,7 @@ class AppointmentsController < UserCasesController
   # PATCH/PUT /appointments/1
   # PATCH/PUT /appointments/1.json
   def update
-    @appointment.with_who = User.find(params[:appointment][:with_who_id]) rescue nil
+    # @appointment.with_who = User.find(params[:appointment][:with_who_id]) rescue nil
 
     respond_to do |format|
       if @appointment.update(appointment_params)

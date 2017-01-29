@@ -8,6 +8,7 @@
     <th><%= t('date_start') %></th>
     <th><%= t('date_end') %></th>
     <th><%= t('employment_type') %></th>
+    <th><%= t('position_status') %></th>
   </tr>
   </thead>
 
@@ -21,6 +22,7 @@
             <td><%= position.date_start %></td>
             <td><%= position.date_end %></td>
             <td><%= position.employment_type %></td>
+            <td><%= position.position_status %></td>
           </tr>
       <% end %>
   <% else %>

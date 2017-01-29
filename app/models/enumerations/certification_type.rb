@@ -1,5 +1,5 @@
 class CertificationType < Enumeration
-  has_many :educations
+  has_many :certifications
 
   OptionName = :enumeration_certification_type
 
@@ -8,7 +8,7 @@ class CertificationType < Enumeration
   end
 
   def objects
-    Education.where(:certification_type_id => self.id)
+    Certification.where(:certification_type_id => self.id)
   end
 
   def objects_count

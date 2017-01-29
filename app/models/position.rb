@@ -3,6 +3,7 @@ class Position < ApplicationRecord
   belongs_to :organization
   belongs_to :pay_rate_type, optional: true, foreign_key: :pay_rate_id
   belongs_to :employment_type, optional: true
+  belongs_to :position_status, optional: true, foreign_key: :status_id
   belongs_to :location_type, optional: true
 
 
@@ -26,6 +27,14 @@ class Position < ApplicationRecord
     end
   end
 
+ def position_status
+    if status_id
+      super
+    else
+      PositionStatus.default
+    end
+  end
+
   def employment_type
     if employment_type_id
       super
@@ -33,6 +42,11 @@ class Position < ApplicationRecord
       EmploymentType.default
     end
   end
+
+  def position_type
+    employment_type
+  end
+
   def location_type
     if location_type_id
       super
@@ -46,7 +60,7 @@ class Position < ApplicationRecord
 
   def self.safe_attributes
     [:user_id, :title, :position_description,
-     :location_type_id, :special_requirement, :note,
+     :location_type_id, :special_requirement, :note, :status_id,
      :date_start, :date_end, :organization_id, :salary, :pay_rate_id, :employment_type_id,
      position_attachments_attributes: [Attachment.safe_attributes]]
   end
@@ -60,6 +74,7 @@ class Position < ApplicationRecord
     user.to_pdf_brief_info(pdf)
     pdf.text "<b>title: </b> #{title}", :inline_format =>  true
     pdf.text "<b>Position description: </b> #{ActionView::Base.full_sanitizer.sanitize(position_description)}", :inline_format =>  true
+    pdf.text "<b>Position Status: </b> #{position_status}", :inline_format =>  true
     pdf.text "<b>Location: </b> #{location_type}", :inline_format =>  true
     pdf.text "<b>Special requirement: </b> #{special_requirement}", :inline_format =>  true
     pdf.text "<b>Date start: </b> #{date_start}", :inline_format =>  true
@@ -73,6 +88,7 @@ class Position < ApplicationRecord
     output<< "<h2>Position ##{id} </h2>"
     output<<"<b>title: </b> #{title}<br/>"
     output<<"<b>Position description: </b> #{position_description}<br/>"
+    output<<"<b>Position Status: </b> #{position_status}<br/>"
     output<<"<b>Location: </b> #{location_type}<br/>"
     output<<"<b>Special requirement: </b> #{special_requirement}<br/>"
     output<<"<b>Date start: </b> #{date_start}<br/>"

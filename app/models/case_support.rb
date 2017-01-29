@@ -17,6 +17,10 @@ class CaseSupport < ApplicationRecord
     case_support_extend_demography || CaseSupportExtendDemography.new(case_support_id: self.id)
   end
 
+  def to_s
+    name
+  end
+
   def removed?
     !status
   end

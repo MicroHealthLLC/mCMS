@@ -2,6 +2,7 @@
   <thead>
   <tr>
     <th><%= t :education_type %></th>
+    <th><%= t :education_status %></th>
     <th><%= t :education_date_received %></th>
     <th><%= t :education_date_expired %></th>
   </tr>
@@ -12,6 +13,7 @@
       <% educations.each do |education| %>
           <tr>
             <td><%= link_to education.education_type, education_path(education) %></td>
+            <td><%= education.education_status %></td>
             <td><%= education.date_recieved %></td>
             <td><%= education.date_expired %></td>
           </tr>

@@ -3,6 +3,7 @@
   <tr>
     <th><%= t :label_name %></th>
     <th><%= t :affiliation_type %></th>
+    <th><%= t :affiliation_status %></th>
  </tr>
   </thead>
 
@@ -12,6 +13,7 @@
           <tr>
             <td><%= link_to affiliation.name, affiliation %></td>
             <td><%= affiliation.affiliation_type %></td>
+            <td><%= affiliation.affiliation_status %></td>
             </tr>
       <% end %>
   <% else %>

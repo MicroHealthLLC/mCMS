@@ -18,12 +18,20 @@ class Certification < ApplicationRecord
     end
   end
 
+   def certification_status
+    if status_id
+      super
+    else
+      CertificationStatus.default
+    end
+  end
+
   def to_s
     certification_type
   end
 
   def self.safe_attributes
-    [:certification_type_id, :user_id, :date_received, :note, :date_expired,
+    [:certification_type_id, :user_id, :date_received, :note, :date_expired, :status_id,
      certification_attachments_attributes: [Attachment.safe_attributes]]
   end
 
@@ -31,6 +39,7 @@ class Certification < ApplicationRecord
     pdf.font_size(25){  pdf.text "Certification ##{id}", :style => :bold}
     user.to_pdf_brief_info(pdf)
     pdf.text "<b>Certification type: </b> #{certification_type}", :inline_format =>  true
+    pdf.text "<b>Certification Status: </b> #{certification_status}", :inline_format =>  true
     pdf.text "<b>Date received: </b> #{date_received}", :inline_format =>  true
     pdf.text "<b>Date expired: </b> #{date_expired}", :inline_format =>  true
     pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
@@ -40,6 +49,7 @@ class Certification < ApplicationRecord
     output = ""
     output<< "<h2>Certification ##{id} </h2>"
     output<< "<b>Certification type: </b> #{certification_type}<br/>"
+    output<< "<b>Certification Status:  </b> #{certification_sttaus}<br/>"
     output<< "<b>Date received: </b> #{date_received}<br/>"
     output<< "<b>Date expired: </b> #{date_expired}<br/>"
     output<< "<b>Note: </b> #{note}<br/>"

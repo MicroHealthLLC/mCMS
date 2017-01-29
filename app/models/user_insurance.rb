@@ -2,6 +2,7 @@ class UserInsurance < ApplicationRecord
   belongs_to :user
   belongs_to :insurance
   belongs_to :insurance_type, optional: true
+  belongs_to :insurance_status, optional: true, foreign_key: :status_id
 
   has_many :user_insurance_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :user_insurance_attachments, reject_if: :all_blank, allow_destroy: true
@@ -16,9 +17,18 @@ class UserInsurance < ApplicationRecord
   end
 
 
+   def insurance_status
+    if status_id
+      super
+    else
+      InsuranceStatus.default
+    end
+  end
+
+
   def self.safe_attributes
     [:user_id, :insurance_id, :insurance_type_id, :issue_date, :expiration_date,
-     :insurance_identifier, :note,
+     :insurance_identifier, :note, :status_id,
      user_insurance_attachments_attributes: [Attachment.safe_attributes]]
   end
 
