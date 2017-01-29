@@ -32,28 +32,7 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :location , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :location_type_id, LocationType.active.pluck(:name, :id), {} , {class: 'form-control'} %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t('organization'), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :organization_id, options_for_select(Organization.all.map{|dep| [dep.organization_type, dep.id] }, selected: position.organization_id), {},{ class: 'form-control'} %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :special_requirement , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :special_requirement , class: 'form-control' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:employment_type) , class: 'col-md-2 control-label' %>
+        <%= f.label t(:position_type) , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.select :employment_type_id, EmploymentType.active.pluck(:name, :id),{} , {class: 'form-control'} %>
         </div>

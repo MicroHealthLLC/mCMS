@@ -50,7 +50,7 @@ module Thredded
     end
 
     def users
-      @users = Thredded.user_class
+      @users = Thredded.user_class.power_user
         .left_join_thredded_user_details
         .merge(Thredded::UserDetail.order(moderation_state_changed_at: :desc))
       @query = params[:q].to_s

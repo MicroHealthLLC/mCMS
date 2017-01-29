@@ -75,7 +75,7 @@ class CasesController < UserCasesController
       @case.watchers.where(user_id: deleted_watcher).delete_all
       redirect_to case_url(@case)
     else
-      @users = User.includes(:core_demographic).all
+      @users = User.power_user.includes(:core_demographic)
     end
 
   end

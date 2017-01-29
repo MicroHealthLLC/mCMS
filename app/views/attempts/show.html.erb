@@ -1,4 +1,5 @@
 <% unless User.current.admin? %>
     <%= render partial: 'show', locals: {attempt: @attempt} %>
-    <%= render partial: 'notes/notes', locals: {notes: @attempt.attempt_notes} %>
+    <%= render partial: 'notes/notes', locals: {show_case_column: false,
+                                                notes: @attempt.attempt_notes} %>
 <% end %>

@@ -44,7 +44,7 @@ class EmployeesController < ApplicationController
 
   def log_in
     session[:employee_id] = @employee.id
-    flash[:notice]= "Logged In from #{@employee.login}"
+    # flash[:notice]= "Logged In from #{@employee.login}"
     redirect_to employee_path(@employee)
   end
 

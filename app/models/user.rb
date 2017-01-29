@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   acts_as_paranoid
 
- # ldap_authenticatable
+  # ldap_authenticatable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
          :validatable, :lockable, :omniauthable
@@ -161,19 +161,29 @@ class User < ApplicationRecord
       User.where(id: User.current.id)
     end
   end
+
   def self.employees
     r = Role.pluck(:id) - Role.where("permissions like ?", "%manage_roles%").pluck(:id)
     r<< nil
     User.where(admin: false).where(role_id: r)
   end
 
-  def has_unread_message(receiver)
-    chat_room = ChatRoom.where(user_id: self.id).where(receiver_id: receiver.id).or(ChatRoom.where(user_id: receiver.id).where(receiver_id: self.id)).first
-    unless chat_room.message_seen?
-      if chat_room.messages.last.user_id != self.id
-        chat_room.messages.last.body
-      end
+  def self.power_user
+    r = Role.where("permissions like ?", "%manage_roles%").pluck(:id)
+    if r.present?
+      User.where(admin: true).or(User.where(role_id: r))
+    else
+      User.where(admin: true)
     end
+  end
+
+  def has_unread_message(receiver)
+  chat_room = ChatRoom.where(user_id: self.id).where(receiver_id: receiver.id).or(ChatRoom.where(user_id: receiver.id).where(receiver_id: self.id)).first
+  unless chat_room.message_seen?
+    if chat_room.messages.last.user_id != self.id
+      chat_room.messages.last.body
+    end
+  end
   end
 
   def self.current=(user)

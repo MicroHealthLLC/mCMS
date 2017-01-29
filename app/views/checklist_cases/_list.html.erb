@@ -1,37 +1,32 @@
+<% show_case = defined?(show_case_column) ? show_case_column : true %>
 <table class="table table-responsive table-bordered" id="checklist_table">
   <thead>
   <tr>
     <th><%= t('title') %></th>
-    <% unless params[:controller] == 'cases' %>
+    <% if show_case %>
         <th><%= t('case') %></th>
     <% end %>
     <th><%= t('checklist_type') %></th>
-    <th>Number of checklist</th>
+    <th><%= t('checklist_status') %></th>
   </tr>
   </thead>
 
   <tbody>
-  <% if @checklists.any? %>
       <% @checklists.each do |checklist_case| %>
           <% checklist_template = checklist_case.is_a?(ChecklistCase) ? checklist_case.checklist_template : checklist_case  %>
           <tr>
             <td><%= link_to checklist_template.title, checklist_case_path(checklist_case) %></td>
-            <% unless params[:controller] == 'cases' %>
+            <% if show_case%>
                 <td><%= link_to_case checklist_case.case %></td>
             <% end %>
             <td><%= checklist_template.checklist_type %></td>
-            <td><%= checklist_template.checklists.count %></td>
+            <td><%= checklist_case.checklist_status_type %></td>
           </tr>
       <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
-      </tr>
-  <% end %>
   </tbody>
 </table>
 <script>
   $(document).ready(function(){
-    <% if  @checklists.present? %>  initDataTable('checklist_table'); <% end %>
+     initDataTable('checklist_table');
   } );
 </script>

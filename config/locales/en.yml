@@ -23,6 +23,12 @@ en:
   new_insurance: New insurance
   edit_insurance: Edit insurance
 
+ # Position
+  position: Position
+  positions: Positions
+  position_type: Position Type
+  position_status: Position Status
+  position_description: Position Description
  # Education
   education_type: Education
   education: Education
@@ -51,6 +57,7 @@ en:
   label_user: User
   profile:
     profile: profile
+    my_profile: My Profile
     name: Name
     first_name: First Name
     middle_name: Middle Name
@@ -163,7 +170,6 @@ en:
   label_fax_type: Fax Type
   label_phone_type: Phone Type
   label_search: Search client
-  position_description: Position Description
   proficiency: Proficiency
   language_type: Language Type
   language: Language
@@ -189,7 +195,6 @@ en:
   clearances: Clearances
   certifications: Certifications
 
-  positions: Positions
   departments: Departments
 
   # News
@@ -201,6 +206,7 @@ en:
   checklists: Checklists
   checklist_template: Checklist Templates
   checklist_type: Checklist Type
+  checklist_status: Checklist Status
   number_of_checklist: Number of checklist
   new_checklist: 'New checklist'
 

@@ -1,6 +1,6 @@
 <div class="row">
   <%= form_tag ''  do %>
-      <% @users.all.each do |user| %>
+      <% @users.each do |user| %>
           <div class="col-xs-2">
             <%= check_box_tag 'case_watcher[]', user.id, @watchers.include?( user.id) %> <%= user %>
           </div>

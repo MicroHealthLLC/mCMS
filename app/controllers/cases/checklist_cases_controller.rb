@@ -3,10 +3,11 @@ class ChecklistCasesController < UserCasesController
 
   def index
     cases = Case.root
-    cases = cases.where('assigned_to_id= ? OR user_id= ?', User.current.id,  User.current.id ).order('title desc')
-    scope = ChecklistCase.includes(:checklist_template).references(:checklist_template).
+    cases = cases.visible
+    @checklists = ChecklistCase.includes(:checklist_template).
+        references(:checklist_template).include_enumerations.
         where(assigned_to_id:  cases.pluck(:id))
-    @checklists = scope#.paginate(page: params[:page], per_page: 25)
+    # Use AJAx DataTable next time
   end
 
   def show
