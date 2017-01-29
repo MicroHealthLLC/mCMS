@@ -2,6 +2,7 @@
   <thead>
   <tr>
     <th><%= t('enumeration_clearence_type') %></th>
+    <th><%= t('clearance_status') %></th>
     <th><%= t('education_date_received') %></th>
     <th><%= t('education_date_expired') %></th>
   </tr>
@@ -12,6 +13,7 @@
       <% @clearances.each do |clearance| %>
           <tr>
             <td><%= link_to clearance.clearence_type, clearance_path(clearance)%></td>
+            <td><%= clearance.clearence_status %></td>
             <td><%= clearance.date_received %></td>
             <td><%= clearance.date_expired %></td>
 

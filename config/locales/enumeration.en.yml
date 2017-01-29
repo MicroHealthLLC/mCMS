@@ -36,6 +36,7 @@ en:
   enumeration_proficiency_type: Proficiency
   enumeration_phone_type: Phone
   enumeration_organization_type: Organization
+  enumeration_skill_status: Skills Status
   enumeration_religion_type: Religion type
   enumeration_role_type: Role
   enumeration_state_type: State

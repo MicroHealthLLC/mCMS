@@ -1,9 +1,12 @@
 class OtherSkill < ApplicationRecord
   belongs_to :user
+  belongs_to :other_skill_status, foreign_key: :status_id
 
   has_many :skill_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :skill_attachments, reject_if: :all_blank, allow_destroy: true
   scope :not_private, -> {where(is_private: false)}
+
+
 
   validates_presence_of :name
   before_create :check_private_author
@@ -25,7 +28,17 @@ class OtherSkill < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:user_id, :name, :date_received, :is_private, :private_author_id, :date_expired, :note, skill_attachments_attributes: [Attachment.safe_attributes]]
+    [:user_id, :name, :date_received, :is_private,
+     :private_author_id, :date_expired, :note, :status_id,
+     skill_attachments_attributes: [Attachment.safe_attributes]]
+  end
+
+  def skill_status
+    if status_id
+      super
+    else
+      OtherSkillStatus.default
+    end
   end
 
   def to_s
@@ -36,6 +49,7 @@ class OtherSkill < ApplicationRecord
     pdf.font_size(25){  pdf.text "Skill ##{id}", :style => :bold}
     user.to_pdf_brief_info(pdf)
     pdf.text "<b>Skill: </b> #{name}", :inline_format =>  true
+    pdf.text "<b>Skill Status: </b> #{skill_status}", :inline_format =>  true
     pdf.text "<b>Date received: </b> #{date_received}", :inline_format =>  true
     pdf.text "<b>Date expired: </b> #{date_expired}", :inline_format =>  true
     pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
@@ -45,6 +59,7 @@ class OtherSkill < ApplicationRecord
     output = ""
     output<< "<h2>Skill ##{id} </h2>"
     output<< "<b>Skill: </b> #{name}<br/>"
+    output<< "<b>Skill Status: </b> #{skill_status}<br/>"
     output<< "<b>Date received: </b> #{date_received}<br/>"
     output<< "<b>Date expired: </b> #{date_expired}<br/>"
     output<< "<b>Note: </b> #{note}<br/>"

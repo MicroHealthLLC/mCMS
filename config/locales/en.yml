@@ -37,6 +37,7 @@ en:
   new_education: New Education
   education_status: Education Status
   education_other_skill: Other Skill
+  skill_status:  Skill Status
   education_date_received: Date Received
   education_date_expired: Date Expired
   education_clearence: Clearance
@@ -195,7 +196,9 @@ en:
   organization_type: Organization Type
   #CLEARANCE
   clearances: Clearances
+  clearance_status: Clearance Status
   certifications: Certifications
+  certification_status: Certification Status
 
   departments: Departments
 

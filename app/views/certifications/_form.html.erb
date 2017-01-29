@@ -18,7 +18,14 @@
       <div class="form-group">
         <%= f.label t(:education_certification), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :certification_type_id, options_for_select(CertificationType.active.pluck(:name, :id), selected: certification.certification_type_id),{}, {class: 'form-control'} %>
+          <%= f.select :certification_type_id, options_for_select(CertificationType.active.pluck(:name, :id), selected: certification.certification_type.try(:id)),{}, {class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:certification_status), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :status_id, options_for_select(CertificationType.active.pluck(:name, :id), selected: certification.certification_status.try(:id)),{}, {class: 'form-control'} %>
         </div>
       </div>
 

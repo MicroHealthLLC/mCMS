@@ -18,7 +18,14 @@
       <div class="form-group">
         <%= f.label t(:education_clearence), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :clearence_type_id, options_for_select(ClearenceType.active.pluck(:name, :id), selected: clearance.clearence_type_id),{}, {class: 'form-control'} %>
+          <%= f.select :clearence_type_id, options_for_select(ClearenceType.active.pluck(:name, :id), selected: clearance.clearence_type.try(:id)),{}, {class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:clearance_status), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :status_id, options_for_select(ClearenceStatus.active.pluck(:name, :id), selected: clearance.clearence_status.try(:id)),{}, {class: 'form-control'} %>
         </div>
       </div>
 
