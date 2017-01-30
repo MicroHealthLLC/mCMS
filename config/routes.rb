@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :client_journals
   resources :groups do
     member do
       post :add_member
@@ -88,6 +89,7 @@ Rails.application.routes.draw do
   resources :need_notes, except: [:index], controller: :notes
   resources :appointment_notes, except: [:index], controller: :notes
   resources :document_notes, except: [:index], controller: :notes
+  resources :client_journal_notes, except: [:index], controller: :notes
   resources :attempt_notes, controller: :notes
   resources :notes do
     collection do
