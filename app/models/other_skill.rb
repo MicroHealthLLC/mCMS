@@ -35,7 +35,7 @@ class OtherSkill < ApplicationRecord
 
   def skill_status
     if status_id
-      super
+      other_skill_status
     else
       OtherSkillStatus.default
     end
