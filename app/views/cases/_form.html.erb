@@ -52,7 +52,7 @@
       <div class="form-group">
         <%= f.label t(:assigned_to) , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :assigned_to_id, options_for_select(User.power_user.pluck(:login, :id), selected: f.object.assigned_to_id), {include_blank: true} , {class: 'form-control use_select2', style: 'padding: 0' } %>
+          <%= f.select :assigned_to_id, options_for_select(User.power_user.map{|user| [user.name, user.id]}, selected: f.object.assigned_to_id), {include_blank: true} , {class: 'form-control use_select2', style: 'padding: 0' } %>
         </div>
       </div>
 

@@ -25,7 +25,7 @@
       <div class="form-group">
         <%= f.label t(:certification_status), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :status_id, options_for_select(CertificationType.active.pluck(:name, :id), selected: certification.certification_status.try(:id)),{}, {class: 'form-control'} %>
+          <%= f.select :status_id, options_for_select(CertificationStatus.active.pluck(:name, :id), selected: certification.certification_status.try(:id)),{}, {class: 'form-control'} %>
         </div>
       </div>
 

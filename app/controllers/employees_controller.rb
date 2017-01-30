@@ -64,7 +64,7 @@ class EmployeesController < ApplicationController
   end
 
   def authorize
-    User.current.allowed_to?(:manage_roles)
+    raise Unauthorized unless User.current_user.allowed_to?(:manage_roles)
   end
 
   def employee_params
