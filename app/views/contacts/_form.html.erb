@@ -27,6 +27,13 @@
           <%= f.select :contact_status_id, options_for_select(ContactStatus.active.pluck(:name, :id), selected: f.object.contact_status.try(:id)), {},{ class: 'form-control'} %>
         </div>
       </div>
+      <div class="form-group">
+        <%= f.label t('language'), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :language_type_id, options_for_select(LanguageType.pluck(:name, :id), selected: f.object.language_type.try(:id)), {},{ class: 'form-control'} %>
+        </div>
+      </div>
+
 
       <div class="form-group">
         <%= f.label t('profile.first_name'), class: 'col-md-2 control-label' %>

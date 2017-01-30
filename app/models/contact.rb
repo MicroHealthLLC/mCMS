@@ -2,6 +2,7 @@ class Contact < ApplicationRecord
   belongs_to :contact_type
   belongs_to :user
   belongs_to :contact_status, optional: true
+  belongs_to :language_type, optional: true
   has_one :contact_extend_demography
 
   has_many :contact_attachments, foreign_key: :owner_id
@@ -20,6 +21,14 @@ class Contact < ApplicationRecord
 
   def self.active
     where(status: true)
+  end
+
+  def language_type
+    if language_type_id
+      super
+    else
+      LanguageType.default
+    end
   end
 
   def removed?
@@ -46,7 +55,8 @@ class Contact < ApplicationRecord
 
   def self.safe_attributes
     [:emergency_contact, :first_name, :middle_name, :last_name, :not_show_in_search, 
-     :note, :contact_type_id, :user_id, :date_started , :date_ended , :contact_status_id,
+     :note, :contact_type_id, :user_id, :language_type_id,
+     :date_started , :date_ended , :contact_status_id,
      contact_attachments_attributes: [Attachment.safe_attributes]]
   end
 
@@ -66,6 +76,7 @@ class Contact < ApplicationRecord
     pdf.font_size(25){  pdf.text "Contact ##{id}", :style => :bold}
     user.to_pdf_brief_info(pdf)
     pdf.text "<b>Emergency contact: </b> #{emergency_contact}", :inline_format =>  true
+    pdf.text "<b>Language: </b> #{language_type}", :inline_format =>  true
     pdf.text "<b>Name: </b> #{name}", :inline_format =>  true
     pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
   end
@@ -74,6 +85,7 @@ class Contact < ApplicationRecord
     output = ""
     output<< "<h2>Contact ##{id} </h2>"
     output<< "<b>Emergency contact: </b> #{emergency_contact}<br/>"
+    output<< "<b>Language: </b> #{language_type}<br/>"
     output<< "<b>Name: </b> #{name}<br/>"
     output<< "<b>Note: </b> #{note}<br/>"
     output.html_safe
