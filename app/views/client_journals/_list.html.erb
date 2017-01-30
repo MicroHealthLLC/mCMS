@@ -1,0 +1,25 @@
+
+<table class="table table-responsive table-bordered" id="journals_table">
+  <thead>
+  <tr>
+    <th><%= t('title') %></th>
+    <th><%= t('client_journal_type') %></th>
+    <th>Date</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @client_journals.each do |client_journal| %>
+      <tr>
+        <td><%= link_to client_journal.title, client_journal %></td>
+        <td><%= client_journal.client_journal_type %></td>
+        <td><%= client_journal.date.to_date %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<script>
+  $(document).ready(function(){
+     initDataTable('journals_table')
+  } );
+</script>

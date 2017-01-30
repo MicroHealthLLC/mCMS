@@ -14,6 +14,7 @@ en:
   enumeration_contact_status: Contact status
   enumeration_checklist_status_type: Checklist status
   enumeration_country_type: Country
+  enumeration_client_journal_type: Client Journal Type
   enumeration_citizenship_type: Citizenship
   enumeration_issued_by_type : Issued by type
   enumeration_department_type: Department

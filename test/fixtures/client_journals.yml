@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  journal_type_id: 1
+  date: 2017-01-30 21:48:13
+  note: MyText
+
+two:
+  title: MyString
+  journal_type_id: 1
+  date: 2017-01-30 21:48:13
+  note: MyText

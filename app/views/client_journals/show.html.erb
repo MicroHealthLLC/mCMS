@@ -1,0 +1,33 @@
+<%= render 'action_menu' %>
+<div class="row">
+  <div class="col-xs-12">
+
+    <p>
+      <strong>Title:</strong>
+      <%= @client_journal.title %>
+    </p>
+
+    <p>
+      <strong>Client Journal type:</strong>
+      <%= @client_journal.client_journal_type %>
+    </p>
+
+    <p>
+      <strong>Date:</strong>
+      <%= @client_journal.date.to_date %>
+    </p>
+
+    <p>
+      <strong>Note:</strong>
+      <%= @client_journal.note.html_safe %>
+    </p>
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @client_journal.client_journal_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
+  <%= render partial: 'notes/notes', locals: {notes: @client_journal.client_journal_notes} %>
+
+</div>

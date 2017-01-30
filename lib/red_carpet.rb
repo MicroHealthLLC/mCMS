@@ -116,6 +116,15 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_documents, {:documents => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
+  map.project_module :client_journal do |map|
+    map.permission :view_client_journals,   {:client_journals => [:index]},  :read => true
+    map.permission :show_client_journals,   {:client_journals => [:show]},  :read => true
+    map.permission :create_client_journals, {:client_journals => [:new, :create]},  :read => true
+    map.permission :edit_client_journals,   {:client_journals => [ :edit, :update]},  :read => true
+    map.permission :delete_client_journals, {:client_journals => [ :destroy]},  :read => true
+    map.permission :manage_client_journals, {:client_journals => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
   map.project_module :news do |map|
     map.permission :view_news, {:news => [:index]}, :read => true
     map.permission :show_news, {:news => [:show]}, :read => true

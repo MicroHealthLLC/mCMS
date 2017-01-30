@@ -1,0 +1,10 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to( 'Delete', client_journal_path(@client_journal), class: 'btn btn-danger pull-right',
+               :method => :delete,
+               :data => {:confirm => t(:text_are_you_sure)}) if @client_journal.can?(:manage_roles, :manages_client_journals, :delete_client_journals)
+  %>
+  <%= link_to( 'Edit', edit_client_journal_path(@client_journal), class: 'btn btn-success pull-right') if @client_journal.can?(:manage_roles, :manages_client_journals, :edit_client_journals) %>
+  <%= link_to( t('add_note'), new_note_path(type: 'ClientJournalNote', owner_id: @client_journal.id), class: 'btn btn-success pull-right') if can?(:add_notes, :manage_roles) %>
+  <%= link_to t('button_cancel'), client_journals_path, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_print'), client_journal_path(@client_journal, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+</div>

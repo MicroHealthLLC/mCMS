@@ -105,6 +105,12 @@ en:
   appointment_type: Appointment Type
   appointment_status: Appointment Status
 
+  #Client Journal
+
+  client_journal: Client Journal
+  client_journals: Client Journals
+  client_journal_type: Client Journal Type
+
   # NEEDS
   need: Need
   needs: Needs

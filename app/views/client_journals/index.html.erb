@@ -1,0 +1,15 @@
+<%= link_to( 'New Client Journal', new_client_journal_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_client_journal, :manage_roles, :manage_client_journals)%>
+
+<section id="widget-grid" class="clearances_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'journals',
+                     wid_title: t('client_journal')
+                 } %>
+    </article>
+  </div>
+</section>
+
