@@ -19,6 +19,7 @@ en:
  # INSURANCE
   insurance: Insurance
   insurance_type: Insurance Type
+  insurance_status: Insurance Status
   insurance_plural: Insurances
   insurances: Insurances
   new_insurance: New insurance
