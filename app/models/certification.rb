@@ -1,5 +1,6 @@
 class Certification < ApplicationRecord
   belongs_to :certification_type
+  belongs_to :certification_status, :foreign_key => :status_id
   belongs_to :user
 
   has_many :certification_attachments, foreign_key: :owner_id
