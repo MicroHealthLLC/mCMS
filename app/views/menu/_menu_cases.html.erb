@@ -19,22 +19,16 @@
             </li>
         <% end %>
 
-        <% if module_enabled?('client_journals')  && can?(:manage_roles, :view_client_journals, :manage_client_journals)%>
-            <li class="<%= menu_active?('client_journals') %>">
-              <a href="/client_journals" title="<%= t(:client_journals) %>"><i class="fa fa-lg fa-fw fa-address-book-o"></i> <span class="menu-item-parent"><%= t(:client_journals) %></span></a>
-            </li>
-        <%end %>
-
-          <% if module_enabled?('notes')  && can?(:manage_roles, :view_notes, :manage_notes)%>
+        <% if module_enabled?('notes')  && can?(:manage_roles, :view_notes, :manage_notes)%>
             <li class="<%= menu_active?('notes') %>">
               <a href="/notes" title="<%= t(:label_note_plural) %>"><i class="fa fa-lg fa-fw fa-sticky-note-o"></i> <span class="menu-item-parent"><%= t(:label_note_plural) %></span></a>
             </li>
         <%end %>
 
         <% if (module_enabled?( 'needs')  && can?(:manage_roles, :view_needs, :manage_needs) ) ||
-            ( module_enabled?('goals')  && can?(:manage_roles, :view_goals, :manage_goals)) ||
-            ( module_enabled?('plans')  && can?(:manage_roles, :view_plans, :manage_plans)) ||
-            ( module_enabled?( 'tasks') && can?(:manage_roles, :view_tasks, :manage_tasks)) %>
+                ( module_enabled?('goals')  && can?(:manage_roles, :view_goals, :manage_goals)) ||
+                ( module_enabled?('plans')  && can?(:manage_roles, :view_plans, :manage_plans)) ||
+                ( module_enabled?( 'tasks') && can?(:manage_roles, :view_tasks, :manage_tasks)) %>
             <li>
               <a href="#"><i class="fa fa-flash"></i> N.G.P.A</a>
               <ul>
