@@ -1,60 +1,36 @@
 class CallbacksController < Devise::OmniauthCallbacksController
   def github
-    user_deleted = User.user_deleted?(request.env["omniauth.auth"])
-    if user_deleted
-      flash[:error] = 'Cannot create user because it is already deleted'
-      redirect_to root_path
-    else
-      @user = User.from_omniauth(request.env["omniauth.auth"])
-      sign_in_and_redirect @user
-    end
-
+    check_omniauth_auth
   end
 
   def office365
-    logger.warn 'OFFICE check'
-    user_deleted = User.user_deleted?(request.env["omniauth.auth"])
-    if user_deleted
-      flash[:error] = 'Cannot create user because it is already deleted'
-      redirect_to root_path
-    else
-      # session["omniauth.state"] = params['state']
-      @user = User.from_omniauth(request.env["omniauth.auth"])
-      logger.warn 'OFFICE CREATE OR UPDATE USER'
-      sign_in_and_redirect @user
-    end
+    check_omniauth_auth
   end
 
   def facebook
-    user_deleted = User.user_deleted?(request.env["omniauth.auth"])
-    if user_deleted
-      flash[:error] = 'Cannot create user because it is already deleted'
-      redirect_to root_path
-    else
-      @user = User.from_omniauth(request.env["omniauth.auth"])
-      sign_in_and_redirect @user
-    end
+    check_omniauth_auth
   end
 
   def twitter
-    user_deleted = User.user_deleted?(request.env["omniauth.auth"])
-    if user_deleted
-      flash[:error] = 'Cannot create user because it is already deleted'
+    check_omniauth_auth
+  end
+
+  def google_oauth2
+    check_omniauth_auth
+  end
+
+  private
+
+  def check_omniauth_auth
+    if User.user_deleted?(request.env["omniauth.auth"])
+      flash[:error] = 'Cannot login: Check with admin'
+      redirect_to root_path
+    elsif User.get_user(request.env["omniauth.auth"]).nil? and EnabledModule.active.where(name: 'user_subscription').blank?
+      flash[:error] = 'Social Sign up is not enabled'
       redirect_to root_path
     else
       @user = User.from_omniauth(request.env["omniauth.auth"])
       sign_in_and_redirect @user
     end
-  end
-
- def google_oauth2
-   user_deleted = User.user_deleted?(request.env["omniauth.auth"])
-   if user_deleted
-     flash[:error] = 'Cannot create user because it is already deleted'
-     redirect_to root_path
-   else
-     @user = User.from_omniauth(request.env["omniauth.auth"])
-     sign_in_and_redirect @user
-   end
   end
 end
