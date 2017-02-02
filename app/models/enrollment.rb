@@ -11,7 +11,7 @@ class Enrollment < ApplicationRecord
 
   def self.safe_attributes
     [:user_id, :name, :enrollment_type_id, :relationship_id,
-     :date_start, :date_end, :note]
+     :date_start, :date_end, :note, enrollment_attachments_attributes: [Attachment.safe_attributes]]
   end
 
   def enrollment_type
