@@ -1,5 +1,5 @@
 <%= link_to( 'Add Procedure', new_appointment_procedure_path(appointment_id: @appointment.id), class: 'btn btn-primary pull-right') if can?(:add_captures, :manage_roles) %>
-<table  class="table table-bordered table-responsive" id="appointment_captures_table">
+<table  class="table table-bordered table-responsive" id="appointment_procedure_table">
   <thead>
   <tr>
     <th>Procedure</th>
@@ -22,6 +22,6 @@
 
 <script>
     $(document).ready(function(){
-        initDataTable('appointment_captures_table');
+        initDataTable('appointment_procedure_table');
     } );
 </script>

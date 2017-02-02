@@ -1,6 +1,6 @@
 <%= link_to( 'Add Disposition', new_appointment_disposition_path(appointment_id: @appointment.id), class: 'btn btn-primary pull-right') if can?(:add_captures, :manage_roles) %>
 
-<table  class="table table-bordered table-responsive" id="appointment_captures_table">
+<table  class="table table-bordered table-responsive" id="appointment_dispositions_table">
   <thead>
   <tr>
     <th>Disposition</th>
@@ -21,6 +21,6 @@
 
 <script>
     $(document).ready(function(){
-        initDataTable('appointment_captures_table');
+        initDataTable('appointment_dispositions_table');
     } );
 </script>
