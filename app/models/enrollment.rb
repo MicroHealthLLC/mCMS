@@ -40,7 +40,7 @@ class Enrollment < ApplicationRecord
     pdf.font_size(25){  pdf.text "Enrollment ##{id}", :style => :bold}
     user.to_pdf_brief_info(pdf)
     pdf.text "<b>Enrollment type: </b> #{enrollment_type}", :inline_format =>  true
-    pdf.text "<b>RelationShip: </b> #{relationship}", :inline_format =>  true
+    pdf.text "<b>Enrollment Status: </b> #{enrollment_status}", :inline_format =>  true
     pdf.text "<b>Date start: </b> #{date_start}", :inline_format =>  true
     pdf.text "<b>Date end: </b> #{date_end}", :inline_format =>  true
     pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
