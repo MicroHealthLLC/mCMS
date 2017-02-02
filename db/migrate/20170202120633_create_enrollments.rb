@@ -11,5 +11,7 @@ class CreateEnrollments < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+
+    EnabledModule.create(name: 'enrollments')
   end
 end
