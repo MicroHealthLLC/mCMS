@@ -19,7 +19,7 @@ class EnrollmentsController < UserCasesController
 
   # GET /enrollments/new
   def new
-    @enrollment = Enrollment.new(user_id: User.current.id)
+    @enrollment = Enrollment.new(user_id: User.current.id, case_id: params[:case_id])
   end
 
   # GET /enrollments/1/edit

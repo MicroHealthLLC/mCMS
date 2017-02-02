@@ -4,6 +4,6 @@
               :data => {:confirm => t(:text_are_you_sure)}) if @enrollment.can?(:delete_enrollments, :manage_enrollments, :manage_roles)
   %>
   <%= link_to 'Edit', edit_enrollment_path(@enrollment), class: 'btn btn-success pull-right' if @enrollment.can?(:edit_enrollments, :manage_enrollments, :manage_roles) %>
-  <%= link_to t('button_cancel'), enrollments_path, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_cancel'), (@enrollment.case ? case_path(@enrollment.case) : enrollments_path), class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), enrollment_path(@enrollment, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 </div>

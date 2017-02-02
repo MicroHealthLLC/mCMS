@@ -1,5 +1,6 @@
 class Enrollment < ApplicationRecord
   belongs_to :user
+  belongs_to :case
   belongs_to :enrollment_type, optional: true
   belongs_to :relationship, optional: true
 
@@ -7,10 +8,10 @@ class Enrollment < ApplicationRecord
   accepts_nested_attributes_for :enrollment_attachments, reject_if: :all_blank, allow_destroy: true
 
 
-  validates_presence_of :name, :user_id, :note
+  validates_presence_of :name, :user_id, :note, :case_id
 
   def self.safe_attributes
-    [:user_id, :name, :enrollment_type_id, :relationship_id,
+    [:user_id, :name, :enrollment_type_id, :relationship_id, :case_id,
      :date_start, :date_end, :note, enrollment_attachments_attributes: [Attachment.safe_attributes]]
   end
 

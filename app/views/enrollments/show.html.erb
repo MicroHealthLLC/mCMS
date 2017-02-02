@@ -2,6 +2,10 @@
 <div class="row">
   <div class="col-xs-12">
     <p>
+      <strong><%= t('case') %>:</strong>
+      <%= link_to_case @enrollment.case %>
+    </p>
+    <p>
       <strong>Name:</strong>
       <%= @enrollment.name %>
     </p>

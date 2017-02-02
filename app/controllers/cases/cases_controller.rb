@@ -59,6 +59,7 @@ class CasesController < UserCasesController
     @needs       = @case.needs
     @plans       = @case.plans
     @goals       = @case.goals
+    @enrollments = @case.enrollments
     @watchers    = @case.watchers.includes(:user=> :core_demographic)
 
     @case_supports = @case.case_supports.active

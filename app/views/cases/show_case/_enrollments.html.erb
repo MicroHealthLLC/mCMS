@@ -1,0 +1,16 @@
+<% if module_enabled?('enrollments') %>
+    <%= link_to(t('new_enrollment'), new_enrollment_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_goals, :manage_roles, :manage_goals) %>
+
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= render partial: 'enrollments/list',
+                   layout: 'shared/smart_widget_wrapper',
+                   locals: {
+                           show_case_column: false,
+                           enrollments: @enrollments,
+                           wid_id: 'enrollments',
+                           wid_title: t('enrollments')
+                   } %>
+      </article>
+    </div>
+<% end %>

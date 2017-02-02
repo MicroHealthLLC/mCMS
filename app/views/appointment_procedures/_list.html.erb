@@ -1,9 +1,10 @@
+<%= link_to( 'Add Procedure', new_appointment_procedure_path(appointment_id: @appointment.id), class: 'btn btn-primary pull-right') if can?(:add_captures, :manage_roles) %>
 <table  class="table table-bordered table-responsive" id="appointment_captures_table">
   <thead>
   <tr>
     <th>Procedure</th>
     <th>Date Recorded</th>
-    <th>Show link</th>
+
   </tr>
   </thead>
 
@@ -11,9 +12,9 @@
 
   <% captures.each do |capture| %>
       <tr>
-        <td><%= capture.procedure   %></td>
+        <td><%= link_to capture.procedure , capture  %></td>
         <td><%= capture.date_recorded   %></td>
-        <td><%= show_link capture %></td>
+
       </tr>
   <% end %>
   </tbody>
