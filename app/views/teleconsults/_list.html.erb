@@ -5,9 +5,9 @@
     <% if show_case %>
         <th>Case</th>
     <% end %>
-    <th>Contact method</th>
-    <th>Contact type</th>
-    <th>Consult status</th>
+    <th>Contact Method</th>
+    <th>Contact Type</th>
+    <th>Consult Status</th>
     <th>Date</th>
     <th>Time</th>
   </tr>
@@ -17,7 +17,7 @@
   <% @teleconsults.each do |teleconsult| %>
       <tr>
         <% if show_case %>
-            <td><%= teleconsult.case %></td>
+            <td><%= link_to_case teleconsult.case %></td>
         <% end %>
         <td><%= link_to teleconsult.contact_method, teleconsult %></td>
         <td><%= teleconsult.contact_type %></td>
