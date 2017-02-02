@@ -13,7 +13,7 @@
   <% enrollments.each do |enrollment| %>
       <tr>
 
-        <td><%= enrollment.name %></td>
+        <td><%= link_to enrollment.name, enrollment %></td>
         <td><%= enrollment.enrollment_type %></td>
         <td><%= enrollment.relationship %></td>
         <td><%= enrollment.date_start %></td>
