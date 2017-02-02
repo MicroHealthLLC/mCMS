@@ -164,6 +164,13 @@ en:
   task_type: 'Action Type'
   sub_tasks: 'Sub actions'
   add_sub_task: "Add sub action"
+
+  # Enrollment
+  enrollment: Enrollment
+  enrollment_type: Enrollment Type
+  enrollments: Enrollments
+  new_enrollment: New Enrollment
+  edit_enrollment: Edit Enrollment
  # OTHER
 
   languages: Languages

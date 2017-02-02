@@ -1,36 +1,38 @@
 <%= render partial: 'action_menu' %>
-<div class="col-xs-12">
-  <p>
-    <strong>Case:</strong>
-    <%= link_to_case @document.case %>
-  </p>
+<div class="row">
+  <div class="col-xs-12">
+    <p>
+      <strong>Case:</strong>
+      <%= link_to_case @document.case %>
+    </p>
 
-  <p>
-    <strong><%= t('title') %>:</strong>
-    <%= @document.title %>
-  </p>
+    <p>
+      <strong><%= t('title') %>:</strong>
+      <%= @document.title %>
+    </p>
 
 
- <p>
-    <strong><%= t('description') %>:</strong>
-    <%= @document.description.html_safe %>
-  </p>
+    <p>
+      <strong><%= t('description') %>:</strong>
+      <%= @document.description.html_safe %>
+    </p>
 
-  <p>
-    <strong><%= t('document_type') %>:</strong>
-    <%= @document.document_type %>
-  </p>
+    <p>
+      <strong><%= t('document_type') %>:</strong>
+      <%= @document.document_type %>
+    </p>
 
-  <p>
-    <strong><%= t('label_date') %>:</strong>
-    <%= @document.date %>
-  </p>
+    <p>
+      <strong><%= t('label_date') %>:</strong>
+      <%= @document.date %>
+    </p>
 
-  <p>
-    <strong><%= t('attachments') %>:</strong>
-    <% @document.document_attachments.each do |attachment| %>
-        <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-    <% end %>
-  </p>
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @document.document_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
 </div>
 <%= render partial: 'notes/notes', locals: {notes: @document.document_notes} %>

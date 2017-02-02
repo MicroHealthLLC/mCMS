@@ -1,0 +1,2 @@
+class EnrollmentAttachment < Attachment
+end

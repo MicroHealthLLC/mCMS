@@ -143,6 +143,15 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_tasks, {:tasks => [:link_plan, :add_plan, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
+  map.project_module :enrollments do |map|
+    map.permission :view_enrollments, {:enrollments => [:index]},  :read => true
+    map.permission :show_enrollments, {:enrollments => [:show]},  :read => true
+    map.permission :create_enrollments, {:enrollments => [ :new, :create]},  :read => true
+    map.permission :edit_enrollments, {:enrollments => [:edit, :update]},  :read => true
+    map.permission :delete_enrollments, {:enrollments => [:destroy]},  :read => true
+    map.permission :manage_enrollments, {:enrollments => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
   map.project_module :notes do |map|
     map.permission :view_notes, {:notes => [:index]},  :read => true
     map.permission :show_notes, {:notes => [:show]},  :read => true

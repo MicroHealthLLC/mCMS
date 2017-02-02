@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :enrollments
   resources :appointment_procedures
   resources :appointment_dispositions
   resources :client_journals

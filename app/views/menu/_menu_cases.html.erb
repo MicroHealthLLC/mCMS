@@ -25,6 +25,12 @@
             </li>
         <%end %>
 
+         <% if module_enabled?('enrollments')  && can?(:manage_roles, :view_enrollments, :manage_enrollments)%>
+            <li class="<%= menu_active?('enrollments') %>">
+              <a href="/enrollments" title="<%= t(:enrollments) %>"><i class="fa fa-lg fa-fw fa-pencil"></i> <span class="menu-item-parent"><%= t(:enrollments) %></span></a>
+            </li>
+        <%end %>
+
         <% if (module_enabled?( 'needs')  && can?(:manage_roles, :view_needs, :manage_needs) ) ||
                 ( module_enabled?('goals')  && can?(:manage_roles, :view_goals, :manage_goals)) ||
                 ( module_enabled?('plans')  && can?(:manage_roles, :view_plans, :manage_plans)) ||

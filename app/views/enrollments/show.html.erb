@@ -1,0 +1,41 @@
+<%= render partial: 'action_menu' %>
+<div class="row">
+  <div class="col-xs-12">
+    <p>
+      <strong>Name:</strong>
+      <%= @enrollment.name %>
+    </p>
+
+    <p>
+      <strong>Enrollment type:</strong>
+      <%= @enrollment.enrollment_type %>
+    </p>
+
+    <p>
+      <strong>Relationship:</strong>
+      <%= @enrollment.relationship %>
+    </p>
+
+    <p>
+      <strong>Date start:</strong>
+      <%= @enrollment.date_start %>
+    </p>
+
+    <p>
+      <strong>Date end:</strong>
+      <%= @enrollment.date_end %>
+    </p>
+
+    <p>
+      <strong>Note:</strong>
+      <%= @enrollment.note.html_safe %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @enrollment.enrollment_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
+</div>
