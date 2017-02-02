@@ -45,8 +45,11 @@
 </div>
 
 <section id="widget-grid" class="show_a_d_account">
+  <%= link_to( 'Add Assessment', new_appointment_capture_path(appointment_id: @appointment.id), class: 'btn btn-primary pull-right') if can?(:add_captures, :manage_roles) %>
+
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
       <%= render partial: 'appointment_captures/list',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
@@ -55,24 +58,32 @@
                          wid_title: 'Assessment'
                  } %>
     </article>
-    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <%= render partial: 'appointment_dispositions/list',
-                 layout: 'shared/smart_widget_wrapper',
-                 locals: {
-                         captures: @appointment.appointment_dispositions,
-                         wid_id: 'capture',
-                         wid_title: 'Disposition'
-                 } %>
-    </article>
-    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <%= render partial: 'appointment_procedures/list',
-                 layout: 'shared/smart_widget_wrapper',
-                 locals: {
-                         captures: @appointment.appointment_procedures,
-                         wid_id: 'capture',
-                         wid_title: 'Procedures'
-                 } %>
-    </article>
+    <%= link_to( 'Add Disposition', new_appointment_disposition_path(appointment_id: @appointment.id), class: 'btn btn-primary pull-right') if can?(:add_captures, :manage_roles) %>
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        <%= render partial: 'appointment_dispositions/list',
+                   layout: 'shared/smart_widget_wrapper',
+                   locals: {
+                           captures: @appointment.appointment_dispositions,
+                           wid_id: 'capture',
+                           wid_title: 'Disposition'
+                   } %>
+      </article>
+    </div>
+    <%= link_to( 'Add Procedure', new_appointment_procedure_path(appointment_id: @appointment.id), class: 'btn btn-primary pull-right') if can?(:add_captures, :manage_roles) %>
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+        <%= render partial: 'appointment_procedures/list',
+                   layout: 'shared/smart_widget_wrapper',
+                   locals: {
+                           captures: @appointment.appointment_procedures,
+                           wid_id: 'capture',
+                           wid_title: 'Procedures'
+                   } %>
+      </article>
+    </div>
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'notes/list',
                  layout: 'shared/smart_widget_wrapper',
