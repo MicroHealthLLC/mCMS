@@ -13,6 +13,8 @@ class Enumeration < ActiveRecord::Base
 
   scope :sorted, lambda { order(:position) }
   scope :active, lambda { where(:active => true) }
+  scope :flagged, lambda { where(:is_flagged => true) }
+  scope :closed, lambda { where(:is_closed => true) }
 
   scope :named, lambda {|arg| where("LOWER(#{table_name}.name) = LOWER(?)", arg.to_s.strip)}
 

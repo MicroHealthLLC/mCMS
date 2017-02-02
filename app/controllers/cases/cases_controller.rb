@@ -14,7 +14,8 @@ class CasesController < UserCasesController
       format.html{}
       format.json{
         options = Hash.new
-        options[:admin] = false
+        options[:subcases] = false
+        options[:status_type] = params[:status_type]
         render json: CaseDatatable.new(view_context,options)
       }
     end
@@ -26,6 +27,7 @@ class CasesController < UserCasesController
       format.json{
         options = Hash.new
         options[:subcases] = true
+        options[:status_type] = params[:status_type]
         render json: CaseDatatable.new(view_context,options)
       }
     end

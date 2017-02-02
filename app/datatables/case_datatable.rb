@@ -71,6 +71,14 @@ class CaseDatatable < AjaxDatatablesRails::Base
             else
               Case.root
             end
+    scope = case @options[:status_type]
+              when 'all' then scope
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
     scope = scope.include_enumerations
     scope = if User.current.can?(:manage_roles)
               scope.where(assigned_to_id: User.current)

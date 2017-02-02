@@ -3,6 +3,11 @@
 <% end %>
 
 <section id="widget-grid" class="cases_list">
+  <div class="col-xs-12 btn-edition">
+    <%= link_to 'OPEN', {}.merge(status_type: 'opened'), class: 'btn btn-success'  %>
+    <%= link_to 'CLOSED', {}.merge(status_type: 'closed'), class: 'btn btn-danger'  %>
+    <%= link_to 'FLAGGED', {}.merge(status_type: 'flagged'), class: 'btn btn-warning'  %>
+  </div>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'list',
@@ -17,7 +22,7 @@
 <script>
     $(document).ready(function(){
         var table = $('#cases_table').DataTable({
-            "ajax": "<%= cases_path(format: :json) %>",
+            "ajax": "<%= cases_path(format: :json, status_type: params[:status_type]) %>",
             processing: true,
             serverSide: true,
             responsive: true,

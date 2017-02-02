@@ -2,10 +2,11 @@
 <table class="table table-bordered table-responsive" id="teleconsults_table">
   <thead>
   <tr>
+    <th>Contact Method</th>
     <% if show_case %>
         <th>Case</th>
     <% end %>
-    <th>Contact Method</th>
+
     <th>Contact Type</th>
     <th>Consult Status</th>
     <th>Date</th>
@@ -16,10 +17,10 @@
   <tbody>
   <% @teleconsults.each do |teleconsult| %>
       <tr>
+        <td><%= link_to teleconsult.contact_method, teleconsult %></td>
         <% if show_case %>
             <td><%= link_to_case teleconsult.case %></td>
         <% end %>
-        <td><%= link_to teleconsult.contact_method, teleconsult %></td>
         <td><%= teleconsult.contact_type %></td>
         <td><%= teleconsult.consult_status %></td>
         <td><%= teleconsult.date %></td>
