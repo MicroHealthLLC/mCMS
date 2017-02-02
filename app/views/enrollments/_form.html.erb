@@ -31,9 +31,9 @@
       </div>
 
       <div class="form-group">
-        <%= f.label t(:relationship), class: 'col-md-2 control-label' %>
+        <%= f.label t(:enrollment_status), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :relationship_id, options_for_select(EnrollmentStatus.active.pluck(:name, :id), selected: f.object.enrollment_status.try(:id)) , {} ,{class: 'form-control'} %>
+          <%= f.select :enrollment_status_id, options_for_select(EnrollmentStatus.active.pluck(:name, :id), selected: f.object.enrollment_status.try(:id)) , {} ,{class: 'form-control'} %>
         </div>
       </div>
 
