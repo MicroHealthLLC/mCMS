@@ -4,7 +4,6 @@
               :data => {:confirm => t(:text_are_you_sure)}) if @appointment.can?(:manage_roles, :delete_appointment, :manage_appointment)
   %>
   <%= link_to t('button_edit'), edit_appointment_path(@appointment), class: 'btn btn-success pull-right'  if @appointment.can?(:manage_roles, :edit_appointment, :manage_appointment) %>
-  <%= link_to( t('add_note'), new_note_path(type: 'AppointmentNote', owner_id: @appointment.id), class: 'btn btn-success pull-right') if can?(:add_notes, :manage_roles) %>
   <%= link_to t('button_cancel'), appointment_back_url(@appointment), class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), appointment_path(@appointment, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 
