@@ -42,9 +42,12 @@ class Case < ApplicationRecord
         references(:case_type, :case_status_type, :case_category_type, :priority_type)
   end
 
+  def self.all_data
+    opened.or(Case.flagged)
+  end
+
   def self.opened
-    opened_status =  CaseStatusType.closed.or(CaseStatusType.flagged).pluck(:id)
-    where.not(case_status_type_id: opened_status )
+    Case.priority_type.case_category_type.case_status_type.case_type
   end
 
   def self.closed
@@ -80,7 +83,7 @@ class Case < ApplicationRecord
     subcase_id ? Case.find(subcase_id) : self
   end
 
-  def self.priority_type(status)
+  def self.priority_type(status = nil)
     case status
       when 'closed' then where(priority_id: PriorityType.closed.pluck(:id) )
       when 'flagged' then where(priority_id: PriorityType.flagged.pluck(:id) )
@@ -97,7 +100,7 @@ class Case < ApplicationRecord
     end
   end
 
-  def self.case_category_type(status)
+  def self.case_category_type(status= nil)
     case status
       when 'closed' then where(case_category_id: CaseCategoryType.closed.pluck(:id) )
       when 'flagged' then where(case_category_id: CaseCategoryType.flagged.pluck(:id) )
@@ -118,7 +121,7 @@ class Case < ApplicationRecord
     sub_cases.update_all(subcase_id: nil)
   end
 
-  def self.case_status_type(status)
+  def self.case_status_type(status= nil)
     case status
       when 'closed' then where(case_status_type_id: CaseStatusType.closed.pluck(:id) )
       when 'flagged' then where(case_status_type_id: CaseStatusType.flagged.pluck(:id) )
@@ -135,7 +138,7 @@ class Case < ApplicationRecord
     end
   end
 
-  def self.case_type(status)
+  def self.case_type(status= nil)
     case status
       when 'closed' then where(case_type_id: CaseType.closed.pluck(:id) )
       when 'flagged' then where(case_type_id: CaseType.flagged.pluck(:id) )

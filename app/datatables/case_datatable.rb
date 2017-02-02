@@ -72,7 +72,7 @@ class CaseDatatable < AjaxDatatablesRails::Base
               Case.root
             end
     scope = case @options[:status_type]
-              when 'all' then scope
+              when 'all' then scope.all_data
               when 'opened' then scope.opened
               when 'closed' then scope.closed
               when 'flagged' then scope.flagged
