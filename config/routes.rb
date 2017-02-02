@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :teleconsults
   resources :enrollments
   resources :appointment_procedures
   resources :appointment_dispositions

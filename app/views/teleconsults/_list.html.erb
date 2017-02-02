@@ -1,0 +1,36 @@
+<% show_case = defined?(show_case_column) ? show_case_column : true %>
+<table class="table table-bordered table-responsive" id="teleconsults_table">
+  <thead>
+  <tr>
+    <% if show_case %>
+        <th>Case</th>
+    <% end %>
+    <th>Contact method</th>
+    <th>Contact type</th>
+    <th>Consult status</th>
+    <th>Date</th>
+    <th>Time</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @teleconsults.each do |teleconsult| %>
+      <tr>
+        <% if show_case %>
+            <td><%= teleconsult.case %></td>
+        <% end %>
+        <td><%= link_to teleconsult.contact_method, teleconsult %></td>
+        <td><%= teleconsult.contact_type %></td>
+        <td><%= teleconsult.consult_status %></td>
+        <td><%= teleconsult.date %></td>
+        <td><%= teleconsult.time %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+     initDataTable('teleconsults_table')
+  } );
+</script>

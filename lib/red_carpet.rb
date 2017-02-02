@@ -152,6 +152,15 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_enrollments, {:enrollments => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
+  map.project_module :teleconsults do |map|
+    map.permission :view_teleconsults, {:teleconsults => [:index]},  :read => true
+    map.permission :show_teleconsults, {:teleconsults => [:show]},  :read => true
+    map.permission :create_teleconsults, {:teleconsults => [ :new, :create]},  :read => true
+    map.permission :edit_teleconsults, {:teleconsults => [:edit, :update]},  :read => true
+    map.permission :delete_teleconsults, {:teleconsults => [:destroy]},  :read => true
+    map.permission :manage_teleconsults, {:teleconsults => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
   map.project_module :notes do |map|
     map.permission :view_notes, {:notes => [:index]},  :read => true
     map.permission :show_notes, {:notes => [:show]},  :read => true

@@ -31,6 +31,16 @@ en:
   position_type: Position Type
   position_status: Position Status
   position_description: Position Description
+
+  # TeleConsult
+  teleconsult: Teleconsult
+  teleconsults: Teleconsults
+  teleconsult_type: Teleconsult Type
+  teleconsult_status: Teleconsult Status
+  new_teleconsult: New Teleconsult
+  edit_teleconsult: Edit Teleconsult
+
+
  # Education
   education_type: Education
   education: Education
@@ -87,6 +97,8 @@ en:
 
  # CONTACT
   emergency_contact: Emergency Contact
+  contact_type: Contact Type
+  contact_method: Contact Method
   relationship: Relationship
 
  # NOTES

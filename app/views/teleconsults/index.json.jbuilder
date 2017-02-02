@@ -1,0 +1,1 @@
+json.array! @teleconsults, partial: 'teleconsults/teleconsult', as: :teleconsult

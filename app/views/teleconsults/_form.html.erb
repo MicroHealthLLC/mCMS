@@ -1,0 +1,84 @@
+<fieldset>
+  <legend></legend>
+  <%= form_for(teleconsult, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+      <% if teleconsult.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(teleconsult.errors.count, "error") %> prohibited this teleconsult from being saved:</h2>
+
+            <ul>
+              <% teleconsult.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <%= f.hidden_field :user_id %>
+      <%= f.hidden_field :case_id %>
+
+
+      <div class="form-group">
+        <%= f.label t(:contact_method), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :contact_method_id, options_for_select(ContactMethod.active.pluck(:name, :id), selected: f.object.contact_method.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label t(:contact_type), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :contact_type_id, options_for_select(ContactType.active.pluck(:name, :id), selected: f.object.contact_type.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label t(:teleconsult_status), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :consult_status_id, options_for_select(ConsultStatus.active.pluck(:name, :id), selected: f.object.consult_status.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:label_date) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date , class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:label_time) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :time , class: 'form-control clockpicker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:note) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :note , class: 'form-control ck-editor' %>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="col-md-12">
+          <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+        </div>
+        <%= f.simple_fields_for :consult_attachments do |attachment| %>
+            <%= render 'attachments/attachment_show', :f => attachment %>
+        <% end %>
+        <div id="attachment_fields" class="col-md-2 margin-top-10 " style="padding-right: 2px;" >
+          <%= link_to_add_association 'add file', f, :consult_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= link_to t('button_cancel'), teleconsults_url, class: 'btn btn-warning pull-right' %>
+          <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+  <% end %>
+</fieldset>
+
+
+
+
+

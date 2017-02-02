@@ -16,7 +16,7 @@ namespace :modules do
     modules += ['new_conference', 'chat_room', 'my_cases', 'my_appointments']
     modules += ['my_tasks', 'subcases', 'notes', 'watchers', 'case_support']
     modules += ['user_subscription', 'all_files']
-    modules += ['client_journals', 'enrollments']
+    modules += ['client_journals', 'enrollments', 'teleconsults']
     modules.each do |em|
       EnabledModule.where(name: em).first_or_create
     end

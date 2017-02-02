@@ -1,0 +1,2 @@
+class ConsultAttachment < Attachment
+end

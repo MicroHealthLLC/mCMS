@@ -1,0 +1,1 @@
+json.partial! "teleconsults/teleconsult", teleconsult: @teleconsult

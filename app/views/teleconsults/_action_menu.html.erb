@@ -1,0 +1,9 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to( 'Delete', teleconsult_path(@teleconsult), class: 'btn btn-danger pull-right',
+               :method => :delete,
+               :data => {:confirm => t(:text_are_you_sure)}) if can?(:delete_teleconsults, :manage_teleconsults, :manage_roles)
+  %>
+  <%= link_to 'Edit', edit_teleconsult_path(@teleconsult), class: 'btn btn-success pull-right' if can?(:edit_teleconsults, :manage_teleconsults, :manage_roles) %>
+  <%= link_to t('button_cancel'), @teleconsult.case, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_print'), teleconsult_path(@teleconsult, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+ </div>
