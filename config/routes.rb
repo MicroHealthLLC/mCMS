@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :appointment_procedures
+  resources :appointment_dispositions
   resources :client_journals
   resources :groups do
     member do

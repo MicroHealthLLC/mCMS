@@ -6,6 +6,8 @@ class Appointment < ApplicationRecord
 
   has_many :appointment_notes, foreign_key: :owner_id, dependent: :destroy
   has_many :appointment_captures, dependent: :destroy
+  has_many :appointment_dispositions, dependent: :destroy
+  has_many :appointment_procedures, dependent: :destroy
 
   has_many :appointment_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :appointment_attachments, reject_if: :all_blank, allow_destroy: true

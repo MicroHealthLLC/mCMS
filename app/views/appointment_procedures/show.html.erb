@@ -1,0 +1,35 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to 'Delete',  appointment_procedure_path(@appointment_procedure), class: 'btn btn-danger pull-right',
+              :method => :delete,
+              :data => {:confirm => t(:text_are_you_sure)}
+  %>
+  <%= link_to t('button_edit'), edit_appointment_procedure_path(@appointment_procedure), class: 'btn btn-success pull-right' %>
+  <%= link_to t('button_cancel'), @appointment_procedure.appointment, class: 'btn btn-warning pull-right' %>
+</div>
+<div class="col-xs-12">
+  <p>
+    <strong>User:</strong>
+    <%= @appointment_procedure.user %>
+  </p>
+
+  <p>
+    <strong>Appointment:</strong>
+    <%= @appointment_procedure.appointment %>
+  </p>
+
+
+  <p>
+    <strong>Procedure:</strong>
+    <%= @appointment_procedure.procedure %>
+  </p>
+
+  <p>
+    <strong>Date recorded:</strong>
+    <%= @appointment_procedure.date_recorded %>
+  </p>
+
+  <p>
+    <strong>Note:</strong>
+    <%= @appointment_procedure.note.html_safe %>
+  </p>
+</div>

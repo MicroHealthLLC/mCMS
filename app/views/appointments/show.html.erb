@@ -50,19 +50,37 @@
       <%= render partial: 'appointment_captures/list',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     appointment_captures: @appointment.appointment_captures,
-                     wid_id: 'capture',
-                     wid_title: 'Assessment & Disposition'
+                         captures: @appointment.appointment_captures,
+                         wid_id: 'capture',
+                         wid_title: 'Assessment'
+                 } %>
+    </article>
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'appointment_dispositions/list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                         captures: @appointment.appointment_dispositions,
+                         wid_id: 'capture',
+                         wid_title: 'Disposition'
+                 } %>
+    </article>
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'appointment_procedures/list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                         captures: @appointment.appointment_procedures,
+                         wid_id: 'capture',
+                         wid_title: 'Procedures'
                  } %>
     </article>
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'notes/list',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     show_case_column: true,
-                     notes:  @appointment.appointment_notes,
-                     wid_id: 'notes',
-                     wid_title: t('notes')
+                         show_case_column: true,
+                         notes:  @appointment.appointment_notes,
+                         wid_id: 'notes',
+                         wid_title: t('notes')
                  } %>
     </article>
   </div>

@@ -5,7 +5,28 @@
   %>
   <%= link_to t('button_edit'), edit_appointment_path(@appointment), class: 'btn btn-success pull-right'  if @appointment.can?(:manage_roles, :edit_appointment, :manage_appointment) %>
   <%= link_to( t('add_note'), new_note_path(type: 'AppointmentNote', owner_id: @appointment.id), class: 'btn btn-success pull-right') if can?(:add_notes, :manage_roles) %>
-  <%= link_to( 'Add A&D', new_appointment_capture_path(appointment_id: @appointment.id), class: 'btn btn-success pull-right') if can?(:add_captures, :manage_roles) %>
   <%= link_to t('button_cancel'), appointment_back_url(@appointment), class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), appointment_path(@appointment, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+  <div class="btn-group pull-right">
+    <button class="btn btn-primary ">
+      Add Capture
+    </button>
+    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li>
+        <%= link_to( 'Add Assessment', new_appointment_capture_path(appointment_id: @appointment.id)) if can?(:add_captures, :manage_roles) %>
+      </li>
+      <li>
+        <%= link_to( 'Add Disposition', new_appointment_disposition_path(appointment_id: @appointment.id)) if can?(:add_captures, :manage_roles) %>
+
+      </li>
+      <li>
+        <%= link_to( 'Add Procedure', new_appointment_procedure_path(appointment_id: @appointment.id)) if can?(:add_captures, :manage_roles) %>
+
+      </li>
+    </ul>
+  </div>
+
 </div>

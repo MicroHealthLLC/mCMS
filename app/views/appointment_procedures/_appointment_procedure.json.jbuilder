@@ -1,0 +1,2 @@
+json.extract! appointment_procedure, :id, :user_id, :appointment_id, :procedure_id, :note, :date_recorded, :created_at, :updated_at
+json.url appointment_procedure_url(appointment_procedure, format: :json)
