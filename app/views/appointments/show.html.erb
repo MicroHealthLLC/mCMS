@@ -44,7 +44,7 @@
   </div>
 </div>
 
-<section id="widget-grid" class="show_a_d_account">
+
   <%= link_to( 'Add Assessment', new_appointment_capture_path(appointment_id: @appointment.id), class: 'btn btn-primary pull-right btn-edition') if can?(:add_captures, :manage_roles) %>
 
   <div class="row">
@@ -86,7 +86,7 @@
     </article>
   </div>
 
-  <%= link_to( t('add_note'), new_note_path(type: 'AppointmentNote', owner_id: @appointment.id), class: 'btn btn-primary pull-right') if can?(:add_notes, :manage_roles) %>
+  <%= link_to( t('add_note'), new_note_path(type: 'AppointmentNote', owner_id: @appointment.id), class: 'btn btn-primary pull-right btn-edition') if can?(:add_notes, :manage_roles) %>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'notes/list',
@@ -99,7 +99,7 @@
                  } %>
     </article>
   </div>
-</section>
+
 
 <%#= render partial: 'notes/notes', locals: {notes: @appointment.appointment_notes} %>
 
