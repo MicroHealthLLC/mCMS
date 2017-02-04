@@ -81,6 +81,7 @@ en:
     gender: Gender
     religion: Religion
     ethnicity: Ethnicity
+    marital_status: Marital Status
     citizenship: Citizenship
     password: Password
     current_password: Current password

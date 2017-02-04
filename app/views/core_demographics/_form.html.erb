@@ -29,6 +29,13 @@
         <%= f.hidden_field :user_id %>
 
         <div class="form-group">
+          <%= f.label t('title'), class: 'col-md-2 control-label' %>
+          <div class="col-md-8">
+            <%= f.text_field :title, placeholder: 'Title', class: 'form-control' %>
+          </div>
+        </div>
+
+         <div class="form-group">
           <%= f.label t('profile.first_name'), class: 'col-md-2 control-label' %>
           <div class="col-md-8">
             <%= f.text_field :first_name, placeholder: 'First name', class: 'form-control' %>
@@ -64,7 +71,7 @@
         <div class="form-group">
           <label class="col-md-2 control-label"><%= t('profile.religion') %></label>
           <div class="col-md-8">
-            <%= f.select :religion_id, options_for_select(ReligionType.active.pluck(:name, :id), selected: core_demographic.religion_id) , {},{class: 'form-control'} %>
+            <%= f.select :religion_id, options_for_select(ReligionType.active.pluck(:name, :id), selected: core_demographic.religion_type.try(:id)) , {},{class: 'form-control'} %>
           </div>
         </div>
         <div class="form-group">
@@ -77,13 +84,21 @@
         <div class="form-group">
           <label class="col-md-2 control-label"><%= t('profile.ethnicity') %></label>
           <div class="col-md-8">
-            <%= f.select :ethnicity_id, options_for_select(EthnicityType.active.select(:name, :id), selected: core_demographic.ethnicity_id) , {},{class: 'form-control'} %>
+            <%= f.select :ethnicity_id, options_for_select(EthnicityType.active.select(:name, :id), selected: f.object.ethnicity_type.try(:id)) , {},{class: 'form-control'} %>
           </div>
         </div>
+
+        <div class="form-group">
+          <label class="col-md-2 control-label"><%= t('profile.marital_status') %></label>
+          <div class="col-md-8">
+            <%= f.select :marital_status_id, options_for_select(MaritalStatus.active.select(:name, :id), selected: f.object.marital_status.try(:id)) , {},{class: 'form-control'} %>
+          </div>
+        </div>
+
         <div class="form-group">
           <label class="col-md-2 control-label"><%= t('profile.citizenship') %></label>
           <div class="col-md-8">
-            <%= f.select :citizenship_type_id, options_for_select(CitizenshipType.active.select(:name, :id), selected: core_demographic.citizenship_type_id) , {},{class: 'form-control'} %>
+            <%= f.select :citizenship_type_id, options_for_select(CitizenshipType.active.select(:name, :id), selected: f.object.citizenship_type.try(:id)) , {},{class: 'form-control'} %>
           </div>
         </div>
 

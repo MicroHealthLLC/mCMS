@@ -3,6 +3,7 @@ class CoreDemographic < ApplicationRecord
   belongs_to :religion_type, foreign_key: :religion_id, optional: true
   belongs_to :gender_type, foreign_key: :gender_id, optional: true
   belongs_to :citizenship_type, optional: true
+  belongs_to :marital_status, optional: true
   belongs_to :ethnicity_type, foreign_key: :ethnicity_id, optional: true
 
   after_save do
@@ -17,6 +18,16 @@ class CoreDemographic < ApplicationRecord
       ReligionType.default
     end
   end
+
+  def marital_status
+    if marital_status_id
+      super
+    else
+      MaritalStatus.default
+    end
+  end
+
+
   def gender_type
     if gender_id
       super
@@ -24,6 +35,7 @@ class CoreDemographic < ApplicationRecord
       GenderType.default
     end
   end
+
   def citizenship_type
     if citizenship_type_id
       super
@@ -31,6 +43,7 @@ class CoreDemographic < ApplicationRecord
       CitizenshipType.default
     end
   end
+
   def ethnicity_type
     if ethnicity_id
       super
@@ -38,9 +51,14 @@ class CoreDemographic < ApplicationRecord
       EthnicityType.default
     end
   end
+
   def self.safe_attributes
-    [:user_id, :first_name, :last_name, :middle_name, :gender_id,
-     :birth_date, :religion_id, :title, :note, :ethnicity_id, :citizenship_type_id]
+    [
+        :user_id, :first_name, :last_name, :middle_name,
+        :gender_id, :title, :marital_status_id,
+        :birth_date, :religion_id,
+        :note, :ethnicity_id, :citizenship_type_id
+    ]
   end
 
   def gender
@@ -54,6 +72,7 @@ class CoreDemographic < ApplicationRecord
     pdf.text "<b>Gender: </b> #{gender_type}", :inline_format =>  true
     pdf.text "<b>Birthday: </b> #{birth_date}", :inline_format =>  true
     pdf.text "<b>Religion: </b> #{religion_type}", :inline_format =>  true
+    pdf.text "<b>Marital Status: </b> #{marital_status}", :inline_format =>  true
     pdf.text "<b>Tile: </b> #{title}", :inline_format =>  true
     pdf.text "<b>Ethnicity: </b> #{ethnicity_type}", :inline_format =>  true
     pdf.text "<b>Citizenship: </b> #{citizenship_type}", :inline_format =>  true
