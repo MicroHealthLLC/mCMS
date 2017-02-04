@@ -1,4 +1,5 @@
 <section id="widget-grid" class="cases_list">
+  <%= render partial: 'state_button_filter'%>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'list',
@@ -13,7 +14,7 @@
 <script>
   $(document).ready(function(){
     var table = $('#cases_table').DataTable({
-      "ajax": "<%= subcases_cases_path(format: :json) %>",
+      "ajax": "<%= subcases_cases_path(format: :json, status_type: params[:status_type]) %>",
       processing: true,
       serverSide: true,
       responsive: true,
