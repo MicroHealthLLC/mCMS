@@ -11,6 +11,7 @@ class CaseDatatable < AjaxDatatablesRails::Base
     Enumeration.name
     Enumeration.name
     Enumeration.name
+    Enumeration.name
     Case.date_start
     Case.date_due
     Case.date_completed
@@ -21,6 +22,7 @@ class CaseDatatable < AjaxDatatablesRails::Base
     # Declare strings in this format: ModelName.column_name
     @searchable_columns ||= %w{
     Case.title
+    Enumeration.name
     Enumeration.name
     Enumeration.name
     Enumeration.name
@@ -43,6 +45,7 @@ class CaseDatatable < AjaxDatatablesRails::Base
             c.case_type.to_s,
             c.case_status_type.to_s,
             c.case_category_type.to_s,
+            c.case_source.to_s,
             c.date_start,
             c.date_due,
             c.date_completed
@@ -56,6 +59,7 @@ class CaseDatatable < AjaxDatatablesRails::Base
             c.case_type.to_s,
             c.case_status_type.to_s,
             c.case_category_type.to_s,
+            c.case_source.to_s,
             c.date_start,
             c.date_due,
             c.date_completed

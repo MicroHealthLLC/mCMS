@@ -6,6 +6,9 @@ class Case < ApplicationRecord
   belongs_to :case_type, optional: true
   belongs_to :case_category_type, optional: true, foreign_key: :case_category_id
   belongs_to :case_status_type, optional: true
+  belongs_to :case_source, optional: true
+
+
   belongs_to :case, optional: true, foreign_key: :subcase_id
 
   has_many :sub_cases, foreign_key: :subcase_id, class_name: 'Case', dependent: :destroy
@@ -37,52 +40,16 @@ class Case < ApplicationRecord
   validates_presence_of :title
   before_create :check_private_author
 
+  before_destroy do
+    sub_cases.update_all(subcase_id: nil)
+  end
+
   def self.include_enumerations
-    includes(:case_type, :case_status_type, :case_category_type, :priority_type).
-        references(:case_type, :case_status_type, :case_category_type, :priority_type)
+    includes(:case_type, :case_status_type, :case_category_type, :priority_type, :case_source).
+        references(:case_type, :case_status_type, :case_category_type, :priority_type, :case_source)
   end
 
-  def self.all_data
-    opened.or(Case.flagged)
-  end
-
-  def self.opened
-    Case.priority_type.case_category_type.case_status_type.case_type
-  end
-
-  def self.closed
-    Case.priority_type('closed').
-        or(Case.case_category_type('closed')).
-        or(Case.case_status_type('closed')).
-        or(Case.case_type('closed'))
-  end
-
-  def self.flagged
-    Case.priority_type('flagged').
-        or(Case.case_category_type('flagged')).
-        or(Case.case_status_type('flagged')).
-        or(Case.case_type('flagged'))
-  end
-
-  def surveys
-    survey_cases
-  end
-
-  def visible
-    where('assigned_to_id= :user OR user_id= :user', user: User.current.id )
-  end
-
-  def check_private_author
-    if self.is_private
-      self.private_author_id = User.current.id
-    end
-  end
-
-
-  def redirection
-    subcase_id ? Case.find(subcase_id) : self
-  end
-
+  # Enumeration Status
   def self.priority_type(status = nil)
     case status
       when 'closed' then where(priority_id: PriorityType.closed.pluck(:id) )
@@ -108,17 +75,13 @@ class Case < ApplicationRecord
         where.not(case_category_id: CaseCategoryType.closed.or(CaseCategoryType.flagged).pluck(:id) )
     end
   end
-  
+
   def case_category_type
     if case_category_id
       super
     else
       CaseCategoryType.default
     end
-  end
-
-  before_destroy do
-    sub_cases.update_all(subcase_id: nil)
   end
 
   def self.case_status_type(status= nil)
@@ -128,8 +91,25 @@ class Case < ApplicationRecord
       else
         where.not(case_status_type_id: CaseStatusType.closed.or(CaseStatusType.flagged).pluck(:id) )
     end
-  end  
-  
+  end
+
+  def case_source
+    if case_source_id
+      super
+    else
+      CaseSource.default
+    end
+  end
+
+  def self.case_source(status= nil)
+    case status
+      when 'closed' then where(case_source_id: CaseSource.closed.pluck(:id) )
+      when 'flagged' then where(case_source_id: CaseSource.flagged.pluck(:id) )
+      else
+        where.not(case_source_id: CaseSource.closed.or(CaseSource.flagged).pluck(:id) )
+    end
+  end
+
   def case_status_type
     if case_status_type_id
       super
@@ -155,6 +135,52 @@ class Case < ApplicationRecord
       CaseType.default
     end
   end
+  def self.all_data
+    opened.or(Case.flagged)
+  end
+
+  def self.opened
+    Case.priority_type.
+        case_category_type.
+        case_status_type.
+        case_type.
+        case_source
+  end
+
+  def self.closed
+    Case.priority_type('closed').
+        or(Case.case_category_type('closed')).
+        or(Case.case_status_type('closed')).
+        or(Case.case_source('closed')).
+        or(Case.case_type('closed'))
+  end
+
+  def self.flagged
+    Case.priority_type('flagged').
+        or(Case.case_category_type('flagged')).
+        or(Case.case_status_type('flagged')).
+        or(Case.case_source('flagged')).
+        or(Case.case_type('flagged'))
+  end
+
+  def surveys
+    survey_cases
+  end
+
+  def visible
+    where('assigned_to_id= :user OR user_id= :user', user: User.current.id )
+  end
+
+  def check_private_author
+    if self.is_private
+      self.private_author_id = User.current.id
+    end
+  end
+
+
+  def redirection
+    subcase_id ? Case.find(subcase_id) : self
+  end
 
   def to_s
     title
@@ -163,7 +189,7 @@ class Case < ApplicationRecord
 
   def self.safe_attributes
     [
-        :title, :description, :case_type_id, :is_private, :private_author_id, :assigned_to_id, :priority_id, :subcase_id,
+        :title, :description, :case_type_id, :is_private, :case_source_id, :private_author_id, :assigned_to_id, :priority_id, :subcase_id,
         :date_start, :date_due, :case_status_type_id, :date_completed, :case_status_id, :note, :case_category_id
     ]
   end
@@ -176,6 +202,7 @@ class Case < ApplicationRecord
     pdf.text "<b>Case type: </b> #{case_type}", :inline_format =>  true
     pdf.text "<b>Case status: </b> #{case_status_type}", :inline_format =>  true
     pdf.text "<b>Case category: </b> #{case_category_type}", :inline_format =>  true
+    pdf.text "<b>Case Source: </b> #{case_source}", :inline_format =>  true
     pdf.text "<b>Priority: </b> #{priority_type}", :inline_format =>  true
 
     pdf.text "<b>Date start: </b> #{date_start}", :inline_format =>  true
