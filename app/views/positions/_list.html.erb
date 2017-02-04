@@ -9,6 +9,7 @@
     <th><%= t('date_end') %></th>
     <th><%= t('employment_type') %></th>
     <th><%= t('position_status') %></th>
+    <th><%= t('estimated_monthly_amount') %></th>
   </tr>
   </thead>
 
@@ -23,6 +24,7 @@
             <td><%= position.date_end %></td>
             <td><%= position.employment_type %></td>
             <td><%= position.position_status %></td>
+            <td><%= position.estimated_monthly_amount %></td>
           </tr>
       <% end %>
   <% else %>

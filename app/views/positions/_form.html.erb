@@ -38,10 +38,17 @@
         </div>
       </div>
 
-        <div class="form-group">
+      <div class="form-group">
         <%= f.label t(:position_status) , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.select :status_id, options_for_select(PositionStatus.active.pluck(:name, :id), f.object.position_status.try(:id) ),{} , {class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:estimated_monthly_amount) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :estimated_monthly_amount, class: 'form-control' %>
         </div>
       </div>
 

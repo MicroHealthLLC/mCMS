@@ -59,7 +59,7 @@ class Position < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:user_id, :title, :position_description,
+    [:user_id, :title, :position_description, :estimated_monthly_amount,
      :location_type_id, :special_requirement, :note, :status_id,
      :date_start, :date_end, :organization_id, :salary, :pay_rate_id, :employment_type_id,
      position_attachments_attributes: [Attachment.safe_attributes]]
@@ -91,6 +91,7 @@ class Position < ApplicationRecord
     output<<"<b>Position Status: </b> #{position_status}<br/>"
     output<<"<b>Location: </b> #{location_type}<br/>"
     output<<"<b>Special requirement: </b> #{special_requirement}<br/>"
+    output<<"<b>#{I18n.t('estimated_monthly_amount')}: </b> #{estimated_monthly_amount}<br/>"
     output<<"<b>Date start: </b> #{date_start}<br/>"
     output<<"<b>Date end: </b> #{date_end}<br/>"
     # output<<"<b>Pay: </b> #{salary}<br/>"

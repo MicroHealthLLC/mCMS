@@ -31,6 +31,7 @@ en:
   position_type: Position Type
   position_status: Position Status
   position_description: Position Description
+  estimated_monthly_amount: Estimated Monthly Amount ($)
 
   # TeleConsult
   teleconsult: Teleconsult
