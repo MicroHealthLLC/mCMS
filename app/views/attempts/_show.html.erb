@@ -1,9 +1,19 @@
 <%= render partial: 'attempt_action_menu', locals:{attempt: attempt} %>
+<% if @case %>
+    <p>
+      <label><%= t('case') %>:</label>
+      <%= link_to_case @case %>
+    </p>
+<% end %>
 <h3><%= "ATTEMPT #{defined?(index) ? "##{index + 1}" : nil}" %> <em><%= format_date(attempt.answers.first.created_at) if attempt.answers.first %></em></h3>
+<% survey = attempt.survey %>
+<p><b>Survey:</b> <%= link_to survey, survey %></p>
+<p><b>Survey Status:</b> <%= survey.active? ? 'Active' : (survey.finished? ? 'Finished' : 'Not active') %></p>
+
 <ol class="questions">
   <% attempt.answers.each do |answer| %>
       <li>
-        <p class="question"> <%= answer.question.text %> </p>
+        <p class="question"> <%= answer.question.text %>  </p>
         <ul class="options">
           <% answer.question.options.each do |option| %>
               <li class="radio">

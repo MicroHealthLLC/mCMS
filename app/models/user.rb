@@ -101,7 +101,9 @@ class User < ApplicationRecord
     includes(:role, :core_demographic=> :gender_type).
         references(:role, :core_demographic=> :gender_type)
   end
+
   def check_status
+    return if self.anonyme_user?
     UserMailer.account_activated(self).deliver_later if self.account_active? and self.state_was == false
   end
 
@@ -298,12 +300,12 @@ class User < ApplicationRecord
   end
 
   def self.safe_attributes_with_password_with_core_demographic_without_state
-    [:login, :email, :password, :password_confirmation, :role_id,
+    [:login, :email, :password, :password_confirmation,
      core_demographic_attributes: [CoreDemographic.safe_attributes]]
   end
 
   def self.safe_attributes_with_password
-    [:login, :state, :email, :role_id,
+    [:login, :state, :email,
      :password, :password_confirmation,
      core_demographic_attributes: [CoreDemographic.safe_attributes]]
   end

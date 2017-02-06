@@ -35,6 +35,7 @@ class AttemptsController < UserCasesController
 
   def show
     @attempt = Survey::Attempt.find(params[:id])
+    @case = @attempt.participant
   rescue ActiveRecord::RecordNotFound
     render_404
   end
@@ -44,7 +45,8 @@ class AttemptsController < UserCasesController
     if params[:case_id].present?
       @attempt.participant =  Case.find(params[:case_id])
     else
-      @attempt.participant =  User.current
+      render_404
+      # @attempt.participant =  User.current
     end
 
     @participant = @attempt.participant

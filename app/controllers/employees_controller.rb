@@ -25,8 +25,13 @@ class EmployeesController < ApplicationController
 
   def create
     @user = User.new(params.require(:user).permit(employee_params))
+    if params[:auto_password]
+       @user.anonyme_user = true
+       @user.email = random_email(params)
+    end
+
     if @user.save
-      UserMailer.welcome_email(@user, params[:user][:password]).deliver_later
+      UserMailer.welcome_email(@user, params[:user][:password]).deliver_later unless @user.anonyme_user?
       redirect_to users_url
     else
       render 'new'
@@ -69,5 +74,10 @@ class EmployeesController < ApplicationController
 
   def employee_params
     User.current.admin? ? User.admin_safe_attributes :  User.safe_attributes_with_password
+  end
+
+  def random_email(params)
+    core_params = params[:user][:core_demographic_attributes] ||  {}
+    "#{core_params[:first_name]||'user'}.#{core_params[:last_name]}#{rand(252...4350)}#{User.count}@account.com"
   end
 end
