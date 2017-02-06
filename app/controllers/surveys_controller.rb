@@ -88,11 +88,7 @@ class SurveysController < ApplicationController
   end
 
   def back_url
-    if @survey.case
-      case_url(@survey.case)
-    else
-      surveys_url
-    end
+    surveys_url
   end
 
 end

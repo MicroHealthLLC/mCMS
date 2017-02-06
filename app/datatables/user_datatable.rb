@@ -48,7 +48,7 @@ class UserDatatable < AjaxDatatablesRails::Base
           user.gender.to_s,
           user.state,
 
-          user.deleted? ? '<i class="fa fa-eye-slash" aria-hidden="true"></i>' : @view.show_link(user) ,
+          user.deleted? ? '<i class="fa fa-eye-slash" aria-hidden="true" ></i>' : @view.show_link(user, 'data-turbolinks'=> false) ,
           user.deleted? ?   @view.restore_user_link(user) :  @view.delete_link(user)
       ]
     end
