@@ -84,21 +84,21 @@
         <div class="form-group">
           <label class="col-md-2 control-label"><%= t('profile.ethnicity') %></label>
           <div class="col-md-8">
-            <%= f.select :ethnicity_id, options_for_select(EthnicityType.active.select(:name, :id), selected: f.object.ethnicity_type.try(:id)) , {},{class: 'form-control'} %>
+            <%= f.select :ethnicity_id, options_for_select(EthnicityType.active.pluck(:name, :id), selected: f.object.ethnicity_type.try(:id)) , {},{class: 'form-control'} %>
           </div>
         </div>
 
         <div class="form-group">
           <label class="col-md-2 control-label"><%= t('profile.marital_status') %></label>
           <div class="col-md-8">
-            <%= f.select :marital_status_id, options_for_select(MaritalStatus.active.select(:name, :id), selected: f.object.marital_status.try(:id)) , {},{class: 'form-control'} %>
+            <%= f.select :marital_status_id, options_for_select(MaritalStatus.active.pluck(:name, :id), selected: f.object.marital_status.try(:id)) , {},{class: 'form-control'} %>
           </div>
         </div>
 
         <div class="form-group">
           <label class="col-md-2 control-label"><%= t('profile.citizenship') %></label>
           <div class="col-md-8">
-            <%= f.select :citizenship_type_id, options_for_select(CitizenshipType.active.select(:name, :id), selected: f.object.citizenship_type.try(:id)) , {},{class: 'form-control'} %>
+            <%= f.select :citizenship_type_id, options_for_select(CitizenshipType.active.pluck(:name, :id), selected: f.object.citizenship_type.try(:id)) , {},{class: 'form-control'} %>
           </div>
         </div>
 

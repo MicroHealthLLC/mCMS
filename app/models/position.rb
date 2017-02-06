@@ -1,6 +1,6 @@
 class Position < ApplicationRecord
   belongs_to :user
-  belongs_to :organization
+  # belongs_to :organization
   belongs_to :pay_rate_type, optional: true, foreign_key: :pay_rate_id
   belongs_to :employment_type, optional: true
   belongs_to :position_status, optional: true, foreign_key: :status_id
@@ -10,9 +10,8 @@ class Position < ApplicationRecord
   has_many :position_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :position_attachments, reject_if: :all_blank, allow_destroy: true
 
-  validates_presence_of :organization_id, :user_id
+  validates_presence_of :user_id, :title
 
-  validates_presence_of :title
   after_save :send_notification
 
   def send_notification
