@@ -41,6 +41,13 @@ en:
   new_teleconsult: New Teleconsult
   edit_teleconsult: Edit Teleconsult
 
+  # Daily Living
+  daily_living: Daily Living
+  daily_livings: Daily Livings
+  new_daily_living: New Daily Living
+  edit_daily_living: Edit Daily Living
+  daily_living_type: Daily Living Type
+  daily_living_status: Daily Living Status
 
  # Education
   education_type: Education
