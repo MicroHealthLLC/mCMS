@@ -1,0 +1,2 @@
+class AdmissionAttachment < Attachment
+end

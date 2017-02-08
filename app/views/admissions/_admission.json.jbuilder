@@ -1,0 +1,2 @@
+json.extract! admission, :id, :user_id, :care_family_name, :date_admitted, :date_discharged, :admission_status_id, :admission_type_id, :description, :created_at, :updated_at
+json.url admission_url(admission, format: :json)

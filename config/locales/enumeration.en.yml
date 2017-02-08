@@ -66,3 +66,7 @@ en:
   enumeration_marital_status: Marital Status
   enumeration_daily_living_status: Daily Living Status
   enumeration_daily_living_type: Daily Living Type
+  enumeration_admission_status: Admission Status
+  enumeration_admission_type: Admission Type
+  enumeration_health_care_facility_status: Health Care facility Status
+  enumeration_health_care_facility_type: Health Care facility Type

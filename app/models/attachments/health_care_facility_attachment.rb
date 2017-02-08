@@ -1,0 +1,2 @@
+class HealthCareFacilityAttachment < Attachment
+end

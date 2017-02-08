@@ -1,0 +1,43 @@
+<%= render partial: 'action_menu' %>
+<div class="row">
+  <div class="col-xs12">
+
+    <p>
+      <strong>Care family name:</strong>
+      <%= @admission.care_family_name %>
+    </p>
+
+    <p>
+      <strong>Date admitted:</strong>
+      <%= @admission.date_admitted %>
+    </p>
+
+    <p>
+      <strong>Date discharged:</strong>
+      <%= @admission.date_discharged %>
+    </p>
+
+    <p>
+      <strong>Admission status:</strong>
+      <%= @admission.admission_status %>
+    </p>
+
+    <p>
+      <strong>Admission type:</strong>
+      <%= @admission.admission_type %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @admission.description.html_safe %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @admission.admission_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+
+  </div>
+</div>

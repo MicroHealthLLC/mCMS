@@ -298,3 +298,21 @@ en:
   categories: Categories
   groups: Groups
   document_managers: Documents
+
+  # FOR HISTORY
+
+  # Admission
+  admission: Admission
+  admissions: Admissions
+  new_admission: New Admission
+  edit_admission: Edit Admission
+  admission_type: Admission Type
+  admission_status: Admission Status
+
+  # health_care_facilities
+  health_care_facilities: Health Care Facilties
+  health_care_facility: Health Care Facilty
+  health_care_facility_type: Health Care Facilty Type
+  health_care_facility_status: Health Care Facilty Status
+  new_health_care_facility: New Health Care Facilty
+  edit_health_care_facility: Edit Health Care Facilty

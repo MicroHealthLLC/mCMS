@@ -1,0 +1,28 @@
+<table class="table table-responsive" id="admission_table">
+  <thead>
+  <tr>
+    <th>Care Family Name</th>
+    <th>Date Admitted</th>
+    <th>Date Discharged</th>
+    <th>Admission Status</th>
+    <th>Admission Type</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @admissions.each do |admission| %>
+      <tr>
+        <td><%= link_to admission.care_family_name, admission%></td>
+        <td><%= admission.date_admitted %></td>
+        <td><%= admission.date_discharged %></td>
+        <td><%= admission.admission_status %></td>
+        <td><%= admission.admission_type %></td>
+       </tr>
+  <% end %>
+  </tbody>
+</table>
+<script>
+  $(document).ready(function(){
+    initDataTable('admission_table')
+  })
+</script>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :health_care_facilities
+  resources :admissions
   resources :daily_livings
   resources :teleconsults
   resources :enrollments

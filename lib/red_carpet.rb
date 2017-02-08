@@ -112,8 +112,28 @@ RedCarpet::AccessControl.map do |map|
   #   map.permission :delete_organizations, {:organizations => [:destroy]},  :read => true
   #   map.permission :manage_organizations, {:organizations => [:new, :create, :edit, :update, :destroy]},  :read => true
   # end
+  
+  # User HISTORY
 
+  map.project_module :admissions do |map|
+    map.permission :view_admissions, {:admissions => [:index]},  :read => true
+    map.permission :show_admissions, {:admissions => [:show]},  :read => true
+    map.permission :create_admissions, {:admissions => [:new, :create]},  :read => true
+    map.permission :edit_admissions, {:admissions => [:link_goal, :add_goal,:links, :add_action, :edit, :update]},  :read => true
+    map.permission :delete_admissions, {:admissions => [:destroy]},  :read => true
+    map.permission :manage_admissions, {:admissions => [:link_goal, :add_goal, :links, :add_action, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
 
+  map.project_module :health_care_facilities do |map|
+    map.permission :view_health_care_facilities, {:health_care_facilities => [:index]},  :read => true
+    map.permission :show_health_care_facilities, {:health_care_facilities => [:show]},  :read => true
+    map.permission :create_health_care_facilities, {:health_care_facilities => [:new, :create]},  :read => true
+    map.permission :edit_health_care_facilities, {:health_care_facilities => [:link_goal, :add_goal,:links, :add_action, :edit, :update]},  :read => true
+    map.permission :delete_health_care_facilities, {:health_care_facilities => [:destroy]},  :read => true
+    map.permission :manage_health_care_facilities, {:health_care_facilities => [:link_goal, :add_goal, :links, :add_action, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
+  
   # case user
 
   map.project_module :document do |map|
@@ -286,6 +306,8 @@ RedCarpet::AccessControl.map do |map|
         :document => [:index,:new,  :show, :create, :edit, :update, :destroy],
         :other_skills => [:index,:new,  :show, :create, :edit, :update, :destroy],
         :positions => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :admissions => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :health_care_facilities => [:index, :show, :new, :create, :edit, :update, :destroy],
         :teleconsults => [:index, :show, :new, :create, :edit, :update, :destroy],
         :surveys => [:new_assign_survey, :index, :show, :new, :create, :edit, :update, :destroy, :show],
         :attempts => [:index, :show, :new, :create, :show],
