@@ -1,6 +1,6 @@
 <% unless User.current.allowed_to?(:manage_roles) %>
     <li>
-      <a href="#" id="ul_profile"><i class="fa fa-lg fa-fw fa-film"></i> <span class="menu-item-parent">Medical History</span></a>
+      <a href="#" id="ul_medical_history"><i class="fa fa-lg fa-fw fa-film"></i> <span class="menu-item-parent">Medical History</span></a>
       <ul id="medical_history_menu">
         <% if module_enabled?( 'admissions') && can?(:manage_roles, :view_admissions, :manage_admissions)%>
             <li class="<%= menu_active?('admissions') %>">
