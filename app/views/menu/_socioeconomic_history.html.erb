@@ -1,7 +1,7 @@
 <% unless User.current.allowed_to?(:manage_roles) %>
     <li>
       <a href="#" id="ul_socio_history"><i class="fa fa-lg fa-fw fa-film"></i> <span class="menu-item-parent">Socioeconomic History</span></a>
-      <ul id="medical_socio_menu">
+      <ul id="socio_history_menu">
         <% if module_enabled?( 'daily_livings')  && can?(:manage_roles, :view_daily_livings, :manage_daily_livings) %>
             <li class="<%= menu_active?('daily_livings') %>">
               <a href="/daily_livings" title="<%= t(:daily_livings) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:daily_livings) %></span></a>
