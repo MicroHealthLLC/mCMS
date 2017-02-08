@@ -2,7 +2,12 @@
     <li>
       <a href="#" id="ul_medical_history"><i class="fa fa-lg fa-fw fa-film"></i> <span class="menu-item-parent">Medical History</span></a>
       <ul id="medical_history_menu">
-      <% if module_enabled?( 'health_care_facilities') && can?(:manage_roles, :view_health_care_facilities, :manage_health_care_facilities)%>
+        <% if module_enabled?( 'admissions') && can?(:manage_roles, :view_admissions, :manage_admissions)%>
+            <li class="<%= menu_active?('admissions') %>">
+              <a href="/admissions" title="<%= t(:admission) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:admission) %></span></a>
+            </li>
+        <% end %>
+        <% if module_enabled?( 'health_care_facilities') && can?(:manage_roles, :view_health_care_facilities, :manage_health_care_facilities)%>
             <li class="<%= menu_active?('health_care_facilities') %>">
               <a href="/health_care_facilities" title="<%= t(:health_care_facility) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:health_care_facility) %></span></a>
             </li>
