@@ -9,7 +9,6 @@ class TaskDatatable < AjaxDatatablesRails::Base
       Enumeration.name
       Enumeration.name
       Task.date_start
-      Task.date_due
       Task.date_completed
     }
   end
@@ -23,7 +22,6 @@ class TaskDatatable < AjaxDatatablesRails::Base
       Enumeration.name
       Enumeration.name
       Task.date_start
-      Task.date_due
       Task.date_completed
     }
   end
@@ -39,7 +37,6 @@ class TaskDatatable < AjaxDatatablesRails::Base
           task.task_status_type.to_s ,
           task.priority_type.to_s ,
           task.date_start ,
-          task.date_due ,
           task.date_completed
       ]
     end

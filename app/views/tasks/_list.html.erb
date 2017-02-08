@@ -7,29 +7,20 @@
     <th><%= t('status') %></th>
     <th><%= t('priority') %></th>
     <th><%= t('date_start') %></th>
-    <th><%= t('date_due') %></th>
-    <th><%= t('date_completed') %></th>
+    <th><%= t('date_end') %></th>
   </tr>
   </thead>
 
   <tbody>
-  <% if tasks.any? %>
-      <% tasks.each do |task| %>
-          <tr>
-            <td><%= link_to task.title, task %></td>
-            <td><%= link_to_case task.case %></td>
-            <td><%= task.task_type %></td>
-            <td><%= task.task_status_type %></td>
-            <td><%= task.priority_type %></td>
-            <td><%= task.date_start %></td>
-            <td><%= task.date_due %></td>
-            <td><%= task.date_completed %></td>
-          </tr>
-      <% end %>
-
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
+  <% tasks.each do |task| %>
+      <tr>
+        <td><%= link_to task.title, task %></td>
+        <td><%= link_to_case task.case %></td>
+        <td><%= task.task_type %></td>
+        <td><%= task.task_status_type %></td>
+        <td><%= task.priority_type %></td>
+        <td><%= task.date_start %></td>
+        <td><%= task.date_completed %></td>
       </tr>
   <% end %>
   </tbody>
@@ -37,6 +28,6 @@
 
 <script>
   $(document).ready(function(){
-    <% if tasks.present? %>  initDataTable('tasks_table') <% end %>
+    initDataTable('tasks_table')
   } );
 </script>

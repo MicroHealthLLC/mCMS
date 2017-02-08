@@ -15,11 +15,6 @@
               <a href="/languages" title="<%= t(:languages) %>"><i class="fa fa-lg fa-fw fa-language"></i> <span class="menu-item-parent"><%= t(:languages) %></span></a>
             </li>
         <% end %>
-        <% if module_enabled?('client_journals')  && can?(:manage_roles, :view_client_journals, :manage_client_journals)%>
-            <li class="<%= menu_active?('client_journals') %>">
-              <a href="/client_journals" title="<%= t(:client_journals) %>"><i class="fa fa-lg fa-fw fa-address-book-o"></i> <span class="menu-item-parent"><%= t(:client_journals) %></span></a>
-            </li>
-        <%end %>
         <% if module_enabled?( 'other_skills')  && can?(:manage_roles, :view_other_skills, :manage_other_skills) %>
             <li class="<%= menu_active?('other_skills') %>">
               <a href="/other_skills" title="<%= t(:other_skills) %>"><i class="fa fa-lg fa-fw fa-plus"></i> <span class="menu-item-parent"><%= t(:other_skills) %></span></a>
@@ -58,7 +53,11 @@
         <% end %>
       </ul>
     </li>
-
+    <% if module_enabled?('client_journals')  && can?(:manage_roles, :view_client_journals, :manage_client_journals)%>
+        <li class="<%= menu_active?('client_journals') %>">
+          <a href="/client_journals" title="<%= t(:client_journals) %>"><i class="fa fa-lg fa-fw fa-address-book-o"></i> <span class="menu-item-parent"><%= t(:client_journals) %></span></a>
+        </li>
+    <%end %>
 <% else %>
     <li class="<%= menu_active?('devise/registrations') %>">
       <a href= "/users/edit" title="<%= t('profile.my_profile') %>"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent"><%= t('profile.my_profile') %></span></a>
