@@ -1,0 +1,13 @@
+<%= link_to('New Housing', new_housing_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_housings, :manage_roles, :manage_housings) %>
+<section id="widget-grid" class="housings_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'housing',
+                     wid_title: t('housings')
+                 } %>
+    </article>
+  </div>
+</section>

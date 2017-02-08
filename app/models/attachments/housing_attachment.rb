@@ -1,0 +1,3 @@
+class HousingAttachment < Attachment
+
+end

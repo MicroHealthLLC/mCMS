@@ -133,6 +133,15 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_health_care_facilities, {:health_care_facilities => [:link_goal, :add_goal, :links, :add_action, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
+  map.project_module :housings do |map|
+    map.permission :view_housings, {:housings => [:index]},  :read => true
+    map.permission :show_housings, {:housings => [:show]},  :read => true
+    map.permission :create_housings, {:housings => [:new, :create]},  :read => true
+    map.permission :edit_housings, {:housings => [:link_goal, :add_goal,:links, :add_action, :edit, :update]},  :read => true
+    map.permission :delete_housings, {:housings => [:destroy]},  :read => true
+    map.permission :manage_housings, {:housings => [:link_goal, :add_goal, :links, :add_action, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
   
   # case user
 
@@ -307,6 +316,7 @@ RedCarpet::AccessControl.map do |map|
         :other_skills => [:index,:new,  :show, :create, :edit, :update, :destroy],
         :positions => [:index, :show, :new, :create, :edit, :update, :destroy],
         :admissions => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :housings => [:index, :show, :new, :create, :edit, :update, :destroy],
         :health_care_facilities => [:index, :show, :new, :create, :edit, :update, :destroy],
         :teleconsults => [:index, :show, :new, :create, :edit, :update, :destroy],
         :surveys => [:new_assign_survey, :index, :show, :new, :create, :edit, :update, :destroy, :show],

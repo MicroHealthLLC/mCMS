@@ -39,7 +39,16 @@ class Address < ApplicationRecord
 
 
   def full_address
-    "#{address}, #{second_address}, #{city}, #{zip_code}"
+    output = ""
+    output<< "#{address}, " if address.present?
+    output<< "#{second_address}, " if second_address.present?
+    output<< "#{city}, " if city.present?
+    output<< "#{zip_code}" if zip_code.present?
+    output
+  end
+
+  def to_s
+    "(#{address_type}) #{full_address}"
   end
 
   def to_html

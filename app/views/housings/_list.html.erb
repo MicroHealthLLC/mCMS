@@ -1,0 +1,34 @@
+<table class="table table-responsive" id="housings_table">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Housing type</th>
+    <th>Cohabitation type</th>
+    <th>Housing status</th>
+    <th>Primary address</th>
+    <th>Estimated monthly payment</th>
+    <th>Date start</th>
+    <th>Date end</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @housings.each do |housing| %>
+      <tr>
+        <td><%= link_to housing.title, housing %></td>
+        <td><%= housing.housing_type %></td>
+        <td><%= housing.cohabitation_type %></td>
+        <td><%= housing.housing_status %></td>
+        <td><%= housing.primary_address %></td>
+        <td><%= housing.estimated_monthly_payment %></td>
+        <td><%= housing.date_start %></td>
+        <td><%= housing.date_end %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<script>
+  $(document).ready(function(){
+    initDataTable('housings_table')
+  })
+</script>

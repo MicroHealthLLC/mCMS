@@ -1,0 +1,9 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to( 'Delete', housing_path(@housing), class: 'btn btn-danger pull-right',
+               :method => :delete,
+               :data => {:confirm => t(:text_are_you_sure)}) if @housing.can?(:manage_roles, :manages_housings, :delete_housings)
+  %>
+  <%= link_to( 'Edit', edit_housing_path(@housing), class: 'btn btn-success pull-right') if @housing.can?(:manage_roles, :manages_housings, :edit_housings) %>
+  <%= link_to t('button_cancel'), housings_path, class: 'btn btn-warning pull-right' %>
+  <%#= link_to t('button_print'), housing_path(@housing, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+</div>

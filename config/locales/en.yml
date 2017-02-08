@@ -316,3 +316,13 @@ en:
   health_care_facility_status: Health Care Facilty Status
   new_health_care_facility: New Health Care Facilty
   edit_health_care_facility: Edit Health Care Facilty
+
+  # Housing
+  housing: Housing
+  housings: Housings
+  new_housing: New Housing
+  edit_housing: EditHousing
+  housing_type: Housing Type
+  housing_status: Housing Status
+  cohabitation_type: Cohabitation Type
+  primary_address: Primary Address

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :housings
   resources :health_care_facilities
   resources :admissions
   resources :daily_livings

@@ -70,3 +70,6 @@ en:
   enumeration_admission_type: Admission Type
   enumeration_health_care_facility_status: Health Care facility Status
   enumeration_health_care_facility_type: Health Care facility Type
+  enumeration_housing_type: Housing Type
+  enumeration_housing_status: Housing Status
+  enumeration_cohabitation_type: Cohabitation Type

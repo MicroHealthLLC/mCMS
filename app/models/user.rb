@@ -147,6 +147,11 @@ class User < ApplicationRecord
     login
   end
 
+  def addresses
+    return [] if user_extend_demography.nil?
+    Address.where(extend_demography: user_extend_demography.id)
+  end
+
   def principal_role
     return 'Admin' if admin?
     role.try(:role_type) || 'No role defined'

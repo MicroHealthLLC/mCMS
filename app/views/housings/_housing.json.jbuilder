@@ -1,0 +1,2 @@
+json.extract! housing, :id, :user_id, :title, :housing_type_id, :cohabitation_type_id, :housing_status_id, :description, :primary_address_id, :estimated_monthly_payment, :date_start, :date_end, :created_at, :updated_at
+json.url housing_url(housing, format: :json)

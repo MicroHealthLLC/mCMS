@@ -1,0 +1,103 @@
+
+<fieldset>
+  <legend></legend>
+  <%= form_for(housing, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+      <% if housing.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(housing.errors.count, "error") %> prohibited this daily living from being saved:</h2>
+
+            <ul>
+              <% housing.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <%= f.hidden_field :user_id %>
+
+      <div class="form-group">
+        <%= f.label t(:title), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :title , class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:housing_type), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :housing_type_id, options_for_select(HousingType.active.pluck(:name, :id), selected: f.object.housing_type.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:cohabitation_type), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :cohabitation_type_id, options_for_select(CohabitationType.active.pluck(:name, :id), selected: f.object.cohabitation_type.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:housing_status), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :housing_status_id, options_for_select(HousingStatus.active.pluck(:name, :id), selected: f.object.housing_status.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+
+       <div class="form-group">
+        <%= f.label t(:primary_address), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :primary_address_id, options_for_select(User.current.addresses.map{|a| [a.to_s, a.id]}, selected: f.object.primary_address.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:estimated_monthly_amount), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :estimated_monthly_payment , class: 'form-control' %>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.label t(:description) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :description , class: 'form-control ck-editor' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:date_start) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_start , class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:date_end) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_end , class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-12">
+          <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+        </div>
+        <%= f.simple_fields_for :housing_attachments do |attachment| %>
+            <%= render 'attachments/attachment_show', :f => attachment %>
+        <% end %>
+        <div id="attachment_fields" class="col-md-2 margin-top-10 " style="padding-right: 2px;" >
+          <%= link_to_add_association 'add file', f, :housing_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= link_to t('button_cancel'), housings_path, class: 'btn btn-warning pull-right' %>
+          <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+  <% end %>
+</fieldset>
+
