@@ -1,0 +1,3 @@
+class DailyLivingAttachment < Attachment
+
+end

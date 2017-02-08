@@ -22,6 +22,15 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_languages, {:languages => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
+  map.project_module :daily_livings do |map|
+    map.permission :view_daily_livings, {:daily_livings => [:index]},  :read => true
+    map.permission :show_daily_livings, {:daily_livings => [:show]},  :read => true
+    map.permission :create_daily_livings, {:daily_livings => [:new, :create]},  :read => true
+    map.permission :edit_daily_livings, {:daily_livings => [:edit, :update]},  :read => true
+    map.permission :delete_daily_livings, {:daily_livings => [:destroy]},  :read => true
+    map.permission :manage_daily_livings, {:daily_livings => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
   map.project_module :affiliations do |map|
     map.permission :view_affiliations, {:affiliations => [:index]},  :read => true
     map.permission :show_affiliations, {:affiliations => [:show]},  :read => true
@@ -267,6 +276,7 @@ RedCarpet::AccessControl.map do |map|
         :employees => [:index],
         :educations => [:index, :show, :new, :create, :edit, :update, :destroy],
         :languages => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :daily_livings => [:index, :show, :new, :create, :edit, :update, :destroy],
         :affiliations => [:index, :show, :new, :create, :edit, :update, :destroy],
         :clearances => [:index, :show, :new, :create, :edit, :update, :destroy],
         :user_insurances => [:index, :show, :new, :create, :edit, :update, :destroy],
@@ -276,6 +286,7 @@ RedCarpet::AccessControl.map do |map|
         :document => [:index,:new,  :show, :create, :edit, :update, :destroy],
         :other_skills => [:index,:new,  :show, :create, :edit, :update, :destroy],
         :positions => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :teleconsults => [:index, :show, :new, :create, :edit, :update, :destroy],
         :surveys => [:new_assign_survey, :index, :show, :new, :create, :edit, :update, :destroy, :show],
         :attempts => [:index, :show, :new, :create, :show],
         :tasks => [:link_plan, :add_plan, :index, :my, :show, :new, :create, :edit, :update, :destroy],

@@ -1,0 +1,1 @@
+json.array! @daily_livings, partial: 'daily_livings/daily_living', as: :daily_living

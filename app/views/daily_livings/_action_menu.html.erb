@@ -1,0 +1,9 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to( 'Delete', daily_living_path(@daily_living), class: 'btn btn-danger pull-right',
+               :method => :delete,
+               :data => {:confirm => t(:text_are_you_sure)}) if @daily_living.can?(:manage_roles, :manages_daily_livings, :delete_daily_livings)
+  %>
+  <%= link_to( 'Edit', edit_daily_living_path(@daily_living), class: 'btn btn-success pull-right') if @daily_living.can?(:manage_roles, :manages_daily_livings, :edit_daily_livings) %>
+  <%= link_to t('button_cancel'), daily_livings_path, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_print'), daily_living_path(@daily_living, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+</div>

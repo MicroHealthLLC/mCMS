@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :daily_livings
   resources :teleconsults
   resources :enrollments
   resources :appointment_procedures

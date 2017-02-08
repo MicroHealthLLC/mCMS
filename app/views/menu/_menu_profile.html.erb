@@ -15,6 +15,11 @@
               <a href="/languages" title="<%= t(:languages) %>"><i class="fa fa-lg fa-fw fa-language"></i> <span class="menu-item-parent"><%= t(:languages) %></span></a>
             </li>
         <% end %>
+         <% if module_enabled?( 'daily_livings')  && can?(:manage_roles, :view_daily_livings, :manage_daily_livings) %>
+            <li class="<%= menu_active?('daily_livings') %>">
+              <a href="/daily_livings" title="<%= t(:daily_livings) %>"><i class="fa fa-lg fa-fw fa-check-circle-o"></i> <span class="menu-item-parent"><%= t(:daily_livings) %></span></a>
+            </li>
+        <% end %>
         <% if module_enabled?( 'other_skills')  && can?(:manage_roles, :view_other_skills, :manage_other_skills) %>
             <li class="<%= menu_active?('other_skills') %>">
               <a href="/other_skills" title="<%= t(:other_skills) %>"><i class="fa fa-lg fa-fw fa-plus"></i> <span class="menu-item-parent"><%= t(:other_skills) %></span></a>

@@ -1,0 +1,43 @@
+<%= render partial: 'action_menu' %>
+
+<div class="row">
+  <div class="col-xs-12">
+    <p>
+      <strong>Title:</strong>
+      <%= @daily_living.title %>
+    </p>
+
+    <p>
+      <strong>Daily living type:</strong>
+      <%= @daily_living.daily_living_type %>
+    </p>
+
+    <p>
+      <strong>Daily living status:</strong>
+      <%= @daily_living.daily_living_status %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @daily_living.description.html_safe %>
+    </p>
+
+    <p>
+      <strong>Date start:</strong>
+      <%= @daily_living.date_start %>
+    </p>
+
+    <p>
+      <strong>Date end:</strong>
+      <%= @daily_living.date_end %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @daily_living.daily_living_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+
+  </div>
+</div>

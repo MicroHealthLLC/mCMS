@@ -1,0 +1,2 @@
+json.extract! daily_living, :id, :title, :user_id, :daily_living_type_id, :daily_living_status_id, :description, :date_start, :date_end, :created_at, :updated_at
+json.url daily_living_url(daily_living, format: :json)
