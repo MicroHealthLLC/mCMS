@@ -77,7 +77,7 @@ en:
   enumeration_transportation_type: Transportation Type
   enumeration_transportation_status: Transportation Status
   enumeration_transportation_mean: Transportation Mean
-  enumeration_financial_type: Financial Sype
+  enumeration_financial_type: Financial Type
   enumeration_financial_status: Financial Status
   enumeration_financial_state: Financial State
   enumeration_legal_history_type: Legal History Type
