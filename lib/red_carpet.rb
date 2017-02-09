@@ -133,13 +133,13 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_transportations, {:transportations => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
-    map.project_module :lagals do |map|
-    map.permission :view_lagals, {:lagals => [:index]},  :read => true
-    map.permission :show_lagals, {:lagals => [:show]},  :read => true
-    map.permission :create_lagals, {:lagals => [:new, :create]},  :read => true
-    map.permission :edit_lagals, {:lagals => [:edit, :update]},  :read => true
-    map.permission :delete_lagals, {:lagals => [:destroy]},  :read => true
-    map.permission :manage_lagals, {:lagals => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.project_module :legals do |map|
+    map.permission :view_legals, {:legals => [:index]},  :read => true
+    map.permission :show_legals, {:legals => [:show]},  :read => true
+    map.permission :create_legals, {:legals => [:new, :create]},  :read => true
+    map.permission :edit_legals, {:legals => [:edit, :update]},  :read => true
+    map.permission :delete_legals, {:legals => [:destroy]},  :read => true
+    map.permission :manage_legals, {:legals => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
   
   map.project_module :admissions do |map|
@@ -347,6 +347,9 @@ RedCarpet::AccessControl.map do |map|
         :housings => [:index, :show, :new, :create, :edit, :update, :destroy],
         :health_care_facilities => [:index, :show, :new, :create, :edit, :update, :destroy],
         :teleconsults => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :legals => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :financials => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :transportations => [:index, :show, :new, :create, :edit, :update, :destroy],
         :surveys => [:new_assign_survey, :index, :show, :new, :create, :edit, :update, :destroy, :show],
         :attempts => [:index, :show, :new, :create, :show],
         :tasks => [:link_plan, :add_plan, :index, :my, :show, :new, :create, :edit, :update, :destroy],
