@@ -1,0 +1,52 @@
+<%= render partial: 'action_menu' %>
+
+<div class="row">
+  <div class="col-xs-12">
+    <p>
+      <strong>Title:</strong>
+      <%= @financial.title %>
+    </p>
+
+    <p>
+      <strong>Financial type:</strong>
+      <%= @financial.financial_type %>
+    </p>
+
+    <p>
+      <strong>Financial status:</strong>
+      <%= @financial.financial_status %>
+    </p>
+
+    <p>
+      <strong>Financial state:</strong>
+      <%= @financial.financial_state %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @financial.description.html_safe %>
+    </p>
+
+    <p>
+      <strong>Estimated amount:</strong>
+      <%= @financial.estimated_amount %>
+    </p>
+
+    <p>
+      <strong>Date start:</strong>
+      <%= @financial.date_start %>
+    </p>
+
+    <p>
+      <strong>Date end:</strong>
+      <%= @financial.date_end %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @financial.financial_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,3 @@
+class LegalAttachment < Attachment
+
+end

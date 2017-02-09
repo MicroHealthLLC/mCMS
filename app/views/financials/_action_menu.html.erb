@@ -1,0 +1,9 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to( 'Delete', financial_path(@financial), class: 'btn btn-danger pull-right',
+               :method => :delete,
+               :data => {:confirm => t(:text_are_you_sure)}) if @financial.can?(:manage_roles, :manages_financials, :delete_financials)
+  %>
+  <%= link_to( 'Edit', edit_financial_path(@financial), class: 'btn btn-success pull-right') if @financial.can?(:manage_roles, :manages_financials, :edit_financials) %>
+  <%= link_to t('button_cancel'), financials_path, class: 'btn btn-warning pull-right' %>
+  <%#= link_to t('button_print'), financial_path(@financial, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+</div>

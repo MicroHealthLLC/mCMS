@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :legals
+  resources :financials
+  resources :transportations
   resources :housings
   resources :health_care_facilities
   resources :admissions

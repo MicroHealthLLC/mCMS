@@ -1,0 +1,3 @@
+class TransportationAttachment < Attachment
+
+end

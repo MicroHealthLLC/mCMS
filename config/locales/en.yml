@@ -32,6 +32,8 @@ en:
   position_status: Position Status
   position_description: Position Description
   estimated_monthly_amount: Estimated Monthly Amount ($)
+  estimated_monthly_cost: Estimated Monthly Cost ($)
+  estimated_amount: Estimated Amount ($)
 
   # TeleConsult
   teleconsult: Teleconsult
@@ -326,3 +328,25 @@ en:
   housing_status: Housing Status
   cohabitation_type: Cohabitation Type
   primary_address: Primary Address
+  
+  legal: Legal
+  new_legal: New Legal
+  edit_legal: Edit Legal
+  legals: Legals
+  legal_history_type: Legal History Type
+  legal_history_status: Legal History Status
+
+  transportation: Transportation
+  new_transportation: New Transportation
+  edit_transportation: Edit Transportation
+  transportations: Transportations
+  transportation_history_type: Transportation History Type
+  transportation_history_status: Transportation History Status
+
+  financial: Financial
+  new_financial: New Financial
+  edit_financial: Edit Financial
+  financials: Financials
+  financial_type: Financial Type
+  financial_status: Financial Status
+  financial_state: Financial State

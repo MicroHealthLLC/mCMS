@@ -73,3 +73,12 @@ en:
   enumeration_housing_type: Housing Type
   enumeration_housing_status: Housing Status
   enumeration_cohabitation_type: Cohabitation Type
+  enumeration_transportation_accessibility: Transoirtation Accessibility
+  enumeration_transportation_type: Transoirtation Type
+  enumeration_transportation_status: Transoirtation Status
+  enumeration_transportation_mean: Transoirtation Mean
+  enumeration_financial_type: Financial Sype
+  enumeration_financial_status: Financial Status
+  enumeration_financial_state: Financial State
+  enumeration_legal_history_type: Legal History Type
+  enumeration_legal_history_status: Legal History Status

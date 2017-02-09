@@ -1,0 +1,2 @@
+json.extract! financial, :id, :title, :user_id, :financial_type_id, :financial_status_id, :financial_state_id, :description, :estimated_amount, :date_start, :date_end, :created_at, :updated_at
+json.url financial_url(financial, format: :json)

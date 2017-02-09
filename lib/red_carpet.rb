@@ -22,15 +22,6 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_languages, {:languages => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
-  map.project_module :daily_livings do |map|
-    map.permission :view_daily_livings, {:daily_livings => [:index]},  :read => true
-    map.permission :show_daily_livings, {:daily_livings => [:show]},  :read => true
-    map.permission :create_daily_livings, {:daily_livings => [:new, :create]},  :read => true
-    map.permission :edit_daily_livings, {:daily_livings => [:edit, :update]},  :read => true
-    map.permission :delete_daily_livings, {:daily_livings => [:destroy]},  :read => true
-    map.permission :manage_daily_livings, {:daily_livings => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
-  end
-
   map.project_module :affiliations do |map|
     map.permission :view_affiliations, {:affiliations => [:index]},  :read => true
     map.permission :show_affiliations, {:affiliations => [:show]},  :read => true
@@ -115,6 +106,42 @@ RedCarpet::AccessControl.map do |map|
   
   # User HISTORY
 
+  map.project_module :daily_livings do |map|
+    map.permission :view_daily_livings, {:daily_livings => [:index]},  :read => true
+    map.permission :show_daily_livings, {:daily_livings => [:show]},  :read => true
+    map.permission :create_daily_livings, {:daily_livings => [:new, :create]},  :read => true
+    map.permission :edit_daily_livings, {:daily_livings => [:edit, :update]},  :read => true
+    map.permission :delete_daily_livings, {:daily_livings => [:destroy]},  :read => true
+    map.permission :manage_daily_livings, {:daily_livings => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+  
+  map.project_module :financials do |map|
+    map.permission :view_financials, {:financials => [:index]},  :read => true
+    map.permission :show_financials, {:financials => [:show]},  :read => true
+    map.permission :create_financials, {:financials => [:new, :create]},  :read => true
+    map.permission :edit_financials, {:financials => [:edit, :update]},  :read => true
+    map.permission :delete_financials, {:financials => [:destroy]},  :read => true
+    map.permission :manage_financials, {:financials => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+  
+   map.project_module :transportations do |map|
+    map.permission :view_transportations, {:transportations => [:index]},  :read => true
+    map.permission :show_transportations, {:transportations => [:show]},  :read => true
+    map.permission :create_transportations, {:transportations => [:new, :create]},  :read => true
+    map.permission :edit_transportations, {:transportations => [:edit, :update]},  :read => true
+    map.permission :delete_transportations, {:transportations => [:destroy]},  :read => true
+    map.permission :manage_transportations, {:transportations => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
+    map.project_module :lagals do |map|
+    map.permission :view_lagals, {:lagals => [:index]},  :read => true
+    map.permission :show_lagals, {:lagals => [:show]},  :read => true
+    map.permission :create_lagals, {:lagals => [:new, :create]},  :read => true
+    map.permission :edit_lagals, {:lagals => [:edit, :update]},  :read => true
+    map.permission :delete_lagals, {:lagals => [:destroy]},  :read => true
+    map.permission :manage_lagals, {:lagals => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+  
   map.project_module :admissions do |map|
     map.permission :view_admissions, {:admissions => [:index]},  :read => true
     map.permission :show_admissions, {:admissions => [:show]},  :read => true
@@ -143,8 +170,9 @@ RedCarpet::AccessControl.map do |map|
   end
 
   
+  
+  
   # case user
-
   map.project_module :document do |map|
     map.permission :view_documents,   {:documents => [:index]},  :read => true
     map.permission :show_documents,   {:documents => [:show]},  :read => true
