@@ -1,0 +1,2 @@
+class UnitAttachment < Attachment
+end

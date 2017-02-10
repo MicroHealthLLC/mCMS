@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mtf Hospitals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Mtf hospital</th>
+      <th>User</th>
+      <th>Incident enum</th>
+      <th>Incident type</th>
+      <th>Incident category</th>
+      <th>Date od incident</th>
+      <th>Date diagnosed</th>
+      <th>Incident location address</th>
+      <th>Incident location city</th>
+      <th>State</th>
+      <th>Country</th>
+      <th>Operation</th>
+      <th>Verified personal casualty reporting</th>
+      <th>Line of duty investigation</th>
+      <th>Cause of injury</th>
+      <th>Injury description</th>
+      <th>Pending operation procedure</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mtf_hospitals.each do |mtf_hospital| %>
+      <tr>
+        <td><%= mtf_hospital.mtf_hospital %></td>
+        <td><%= mtf_hospital.user_id %></td>
+        <td><%= mtf_hospital.incident_enum_id %></td>
+        <td><%= mtf_hospital.incident_type_id %></td>
+        <td><%= mtf_hospital.incident_category_id %></td>
+        <td><%= mtf_hospital.date_od_incident %></td>
+        <td><%= mtf_hospital.date_diagnosed %></td>
+        <td><%= mtf_hospital.incident_location_address %></td>
+        <td><%= mtf_hospital.incident_location_city %></td>
+        <td><%= mtf_hospital.state_id %></td>
+        <td><%= mtf_hospital.country_id %></td>
+        <td><%= mtf_hospital.operation_id %></td>
+        <td><%= mtf_hospital.verified_personal_casualty_reporting_id %></td>
+        <td><%= mtf_hospital.line_of_duty_investigation_id %></td>
+        <td><%= mtf_hospital.cause_of_injury %></td>
+        <td><%= mtf_hospital.injury_description %></td>
+        <td><%= mtf_hospital.pending_operation_procedure %></td>
+        <td><%= link_to 'Show', mtf_hospital %></td>
+        <td><%= link_to 'Edit', edit_mtf_hospital_path(mtf_hospital) %></td>
+        <td><%= link_to 'Destroy', mtf_hospital, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mtf Hospital', new_mtf_hospital_path %>

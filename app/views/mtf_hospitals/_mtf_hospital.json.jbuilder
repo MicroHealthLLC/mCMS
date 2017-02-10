@@ -1,0 +1,2 @@
+json.extract! mtf_hospital, :id, :mtf_hospital, :user_id, :incident_enum_id, :incident_type_id, :incident_category_id, :date_od_incident, :date_diagnosed, :incident_location_address, :incident_location_city, :state_id, :country_id, :operation_id, :verified_personal_casualty_reporting_id, :line_of_duty_investigation_id, :cause_of_injury, :injury_description, :pending_operation_procedure, :created_at, :updated_at
+json.url mtf_hospital_url(mtf_hospital, format: :json)

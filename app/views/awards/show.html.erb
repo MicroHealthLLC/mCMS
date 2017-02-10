@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @award.user_id %>
+</p>
+
+<p>
+  <strong>Award type:</strong>
+  <%= @award.award_type_id %>
+</p>
+
+<p>
+  <strong>Award enum:</strong>
+  <%= @award.award_enum_id %>
+</p>
+
+<p>
+  <strong>Award date:</strong>
+  <%= @award.award_date %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @award.note %>
+</p>
+
+<%= link_to 'Edit', edit_award_path(@award) %> |
+<%= link_to 'Back', awards_path %>

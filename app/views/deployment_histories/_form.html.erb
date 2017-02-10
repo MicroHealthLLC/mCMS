@@ -1,0 +1,19 @@
+<%= simple_form_for(@deployment_history) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :user_id %>
+    <%= f.input :deployment_operation_id %>
+    <%= f.input :location %>
+    <%= f.input :city %>
+    <%= f.input :state_id %>
+    <%= f.input :country_id %>
+    <%= f.input :date_start %>
+    <%= f.input :date_end %>
+    <%= f.input :note %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Deployment Histories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Deployment operation</th>
+      <th>Location</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Country</th>
+      <th>Date start</th>
+      <th>Date end</th>
+      <th>Note</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @deployment_histories.each do |deployment_history| %>
+      <tr>
+        <td><%= deployment_history.user_id %></td>
+        <td><%= deployment_history.deployment_operation_id %></td>
+        <td><%= deployment_history.location %></td>
+        <td><%= deployment_history.city %></td>
+        <td><%= deployment_history.state_id %></td>
+        <td><%= deployment_history.country_id %></td>
+        <td><%= deployment_history.date_start %></td>
+        <td><%= deployment_history.date_end %></td>
+        <td><%= deployment_history.note %></td>
+        <td><%= link_to 'Show', deployment_history %></td>
+        <td><%= link_to 'Edit', edit_deployment_history_path(deployment_history) %></td>
+        <td><%= link_to 'Destroy', deployment_history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Deployment History', new_deployment_history_path %>

@@ -1,0 +1,1 @@
+json.partial! "mtf_hospitals/mtf_hospital", mtf_hospital: @mtf_hospital

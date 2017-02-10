@@ -1,0 +1,2 @@
+class ServiceHistoryAttachment < Attachment
+end

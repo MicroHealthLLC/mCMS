@@ -119,30 +119,85 @@ RedCarpet::AccessControl.map do |map|
     map.permission :view_admissions, {:admissions => [:index]},  :read => true
     map.permission :show_admissions, {:admissions => [:show]},  :read => true
     map.permission :create_admissions, {:admissions => [:new, :create]},  :read => true
-    map.permission :edit_admissions, {:admissions => [:link_goal, :add_goal,:links, :add_action, :edit, :update]},  :read => true
+    map.permission :edit_admissions, {:admissions => [ :edit, :update]},  :read => true
     map.permission :delete_admissions, {:admissions => [:destroy]},  :read => true
-    map.permission :manage_admissions, {:admissions => [:link_goal, :add_goal, :links, :add_action, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_admissions, {:admissions => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :health_care_facilities do |map|
     map.permission :view_health_care_facilities, {:health_care_facilities => [:index]},  :read => true
     map.permission :show_health_care_facilities, {:health_care_facilities => [:show]},  :read => true
     map.permission :create_health_care_facilities, {:health_care_facilities => [:new, :create]},  :read => true
-    map.permission :edit_health_care_facilities, {:health_care_facilities => [:link_goal, :add_goal,:links, :add_action, :edit, :update]},  :read => true
+    map.permission :edit_health_care_facilities, {:health_care_facilities => [ :edit, :update]},  :read => true
     map.permission :delete_health_care_facilities, {:health_care_facilities => [:destroy]},  :read => true
-    map.permission :manage_health_care_facilities, {:health_care_facilities => [:link_goal, :add_goal, :links, :add_action, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_health_care_facilities, {:health_care_facilities => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :housings do |map|
     map.permission :view_housings, {:housings => [:index]},  :read => true
     map.permission :show_housings, {:housings => [:show]},  :read => true
     map.permission :create_housings, {:housings => [:new, :create]},  :read => true
-    map.permission :edit_housings, {:housings => [:link_goal, :add_goal,:links, :add_action, :edit, :update]},  :read => true
+    map.permission :edit_housings, {:housings => [ :edit, :update]},  :read => true
     map.permission :delete_housings, {:housings => [:destroy]},  :read => true
-    map.permission :manage_housings, {:housings => [:link_goal, :add_goal, :links, :add_action, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_housings, {:housings => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
-  
+  # MILITARY HISTORY
+  map.project_module :service_histories do |map|
+    map.permission :view_service_histories, {:service_histories => [:index]},  :read => true
+    map.permission :show_service_histories, {:service_histories => [:show]},  :read => true
+    map.permission :create_service_histories, {:service_histories => [:new, :create]},  :read => true
+    map.permission :edit_service_histories, {:service_histories => [ :edit, :update]},  :read => true
+    map.permission :delete_service_histories, {:service_histories => [:destroy]},  :read => true
+    map.permission :manage_service_histories, {:service_histories => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
+  map.project_module :units do |map|
+    map.permission :view_units, {:units => [:index]},  :read => true
+    map.permission :show_units, {:units => [:show]},  :read => true
+    map.permission :create_units, {:units => [:new, :create]},  :read => true
+    map.permission :edit_units, {:units => [ :edit, :update]},  :read => true
+    map.permission :delete_units, {:units => [:destroy]},  :read => true
+    map.permission :manage_units, {:units => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
+  map.project_module :awards do |map|
+    map.permission :view_awards, {:awards => [:index]},  :read => true
+    map.permission :show_awards, {:awards => [:show]},  :read => true
+    map.permission :create_awards, {:awards => [:new, :create]},  :read => true
+    map.permission :edit_awards, {:awards => [ :edit, :update]},  :read => true
+    map.permission :delete_awards, {:awards => [:destroy]},  :read => true
+    map.permission :manage_awards, {:awards => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
+  map.project_module :deployment_histories do |map|
+    map.permission :view_deployment_histories, {:deployment_histories => [:index]},  :read => true
+    map.permission :show_deployment_histories, {:deployment_histories => [:show]},  :read => true
+    map.permission :create_deployment_histories, {:deployment_histories => [:new, :create]},  :read => true
+    map.permission :edit_deployment_histories, {:deployment_histories => [ :edit, :update]},  :read => true
+    map.permission :delete_deployment_histories, {:deployment_histories => [:destroy]},  :read => true
+    map.permission :manage_deployment_histories, {:deployment_histories => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
+  map.project_module :incident_histories do |map|
+    map.permission :view_incident_histories, {:incident_histories => [:index]},  :read => true
+    map.permission :show_incident_histories, {:incident_histories => [:show]},  :read => true
+    map.permission :create_incident_histories, {:incident_histories => [:new, :create]},  :read => true
+    map.permission :edit_incident_histories, {:incident_histories => [ :edit, :update]},  :read => true
+    map.permission :delete_incident_histories, {:incident_histories => [:destroy]},  :read => true
+    map.permission :manage_incident_histories, {:incident_histories => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
+  map.project_module :mtf_hospitals do |map|
+    map.permission :view_mtf_hospitals, {:mtf_hospitals => [:index]},  :read => true
+    map.permission :show_mtf_hospitals, {:mtf_hospitals => [:show]},  :read => true
+    map.permission :create_mtf_hospitals, {:mtf_hospitals => [:new, :create]},  :read => true
+    map.permission :edit_mtf_hospitals, {:mtf_hospitals => [ :edit, :update]},  :read => true
+    map.permission :delete_mtf_hospitals, {:mtf_hospitals => [:destroy]},  :read => true
+    map.permission :manage_mtf_hospitals, {:mtf_hospitals => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
+
   # case user
 
   map.project_module :document do |map|

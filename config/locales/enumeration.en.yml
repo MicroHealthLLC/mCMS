@@ -73,3 +73,16 @@ en:
   enumeration_housing_type: Housing Type
   enumeration_housing_status: Housing Status
   enumeration_cohabitation_type: Cohabitation Type
+  enumeration_award_enum: Award
+  enumeration_award_type: Award Type
+  enumeration_component: Component
+  enumeration_discharge_type: Discharge Type
+  enumeration_incident_category: Incident Category
+  enumeration_incident_type: Incident Type
+  enumeration_line_of_duty_investigation: Line Of Duty Investigation (LOD)
+  enumeration_operation: Operation
+  enumeration_service_status: Service Status
+  enumeration_unit_enum: Unit
+  enumeration_unit_type: Unit Type
+  enumeration_verified_personnel_casualty_reporting_system: Verified Personnel Casualty Reporting System(s)
+  enumeration_rank: Rank

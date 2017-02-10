@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @deployment_history.user_id %>
+</p>
+
+<p>
+  <strong>Deployment operation:</strong>
+  <%= @deployment_history.deployment_operation_id %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @deployment_history.location %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @deployment_history.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @deployment_history.state_id %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @deployment_history.country_id %>
+</p>
+
+<p>
+  <strong>Date start:</strong>
+  <%= @deployment_history.date_start %>
+</p>
+
+<p>
+  <strong>Date end:</strong>
+  <%= @deployment_history.date_end %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @deployment_history.note %>
+</p>
+
+<%= link_to 'Edit', edit_deployment_history_path(@deployment_history) %> |
+<%= link_to 'Back', deployment_histories_path %>

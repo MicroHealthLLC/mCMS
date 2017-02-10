@@ -1,0 +1,2 @@
+module MtfHospitalsHelper
+end

@@ -1,0 +1,21 @@
+<%= simple_form_for(@service_history) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :user_id %>
+    <%= f.input :rank_id %>
+    <%= f.input :service_type_id %>
+    <%= f.input :service_status_id %>
+    <%= f.input :component_id %>
+    <%= f.input :discharge_type_id %>
+    <%= f.input :date_entered %>
+    <%= f.input :end_active_obliged_service %>
+    <%= f.input :demobilization %>
+    <%= f.input :separation %>
+    <%= f.input :temporary_disability_retirement_list %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

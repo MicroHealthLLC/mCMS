@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @unit.user_id %>
+</p>
+
+<p>
+  <strong>Unit enum:</strong>
+  <%= @unit.unit_enum_id %>
+</p>
+
+<p>
+  <strong>Unit type:</strong>
+  <%= @unit.unit_type_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @unit.name %>
+</p>
+
+<p>
+  <strong>Date start:</strong>
+  <%= @unit.date_start %>
+</p>
+
+<p>
+  <strong>Date end:</strong>
+  <%= @unit.date_end %>
+</p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @unit.note %>
+</p>
+
+<%= link_to 'Edit', edit_unit_path(@unit) %> |
+<%= link_to 'Back', units_path %>

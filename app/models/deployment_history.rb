@@ -1,0 +1,2 @@
+class DeploymentHistory < ApplicationRecord
+end

@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Incident Histories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Incident enum</th>
+      <th>Incident type</th>
+      <th>Incident category</th>
+      <th>Date od incident</th>
+      <th>Date diagnosed</th>
+      <th>Incident location address</th>
+      <th>Incident location city</th>
+      <th>State</th>
+      <th>Country</th>
+      <th>Operation</th>
+      <th>Verified personal casualty reporting</th>
+      <th>Line of duty investigation</th>
+      <th>Cause of injury</th>
+      <th>Injury description</th>
+      <th>Pending operation procedure</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @incident_histories.each do |incident_history| %>
+      <tr>
+        <td><%= incident_history.user_id %></td>
+        <td><%= incident_history.incident_enum_id %></td>
+        <td><%= incident_history.incident_type_id %></td>
+        <td><%= incident_history.incident_category_id %></td>
+        <td><%= incident_history.date_od_incident %></td>
+        <td><%= incident_history.date_diagnosed %></td>
+        <td><%= incident_history.incident_location_address %></td>
+        <td><%= incident_history.incident_location_city %></td>
+        <td><%= incident_history.state_id %></td>
+        <td><%= incident_history.country_id %></td>
+        <td><%= incident_history.operation_id %></td>
+        <td><%= incident_history.verified_personal_casualty_reporting_id %></td>
+        <td><%= incident_history.line_of_duty_investigation_id %></td>
+        <td><%= incident_history.cause_of_injury %></td>
+        <td><%= incident_history.injury_description %></td>
+        <td><%= incident_history.pending_operation_procedure %></td>
+        <td><%= link_to 'Show', incident_history %></td>
+        <td><%= link_to 'Edit', edit_incident_history_path(incident_history) %></td>
+        <td><%= link_to 'Destroy', incident_history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Incident History', new_incident_history_path %>

@@ -1,0 +1,84 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @incident_history.user_id %>
+</p>
+
+<p>
+  <strong>Incident enum:</strong>
+  <%= @incident_history.incident_enum_id %>
+</p>
+
+<p>
+  <strong>Incident type:</strong>
+  <%= @incident_history.incident_type_id %>
+</p>
+
+<p>
+  <strong>Incident category:</strong>
+  <%= @incident_history.incident_category_id %>
+</p>
+
+<p>
+  <strong>Date od incident:</strong>
+  <%= @incident_history.date_od_incident %>
+</p>
+
+<p>
+  <strong>Date diagnosed:</strong>
+  <%= @incident_history.date_diagnosed %>
+</p>
+
+<p>
+  <strong>Incident location address:</strong>
+  <%= @incident_history.incident_location_address %>
+</p>
+
+<p>
+  <strong>Incident location city:</strong>
+  <%= @incident_history.incident_location_city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @incident_history.state_id %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @incident_history.country_id %>
+</p>
+
+<p>
+  <strong>Operation:</strong>
+  <%= @incident_history.operation_id %>
+</p>
+
+<p>
+  <strong>Verified personal casualty reporting:</strong>
+  <%= @incident_history.verified_personal_casualty_reporting_id %>
+</p>
+
+<p>
+  <strong>Line of duty investigation:</strong>
+  <%= @incident_history.line_of_duty_investigation_id %>
+</p>
+
+<p>
+  <strong>Cause of injury:</strong>
+  <%= @incident_history.cause_of_injury %>
+</p>
+
+<p>
+  <strong>Injury description:</strong>
+  <%= @incident_history.injury_description %>
+</p>
+
+<p>
+  <strong>Pending operation procedure:</strong>
+  <%= @incident_history.pending_operation_procedure %>
+</p>
+
+<%= link_to 'Edit', edit_incident_history_path(@incident_history) %> |
+<%= link_to 'Back', incident_histories_path %>

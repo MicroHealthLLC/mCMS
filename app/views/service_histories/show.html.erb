@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @service_history.user_id %>
+</p>
+
+<p>
+  <strong>Rank:</strong>
+  <%= @service_history.rank_id %>
+</p>
+
+<p>
+  <strong>Service type:</strong>
+  <%= @service_history.service_type_id %>
+</p>
+
+<p>
+  <strong>Service status:</strong>
+  <%= @service_history.service_status_id %>
+</p>
+
+<p>
+  <strong>Component:</strong>
+  <%= @service_history.component_id %>
+</p>
+
+<p>
+  <strong>Discharge type:</strong>
+  <%= @service_history.discharge_type_id %>
+</p>
+
+<p>
+  <strong>Date entered:</strong>
+  <%= @service_history.date_entered %>
+</p>
+
+<p>
+  <strong>End active obliged service:</strong>
+  <%= @service_history.end_active_obliged_service %>
+</p>
+
+<p>
+  <strong>Demobilization:</strong>
+  <%= @service_history.demobilization %>
+</p>
+
+<p>
+  <strong>Separation:</strong>
+  <%= @service_history.separation %>
+</p>
+
+<p>
+  <strong>Temporary disability retirement list:</strong>
+  <%= @service_history.temporary_disability_retirement_list %>
+</p>
+
+<%= link_to 'Edit', edit_service_history_path(@service_history) %> |
+<%= link_to 'Back', service_histories_path %>

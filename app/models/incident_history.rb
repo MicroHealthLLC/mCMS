@@ -1,0 +1,2 @@
+class IncidentHistory < ApplicationRecord
+end

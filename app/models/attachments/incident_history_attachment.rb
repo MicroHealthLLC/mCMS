@@ -1,0 +1,2 @@
+class IncidentHistoryAttachment < Attachment
+end

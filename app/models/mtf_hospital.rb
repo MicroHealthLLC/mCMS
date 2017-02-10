@@ -1,0 +1,2 @@
+class MtfHospital < ApplicationRecord
+end

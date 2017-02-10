@@ -1,0 +1,1 @@
+json.partial! "deployment_histories/deployment_history", deployment_history: @deployment_history

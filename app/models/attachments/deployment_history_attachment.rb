@@ -1,0 +1,2 @@
+class DeploymentHistoryAttachment < Attachment
+end

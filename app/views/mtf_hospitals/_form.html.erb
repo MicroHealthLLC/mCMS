@@ -1,0 +1,27 @@
+<%= simple_form_for(@mtf_hospital) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :mtf_hospital %>
+    <%= f.input :user_id %>
+    <%= f.input :incident_enum_id %>
+    <%= f.input :incident_type_id %>
+    <%= f.input :incident_category_id %>
+    <%= f.input :date_od_incident %>
+    <%= f.input :date_diagnosed %>
+    <%= f.input :incident_location_address %>
+    <%= f.input :incident_location_city %>
+    <%= f.input :state_id %>
+    <%= f.input :country_id %>
+    <%= f.input :operation_id %>
+    <%= f.input :verified_personal_casualty_reporting_id %>
+    <%= f.input :line_of_duty_investigation_id %>
+    <%= f.input :cause_of_injury %>
+    <%= f.input :injury_description %>
+    <%= f.input :pending_operation_procedure %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

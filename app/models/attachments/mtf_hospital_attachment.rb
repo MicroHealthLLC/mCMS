@@ -1,0 +1,2 @@
+class MtfHospitalAttachment < Attachment
+end

@@ -1,0 +1,1 @@
+json.array! @mtf_hospitals, partial: 'mtf_hospitals/mtf_hospital', as: :mtf_hospital

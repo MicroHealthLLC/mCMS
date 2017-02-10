@@ -18,6 +18,9 @@ namespace :modules do
     modules += ['user_subscription', 'all_files']
     modules += ['client_journals', 'enrollments', 'teleconsults', 'daily_livings']
     modules += ['admissions', 'housings', 'health_care_facilities']
+    modules += ['service_histories', 'deployment_histories',
+                'units', 'awards',
+                'incident_histories', 'mtf_hospitals']
     modules.each do |em|
       EnabledModule.where(name: em).first_or_create
     end

@@ -1,0 +1,1 @@
+json.array! @deployment_histories, partial: 'deployment_histories/deployment_history', as: :deployment_history
