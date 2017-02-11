@@ -1,6 +1,13 @@
-<h1>Editing Incident History</h1>
-
-<%= render 'form', incident_history: @incident_history %>
-
-<%= link_to 'Show', @incident_history %> |
-<%= link_to 'Back', incident_histories_path %>
+<section id="widget-grid" class="show_customer_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     incident_history: @incident_history,
+                     wid_id: 'incident_history',
+                     wid_title: t('edit_incident_history')
+                 } %>
+    </article>
+  </div>
+</section>

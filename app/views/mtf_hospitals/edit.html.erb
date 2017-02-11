@@ -1,6 +1,13 @@
-<h1>Editing Mtf Hospital</h1>
-
-<%= render 'form', mtf_hospital: @mtf_hospital %>
-
-<%= link_to 'Show', @mtf_hospital %> |
-<%= link_to 'Back', mtf_hospitals_path %>
+<section id="widget-grid" class="show_customer_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     mtf_hostipal: @mtf_hostipal,
+                     wid_id: 'mtf_hostipal',
+                     wid_title: t('edit_mtf_hostipal')
+                 } %>
+    </article>
+  </div>
+</section>

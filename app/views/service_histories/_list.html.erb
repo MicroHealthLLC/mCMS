@@ -1,0 +1,41 @@
+<table class="table table-responsive" id="daily_livings_table">
+  <thead>
+  <tr>
+
+    <th>Rank</th>
+    <th>Service type</th>
+    <th>Service status</th>
+    <th>Component</th>
+    <th>Discharge type</th>
+    <th>Date entered</th>
+    <th>End active obliged service</th>
+    <th>Demobilization</th>
+    <th>Separation</th>
+    <th>Temporary disability retirement list</th>
+    <th>Permanent disability retirement list</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @service_histories.each do |service_history| %>
+      <tr>
+        <td><%= service_history.rank %></td>
+        <td><%= service_history.service_type %></td>
+        <td><%= service_history.service_status %></td>
+        <td><%= service_history.component %></td>
+        <td><%= service_history.discharge_type %></td>
+        <td><%= service_history.date_entered %></td>
+        <td><%= service_history.end_active_obliged_service %></td>
+        <td><%= service_history.demobilization %></td>
+        <td><%= service_history.separation %></td>
+        <td><%= service_history.temporary_disability_retirement_list %></td>
+        <td><%= service_history.permanent_disability_retirement_list %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<script>
+  $(document).ready(function(){
+    initDataTable('daily_livings_table')
+  })
+</script>

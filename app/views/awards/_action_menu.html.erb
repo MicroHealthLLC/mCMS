@@ -1,0 +1,9 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to( 'Delete', award_path(@award), class: 'btn btn-danger pull-right',
+               :method => :delete,
+               :data => {:confirm => t(:text_are_you_sure)}) if @award.can?(:manage_roles, :manages_awards, :delete_awards)
+  %>
+  <%= link_to( 'Edit', edit_award_path(@award), class: 'btn btn-success pull-right') if @award.can?(:manage_roles, :manages_awards, :edit_awards) %>
+  <%= link_to t('button_cancel'), awards_path, class: 'btn btn-warning pull-right' %>
+  <%#= link_to t('button_print'), award_path(@award, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+</div>

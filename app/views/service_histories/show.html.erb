@@ -1,59 +1,75 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: 'action_menu' %>
 
-<p>
-  <strong>User:</strong>
-  <%= @service_history.user_id %>
-</p>
+<div class="row">
+  <div class="col-xs-12">
+    <p>
+      <strong>Rank:</strong>
+      <%= @service_history.rank %>
+    </p>
 
-<p>
-  <strong>Rank:</strong>
-  <%= @service_history.rank_id %>
-</p>
+    <p>
+      <strong>Service type:</strong>
+      <%= @service_history.service_type %>
+    </p>
 
-<p>
-  <strong>Service type:</strong>
-  <%= @service_history.service_type_id %>
-</p>
+    <p>
+      <strong>Service status:</strong>
+      <%= @service_history.service_status %>
+    </p>
 
-<p>
-  <strong>Service status:</strong>
-  <%= @service_history.service_status_id %>
-</p>
+    <p>
+      <strong>Component:</strong>
+      <%= @service_history.component %>
+    </p>
 
-<p>
-  <strong>Component:</strong>
-  <%= @service_history.component_id %>
-</p>
+    <p>
+      <strong>Discharge type:</strong>
+      <%= @service_history.discharge_type %>
+    </p>
 
-<p>
-  <strong>Discharge type:</strong>
-  <%= @service_history.discharge_type_id %>
-</p>
+    <p>
+      <strong>Date entered:</strong>
+      <%= @service_history.date_entered %>
+    </p>
 
-<p>
-  <strong>Date entered:</strong>
-  <%= @service_history.date_entered %>
-</p>
+    <p>
+      <strong>End active obliged service:</strong>
+      <%= @service_history.end_active_obliged_service %>
+    </p>
 
-<p>
-  <strong>End active obliged service:</strong>
-  <%= @service_history.end_active_obliged_service %>
-</p>
+    <p>
+      <strong>Demobilization:</strong>
+      <%= @service_history.demobilization %>
+    </p>
 
-<p>
-  <strong>Demobilization:</strong>
-  <%= @service_history.demobilization %>
-</p>
+    <p>
+      <strong>Separation:</strong>
+      <%= @service_history.separation %>
+    </p>
 
-<p>
-  <strong>Separation:</strong>
-  <%= @service_history.separation %>
-</p>
+    <p>
+      <strong>Temporary disability retirement list:</strong>
+      <%= @service_history.temporary_disability_retirement_list %>
+    </p>
 
-<p>
-  <strong>Temporary disability retirement list:</strong>
-  <%= @service_history.temporary_disability_retirement_list %>
-</p>
+    <p>
+      <strong>Permanent disability retirement list:</strong>
+      <%= @service_history.permanent_disability_retirement_list %>
+    </p>
 
-<%= link_to 'Edit', edit_service_history_path(@service_history) %> |
-<%= link_to 'Back', service_histories_path %>
+    <p>
+      <strong>Note:</strong>
+      <%= @service_history.note.html_safe %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @service_history.service_history_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+
+
+
+  </div>
+</div>

@@ -1,17 +1,81 @@
-<%= simple_form_for(@unit) do |f| %>
-  <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :user_id %>
-    <%= f.input :unit_enum_id %>
-    <%= f.input :unit_type_id %>
-    <%= f.input :name %>
-    <%= f.input :date_start %>
-    <%= f.input :date_end %>
-    <%= f.input :note %>
-  </div>
+<fieldset>
+  <legend></legend>
+  <%= form_for(unit, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+      <% if unit.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(unit.errors.count, "error") %> prohibited this unit from being saved:</h2>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+            <ul>
+              <% unit.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <%= f.hidden_field :user_id %>
+
+      <div class="form-group">
+        <%= f.label t(:unit_enum), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :unit_enum_id, options_for_select(UnitEnum.active.pluck(:name, :id), selected: f.object.unit_enum.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:unit_type), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :unit_type_id, options_for_select(UnitType.active.pluck(:name, :id), selected: f.object.unit_type.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :installation_name, class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :installation_name_id, options_for_select(InstallationName.active.pluck(:name, :id), selected: f.object.installation_name.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :date_start , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_start , class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :date_end , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_end , class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:note) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :note , class: 'form-control ck-editor' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-12">
+          <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+        </div>
+        <%= f.simple_fields_for :unit_attachments do |attachment| %>
+            <%= render 'attachments/attachment_show', :f => attachment %>
+        <% end %>
+        <div id="attachment_fields" class="col-md-2 margin-top-10 " style="padding-right: 2px;" >
+          <%= link_to_add_association 'add file', f, :unit_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= link_to t('button_cancel'), units_path, class: 'btn btn-warning pull-right' %>
+          <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+  <% end %>
+</fieldset>
+

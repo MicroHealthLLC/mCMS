@@ -1,0 +1,9 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to( 'Delete', mtf_hospital_path(@mtf_hospital), class: 'btn btn-danger pull-right',
+               :method => :delete,
+               :data => {:confirm => t(:text_are_you_sure)}) if @mtf_hospital.can?(:manage_roles, :manages_mtf_hospitals, :delete_mtf_hospitals)
+  %>
+  <%= link_to( 'Edit', edit_mtf_hospital_path(@mtf_hospital), class: 'btn btn-success pull-right') if @mtf_hospital.can?(:manage_roles, :manages_mtf_hospitals, :edit_mtf_hospitals) %>
+  <%= link_to t('button_cancel'), mtf_hospitals_path, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_print'), mtf_hospital_path(@mtf_hospital, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+</div>

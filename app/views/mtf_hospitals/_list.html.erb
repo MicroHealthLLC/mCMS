@@ -1,0 +1,49 @@
+<table class="table table-responsive" id="mtf_hospitals_table">
+  <thead>
+  <tr>
+    <th>Mtf hospital</th>
+    <th>Incident type</th>
+    <th>Incident category</th>
+    <th>Date of incident</th>
+    <th>Date diagnosed</th>
+    <th>Incident location address</th>
+    <th>Incident location city</th>
+    <th>State</th>
+    <th>Country</th>
+    <th>Operation</th>
+    <th>Verified personnel casualty reporting</th>
+    <th>Line of duty investigation</th>
+    <th>Cause of injury</th>
+    <th>Injury description</th>
+    <th>Pending operation procedure</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @mtf_hospitals.each do |mtf_hospital| %>
+      <tr>
+        <td><%= mtf_hospital.mtf_hospital %></td>
+        <td><%= mtf_hospital.incident_type %></td>
+        <td><%= mtf_hospital.incident_category %></td>
+        <td><%= mtf_hospital.date_of_incident %></td>
+        <td><%= mtf_hospital.date_diagnosed %></td>
+        <td><%= mtf_hospital.incident_location_address %></td>
+        <td><%= mtf_hospital.incident_location_city %></td>
+        <td><%= mtf_hospital.state %></td>
+        <td><%= mtf_hospital.country %></td>
+        <td><%= mtf_hospital.operation %></td>
+        <td><%= mtf_hospital.verified_personal_casualty_reporting %></td>
+        <td><%= mtf_hospital.line_of_duty_investigation %></td>
+        <td><%= mtf_hospital.cause_of_injury %></td>
+        <td><%= mtf_hospital.injury_description %></td>
+        <td><%= mtf_hospital.pending_operation_procedure %></td>
+     </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+    initDataTable('mtf_hospitals_table')
+  })
+</script>

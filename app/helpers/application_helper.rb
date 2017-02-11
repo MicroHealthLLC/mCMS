@@ -144,7 +144,7 @@ module ApplicationHelper
     if extend_demo.faxes.present?
       output<< "<div class='col-xs-12'> <h4>Fax</h4> </div>"
       output<< extend_demo.faxes.map{|record| record.to_html }.join('')
-      end
+    end
     if extend_demo.phones.present?
       output<< "<div class='col-xs-12'> <h4>Phone</h4> </div>"
       output<< extend_demo.phones.map{|record| record.to_html }.join('')
@@ -202,7 +202,7 @@ module ApplicationHelper
   end
 
   def correct_answer?(answer, option)
-   ( answer.option_id == option.id && answer.correct? ) ? 'chosen' : ''
+    ( answer.option_id == option.id && answer.correct? ) ? 'chosen' : ''
   end
 
   def get_color_of_option( answer, option)

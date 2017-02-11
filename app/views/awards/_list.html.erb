@@ -1,0 +1,25 @@
+<table class="table table-responsive" id="awards_table">
+  <thead>
+  <tr>
+    <th>Award</th>
+    <th>Award Type</th>
+    <th>Award date</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @awards.each do |award| %>
+      <tr>
+        <td><%= link_to award.award_enum, award %></td>
+        <td><%= award.award_type %></td>
+        <td><%= award.award_date %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+    initDataTable('awards_table')
+  })
+</script>

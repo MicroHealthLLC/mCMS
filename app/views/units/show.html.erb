@@ -1,39 +1,44 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: 'action_menu' %>
 
-<p>
-  <strong>User:</strong>
-  <%= @unit.user_id %>
-</p>
+<div class="row">
+  <div class="col-xs-12">
+    <p>
+      <strong>Unit:</strong>
+      <%= @unit.unit_enum %>
+    </p>
 
-<p>
-  <strong>Unit enum:</strong>
-  <%= @unit.unit_enum_id %>
-</p>
+    <p>
+      <strong>Unit type:</strong>
+      <%= @unit.unit_type %>
+    </p>
 
-<p>
-  <strong>Unit type:</strong>
-  <%= @unit.unit_type_id %>
-</p>
+    <p>
+      <strong>Installation Name:</strong>
+      <%= @unit.installation_name %>
+    </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @unit.name %>
-</p>
+    <p>
+      <strong>Date start:</strong>
+      <%= @unit.date_start %>
+    </p>
 
-<p>
-  <strong>Date start:</strong>
-  <%= @unit.date_start %>
-</p>
+    <p>
+      <strong>Date end:</strong>
+      <%= @unit.date_end %>
+    </p>
 
-<p>
-  <strong>Date end:</strong>
-  <%= @unit.date_end %>
-</p>
+    <p>
+      <strong>Note:</strong>
+      <%= @unit.note.html_safe %>
+    </p>
 
-<p>
-  <strong>Note:</strong>
-  <%= @unit.note %>
-</p>
 
-<%= link_to 'Edit', edit_unit_path(@unit) %> |
-<%= link_to 'Back', units_path %>
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @unit.unit_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+
+  </div>
+</div>

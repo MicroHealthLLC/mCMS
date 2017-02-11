@@ -1,39 +1,13 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Units</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Unit enum</th>
-      <th>Unit type</th>
-      <th>Name</th>
-      <th>Date start</th>
-      <th>Date end</th>
-      <th>Note</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @units.each do |unit| %>
-      <tr>
-        <td><%= unit.user_id %></td>
-        <td><%= unit.unit_enum_id %></td>
-        <td><%= unit.unit_type_id %></td>
-        <td><%= unit.name %></td>
-        <td><%= unit.date_start %></td>
-        <td><%= unit.date_end %></td>
-        <td><%= unit.note %></td>
-        <td><%= link_to 'Show', unit %></td>
-        <td><%= link_to 'Edit', edit_unit_path(unit) %></td>
-        <td><%= link_to 'Destroy', unit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Unit', new_unit_path %>
+<%= link_to( t('new_unit'), new_unit_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_units, :manage_roles, :manage_units) %>
+<section id="widget-grid" class="units_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'unit',
+                     wid_title: t('units')
+                 } %>
+    </article>
+  </div>
+</section>

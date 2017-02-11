@@ -331,14 +331,18 @@ en:
   service_histories: Service Histories
   new_service_history: New Service History
   edit_service_history: Edit Service History
-  service_history_type: Service History Type
-  service_history_status: Service History Status
+  service_type: Service History Type
+  service_status: Service History Status
+  rank: Rank
+  component: Component
+  discharge_type: Discharge Type
 
   unit: Unit
   units: Units
   new_unit: New Unit
   edit_unit: Edit Unit
   unit_type: Unit Type
+  unit_enum: Unit
   unit_status: Unit Status
 
   award: Award
@@ -346,6 +350,7 @@ en:
   new_award: New Award
   edit_award: Edit Award
   award_type: Award Type
+  award_enum: Award
   award_status: Award Status
 
   deployment_history: Deployment History
@@ -368,4 +373,6 @@ en:
   edit_mtf_hospital: Edit Mtf/Hospital
   mtf_hospital_type: Mtf/Hospital Type
   mtf_hospital_status: Mtf/Hospital Status
- 
+
+  incident_type: "Incident Type"
+  incident_category: "Incident Category"

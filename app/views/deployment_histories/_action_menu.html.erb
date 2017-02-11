@@ -1,0 +1,9 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to( 'Delete', deployment_history_path(@deployment_history), class: 'btn btn-danger pull-right',
+               :method => :delete,
+               :data => {:confirm => t(:text_are_you_sure)}) if @deployment_history.can?(:manage_roles, :manages_deployment_histories, :delete_deployment_histories)
+  %>
+  <%= link_to( 'Edit', edit_deployment_history_path(@deployment_history), class: 'btn btn-success pull-right') if @deployment_history.can?(:manage_roles, :manages_deployment_histories, :edit_deployment_histories) %>
+  <%= link_to t('button_cancel'), deployment_histories_path, class: 'btn btn-warning pull-right' %>
+  <%#= link_to t('button_print'), deployment_history_path(@deployment_history, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+</div>
