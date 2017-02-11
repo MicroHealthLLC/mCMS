@@ -12,6 +12,8 @@ class CreateServiceHistories < ActiveRecord::Migration[5.0]
       t.date :demobilization
       t.date :separation
       t.date :temporary_disability_retirement_list
+      t.date :permanent_disability_retirement_list
+      t.text :note
 
       t.timestamps
     end

@@ -4,7 +4,7 @@ class CreateUnits < ActiveRecord::Migration[5.0]
       t.integer :user_id
       t.integer :unit_enum_id
       t.integer :unit_type_id
-      t.string :name
+      t.integer :installation_name_id
       t.date :date_start
       t.date :date_end
       t.text :note

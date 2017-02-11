@@ -6,7 +6,7 @@ class CreateMtfHospitals < ActiveRecord::Migration[5.0]
       t.integer :incident_enum_id
       t.integer :incident_type_id
       t.integer :incident_category_id
-      t.date :date_od_incident
+      t.date :date_of_incident
       t.date :date_diagnosed
       t.string :incident_location_address
       t.string :incident_location_city
@@ -22,7 +22,7 @@ class CreateMtfHospitals < ActiveRecord::Migration[5.0]
       t.timestamps
     end
     add_index :mtf_hospitals, :user_id
-    modules += ['service_histories', 'deployment_histories',
+    modules = ['service_histories', 'deployment_histories',
                 'units', 'awards',
                 'incident_histories', 'mtf_hospitals']
     modules.each do |em|

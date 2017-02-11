@@ -2,10 +2,10 @@ class CreateIncidentHistories < ActiveRecord::Migration[5.0]
   def change
     create_table :incident_histories do |t|
       t.integer :user_id
-      t.integer :incident_enum_id
+      t.string :incident
       t.integer :incident_type_id
       t.integer :incident_category_id
-      t.date :date_od_incident
+      t.date :date_of_incident
       t.date :date_diagnosed
       t.string :incident_location_address
       t.string :incident_location_city
