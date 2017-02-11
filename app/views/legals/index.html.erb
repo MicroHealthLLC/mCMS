@@ -1,0 +1,13 @@
+<%= link_to(t('new_legal'), new_legal_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_legals, :manage_roles, :manage_legals) %>
+<section id="widget-grid" class="legals_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                         wid_id: 'legal',
+                         wid_title: t('legals')
+                 } %>
+    </article>
+  </div>
+</section>

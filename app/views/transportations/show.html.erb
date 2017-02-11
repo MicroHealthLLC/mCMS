@@ -1,0 +1,59 @@
+
+<%= render partial: 'action_menu' %>
+
+<div class="row">
+  <div class="col-xs-12">
+
+    <p>
+      <strong>Title:</strong>
+      <%= @transportation.title %>
+    </p>
+
+    <p>
+      <strong>Transportation mean:</strong>
+      <%= @transportation.transportation_mean %>
+    </p>
+
+    <p>
+      <strong>Transportation type:</strong>
+      <%= @transportation.transportation_type %>
+    </p>
+
+    <p>
+      <strong>Transportation accessibility:</strong>
+      <%= @transportation.transportation_accessibility %>
+    </p>
+
+    <p>
+      <strong>Transportation status:</strong>
+      <%= @transportation.transportation_status %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @transportation.description.html_safe %>
+    </p>
+
+    <p>
+      <strong>Estimated monthly cost:</strong>
+      <%= @transportation.estimated_monthly_cost %>
+    </p>
+
+    <p>
+      <strong>Date start:</strong>
+      <%= @transportation.date_start %>
+    </p>
+
+    <p>
+      <strong>Date end:</strong>
+      <%= @transportation.date_end %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @transportation.transportation_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,3 @@
+class FinancialAttachment < Attachment
+
+end

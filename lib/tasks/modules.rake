@@ -18,6 +18,7 @@ namespace :modules do
     modules += ['user_subscription', 'all_files']
     modules += ['client_journals', 'enrollments', 'teleconsults', 'daily_livings']
     modules += ['admissions', 'housings', 'health_care_facilities']
+    modules += ['legals', 'transportations', 'financials']
     modules += ['service_histories', 'deployment_histories',
                 'units', 'awards',
                 'incident_histories', 'mtf_hospitals']

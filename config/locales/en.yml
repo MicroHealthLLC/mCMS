@@ -32,6 +32,8 @@ en:
   position_status: Position Status
   position_description: Position Description
   estimated_monthly_amount: Estimated Monthly Amount ($)
+  estimated_monthly_cost: Estimated Monthly Cost ($)
+  estimated_amount: Estimated Amount ($)
 
   # TeleConsult
   teleconsult: Teleconsult
@@ -326,7 +328,14 @@ en:
   housing_status: Housing Status
   cohabitation_type: Cohabitation Type
   primary_address: Primary Address
- 
+
+  legal: Legal
+  new_legal: New Legal
+  edit_legal: Edit Legal
+  legals: Legals
+  legal_history_type: Legal History Type
+  legal_history_status: Legal History Status
+
   service_history: Service History
   service_histories: Service Histories
   new_service_history: New Service History
@@ -336,6 +345,23 @@ en:
   rank: Rank
   component: Component
   discharge_type: Discharge Type
+
+  transportation: Transportation
+  new_transportation: New Transportation
+  edit_transportation: Edit Transportation
+  transportations: Transportations
+  transportation_type: Transportation Type
+  transportation_status: Transportation Status
+  transportation_mean: Transportation Mean
+  transportation_accessibility: Transportation Accessibility
+
+  financial: Financial
+  new_financial: New Financial
+  edit_financial: Edit Financial
+  financials: Financials
+  financial_type: Financial Type
+  financial_status: Financial Status
+  financial_state: Financial State
 
   unit: Unit
   units: Units
@@ -359,14 +385,14 @@ en:
   edit_deployment_history: Edit Deployment History
   deployment_history_type: Deployment History Type
   deployment_history_status: Deployment History Status
- 
+
   incident_history: Incident History
   incident_histories: Incident Histories
   new_incident_history: New Incident History
   edit_incident_history: Edit Incident History
   incident_history_type: Incident History Type
   incident_history_status: Incident History Status
- 
+
   mtf_hospital: Mtf/Hospital
   mtf_hospitals: Mtf/Hospitals
   new_mtf_hospital: New Mtf/Hospital

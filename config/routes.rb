@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :legals
+  resources :financials
+  resources :transportations
   resources :mtf_hospitals
   resources :incident_histories
   resources :deployment_histories

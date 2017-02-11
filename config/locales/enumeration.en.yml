@@ -73,6 +73,16 @@ en:
   enumeration_housing_type: Housing Type
   enumeration_housing_status: Housing Status
   enumeration_cohabitation_type: Cohabitation Type
+  enumeration_transportation_accessibility: Transportation Accessibility
+  enumeration_transportation_type: Transportation Type
+  enumeration_transportation_status: Transportation Status
+  enumeration_transportation_mean: Transportation Mean
+  enumeration_financial_type: Financial Type
+  enumeration_financial_status: Financial Status
+  enumeration_financial_state: Financial State
+  enumeration_legal_history_type: Legal History Type
+  enumeration_legal_history_status: Legal History Status
+
   enumeration_award_enum: Award
   enumeration_award_type: Award Type
   enumeration_component: Component
