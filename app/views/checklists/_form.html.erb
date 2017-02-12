@@ -41,7 +41,7 @@
       <div class="form-group">
         <%= f.label 'Checklist type', class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :checklist_type, options_for_select(ChecklistTemplate::CHECKLIST_TYPE, selected: f.object.checklist_type),{}, {class: 'form-control'} %>
+          <%= f.select :checklist_type, options_for_select(ChecklistType.active.pluck(:name, :id), selected: f.object.checklist_type.try(:id)),{}, {class: 'form-control'} %>
         </div>
       </div>
 

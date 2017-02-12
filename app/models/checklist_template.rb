@@ -1,6 +1,7 @@
 class ChecklistTemplate < ApplicationRecord
   belongs_to :user
   belongs_to :checklist_status_type, optional: true
+  belongs_to :checklist_type, optional: true
 
   has_many :checklists, dependent: :destroy
   has_many :checklist_users, dependent: :destroy
@@ -15,13 +16,19 @@ class ChecklistTemplate < ApplicationRecord
 
   validates_presence_of :title
 
-  CHECKLIST_TYPE = ['', 'Task']
-
   def checklist_status_type
     if checklist_status_type_id
       super
     else
       ChecklistStatusType.default
+    end
+  end
+
+  def checklist_type
+    if checklist_type_id
+      super
+    else
+      ChecklistType.default
     end
   end
 

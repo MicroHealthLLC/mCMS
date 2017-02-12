@@ -1,6 +1,33 @@
 <h2> <%= t :enumerations_label %></h2>
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <%= form_tag  upload_enumerations_path, method: :post,  class: 'form_submit form-horizontal',  :multipart => true  do %>
+        <%= file_field_tag :file, multiple: false, require: true %>
+        <% options = Enumeration.get_subclasses.sort{|a,b| a.to_s <=> b.to_s }.map{|e| [e.to_s.gsub(/(?<=[a-z])(?=[A-Z])/, ' '), e.to_s]} %>
+        <%= select_tag :type, options_for_select(options)  %>
+        <%= submit_tag :import, class: 'btn btn-primary pull-right', id: 'import_spreadsheet_submit' %>
+        <script>
+          $(document).ready(function(){
+            $('#import_spreadsheet_submit').on('click',function(e){
+              e.preventDefault();
+              if($('#file').val()=="")
+                alert("Please select a file");
+              else
+              {
+                file_name = $('#file').val();
+                if(/(\.|\/)(xls|csv|xlsx)$/i.test(file_name))
+                  $('.form_submit').submit();
+                else
+                  alert("File not recognized");
+              }
+            })
+          })
+        </script>
+    <% end %>
+  </div>
+</div>
 <div id="accordion">
-  <% Enumeration.get_subclasses.each do |klass| %>
+  <% Enumeration.get_subclasses.sort{|a,b| a.to_s <=> b.to_s }.each do |klass| %>
       <div>
         <h3><%= t(klass::OptionName) %></h3>
         <div class="padding-10">

@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :appointment_procedures
   resources :appointment_dispositions
   resources :client_journals
+
   resources :groups do
     member do
       post :add_member
@@ -246,7 +247,11 @@ Rails.application.routes.draw do
     get 'home/index', as: 'home'
   end
 
-  resources :enumerations
+  resources :enumerations do
+    collection do
+      post 'upload'
+    end
+  end
   resources :roles
   resources :settings, only: [:index, :create] do
     collection do

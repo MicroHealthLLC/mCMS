@@ -58,6 +58,18 @@ class EnumerationsController < ApplicationController
     @enumerations = @enumeration.class.where(nil).to_a - [@enumeration]
   end
 
+  def upload
+    enum = Enumeration.get_subclasses.detect{|e| e.to_s == params[:type]}
+    if enum
+      sseu = SpreadsheetEnumerationUpload.new(params[:file])
+      sseu.upload_enumeration(enum)
+      flash[:notice] = 'Upload done'
+    else
+      flash[:error] = 'Type not foundd'
+    end
+    redirect_to :back
+  end
+
   private
 
   def build_new_enumeration

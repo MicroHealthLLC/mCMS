@@ -92,6 +92,7 @@ gem "paranoia", "~> 2.2.0.pre"
 gem "figaro"
 gem 'prawn-rails'
 gem "survey", github: 'dierbro/survey'
+gem 'roo'
 
 # For exception detection
 gem 'rollbar'
