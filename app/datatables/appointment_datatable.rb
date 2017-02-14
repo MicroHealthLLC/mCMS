@@ -59,7 +59,7 @@ class AppointmentDatatable < AjaxDatatablesRails::Base
             @view.link_to( appointment.title, @view.appointment_path(appointment) ),
             appointment.appointment_type.to_s,
             appointment.appointment_status.to_s,
-            appointment.date
+            appointment.start_time_to_time
         ]
       end
     else
@@ -68,7 +68,7 @@ class AppointmentDatatable < AjaxDatatablesRails::Base
             @view.link_to( appointment.title, @view.appointment_path(appointment) ),
             appointment.appointment_type.to_s,
             appointment.appointment_status.to_s,
-            appointment.date
+            appointment.start_time_to_time
         ]
       end
     end

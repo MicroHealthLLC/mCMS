@@ -44,15 +44,15 @@
         </div>
       </div>
       <div class="form-group">
-        <%= f.label t('label_date'), class: 'col-md-2 control-label' %>
+        <%= f.label t('date_start'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.text_field :date, class: 'form-control datepicker' %>
+          <%= f.text_field :date, value: f.object.start_time_to_time, class: 'form-control datetimepicker' %>
         </div>
       </div>
       <div class="form-group">
-        <%= f.label t('label_time'), class: 'col-md-2 control-label' %>
+        <%= f.label t('date_end'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.text_field :time, class: 'form-control clockpicker' %>
+          <%= f.text_field :end_time,  value: f.object.end_time_to_time, class: 'form-control datetimepicker' %>
         </div>
       </div>
       <div class="form-group">

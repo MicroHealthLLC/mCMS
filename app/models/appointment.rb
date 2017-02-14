@@ -13,7 +13,7 @@ class Appointment < ApplicationRecord
   accepts_nested_attributes_for :appointment_attachments, reject_if: :all_blank, allow_destroy: true
 
 
-  validates_presence_of :date, :time, :title, :description, :with_who_id, :with_who_type
+  validates_presence_of :date, :title, :description, :with_who_id, :with_who_type
 
   # attr_accessor :with_who
 
@@ -57,7 +57,15 @@ class Appointment < ApplicationRecord
   end
 
   def date_time
-    "#{date} #{time}".strip
+    date.to_s
+  end
+
+  def start_time_to_time
+    date.strftime(I18n.t('time.formats.default')) if date
+  end
+
+  def end_time_to_time
+    end_time.strftime(I18n.t('time.formats.default')) if end_time
   end
 
   def with_who
@@ -76,7 +84,7 @@ class Appointment < ApplicationRecord
 
   def self.safe_attributes
     [:title, :description, :time, :with_who_id, :with_who_type,
-     :appointment_type_id, :appointment_status_id,
+     :appointment_type_id, :appointment_status_id, :end_time,
      :user_id, :date, :related_to_id, appointment_attachments_attributes: [Attachment.safe_attributes]]
   end
 

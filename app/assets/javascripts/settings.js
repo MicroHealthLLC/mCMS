@@ -113,6 +113,9 @@ var named_function = function(){
         theme: "bootstrap"
     });
     $('.clockpicker').clockpicker({autoclose:true});
+    $('.datetimepicker').datetimepicker({
+        locale: 'fr'
+    });
 
     handle_menu('admin');
     handle_menu('case');
