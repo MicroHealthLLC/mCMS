@@ -1,12 +1,3 @@
-// Place all the styles related to the sticky controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-.wrapper {
-  width: 92%;
-  margin: 20px auto;
-  min-width: 960px;
-  max-width: 1260px; }
-
 header {
   width: 97%;
   float: left;
@@ -79,20 +70,18 @@ article {
   border-bottom-left-radius: 10px;
   display: none; }
 
-.todo-inner nav span.delete, .todo-inner nav span.move {
+.todo-inner nav i.delete, .todo-inner nav i.move {
   position: absolute;
-  text-indent: -9999px;
+  /*text-indent: -9999px;*/
   width: 16px;
   height: 16px; }
 
-.todo-inner nav span.delete {
-  background: url('../images/delete.png') no-repeat;
+.todo-inner nav i.delete {
   right: 8px;
   top: 6px;
   cursor: pointer; }
 
-.todo-inner nav span.move {
-  background: url('../images/move.png') no-repeat;
+.todo-inner nav i.move {
   right: 30px;
   top: 6px;
   cursor: move; }
@@ -122,21 +111,19 @@ article ul li span.content {
 
 article ul li span.content:focus, article ul li span.content:hover, article h3:hover, article h3:focus { background: #EBF599; }
 
-article ul li span.delete, article ul li span.move {
+article ul li i.delete, article ul li i.move {
   position: absolute;
-  text-indent: -9999px;
+  /*text-indent: -9999px;*/
   width: 16px;
   height: 16px;
   display: none; }
 
-article ul li span.delete {
-  background: url('../images/delete.png') no-repeat;
+article ul li i.delete {
   right: 0;
   top: 6px;
   cursor: pointer; }
 
-article ul li span.move {
-  background: url('../images/move.png') no-repeat;
+article ul li i.move {
   right: 24px;
   top: 5px;
   cursor: move; }
