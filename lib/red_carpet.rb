@@ -342,6 +342,10 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_wikis, {:wikis => [:index, :show, :new, :show, :create, :edit, :update, :history, :compare, :add_attachment, :destroy]},  :read => true
   end
 
+  map.project_module :sticky do |map|
+    map.permission :manage_sticky, {:sticky => [:index, :save]},  :read => true
+  end
+
   map.project_module :needs do |map|
     map.permission :view_needs, {:needs => [:index]},  :read => true
     map.permission :show_needs, {:needs => [:show]},  :read => true
@@ -426,6 +430,7 @@ RedCarpet::AccessControl.map do |map|
         :plans => [:link_goal, :add_goal,:links, :add_action, :index, :show, :new, :create, :edit, :update, :destroy],
         :goals => [:link_need, :add_need, :links, :add_plan, :index, :show, :new, :create, :edit, :update, :destroy],
         :checklist_cases => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :sticky => [:index, :save],
         :wikis => [:new, :index, :show, :create, :edit, :update, :history, :compare, :add_attachment, :destroy]
 
     },  :read => true

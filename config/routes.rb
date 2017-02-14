@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :sticky, only: [:index] do
+    collection do
+      get 'save'
+    end
+  end
+
   resources :legals
   resources :financials
   resources :transportations
