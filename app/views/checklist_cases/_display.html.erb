@@ -17,38 +17,40 @@
         <% end %>
         <%= f.hidden_field :user_id %>
 
-        <div>
-          <p>
-            <strong>Case:</strong>
-            <%= link_to_case @checklist_case.case  %>
-          </p>
-          <p>
-            <strong>Title:</strong>
-            <%=  @checklist.title %>
-          </p>
+        <div class="row">
+          <div class="col-xs-12">
+            <p>
+              <strong>Case:</strong>
+              <%= link_to_case @checklist_case.case  %>
+            </p>
+            <p>
+              <strong>Title:</strong>
+              <%=  @checklist.title %>
+            </p>
 
-          <p>
-            <strong>Description:</strong>
-            <%=  @checklist.description.html_safe %>
-          </p>
-          <p>
-            <strong>Type:</strong>
-            <%=  @checklist.checklist_type %>
-          </p>
-          <p>
-            <strong>Checklist status:</strong>
-            <%= f.select :checklist_status_type_id, options_for_select(ChecklistStatusType.active.pluck(:name, :id).insert(0, ['']), selected: @checklist_case.checklist_status_type.try(:id)), {},{ class: 'form-control'} %>
-          </p>
-        </div>
+            <p>
+              <strong>Description:</strong>
+              <%=  @checklist.description.html_safe %>
+            </p>
+            <p>
+              <strong>Type:</strong>
+              <%=  @checklist.checklist_type %>
+            </p>
+            <p>
+              <strong>Checklist status:</strong>
+              <%= f.select :checklist_status_type_id, options_for_select(ChecklistStatusType.active.pluck(:name, :id).insert(0, ['']), selected: @checklist_case.checklist_status_type.try(:id)), {},{ class: 'form-control'} %>
+            </p>
+          </div>
 
-        <div id='checklists' >
-          <% f.object.checklists.each_with_index do |checklist, index| %>
-              <%= render 'checklist_case_fill_fields', :checklist => checklist,
-                         index: index,
-                         checklist_case: @checklist_case,
-                         checklist_template_id: f.object.id
-              %>
-          <% end %>
+          <div id='checklists' class="col-xs-12">
+            <% f.object.checklists.each_with_index do |checklist, index| %>
+                <%= render 'checklist_case_fill_fields', :checklist => checklist,
+                           index: index,
+                           checklist_case: @checklist_case,
+                           checklist_template_id: f.object.id
+                %>
+            <% end %>
+          </div>
         </div>
 
         <div class="form-group margin-top-10" >
