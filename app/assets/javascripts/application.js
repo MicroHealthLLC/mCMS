@@ -30,7 +30,6 @@
 //= require plugin/select2/select2.min.js
 //= require clockpicker.js
 //= require moment
-//= require moment/fr
 //= require bootstrap-datetimepicker
 //= require toastr
 //= require cable

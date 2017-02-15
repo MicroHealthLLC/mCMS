@@ -114,7 +114,7 @@ var named_function = function(){
     });
     $('.clockpicker').clockpicker({autoclose:true});
     $('.datetimepicker').datetimepicker({
-        locale: 'fr'
+        format: 'DD/MM/YYYY LT'
     });
 
     handle_menu('admin');
