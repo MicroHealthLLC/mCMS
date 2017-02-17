@@ -1,6 +1,6 @@
 production:
   adapter: mysql2
-  database: mcms_dev
+  database: mcms_production
   host: localhost
   username: root
   password: admin
