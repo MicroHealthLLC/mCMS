@@ -1,34 +1,43 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: 'action_menu' %>
+<div class="row">
+  <div class="col-xs12">
 
-<p>
-  <strong>Surgical type:</strong>
-  <%= @surgical.surgical_type_id %>
-</p>
+    <p>
+      <strong>Icdcm code:</strong>
+      <%= @surgical.icdcm_code %>
+    </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @surgical.user_id %>
-</p>
+    <p>
+      <strong>Medical facility:</strong>
+      <%= @surgical.medical_facility %>
+    </p>
 
-<p>
-  <strong>Medical facility:</strong>
-  <%= @surgical.medical_facility %>
-</p>
+    <p>
+      <strong>Surgery status:</strong>
+      <%= @surgical.surgery_status %>
+    </p>
 
-<p>
-  <strong>Surgey status:</strong>
-  <%= @surgical.surgery_status_id %>
-</p>
+    <p>
+      <strong>Surgery type:</strong>
+      <%= @surgical.surgery_type %>
+    </p>
 
-<p>
-  <strong>Surgey type:</strong>
-  <%= @surgical.surgery_type_id %>
-</p>
+    <p>
+      <strong>surgery date:</strong>
+      <%= @surgical.surgery_date %>
+    </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @surgical.description %>
-</p>
+    <p>
+      <strong>Description:</strong>
+      <%= @surgical.description.html_safe %>
+    </p>
 
-<%= link_to 'Edit', edit_surgical_path(@surgical) %> |
-<%= link_to 'Back', surgicals_path %>
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @surgical.surgical_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+    
+  </div>
+</div>

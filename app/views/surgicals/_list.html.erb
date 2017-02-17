@@ -1,0 +1,28 @@
+<table class="table table-responsive" id="surgical_table">
+  <thead>
+  <tr>
+    <th><%= t('icdcm_code') %></th>
+    <th>Medical Facility</th>
+    <th>Surgery Status</th>
+    <th>Surgery Type</th>
+    <th>Surgical Date</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @surgicals.each do |surgical| %>
+      <tr>
+        <td><%= link_to surgical.icdcm_code, surgical %></td>
+       <td><%= surgical.medical_facility %></td>
+        <td><%= surgical.surgery_status %></td>
+        <td><%= surgical.surgery_type %></td>
+        <td><%= surgical.surgery_date %></td>
+       </tr>
+  <% end %>
+  </tbody>
+</table>
+<script>
+  $(document).ready(function(){
+    initDataTable('surgical_table')
+  })
+</script>

@@ -1,5 +1,14 @@
-<h1>New Surgical</h1>
 
-<%= render 'form', surgical: @surgical %>
-
-<%= link_to 'Back', surgicals_path %>
+<section id="widget-grid" class="show_customer_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     surgical: @surgical,
+                     wid_id: 'surgical',
+                     wid_title: t('new_surgical')
+                 } %>
+    </article>
+  </div>
+</section>

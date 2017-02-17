@@ -1,0 +1,9 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to('Delete',  surgical_path(@surgical), class: 'btn btn-danger pull-right' ,
+              :method => :delete,
+              :data => {:confirm => t(:text_are_you_sure)}) if @surgical.can?(:delete_surgicals, :manage_surgicals, :manage_roles)
+  %>
+ <%= link_to 'Edit', edit_surgical_path(@surgical), class: 'btn btn-success pull-right' if @surgical.can?(:edit_surgicals, :manage_surgicals, :manage_roles) %>
+  <%= link_to t('button_cancel'), surgicals_path, class: 'btn btn-warning pull-right' %>
+  <%#= link_to t('button_print'), surgical_path(@surgical, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+</div>

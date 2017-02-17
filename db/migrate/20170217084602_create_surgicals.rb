@@ -1,7 +1,7 @@
 class CreateSurgicals < ActiveRecord::Migration[5.0]
   def change
     create_table :surgicals do |t|
-      t.integer :surgical_type_id
+      t.integer :icdcm_code_id
       t.integer :user_id
       t.string :medical_facility
       t.date :surgery_date

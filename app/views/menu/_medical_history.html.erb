@@ -17,6 +17,11 @@
               <a href="/problem_lists" title="<%= t(:problem_lists) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:problem_lists) %></span></a>
             </li>
         <% end %>
+       <% if module_enabled?( 'surgicals') && can?(:manage_roles, :view_surgicals, :manage_surgicals)%>
+            <li class="<%= menu_active?('surgicals') %>">
+              <a href="/surgicals" title="<%= t(:surgicals) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:surgicals) %></span></a>
+            </li>
+        <% end %>
       </ul>
     </li>
 <% end %>
