@@ -371,12 +371,12 @@ en:
   surgery_type: Surgery Type
   surgery_status: Surgery Status
 
-  medical: Medical
-  new_medical: New Medical
-  edit_medical: Edit Medical
-  medicals: Medicals
-  medical_history_type: Medical Type
-  medical_history_status: Medical Status
+  medical: Medical History
+  new_medical: New Medical History
+  edit_medical: Edit Medical History
+  medicals: Medical histories
+  medical_history_type: Medical History Type
+  medical_history_status: Medical History Status
 
   behavioral_risk: Behavioral Risk
   new_behavioral_risk: New Behavioral Risk
