@@ -83,6 +83,11 @@ en:
   enumeration_legal_history_type: Legal History Type
   enumeration_legal_history_status: Legal History Status
 
+  enumeration_surgery_type: Surgery Type
+  enumeration_surgery_status: Surgery Status
+  enumeration_problem_type: Problem Type
+  enumeration_problem_status: Problem Status
+
   enumeration_award_enum: Award
   enumeration_award_type: Award Type
   enumeration_component: Component
