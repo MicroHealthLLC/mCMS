@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :idcdata, only: [:index]
   resources :behavioral_risks
   resources :other_histories
   resources :environment_risks
