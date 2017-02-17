@@ -1,0 +1,9 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to( 'Delete', environment_risk_path(@environment_risk), class: 'btn btn-danger pull-right',
+               :method => :delete,
+               :data => {:confirm => t(:text_are_you_sure)}) if @environment_risk.can?(:manage_roles, :manages_environment_risks, :delete_environment_risks)
+  %>
+  <%= link_to( 'Edit', edit_environment_risk_path(@environment_risk), class: 'btn btn-success pull-right') if @environment_risk.can?(:manage_roles, :manages_environment_risks, :edit_environment_risks) %>
+  <%= link_to t('button_cancel'), environment_risks_path, class: 'btn btn-warning pull-right' %>
+  <%#= link_to t('button_print'), environment_risk_path(@environment_risk, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+</div>

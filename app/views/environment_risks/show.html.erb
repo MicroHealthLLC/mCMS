@@ -1,39 +1,42 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: 'action_menu' %>
 
-<p>
-  <strong>User:</strong>
-  <%= @environment_risk.user_id %>
-</p>
+<div class="row">
+  <div class="col-xs-12">
+    <p>
+      <strong>Icdcm code:</strong>
+      <%= @environment_risk.icdcm_code %>
+    </p>
 
-<p>
-  <strong>Icdcm code:</strong>
-  <%= @environment_risk.icdcm_code_id %>
-</p>
+    <p>
+      <strong>Date started:</strong>
+      <%= @environment_risk.date_started %>
+    </p>
 
-<p>
-  <strong>Date started:</strong>
-  <%= @environment_risk.date_started %>
-</p>
+    <p>
+      <strong>Date ended:</strong>
+      <%= @environment_risk.date_ended %>
+    </p>
 
-<p>
-  <strong>Date ended:</strong>
-  <%= @environment_risk.date_ended %>
-</p>
+    <p>
+      <strong>Environment status:</strong>
+      <%= @environment_risk.environment_status %>
+    </p>
 
-<p>
-  <strong>Environment status:</strong>
-  <%= @environment_risk.environment_status_id %>
-</p>
+    <p>
+      <strong>Environment type:</strong>
+      <%= @environment_risk.environment_type %>
+    </p>
 
-<p>
-  <strong>Environment type:</strong>
-  <%= @environment_risk.environment_type_id %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @environment_risk.description %>
-</p>
-
-<%= link_to 'Edit', edit_environment_risk_path(@environment_risk) %> |
-<%= link_to 'Back', environment_risks_path %>
+    <p>
+      <strong>Description:</strong>
+      <%= @environment_risk.description.html_safe %>
+    </p>
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @environment_risk.environment_risk_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+    
+  </div>
+</div>

@@ -1,6 +1,13 @@
-<h1>Editing Environment Risk</h1>
-
-<%= render 'form', environment_risk: @environment_risk %>
-
-<%= link_to 'Show', @environment_risk %> |
-<%= link_to 'Back', environment_risks_path %>
+<section id="widget-grid" class="show_customer_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     environment_risk: @environment_risk,
+                     wid_id: 'environment_risk',
+                     wid_title: t('edit_environment_risk')
+                 } %>
+    </article>
+  </div>
+</section>

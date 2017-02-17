@@ -1,17 +1,89 @@
-<%= simple_form_for(@environment_risk) do |f| %>
-  <%= f.error_notification %>
+<fieldset>
+  <legend></legend>
+  <%= form_for(environment_risk, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+      <% if environment_risk.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(environment_risk.errors.count, "error") %> prohibited this problem list from being saved:</h2>
 
-  <div class="form-inputs">
-    <%= f.input :user_id %>
-    <%= f.input :icdcm_code_id %>
-    <%= f.input :date_started %>
-    <%= f.input :date_ended %>
-    <%= f.input :environment_status_id %>
-    <%= f.input :environment_type_id %>
-    <%= f.input :description %>
-  </div>
+            <ul>
+              <% environment_risk.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+      <%= f.hidden_field :user_id %>
+
+      <div class="form-group">
+        <%= f.label t(:icdcm_code), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= text_field_tag :icdcm_code, f.object.icdcm_code,  class: 'form-control' %>
+          <%= f.hidden_field :icdcm_code_id %>
+          <script>
+            $(document).ready(function(){
+              $('#icdcm_code').autocomplete({
+                source: "/idcdata.json?from=z00",
+                minLength: 2,
+                select: function( event, ui ) {
+                  $('#environment_risk_icdcm_code_id').val(ui.item.id)
+                }
+              })
+            })
+          </script>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :date_started , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_started, class: 'form-control date_picker' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :date_ended , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_ended, class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:environment_risk_type), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :environment_type_id, options_for_select(EnvironmentType.active.pluck(:name, :id), selected: f.object.environment_type.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:environment_risk_status), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :environment_status_id, options_for_select(EnvironmentStatus.active.pluck(:name, :id), selected: f.object.environment_status.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+    <div class="form-group">
+      <%= f.label t(:description) , class: 'col-md-2 control-label' %>
+      <div class="col-md-9">
+        <%= f.text_area :description , class: 'form-control ck-editor' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-12">
+        <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+      </div>
+      <%= f.simple_fields_for :environment_risk_attachments do |attachment| %>
+          <%= render 'attachments/attachment_show', :f => attachment %>
+      <% end %>
+      <div id="attachment_fields" class="col-md-2 margin-top-10 " style="padding-right: 2px;" >
+        <%= link_to_add_association 'add file', f, :environment_risk_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+      </div>
+    </div>
+
+    <div class="form-group" >
+      <div class="col-md-11">
+        <%= link_to t('button_cancel'), environment_risks_path, class: 'btn btn-warning pull-right' %>
+        <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
+      </div>
+    </div>
 <% end %>
+</fieldset>

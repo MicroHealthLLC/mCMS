@@ -374,14 +374,14 @@ en:
   medical: Medical History
   new_medical: New Medical History
   edit_medical: Edit Medical History
-  medicals: Medical histories
+  medicals: Medical history
   medical_history_type: Medical History Type
   medical_history_status: Medical History Status
 
   socioeconomic: Socioeconomic History
   new_socioeconomic: New Socioeconomic History
   edit_socioeconomic: Edit Socioeconomic History
-  socioeconomics: Socioeconomic histories
+  socioeconomics: Socioeconomic history
   socioeconomic_history_type: Socioeconomic History Type
   socioeconomic_history_status: Socioeconomic History Status
   socioeconomic_type: Socioeconomic History Type
@@ -393,6 +393,13 @@ en:
   behavioral_risks: Behavioral Risks
   behavioral_risk_type: Behavioral Risk Type
   behavioral_risk_status: Behavioral Risk Status
+
+  environment_risk: Environment Risk
+  new_environment_risk: New Environment Risk
+  edit_environment_risk: Edit Environment Risk
+  environment_risks: Environment Risks
+  environment_risk_type: Environment Risk Type
+  environment_risk_status: Environment Risk Status
 
   problem_list: Problem List
   new_problem_list: New Problem List

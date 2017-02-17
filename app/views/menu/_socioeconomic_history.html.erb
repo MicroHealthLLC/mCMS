@@ -7,9 +7,14 @@
               <a href="/daily_livings" title="<%= t(:daily_livings) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:daily_livings) %></span></a>
             </li>
         <% end %>
-          <% if module_enabled?( 'socioeconomics')  && can?(:manage_roles, :view_socioeconomics, :manage_socioeconomics) %>
+        <% if module_enabled?( 'socioeconomics')  && can?(:manage_roles, :view_socioeconomics, :manage_socioeconomics) %>
             <li class="<%= menu_active?('socioeconomics') %>">
               <a href="/socioeconomics" title="<%= t(:socioeconomics) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:socioeconomics) %></span></a>
+            </li>
+        <% end %>
+         <% if module_enabled?( 'environment_risks')  && can?(:manage_roles, :view_environment_risks, :manage_environment_risks) %>
+            <li class="<%= menu_active?('environment_risks') %>">
+              <a href="/environment_risks" title="<%= t(:environment_risks) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:environment_risks) %></span></a>
             </li>
         <% end %>
         <% if module_enabled?( 'housings') && can?(:manage_roles, :view_housings, :manage_housings)%>

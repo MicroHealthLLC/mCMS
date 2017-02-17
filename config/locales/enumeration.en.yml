@@ -94,6 +94,8 @@ en:
   enumeration_medical_history_status: Medical History Status
   enumeration_behavioral_risk_type: Behavioral Risk Type
   enumeration_behavioral_risk_status: Behavioral Risk Status
+  enumeration_environment_type: Behavioral Risk Type
+  enumeration_environment_status: Behavioral Risk Status
 
   enumeration_award_enum: Award
   enumeration_award_type: Award Type
