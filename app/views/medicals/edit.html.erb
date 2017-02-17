@@ -1,6 +1,13 @@
-<h1>Editing Medical</h1>
-
-<%= render 'form', medical: @medical %>
-
-<%= link_to 'Show', @medical %> |
-<%= link_to 'Back', medicals_path %>
+<section id="widget-grid" class="show_customer_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     medical: @medical,
+                     wid_id: 'medical',
+                     wid_title: t('edit_medical')
+                 } %>
+    </article>
+  </div>
+</section>

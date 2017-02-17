@@ -22,6 +22,11 @@
               <a href="/surgicals" title="<%= t(:surgicals) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:surgicals) %></span></a>
             </li>
         <% end %>
+        <% if module_enabled?( 'medicals') && can?(:manage_roles, :view_medicals, :manage_medicals)%>
+            <li class="<%= menu_active?('medicals') %>">
+              <a href="/medicals" title="<%= t(:medicals) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:medicals) %></span></a>
+            </li>
+        <% end %>
       </ul>
     </li>
 <% end %>

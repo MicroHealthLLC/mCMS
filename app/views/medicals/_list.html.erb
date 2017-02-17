@@ -1,0 +1,29 @@
+<table class="table table-responsive" id="medicals_table">
+  <thead>
+  <tr>
+    <th>Icdcm code</th>
+    <th>Medical facility</th>
+    <th>Date of diagnosis</th>
+    <th>Medical history status</th>
+    <th>Medical history type</th>
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @medicals.each do |medical| %>
+      <tr>
+        <td><%= link_to medical.icdcm_code, medical %></td>
+        <td><%= medical.medical_facility %></td>
+        <td><%= medical.date_of_diagnosis %></td>
+        <td><%= medical.medical_history_status %></td>
+        <td><%= medical.medical_history_type %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<script>
+  $(document).ready(function(){
+    initDataTable('medicals_table')
+  })
+</script>

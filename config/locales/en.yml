@@ -371,6 +371,13 @@ en:
   surgery_type: Surgery Type
   surgery_status: Surgery Status
 
+  medical: Medical
+  new_medical: New Medical
+  edit_medical: Edit Medical
+  medicals: Medicals
+  medical_history_type: Medical Type
+  medical_history_status: Medical Status
+
   problem_list: Problem List
   new_problem_list: New Problem List
   edit_problem_list: Edit Problem List

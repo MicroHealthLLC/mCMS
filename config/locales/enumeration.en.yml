@@ -88,6 +88,9 @@ en:
   enumeration_problem_type: Problem Type
   enumeration_problem_status: Problem Status
 
+  enumeration_medical_history_type: Medical History Type
+  enumeration_medical_history_status: Medical History Status
+
   enumeration_award_enum: Award
   enumeration_award_type: Award Type
   enumeration_component: Component
