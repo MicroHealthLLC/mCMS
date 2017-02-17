@@ -1,0 +1,30 @@
+<table class="table table-responsive" id="behavioral_risk_table">
+  <thead>
+  <tr>
+
+    <th>Icdcm code</th>
+    <th>Date started</th>
+    <th>Date ended</th>
+    <th>Behavioral risk status</th>
+    <th>Behavioral risk type</th>
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @behavioral_risks.each do |behavioral_risk| %>
+      <tr>
+        <td><%= behavioral_risk.icdcm_code %></td>
+        <td><%= behavioral_risk.date_started %></td>
+        <td><%= behavioral_risk.date_ended %></td>
+        <td><%= behavioral_risk.behavioral_risk_status %></td>
+        <td><%= behavioral_risk.behavioral_risk_type %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<script>
+  $(document).ready(function(){
+    initDataTable('behavioral_risk_table')
+  })
+</script>

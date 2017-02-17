@@ -378,6 +378,13 @@ en:
   medical_history_type: Medical Type
   medical_history_status: Medical Status
 
+  behavioral_risk: Behavioral Risk
+  new_behavioral_risk: New Behavioral Risk
+  edit_behavioral_risk: Edit Behavioral Risk
+  behavioral_risks: Behavioral Risks
+  behavioral_risk_type: Behavioral Risk Type
+  behavioral_risk_status: Behavioral Risk Status
+
   problem_list: Problem List
   new_problem_list: New Problem List
   edit_problem_list: Edit Problem List

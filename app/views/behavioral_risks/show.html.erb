@@ -1,39 +1,43 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: 'action_menu' %>
 
-<p>
-  <strong>User:</strong>
-  <%= @behavioral_risk.user_id %>
-</p>
+<div class="row">
+  <div class="col-xs-12">
+    <p>
+      <strong>Icdcm code:</strong>
+      <%= @behavioral_risk.icdcm_code %>
+    </p>
 
-<p>
-  <strong>Icdcm code:</strong>
-  <%= @behavioral_risk.icdcm_code_id %>
-</p>
+    <p>
+      <strong>Date started:</strong>
+      <%= @behavioral_risk.date_started %>
+    </p>
 
-<p>
-  <strong>Date started:</strong>
-  <%= @behavioral_risk.date_started %>
-</p>
+    <p>
+      <strong>Date ended:</strong>
+      <%= @behavioral_risk.date_ended %>
+    </p>
 
-<p>
-  <strong>Date ended:</strong>
-  <%= @behavioral_risk.date_ended %>
-</p>
+    <p>
+      <strong>Behavioral risk status:</strong>
+      <%= @behavioral_risk.behavioral_risk_status %>
+    </p>
 
-<p>
-  <strong>Behavioral risk status:</strong>
-  <%= @behavioral_risk.behavioral_risk_status_id %>
-</p>
+    <p>
+      <strong>Behavioral risk type:</strong>
+      <%= @behavioral_risk.behavioral_risk_type %>
+    </p>
 
-<p>
-  <strong>Behavioral risk type:</strong>
-  <%= @behavioral_risk.behavioral_risk_type_id %>
-</p>
+    <p>
+      <strong>Description:</strong>
+      <%= @behavioral_risk.description.html_safe %>
+    </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @behavioral_risk.description %>
-</p>
-
-<%= link_to 'Edit', edit_behavioral_risk_path(@behavioral_risk) %> |
-<%= link_to 'Back', behavioral_risks_path %>
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @behavioral_risk.behavioral_risk_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+    
+  </div>
+</div>
