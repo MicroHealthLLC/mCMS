@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
+  resources :behavioral_risks
   resources :other_histories
   resources :environment_risks
   resources :socioeconomics
   resources :immunizations
   resources :family_histories
-  resources :behaviol_risks
   resources :medicals
   resources :surgicals
   resources :allergies
