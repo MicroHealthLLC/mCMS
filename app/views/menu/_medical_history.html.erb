@@ -27,6 +27,11 @@
               <a href="/medicals" title="<%= t(:medicals) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:medicals) %></span></a>
             </li>
         <% end %>
+        <% if module_enabled?( 'behavioral_risks') && can?(:manage_roles, :view_behavioral_risks, :manage_behavioral_risks)%>
+            <li class="<%= menu_active?('behavioral_risks') %>">
+              <a href="/behavioral_risks" title="<%= t(:behavioral_risks) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:behavioral_risks) %></span></a>
+            </li>
+        <% end %>
       </ul>
     </li>
 <% end %>

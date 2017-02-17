@@ -1,6 +1,6 @@
 <% if !User.current.allowed_to?(:manage_roles) %>
     <li>
-      <a href="#" id="ul_profile"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Profile</span></a>
+      <a href="#" id="ul_profile"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Occupational History</span></a>
       <ul id="profile_menu">
         <li class="<%= menu_active?('devise/registrations') %>">
           <a href= "/users/edit" title="<%= t('profile.profile') %>"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent"><%= t('profile.profile') %></span></a>
