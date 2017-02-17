@@ -1,0 +1,3 @@
+class FamilyHistoryAttachment < Attachment
+
+end

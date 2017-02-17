@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Medicals</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Icdcm code</th>
+      <th>Medical facility</th>
+      <th>Date of diagnosis</th>
+      <th>Medical history status</th>
+      <th>Medical history type</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @medicals.each do |medical| %>
+      <tr>
+        <td><%= medical.user_id %></td>
+        <td><%= medical.icdcm_code_id %></td>
+        <td><%= medical.medical_facility %></td>
+        <td><%= medical.date_of_diagnosis %></td>
+        <td><%= medical.medical_history_status_id %></td>
+        <td><%= medical.medical_history_type_id %></td>
+        <td><%= medical.description %></td>
+        <td><%= link_to 'Show', medical %></td>
+        <td><%= link_to 'Edit', edit_medical_path(medical) %></td>
+        <td><%= link_to 'Destroy', medical, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Medical', new_medical_path %>

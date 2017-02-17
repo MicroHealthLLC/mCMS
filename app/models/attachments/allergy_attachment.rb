@@ -1,0 +1,3 @@
+class AllergyAttachment < Attachment
+
+end

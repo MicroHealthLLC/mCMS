@@ -1,0 +1,2 @@
+json.extract! environment_risk, :id, :user_id, :icdcm_code_id, :date_started, :date_ended, :environment_status_id, :environment_type_id, :description, :created_at, :updated_at
+json.url environment_risk_url(environment_risk, format: :json)

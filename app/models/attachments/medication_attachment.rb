@@ -1,0 +1,3 @@
+class MedicationAttachment < Attachment
+
+end

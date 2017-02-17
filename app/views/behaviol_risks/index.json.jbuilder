@@ -1,0 +1,1 @@
+json.array! @behaviol_risks, partial: 'behaviol_risks/behaviol_risk', as: :behaviol_risk

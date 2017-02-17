@@ -1,0 +1,1 @@
+json.array! @surgicals, partial: 'surgicals/surgical', as: :surgical

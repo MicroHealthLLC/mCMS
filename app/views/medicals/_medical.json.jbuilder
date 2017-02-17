@@ -1,0 +1,2 @@
+json.extract! medical, :id, :user_id, :icdcm_code_id, :medical_facility, :date_of_diagnosis, :medical_history_status_id, :medical_history_type_id, :description, :created_at, :updated_at
+json.url medical_url(medical, format: :json)

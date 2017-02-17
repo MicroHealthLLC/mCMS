@@ -1,0 +1,2 @@
+class EnvironmentRisk < ApplicationRecord
+end

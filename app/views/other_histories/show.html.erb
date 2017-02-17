@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @other_history.user_id %>
+</p>
+
+<p>
+  <strong>Icdcm code:</strong>
+  <%= @other_history.icdcm_code_id %>
+</p>
+
+<p>
+  <strong>Date identified:</strong>
+  <%= @other_history.date_identified %>
+</p>
+
+<p>
+  <strong>Date resolved:</strong>
+  <%= @other_history.date_resolved %>
+</p>
+
+<p>
+  <strong>Other history status:</strong>
+  <%= @other_history.other_history_status_id %>
+</p>
+
+<p>
+  <strong>Other history type:</strong>
+  <%= @other_history.other_history_type_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @other_history.description %>
+</p>
+
+<%= link_to 'Edit', edit_other_history_path(@other_history) %> |
+<%= link_to 'Back', other_histories_path %>

@@ -1,0 +1,1 @@
+json.partial! "problem_lists/problem_list", problem_list: @problem_list

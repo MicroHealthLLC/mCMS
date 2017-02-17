@@ -1,0 +1,2 @@
+json.extract! immunization, :id, :user_id, :medication, :total_number_of_doses, :doses_given, :next_date_due, :date_immunized, :manufacturer, :lot_number, :expiration_date, :immnunization_status_id, :description, :created_at, :updated_at
+json.url immunization_url(immunization, format: :json)

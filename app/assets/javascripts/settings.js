@@ -112,7 +112,7 @@ var named_function = function(){
     $( "select" ).select2({
         theme: "bootstrap"
     });
-    $('.clockpicker').clockpicker({autoclose:true});
+    $('.clockpicker').datetimepicker({format: 'LT'});
     $('.datetimepicker').datetimepicker({
         format: 'DD/MM/YYYY LT'
     });

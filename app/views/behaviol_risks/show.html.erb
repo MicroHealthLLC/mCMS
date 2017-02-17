@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @behaviol_risk.user_id %>
+</p>
+
+<p>
+  <strong>Icdcm code:</strong>
+  <%= @behaviol_risk.icdcm_code_id %>
+</p>
+
+<p>
+  <strong>Date started:</strong>
+  <%= @behaviol_risk.date_started %>
+</p>
+
+<p>
+  <strong>Date ended:</strong>
+  <%= @behaviol_risk.date_ended %>
+</p>
+
+<p>
+  <strong>Behavioral risk status:</strong>
+  <%= @behaviol_risk.behavioral_risk_status_id %>
+</p>
+
+<p>
+  <strong>Behavioral risk type:</strong>
+  <%= @behaviol_risk.behavioral_risk_type_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @behaviol_risk.description %>
+</p>
+
+<%= link_to 'Edit', edit_behaviol_risk_path(@behaviol_risk) %> |
+<%= link_to 'Back', behaviol_risks_path %>

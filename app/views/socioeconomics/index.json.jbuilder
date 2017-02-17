@@ -1,0 +1,1 @@
+json.array! @socioeconomics, partial: 'socioeconomics/socioeconomic', as: :socioeconomic

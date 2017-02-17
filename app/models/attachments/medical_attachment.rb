@@ -1,0 +1,3 @@
+class MedicalAttachment < Attachment
+
+end

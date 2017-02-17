@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  resources :other_histories
+  resources :environment_risks
+  resources :socioeconomics
+  resources :immunizations
+  resources :family_histories
+  resources :behaviol_risks
+  resources :medicals
+  resources :surgicals
+  resources :allergies
+  resources :medications
+  resources :problem_lists
   resources :sticky, only: [:index] do
     collection do
       get 'save'

@@ -1,0 +1,20 @@
+<%= simple_form_for(@medication) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :user_id %>
+    <%= f.input :medication %>
+    <%= f.input :dose %>
+    <%= f.input :description %>
+    <%= f.input :date_prescripted %>
+    <%= f.input :date_expired %>
+    <%= f.input :total_refills %>
+    <%= f.input :refills_left %>
+    <%= f.input :medication_status_id %>
+    <%= f.input :medication_description %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

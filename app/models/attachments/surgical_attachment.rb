@@ -1,0 +1,3 @@
+class SurgicalAttachment < Attachment
+
+end

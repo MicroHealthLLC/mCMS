@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Other Histories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Icdcm code</th>
+      <th>Date identified</th>
+      <th>Date resolved</th>
+      <th>Other history status</th>
+      <th>Other history type</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @other_histories.each do |other_history| %>
+      <tr>
+        <td><%= other_history.user_id %></td>
+        <td><%= other_history.icdcm_code_id %></td>
+        <td><%= other_history.date_identified %></td>
+        <td><%= other_history.date_resolved %></td>
+        <td><%= other_history.other_history_status_id %></td>
+        <td><%= other_history.other_history_type_id %></td>
+        <td><%= other_history.description %></td>
+        <td><%= link_to 'Show', other_history %></td>
+        <td><%= link_to 'Edit', edit_other_history_path(other_history) %></td>
+        <td><%= link_to 'Destroy', other_history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Other History', new_other_history_path %>

@@ -1,0 +1,3 @@
+class EnvironmentRiskAttachment < Attachment
+
+end

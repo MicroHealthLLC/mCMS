@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Surgical type:</strong>
+  <%= @surgical.surgical_type_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @surgical.user_id %>
+</p>
+
+<p>
+  <strong>Medical facility:</strong>
+  <%= @surgical.medical_facility %>
+</p>
+
+<p>
+  <strong>Surgey status:</strong>
+  <%= @surgical.surgey_status_id %>
+</p>
+
+<p>
+  <strong>Surgey type:</strong>
+  <%= @surgical.surgey_type_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @surgical.description %>
+</p>
+
+<%= link_to 'Edit', edit_surgical_path(@surgical) %> |
+<%= link_to 'Back', surgicals_path %>

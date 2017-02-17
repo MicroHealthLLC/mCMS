@@ -88,6 +88,9 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     bluecloth (2.2.0)
+    bootstrap3-datetimepicker-rails (4.17.43)
+      momentjs-rails (>= 2.8.1)
+    breadcrumbs_on_rails (3.0.1)
     builder (3.2.2)
     bullet (5.4.2)
       activesupport (>= 3.0.0)
@@ -201,6 +204,8 @@ GEM
     mini_magick (4.5.1)
     mini_portile2 (2.1.0)
     minitest (5.9.1)
+    momentjs-rails (2.17.1)
+      railties (>= 3.1)
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -314,6 +319,9 @@ GEM
     rinku (2.0.2)
     rollbar (2.14.0)
       multi_json
+    roo (2.7.1)
+      nokogiri (~> 1)
+      rubyzip (~> 1.1, < 2.0.0)
     rsolr (1.1.2)
       builder (>= 2.1.2)
     rspec (3.5.0)
@@ -337,6 +345,7 @@ GEM
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
+    rubyzip (1.2.1)
     sanitize (4.4.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.4.4)
@@ -445,6 +454,8 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bluecloth
+  bootstrap3-datetimepicker-rails (~> 4.17.43)
+  breadcrumbs_on_rails
   bullet
   byebug
   carrierwave
@@ -465,6 +476,7 @@ DEPENDENCIES
   letter_opener
   listen (~> 3.0.5)
   mini_magick
+  momentjs-rails (>= 2.9.0)
   mysql2 (~> 0.3.11)
   omniauth-facebook
   omniauth-github
@@ -481,6 +493,7 @@ DEPENDENCIES
   redis (~> 3.2)
   request_store
   rollbar
+  roo
   rspec
   rspec-rails
   sass-rails (~> 5.0)

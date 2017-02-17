@@ -1,0 +1,3 @@
+class ProblemListAttachment < Attachment
+
+end

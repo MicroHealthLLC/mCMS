@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @environment_risk.user_id %>
+</p>
+
+<p>
+  <strong>Icdcm code:</strong>
+  <%= @environment_risk.icdcm_code_id %>
+</p>
+
+<p>
+  <strong>Date started:</strong>
+  <%= @environment_risk.date_started %>
+</p>
+
+<p>
+  <strong>Date ended:</strong>
+  <%= @environment_risk.date_ended %>
+</p>
+
+<p>
+  <strong>Environment status:</strong>
+  <%= @environment_risk.environment_status_id %>
+</p>
+
+<p>
+  <strong>Environment type:</strong>
+  <%= @environment_risk.environment_type_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @environment_risk.description %>
+</p>
+
+<%= link_to 'Edit', edit_environment_risk_path(@environment_risk) %> |
+<%= link_to 'Back', environment_risks_path %>

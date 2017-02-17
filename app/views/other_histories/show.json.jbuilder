@@ -1,0 +1,1 @@
+json.partial! "other_histories/other_history", other_history: @other_history

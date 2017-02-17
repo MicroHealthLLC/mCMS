@@ -1,0 +1,1 @@
+json.partial! "environment_risks/environment_risk", environment_risk: @environment_risk

@@ -1,0 +1,2 @@
+json.extract! family_history, :id, :user_id, :icdcm_code_id, :date_identified, :family_status_id, :family_type_id, :description, :created_at, :updated_at
+json.url family_history_url(family_history, format: :json)

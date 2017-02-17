@@ -1,0 +1,1 @@
+json.array! @problem_lists, partial: 'problem_lists/problem_list', as: :problem_list

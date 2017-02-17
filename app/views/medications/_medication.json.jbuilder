@@ -1,0 +1,2 @@
+json.extract! medication, :id, :user_id, :medication, :dose, :description, :date_prescripted, :date_expired, :total_refills, :refills_left, :medication_status_id, :medication_description, :created_at, :updated_at
+json.url medication_url(medication, format: :json)

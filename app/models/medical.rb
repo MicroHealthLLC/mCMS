@@ -1,0 +1,2 @@
+class Medical < ApplicationRecord
+end

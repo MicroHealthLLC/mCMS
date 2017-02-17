@@ -1,0 +1,1 @@
+json.partial! "socioeconomics/socioeconomic", socioeconomic: @socioeconomic

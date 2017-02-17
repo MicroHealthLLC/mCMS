@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Socioeconomics</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Icdcm code</th>
+      <th>Date identified</th>
+      <th>Date resolved</th>
+      <th>Socioeconomic status</th>
+      <th>Socioeconomic type</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @socioeconomics.each do |socioeconomic| %>
+      <tr>
+        <td><%= socioeconomic.user_id %></td>
+        <td><%= socioeconomic.icdcm_code_id %></td>
+        <td><%= socioeconomic.date_identified %></td>
+        <td><%= socioeconomic.date_resolved %></td>
+        <td><%= socioeconomic.socioeconomic_status_id %></td>
+        <td><%= socioeconomic.socioeconomic_type_id %></td>
+        <td><%= socioeconomic.description %></td>
+        <td><%= link_to 'Show', socioeconomic %></td>
+        <td><%= link_to 'Edit', edit_socioeconomic_path(socioeconomic) %></td>
+        <td><%= link_to 'Destroy', socioeconomic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Socioeconomic', new_socioeconomic_path %>

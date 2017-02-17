@@ -6,16 +6,17 @@
 
 # Ignore bundler config.
 /.bundle
-
+/.idea/*
+/config/database.yml
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
-
+/public/uploads
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-
+/test
 # Ignore Byebug command history file.
 .byebug_history

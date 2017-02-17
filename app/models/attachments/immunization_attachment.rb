@@ -1,0 +1,3 @@
+class ImmunizationAttachment < Attachment
+
+end

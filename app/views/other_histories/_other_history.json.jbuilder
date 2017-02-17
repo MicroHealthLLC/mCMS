@@ -1,0 +1,2 @@
+json.extract! other_history, :id, :user_id, :icdcm_code_id, :date_identified, :date_resolved, :other_history_status_id, :other_history_type_id, :description, :created_at, :updated_at
+json.url other_history_url(other_history, format: :json)

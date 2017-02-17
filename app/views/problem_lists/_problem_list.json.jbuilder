@@ -1,0 +1,2 @@
+json.extract! problem_list, :id, :icdcm_code_id, :user_id, :date_onset, :date_resolved, :problem_status_id, :problem_type_id, :description, :created_at, :updated_at
+json.url problem_list_url(problem_list, format: :json)

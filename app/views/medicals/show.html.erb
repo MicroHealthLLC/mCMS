@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @medical.user_id %>
+</p>
+
+<p>
+  <strong>Icdcm code:</strong>
+  <%= @medical.icdcm_code_id %>
+</p>
+
+<p>
+  <strong>Medical facility:</strong>
+  <%= @medical.medical_facility %>
+</p>
+
+<p>
+  <strong>Date of diagnosis:</strong>
+  <%= @medical.date_of_diagnosis %>
+</p>
+
+<p>
+  <strong>Medical history status:</strong>
+  <%= @medical.medical_history_status_id %>
+</p>
+
+<p>
+  <strong>Medical history type:</strong>
+  <%= @medical.medical_history_type_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @medical.description %>
+</p>
+
+<%= link_to 'Edit', edit_medical_path(@medical) %> |
+<%= link_to 'Back', medicals_path %>

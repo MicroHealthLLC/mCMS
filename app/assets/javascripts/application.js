@@ -28,7 +28,6 @@
 
 //= require ckeditor-jquery
 //= require plugin/select2/select2.min.js
-//= require clockpicker.js
 //= require moment
 //= require bootstrap-datetimepicker
 //= require toastr

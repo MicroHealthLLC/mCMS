@@ -1,0 +1,1 @@
+json.array! @environment_risks, partial: 'environment_risks/environment_risk', as: :environment_risk

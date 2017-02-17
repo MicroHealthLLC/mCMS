@@ -1,0 +1,3 @@
+class SocioeconomicAttachment < Attachment
+
+end

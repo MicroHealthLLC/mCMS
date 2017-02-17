@@ -1,0 +1,21 @@
+<%= simple_form_for(@immunization) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :user_id %>
+    <%= f.input :medication %>
+    <%= f.input :total_number_of_doses %>
+    <%= f.input :doses_given %>
+    <%= f.input :next_date_due %>
+    <%= f.input :date_immunized %>
+    <%= f.input :manufacturer %>
+    <%= f.input :lot_number %>
+    <%= f.input :expiration_date %>
+    <%= f.input :immnunization_status_id %>
+    <%= f.input :description %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

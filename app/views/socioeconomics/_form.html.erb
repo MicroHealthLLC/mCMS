@@ -1,0 +1,17 @@
+<%= simple_form_for(@socioeconomic) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :user_id %>
+    <%= f.input :icdcm_code_id %>
+    <%= f.input :date_identified %>
+    <%= f.input :date_resolved %>
+    <%= f.input :socioeconomic_status_id %>
+    <%= f.input :socioeconomic_type_id %>
+    <%= f.input :description %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

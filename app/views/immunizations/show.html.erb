@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @immunization.user_id %>
+</p>
+
+<p>
+  <strong>Medication:</strong>
+  <%= @immunization.medication %>
+</p>
+
+<p>
+  <strong>Total number of doses:</strong>
+  <%= @immunization.total_number_of_doses %>
+</p>
+
+<p>
+  <strong>Doses given:</strong>
+  <%= @immunization.doses_given %>
+</p>
+
+<p>
+  <strong>Next date due:</strong>
+  <%= @immunization.next_date_due %>
+</p>
+
+<p>
+  <strong>Date immunized:</strong>
+  <%= @immunization.date_immunized %>
+</p>
+
+<p>
+  <strong>Manufacturer:</strong>
+  <%= @immunization.manufacturer %>
+</p>
+
+<p>
+  <strong>Lot number:</strong>
+  <%= @immunization.lot_number %>
+</p>
+
+<p>
+  <strong>Expiration date:</strong>
+  <%= @immunization.expiration_date %>
+</p>
+
+<p>
+  <strong>Immnunization status:</strong>
+  <%= @immunization.immnunization_status_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @immunization.description %>
+</p>
+
+<%= link_to 'Edit', edit_immunization_path(@immunization) %> |
+<%= link_to 'Back', immunizations_path %>

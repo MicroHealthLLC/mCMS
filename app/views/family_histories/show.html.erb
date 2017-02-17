@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @family_history.user_id %>
+</p>
+
+<p>
+  <strong>Icdcm code:</strong>
+  <%= @family_history.icdcm_code_id %>
+</p>
+
+<p>
+  <strong>Date identified:</strong>
+  <%= @family_history.date_identified %>
+</p>
+
+<p>
+  <strong>Family status:</strong>
+  <%= @family_history.family_status_id %>
+</p>
+
+<p>
+  <strong>Family type:</strong>
+  <%= @family_history.family_type_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @family_history.description %>
+</p>
+
+<%= link_to 'Edit', edit_family_history_path(@family_history) %> |
+<%= link_to 'Back', family_histories_path %>

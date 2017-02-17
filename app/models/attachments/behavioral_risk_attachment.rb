@@ -1,0 +1,3 @@
+class BehavioralRiskAttachment < Attachment
+
+end

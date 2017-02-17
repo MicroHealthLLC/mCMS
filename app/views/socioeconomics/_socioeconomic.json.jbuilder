@@ -1,0 +1,2 @@
+json.extract! socioeconomic, :id, :user_id, :icdcm_code_id, :date_identified, :date_resolved, :socioeconomic_status_id, :socioeconomic_type_id, :description, :created_at, :updated_at
+json.url socioeconomic_url(socioeconomic, format: :json)

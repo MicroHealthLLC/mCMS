@@ -1,0 +1,2 @@
+module EnvironmentRisksHelper
+end

@@ -1,0 +1,2 @@
+class Socioeconomic < ApplicationRecord
+end

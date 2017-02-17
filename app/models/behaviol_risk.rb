@@ -1,0 +1,2 @@
+class BehaviolRisk < ApplicationRecord
+end
