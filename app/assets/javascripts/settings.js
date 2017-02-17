@@ -23,6 +23,7 @@ function eraseAllCookies()
     eraseCookie('profile_menu');
     eraseCookie('case_menu');
     eraseCookie('medial_history_menu');
+    eraseCookie('occupation_history_menu');
     eraseCookie('socio_history_menu');
     eraseCookie('military_history_menu');
 }
@@ -121,6 +122,7 @@ var named_function = function(){
     handle_menu('case');
     handle_menu('profile');
     handle_menu('medical_history');
+    handle_menu('occupation_history');
     handle_menu('military_history');
     handle_menu('socio_history');
 

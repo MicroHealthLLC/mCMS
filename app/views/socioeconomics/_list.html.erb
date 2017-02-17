@@ -15,7 +15,7 @@
   <% @socioeconomics.each do |socioeconomic| %>
       <tr>
         <td><%= link_to socioeconomic.icdcm_code, socioeconomic %></td>
-        <td><%= socioeconomic.dateentified %></td>
+        <td><%= socioeconomic.date_identified %></td>
         <td><%= socioeconomic.date_resolved %></td>
         <td><%= socioeconomic.socioeconomic_status %></td>
         <td><%= socioeconomic.socioeconomic_type %></td>
