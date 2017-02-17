@@ -1,0 +1,28 @@
+<table class="table table-responsive" id="problem_list_table">
+  <thead>
+  <tr>
+    <th>Icdcm code</th>
+    <th>Date onset</th>
+    <th>Date resolved</th>
+    <th>Problem status</th>
+    <th>Problem type</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @problem_lists.each do |problem_list| %>
+      <tr>
+        <td><%= link_to problem_list.icdcm_code, problem_list %></td>
+        <td><%= problem_list.date_onset %></td>
+        <td><%= problem_list.date_resolved %></td>
+        <td><%= problem_list.problem_status %></td>
+        <td><%= problem_list.problem_type %></td>
+         </tr>
+  <% end %>
+  </tbody>
+</table>
+<script>
+  $(document).ready(function(){
+    initDataTable('problem_list_table')
+  })
+</script>

@@ -13,4 +13,8 @@ class Icd10datum < ApplicationRecord
   def childs
     Icd10datum.where(name: self.childrens.split('/'))
   end
+
+  def to_s
+    "(#{name}) #{description}"
+  end
 end

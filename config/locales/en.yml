@@ -364,6 +364,14 @@ en:
   financial_status: Financial Status
   financial_state: Financial State
 
+  problem_list: Problem List
+  new_problem_list: New Problem List
+  edit_problem_list: Edit Problem List
+  problem_lists: Problem Lists
+  problem_type: Problem Type
+  problem_status: Problem Status
+  icdcm_code: ICD-10-CM Code
+
   unit: Unit
   units: Units
   new_unit: New Unit

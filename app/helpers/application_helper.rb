@@ -124,6 +124,10 @@ module ApplicationHelper
     User
   end
 
+  def format_date_time(datetime)
+    datetime.strftime(I18n.t('time.formats.default')) if datetime
+  end
+
   def resource
     @resource ||= User.new
   end

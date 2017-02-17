@@ -1,39 +1,15 @@
-<p id="notice"><%= notice %></p>
+<%= link_to(t('new_problem_list'), new_problem_list_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_problem_lists, :manage_problem_lists, :manage_roles) %>
+<section id="widget-grid" class="problem_lists_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     problem_lists: @problem_lists,
+                     wid_id: 'problem_lists',
+                     wid_title: t('problem_lists')
+                 } %>
+    </article>
+  </div>
+</section>
 
-<h1>Problem Lists</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Icdcm code</th>
-      <th>User</th>
-      <th>Date onset</th>
-      <th>Date resolved</th>
-      <th>Problem status</th>
-      <th>Problem type</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @problem_lists.each do |problem_list| %>
-      <tr>
-        <td><%= problem_list.icdcm_code_id %></td>
-        <td><%= problem_list.user_id %></td>
-        <td><%= problem_list.date_onset %></td>
-        <td><%= problem_list.date_resolved %></td>
-        <td><%= problem_list.problem_status_id %></td>
-        <td><%= problem_list.problem_type_id %></td>
-        <td><%= problem_list.description %></td>
-        <td><%= link_to 'Show', problem_list %></td>
-        <td><%= link_to 'Edit', edit_problem_list_path(problem_list) %></td>
-        <td><%= link_to 'Destroy', problem_list, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Problem List', new_problem_list_path %>

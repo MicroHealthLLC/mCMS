@@ -1,17 +1,90 @@
-<%= simple_form_for(@problem_list) do |f| %>
-  <%= f.error_notification %>
+<fieldset>
+  <legend></legend>
+  <%= form_for(problem_list, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+      <% if problem_list.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(problem_list.errors.count, "error") %> prohibited this problem list from being saved:</h2>
 
-  <div class="form-inputs">
-    <%= f.input :icdcm_code_id %>
-    <%= f.input :user_id %>
-    <%= f.input :date_onset %>
-    <%= f.input :date_resolved %>
-    <%= f.input :problem_status_id %>
-    <%= f.input :problem_type_id %>
-    <%= f.input :description %>
-  </div>
+            <ul>
+              <% problem_list.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+      <%= f.hidden_field :user_id %>
+      <div class="form-group">
+        <%= f.label t(:icdcm_code), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= text_field_tag :icdcm_code, f.object.icdcm_code,  class: 'form-control' %>
+          <%= f.hidden_field :icdcm_code_id %>
+          <script>
+            $(document).ready(function(){
+              $('#icdcm_code').autocomplete({
+                source: "/idcdata",
+                minLength: 2,
+                select: function( event, ui ) {
+                   $('#problem_list_icdcm_code_id').val(ui.item.id)
+                }
+              })
+            })
+          </script>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.label :date_onset , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_onset, value: format_date_time(f.object.date_onset), class: 'form-control datetimepicker' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :date_resolved , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_resolved, value: format_date_time(f.object.date_resolved) ,class: 'form-control datetimepicker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:problem_type), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :problem_type_id, options_for_select(ProblemType.active.pluck(:name, :id), selected: f.object.problem_type.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:problem_status), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :problem_status_id, options_for_select(ProblemStatus.active.pluck(:name, :id), selected: f.object.problem_status.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:description) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :description , class: 'form-control ck-editor' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-12">
+          <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+        </div>
+        <%= f.simple_fields_for :problem_list_attachments do |attachment| %>
+            <%= render 'attachments/attachment_show', :f => attachment %>
+        <% end %>
+        <div id="attachment_fields" class="col-md-2 margin-top-10 " style="padding-right: 2px;" >
+          <%= link_to_add_association 'add file', f, :problem_list_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= link_to t('button_cancel'), problem_lists_path, class: 'btn btn-warning pull-right' %>
+          <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+  <% end %>
+</fieldset>

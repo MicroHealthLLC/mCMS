@@ -27,7 +27,7 @@ class ProblemList < ApplicationRecord
 
 
   def to_s
-    icdcm_code.name
+    icdcm_code
   end
 
   def self.safe_attributes

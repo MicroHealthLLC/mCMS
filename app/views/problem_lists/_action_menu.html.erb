@@ -1,0 +1,9 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to('Delete',  problem_list_path(@problem_list), class: 'btn btn-danger pull-right' ,
+              :method => :delete,
+              :data => {:confirm => t(:text_are_you_sure)}) if @problem_list.can?(:delete_problem_lists, :manage_problem_lists, :manage_roles)
+  %>
+ <%= link_to 'Edit', edit_problem_list_path(@problem_list), class: 'btn btn-success pull-right' if @problem_list.can?(:edit_problem_lists, :manage_problem_lists, :manage_roles) %>
+  <%= link_to t('button_cancel'), problem_lists_path, class: 'btn btn-warning pull-right' %>
+  <%#= link_to t('button_print'), problem_list_path(@problem_list, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+</div>

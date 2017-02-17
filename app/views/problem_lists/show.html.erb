@@ -1,39 +1,42 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: 'action_menu' %>
+<div class="row">
+  <div class="col-xs12">
+    <p>
+      <strong>Icdcm code:</strong>
+      <%= @problem_list.icdcm_code %>
+    </p>
 
-<p>
-  <strong>Icdcm code:</strong>
-  <%= @problem_list.icdcm_code_id %>
-</p>
+    <p>
+      <strong>Date onset:</strong>
+      <%= @problem_list.date_onset %>
+    </p>
 
-<p>
-  <strong>User:</strong>
-  <%= @problem_list.user_id %>
-</p>
+    <p>
+      <strong>Date resolved:</strong>
+      <%= @problem_list.date_resolved %>
+    </p>
 
-<p>
-  <strong>Date onset:</strong>
-  <%= @problem_list.date_onset %>
-</p>
+    <p>
+      <strong>Problem status:</strong>
+      <%= @problem_list.problem_status %>
+    </p>
 
-<p>
-  <strong>Date resolved:</strong>
-  <%= @problem_list.date_resolved %>
-</p>
+    <p>
+      <strong>Problem type:</strong>
+      <%= @problem_list.problem_type %>
+    </p>
 
-<p>
-  <strong>Problem status:</strong>
-  <%= @problem_list.problem_status_id %>
-</p>
+    <p>
+      <strong>Description:</strong>
+      <%= @problem_list.description.html_safe %>
+    </p>
 
-<p>
-  <strong>Problem type:</strong>
-  <%= @problem_list.problem_type_id %>
-</p>
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @problem_list.problem_list_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @problem_list.description %>
-</p>
-
-<%= link_to 'Edit', edit_problem_list_path(@problem_list) %> |
-<%= link_to 'Back', problem_lists_path %>
+  </div>
+</div>
