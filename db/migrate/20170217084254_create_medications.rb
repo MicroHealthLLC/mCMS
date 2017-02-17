@@ -5,7 +5,7 @@ class CreateMedications < ActiveRecord::Migration[5.0]
       t.string :medication
       t.string :dose
       t.text :description
-      t.date :date_prescripted
+      t.date :date_prescribed
       t.date :date_expired
       t.integer :total_refills
       t.integer :refills_left

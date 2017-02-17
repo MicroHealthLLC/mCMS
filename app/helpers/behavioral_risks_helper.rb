@@ -1,0 +1,2 @@
+module BehavioralRisksHelper
+end

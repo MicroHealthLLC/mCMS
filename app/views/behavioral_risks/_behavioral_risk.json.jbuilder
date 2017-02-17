@@ -1,0 +1,2 @@
+json.extract! behavioral_risk, :id, :user_id, :icdcm_code_id, :date_started, :date_ended, :behavioral_risk_status_id, :behavioral_risk_type_id, :description, :created_at, :updated_at
+json.url behavioral_risk_url(behavioral_risk, format: :json)

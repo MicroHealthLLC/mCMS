@@ -1,0 +1,1 @@
+json.partial! "behavioral_risks/behavioral_risk", behavioral_risk: @behavioral_risk

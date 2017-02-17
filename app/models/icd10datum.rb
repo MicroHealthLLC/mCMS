@@ -6,7 +6,7 @@ class Icd10datum < ApplicationRecord
   scope :between, -> (from, to) { where('(name >= :from AND name <= :to) OR (name LIKE :range_to)',
                                         from: from, to: to, range_to: "#{to}%") }
   before_create do
-    d = Icd10datum.where('childrens LIKE ?', "%#{self.name}%").first
+    d = Icd10datum.where('childrens LIKE ?', "%#{self.name}%").last
     self.parent_id = d.id if d
   end
 

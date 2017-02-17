@@ -4,8 +4,9 @@ class CreateSurgicals < ActiveRecord::Migration[5.0]
       t.integer :surgical_type_id
       t.integer :user_id
       t.string :medical_facility
-      t.integer :surgey_status_id
-      t.integer :surgey_type_id
+      t.date :surgery_date
+      t.integer :surgery_status_id
+      t.integer :surgery_type_id
       t.text :description
 
       t.timestamps

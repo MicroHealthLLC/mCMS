@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Behavioral Risks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Icdcm code</th>
+      <th>Date started</th>
+      <th>Date ended</th>
+      <th>Behavioral risk status</th>
+      <th>Behavioral risk type</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @behavioral_risks.each do |behavioral_risk| %>
+      <tr>
+        <td><%= behavioral_risk.user_id %></td>
+        <td><%= behavioral_risk.icdcm_code_id %></td>
+        <td><%= behavioral_risk.date_started %></td>
+        <td><%= behavioral_risk.date_ended %></td>
+        <td><%= behavioral_risk.behavioral_risk_status_id %></td>
+        <td><%= behavioral_risk.behavioral_risk_type_id %></td>
+        <td><%= behavioral_risk.description %></td>
+        <td><%= link_to 'Show', behavioral_risk %></td>
+        <td><%= link_to 'Edit', edit_behavioral_risk_path(behavioral_risk) %></td>
+        <td><%= link_to 'Destroy', behavioral_risk, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Behavioral Risk', new_behavioral_risk_path %>
