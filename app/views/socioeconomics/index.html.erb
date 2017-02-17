@@ -1,39 +1,15 @@
-<p id="notice"><%= notice %></p>
+<%= link_to(t('new_socioeconomic'), new_socioeconomic_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_socioeconomics, :manage_socioeconomics, :manage_roles) %>
+<section id="widget-grid" class="socioeconomics_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     socioeconomics: @socioeconomics,
+                     wid_id: 'socioeconomics',
+                     wid_title: t('socioeconomics')
+                 } %>
+    </article>
+  </div>
+</section>
 
-<h1>Socioeconomics</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Icdcm code</th>
-      <th>Date identified</th>
-      <th>Date resolved</th>
-      <th>Socioeconomic status</th>
-      <th>Socioeconomic type</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @socioeconomics.each do |socioeconomic| %>
-      <tr>
-        <td><%= socioeconomic.user_id %></td>
-        <td><%= socioeconomic.icdcm_code_id %></td>
-        <td><%= socioeconomic.date_identified %></td>
-        <td><%= socioeconomic.date_resolved %></td>
-        <td><%= socioeconomic.socioeconomic_status_id %></td>
-        <td><%= socioeconomic.socioeconomic_type_id %></td>
-        <td><%= socioeconomic.description %></td>
-        <td><%= link_to 'Show', socioeconomic %></td>
-        <td><%= link_to 'Edit', edit_socioeconomic_path(socioeconomic) %></td>
-        <td><%= link_to 'Destroy', socioeconomic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Socioeconomic', new_socioeconomic_path %>

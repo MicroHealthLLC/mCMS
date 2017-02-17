@@ -1,39 +1,42 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: 'action_menu' %>
+<div class="row">
+  <div class="col-xs12">
 
-<p>
-  <strong>User:</strong>
-  <%= @socioeconomic.user_id %>
-</p>
+    <p>
+      <strong>Icdcm code:</strong>
+      <%= @socioeconomic.icdcm_code %>
+    </p>
 
-<p>
-  <strong>Icdcm code:</strong>
-  <%= @socioeconomic.icdcm_code_id %>
-</p>
+    <p>
+      <strong>Date identified:</strong>
+      <%= @socioeconomic.date_identified %>
+    </p>
 
-<p>
-  <strong>Date identified:</strong>
-  <%= @socioeconomic.date_identified %>
-</p>
+    <p>
+      <strong>Date resolved:</strong>
+      <%= @socioeconomic.date_resolved %>
+    </p>
 
-<p>
-  <strong>Date resolved:</strong>
-  <%= @socioeconomic.date_resolved %>
-</p>
+    <p>
+      <strong>Socioeconomic status:</strong>
+      <%= @socioeconomic.socioeconomic_status %>
+    </p>
 
-<p>
-  <strong>Socioeconomic status:</strong>
-  <%= @socioeconomic.socioeconomic_status_id %>
-</p>
+    <p>
+      <strong>Socioeconomic type:</strong>
+      <%= @socioeconomic.socioeconomic_type %>
+    </p>
 
-<p>
-  <strong>Socioeconomic type:</strong>
-  <%= @socioeconomic.socioeconomic_type_id %>
-</p>
+    <p>
+      <strong>Description:</strong>
+      <%= @socioeconomic.description.html_safe %>
+    </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @socioeconomic.description %>
-</p>
-
-<%= link_to 'Edit', edit_socioeconomic_path(@socioeconomic) %> |
-<%= link_to 'Back', socioeconomics_path %>
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @socioeconomic.socioeconomic_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
+</div>

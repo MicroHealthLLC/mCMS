@@ -80,6 +80,8 @@ en:
   enumeration_financial_type: Financial Type
   enumeration_financial_status: Financial Status
   enumeration_financial_state: Financial State
+  enumeration_socioeconomic_status: Socioeconomic Status
+  enumeration_socioeconomic_state: Socioeconomic State
   enumeration_legal_history_type: Legal History Type
   enumeration_legal_history_status: Legal History Status
 

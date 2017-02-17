@@ -1,0 +1,31 @@
+<table class="table table-responsive" id="socioeconomic_table">
+  <thead>
+  <tr>
+
+    <th>Icdcm code</th>
+    <th>Date identified</th>
+    <th>Date resolved</th>
+    <th>Socioeconomic status</th>
+    <th>Socioeconomic type</th>
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @socioeconomics.each do |socioeconomic| %>
+      <tr>
+        <td><%= link_to socioeconomic.icdcm_code, socioeconomic %></td>
+        <td><%= socioeconomic.dateentified %></td>
+        <td><%= socioeconomic.date_resolved %></td>
+        <td><%= socioeconomic.socioeconomic_status %></td>
+        <td><%= socioeconomic.socioeconomic_type %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+    initDataTable('socioeconomic_table')
+  })
+</script>

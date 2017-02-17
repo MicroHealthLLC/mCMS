@@ -1,6 +1,14 @@
-<h1>Editing Socioeconomic</h1>
 
-<%= render 'form', socioeconomic: @socioeconomic %>
-
-<%= link_to 'Show', @socioeconomic %> |
-<%= link_to 'Back', socioeconomics_path %>
+<section id="widget-grid" class="show_customer_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     socioeconomic: @socioeconomic,
+                     wid_id: 'socioeconomic',
+                     wid_title: t('new_socioeconomic')
+                 } %>
+    </article>
+  </div>
+</section>

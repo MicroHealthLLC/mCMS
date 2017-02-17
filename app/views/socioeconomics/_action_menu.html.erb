@@ -1,0 +1,9 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to('Delete',  socioeconomic_path(@socioeconomic), class: 'btn btn-danger pull-right' ,
+              :method => :delete,
+              :data => {:confirm => t(:text_are_you_sure)}) if @socioeconomic.can?(:delete_socioeconomics, :manage_socioeconomics, :manage_roles)
+  %>
+ <%= link_to 'Edit', edit_socioeconomic_path(@socioeconomic), class: 'btn btn-success pull-right' if @socioeconomic.can?(:edit_socioeconomics, :manage_socioeconomics, :manage_roles) %>
+  <%= link_to t('button_cancel'), socioeconomics_path, class: 'btn btn-warning pull-right' %>
+  <%#= link_to t('button_print'), socioeconomic_path(@socioeconomic, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+</div>

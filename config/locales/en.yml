@@ -378,6 +378,15 @@ en:
   medical_history_type: Medical History Type
   medical_history_status: Medical History Status
 
+  socioeconomic: Socioeconomic History
+  new_socioeconomic: New Socioeconomic History
+  edit_socioeconomic: Edit Socioeconomic History
+  socioeconomics: Socioeconomic histories
+  socioeconomic_history_type: Socioeconomic History Type
+  socioeconomic_history_status: Socioeconomic History Status
+  socioeconomic_type: Socioeconomic History Type
+  socioeconomic_status: Socioeconomic History Status
+
   behavioral_risk: Behavioral Risk
   new_behavioral_risk: New Behavioral Risk
   edit_behavioral_risk: Edit Behavioral Risk

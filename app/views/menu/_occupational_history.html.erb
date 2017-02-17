@@ -1,0 +1,38 @@
+<% if !User.current.allowed_to?(:manage_roles) %>
+    <li>
+      <a href="#" id="ul_occupation_history"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Occupational History</span></a>
+      <ul id="occupation_history_menu">
+        <% if module_enabled?( 'educations') && can?(:manage_roles, :view_educations, :manage_educations)%>
+            <li class="<%= menu_active?('educations') %>">
+              <a href="/educations" title="<%= t(:education) %>"><i class="fa fa-lg fa-fw fa-graduation-cap"></i> <span class="menu-item-parent"><%= t(:education) %></span></a>
+            </li>
+        <% end %>
+        <% if module_enabled?( 'other_skills')  && can?(:manage_roles, :view_other_skills, :manage_other_skills) %>
+            <li class="<%= menu_active?('other_skills') %>">
+              <a href="/other_skills" title="<%= t(:other_skills) %>"><i class="fa fa-lg fa-fw fa-plus"></i> <span class="menu-item-parent"><%= t(:other_skills) %></span></a>
+            </li>
+        <% end %>
+        <% if module_enabled?( 'certifications') && can?(:manage_roles, :view_certifications, :manage_certifications) %>
+            <li class="<%= menu_active?('certifications') %>">
+              <a href="/certifications" title="<%= t(:certifications) %>"><i class="fa fa-lg fa-fw fa-certificate"></i> <span class="menu-item-parent"><%= t(:certifications) %></span></a>
+            </li>
+        <% end %>
+        <% if module_enabled?( 'clearances')  && can?(:manage_roles, :view_clearances, :manage_clearances)%>
+            <li class="<%= menu_active?('clearances') %>">
+              <a href="/clearances" title="<%= t(:clearances) %>"><i class="fa fa-lg fa-fw fa-eraser"></i> <span class="menu-item-parent"><%= t(:clearances) %></span></a>
+            </li>
+        <% end %>
+
+        <% if module_enabled?( 'positions') && can?(:manage_roles, :view_positions, :manage_positions) %>
+            <li class="<%= menu_active?('positions') %>">
+              <a href="/positions" title="<%= t(:positions) %>"><i class="fa fa-lg fa-fw fa-sort"></i> <span class="menu-item-parent"><%= t(:positions) %></span></a>
+            </li>
+        <% end %>
+      </ul>
+    </li>
+    <% if module_enabled?('client_journals')  && can?(:manage_roles, :view_client_journals, :manage_client_journals)%>
+        <li class="<%= menu_active?('client_journals') %>">
+          <a href="/client_journals" title="<%= t(:client_journals) %>"><i class="fa fa-lg fa-fw fa-address-book-o"></i> <span class="menu-item-parent"><%= t(:client_journals) %></span></a>
+        </li>
+    <%end %>
+<% end %>
