@@ -92,6 +92,10 @@ en:
 
   enumeration_medical_history_type: Medical History Type
   enumeration_medical_history_status: Medical History Status
+  enumeration_family_history_type: Family History Type
+  enumeration_family_history_status: Family History Status
+  enumeration_other_history_type: Other History Type
+  enumeration_other_history_status: Other History Status
   enumeration_behavioral_risk_type: Behavioral Risk Type
   enumeration_behavioral_risk_status: Behavioral Risk Status
   enumeration_environment_type: Behavioral Risk Type

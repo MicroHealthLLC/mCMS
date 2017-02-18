@@ -1,0 +1,27 @@
+<table class="table table-responsive" id="family_history_table">
+  <thead>
+  <tr>
+    <th>Icdcm code</th>
+    <th>Date identified</th>
+    <th>Family status</th>
+    <th>Family type</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @family_histories.each do |family_history| %>
+      <tr>
+        <td><%= family_history.icdcm_code %></td>
+        <td><%= family_history.date_identified %></td>
+        <td><%= family_history.family_status %></td>
+        <td><%= family_history.family_type %></td>
+       </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+    initDataTable('family_history_table')
+  })
+</script>

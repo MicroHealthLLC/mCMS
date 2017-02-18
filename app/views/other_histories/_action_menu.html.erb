@@ -1,0 +1,9 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to( 'Delete', other_history_path(@other_history), class: 'btn btn-danger pull-right',
+               :method => :delete,
+               :data => {:confirm => t(:text_are_you_sure)}) if @other_history.can?(:manage_roles, :manages_other_histories, :delete_other_histories)
+  %>
+  <%= link_to( 'Edit', edit_other_history_path(@other_history), class: 'btn btn-success pull-right') if @other_history.can?(:manage_roles, :manages_other_histories, :edit_other_histories) %>
+  <%= link_to t('button_cancel'), other_histories_path, class: 'btn btn-warning pull-right' %>
+  <%#= link_to t('button_print'), other_history_path(@other_history, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+</div>

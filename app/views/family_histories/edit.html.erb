@@ -1,6 +1,13 @@
-<h1>Editing Family History</h1>
-
-<%= render 'form', family_history: @family_history %>
-
-<%= link_to 'Show', @family_history %> |
-<%= link_to 'Back', family_histories_path %>
+<section id="widget-grid" class="show_customer_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     family_history: @family_history,
+                     wid_id: 'family_history',
+                     wid_title: t('edit_family_history')
+                 } %>
+    </article>
+  </div>
+</section>

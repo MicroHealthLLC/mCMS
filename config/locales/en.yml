@@ -378,6 +378,20 @@ en:
   medical_history_type: Medical History Type
   medical_history_status: Medical History Status
 
+  other_history: Other History
+  new_other_history: New Other History
+  edit_other_history: Edit Other History
+  other_histories: Other Histories
+  other_history_type: Other History Type
+  other_history_status: Other History Status
+
+  family_history: Family History
+  new_family_history: New Family History
+  edit_family_history: Edit Family History
+  family_histories: Family Histories
+  family_type: Family History Type
+  family_status: Family History Status
+
   socioeconomic: Socioeconomic History
   new_socioeconomic: New Socioeconomic History
   edit_socioeconomic: Edit Socioeconomic History

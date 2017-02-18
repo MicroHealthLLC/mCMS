@@ -12,12 +12,12 @@
               <a href="/health_care_facilities" title="<%= t(:health_care_facility) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:health_care_facility) %></span></a>
             </li>
         <% end %>
-       <% if module_enabled?( 'problem_lists') && can?(:manage_roles, :view_problem_lists, :manage_problem_lists)%>
+        <% if module_enabled?( 'problem_lists') && can?(:manage_roles, :view_problem_lists, :manage_problem_lists)%>
             <li class="<%= menu_active?('problem_lists') %>">
               <a href="/problem_lists" title="<%= t(:problem_lists) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:problem_lists) %></span></a>
             </li>
         <% end %>
-       <% if module_enabled?( 'surgicals') && can?(:manage_roles, :view_surgicals, :manage_surgicals)%>
+        <% if module_enabled?( 'surgicals') && can?(:manage_roles, :view_surgicals, :manage_surgicals)%>
             <li class="<%= menu_active?('surgicals') %>">
               <a href="/surgicals" title="<%= t(:surgicals) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:surgicals) %></span></a>
             </li>
@@ -30,6 +30,11 @@
         <% if module_enabled?( 'behavioral_risks') && can?(:manage_roles, :view_behavioral_risks, :manage_behavioral_risks)%>
             <li class="<%= menu_active?('behavioral_risks') %>">
               <a href="/behavioral_risks" title="<%= t(:behavioral_risks) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:behavioral_risks) %></span></a>
+            </li>
+        <% end %>
+        <% if module_enabled?( 'family_histories') && can?(:manage_roles, :view_family_histories, :manage_family_histories)%>
+            <li class="<%= menu_active?('family_histories') %>">
+              <a href="/family_histories" title="<%= t(:family_histories) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:family_histories) %></span></a>
             </li>
         <% end %>
       </ul>

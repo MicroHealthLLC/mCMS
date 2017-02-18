@@ -1,39 +1,45 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: 'action_menu' %>
 
-<p>
-  <strong>User:</strong>
-  <%= @other_history.user_id %>
-</p>
+<div class="row">
+  <div class="col-xs-12">
 
-<p>
-  <strong>Icdcm code:</strong>
-  <%= @other_history.icdcm_code_id %>
-</p>
 
-<p>
-  <strong>Date identified:</strong>
-  <%= @other_history.date_identified %>
-</p>
+    <p>
+      <strong>Icdcm code:</strong>
+      <%= @other_history.icdcm_code %>
+    </p>
 
-<p>
-  <strong>Date resolved:</strong>
-  <%= @other_history.date_resolved %>
-</p>
+    <p>
+      <strong>Date identified:</strong>
+      <%= @other_history.date_identified %>
+    </p>
 
-<p>
-  <strong>Other history status:</strong>
-  <%= @other_history.other_history_status_id %>
-</p>
+    <p>
+      <strong>Date resolved:</strong>
+      <%= @other_history.date_resolved %>
+    </p>
 
-<p>
-  <strong>Other history type:</strong>
-  <%= @other_history.other_history_type_id %>
-</p>
+    <p>
+      <strong>Other history status:</strong>
+      <%= @other_history.other_history_status %>
+    </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @other_history.description %>
-</p>
+    <p>
+      <strong>Other history type:</strong>
+      <%= @other_history.other_history_type %>
+    </p>
 
-<%= link_to 'Edit', edit_other_history_path(@other_history) %> |
-<%= link_to 'Back', other_histories_path %>
+    <p>
+      <strong>Description:</strong>
+      <%= @other_history.description.html_safe %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @other_history.other_history_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+    
+  </div>
+</div>

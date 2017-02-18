@@ -12,7 +12,7 @@
               <a href="/socioeconomics" title="<%= t(:socioeconomics) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:socioeconomics) %></span></a>
             </li>
         <% end %>
-         <% if module_enabled?( 'environment_risks')  && can?(:manage_roles, :view_environment_risks, :manage_environment_risks) %>
+        <% if module_enabled?( 'environment_risks')  && can?(:manage_roles, :view_environment_risks, :manage_environment_risks) %>
             <li class="<%= menu_active?('environment_risks') %>">
               <a href="/environment_risks" title="<%= t(:environment_risks) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:environment_risks) %></span></a>
             </li>
@@ -35,6 +35,11 @@
         <% if module_enabled?( 'transportations') && can?(:manage_roles, :view_transportations, :manage_transportations)%>
             <li class="<%= menu_active?('transportations') %>">
               <a href="/transportations" title="<%= t(:transportation) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:transportation) %></span></a>
+            </li>
+        <% end %>
+        <% if module_enabled?( 'other_histories') && can?(:manage_roles, :view_other_histories, :manage_other_histories)%>
+            <li class="<%= menu_active?('other_histories') %>">
+              <a href="/other_histories" title="<%= t(:other_history) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:other_history) %></span></a>
             </li>
         <% end %>
       </ul>

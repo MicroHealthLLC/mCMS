@@ -1,0 +1,29 @@
+<table class="table table-responsive" id="other_history_table">
+  <thead>
+  <tr>
+    <th>Icdcm code</th>
+    <th>Date identified</th>
+    <th>Date resolved</th>
+    <th>Other history status</th>
+    <th>Other history type</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @other_histories.each do |other_history| %>
+      <tr>
+        <td><%= other_history.icdcm_code %></td>
+        <td><%= other_history.date_identified %></td>
+        <td><%= other_history.date_resolved %></td>
+        <td><%= other_history.other_history_status %></td>
+        <td><%= other_history.other_history_type %></td>
+       </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+    initDataTable('other_history_table')
+  })
+</script>

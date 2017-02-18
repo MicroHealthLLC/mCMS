@@ -1,37 +1,13 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Family Histories</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Icdcm code</th>
-      <th>Date identified</th>
-      <th>Family status</th>
-      <th>Family type</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @family_histories.each do |family_history| %>
-      <tr>
-        <td><%= family_history.user_id %></td>
-        <td><%= family_history.icdcm_code_id %></td>
-        <td><%= family_history.date_identified %></td>
-        <td><%= family_history.family_status_id %></td>
-        <td><%= family_history.family_type_id %></td>
-        <td><%= family_history.description %></td>
-        <td><%= link_to 'Show', family_history %></td>
-        <td><%= link_to 'Edit', edit_family_history_path(family_history) %></td>
-        <td><%= link_to 'Destroy', family_history, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Family History', new_family_history_path %>
+<%= link_to(t('new_family_history'), new_family_history_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_family_histories, :manage_roles, :manage_family_histories) %>
+<section id="widget-grid" class="family_histories_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'family_history',
+                     wid_title: t('family_histories')
+                 } %>
+    </article>
+  </div>
+</section>
