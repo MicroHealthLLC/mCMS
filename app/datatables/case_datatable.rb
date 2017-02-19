@@ -70,11 +70,7 @@ class CaseDatatable < AjaxDatatablesRails::Base
   end
 
   def get_raw_records
-    scope = if @options[:subcases]
-              Case.subcases
-            else
-              Case.root
-            end
+    scope = Case
     scope = case @options[:status_type]
               when 'all' then scope.all_data
               when 'opened' then scope.opened

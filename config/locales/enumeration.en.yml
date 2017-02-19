@@ -13,12 +13,14 @@ en:
   enumeration_contact_type: Relationship
   enumeration_contact_status: Contact status
   enumeration_checklist_status_type: Checklist status
+  enumeration_checklist_type: Checklist Type
   enumeration_country_type: Country
   enumeration_client_journal_type: Client Journal Type
   enumeration_citizenship_type: Citizenship
   enumeration_issued_by_type : Issued by type
   enumeration_department_type: Department
   enumeration_document_type: Document
+  enumeration_deployment_operation: Deployment Operation
   enumeration_education_type: Education
   enumeration_education_status: Education Status
   enumeration_priority_type: Priority
@@ -89,17 +91,21 @@ en:
   enumeration_surgery_status: Surgery Status
   enumeration_problem_type: Problem Type
   enumeration_problem_status: Problem Status
+  enumeration_allergy_status: Allergy Status
 
   enumeration_medical_history_type: Medical History Type
   enumeration_medical_history_status: Medical History Status
-  enumeration_family_history_type: Family History Type
-  enumeration_family_history_status: Family History Status
+  enumeration_family_type: Family History Type
+  enumeration_family_status: Family History Status
+  enumeration_immunization_status: Immnunization Status
+  enumeration_medication_status: Medication Status
+  enumeration_installation_name: Installation Name
   enumeration_other_history_type: Other History Type
   enumeration_other_history_status: Other History Status
   enumeration_behavioral_risk_type: Behavioral Risk Type
   enumeration_behavioral_risk_status: Behavioral Risk Status
-  enumeration_environment_type: Behavioral Risk Type
-  enumeration_environment_status: Behavioral Risk Status
+  enumeration_environment_type: Environment Risk Type
+  enumeration_environment_status: Environment Risk Status
 
   enumeration_award_enum: Award
   enumeration_award_type: Award Type
@@ -109,6 +115,8 @@ en:
   enumeration_incident_type: Incident Type
   enumeration_line_of_duty_investigation: Line Of Duty Investigation (LOD)
   enumeration_operation: Operation
+  enumeration_socioeconomic_type: Socioeconomic Type
+  enumeration_service_type: Service Type
   enumeration_service_status: Service Status
   enumeration_unit_enum: Unit
   enumeration_unit_type: Unit Type

@@ -59,6 +59,7 @@ en:
   education_status: Education Status
   education_other_skill: Other Skill
   skill_status:  Skill Status
+  skill_type:  Skill Type
   education_date_received: Date Received
   education_date_expired: Date Expired
   education_clearence: Clearance
@@ -367,7 +368,7 @@ en:
   surgical: Surgery
   new_surgical: New Surgery
   edit_surgical: Edit Surgery
-  surgicals: Surgeries
+  surgicals: Surgery & Procedures
   surgery_type: Surgery Type
   surgery_status: Surgery Status
 

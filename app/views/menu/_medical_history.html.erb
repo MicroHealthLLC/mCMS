@@ -1,42 +1,48 @@
 <% unless User.current.allowed_to?(:manage_roles) %>
-    <li>
-      <a href="#" id="ul_medical_history"><i class="fa fa-lg fa-fw fa-film"></i> <span class="menu-item-parent">Medical History</span></a>
-      <ul id="medical_history_menu">
-        <% if module_enabled?( 'admissions') && can?(:manage_roles, :view_admissions, :manage_admissions)%>
-            <li class="<%= menu_active?('admissions') %>">
-              <a href="/admissions" title="<%= t(:admission) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:admission) %></span></a>
-            </li>
-        <% end %>
-        <% if module_enabled?( 'health_care_facilities') && can?(:manage_roles, :view_health_care_facilities, :manage_health_care_facilities)%>
-            <li class="<%= menu_active?('health_care_facilities') %>">
-              <a href="/health_care_facilities" title="<%= t(:health_care_facility) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:health_care_facility) %></span></a>
-            </li>
-        <% end %>
-        <% if module_enabled?( 'problem_lists') && can?(:manage_roles, :view_problem_lists, :manage_problem_lists)%>
-            <li class="<%= menu_active?('problem_lists') %>">
-              <a href="/problem_lists" title="<%= t(:problem_lists) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:problem_lists) %></span></a>
-            </li>
-        <% end %>
-        <% if module_enabled?( 'surgicals') && can?(:manage_roles, :view_surgicals, :manage_surgicals)%>
-            <li class="<%= menu_active?('surgicals') %>">
-              <a href="/surgicals" title="<%= t(:surgicals) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:surgicals) %></span></a>
-            </li>
-        <% end %>
-        <% if module_enabled?( 'medicals') && can?(:manage_roles, :view_medicals, :manage_medicals)%>
-            <li class="<%= menu_active?('medicals') %>">
-              <a href="/medicals" title="<%= t(:medicals) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:medicals) %></span></a>
-            </li>
-        <% end %>
-        <% if module_enabled?( 'behavioral_risks') && can?(:manage_roles, :view_behavioral_risks, :manage_behavioral_risks)%>
-            <li class="<%= menu_active?('behavioral_risks') %>">
-              <a href="/behavioral_risks" title="<%= t(:behavioral_risks) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:behavioral_risks) %></span></a>
-            </li>
-        <% end %>
-        <% if module_enabled?( 'family_histories') && can?(:manage_roles, :view_family_histories, :manage_family_histories)%>
-            <li class="<%= menu_active?('family_histories') %>">
-              <a href="/family_histories" title="<%= t(:family_histories) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:family_histories) %></span></a>
-            </li>
-        <% end %>
-      </ul>
-    </li>
+    <% modules = ['admissions', 'health_care_facilities',
+                  'problem_lists', 'surgicals',
+                  'medicals', 'behavioral_risks', 'family_histories']
+    %>
+    <% if can_view_submenu?(modules) %>
+        <li>
+          <a href="#" id="ul_medical_history"><i class="fa fa-lg fa-fw fa-film"></i> <span class="menu-item-parent">Medical History</span></a>
+          <ul id="medical_history_menu">
+            <% if module_enabled?( 'admissions') && can?(:manage_roles, :view_admissions, :manage_admissions)%>
+                <li class="<%= menu_active?('admissions') %>">
+                  <a href="/admissions" title="<%= t(:admission) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:admission) %></span></a>
+                </li>
+            <% end %>
+            <% if module_enabled?( 'health_care_facilities') && can?(:manage_roles, :view_health_care_facilities, :manage_health_care_facilities)%>
+                <li class="<%= menu_active?('health_care_facilities') %>">
+                  <a href="/health_care_facilities" title="<%= t(:health_care_facility) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:health_care_facility) %></span></a>
+                </li>
+            <% end %>
+            <% if module_enabled?( 'problem_lists') && can?(:manage_roles, :view_problem_lists, :manage_problem_lists)%>
+                <li class="<%= menu_active?('problem_lists') %>">
+                  <a href="/problem_lists" title="<%= t(:problem_lists) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:problem_lists) %></span></a>
+                </li>
+            <% end %>
+            <% if module_enabled?( 'surgicals') && can?(:manage_roles, :view_surgicals, :manage_surgicals)%>
+                <li class="<%= menu_active?('surgicals') %>">
+                  <a href="/surgicals" title="<%= t(:surgicals) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:surgicals) %></span></a>
+                </li>
+            <% end %>
+            <% if module_enabled?( 'medicals') && can?(:manage_roles, :view_medicals, :manage_medicals)%>
+                <li class="<%= menu_active?('medicals') %>">
+                  <a href="/medicals" title="<%= t(:medicals) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:medicals) %></span></a>
+                </li>
+            <% end %>
+            <% if module_enabled?( 'behavioral_risks') && can?(:manage_roles, :view_behavioral_risks, :manage_behavioral_risks)%>
+                <li class="<%= menu_active?('behavioral_risks') %>">
+                  <a href="/behavioral_risks" title="<%= t(:behavioral_risks) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:behavioral_risks) %></span></a>
+                </li>
+            <% end %>
+            <% if module_enabled?( 'family_histories') && can?(:manage_roles, :view_family_histories, :manage_family_histories)%>
+                <li class="<%= menu_active?('family_histories') %>">
+                  <a href="/family_histories" title="<%= t(:family_histories) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:family_histories) %></span></a>
+                </li>
+            <% end %>
+          </ul>
+        </li>
+    <% end %>
 <% end %>

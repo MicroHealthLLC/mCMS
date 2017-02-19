@@ -1,7 +1,20 @@
 module ApplicationHelper
   include DmsfHelper
+
+  def can_view_submenu?(modules )
+    permissions = [:manage_roles]
+    modules.each do |m|
+      permissions<< "view_#{m}".to_sym
+      permissions<< "manage_#{m}".to_sym
+    end
+    modules.map{|m| module_enabled?(m) }.include?(true) and can?(permissions)
+  end
+
   def can?(*args)
-    args.map{|action| current_user.allowed_to? action }.include?(true)
+    args.flatten.each do |action|
+      return true if current_user.allowed_to?(action)
+    end
+    false
   end
 
   def link_to_case(*args)

@@ -3,6 +3,7 @@
   <tr>
     <th><%= t('label_name') %></th>
     <th><%= t('skill_status') %></th>
+    <th><%= t('skill_type') %></th>
     <th> <%= t('education_date_received') %></th>
     <th> <%= t('education_date_expired') %></th>
   </tr>
@@ -14,6 +15,7 @@
           <tr>
             <td><%= link_to other_skill.name, other_skill_path(other_skill)%></td>
             <td><%= other_skill.skill_status %></td>
+            <td><%= other_skill.skill_type %></td>
             <td><%= other_skill.date_received %></td>
             <td><%= other_skill.date_expired %></td>
           </tr>

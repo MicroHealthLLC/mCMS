@@ -30,9 +30,4 @@
         <% end %>
       </ul>
     </li>
-    <% if module_enabled?('client_journals')  && can?(:manage_roles, :view_client_journals, :manage_client_journals)%>
-        <li class="<%= menu_active?('client_journals') %>">
-          <a href="/client_journals" title="<%= t(:client_journals) %>"><i class="fa fa-lg fa-fw fa-address-book-o"></i> <span class="menu-item-parent"><%= t(:client_journals) %></span></a>
-        </li>
-    <%end %>
 <% end %>

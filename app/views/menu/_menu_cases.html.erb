@@ -7,11 +7,6 @@
               <a href="/cases" title="<%= t(:cases) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent"><%= t(:cases) %></span></a>
             </li>
         <% end %>
-        <% if module_enabled?('subcases') && can?(:manage_roles, :view_subcases, :manage_cases) %>
-            <li>
-              <a href="/cases/subcases" title="<%= t(:subcases) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent"><%= t(:subcases) %></span></a>
-            </li>
-        <% end %>
 
         <% if module_enabled?('case_support')  && can?(:manage_roles, :view_needs, :manage_needs) %>
             <li>

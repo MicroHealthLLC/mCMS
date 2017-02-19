@@ -26,7 +26,12 @@
     <li class="<%= menu_active?('document_managers') %>">
       <a href="/document_managers" title="<%= t 'document_managers' %>"><i class="fa fa-lg fa-fw fa-folder-open"></i><span class="menu-item-parent"><%= t 'document_managers' %></span></a>
     </li>
-
+<% else %>
+    <% if module_enabled?('client_journals')  && can?(:manage_roles, :view_client_journals, :manage_client_journals)%>
+        <li class="<%= menu_active?('client_journals') %>">
+          <a href="/client_journals" title="<%= t(:client_journals) %>"><i class="fa fa-lg fa-fw fa-address-book-o"></i> <span class="menu-item-parent"><%= t(:client_journals) %></span></a>
+        </li>
+    <%end %>
 <% end %>
 
 <% if module_enabled?( 'new_conference') && can?(:manage_roles, :conference)%>

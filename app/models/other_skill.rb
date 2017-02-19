@@ -1,6 +1,7 @@
 class OtherSkill < ApplicationRecord
   belongs_to :user
   belongs_to :other_skill_status, foreign_key: :status_id
+  belongs_to :other_skill_type, foreign_key: :skill_type_id
 
   has_many :skill_attachments, foreign_key: :owner_id
   accepts_nested_attributes_for :skill_attachments, reject_if: :all_blank, allow_destroy: true
@@ -28,7 +29,7 @@ class OtherSkill < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:user_id, :name, :date_received, :is_private,
+    [:user_id, :name, :date_received, :is_private, :skill_type_id,
      :private_author_id, :date_expired, :note, :status_id,
      skill_attachments_attributes: [Attachment.safe_attributes]]
   end
@@ -41,6 +42,14 @@ class OtherSkill < ApplicationRecord
     end
   end
 
+   def skill_type
+    if skill_type_id
+      other_skill_type
+    else
+      OtherSkillType.default
+    end
+  end
+
   def to_s
     name
   end
@@ -50,6 +59,7 @@ class OtherSkill < ApplicationRecord
     user.to_pdf_brief_info(pdf)
     pdf.text "<b>Skill: </b> #{name}", :inline_format =>  true
     pdf.text "<b>Skill Status: </b> #{skill_status}", :inline_format =>  true
+    pdf.text "<b>Skill Type: </b> #{skill_type}", :inline_format =>  true
     pdf.text "<b>Date received: </b> #{date_received}", :inline_format =>  true
     pdf.text "<b>Date expired: </b> #{date_expired}", :inline_format =>  true
     pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
@@ -60,6 +70,7 @@ class OtherSkill < ApplicationRecord
     output<< "<h2>Skill ##{id} </h2>"
     output<< "<b>Skill: </b> #{name}<br/>"
     output<< "<b>Skill Status: </b> #{skill_status}<br/>"
+    output<< "<b>Skill Type: </b> #{skill_type}<br/>"
     output<< "<b>Date received: </b> #{date_received}<br/>"
     output<< "<b>Date expired: </b> #{date_expired}<br/>"
     output<< "<b>Note: </b> #{note}<br/>"
