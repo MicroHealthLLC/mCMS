@@ -1,0 +1,36 @@
+<table class="table table-responsive" id="immunization_table">
+  <thead>
+  <tr>
+    <th>Medication</th>
+    <th>Total number of doses</th>
+    <th>Doses given</th>
+    <th>Next date due</th>
+    <th>Date immunized</th>
+    <th>Manufacturer</th>
+    <th>Lot number</th>
+    <th>Expiration date</th>
+    <th>Immunization status</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @immunizations.each do |immunization| %>
+      <tr>
+        <td><%= immunization.immunization_cvx %></td>
+        <td><%= immunization.total_number_of_doses %></td>
+        <td><%= immunization.doses_given %></td>
+        <td><%= immunization.next_date_due %></td>
+        <td><%= immunization.date_immunized %></td>
+        <td><%= immunization.manufacturer %></td>
+        <td><%= immunization.lot_number %></td>
+        <td><%= immunization.expiration_date %></td>
+        <td><%= immunization.immunization_status %></td>
+       </tr>
+  <% end %>
+  </tbody>
+</table>
+<script>
+  $(document).ready(function(){
+    initDataTable('immunization_table')
+  })
+</script>

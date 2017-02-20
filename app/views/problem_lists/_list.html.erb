@@ -1,6 +1,7 @@
 <table class="table table-responsive" id="problem_list_table">
   <thead>
   <tr>
+    <th>Name</th>
     <th>Icdcm code</th>
     <th>Date onset</th>
     <th>Date resolved</th>
@@ -12,6 +13,7 @@
   <tbody>
   <% @problem_lists.each do |problem_list| %>
       <tr>
+        <td><%= link_to problem_list.name, problem_list %></td>
         <td><%= link_to problem_list.icdcm_code, problem_list %></td>
         <td><%= problem_list.date_onset %></td>
         <td><%= problem_list.date_resolved %></td>

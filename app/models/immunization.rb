@@ -1,6 +1,7 @@
 class Immunization < ApplicationRecord
   belongs_to :user
   belongs_to :immunization_status, optional: true
+  belongs_to :immunization_cvx, optional: true
 
   has_many :immunization_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :immunization_attachments, reject_if: :all_blank, allow_destroy: true
@@ -17,11 +18,11 @@ class Immunization < ApplicationRecord
   end
 
   def to_s
-    medication
+    immunization_cvx
   end
     
   def self.safe_attributes
-    [:user_id, :medication, :total_number_of_doses, :doses_given,
+    [:user_id, :medication, :immunization_cvx_id, :total_number_of_doses, :doses_given,
      :next_date_due, :date_immunized, :manufacturer, :lot_number,
      :expiration_date, :immunization_status_id, :description,
      immunization_attachments_attributes: [Attachment.safe_attributes]]

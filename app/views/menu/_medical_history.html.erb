@@ -1,7 +1,8 @@
 <% unless User.current.allowed_to?(:manage_roles) %>
     <% modules = ['admissions', 'health_care_facilities',
                   'problem_lists', 'surgicals',
-                  'medicals', 'behavioral_risks', 'family_histories']
+                  'medicals', 'behavioral_risks',
+                  'family_histories', 'immunizations']
     %>
     <% if can_view_submenu?(modules) %>
         <li>
@@ -40,6 +41,11 @@
             <% if module_enabled?( 'family_histories') && can?(:manage_roles, :view_family_histories, :manage_family_histories)%>
                 <li class="<%= menu_active?('family_histories') %>">
                   <a href="/family_histories" title="<%= t(:family_histories) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:family_histories) %></span></a>
+                </li>
+            <% end %>
+            <% if module_enabled?( 'immunizations') && can?(:manage_roles, :view_immunizations, :manage_immunizations)%>
+                <li class="<%= menu_active?('immunizations') %>">
+                  <a href="/immunizations" title="<%= t(:immunizations) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:immunizations) %></span></a>
                 </li>
             <% end %>
           </ul>

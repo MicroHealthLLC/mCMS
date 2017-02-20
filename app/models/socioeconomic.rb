@@ -7,7 +7,7 @@ class Socioeconomic < ApplicationRecord
   has_many :socioeconomic_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :socioeconomic_attachments, reject_if: :all_blank, allow_destroy: true
 
-  validates_presence_of :user_id, :icdcm_code_id
+  validates_presence_of :user_id, :name
 
   def socioeconomic_type
     if socioeconomic_type_id
@@ -27,11 +27,11 @@ class Socioeconomic < ApplicationRecord
 
 
   def to_s
-    icdcm_code
+    name
   end
 
   def self.safe_attributes
-    [:user_id, :icdcm_code_id, :date_identified, :date_resolved,
+    [:name, :user_id, :icdcm_code_id, :date_identified, :date_resolved,
      :socioeconomic_status_id, :socioeconomic_type_id, :description]
   end
 end

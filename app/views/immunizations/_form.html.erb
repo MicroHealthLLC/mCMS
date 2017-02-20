@@ -1,21 +1,119 @@
-<%= simple_form_for(@immunization) do |f| %>
-  <%= f.error_notification %>
+<fieldset>
+  <legend></legend>
+  <%= form_for(immunization, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+      <% if immunization.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(immunization.errors.count, "error") %> prohibited this problem list from being saved:</h2>
 
-  <div class="form-inputs">
-    <%= f.input :user_id %>
-    <%= f.input :medication %>
-    <%= f.input :total_number_of_doses %>
-    <%= f.input :doses_given %>
-    <%= f.input :next_date_due %>
-    <%= f.input :date_immunized %>
-    <%= f.input :manufacturer %>
-    <%= f.input :lot_number %>
-    <%= f.input :expiration_date %>
-    <%= f.input :immnunization_status_id %>
-    <%= f.input :description %>
-  </div>
+            <ul>
+              <% immunization.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-<% end %>
+      <%= f.hidden_field :user_id %>
+
+      <div class="form-group">
+        <%= f.label :medication , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :medication, class: 'form-control' %>
+          <%= f.hidden_field :immunization_cvx_id %>
+          <script>
+            $(document).ready(function(){
+              $('#immunization_medication').autocomplete({
+                source: "/immunization_cvx/index",
+                minLength: 2,
+                select: function( event, ui ) {
+                  $('#immunization_immunization_cvx_id').val(ui.item.id)
+                }
+              })
+            })
+          </script>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :total_number_of_doses , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.number_field :total_number_of_doses, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :doses_given , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.number_field :doses_given, class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :next_date_due , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :next_date_due, class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :date_immunized , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_immunized, class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :manufacturer , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :manufacturer , class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :lot_number , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :lot_number , class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :expiration_date , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :expiration_date, class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:immunization_status), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :immunization_status_id, options_for_select(ImmunizationStatus.active.pluck(:name, :id), selected: f.object.immunization_status.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.label t(:description) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :description , class: 'form-control ck-editor' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-12">
+          <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+        </div>
+        <%= f.simple_fields_for :immunization_attachments do |attachment| %>
+            <%= render 'attachments/attachment_show', :f => attachment %>
+        <% end %>
+        <div id="attachment_fields" class="col-md-2 margin-top-10 " style="padding-right: 2px;" >
+          <%= link_to_add_association 'add file', f, :immunization_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= link_to t('button_cancel'), immunizations_path, class: 'btn btn-warning pull-right' %>
+          <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+  <% end %>
+</fieldset>

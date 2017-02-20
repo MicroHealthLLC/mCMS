@@ -1,6 +1,7 @@
 <table class="table table-responsive" id="environment_risk_table">
   <thead>
   <tr>
+    <th>Name</th>
     <th>Icdcm code</th>
     <th>Date started</th>
     <th>Date ended</th>
@@ -12,6 +13,7 @@
   <tbody>
   <% @environment_risks.each do |environment_risk| %>
       <tr>
+        <td><%= link_to environment_risk.name, environment_risk %></td>
         <td><%= link_to environment_risk.icdcm_code, environment_risk %></td>
         <td><%= environment_risk.date_started %></td>
         <td><%= environment_risk.date_ended %></td>

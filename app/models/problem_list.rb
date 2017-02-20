@@ -7,7 +7,7 @@ class ProblemList < ApplicationRecord
   has_many :problem_list_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :problem_list_attachments, reject_if: :all_blank, allow_destroy: true
 
-  validates_presence_of :user_id, :icdcm_code_id
+  validates_presence_of :user_id, :name
 
   def problem_type
     if problem_type_id
@@ -27,11 +27,11 @@ class ProblemList < ApplicationRecord
 
 
   def to_s
-    icdcm_code
+    name
   end
 
   def self.safe_attributes
-    [:icdcm_code_id, :user_id, :date_onset, :date_resolved, :problem_status_id, :problem_type_id, :description,
+    [:name, :icdcm_code_id, :user_id, :date_onset, :date_resolved, :problem_status_id, :problem_type_id, :description,
      problem_list_attachments_attributes: [Attachment.safe_attributes]]
   end
 end

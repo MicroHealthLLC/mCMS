@@ -7,7 +7,7 @@ class Medical < ApplicationRecord
   has_many :medical_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :medical_attachments, reject_if: :all_blank, allow_destroy: true
 
-  validates_presence_of :user_id, :icdcm_code_id
+  validates_presence_of :user_id, :name
 
   def medical_history_type
     if medical_history_type_id
@@ -26,11 +26,11 @@ class Medical < ApplicationRecord
   end
 
   def to_s
-    icdcm_code
+    name
   end
 
   def self.safe_attributes
-    [:user_id, :icdcm_code_id, :medical_facility, :date_of_diagnosis,
+    [:name, :user_id, :icdcm_code_id, :medical_facility, :date_of_diagnosis,
      :medical_history_status_id, :medical_history_type_id, :description,
      medical_attachments_attributes: [Attachment.safe_attributes]
 

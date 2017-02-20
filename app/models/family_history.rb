@@ -7,7 +7,7 @@ class FamilyHistory < ApplicationRecord
   has_many :family_history_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :family_history_attachments, reject_if: :all_blank, allow_destroy: true
 
-  validates_presence_of :user_id, :icdcm_code_id
+  validates_presence_of :user_id, :name
 
   def family_type
     if family_type_id
@@ -26,11 +26,11 @@ class FamilyHistory < ApplicationRecord
   end
 
   def to_s
-    icdcm_code
+    name
   end
 
   def self.safe_attributes
-    [:user_id, :icdcm_code_id, :date_identified, :family_status_id,
+    [:name, :user_id, :icdcm_code_id, :date_identified, :family_status_id,
      :family_type_id, :description]
   end
 end

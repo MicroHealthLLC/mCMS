@@ -1,7 +1,7 @@
 <table class="table table-responsive" id="transportations_table">
   <thead>
   <tr>
-    <th>Title</th>
+    <th>#</th>
     <th>Transportation mean</th>
     <th>Transportation type</th>
     <th>Transportation accessibility</th>
@@ -15,7 +15,7 @@
   <tbody>
   <% @transportations.each do |transportation| %>
       <tr>
-        <td><%= link_to transportation.title, transportation %></td>
+        <td><%= link_to transportation.id, transportation %></td>
         <td><%= transportation.transportation_mean %></td>
         <td><%= transportation.transportation_type %></td>
         <td><%= transportation.transportation_accessibility %></td>

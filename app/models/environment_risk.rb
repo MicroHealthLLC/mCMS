@@ -7,7 +7,7 @@ class EnvironmentRisk < ApplicationRecord
   has_many :environment_risk_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :environment_risk_attachments, reject_if: :all_blank, allow_destroy: true
 
-  validates_presence_of :user_id, :icdcm_code_id
+  validates_presence_of :user_id, :name
 
   def environment_type
     if environment_type_id
@@ -27,11 +27,11 @@ class EnvironmentRisk < ApplicationRecord
 
 
   def to_s
-    icdcm_code
+    name
   end
   
   def self.safe_attributes
-    [:user_id, :icdcm_code_id, :date_started, :date_ended,
+    [:name, :user_id, :icdcm_code_id, :date_started, :date_ended,
      :environment_status_id, :environment_type_id, :description,
      environment_risk_attachments_attributes: [Attachment.safe_attributes]]
   end

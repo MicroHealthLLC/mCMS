@@ -1,6 +1,7 @@
 <table class="table table-responsive" id="medicals_table">
   <thead>
   <tr>
+    <th>Name</th>
     <th>Icdcm code</th>
     <th>Medical facility</th>
     <th>Date of diagnosis</th>
@@ -13,6 +14,7 @@
   <tbody>
   <% @medicals.each do |medical| %>
       <tr>
+        <td><%= link_to medical.name, medical %></td>
         <td><%= link_to medical.icdcm_code, medical %></td>
         <td><%= medical.medical_facility %></td>
         <td><%= medical.date_of_diagnosis %></td>

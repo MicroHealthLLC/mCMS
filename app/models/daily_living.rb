@@ -3,7 +3,7 @@ class DailyLiving < ApplicationRecord
 
   belongs_to :daily_living_status, :optional=> true
   belongs_to :daily_living_type, :optional=> true
-  validates_presence_of :title, :user_id
+  validates_presence_of :user_id
 
   has_many :daily_living_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :daily_living_attachments, reject_if: :all_blank, allow_destroy: true

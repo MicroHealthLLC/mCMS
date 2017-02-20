@@ -1,7 +1,7 @@
 <table class="table table-responsive" id="daily_livings_table">
   <thead>
   <tr>
-    <th><%= t('title') %></th>
+    <th>#</th>
     <th>Daily living type</th>
     <th>Daily living status</th>
     <th>Date start</th>
@@ -12,7 +12,7 @@
   <tbody>
   <% @daily_livings.each do |daily_living| %>
       <tr>
-        <td><%= link_to daily_living.title, daily_living %></td>
+        <td><%= link_to daily_living.id, daily_living %></td>
         <td><%= daily_living.daily_living_type %></td>
         <td><%= daily_living.daily_living_status %></td>
         <td><%= daily_living.date_start %></td>

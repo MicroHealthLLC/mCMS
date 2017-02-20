@@ -1,7 +1,7 @@
 <table class="table table-responsive" id="housings_table">
   <thead>
   <tr>
-    <th>Title</th>
+    <th>#</th>
     <th>Housing type</th>
     <th>Cohabitation type</th>
     <th>Housing status</th>
@@ -15,7 +15,7 @@
   <tbody>
   <% @housings.each do |housing| %>
       <tr>
-        <td><%= link_to housing.title, housing %></td>
+        <td><%= link_to housing.id, housing %></td>
         <td><%= housing.housing_type %></td>
         <td><%= housing.cohabitation_type %></td>
         <td><%= housing.housing_status %></td>

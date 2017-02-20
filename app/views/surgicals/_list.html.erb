@@ -1,6 +1,7 @@
 <table class="table table-responsive" id="surgical_table">
   <thead>
   <tr>
+    <th>Name</th>
     <th><%= t('icdcm_code') %></th>
     <th>Medical Facility</th>
     <th>Surgery Status</th>
@@ -12,6 +13,7 @@
   <tbody>
   <% @surgicals.each do |surgical| %>
       <tr>
+        <td><%= link_to surgical.name, surgical %></td>
         <td><%= link_to surgical.icdcm_code, surgical %></td>
        <td><%= surgical.medical_facility %></td>
         <td><%= surgical.surgery_status %></td>

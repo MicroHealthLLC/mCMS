@@ -8,7 +8,7 @@ class Transportation < ApplicationRecord
   has_many :transportation_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :transportation_attachments, reject_if: :all_blank, allow_destroy: true
 
-  validates_presence_of :user_id, :title
+  validates_presence_of :user_id
 
   def transportation_type
     if transportation_type_id

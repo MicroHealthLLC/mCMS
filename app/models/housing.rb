@@ -8,7 +8,7 @@ class Housing < ApplicationRecord
   has_many :housing_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :housing_attachments, reject_if: :all_blank, allow_destroy: true
 
-  validates_presence_of :title, :user_id
+  validates_presence_of :user_id
 
   def housing_status
     if housing_status_id
