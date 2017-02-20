@@ -19,7 +19,7 @@ class NotesController < UserCasesController
   end
 
   def new
-    @note = Note.new(type: params[:type], owner_id: params[:owner_id], user_id: User.current.id)
+    @note = Note.new(type: params[:type], owner_id: params[:owner_id], user_id: User.current_user.id)
   rescue
     render_404
   end
