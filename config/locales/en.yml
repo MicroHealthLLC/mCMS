@@ -440,6 +440,14 @@ en:
   award_enum: Award
   award_status: Award Status
 
+  immunization: Immunization
+  immunizations: Immunizations
+  new_immunization: New Immunization
+  edit_immunization: Edit Immunization
+  immunization_type: Immunization Type
+  immunization_enum: Immunization
+  immunization_status: Immunization Status
+
   deployment_history: Deployment History
   deployment_histories: Deployment Histories
   new_deployment_history: New Deployment History

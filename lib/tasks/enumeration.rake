@@ -11,4 +11,11 @@ namespace :enumeration do
       end
     end
   end
+
+  task print_subclasses: :environment do
+    files =  Dir["app/models/enumerations/**/*.rb"].map{|file| file[24..-4] }
+    files.sort.each do |file_name|
+      puts "require_dependency '#{file_name}'"
+    end
+  end
 end

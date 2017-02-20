@@ -36,6 +36,24 @@ class SpreadsheetEnumerationUpload
     end
   end
 
+  def upload_immunization_cvx
+    roo_csv  = Roo::Excelx.new(file)
+    sheet = roo_csv.sheet(0)
+    parse_sheet(sheet) do  |row|
+      params = {
+          cvx_short_description: row[1],
+          full_vaccine_name: row[2] ,
+          note: row[3],
+          vaccinestatus: row[4],
+          internal_id: row[5],
+          nonvaccine: row[6] ,
+          update_date: row[7]
+      }
+      i = ImmunizationCvx.where(cvx_code: row[0] ).first_or_initialize
+      i.update(params)
+    end
+  end
+
   def parse_sheet(sheet, &block)
     retries = true
     begin
