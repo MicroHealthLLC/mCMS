@@ -29,16 +29,32 @@ class TaskDatatable < AjaxDatatablesRails::Base
   private
 
   def data
-    records.map do |task|
-      [
-          @view.link_to( task.title, task) ,
-          @view.link_to_case( task.case),
-          task.task_type.to_s,
-          task.task_status_type.to_s ,
-          task.priority_type.to_s ,
-          task.date_start ,
-          task.date_completed
-      ]
+    if User.current.can?(:manage_roles)
+      records.map do |task|
+        [
+            @view.link_to( task.user.to_s , task.user),
+            @view.link_to( task.title, task) ,
+            @view.link_to_case( task.case),
+            task.task_type.to_s,
+            task.task_status_type.to_s ,
+            task.priority_type.to_s ,
+            task.date_start ,
+            task.date_completed
+        ]
+      end
+    else
+      records.map do |task|
+        [
+            @view.link_to( task.title, task) ,
+            @view.link_to_case( task.case),
+            task.task_type.to_s,
+            task.task_status_type.to_s ,
+            task.priority_type.to_s ,
+            task.date_start ,
+            task.date_completed
+        ]
+      end
+
     end
   end
 

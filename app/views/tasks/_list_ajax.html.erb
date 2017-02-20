@@ -1,6 +1,9 @@
 <table class="table table-bordered table-responsive" id="tasks_table">
   <thead>
   <tr>
+    <% if User.current.can?(:manage_roles) %>
+        <th><%= t('label_employee') %></th>
+    <% end %>
     <th><%= t('title') %></th>
     <th><%= t('case') %></th>
     <th><%= t('task_type') %></th>
@@ -24,10 +27,13 @@
       display: [[0, 'asc']],
       "bDestroy": true,
       "columns": [
+        <% if User.current.can?(:manage_roles) %>
+        { "searchable": true, "orderable": true },
+        <% end %>
         { "searchable": true, "orderable": true },
         { "searchable": true, "orderable": true },
         { "searchable": true, "orderable": true },
-         { "searchable": true, "orderable": true },
+        { "searchable": true, "orderable": true },
         { "searchable": true, "orderable": true },
         { "searchable": true, "orderable": true },
         { "searchable": true, "orderable": true }
