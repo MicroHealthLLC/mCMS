@@ -17,5 +17,6 @@ INSTALLATION:
 - Configure your email smtp
 - Run Bundle Install from the directory you did a git clone
 - import the ICD10 data rails icddata:import_data RAILS_ENV=production
+- import the HCPCS data rails enumeration:print_subclasses
 - start search services rake sunspot:solr:start RAILS_ENV=production
 - start your app rails s -e production -b localhost -d
