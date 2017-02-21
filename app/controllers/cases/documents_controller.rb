@@ -94,7 +94,7 @@ class DocumentsController < UserCasesController
     if @document.case
       @document.case
     else
-      documents_url
+      client_documents_url
     end
   end
 end
