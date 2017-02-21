@@ -18,9 +18,21 @@
       <%= f.hidden_field :appointment_id %>
 
       <div class="form-group">
-        <%= f.label :procedure , class: 'col-md-2 control-label' %>
+        <%= f.label t(:hcpc), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :procedure_id, options_for_select(Procedure.active.pluck(:name, :id), selected: f.object.procedure.try(:id)), {} , {class: 'form-control'} %>
+          <%= text_field_tag :hcpc, f.object.hcpc,  class: 'form-control' %>
+          <%= f.hidden_field :hcpc_id %>
+          <script>
+              $(document).ready(function(){
+                  $('#hcpc').autocomplete({
+                      source: "/hcpc.json",
+                      minLength: 2,
+                      select: function( event, ui ) {
+                          $('#appointment_procedure_hcpc_id').val(ui.item.id)
+                      }
+                  })
+              })
+          </script>
         </div>
       </div>
 

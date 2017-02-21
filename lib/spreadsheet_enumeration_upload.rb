@@ -49,7 +49,20 @@ class SpreadsheetEnumerationUpload
           nonvaccine: row[6] ,
           update_date: row[7]
       }
-      i = ImmunizationCvx.where(cvx_code: row[0] ).first_or_initialize
+      i = ImmunizationCvx.where(cvx_code: row[0].strip ).first_or_initialize
+      i.update(params)
+    end
+  end
+
+  def upload_hcpc
+    roo_csv  = Roo::Excelx.new(file)
+    sheet = roo_csv.sheet(0)
+    parse_sheet(sheet) do  |row|
+      params = {
+          long_description: row[3],
+          short_description: row[4]
+      }
+      i = Hcpc.where(hcpc: row[0].strip ).first_or_initialize
       i.update(params)
     end
   end

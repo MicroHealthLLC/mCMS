@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'immunization_cvx/index'
 
+  resources :hcpc, only: [:index]
   resources :idcdata, only: [:index]
   resources :behavioral_risks
   resources :other_histories
