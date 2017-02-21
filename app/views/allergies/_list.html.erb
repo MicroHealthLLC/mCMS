@@ -11,7 +11,7 @@
   <tbody>
   <% @allergies.each do |allergy| %>
       <tr>
-        <td><%= allergy.allergy_type %></td>
+        <td><%= link_to allergy.allergy_type, allergy %></td>
         <td><%= allergy.allergy_date %></td>
         <td><%= allergy.allergy_status %></td>
         </tr>

@@ -46,7 +46,7 @@
       <div class="form-group">
         <%= f.label t(:allergy_status), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :allergy_status_id, options_for_select(BehavioralRiskStatus.active.pluck(:name, :id), selected: f.object.allergy_status.try(:id)) , {} ,{class: 'form-control'} %>
+          <%= f.select :allergy_status_id, options_for_select(AllergyStatus.active.pluck(:name, :id), selected: f.object.allergy_status.try(:id)) , {} ,{class: 'form-control'} %>
         </div>
       </div>
       
