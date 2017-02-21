@@ -2,7 +2,7 @@
   <thead>
   <tr>
     <th>Allergy type</th>
-    <th>Medication</th>
+
     <th>Allergy date</th>
     <th>Allergy status</th>
   </tr>
@@ -12,7 +12,6 @@
   <% @allergies.each do |allergy| %>
       <tr>
         <td><%= allergy.allergy_type %></td>
-        <td><%= allergy.medication %></td>
         <td><%= allergy.allergy_date %></td>
         <td><%= allergy.allergy_status %></td>
         </tr>
