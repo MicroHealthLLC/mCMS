@@ -1,0 +1,10 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to('Delete',  document_path(@document), class: 'btn btn-danger pull-right' ,
+              :method => :delete,
+              :data => {:confirm => t(:text_are_you_sure)}) if @document.can?(:delete_documents, :manage_documents, :manage_roles)
+  %>
+  <%= link_to( t('add_note'), new_note_path(type: 'DocumentNote', owner_id: @document.id), class: 'btn btn-success pull-right') if can?(:add_notes, :manage_roles) %>
+  <%= link_to 'Edit', edit_client_document_path(@document), class: 'btn btn-success pull-right' if @document.can?(:edit_documents, :manage_documents, :manage_roles) %>
+  <%= link_to t('button_cancel'), back_url(@document), class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_print'), document_path(@document, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+</div>

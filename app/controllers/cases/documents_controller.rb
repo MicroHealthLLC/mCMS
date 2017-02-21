@@ -14,6 +14,7 @@ class DocumentsController < UserCasesController
   # GET /documents/1
   # GET /documents/1.json
   def show
+    redirect_to client_document_path(@document) if @document.is_client_document
   end
 
   # GET /documents/new

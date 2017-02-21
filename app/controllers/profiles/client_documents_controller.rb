@@ -12,6 +12,10 @@ class ClientDocumentsController <  UserCasesController
     render 'documents/index'
   end
 
+  def show
+    render 'documents/show'
+  end
+
   # GET /documents/new
   def new
     @document = Document.new(user_id: User.current.id,
@@ -21,6 +25,7 @@ class ClientDocumentsController <  UserCasesController
 
   # GET /documents/1/edit
   def edit
+    render 'documents/edit'
   end
 
 
@@ -40,6 +45,10 @@ class ClientDocumentsController <  UserCasesController
   # Never trust parameters from the scary internet, only allow the white list through.
   def document_params
     params.require(:document).permit(Document.safe_attributes)
+  end
+
+  def authorize_edit
+    raise Unauthorized unless @document.can?(:edit_documents, :manage_documents, :manage_roles)
   end
 
   def back_url
