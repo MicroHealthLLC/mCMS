@@ -16,6 +16,14 @@ class Document < ApplicationRecord
 
 
   after_save :send_notification
+  def self.for_profile
+    where(related_to_id: nil)
+  end
+
+   def self.for_cases
+    where.not(related_to_id: nil)
+  end
+
   def send_notification
     UserMailer.document_notification(self).deliver_later
   end
@@ -41,7 +49,7 @@ class Document < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:title, :description, :related_to_id, :related_to_type, :user_id, :document_type_id, :date, :private_author_id, :is_private, document_attachments_attributes: [Attachment.safe_attributes]]
+    [:title, :description, :is_client_document, :related_to_id, :related_to_type, :user_id, :document_type_id, :date, :private_author_id, :is_private, document_attachments_attributes: [Attachment.safe_attributes]]
   end
 
   def to_pdf(pdf)

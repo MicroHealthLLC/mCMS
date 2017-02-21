@@ -27,6 +27,11 @@
               <a href="/user_insurances" title="<%= t(:insurance) %>"><i class="fa fa-lg fa-fw fa-shield"></i> <span class="menu-item-parent"><%= t(:insurance) %></span></a>
             </li>
         <% end %>
+        <% if module_enabled?( 'documents')  && can?(:manage_roles, :view_documents, :manage_documents) %>
+            <li class="<%= menu_active?('client_documents') %>">
+              <a href="/client_documents" title="<%= t(:client_documents) %>"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent"><%= t(:client_documents) %></span></a>
+            </li>
+        <% end %>
       </ul>
     </li>
 <% else %>

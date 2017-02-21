@@ -8,7 +8,7 @@ class DocumentsController < UserCasesController
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.visible#.paginate(page: params[:page], per_page: 25)
+    @documents = Document.for_cases.visible
   end
 
   # GET /documents/1

@@ -1,7 +1,10 @@
+<% if params[:controller] == 'client_documents' %>
+    <%= link_to( t('new_document'), new_client_document_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_documents, :manage_roles, :manage_documents) %>
+<% end %>
 <section id="widget-grid" class="documents_section">
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <%= render partial: 'list',
+      <%= render partial: 'documents/list',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
                      documents: @documents,

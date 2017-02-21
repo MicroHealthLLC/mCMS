@@ -98,6 +98,7 @@ en:
     password_confirmation: Password confirmation
 
  # DOCUMENTS
+  client_documents: Client Documents
   documents: Documents
   document: Document
   document_type: Document Type

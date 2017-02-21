@@ -211,6 +211,7 @@ Rails.application.routes.draw do
     end
   end
   resources :documents
+  resources :client_documents, only: [:index, :new]
 
 
   resources :surveys do

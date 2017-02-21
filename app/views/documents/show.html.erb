@@ -1,10 +1,13 @@
 <%= render partial: 'action_menu' %>
 <div class="row">
   <div class="col-xs-12">
-    <p>
-      <strong>Case:</strong>
-      <%= link_to_case @document.case %>
-    </p>
+    <% if !@document.is_client_document %>
+        <p>
+          <strong>Case:</strong>
+          <%= link_to_case @document.case %>
+        </p>
+
+    <% end %>
 
     <p>
       <strong><%= t('title') %>:</strong>
