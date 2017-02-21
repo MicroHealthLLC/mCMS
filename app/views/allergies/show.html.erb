@@ -1,34 +1,39 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: 'action_menu' %>
 
-<p>
-  <strong>User:</strong>
-  <%= @allergy.user_id %>
-</p>
+<div class="row">
+  <div class="col-xs-12">
+    <p>
+      <strong>Allergy type:</strong>
+      <%= @allergy.allergy_type %>
+    </p>
 
-<p>
-  <strong>Allergy type:</strong>
-  <%= @allergy.allergy_type_id %>
-</p>
+    <p>
+      <strong>Medication:</strong>
+      <%= @allergy.medication %>
+    </p>
 
-<p>
-  <strong>Medication:</strong>
-  <%= @allergy.medication %>
-</p>
+    <p>
+      <strong>Allergy date:</strong>
+      <%= @allergy.allergy_date %>
+    </p>
 
-<p>
-  <strong>Allergy date:</strong>
-  <%= @allergy.allergy_date %>
-</p>
+    <p>
+      <strong>Allergy status:</strong>
+      <%= @allergy.allergy_status %>
+    </p>
 
-<p>
-  <strong>Allergy status:</strong>
-  <%= @allergy.allergy_status_id %>
-</p>
+    <p>
+      <strong>Description:</strong>
+      <%= @allergy.description %>
+    </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @allergy.description %>
-</p>
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @allergy.allergy_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+    
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_allergy_path(@allergy) %> |
-<%= link_to 'Back', allergies_path %>

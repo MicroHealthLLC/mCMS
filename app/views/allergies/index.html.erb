@@ -1,37 +1,13 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Allergies</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Allergy type</th>
-      <th>Medication</th>
-      <th>Allergy date</th>
-      <th>Allergy status</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @allergies.each do |allergy| %>
-      <tr>
-        <td><%= allergy.user_id %></td>
-        <td><%= allergy.allergy_type_id %></td>
-        <td><%= allergy.medication %></td>
-        <td><%= allergy.allergy_date %></td>
-        <td><%= allergy.allergy_status_id %></td>
-        <td><%= allergy.description %></td>
-        <td><%= link_to 'Show', allergy %></td>
-        <td><%= link_to 'Edit', edit_allergy_path(allergy) %></td>
-        <td><%= link_to 'Destroy', allergy, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Allergy', new_allergy_path %>
+<%= link_to(t('new_allergy'), new_allergy_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_allergies, :manage_roles, :manage_allergies) %>
+<section id="widget-grid" class="allergies_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'allergy',
+                     wid_title: t('allergies')
+                 } %>
+    </article>
+  </div>
+</section>

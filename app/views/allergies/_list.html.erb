@@ -1,0 +1,26 @@
+<table class="table table-responsive" id="allergy_table">
+  <thead>
+  <tr>
+    <th>Allergy type</th>
+    <th>Medication</th>
+    <th>Allergy date</th>
+    <th>Allergy status</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @allergies.each do |allergy| %>
+      <tr>
+        <td><%= allergy.allergy_type %></td>
+        <td><%= allergy.medication %></td>
+        <td><%= allergy.allergy_date %></td>
+        <td><%= allergy.allergy_status %></td>
+        </tr>
+  <% end %>
+  </tbody>
+</table>
+<script>
+  $(document).ready(function(){
+    initDataTable('allergy_table')
+  })
+</script>

@@ -339,6 +339,12 @@ en:
   legal_history_type: Legal History Type
   legal_history_status: Legal History Status
 
+  allergy: Allergy
+  new_allergy: New Allergy
+  edit_allergy: Edit Allergy
+  allergies: Allergies
+  allergy_status: Allergy Status
+
   service_history: Service History
   service_histories: Service Histories
   new_service_history: New Service History
