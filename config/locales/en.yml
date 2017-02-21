@@ -424,6 +424,7 @@ en:
   problem_type: Problem Type
   problem_status: Problem Status
   icdcm_code: ICD-10-CM Code
+  hcpc: Hcpc Code
 
   unit: Unit
   units: Units

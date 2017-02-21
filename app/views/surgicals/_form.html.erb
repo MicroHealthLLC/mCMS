@@ -23,20 +23,20 @@
       </div>
 
       <div class="form-group">
-        <%= f.label t(:icdcm_code), class: 'col-md-2 control-label' %>
+        <%= f.label t(:hcpc), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= text_field_tag :icdcm_code, f.object.icdcm_code,  class: 'form-control' %>
-          <%= f.hidden_field :icdcm_code_id %>
+          <%= text_field_tag :hcpc, f.object.hcpc,  class: 'form-control' %>
+          <%= f.hidden_field :hcpc_id %>
           <script>
-            $(document).ready(function(){
-              $('#icdcm_code').autocomplete({
-                source: "/idcdata.json?from=z00",
-                minLength: 2,
-                select: function( event, ui ) {
-                  $('#surgical_icdcm_code_id').val(ui.item.id)
-                }
+              $(document).ready(function(){
+                  $('#hcpc').autocomplete({
+                      source: "/hcpc.json",
+                      minLength: 2,
+                      select: function( event, ui ) {
+                          $('#surgical_hcpc_id').val(ui.item.id)
+                      }
+                  })
               })
-            })
           </script>
         </div>
       </div>

@@ -16,7 +16,7 @@
   <tbody>
   <% @immunizations.each do |immunization| %>
       <tr>
-        <td><%= immunization.immunization_cvx %></td>
+        <td><%= link_to immunization.immunization_cvx, immunization %></td>
         <td><%= immunization.total_number_of_doses %></td>
         <td><%= immunization.doses_given %></td>
         <td><%= immunization.next_date_due %></td>

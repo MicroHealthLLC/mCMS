@@ -1,7 +1,7 @@
 <table  class="table table-bordered table-responsive" id="appointment_captures_table">
   <thead>
   <tr>
-    <th>Assessment</th>
+    <th><%= t('icdcm_code')%></th>
     <th>Date Recorded</th>
   </tr>
   </thead>
@@ -10,7 +10,7 @@
 
   <% captures.each do |capture| %>
       <tr>
-        <td><%= link_to capture.assessment, capture  %></td>
+        <td><%= link_to capture.icdcm_code, capture  %></td>
         <td><%= capture.date_recorded   %></td>
       </tr>
   <% end %>

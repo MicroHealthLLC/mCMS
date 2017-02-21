@@ -1,6 +1,7 @@
 class Surgical < ApplicationRecord
   belongs_to :user
-  belongs_to :icdcm_code, :foreign_key => 'icdcm_code_id', class_name: 'Icd10datum'
+  # belongs_to :icdcm_code, :foreign_key => 'icdcm_code_id', class_name: 'Icd10datum'
+  belongs_to :hcpc
   belongs_to :surgery_type, optional: true
   belongs_to :surgery_status, optional: true
 
@@ -31,7 +32,7 @@ class Surgical < ApplicationRecord
 
   def self.safe_attributes
     [:name, :icdcm_code_id, :user_id, :medical_facility,
-     :surgery_status_id, :surgery_type_id,
+     :surgery_status_id, :surgery_type_id, :hcpc_id,
      :description,
      surgical_attachments_attributes: [Attachment.safe_attributes]]
   end

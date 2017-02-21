@@ -17,11 +17,24 @@
       <%= f.hidden_field :user_id %>
       <%= f.hidden_field :appointment_id %>
       <div class="form-group">
-        <%= f.label :assessment , class: 'col-md-2 control-label' %>
+        <%= f.label t(:icdcm_code), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :assessment_id, options_for_select(Assessment.active.pluck(:name, :id), selected: f.object.assessment.try(:id)), {} , {class: 'form-control'} %>
+          <%= text_field_tag :icdcm_code, f.object.icdcm_code,  class: 'form-control' %>
+          <%= f.hidden_field :icdcm_code_id %>
+          <script>
+              $(document).ready(function(){
+                  $('#icdcm_code').autocomplete({
+                      source: "/idcdata.json?from=z00",
+                      minLength: 2,
+                      select: function( event, ui ) {
+                          $('#appointment_capture_icdcm_code_id').val(ui.item.id)
+                      }
+                  })
+              })
+          </script>
         </div>
       </div>
+
 
       <div class="form-group">
         <%= f.label 'date_recorded' , class: 'col-md-2 control-label' %>
