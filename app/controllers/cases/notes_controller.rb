@@ -55,7 +55,7 @@ class NotesController < UserCasesController
   end
 
   def destroy
-    root = @note.object
+    root = @note.object || notes_url
     @note.destroy
     respond_to do |format|
       format.html { redirect_to root, notice: 'Note was successfully destroyed.' }
