@@ -106,6 +106,14 @@ en:
   enumeration_behavioral_risk_status: Behavioral Risk Status
   enumeration_environment_type: Environment Risk Type
   enumeration_environment_status: Environment Risk Status
+  enumeration_injury_type: Injury Type
+  enumeration_injury_status: Injury Status
+  enumeration_application_type: Application Type
+  enumeration_application_status: Application Status
+  enumeration_compensation_type: Compensation Type
+  enumeration_compensation_status: Compensation Status
+  enumeration_interview_type: Interview Type
+  enumeration_interview_status: Interview Status
 
   enumeration_award_enum: Award
   enumeration_award_type: Award Type

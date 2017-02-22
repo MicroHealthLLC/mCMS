@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :job_applications
+  resources :worker_compensations
+  resources :injuries
   get 'immunization_cvx/index'
 
   resources :hcpc, only: [:index]

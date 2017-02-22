@@ -1,0 +1,9 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to( 'Delete', worker_compensation_path(@worker_compensation), class: 'btn btn-danger pull-right',
+               :method => :delete,
+               :data => {:confirm => t(:text_are_you_sure)}) if @worker_compensation.can?(:manage_roles, :manages_worker_compensations, :delete_worker_compensations)
+  %>
+  <%= link_to( 'Edit', edit_worker_compensation_path(@worker_compensation), class: 'btn btn-success pull-right') if @worker_compensation.can?(:manage_roles, :manages_worker_compensations, :edit_worker_compensations) %>
+  <%= link_to t('button_cancel'), worker_compensations_path, class: 'btn btn-warning pull-right' %>
+  <%#= link_to t('button_print'), worker_compensation_path(@worker_compensation, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+</div>

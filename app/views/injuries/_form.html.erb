@@ -1,0 +1,115 @@
+<fieldset>
+  <legend></legend>
+  <%= form_for(injury, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+      <% if injury.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(injury.errors.count, "error") %> prohibited this Injury from being saved:</h2>
+
+            <ul>
+              <% injury.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <%= f.hidden_field :user_id %>
+
+      <div class="form-group">
+        <%= f.label t(:icdcm_code), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= text_field_tag :icdcm_code, f.object.icdcm_code,  class: 'form-control' %>
+          <%= f.hidden_field :icdcm_code_id %>
+          <script>
+            $(document).ready(function(){
+              $('#icdcm_code').autocomplete({
+                source: "/idcdata.json?from=z00",
+                minLength: 2,
+                select: function( event, ui ) {
+                  $('#injury_icdcm_code_id').val(ui.item.id)
+                }
+              })
+            })
+          </script>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:injury_type), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :injury_type_id, options_for_select(InjuryType.active.pluck(:name, :id), selected: f.object.injury_type.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.label t(:icdcm_code), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= text_field_tag :icdcm_code_cause, f.object.injury_cause,  class: 'form-control' %>
+          <%= f.hidden_field :injury_cause_id %>
+          <script>
+            $(document).ready(function(){
+              $('#icdcm_code_cause').autocomplete({
+                source: "/idcdata.json?from=z00",
+                minLength: 2,
+                select: function( event, ui ) {
+                  $('#injury_injury_cause_id').val(ui.item.id)
+                }
+              })
+            })
+          </script>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:injury_status), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :injury_status_id, options_for_select(InjuryStatus.active.pluck(:name, :id), selected: f.object.injury_status.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :employer , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :employer, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :date_of_injury , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_of_injury, class: 'form-control date_picker' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :date_resolved , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_resolved, class: 'form-control date_picker' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label t(:description) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :description , class: 'form-control ck-editor' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-12">
+          <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+        </div>
+        <%= f.simple_fields_for :injury_attachments do |attachment| %>
+            <%= render 'attachments/attachment_show', :f => attachment %>
+        <% end %>
+        <div id="attachment_fields" class="col-md-2 margin-top-10 " style="padding-right: 2px;" >
+          <%= link_to_add_association 'add file', f, :injury_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= link_to t('button_cancel'), injuries_path, class: 'btn btn-warning pull-right' %>
+          <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+  <% end %>
+</fieldset>

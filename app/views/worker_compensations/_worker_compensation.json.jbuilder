@@ -1,0 +1,2 @@
+json.extract! worker_compensation, :id, :user_id, :injury_id, :compensation_type_id, :compensation_status_id, :description, :date_of_compensation_start, :date_of_compensation_end, :created_at, :updated_at
+json.url worker_compensation_url(worker_compensation, format: :json)

@@ -1,0 +1,1 @@
+json.partial! "worker_compensations/worker_compensation", worker_compensation: @worker_compensation

@@ -3,7 +3,7 @@
   <%= form_for(family_history, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
       <% if family_history.errors.any? %>
           <div id="error_explanation">
-            <h2><%= pluralize(family_history.errors.count, "error") %> prohibited this problem list from being saved:</h2>
+            <h2><%= pluralize(family_history.errors.count, "error") %> prohibited this family history from being saved:</h2>
 
             <ul>
               <% family_history.errors.full_messages.each do |message| %>

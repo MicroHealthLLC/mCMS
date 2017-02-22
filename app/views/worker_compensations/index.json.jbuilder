@@ -1,0 +1,1 @@
+json.array! @worker_compensations, partial: 'worker_compensations/worker_compensation', as: :worker_compensation

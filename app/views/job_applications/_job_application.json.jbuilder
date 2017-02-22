@@ -1,0 +1,2 @@
+json.extract! job_application, :id, :user_id, :employer, :position_applied, :projected_salary, :application_type_id, :application_date, :application_status_id, :interview_type_id, :interview_date, :interview_status_id, :selection_status_id, :created_at, :updated_at
+json.url job_application_url(job_application, format: :json)

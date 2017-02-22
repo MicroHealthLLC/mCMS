@@ -1,0 +1,3 @@
+class InjuryAttachment < Attachment
+
+end

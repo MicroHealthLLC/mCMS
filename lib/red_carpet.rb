@@ -22,6 +22,42 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_languages, {:languages => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
+   map.project_module :job_applications do |map|
+    map.permission :view_job_applications, {:job_applications => [:index]},  :read => true
+    map.permission :show_job_applications, {:job_applications => [:show]},  :read => true
+    map.permission :create_job_applications, {:job_applications => [:new, :create]},  :read => true
+    map.permission :edit_job_applications, {:job_applications => [:edit, :update]},  :read => true
+    map.permission :delete_job_applications, {:job_applications => [:destroy]},  :read => true
+    map.permission :manage_job_applications, {:job_applications => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
+  map.project_module :injuries do |map|
+    map.permission :view_injuries, {:injuries => [:index]},  :read => true
+    map.permission :show_injuries, {:injuries => [:show]},  :read => true
+    map.permission :create_injuries, {:injuries => [:new, :create]},  :read => true
+    map.permission :edit_injuries, {:injuries => [:edit, :update]},  :read => true
+    map.permission :delete_injuries, {:injuries => [:destroy]},  :read => true
+    map.permission :manage_injuries, {:injuries => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
+  map.project_module :jsignatures do |map|
+    map.permission :view_jsignatures, {:jsignatures => [:index]},  :read => true
+    map.permission :show_jsignatures, {:jsignatures => [:show]},  :read => true
+    map.permission :create_jsignatures, {:jsignatures => [:new, :create]},  :read => true
+    map.permission :edit_jsignatures, {:jsignatures => [:edit, :update]},  :read => true
+    map.permission :delete_jsignatures, {:jsignatures => [:destroy]},  :read => true
+    map.permission :manage_jsignatures, {:jsignatures => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
+  map.project_module :worker_compensations do |map|
+    map.permission :view_worker_compensations, {:worker_compensations => [:index]},  :read => true
+    map.permission :show_worker_compensations, {:worker_compensations => [:show]},  :read => true
+    map.permission :create_worker_compensations, {:worker_compensations => [:new, :create]},  :read => true
+    map.permission :edit_worker_compensations, {:worker_compensations => [:edit, :update]},  :read => true
+    map.permission :delete_worker_compensations, {:worker_compensations => [:destroy]},  :read => true
+    map.permission :manage_worker_compensations, {:worker_compensations => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
   map.project_module :affiliations do |map|
     map.permission :view_affiliations, {:affiliations => [:index]},  :read => true
     map.permission :show_affiliations, {:affiliations => [:show]},  :read => true
@@ -500,6 +536,10 @@ RedCarpet::AccessControl.map do |map|
         :chat_rooms => [:conference, :show, :create_or_find],
         :document => [:index,:new,  :show, :create, :edit, :update, :destroy],
         :other_skills => [:index,:new,  :show, :create, :edit, :update, :destroy],
+        :injuries => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :worker_compensations => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :jsignatures => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :job_applications => [:index, :show, :new, :create, :edit, :update, :destroy],
         :positions => [:index, :show, :new, :create, :edit, :update, :destroy],
         :admissions => [:index, :show, :new, :create, :edit, :update, :destroy],
         :housings => [:index, :show, :new, :create, :edit, :update, :destroy],

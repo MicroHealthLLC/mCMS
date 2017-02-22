@@ -1,0 +1,2 @@
+json.extract! injury, :id, :user_id, :icdcm_code_id, :injury_type_id, :injury_cause_id, :injury_status_id, :employer, :date_of_injury, :date_resolved, :description, :created_at, :updated_at
+json.url injury_url(injury, format: :json)

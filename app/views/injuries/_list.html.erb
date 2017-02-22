@@ -1,0 +1,34 @@
+<table class="table table-responsive" id="injury_table">
+  <thead>
+  <tr>
+    <th>Icdcm code</th>
+    <th>Injury type</th>
+    <th>Injury cause</th>
+    <th>Injury status</th>
+    <th>Employer</th>
+    <th>Date of injury</th>
+    <th>Date resolved</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @injuries.each do |injury| %>
+      <tr>
+       
+        <td><%= link_to injury.icdcm_code, injury %></td>
+        <td><%= injury.injury_type %></td>
+        <td><%= injury.injury_cause %></td>
+        <td><%= injury.injury_status %></td>
+        <td><%= injury.employer %></td>
+        <td><%= injury.date_of_injury %></td>
+        <td><%= injury.date_resolved %></td>
+        </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+    initDataTable('injury_table')
+  })
+</script>

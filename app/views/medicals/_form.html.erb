@@ -3,7 +3,7 @@
   <%= form_for(medical, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
       <% if medical.errors.any? %>
           <div id="error_explanation">
-            <h2><%= pluralize(medical.errors.count, "error") %> prohibited this problem list from being saved:</h2>
+            <h2><%= pluralize(medical.errors.count, "error") %> prohibited this medical from being saved:</h2>
 
             <ul>
               <% medical.errors.full_messages.each do |message| %>

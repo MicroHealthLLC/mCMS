@@ -1,0 +1,54 @@
+<%= render partial: 'action_menu' %>
+
+<div class="row">
+  <div class="col-xs-12">
+
+    <p>
+      <strong>Icdcm code:</strong>
+      <%= @injury.icdcm_code %>
+    </p>
+
+    <p>
+      <strong>Injury type:</strong>
+      <%= @injury.injury_type %>
+    </p>
+
+    <p>
+      <strong>Injury cause:</strong>
+      <%= @injury.injury_cause %>
+    </p>
+
+    <p>
+      <strong>Injury status:</strong>
+      <%= @injury.injury_status %>
+    </p>
+
+    <p>
+      <strong>Employer:</strong>
+      <%= @injury.employer %>
+    </p>
+
+    <p>
+      <strong>Date of injury:</strong>
+      <%= @injury.date_of_injury %>
+    </p>
+
+    <p>
+      <strong>Date resolved:</strong>
+      <%= @injury.date_resolved %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @injury.description.html_safe %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @injury.injury_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+    
+  </div>
+</div>

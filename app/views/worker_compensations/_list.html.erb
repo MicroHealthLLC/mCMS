@@ -1,0 +1,28 @@
+<table class="table table-responsive" id="worker_compensation_table">
+  <thead>
+  <tr>
+    <th>Injury</th>
+    <th>Compensation type</th>
+    <th>Compensation status</th>
+    <th>Date of compensation start</th>
+    <th>Date of compensation end</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @worker_compensations.each do |worker_compensation| %>
+      <tr>
+        <td><%= link_to worker_compensation.injury, worker_compensation %></td>
+        <td><%= worker_compensation.compensation_type %></td>
+        <td><%= worker_compensation.compensation_status %></td>
+        <td><%= worker_compensation.date_of_compensation_start %></td>
+        <td><%= worker_compensation.date_of_compensation_end %></td>
+        </tr>
+  <% end %>
+  </tbody>
+</table>
+<script>
+  $(document).ready(function(){
+    initDataTable('worker_compensation_table')
+  })
+</script>

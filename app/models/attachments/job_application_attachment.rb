@@ -1,0 +1,3 @@
+class JobApplicationAttachment < Attachment
+
+end

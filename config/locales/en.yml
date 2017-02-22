@@ -345,6 +345,30 @@ en:
   allergies: Allergies
   allergy_status: Allergy Status
 
+  injury: Injury
+  new_injury: New Injury
+  edit_injury: Edit Injury
+  injuries: Injuries
+  injury_status: Injury Status
+  injury_type: Injury Type
+
+  job_application: Job Application
+  new_job_application: New Job Application
+  edit_job_application: Edit Job Application
+  job_applications: Job Applications
+  application_status: Job Application Status
+  application_type: Job Application Type
+  interview_status: Interview Status
+  selection_status: Selection Status
+  interview_type: Job Interview Type
+
+  worker_compensation: Worker Compensation
+  new_worker_compensation: New Worker Compensation
+  edit_worker_compensation: Edit Worker Compensation
+  worker_compensations: Worker Compensations
+  compensation_status: Worker Compensation Status
+  compensation_type: Worker Compensation Type
+
   service_history: Service History
   service_histories: Service Histories
   new_service_history: New Service History
