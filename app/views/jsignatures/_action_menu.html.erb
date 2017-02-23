@@ -1,0 +1,9 @@
+<% if User.current_user.admin? %>
+    <div class="col-xs-12 btn-edition">
+      <%= link_to( 'Delete', jsignature_path(@jsignature), class: 'btn btn-danger pull-right',
+                   :method => :delete,
+                   :data => {:confirm => t(:text_are_you_sure)})  if @jsignature.can?(:delete_jsignatures, :manage_jsignatures, :manage_roles)
+      %>
+      <%= link_to t('button_cancel'), jsignatures_path, class: 'btn btn-warning pull-right' %>
+    </div>
+<% end %>
