@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :jsignatures, except: [:index]
   resources :job_applications
   resources :worker_compensations
   resources :injuries

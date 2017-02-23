@@ -118,6 +118,8 @@ gem "breadcrumbs_on_rails"
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
 
+gem "jSignature", "~> 0.0.6"
+
 #installing adapter gems based on database.yml
 require 'erb'
 require 'yaml'

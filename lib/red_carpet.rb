@@ -31,6 +31,11 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_job_applications, {:job_applications => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
+   map.project_module :jsignatures do |map|
+    map.permission :create_jsignatures, {:jsignatures => [:new, :create]},  :read => true
+    map.permission :manage_jsignatures, {:jsignatures => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
   map.project_module :injuries do |map|
     map.permission :view_injuries, {:injuries => [:index]},  :read => true
     map.permission :show_injuries, {:injuries => [:show]},  :read => true
@@ -552,6 +557,7 @@ RedCarpet::AccessControl.map do |map|
         :behavioral_risks => [:index, :show, :new, :create, :edit, :update, :destroy],
         :immunizations => [:index, :show, :new, :create, :edit, :update, :destroy],
         :surgicals => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :jsignatures => [:show, :new, :create],
         :environment_risks => [:index, :show, :new, :create, :edit, :update, :destroy],
         :socioeconomics => [:index, :show, :new, :create, :edit, :update, :destroy],
         :service_histories => [:index, :show, :new, :create, :edit, :update, :destroy],
