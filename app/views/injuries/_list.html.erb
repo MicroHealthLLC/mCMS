@@ -1,9 +1,11 @@
 <table class="table table-responsive" id="injury_table">
   <thead>
   <tr>
+    <th>Injury Name</th>
     <th>Icdcm code</th>
     <th>Injury type</th>
     <th>Injury cause</th>
+    <th><%= t 'cause_icdcm_code' %></th>
     <th>Injury status</th>
     <th>Employer</th>
     <th>Date of injury</th>
@@ -15,8 +17,10 @@
   <% @injuries.each do |injury| %>
       <tr>
        
-        <td><%= link_to injury.icdcm_code, injury %></td>
+        <td><%= link_to injury.injury_name, injury %></td>
+        <td><%= injury.icdcm_code %></td>
         <td><%= injury.injury_type %></td>
+        <td><%= injury.injury_cause_name %></td>
         <td><%= injury.injury_cause %></td>
         <td><%= injury.injury_status %></td>
         <td><%= injury.employer %></td>

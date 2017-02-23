@@ -25,12 +25,12 @@
 
         <% if module_enabled?( 'positions') && can?(:manage_roles, :view_positions, :manage_positions) %>
             <li class="<%= menu_active?('positions') %>">
-              <a href="/positions" title="<%= t(:positions) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:positions) %></span></a>
+              <a href="/positions" title="<%= t(:positions) %>"><i class="fa fa-lg fa-fw fa-sort"></i> <span class="menu-item-parent"><%= t(:positions) %></span></a>
             </li>
         <% end %>
         <% if module_enabled?( 'injuries') && can?(:manage_roles, :view_injuries, :manage_injuries) %>
             <li class="<%= menu_active?('injuries') %>">
-              <a href="/injuries" title="<%= t(:injuries) %>"><i class="fa fa-lg fa-fw fa-sort"></i> <span class="menu-item-parent"><%= t(:injuries) %></span></a>
+              <a href="/injuries" title="<%= t(:injuries) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:injuries) %></span></a>
             </li>
         <% end %>
         <% if module_enabled?( 'worker_compensations') && can?(:manage_roles, :view_worker_compensations, :manage_worker_compensations) %>

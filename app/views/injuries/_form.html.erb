@@ -14,7 +14,12 @@
       <% end %>
 
       <%= f.hidden_field :user_id %>
-
+      <div class="form-group">
+        <%= f.label :injury_name , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :injury_name, class: 'form-control', required: true%>
+        </div>
+      </div>
       <div class="form-group">
         <%= f.label t(:icdcm_code), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
@@ -41,9 +46,15 @@
         </div>
       </div>
 
+      <div class="form-group">
+        <%= f.label :injury_cause , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :injury_cause_name, class: 'form-control' %>
+        </div>
+      </div>
 
       <div class="form-group">
-        <%= f.label t(:icdcm_code), class: 'col-md-2 control-label' %>
+        <%= f.label t(:cause_icdcm_code), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= text_field_tag :icdcm_code_cause, f.object.injury_cause,  class: 'form-control' %>
           <%= f.hidden_field :injury_cause_id %>

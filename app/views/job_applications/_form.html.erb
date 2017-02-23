@@ -39,7 +39,7 @@
       <div class="form-group">
         <%= f.label t(:application_type), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :application_type_id, options_for_select(ApplicationStatus.active.pluck(:name, :id), selected: f.object.application_type.try(:id)) , {} ,{class: 'form-control'} %>
+          <%= f.select :application_type_id, options_for_select(ApplicationType.active.pluck(:name, :id), selected: f.object.application_type.try(:id)) , {} ,{class: 'form-control'} %>
         </div>
       </div>
 
@@ -59,7 +59,7 @@
       <div class="form-group">
         <%= f.label t(:interview_type), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :interview_type_id, options_for_select(InterviewStatus.active.pluck(:name, :id), selected: f.object.interview_type.try(:id)) , {} ,{class: 'form-control'} %>
+          <%= f.select :interview_type_id, options_for_select(InterviewType.active.pluck(:name, :id), selected: f.object.interview_type.try(:id)) , {} ,{class: 'form-control'} %>
         </div>
       </div>
       <div class="form-group">

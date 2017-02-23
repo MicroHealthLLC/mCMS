@@ -33,7 +33,7 @@ class Injury < ApplicationRecord
 
   def self.safe_attributes
     [
-        :user_id, :icdcm_code_id, :injury_type_id, :injury_cause_id,
+        :user_id, :injury_cause_name, :injury_name, :icdcm_code_id, :injury_type_id, :injury_cause_id,
         :injury_status_id, :employer, :date_of_injury, :date_resolved, :description,
         injury_attachments_attributes: [Attachment.safe_attributes]
     ]
