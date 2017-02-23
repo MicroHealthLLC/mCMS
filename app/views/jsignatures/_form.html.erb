@@ -1,0 +1,41 @@
+<%= javascript_include_tag 'signature.js' %>
+<fieldset>
+  <legend></legend>
+  <%= form_for(jsignature, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+      <% if jsignature.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(jsignature.errors.count, "error") %> prohibited this Signature from being saved:</h2>
+
+            <ul>
+              <% jsignature.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <%= f.hidden_field :user_id %>
+      <%= f.hidden_field :appointment_id %>
+
+      <div class="form-group">
+        <%= f.label :person_name , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :person_name, class: 'form-control', required: true %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :signature , class: 'col-md-2 control-label' %>
+        <div class="col-md-9" id="">
+          <%= f.sign_field(:signature) %>
+        </div>
+      </div>
+
+
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= link_to t('button_cancel'), appointment_path(@appointment), class: 'btn btn-warning pull-right' %>
+          <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+  <% end %>
+</fieldset>

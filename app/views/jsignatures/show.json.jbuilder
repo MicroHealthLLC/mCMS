@@ -1,0 +1,1 @@
+json.partial! "jsignatures/jsignature", jsignature: @jsignature

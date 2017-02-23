@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Jsignatures</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Person name</th>
+      <th>Appointment</th>
+      <th>Signature</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @jsignatures.each do |jsignature| %>
+      <tr>
+        <td><%= jsignature.user_id %></td>
+        <td><%= jsignature.person_name %></td>
+        <td><%= jsignature.appointment_id %></td>
+        <td><%= jsignature.signature %></td>
+        <td><%= link_to 'Show', jsignature %></td>
+        <td><%= link_to 'Edit', edit_jsignature_path(jsignature) %></td>
+        <td><%= link_to 'Destroy', jsignature, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Jsignature', new_jsignature_path %>

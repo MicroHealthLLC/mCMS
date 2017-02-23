@@ -6,6 +6,7 @@ class Appointment < ApplicationRecord
 
   has_many :appointment_notes, foreign_key: :owner_id, dependent: :destroy
   has_many :appointment_captures, dependent: :destroy
+  has_many :jsignatures, dependent: :destroy
   has_many :appointment_dispositions, dependent: :destroy
   has_many :appointment_procedures, dependent: :destroy
 

@@ -105,6 +105,20 @@
     </article>
   </div>
 
+ <%= link_to( t('add_jsignature'), new_jsignature_path(appointment_id: @appointment.id), class: 'btn btn-primary pull-right btn-edition') if can?(:add_jsignatures, :manage_roles) %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'jsignatures/list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                         show_case_column: true,
+                         jsignatures:  @appointment.jsignatures,
+                         wid_id: 'jsignatures',
+                         wid_title: t('jsignatures')
+                 } %>
+    </article>
+  </div>
+
 
 <%#= render partial: 'notes/notes', locals: {notes: @appointment.appointment_notes} %>
 

@@ -1,0 +1,1 @@
+json.array! @jsignatures, partial: 'jsignatures/jsignature', as: :jsignature
