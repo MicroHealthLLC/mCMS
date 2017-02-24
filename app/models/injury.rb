@@ -28,7 +28,7 @@ class Injury < ApplicationRecord
 
 
   def to_s
-    icdcm_code.to_s
+    injury_name
   end
 
   def self.safe_attributes
