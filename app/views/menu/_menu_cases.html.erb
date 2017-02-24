@@ -66,8 +66,14 @@
             </li>
         <% end %>
         <% if module_enabled?('documents')  && can?(:manage_roles, :view_documents, :manage_documents) %>
-            <li class="<%= menu_active?('documents') %>">
+            <li class="<%= params[:action] != 'all_files' ? menu_active?('documents') : ''  %>">
               <a href="/documents" title="<%= t(:documents) %>"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent"><%= t(:documents) %></span></a>
+            </li>
+        <% end %>
+
+        <% if module_enabled?('all_files')  && can?(:manage_roles, :manage_cases) %>
+            <li class="<%= menu_active?('cases','all_files') %>">
+              <a href="/cases/all_files" title="<%= t(:all_files) %>"><i class="fa fa-lg fa-fw fa-files-o"></i> <span class="menu-item-parent"><%= t(:all_files) %></span></a>
             </li>
         <% end %>
 

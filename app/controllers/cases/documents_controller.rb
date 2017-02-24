@@ -11,6 +11,10 @@ class DocumentsController < UserCasesController
     @documents = Document.for_cases.visible
   end
 
+  def all_files
+    @files = Document.visible.map(&:document_attachments).flatten
+  end
+
   # GET /documents/1
   # GET /documents/1.json
   def show

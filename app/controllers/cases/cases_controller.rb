@@ -34,13 +34,12 @@ class CasesController < UserCasesController
   end
 
   def all_files
-    # @appointment_files = Appointment.my_appointments.map(&:appointment_attachments)
+    @appointment_files = Appointment.my_appointments.map(&:appointment_attachments)
     @document_files = Document.visible.map(&:document_attachments)
-    # @task_files = Task.
-    #     where(assigned_to: User.current).
-    #     or(Task.root.where(for_individual: User.current) ).map(&:task_attachments)
-    # @files = @appointment_files.flatten + @document_files.flatten + @task_files.flatten
-    @files = @document_files.flatten
+    @task_files = Task.
+        where(assigned_to: User.current).
+        or(Task.root.where(for_individual: User.current) ).map(&:task_attachments)
+    @files = @appointment_files.flatten + @document_files.flatten + @task_files.flatten
   end
 
   # GET /cases/1

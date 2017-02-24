@@ -123,8 +123,13 @@ module ApplicationHelper
     end
   end
 
-  def menu_active?(controller)
-    params[:controller]== controller ? 'active' : ''
+  def menu_active?(controller, action= nil)
+    if action
+      params[:controller] == controller && params[:action] == action ? 'active' : ''
+    else
+      params[:controller]== controller ? 'active' : ''
+    end
+
   end
 
   # For devise

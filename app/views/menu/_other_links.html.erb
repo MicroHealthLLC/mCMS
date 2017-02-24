@@ -27,9 +27,9 @@
       <a href="/document_managers" title="<%= t 'document_managers' %>"><i class="fa fa-lg fa-fw fa-folder-open"></i><span class="menu-item-parent"><%= t 'document_managers' %></span></a>
     </li>
 <% else %>
-    <% if module_enabled?('all_files')  && can?(:manage_roles, :manage_cases) %>
-        <li class="<%= menu_active?('documents') %>">
-          <a href="/cases/all_files" title="<%= t(:all_files) %>"><i class="fa fa-lg fa-fw fa-files-o"></i> <span class="menu-item-parent"><%= t(:all_files) %></span></a>
+    <% if module_enabled?('all_files')  && can?(:manage_roles, :manage_documents) %>
+        <li class="<%= menu_active?('documents', 'all_files') %>">
+          <a href="/all_files" title="<%= t(:all_files) %>"><i class="fa fa-lg fa-fw fa-files-o"></i> <span class="menu-item-parent"><%= t(:all_files) %></span></a>
         </li>
     <% end %>
     <% if module_enabled?('client_journals')  && can?(:manage_roles, :view_client_journals, :manage_client_journals)%>
