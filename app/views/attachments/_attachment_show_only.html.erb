@@ -1,9 +1,30 @@
 <div class="nested-fields row margin-top-5">
   <div class="col-md-10">
-    <fieldset>
-      <div class="col-md-12">
-        <%= link_to(attachment.read_attribute(:file), attachment.file_url) %>
-      </div>
-    </fieldset>
+    <div class="attachments">
+      <fieldset>
+        <div class="col-md-12">
+          <%  extension = attachment.file.file.extension.downcase %>
+          <% if extension =~ /(pdf|swf)$/i  %>
+
+              <%= link_to attachment.read_attribute(:file), attachment.file_url,
+                          :id => 'attachment', :filename => attachment.read_attribute(:file) ,
+                          :class => "icon-only icon-magnifier lightbox_preview #{extension}",
+                          :data  => {:fancybox_type => 'iframe'}   %>
+
+          <% elsif %w{jpg png jpg gif bmp}.include?(extension) %>
+
+              <%= link_to attachment.read_attribute(:file), attachment.file_url,
+                          :id => 'attachment', :filename => attachment.read_attribute(:file) ,
+                          :class => "icon-only icon-magnifier lightbox_preview #{extension}"  %>
+
+          <% else %>
+              <%= link_to attachment.read_attribute(:file), attachment.file_url,
+                          :id => 'attachment', :filename => attachment.read_attribute(:file) ,
+                          :class => "icon-only icon-magnifier lightbox_preview #{extension}"  %>
+          <% end %>
+
+        </div>
+      </fieldset>
+    </div>
   </div>
 </div>

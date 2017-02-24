@@ -16,16 +16,21 @@
   <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track'=> 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track'=> 'reload' %>
 
+  <% if params[:action] == 'show' %>
+      <%= stylesheet_link_tag  'lightbox2', media: 'screen' %>
+      <%= javascript_include_tag 'lightbox2', 'data-turbolinks-track'=> 'reload' %>
+  <% end %>
+
   <meta name="turbolinks-cache-control" content="no-cache">
   <style>
-    .smart-style-5
-    {
-      background: url(/assets/glass.jpg) no-repeat center center fixed;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
-    }
+      .smart-style-5
+      {
+          background: url(/assets/glass.jpg) no-repeat center center fixed;
+          -webkit-background-size: cover;
+          -moz-background-size: cover;
+          -o-background-size: cover;
+          background-size: cover;
+      }
   </style>
 
   <!-- We recommend you use "your_style.css" to override SmartAdmin
@@ -105,11 +110,11 @@
 <!-- END PAGE FOOTER -->
 <%= javascript_include_tag 'smart_admin/smart_admin' %>
 <script>
-  $(document).ready(function() {
+    $(document).ready(function() {
 
-    // DO NOT REMOVE : GLOBAL FUNCTIONS!
-    pageSetUp();
-  });
+        // DO NOT REMOVE : GLOBAL FUNCTIONS!
+        pageSetUp();
+    });
 </script>
 
 </body>

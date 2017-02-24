@@ -8,6 +8,16 @@
     </p>
 
     <p>
+      <strong>User:</strong>
+      <%= @jsignature.user %>
+    </p>
+
+     <p>
+      <strong>Created at:</strong>
+      <%= format_date_time @jsignature.created_at %>
+    </p>
+
+    <p>
       <strong>Appointment:</strong>
       <%= link_to @jsignature.appointment, @jsignature.appointment %>
     </p>
