@@ -41,7 +41,7 @@ class Affiliation < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:name, :affiliation_type_id, :note, :user_id, :status_id ]
+    [:name, :affiliation_type_id, :note, :user_id, :status_id, :date_start, :date_end ]
   end
 
   def extend_informations
@@ -54,6 +54,8 @@ class Affiliation < ApplicationRecord
     pdf.text "<b>name: </b> #{name}", :inline_format =>  true
     pdf.text "<b>Affiliation Type: </b> #{affiliation_type}", :inline_format =>  true
     pdf.text "<b>Affiliation Status: </b> #{affiliation_status}", :inline_format =>  true
+    pdf.text "<b>Date Start: </b> #{date_start}", :inline_format =>  true
+    pdf.text "<b>Date End: </b> #{date_end}", :inline_format =>  true
     pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
   end
 
@@ -63,6 +65,8 @@ class Affiliation < ApplicationRecord
     output<< "<b>name: </b> #{name}<br/>"
     output<< "<b>Affiliation type: </b> #{affiliation_type}<br/>"
     output<< "<b>Affiliation Status: </b> #{affiliation_status}<br/>"
+    output<< "<b>Date Start: </b> #{date_start}<br/>"
+    output<< "<b>Date End: </b> #{date_end}<br/>"
     output<< "<b>Note: </b> #{note}<br/>"
 
     output.html_safe

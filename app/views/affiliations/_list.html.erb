@@ -4,6 +4,8 @@
     <th><%= t :label_name %></th>
     <th><%= t :affiliation_type %></th>
     <th><%= t :affiliation_status %></th>
+    <th><%= t :date_start %></th>
+    <th><%= t :date_end %></th>
  </tr>
   </thead>
 
@@ -14,6 +16,8 @@
             <td><%= link_to affiliation.name, affiliation %></td>
             <td><%= affiliation.affiliation_type %></td>
             <td><%= affiliation.affiliation_status %></td>
+            <td><%= affiliation.date_start %></td>
+            <td><%= affiliation.date_end %></td>
             </tr>
       <% end %>
   <% else %>
