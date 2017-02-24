@@ -31,7 +31,7 @@
       <div class="form-group">
         <%= f.label t('proficiency'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :proficiency_id, options_for_select(ProficiencyType.pluck(:name, :id), selected: language.proficiency_id), {},{ class: 'form-control'} %>
+          <%= f.select :proficiency_id, options_for_select(ProficiencyType.pluck(:name, :id), selected: language.proficiency_type.try(:id)), {},{ class: 'form-control'} %>
         </div>
       </div>
 
