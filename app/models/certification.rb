@@ -28,17 +28,18 @@ class Certification < ApplicationRecord
   end
 
   def to_s
-    certification_type
+    name
   end
 
   def self.safe_attributes
-    [:certification_type_id, :user_id, :date_received, :note, :date_expired, :status_id,
+    [:name, :certification_type_id, :user_id, :date_received, :note, :date_expired, :status_id,
      certification_attachments_attributes: [Attachment.safe_attributes]]
   end
 
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.text "Certification ##{id}", :style => :bold}
     user.to_pdf_brief_info(pdf)
+    pdf.text "<b>Name: </b> #{name}", :inline_format =>  true
     pdf.text "<b>Certification type: </b> #{certification_type}", :inline_format =>  true
     pdf.text "<b>Certification Status: </b> #{certification_status}", :inline_format =>  true
     pdf.text "<b>Date received: </b> #{date_received}", :inline_format =>  true
