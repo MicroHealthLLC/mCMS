@@ -14,7 +14,7 @@
       <tr>
         <td>      <%= link_to attachment.owner,  attachment.owner %>    </td>
         <td>      <%= link_to_case attachment.owner.case %>    </td>
-        <td>      <%= link_to(attachment.read_attribute(:file), attachment.file_url) %>    </td>
+        <td>     <%= render 'attachments/file', attachment: attachment %>   </td>
         <td>      <%= format_date attachment.created_at %>    </td>
       </tr>
   <% end %>

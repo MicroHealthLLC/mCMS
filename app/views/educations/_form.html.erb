@@ -30,7 +30,7 @@
       <div class="form-group">
         <%= f.label t('education_status'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :status_id, options_for_select(EducationStatus.active.pluck(:name, :id), selected: f.object.education_type.try(:id)), {},{ class: 'form-control'} %>
+          <%= f.select :status_id, options_for_select(EducationStatus.active.pluck(:name, :id), selected: f.object.education_status.try(:id)), {},{ class: 'form-control'} %>
         </div>
       </div>
 

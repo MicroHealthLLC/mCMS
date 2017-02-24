@@ -16,7 +16,7 @@
   <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track'=> 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track'=> 'reload' %>
 
-  <% if params[:action] == 'show' %>
+  <% if params[:action].in?(['all_files', 'show']) %>
       <%= stylesheet_link_tag  'lightbox2', media: 'screen' %>
       <%= javascript_include_tag 'lightbox2', 'data-turbolinks-track'=> 'reload' %>
   <% end %>

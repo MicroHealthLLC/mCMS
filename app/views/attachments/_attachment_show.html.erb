@@ -5,7 +5,7 @@
       <div class="col-md-12">
         <div class="col-md-4">
           <% attachment = f.object %>
-          <%= link_to(attachment.read_attribute(:file), attachment.file_url) %>
+          <%= render 'attachments/file', attachment: attachment%>
           <%= f.hidden_field :type %>
           <%= f.hidden_field :owner_id %>
         </div>
