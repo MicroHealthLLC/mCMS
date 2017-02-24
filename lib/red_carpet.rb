@@ -374,7 +374,7 @@ RedCarpet::AccessControl.map do |map|
     map.permission :create_documents, {:documents => [:new, :create]},  :read => true
     map.permission :edit_documents,   {:documents => [ :edit, :update]},  :read => true
     map.permission :delete_documents, {:documents => [ :destroy]},  :read => true
-    map.permission :manage_documents, {:documents => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_documents, {:documents => [:all_files, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :client_journal do |map|
@@ -539,11 +539,10 @@ RedCarpet::AccessControl.map do |map|
         :certifications => [:index, :show, :new, :create, :edit, :update, :destroy],
         :contacts => [:search, :index, :show, :new, :create, :edit, :update, :destroy, :remove],
         :chat_rooms => [:conference, :show, :create_or_find],
-        :document => [:index,:new,  :show, :create, :edit, :update, :destroy],
+        :document => [:all_files, :index,:new,  :show, :create, :edit, :update, :destroy],
         :other_skills => [:index,:new,  :show, :create, :edit, :update, :destroy],
         :injuries => [:index, :show, :new, :create, :edit, :update, :destroy],
         :worker_compensations => [:index, :show, :new, :create, :edit, :update, :destroy],
-        :jsignatures => [:index, :show, :new, :create, :edit, :update, :destroy],
         :job_applications => [:index, :show, :new, :create, :edit, :update, :destroy],
         :positions => [:index, :show, :new, :create, :edit, :update, :destroy],
         :admissions => [:index, :show, :new, :create, :edit, :update, :destroy],
