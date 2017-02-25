@@ -108,7 +108,7 @@ var named_function = function(){
     // initialize persistent state
     $('.date_picker').datepicker({ dateFormat: 'dd-mm-yy' });
 
-    $( "select").addClass('col-xs-12')
+    //$( "select").addClass('col-xs-12')
     $( "select").css('padding', '0')
     $( "select" ).select2({
         theme: "bootstrap"

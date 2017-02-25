@@ -56,6 +56,8 @@ class User < ApplicationRecord
   has_many :memberships, dependent: :destroy
   has_many :groups, through: :memberships
 
+  STATUS = [['Active', true],['Inactive', false]]
+
   def member_of(group_id)
     # check if user is a member of specific group
     memberships.each do |membership|
@@ -127,7 +129,8 @@ class User < ApplicationRecord
       user.email = auth.info.email || "#{auth.uid}@#{auth.provider}.com"
       user.login = auth.info.email || "#{auth.uid}@#{auth.provider}.com"
       user.password = Devise.friendly_token[0,20]
-      user.ldap_authenticatable= ''
+      user.ldap_authenticatable= '',
+      user.state = Setting['user_default_state']
     end
   end
 

@@ -1,7 +1,9 @@
 class Setting < ApplicationRecord
 
-  cattr_accessor :available_settings
+  cattr_accessor :available_settings, :cached_settings
   self.available_settings ||= {}
+  self.cached_settings ||= {}
+  # cached_cleared_on = Time.now
 
   def self.theme
     JSON.parse(get_theme.value ||  {theme_style: 'smart-style-0' }.to_json )
@@ -20,18 +22,16 @@ class Setting < ApplicationRecord
     theme['theme_style']
   end
 
-  @cached_settings = {}
-  @cached_cleared_on = Time.now
   # Returns the value of the setting named name
   def self.[](name)
-    v = @cached_settings[name]
-    v ? v : (@cached_settings[name] = find_or_default(name).value)
+    v = cached_settings[name]
+    v ? v : (cached_settings[name] = find_or_default(name).value)
   end
 
   def self.[]=(name, v)
     setting = find_or_default(name)
     setting.value = (v ? v : "")
-    @cached_settings[name] = nil
+    cached_settings[name] = nil
     setting.save
     setting.value
   end

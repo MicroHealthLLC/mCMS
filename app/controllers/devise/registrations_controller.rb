@@ -17,7 +17,8 @@ class Devise::RegistrationsController < DeviseController
 
   # POST /resource
   def create
-    build_resource(sign_up_params)
+
+    build_resource(sign_up_params.merge({state: Setting['user_default_state']}))
 
     resource.save
     yield resource if block_given?

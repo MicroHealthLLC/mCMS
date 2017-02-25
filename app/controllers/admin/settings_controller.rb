@@ -21,6 +21,11 @@ class SettingsController < ApplicationController
     redirect_to settings_path
   end
 
+  def set_user_auth
+    Setting['user_default_state'] = params['user_default_state']
+    redirect_to settings_path
+  end
+
   def set_modules
     ems = EnabledModule.pluck(:name)
     rejected_modules = ems.reject{|em| params.has_key? em}

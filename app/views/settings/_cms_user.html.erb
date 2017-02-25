@@ -1,0 +1,14 @@
+<%= form_tag(set_user_auth_settings_path, html: { method: 'post',  class: 'form-horizontal' }) do |f| %>
+    <div class="form-group">
+      <%= label_tag "default_auth_user", "Default User Status: ", class: 'col-md-2 control-label' %>
+      <div class="col-md-9">
+        <%= select_tag :user_default_state, options_for_select(User::STATUS, selected: Setting['user_default_state']), {class: 'form-control'} %>
+      </div>
+    </div>
+
+    <div class="form-group margin-top-10" >
+      <div class="col-xs-12">
+        <%= submit_tag t('button_save'), class: 'btn btn-primary pull-right' %>
+      </div>
+    </div>
+<% end %>

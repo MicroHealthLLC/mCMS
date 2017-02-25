@@ -8,6 +8,8 @@ open_new_tab_url:
   default: 'true'
 use_iframe:
   default: 'true'
+user_default_state:
+  default: 'false'
 email_header:
   default: ""
 email_footer:

@@ -215,6 +215,7 @@ Rails.application.routes.draw do
 
     end
   end
+  get 'all_files', to: "documents#all_files"
   resources :documents
   resources :client_documents, only: [:index, :new, :show, :edit]
 
@@ -281,6 +282,7 @@ Rails.application.routes.draw do
   resources :roles
   resources :settings, only: [:index, :create] do
     collection do
+      post 'set_user_auth'
       post 'set_modules'
       post 'set_theme'
     end

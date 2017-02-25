@@ -3,6 +3,7 @@
     <li><a id="link-tabs-general" href="#tabs-home" >Home page</a></li>
     <li><a id="link-tabs-modules" href="#tabs-module">Module page</a></li>
     <li><a id="link-tabs-modules" href="#tabs-theme">Themes</a></li>
+    <li><a id="link-tabs-modules" href="#tabs-user">Authentification</a></li>
   </ul>
   <div id='tabs-home' >
     <%= render partial: 'general_setting' %>
@@ -32,6 +33,18 @@
       </div>
     </div>
   </div>
+  <div id='tabs-user' >
+    <div class="row">
+      <div class="col-xs-12">
+        <%= render partial: 'cms_user' %>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
 </div>
   <script>
     $( function() {
