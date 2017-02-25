@@ -80,6 +80,7 @@ en:
   fax: Fax
   phone: Phone Number
   label_user: User
+  label_sort: Sort
   label_active: Active
   label_inactive: Inactive
   profile:

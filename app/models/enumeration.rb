@@ -1,9 +1,14 @@
 class Enumeration < ActiveRecord::Base
   include SubclassFactory
-  default_scope lambda {order(:name)}
+  include ActAsPosition
+  default_scope lambda {order('position ASC, name ASC')}
 
   before_destroy :check_integrity
   before_save    :check_default
+
+  before_create :set_default_position
+  after_save :update_position
+  after_destroy :remove_position
 
   # attr_protected :type
 
@@ -95,39 +100,27 @@ class Enumeration < ActiveRecord::Base
     return new == previous
   end
 
-  private
+
 
   def check_integrity
     raise "Cannot delete enumeration" if self.in_use?
   end
 
-  # Overrides Redmine::Acts::Positioned#set_default_position so that enumeration overrides
-  # get the same position as the overriden enumeration
   def set_default_position
-    if position.nil? && parent
-      self.position = parent.position
+    if position.nil?
+      self.position = self.class.pluck(:position).compact.count + 1
     end
-    super
   end
 
   def update_position
     super
-    if position_changed?
-      self.class.where.not(:parent_id => nil).update_all(
-          "position = coalesce((
-          select position
-          from (select id, position from enumerations) as parent
-          where parent_id = parent.id), 1)"
-      )
-    end
-  end
-
-  # Overrides Redmine::Acts::Positioned#remove_position so that enumeration overrides
-  # get the same position as the overriden enumeration
-  def remove_position
-    if parent_id.blank?
-      super
-    end
+    # if position_changed?
+    #   self.class.update_all(
+    #       "position = coalesce((
+    #       select count(*) + 1
+    #       from enumerations where id< id  AND type = '#{e}'), 1)"
+    #   )
+    # end
   end
 end
 # require_dependency 'enumerations/*.rb'

@@ -142,6 +142,19 @@ module ApplicationHelper
     User
   end
 
+  def reorder_handle(object, options={})
+    data = {
+        :reorder_url => options[:url] || url_for(object),
+        :reorder_param => options[:param] || object.class.name.underscore
+    }
+    content_tag('i', '',
+                :class => "sort-handle fa fa-sort fa-lg",
+                :data => data,
+                :title => I18n.t(:label_sort),
+                :style => 'cursor: pointer;'
+    )
+  end
+
   def format_date_time(datetime)
     datetime.strftime(I18n.t('time.formats.default')) if datetime
   end
