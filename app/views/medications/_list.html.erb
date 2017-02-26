@@ -15,7 +15,7 @@
   <tbody>
   <% @medications.each do |medication| %>
       <tr>
-        <td><%= medication.medication %></td>
+        <td><%= link_to medication.medication_synonym, medication %></td>
         <td><%= medication.dose %></td>
         <td><%= medication.description %></td>
         <td><%= medication.date_prescribed %></td>

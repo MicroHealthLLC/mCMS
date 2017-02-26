@@ -17,7 +17,7 @@ class Medication < ApplicationRecord
   end
 
   def to_s
-    medication
+    medication_synonym
   end
 
   def self.safe_attributes

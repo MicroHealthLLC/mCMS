@@ -18,7 +18,7 @@
       <div class="form-group">
         <%= f.label :medication , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= text_field_tag :med, f.object.medication, class: 'form-control' %>
+          <%= text_field_tag :med, f.object.medication_synonym, class: 'form-control' %>
           <%= f.hidden_field :rxcui, class: 'form-control' %>
           <%= f.hidden_field :medication_tty, class: 'form-control' %>
           <%= f.hidden_field :medication, class: 'form-control' %>
