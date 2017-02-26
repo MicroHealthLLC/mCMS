@@ -16,4 +16,21 @@ class IdcdataController < ApplicationController
 
     render json: data
   end
+
+  def medication
+    q = params[:term]
+    url = "https://rxnav.nlm.nih.gov/REST/drugs.json?name=#{q}"
+    response = Faraday.get url
+    j = JSON.parse response.body
+    data = []
+    j["drugGroup"]['conceptGroup'].each do |drug|
+      conceptProperties = drug['conceptProperties']
+      conceptProperties.each do |d|
+
+        hash = {rxcui: d['rxcui'], tty: d['tty'], name: d['name'], label: d['synonym'] }
+        data<< hash
+      end
+    end
+    render json: data
+  end
 end

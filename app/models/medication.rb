@@ -21,7 +21,7 @@ class Medication < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:user_id, :medication, :dose, :description, :date_prescribed, :date_expired,
+    [:user_id, :medication, :medication_synonym, :dose, :rxcui, :medication_tty, :description, :date_prescribed, :date_expired,
      :total_refills, :refills_left, :medication_status_id, :medication_description,
      medication_attachments_attributes: [Attachment.safe_attributes]]
   end
