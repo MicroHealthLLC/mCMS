@@ -1,54 +1,58 @@
-<p id="notice"><%= notice %></p>
+<%= render partial: 'action_menu' %>
 
-<p>
-  <strong>User:</strong>
-  <%= @medication.user_id %>
-</p>
+<div class="row">
+  <div class="col-xs-12">
 
-<p>
-  <strong>Medication:</strong>
-  <%= @medication.medication %>
-</p>
+    <p>
+      <strong>Medication:</strong>
+      <%= @medication.medication %>
+    </p>
 
-<p>
-  <strong>Dose:</strong>
-  <%= @medication.dose %>
-</p>
+    <p>
+      <strong>Dose:</strong>
+      <%= @medication.dose %>
+    </p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @medication.description %>
-</p>
+    <p>
+      <strong>Description:</strong>
+      <%= @medication.description %>
+    </p>
 
-<p>
-  <strong>Date prescripted:</strong>
-  <%= @medication.date_prescripted %>
-</p>
+    <p>
+      <strong>Date prescripted:</strong>
+      <%= @medication.date_prescribed %>
+    </p>
 
-<p>
-  <strong>Date expired:</strong>
-  <%= @medication.date_expired %>
-</p>
+    <p>
+      <strong>Date expired:</strong>
+      <%= @medication.date_expired %>
+    </p>
 
-<p>
-  <strong>Total refills:</strong>
-  <%= @medication.total_refills %>
-</p>
+    <p>
+      <strong>Total refills:</strong>
+      <%= @medication.total_refills %>
+    </p>
 
-<p>
-  <strong>Refills left:</strong>
-  <%= @medication.refills_left %>
-</p>
+    <p>
+      <strong>Refills left:</strong>
+      <%= @medication.refills_left %>
+    </p>
 
-<p>
-  <strong>Medication status:</strong>
-  <%= @medication.medication_status_id %>
-</p>
+    <p>
+      <strong>Medication status:</strong>
+      <%= @medication.medication_status %>
+    </p>
 
-<p>
-  <strong>Medication description:</strong>
-  <%= @medication.medication_description %>
-</p>
+    <p>
+      <strong>Medication description:</strong>
+      <%= @medication.medication_description.html_safe %>
+    </p>
 
-<%= link_to 'Edit', edit_medication_path(@medication) %> |
-<%= link_to 'Back', medications_path %>
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @medication.medication_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
+</div>

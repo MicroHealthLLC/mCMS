@@ -421,6 +421,14 @@ en:
   medical_history_type: Medical History Type
   medical_history_status: Medical History Status
 
+  medication: Medication
+  medication_description: Medication Description
+  new_medication: New Medication
+  edit_medication: Edit Medication
+  medications: Medications
+  medication_type: Medication Type
+  medication_status: Medication Status
+
   other_history: Other History
   new_other_history: New Other History
   edit_other_history: Edit Other History

@@ -1,0 +1,34 @@
+<table class="table table-responsive" id="medications_table">
+  <thead>
+  <tr>
+    <th>Medication</th>
+    <th>Dose</th>
+    <th>Description</th>
+    <th>Date prescribed</th>
+    <th>Date expired</th>
+    <th>Total refills</th>
+    <th>Refills left</th>
+    <th>Medication status</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @medications.each do |medication| %>
+      <tr>
+        <td><%= medication.medication %></td>
+        <td><%= medication.dose %></td>
+        <td><%= medication.description %></td>
+        <td><%= medication.date_prescribed %></td>
+        <td><%= medication.date_expired %></td>
+        <td><%= medication.total_refills %></td>
+        <td><%= medication.refills_left %></td>
+        <td><%= medication.medication_status %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<script>
+  $(document).ready(function(){
+    initDataTable('medications_table')
+  })
+</script>
