@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :referrals
   resources :jsignatures, except: [:index]
   resources :job_applications
   resources :worker_compensations
@@ -255,6 +256,8 @@ Rails.application.routes.draw do
     end
     member do
       get 'restore'
+      get 'lock'
+      get 'unlock'
       put 'change_password'
       put 'change_basic_info'
       put 'attachments'

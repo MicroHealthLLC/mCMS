@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @referral.user_id %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @referral.title %>
+</p>
+
+<p>
+  <strong>Referral type:</strong>
+  <%= @referral.referral_type_id %>
+</p>
+
+<p>
+  <strong>Referral date:</strong>
+  <%= @referral.referral_date %>
+</p>
+
+<p>
+  <strong>Referral appointment:</strong>
+  <%= @referral.referral_appointment %>
+</p>
+
+<p>
+  <strong>Referral status:</strong>
+  <%= @referral.referral_status_id %>
+</p>
+
+<p>
+  <strong>Referred by:</strong>
+  <%= @referral.referred_by_id %>
+</p>
+
+<p>
+  <strong>Referred to:</strong>
+  <%= @referral.referred_to_id %>
+</p>
+
+<p>
+  <strong>Referral reason:</strong>
+  <%= @referral.referral_reason %>
+</p>
+
+<%= link_to 'Edit', edit_referral_path(@referral) %> |
+<%= link_to 'Back', referrals_path %>

@@ -32,6 +32,24 @@ class UsersController < ApplicationController
     redirect_to :back
   end
 
+  def lock
+    u = User.unscoped.find params[:id]
+    u.failed_attempts = Setting['maximum_attempts'].to_i
+    u.locked_at = Time.now
+    u.save
+    flash[:notice] = 'User locked'
+    redirect_to :back
+  end
+
+  def unlock
+    u = User.unscoped.find params[:id]
+    u.failed_attempts = 0
+    u.locked_at = nil
+    u.save
+    flash[:notice] = 'User unlocked'
+    redirect_to :back
+  end
+
   def search_users
     q = params[:q]
     respond_to do |format|

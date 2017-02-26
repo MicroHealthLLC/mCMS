@@ -11,7 +11,7 @@
 
   <div id='tabs-module' >
     <div class="row">
-      <%= form_tag(set_modules_settings_path, html: { method: 'post',  class: 'form-horizontal' }) do |f| %>
+      <%= form_tag(set_modules_settings_path, method: 'post',  class: 'form-horizontal' ) do |f| %>
           <% EnabledModule.order('name ASC').each do |em| %>
               <div class="col-xs-12">
                 <%= check_box_tag em.name, em.status, em.status %> <%= t(em.name) %>

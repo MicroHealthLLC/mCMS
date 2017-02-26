@@ -1,0 +1,19 @@
+<%= simple_form_for(@referral) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :user_id %>
+    <%= f.input :title %>
+    <%= f.input :referral_type_id %>
+    <%= f.input :referral_date %>
+    <%= f.input :referral_appointment %>
+    <%= f.input :referral_status_id %>
+    <%= f.input :referred_by_id %>
+    <%= f.input :referred_to_id %>
+    <%= f.input :referral_reason %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
