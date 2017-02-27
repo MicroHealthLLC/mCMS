@@ -23,9 +23,9 @@ class IdcdataController < ApplicationController
     response = Faraday.get url
     j = JSON.parse response.body
     data = []
-    j["drugGroup"]['conceptGroup'].each do |drug|
+    Array.wrap(j["drugGroup"]['conceptGroup']).each do |drug|
       conceptProperties = drug['conceptProperties']
-      conceptProperties.each do |d|
+      Array.wrap(conceptProperties).each do |d|
 
         hash = {rxcui: d['rxcui'], tty: d['tty'], name: d['name'], label: d['synonym'] }
         data<< hash
