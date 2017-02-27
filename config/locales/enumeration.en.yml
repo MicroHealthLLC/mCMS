@@ -114,6 +114,8 @@ en:
   enumeration_compensation_status: Compensation Status
   enumeration_interview_type: Interview Type
   enumeration_interview_status: Interview Status
+  enumeration_referral_status: Referral Status
+  enumeration_referral_type: Referral Type
 
   enumeration_award_enum: Award
   enumeration_award_type: Award Type

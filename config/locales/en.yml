@@ -43,6 +43,14 @@ en:
   new_teleconsult: New Teleconsult
   edit_teleconsult: Edit Teleconsult
 
+  # Referral
+  referral: Referral
+  referrals: Referrals
+  referral_type: Referral Type
+  referral_status: Referral Status
+  new_referral: New Referral
+  edit_referral: Edit Referral
+
   # Daily Living
   daily_living: Daily Living
   daily_livings: Daily Livings

@@ -1,43 +1,15 @@
-<p id="notice"><%= notice %></p>
+<%= link_to(t('new_referral'), new_referral_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_referrals, :manage_referrals, :manage_roles) %>
+<section id="widget-grid" class="referrals_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     referrals: @referrals,
+                     wid_id: 'referrals',
+                     wid_title: t('referrals')
+                 } %>
+    </article>
+  </div>
+</section>
 
-<h1>Referrals</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Title</th>
-      <th>Referral type</th>
-      <th>Referral date</th>
-      <th>Referral appointment</th>
-      <th>Referral status</th>
-      <th>Referred by</th>
-      <th>Referred to</th>
-      <th>Referral reason</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @referrals.each do |referral| %>
-      <tr>
-        <td><%= referral.user_id %></td>
-        <td><%= referral.title %></td>
-        <td><%= referral.referral_type_id %></td>
-        <td><%= referral.referral_date %></td>
-        <td><%= referral.referral_appointment %></td>
-        <td><%= referral.referral_status_id %></td>
-        <td><%= referral.referred_by_id %></td>
-        <td><%= referral.referred_to_id %></td>
-        <td><%= referral.referral_reason %></td>
-        <td><%= link_to 'Show', referral %></td>
-        <td><%= link_to 'Edit', edit_referral_path(referral) %></td>
-        <td><%= link_to 'Destroy', referral, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Referral', new_referral_path %>

@@ -1,0 +1,33 @@
+<table class="table table-responsive" id="referral_table">
+  <thead>
+  <tr>
+    <th>User</th>
+    <th>Title</th>
+    <th>Referral type</th>
+    <th>Referral date</th>
+    <th>Referral appointment</th>
+    <th>Referral status</th>
+    <th>Referred by</th>
+    <th>Referred to</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @referrals.each do |referral| %>
+      <tr>
+        <td><%= referral.title %></td>
+        <td><%= referral.referral_type %></td>
+        <td><%= referral.referral_date %></td>
+        <td><%= referral.referral_appointment %></td>
+        <td><%= referral.referral_status %></td>
+        <td><%= referral.referred_by %></td>
+        <td><%= referral.referred_to %></td>
+       <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+    initDataTable('referral_table')
+  })
+</script>

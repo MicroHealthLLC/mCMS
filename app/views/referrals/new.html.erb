@@ -1,5 +1,14 @@
-<h1>New Referral</h1>
 
-<%= render 'form', referral: @referral %>
-
-<%= link_to 'Back', referrals_path %>
+<section id="widget-grid" class="show_customer_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     referral: @referral,
+                     wid_id: 'referral',
+                     wid_title: t('new_referral')
+                 } %>
+    </article>
+  </div>
+</section>
