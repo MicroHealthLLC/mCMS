@@ -14,7 +14,6 @@
       <% end %>
 
       <%= f.hidden_field :user_id %>
-      <%= f.hidden_field :referred_by_id %>
       
       <div class="form-group">
         <%= f.label :title , class: 'col-md-2 control-label' %>
@@ -51,10 +50,27 @@
           <%= f.select :referral_status_id, options_for_select(ReferralStatus.active.pluck(:name, :id), selected: f.object.referral_status.try(:id)) , {} ,{class: 'form-control'} %>
         </div>
       </div>
-      
- 
-    <%#= f.input :referred_to_id %>
-      
+
+     <div class="form-group">
+        <%= f.label :referred_by, class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :referred_by_id, options_for_select(User.power_user.map{|user| [user.name, user.id]}, selected: f.object.referred_by.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+     <div class="form-group">
+        <%= f.label :referred_to, class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= text_field_tag :client_organization, f.object.referred_to,  class: 'form-control' %>
+          <script>
+            $(document).ready(function(){
+              $('#client_organization').autocomplete({
+                source: "/referrals/find_organization.json",
+                minLength: 2
+              })
+            })
+          </script>
+        </div>
+      </div>
       
       <div class="form-group">
         <%= f.label :referral_reason , class: 'col-md-2 control-label' %>

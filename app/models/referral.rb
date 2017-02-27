@@ -3,7 +3,7 @@ class Referral < ApplicationRecord
   belongs_to :referral_type, optional: true
   belongs_to :referral_status, optional: true
   belongs_to :referred_by, class_name: 'User', optional: true
-  belongs_to :referred_to, class_name: 'ClientOrganisation', optional: true
+  belongs_to :referred_to, class_name: 'ClientOrganization', optional: true
 
   has_many :referral_notes, foreign_key: :owner_id, dependent: :destroy
 

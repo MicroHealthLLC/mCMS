@@ -2,8 +2,7 @@
   <thead>
   <tr>
     <th>Medication</th>
-    <th>Total number of doses</th>
-    <th>Doses given</th>
+
     <th>Next date due</th>
     <th>Date immunized</th>
     <th>Manufacturer</th>
@@ -17,8 +16,7 @@
   <% @immunizations.each do |immunization| %>
       <tr>
         <td><%= link_to immunization.immunization_cvx, immunization %></td>
-        <td><%= immunization.total_number_of_doses %></td>
-        <td><%= immunization.doses_given %></td>
+
         <td><%= immunization.next_date_due %></td>
         <td><%= immunization.date_immunized %></td>
         <td><%= immunization.manufacturer %></td>

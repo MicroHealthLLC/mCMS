@@ -82,6 +82,8 @@ class NotesController < UserCasesController
              :case_note
            elsif params[:task_note]
              :task_note
+            elsif params[:referral_note]
+             :referral_note
            elsif params[:post_note]
              :post_note
            elsif params[:need_note]

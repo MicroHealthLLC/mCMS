@@ -1,4 +1,5 @@
 class IdcdataController < ApplicationController
+  before_action  :authenticate_user!
   def index
     q = params[:term]
     search = q.to_s.split(' ')

@@ -89,6 +89,12 @@
             </li>
         <% end %>
 
+        <% if module_enabled?( 'referrals')  && can?(:manage_roles, :view_referrals, :manage_referrals) %>
+            <li class="<%= menu_active?('referrals') %>">
+              <a href="/referrals" title="<%= t(:referrals) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:referrals) %></span></a>
+            </li>
+        <% end %>
+
         <% if module_enabled?( 'surveys' )  && can?(:manage_roles, :view_surveys, :manage_surveys)%>
             <li class="<%= menu_active?('surveys') %>">
               <a href="/surveys" title="<%= t(:surveys) %>"><i class="fa fa-lg fa-fw fa-question"></i><span class="menu-item-parent"><%= t(:surveys) %></span></a>
