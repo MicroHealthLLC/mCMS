@@ -17,7 +17,7 @@ timeout_in:
 maximum_attempts:
   default: 5
 unlock_in:
-  default: 1
+  default: 60
 email_header:
   default: ""
 email_footer:

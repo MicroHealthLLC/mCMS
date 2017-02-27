@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :referrals
+  resources :referrals do
+    collection do
+      get 'find_organization'
+    end
+  end
   resources :jsignatures, except: [:index]
   resources :job_applications
   resources :worker_compensations
@@ -136,6 +140,7 @@ Rails.application.routes.draw do
   resources :need_notes, except: [:index], controller: :notes
   resources :appointment_notes, except: [:index], controller: :notes
   resources :document_notes, except: [:index], controller: :notes
+  resources :referral_notes, except: [:index], controller: :notes
   resources :client_journal_notes, except: [:index], controller: :notes
   resources :attempt_notes, controller: :notes
   resources :notes do
