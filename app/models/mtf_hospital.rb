@@ -8,7 +8,7 @@ class MtfHospital < ApplicationRecord
   belongs_to :verified_personnel_casualty_reporting_system, optional: true
   belongs_to :line_of_duty_investigation, optional: true
 
-  has_many :mtf_hospital_attachments, foreign_key: :owner_id
+  has_many :mtf_hospital_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :mtf_hospital_attachments, reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :user_id, :mtf_hospital

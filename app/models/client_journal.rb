@@ -4,7 +4,7 @@ class ClientJournal < ApplicationRecord
 
   has_many :client_journal_notes, foreign_key: :owner_id
 
-  has_many :client_journal_attachments, foreign_key: :owner_id
+  has_many :client_journal_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :client_journal_attachments, reject_if: :all_blank, allow_destroy: true
 
   before_save do

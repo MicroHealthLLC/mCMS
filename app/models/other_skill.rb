@@ -3,7 +3,7 @@ class OtherSkill < ApplicationRecord
   belongs_to :other_skill_status, foreign_key: :status_id
   belongs_to :other_skill_type, foreign_key: :skill_type_id
 
-  has_many :skill_attachments, foreign_key: :owner_id
+  has_many :skill_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :skill_attachments, reject_if: :all_blank, allow_destroy: true
   scope :not_private, -> {where(is_private: false)}
 

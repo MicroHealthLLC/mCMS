@@ -4,7 +4,7 @@ class Unit < ApplicationRecord
   belongs_to :unit_type, optional: true
   belongs_to :installation_name, optional: true
 
-  has_many :unit_attachments, foreign_key: :owner_id
+  has_many :unit_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :unit_attachments, reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :unit_enum_id, :user_id

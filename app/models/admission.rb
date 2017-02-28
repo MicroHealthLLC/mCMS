@@ -3,7 +3,7 @@ class Admission < ApplicationRecord
   belongs_to :admission_status, :optional=> true
   belongs_to :admission_type, optional: true
 
-  has_many :admission_attachments, foreign_key: :owner_id
+  has_many :admission_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :admission_attachments, reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :care_family_name, :user_id

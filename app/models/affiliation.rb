@@ -6,7 +6,7 @@ class Affiliation < ApplicationRecord
   has_one :affiliation_extend_demography, :dependent => :destroy
 
 
-  has_many :affiliation_attachments, foreign_key: :owner_id
+  has_many :affiliation_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :affiliation_attachments, reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :name

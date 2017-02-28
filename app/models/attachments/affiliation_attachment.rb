@@ -1,3 +1,3 @@
 class AffiliationAttachment < Attachment
-  belongs_to :affiliation, foreign_key: :owner_id
+  belongs_to :owner, class_name: 'Affiliation'
 end

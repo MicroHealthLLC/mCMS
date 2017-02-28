@@ -6,7 +6,7 @@ class Organization < ApplicationRecord
 
   has_many :job_details
 
-  has_many :organization_attachments, foreign_key: :owner_id
+  has_many :organization_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :organization_attachments, reject_if: :all_blank, allow_destroy: true
 
 

@@ -1,8 +1,3 @@
 class CaseSupportAttachment < Attachment
-  belongs_to :case_support, foreign_key: :owner_id
-
-  def owner
-    self.case_support
-  end
-
+  belongs_to :owner, class_name: 'CaseSupport'
 end

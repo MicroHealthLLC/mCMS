@@ -3,7 +3,7 @@ class Award < ApplicationRecord
   belongs_to :award_enum, optional: true
   belongs_to :award_type, optional: true
 
-  has_many :award_attachments, foreign_key: :owner_id
+  has_many :award_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :award_attachments, reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :award_enum_id, :user_id

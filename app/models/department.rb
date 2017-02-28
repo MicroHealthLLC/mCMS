@@ -5,7 +5,7 @@ class Department < ApplicationRecord
 
 
   has_one :department_extend_demography
-  has_many :department_attachments, foreign_key: :owner_id
+  has_many :department_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :department_attachments, reject_if: :all_blank, allow_destroy: true
 
   def department_type

@@ -2,6 +2,7 @@ class Education < ApplicationRecord
   belongs_to :user
   belongs_to :education_type
   belongs_to :education_status, :foreign_key => :status_id
+
   has_many :education_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :education_attachments, reject_if: :all_blank, allow_destroy: true
 

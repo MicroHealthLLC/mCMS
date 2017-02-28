@@ -4,7 +4,7 @@ class Language < ApplicationRecord
   belongs_to :language_status, foreign_key: :status_id
   belongs_to :proficiency_type, foreign_key: :proficiency_id
 
-  has_many :language_attachments, foreign_key: :owner_id
+  has_many :language_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :language_attachments, reject_if: :all_blank, allow_destroy: true
 
   after_save :send_notification

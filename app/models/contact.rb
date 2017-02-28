@@ -5,7 +5,7 @@ class Contact < ApplicationRecord
   belongs_to :language_type, optional: true
   has_one :contact_extend_demography
 
-  has_many :contact_attachments, foreign_key: :owner_id
+  has_many :contact_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :contact_attachments, reject_if: :all_blank, allow_destroy: true
 
   scope :not_show_in_search, ->{ where(not_show_in_search: false)}

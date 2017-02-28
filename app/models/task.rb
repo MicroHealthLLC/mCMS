@@ -13,7 +13,7 @@ class Task < ApplicationRecord
   has_many :plans, through: :plan_tasks
 
 
-  has_many :task_attachments, foreign_key: :owner_id
+  has_many :task_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :task_attachments, reject_if: :all_blank, allow_destroy: true
 
   scope :root, -> {where(sub_task_id: nil)}

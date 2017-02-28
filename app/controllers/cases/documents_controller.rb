@@ -12,7 +12,7 @@ class DocumentsController < UserCasesController
   end
 
   def all_files
-    @files = Document.visible.map(&:document_attachments).flatten
+    @files = Attachment.visible
   end
 
   # GET /documents/1

@@ -3,7 +3,7 @@ class Clearance < ApplicationRecord
   belongs_to :clearence_status, foreign_key: :status_id
   belongs_to :user
 
-  has_many :clearance_attachments, foreign_key: :owner_id
+  has_many :clearance_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :clearance_attachments, reject_if: :all_blank, allow_destroy: true
   after_save :send_notification
   def send_notification

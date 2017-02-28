@@ -4,7 +4,7 @@ class DeploymentHistory < ApplicationRecord
   belongs_to :state_type, optional: true
   belongs_to :country_type, optional: true
 
-  has_many :deployment_history_attachments, foreign_key: :owner_id
+  has_many :deployment_history_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :deployment_history_attachments, reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :user_id, :deployment_operation_id

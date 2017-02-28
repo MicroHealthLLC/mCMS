@@ -4,7 +4,7 @@ class Enrollment < ApplicationRecord
   belongs_to :enrollment_type, optional: true
   belongs_to :enrollment_status, optional: true
 
-  has_many :enrollment_attachments, foreign_key: :owner_id
+  has_many :enrollment_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :enrollment_attachments, reject_if: :all_blank, allow_destroy: true
 
 

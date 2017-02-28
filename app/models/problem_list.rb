@@ -4,7 +4,7 @@ class ProblemList < ApplicationRecord
   belongs_to :problem_type, optional: true
   belongs_to :problem_status, optional: true
 
-  has_many :problem_list_attachments, foreign_key: :owner_id, dependent: :destroy
+  has_many :problem_list_attachments, foreign_key: :owner_id, dependent: :destroy, dependent: :destroy
   accepts_nested_attributes_for :problem_list_attachments, reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :user_id, :name

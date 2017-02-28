@@ -2,7 +2,7 @@ class News < ApplicationRecord
   belongs_to :user
   has_many :post_notes, foreign_key: :owner_id, dependent: :destroy
 
-  has_many :post_attachments, foreign_key: :owner_id
+  has_many :post_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :post_attachments, reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :user_id, :title, :summary, :description

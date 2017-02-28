@@ -3,7 +3,7 @@ class Certification < ApplicationRecord
   belongs_to :certification_status, :foreign_key => :status_id
   belongs_to :user
 
-  has_many :certification_attachments, foreign_key: :owner_id
+  has_many :certification_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :certification_attachments, reject_if: :all_blank, allow_destroy: true
 
   after_save :send_notification

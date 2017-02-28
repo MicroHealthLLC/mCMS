@@ -1,3 +1,3 @@
 class ContactAttachment < Attachment
-  belongs_to :contact, foreign_key: :owner_id
+  belongs_to :owner, class_name: 'Contact'
 end
