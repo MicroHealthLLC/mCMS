@@ -1,0 +1,16 @@
+<% if module_enabled?('referrals') %>
+    <%= link_to(t('new_referral'), new_referral_path(related_to: @case.id, type: 'case'), class: 'btn btn-primary pull-right btn-edition') if can?(:create_referrals, :manage_roles, :manage_referrals) %>
+
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= render partial: 'referrals/list',
+                   layout: 'shared/smart_widget_wrapper',
+                   locals: {
+                       show_case_column: false,
+                       referrals: @referrals,
+                       wid_id: 'referrals',
+                       wid_title: 'referrals'
+                   } %>
+      </article>
+    </div>
+<% end %>

@@ -1,21 +1,27 @@
+<% show_case = defined?(show_case_column) ? show_case_column : true %>
 <table class="table table-responsive" id="referral_table">
   <thead>
   <tr>
-    <th>User</th>
     <th>Title</th>
-    <th>Referral type</th>
-    <th>Referral date</th>
-    <th>Referral appointment</th>
-    <th>Referral status</th>
-    <th>Referred by</th>
-    <th>Referred to</th>
+    <% if show_case %>
+        <th><%= t('case') %></th>
+    <% end %>
+    <th>Referral Type</th>
+    <th>Referral Date</th>
+    <th>Referral Appointment</th>
+    <th>Referral Status</th>
+    <th>Referred By</th>
+    <th>Referred To</th>
   </tr>
   </thead>
 
   <tbody>
   <% @referrals.each do |referral| %>
       <tr>
-        <td><%= referral.title %></td>
+        <td><%= link_to referral.title, referral %></td>
+        <% if show_case %>
+            <td><%= link_to_case referral.case %></td>
+        <% end %>
         <td><%= referral.referral_type %></td>
         <td><%= referral.referral_date %></td>
         <td><%= referral.referral_appointment %></td>

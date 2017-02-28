@@ -1,5 +1,6 @@
 class Referral < ApplicationRecord
   belongs_to :user
+  belongs_to :case
   belongs_to :referral_type, optional: true
   belongs_to :referral_status, optional: true
   belongs_to :referred_by, class_name: 'User', optional: true
@@ -35,7 +36,7 @@ class Referral < ApplicationRecord
 
   def self.safe_attributes
     [
-        :user_id, :title, :referral_type_id, :referral_date, :referral_appointment,
+        :user_id, :title, :referral_type_id, :referral_date, :referral_appointment, :case_id,
         :referral_status_id, :referred_by_id, :referred_to_id, :referral_reason,
         referral_attachments_attributes: [Attachment.safe_attributes]
     ]
