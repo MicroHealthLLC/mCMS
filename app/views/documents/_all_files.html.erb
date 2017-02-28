@@ -11,7 +11,7 @@
   <tbody>
   <% @files.each do |attachment| %>
       <tr>
-        <td>      <%= link_to attachment.owner,  attachment.owner %>    </td>
+        <td>      <%= link_to attachment.owner.to_s,  attachment.owner %>    </td>
         <td>     <%= render 'attachments/file', attachment: attachment %>   </td>
         <td>      <%= format_date attachment.created_at %>    </td>
       </tr>
