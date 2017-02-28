@@ -49,21 +49,22 @@ class CasesController < UserCasesController
       session[:employee_id] = @case.user.id
       User.current = @case.user
     end
-    @cases     = @case.sub_cases
-    @relations = @case.relations
+    @cases        = @case.sub_cases
+    @relations    = @case.relations
 
-    @tasks       = @case.tasks
-    @surveys     = @case.survey_cases
-    @documents   = @case.documents
-    @checklists  = @case.checklists#.map(&:checklist_template)
-    @notes       = @case.case_notes
-    @appointments= @case.appointments
-    @needs       = @case.needs
-    @plans       = @case.plans
-    @goals       = @case.goals
-    @enrollments = @case.enrollments
+    @tasks        = @case.tasks
+    @surveys      = @case.survey_cases
+    @documents    = @case.documents
+    @checklists   = @case.checklists#.map(&:checklist_template)
+    @notes        = @case.case_notes
+    @appointments = @case.appointments
+    @needs        = @case.needs
+    @plans        = @case.plans
+    @goals        = @case.goals
+    @enrollments  = @case.enrollments
+    @referrals    = @case.referrals
     @teleconsults = @case.teleconsults
-    @watchers    = @case.watchers.includes(:user=> :core_demographic)
+    @watchers     = @case.watchers.includes(:user=> :core_demographic)
 
     @case_supports = @case.case_supports.active
   end
