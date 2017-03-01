@@ -54,7 +54,7 @@
     
   </div>
 </div>
-<%= link_to(t('add_referral_result'), new_referral_referral_result_path(@referral), class: 'btn-edition btn btn-success pull-right') if can?(:manage_referrals, :manage_roles) %>
+<%= link_to(t('new_referral_result'), new_referral_referral_result_path(@referral), class: 'btn-edition btn btn-success pull-right') if can?(:manage_referrals, :manage_roles) %>
 <div class="row">
   <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <%= render partial: 'referral_results/list',
@@ -67,6 +67,7 @@
   </article>
 </div>
 
+<%= link_to 'Manage Referral relation', links_referral_path(@referral), class: 'btn-edition btn btn-primary pull-right' %>
 <section id="widget-grid" class="referrals_section">
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -81,5 +82,8 @@
     </article>
   </div>
 </section>
+
+<%= link_to(t('add_note'), new_note_path(type: 'ReferralNote', owner_id: @referral.id), class: 'btn-edition btn btn-success pull-right') if can?(:add_notes, :manage_roles) %>
+
 <%= render partial: 'notes/notes', locals: {notes: @referral.referral_notes} %>
 

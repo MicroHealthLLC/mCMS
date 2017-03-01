@@ -428,7 +428,7 @@ RedCarpet::AccessControl.map do |map|
     map.permission :create_referrals, {:referrals => [ :find_organization, :new, :create]},  :read => true
     map.permission :edit_referrals, {:referrals => [:find_organization, :edit, :update]},  :read => true
     map.permission :delete_referrals, {:referrals => [:destroy]},  :read => true
-    map.permission :manage_referrals, {:referrals => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_referrals, {:referrals => [:find_organization, :links, :add_referral, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :notes do |map|
@@ -589,7 +589,7 @@ RedCarpet::AccessControl.map do |map|
         :appointment_captures => [:show, :new, :create, :edit, :update, :destroy],
         :needs => [:links, :add_goal,:index, :show, :new, :create, :edit, :update, :destroy],
         :news => [:index, :show, :new, :create, :edit, :update, :destroy],
-        :referrals => [:find_organization, :index, :show, :new, :create, :edit, :update, :destroy],
+        :referrals => [:links, :add_referral, :find_organization, :index, :show, :new, :create, :edit, :update, :destroy],
         :notes => [:index, :show, :new, :create, :edit, :update, :destroy, :get_template_note],
         :plans => [:link_goal, :add_goal,:links, :add_action, :index, :show, :new, :create, :edit, :update, :destroy],
         :goals => [:link_need, :add_need, :links, :add_plan, :index, :show, :new, :create, :edit, :update, :destroy],
