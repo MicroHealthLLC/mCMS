@@ -6,8 +6,13 @@ class JsignaturesController < ApplicationController
 
   before_action :set_jsignature, only: [:show, :edit, :update, :destroy]
   before_action :authorize_create, only: [:new, :create]
+  before_action :authorize_view, only: [:index, :show]
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
+
+  def index
+    @jsignatures = Appointment.visible.map(&:jsignatures).flatten
+  end
 
   # GET /jsignatures/1
   # GET /jsignatures/1.json
@@ -88,6 +93,10 @@ class JsignaturesController < ApplicationController
 
   def authorize_create
     raise Unauthorized unless User.current_user.can?(:edit_jsignatures, :manage_jsignatures, :manage_roles)
+  end
+
+  def authorize_view
+    raise Unauthorized unless User.current_user.can?(:view_jsignatures, :manage_jsignatures, :manage_roles)
   end
 
   def authorize_edit

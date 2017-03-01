@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       get 'add_referral'
     end
   end
-  resources :jsignatures, except: [:index]
+  resources :jsignatures
   resources :job_applications
   resources :worker_compensations
   resources :injuries

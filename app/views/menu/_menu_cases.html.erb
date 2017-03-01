@@ -62,6 +62,11 @@
                       <a href="/tasks" title="<%= t :tasks %>"><i class="fa fa-lg fa-fw fa-tasks"></i> <span class="menu-item-parent"><%= t(:tasks) %></span></a>
                     </li>
                 <% end %>
+               <% if module_enabled?( 'jsignatures') && can?(:manage_roles, :view_jsignatures, :manage_jsignatures) %>
+                    <li class="<%= menu_active?('jsignatures') %>">
+                      <a href="/jsignatures" title="<%= t :jsignatures %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent">Plan of Care Agreement</span></a>
+                    </li>
+                <% end %>
               </ul>
             </li>
         <% end %>
