@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :referrals do
+    resources :referral_results, except: [:index]
     collection do
       get 'find_organization'
     end
