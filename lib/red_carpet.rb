@@ -110,12 +110,12 @@ RedCarpet::AccessControl.map do |map|
   end
 
   map.project_module :insurances do |map|
-    map.permission :view_insurance, {:user_insurances => [:index]},  :read => true
-    map.permission :show_insurance, {:user_insurances => [:show]},  :read => true
-    map.permission :create_insurance, {:user_insurances => [:new, :create]},  :read => true
-    map.permission :edit_insurance, {:user_insurances => [:edit, :update]},  :read => true
-    map.permission :delete_insurance, {:user_insurances => [:destroy]},  :read => true
-    map.permission :manage_insurance, {:user_insurances => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :view_insurances, {:user_insurances => [:index]},  :read => true
+    map.permission :show_insurances, {:user_insurances => [:show]},  :read => true
+    map.permission :create_insurances, {:user_insurances => [:new, :create]},  :read => true
+    map.permission :edit_insurances, {:user_insurances => [:edit, :update]},  :read => true
+    map.permission :delete_insurances, {:user_insurances => [:destroy]},  :read => true
+    map.permission :manage_insurances, {:user_insurances => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :other_skills do |map|
@@ -378,7 +378,7 @@ RedCarpet::AccessControl.map do |map|
   end
 
   map.project_module :client_journal do |map|
-    map.permission :view_client_journals,   {:client_journals => [:index]},  :read => true
+    map.permission :view_client_journals,   {:client_journals => [:index, :show]},  :read => true
     map.permission :show_client_journals,   {:client_journals => [:show]},  :read => true
     map.permission :create_client_journals, {:client_journals => [:new, :create]},  :read => true
     map.permission :edit_client_journals,   {:client_journals => [ :edit, :update]},  :read => true
@@ -498,7 +498,7 @@ RedCarpet::AccessControl.map do |map|
     map.permission :view_needs, {:needs => [:index]},  :read => true
     map.permission :show_needs, {:needs => [:show]},  :read => true
     map.permission :create_needs, {:needs => [:new, :create]},  :read => true
-    map.permission :edit_needs, {:needs => [:links, :add_goal, :edit, :update]},  :read => true
+    map.permission :edit_needs, {:needs => [:add_goal, :edit, :update]},  :read => true
     map.permission :delete_needs, {:needs => [:destroy]},  :read => true
     map.permission :manage_needs, {:needs => [:links, :add_goal, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end

@@ -11,7 +11,6 @@
     <% end %>
     <th><%= t('task_type') %></th>
     <th><%= t('status') %></th>
-    <th><%= t('priority') %></th>
     <th><%= t('date_start') %></th>
     <th><%= t('date_end') %></th>
   </tr>
@@ -30,7 +29,6 @@
             <% end %>
             <td><%= task.task_type %></td>
             <td><%= task.task_status_type %></td>
-            <td><%= task.priority_type %></td>
             <td><%= task.date_start %></td>
             <td><%= task.date_completed %></td>
             <!--<td><%#= edit_link(edit_task_path(task))  if task.can?(:edit_tasks, :manage_tasks) %></td>-->

@@ -57,13 +57,6 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :priority , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :priority_id, options_for_select(PriorityType.active.pluck(:name, :id), selected: f.object.priority_type.try(:id)), {} , {class: 'form-control'} %>
-        </div>
-      </div>
-
-      <div class="form-group">
         <%= f.label t(:task_type) , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.select :task_type_id, options_for_select(TaskType.active.pluck(:name, :id), selected: f.object.task_type.try(:id)), {} , {class: 'form-control'} %>

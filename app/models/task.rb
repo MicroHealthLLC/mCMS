@@ -31,8 +31,8 @@ class Task < ApplicationRecord
   end
 
   def self.include_enumerations
-    includes(:case, :priority_type, :task_type, :task_status_type).
-        references(:case, :priority_type, :task_type, :task_status_type)
+    includes(:case, :task_type, :task_status_type).
+        references(:case, :task_type, :task_status_type)
   end
 
   def send_notification

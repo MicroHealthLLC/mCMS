@@ -7,7 +7,6 @@ class TaskDatatable < AjaxDatatablesRails::Base
       Case.title
       Enumeration.name
       Enumeration.name
-      Enumeration.name
       Task.date_start
       Task.date_completed
     }
@@ -18,7 +17,6 @@ class TaskDatatable < AjaxDatatablesRails::Base
     @searchable_columns ||= %w{
       Task.title
       Case.title
-      Enumeration.name
       Enumeration.name
       Enumeration.name
       Task.date_start
@@ -37,7 +35,6 @@ class TaskDatatable < AjaxDatatablesRails::Base
             @view.link_to_case( task.case),
             task.task_type.to_s,
             task.task_status_type.to_s ,
-            task.priority_type.to_s ,
             task.date_start ,
             task.date_completed
         ]
@@ -49,7 +46,6 @@ class TaskDatatable < AjaxDatatablesRails::Base
             @view.link_to_case( task.case),
             task.task_type.to_s,
             task.task_status_type.to_s ,
-            task.priority_type.to_s ,
             task.date_start ,
             task.date_completed
         ]

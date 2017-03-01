@@ -6,10 +6,11 @@
   <%= link_to(t('button_edit'), edit_case_support_path(@case_support), class: 'btn btn-success pull-right') if @case_support.can?(:manage_roles, :manage_case_supports, :edit_case_supports) %>
   <%= link_to(t('button_cancel'), case_url(@case_support.case), class: 'btn btn-warning pull-right') %>
   <%= link_to(t('button_print'), case_support_path(@case_support, format: 'pdf'), class: 'btn btn-primary pull-right') %>
-
-  <% if @case_support.removed? %>
-      <%= link_to( 'put it back', remove_case_support_path(@case_support, back: true), class: 'btn btn-danger pull-right') %>
-  <% else %>
-      <%= link_to( t('button_remove'), remove_case_support_path(@case_support), class: 'btn btn-danger pull-right') %>
+  <% if @case_support.can?(:manage_roles, :manage_case_supports, :edit_case_supports) %>
+      <% if @case_support.removed? %>
+          <%= link_to( 'put it back', remove_case_support_path(@case_support, back: true), class: 'btn btn-danger pull-right') %>
+      <% else %>
+          <%= link_to( t('button_remove'), remove_case_support_path(@case_support), class: 'btn btn-danger pull-right') %>
+      <% end %>
   <% end %>
 </div>

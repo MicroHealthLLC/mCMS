@@ -8,7 +8,6 @@
     <th><%= t('case') %></th>
     <th><%= t('task_type') %></th>
     <th><%= t('status') %></th>
-    <th><%= t('priority') %></th>
     <th><%= t('date_start') %></th>
     <th><%= t('date_end') %></th>
   </tr>
@@ -30,7 +29,6 @@
         <% if User.current.can?(:manage_roles) %>
         { "searchable": true, "orderable": true },
         <% end %>
-        { "searchable": true, "orderable": true },
         { "searchable": true, "orderable": true },
         { "searchable": true, "orderable": true },
         { "searchable": true, "orderable": true },

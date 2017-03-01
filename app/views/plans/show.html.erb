@@ -66,5 +66,6 @@
 
 <% end %>
 
+<%= link_to( t('add_note'), new_note_path(type: 'PlanNote', owner_id: @plan.id), class: 'btn-edition btn btn-success pull-right') if can?(:add_notes, :manage_roles) %>
 
 <%= render partial: 'notes/notes', locals: {notes: @plan.plan_notes} %>

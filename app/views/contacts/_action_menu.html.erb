@@ -1,16 +1,18 @@
 <div class="row">
   <div class="col-xs-12 btn-edition">
-    <%= link_to 'Delete',  contact_path(@contact), class: 'btn btn-danger pull-right',
-                :method => :delete,
-                :data => {:confirm => t(:text_are_you_sure)}
+    <%= link_to( 'Delete',  contact_path(@contact), class: 'btn btn-danger pull-right',
+                 :method => :delete,
+                 :data => {:confirm => t(:text_are_you_sure)}) if @contact.can?(:delete_contacts, :manage_contacts, :manage_roles)
     %>
-    <%= link_to 'Edit', edit_contact_path(@contact), class: 'btn btn-success pull-right' %>
+    <%= link_to( 'Edit', edit_contact_path(@contact), class: 'btn btn-success pull-right') if @contact.can?(:edit_contacts, :manage_contacts, :manage_roles) %>
     <%= link_to t('button_cancel'), contacts_path, class: 'btn btn-warning pull-right' %>
     <%= link_to t('button_print'), contact_path(@contact, format: 'pdf'), class: 'btn btn-primary pull-right' %>
-    <% if @contact.removed? %>
-        <%= link_to 'put it back', remove_contact_path(@contact, back: true), class: 'btn btn-danger pull-right' %>
-    <% else %>
-        <%= link_to t('button_remove'), remove_contact_path(@contact), class: 'btn btn-danger pull-right' %>
+    <%  if @contact.can?(:edit_contacts, :manage_contacts, :manage_roles) %>
+        <% if @contact.removed? %>
+            <%= link_to 'put it back', remove_contact_path(@contact, back: true), class: 'btn btn-danger pull-right' %>
+        <% else %>
+            <%= link_to t('button_remove'), remove_contact_path(@contact), class: 'btn btn-danger pull-right' %>
+        <% end %>
     <% end %>
   </div>
 </div>
