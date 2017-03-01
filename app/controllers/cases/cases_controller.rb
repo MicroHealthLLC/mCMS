@@ -61,6 +61,7 @@ class CasesController < UserCasesController
     @needs        = @case.needs
     @plans        = @case.plans
     @goals        = @case.goals
+    @jsignatures  = @case.jsignatures
     @enrollments  = @case.enrollments
     @referrals    = @case.referrals
     @teleconsults = @case.teleconsults

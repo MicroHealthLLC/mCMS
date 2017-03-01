@@ -16,6 +16,7 @@
 
       <%= f.hidden_field :user_id %>
       <%= f.hidden_field :appointment_id %>
+      <%= f.hidden_field :case_id %>
 
       <div class="form-group">
         <%= f.label :person_name , class: 'col-md-2 control-label' %>
@@ -33,7 +34,7 @@
 
       <div class="form-group" >
         <div class="col-md-11">
-          <%= link_to t('button_cancel'), appointment_path(@appointment), class: 'btn btn-warning pull-right' %>
+          <%= link_to t('button_cancel'), @owner, class: 'btn btn-warning pull-right' %>
           <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
         </div>
       </div>

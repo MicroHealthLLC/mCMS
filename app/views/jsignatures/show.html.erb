@@ -17,10 +17,17 @@
       <%= format_date_time @jsignature.created_at %>
     </p>
 
-    <p>
-      <strong>Appointment:</strong>
-      <%= link_to @jsignature.appointment, @jsignature.appointment %>
-    </p>
+    <% if @jsignature.case %>
+        <p>
+          <strong>Case:</strong>
+          <%= link_to_case @jsignature.case %>
+        </p>
+    <% else %>
+        <p>
+          <strong>Appointment:</strong>
+          <%= link_to @jsignature.appointment, appointment_path(@jsignature.appointment )%>
+        </p>
+    <% end %>
 
     <p>
       <strong>Signature:</strong>

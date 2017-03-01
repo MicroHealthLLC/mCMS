@@ -11,7 +11,7 @@ class JsignaturesController < ApplicationController
   before_action :authorize_delete, only: [:destroy]
 
   def index
-    @jsignatures = Appointment.visible.map(&:jsignatures).flatten
+    @jsignatures = Case.visible.map(&:jsignatures).flatten
   end
 
   # GET /jsignatures/1
@@ -23,10 +23,20 @@ class JsignaturesController < ApplicationController
   def new
     @jsignature = Jsignature.new(user_id: User.current_user.id )
 
-    @appointment = Appointment.find(params[:appointment_id])
-    @jsignature = Jsignature.new(user_id: User.current_user.id,
-                                 appointment_id: @appointment.id
-    )
+    if params[:appointment_id]
+      @owner = Appointment.find(params[:appointment_id])
+      @jsignature = Jsignature.new(user_id: User.current_user.id,
+                                   appointment_id: @owner.id
+      )
+    elsif params[:case_id]
+      @owner = Case.find(params[:case_id])
+      @jsignature = Jsignature.new(user_id: User.current_user.id,
+                                   case_id: @owner.id
+      )
+    else
+      render_404
+    end
+
   rescue ActiveRecord::RecordNotFound
     render_404
   end
@@ -79,8 +89,8 @@ class JsignaturesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_jsignature
     @jsignature = Jsignature.find(params[:id])
-    @appointment = @jsignature.appointment
-    add_breadcrumb @appointment.to_s, appointment_url(@appointment)
+    @owner = @jsignature.appointment || @jsignature.case
+    add_breadcrumb @owner.to_s, @owner
     add_breadcrumb @jsignature, @jsignature
   rescue ActiveRecord::RecordNotFound
     render_404

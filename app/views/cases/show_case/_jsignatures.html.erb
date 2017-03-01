@@ -1,0 +1,17 @@
+
+<% if module_enabled?('jsignatures') %>
+    <%= link_to(t('new_jsignature'), new_jsignature_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_jsignatures, :manage_roles, :manage_jsignatures) %>
+
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= render partial: 'jsignatures/list',
+                   layout: 'shared/smart_widget_wrapper',
+                   locals: {
+                       show_case_column: false,
+                       jsignatures: @jsignatures,
+                       wid_id: 'jsignatures',
+                       wid_title: t('jsignatures')
+                   } %>
+      </article>
+    </div>
+<% end %>

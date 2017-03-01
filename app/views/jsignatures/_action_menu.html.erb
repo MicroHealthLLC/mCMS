@@ -3,5 +3,5 @@
                :method => :delete,
                :data => {:confirm => t(:text_are_you_sure)}) if User.current_user.admin?
   %>
-  <%= link_to t('button_cancel'), appointment_path(@appointment), class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_cancel'), @owner, class: 'btn btn-warning pull-right' %>
 </div>
