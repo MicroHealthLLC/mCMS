@@ -26,18 +26,13 @@
     <%= @position.position_status %>
   </p>
 
-  <p>
-    <strong>Special requirement:</strong>
-    <%= @position.special_requirement %>
-  </p>
-
    <p>
     <strong><%= t('estimated_monthly_amount') %>:</strong>
     <%= @position.estimated_monthly_amount %>
   </p>
 
   <p>
-    <strong>employer:</strong>
+    <strong>Employer:</strong>
     <%= @position.note.html_safe %>
   </p>
 
