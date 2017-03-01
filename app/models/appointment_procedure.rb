@@ -7,7 +7,7 @@ class AppointmentProcedure < ApplicationRecord
 
   def self.safe_attributes
     [
-        :user_id, :appointment_id, :procedure_id, :note, :date_recorded, :hcpc_id
+        :user_id, :appointment_id, :modifier, :procedure_id, :note, :date_recorded, :hcpc_id
     ]
   end
 
