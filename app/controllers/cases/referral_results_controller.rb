@@ -1,6 +1,14 @@
 class ReferralResultsController < ApplicationController
+  add_breadcrumb I18n.t(:home), :root_path
+  before_action  :authenticate_user!
+  before_action :authorize
+
   before_action :set_referral
   before_action :set_referral_result, only: [:show, :edit, :update, :destroy]
+
+  before_action :authorize_edit, only: [:edit, :update]
+  before_action :authorize_delete, only: [:destroy]
+
 
   # GET /referral_results
   # GET /referral_results.json
@@ -85,6 +93,9 @@ class ReferralResultsController < ApplicationController
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
+  def authorize
+    super('referrals', params[:action])
+  end
 
   def authorize_edit
     raise Unauthorized unless @referral.can?(:edit_referrals, :manage_referrals, :manage_roles)
