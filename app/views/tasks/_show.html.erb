@@ -26,12 +26,12 @@
 
   <p>
     <strong><%= t('date_start') %>:</strong>
-    <%= @task.date_start %>
+    <%= format_date_time @task.date_start %>
   </p>
 
   <p>
     <strong><%= t('date_end') %>:</strong>
-    <%= @task.date_completed %>
+    <%= format_date_time @task.date_completed %>
   </p>
    <p>
     <strong><%= 'Time Spent' %>:</strong>

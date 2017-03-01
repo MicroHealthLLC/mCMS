@@ -18,8 +18,8 @@
         <td><%= link_to_case task.case %></td>
         <td><%= task.task_type %></td>
         <td><%= task.task_status_type %></td>
-        <td><%= task.date_start %></td>
-        <td><%= task.date_completed %></td>
+        <td><%= format_date_time task.date_start %></td>
+        <td><%= format_date_time task.date_completed %></td>
       </tr>
   <% end %>
   </tbody>

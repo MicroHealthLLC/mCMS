@@ -35,8 +35,8 @@ class TaskDatatable < AjaxDatatablesRails::Base
             @view.link_to_case( task.case),
             task.task_type.to_s,
             task.task_status_type.to_s ,
-            task.date_start ,
-            task.date_completed
+            @view.format_date_time(task.date_start) ,
+            @view.format_date_time(task.date_completed)
         ]
       end
     else
@@ -46,8 +46,8 @@ class TaskDatatable < AjaxDatatablesRails::Base
             @view.link_to_case( task.case),
             task.task_type.to_s,
             task.task_status_type.to_s ,
-            task.date_start ,
-            task.date_completed
+            @view.format_date_time(task.date_start) ,
+            @view.format_date_time(task.date_completed)
         ]
       end
 

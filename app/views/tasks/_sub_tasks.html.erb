@@ -29,8 +29,8 @@
             <% end %>
             <td><%= task.task_type %></td>
             <td><%= task.task_status_type %></td>
-            <td><%= task.date_start %></td>
-            <td><%= task.date_completed %></td>
+            <td><%= format_date_time task.date_start %></td>
+            <td><%= format_date_time task.date_completed %></td>
             <!--<td><%#= edit_link(edit_task_path(task))  if task.can?(:edit_tasks, :manage_tasks) %></td>-->
             <!--<td><%#= delete_link(task)  if task.can?(:delete_tasks, :manage_tasks)%></td>-->
           </tr>
