@@ -522,7 +522,7 @@ RedCarpet::AccessControl.map do |map|
   end
 
   map.project_module :checklists do |map|
-     map.permission :view_checklists, {:checklist_cases => [:index]},  :read => true
+     map.permission :view_checklists, {:checklist_cases => [:index, :show]},  :read => true
      map.permission :create_checklists, {:checklist_cases => [:new, :create], :cases=> [:new_assign]},  :read => true
      map.permission :edit_checklists, {:checklist_cases => [:edit, :update]},  :read => true
      map.permission :delete_checklists, {:checklist_cases => [:destroy]},  :read => true
