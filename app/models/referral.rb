@@ -7,10 +7,10 @@ class Referral < ApplicationRecord
   belongs_to :referred_to, class_name: 'ClientOrganization', optional: true
 
   has_many :referral_relation_children, class_name: 'ReferralRelation', foreign_key: :referral_child_id
-  has_many :referral_children, class_name: 'Referral', through: :referral_relation_children
+  has_many :referral_parents, class_name: 'Referral', through: :referral_relation_children
 
   has_many :referral_relation_parents, class_name: 'ReferralRelation', foreign_key: :referral_parent_id
-  has_many :referral_parents, class_name: 'Referral', through: :referral_relation_parents
+  has_many :referral_children, class_name: 'Referral', through: :referral_relation_parents
 
 
   has_many :referral_notes, foreign_key: :owner_id, dependent: :destroy
