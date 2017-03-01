@@ -1,11 +1,8 @@
-<% show_case = defined?(show_case_column) ? show_case_column : true %>
-<table class="table table-responsive" id="referral_table">
+
+<table class="table table-responsive" id="referrals_table">
   <thead>
   <tr>
     <th>Title</th>
-    <% if show_case %>
-        <th><%= t('case') %></th>
-    <% end %>
     <th>Referral Type</th>
     <th>Referral Date</th>
     <th>Referral Appointment</th>
@@ -19,21 +16,18 @@
   <% referrals.each do |referral| %>
       <tr>
         <td><%= link_to referral.title, referral %></td>
-        <% if show_case %>
-            <td><%= link_to_case referral.case %></td>
-        <% end %>
         <td><%= referral.referral_type %></td>
         <td><%= referral.referral_date %></td>
         <td><%= referral.referral_appointment %></td>
         <td><%= referral.referral_status %></td>
         <td><%= referral.referred_by %></td>
         <td><%= referral.referred_to %></td>
-       <% end %>
+  <% end %>
   </tbody>
 </table>
 
 <script>
-  $(document).ready(function(){
-    initDataTable('referral_table')
-  })
+    $(document).ready(function(){
+        initDataTable('referrals_table')
+    })
 </script>

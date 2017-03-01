@@ -1,7 +1,10 @@
 <%= render partial: 'action_menu' %>
 <div class="row">
   <div class="col-xs12">
-
+    <p>
+      <strong><%= t('case') %>:</strong>
+      <%= link_to_case @referral.case %>
+    </p>
     <p>
       <strong>Title:</strong>
       <%= @referral.title %>
@@ -64,5 +67,19 @@
   </article>
 </div>
 
+<section id="widget-grid" class="referrals_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                         referrals: @referral.referral_children,
+                         wid_id: 'referrals',
+                         wid_title: 'Relation',
+                         show_case_column: false
+                 } %>
+    </article>
+  </div>
+</section>
 <%= render partial: 'notes/notes', locals: {notes: @referral.referral_notes} %>
 

@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     collection do
       get 'find_organization'
     end
+    member do
+      get 'links'
+      get 'add_referral'
+    end
   end
   resources :jsignatures, except: [:index]
   resources :job_applications

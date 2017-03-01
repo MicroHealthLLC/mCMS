@@ -5,6 +5,7 @@
   %>
  <%= link_to 'Edit', edit_referral_path(@referral), class: 'btn btn-success pull-right' if @referral.can?(:edit_referrals, :manage_referrals, :manage_roles) %>
   <%= link_to(t('add_note'), new_note_path(type: 'ReferralNote', owner_id: @referral.id), class: 'btn btn-success pull-right') if can?(:add_notes, :manage_roles) %>
-  <%= link_to t('button_cancel'), referrals_path, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_cancel'), (@referral.case || referrals_path), class: 'btn btn-warning pull-right' %>
+  <%= link_to 'Manage Referral relation', links_referral_path(@referral), class: 'btn btn-primary pull-right' %>
   <%#= link_to t('button_print'), referral_path(@referral, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 </div>

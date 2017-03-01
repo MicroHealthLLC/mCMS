@@ -1,0 +1,39 @@
+<div class="col-xs-12 btn-edition">
+   <%= link_to t('button_cancel'), referral_path(@referral), class: 'btn btn-warning pull-right' %>
+
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <table id="referrals_table" class="table table-responsive table-bordered">
+      <thead>
+      <tr>
+        <th>Goal</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @available_referrals.each do |referral| %>
+          <tr>
+            <td><%= link_to referral, referral %></td>
+            <td id="btn_<%= referral.id %>">
+              <% if  @referrals.include?(referral) %>
+                  <button class="btn referrals-btn btn-danger" onclick="btn_clicked(<%= referral.id %>)"> <%= t('button_remove')  %></button>
+              <% else %>
+                  <button class="btn referrals-btn btn-success" onclick="btn_clicked(<%= referral.id %>)" > <%= 'Add' %></button>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+  $(document).ready(function(){
+    <% if @available_referrals.present? %>  initDataTable('referrals_table') <% end %>
+  })
+  function btn_clicked(referral_id)
+  {
+    $.getScript('/referrals/<%= @referral.id %>/add_referral.js?referral_id='+referral_id )
+  }
+</script>

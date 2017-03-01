@@ -1,6 +1,6 @@
 class ReferralsController < UserCasesController
   add_breadcrumb I18n.t(:referrals), :referrals_path
-  before_action :set_referral, only: [:show, :edit, :update, :destroy]
+  before_action :set_referral, only: [:links, :add_referral, :show, :edit, :update, :destroy]
 
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
@@ -10,6 +10,30 @@ class ReferralsController < UserCasesController
 # GET /referrals.json
   def index
     @referrals = Referral.visible
+  end
+
+  def links
+    @referrals = @referral.referral_children
+    @available_referrals = @referral.available_referrals
+  end
+
+
+  def add_referral
+    respond_to do |format|
+      format.js{
+        @referral_id = params[:referral_id]
+        r = @referral.referral_relation_children.where(referral_child_id: @referral_id)
+        if r.present?
+          r.delete_all
+        else
+          @referral_child = Referral.find(@referral_id)
+          @available_referrals = @referral.available_referrals
+          if @available_referrals.include?(@referral_child)
+            ReferralRelation.create(referral_child_id:  @referral_child.id, referral_parent_id: @referral.id )
+          end
+        end
+      }
+    end
   end
 
 # GET /referrals/1

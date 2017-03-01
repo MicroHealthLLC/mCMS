@@ -1,0 +1,5 @@
+<% if @referral %>
+$('#btn_<%= @referral_id %>').html("<button class='btn referrals-btn btn-danger' onclick='btn_clicked(<%= @referral_id %>)'> <%= t('button_remove') %></button>");
+<% else %>
+$('#btn_<%= @referral_id %>').html("<button class='btn referrals-btn btn-success' onclick='btn_clicked(<%= @referral_id %>)'> <%= 'Add' %></button>");
+<% end %>
