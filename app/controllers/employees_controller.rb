@@ -8,6 +8,7 @@ class EmployeesController < ApplicationController
       format.html{}
       format.json{
         options = Hash.new
+        options[:status_type] = params[:status_type]
         render json: EmployeeDatatable.new(view_context,options)
       }
     end

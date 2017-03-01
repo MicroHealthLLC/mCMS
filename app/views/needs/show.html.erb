@@ -69,6 +69,7 @@
 <% end %>
 
 <span id="plans_tasks">
+ <%= render partial: 'plans_tasks' %>
 </span>
 
 <%= link_to(t('add_note'), new_note_path(type: 'NeedNote', owner_id: @need.id), class: 'btn-edition btn btn-success pull-right') if can?(:add_notes, :manage_roles) %>

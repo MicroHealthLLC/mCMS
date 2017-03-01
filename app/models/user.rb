@@ -282,6 +282,7 @@ class User < ApplicationRecord
   def first_name;  profile.first_name;  end
   def middle_name; profile.middle_name; end
   def last_name;   profile.last_name;   end
+  def user_title;  profile.title;   end
   def full_name;   name;   end
   def birthday;    profile.birth_date;  end
   def religion;    profile.religion_type;  end

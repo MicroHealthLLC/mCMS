@@ -1,6 +1,11 @@
 <%= link_to t(:new_employee), new_employee_path, class: 'btn btn-primary pull-right margin-bottom-10' %>
 
 <section id="widget-grid" class="user_account">
+  <div class="col-xs-12 btn-edition">
+    <%= link_to 'ACTIVE', {}.merge(status_type: 'active'), class: 'btn btn-success'  %>
+    <%= link_to 'INACTIVE', {}.merge(status_type: 'inactive'), class: 'btn btn-danger'  %>
+    <%= link_to 'ALL', {}.merge(status_type: 'all'), class: 'btn btn-primary'  %>
+  </div>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'list',

@@ -15,6 +15,7 @@ class GoalsController <  UserCasesController
   # GET /goals/1.json
   def show
     @plans = @goal.plans
+    @tasks = @plans.map(&:tasks).flatten.uniq
   end
 
   def links

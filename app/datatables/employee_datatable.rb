@@ -46,7 +46,14 @@ class EmployeeDatatable < AjaxDatatablesRails::Base
   end
 
   def get_raw_records
-    User.employees.include_enumerations
+    scope = User.employees.include_enumerations
+    case @options[:status_type]
+      when 'active' then scope.where(state: true)
+      when 'inactive' then scope.where(state: false)
+      when 'all' then scope
+      else
+        scope.where(state: true)
+    end
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

@@ -16,12 +16,13 @@ class NeedsController < UserCasesController
   # GET /needs/1.json
   def show
     @goals = @need.goals
+    @plans = @goals.map(&:plans).flatten.uniq
+    @tasks = @plans.map(&:tasks).flatten.uniq
     respond_to do |format|
       format.html{}
       format.pdf{}
       format.js{
-        @plans = @goals.map(&:plans).flatten.uniq
-        @tasks = @plans.map(&:tasks).flatten.uniq
+
       }
     end
   end

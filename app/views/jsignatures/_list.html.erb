@@ -3,6 +3,7 @@
   <tr>
     <th>Person name</th>
     <th>User</th>
+    <th>User title</th>
     <th>Created at</th>
     <th>Signature</th>
   </tr>
@@ -13,6 +14,7 @@
       <tr>
         <td><%= link_to jsignature.person_name, jsignature %></td>
         <td><%= jsignature.user %></td>
+        <td><%= jsignature.user.user_title %></td>
         <td><%= format_date_time jsignature.created_at %></td>
         <td><%= image_tag jsignature.signature.html_safe, size: '200x100' %></td>
       </tr>
