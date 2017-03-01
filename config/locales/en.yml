@@ -77,7 +77,7 @@ en:
  # EMPLOYEE
   employees: Clients
   new_employee: New Client
-  employment_type: Client Type
+  employment_type: Employment Type
   label_employee: Client
   change_employee_info: Change Client Information
 
