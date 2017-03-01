@@ -51,6 +51,18 @@
     
   </div>
 </div>
+<%= link_to(t('add_referral_result'), new_referral_referral_result_path(@referral), class: 'btn-edition btn btn-success pull-right') if can?(:manage_referrals, :manage_roles) %>
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render partial: 'referral_results/list',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                       referral_results: @referral.referral_results,
+                       wid_id: 'referral_results',
+                       wid_title: t('referral_results')
+               } %>
+  </article>
+</div>
 
 <%= render partial: 'notes/notes', locals: {notes: @referral.referral_notes} %>
 

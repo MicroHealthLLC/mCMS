@@ -51,6 +51,11 @@ en:
   new_referral: New Referral
   edit_referral: Edit Referral
 
+  referral_result: Referral Result
+  referral_results: Referral Results
+  new_referral_result: New Referral Result
+  edit_referral_result: Edit Referral Result
+
   # Daily Living
   daily_living: Daily Living
   daily_livings: Daily Livings

@@ -7,6 +7,7 @@ class Referral < ApplicationRecord
   belongs_to :referred_to, class_name: 'ClientOrganization', optional: true
 
   has_many :referral_notes, foreign_key: :owner_id, dependent: :destroy
+  has_many :referral_results, dependent: :destroy
 
   has_many :referral_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :referral_attachments, reject_if: :all_blank, allow_destroy: true

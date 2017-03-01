@@ -1,0 +1,1 @@
+json.partial! "referral_results/referral_result", referral_result: @referral_result
