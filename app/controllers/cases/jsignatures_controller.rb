@@ -2,8 +2,6 @@ class JsignaturesController < ApplicationController
   add_breadcrumb I18n.t(:home), :root_path
   before_action  :authenticate_user!
 
-  add_breadcrumb I18n.t(:appointments), :appointments_path
-
   before_action :set_jsignature, only: [:show, :edit, :update, :destroy]
   before_action :authorize_create, only: [:new, :create]
   before_action :authorize_view, only: [:index, :show]
