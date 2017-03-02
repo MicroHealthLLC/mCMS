@@ -74,7 +74,10 @@
           <%= f.text_field :date_completed , class: 'form-control date_picker' %>
         </div>
       </div>
-
+      <%= f.simple_fields_for :need_goals do |form| %>
+          <%= form.hidden_field :need_id %>
+          <%= form.hidden_field :goal_id %>
+      <% end %>
 
       <div class="form-group" >
         <div class="col-md-11">

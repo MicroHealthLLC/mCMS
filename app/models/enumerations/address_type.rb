@@ -8,7 +8,7 @@ class AddressType < Enumeration
   end
 
   def objects
-    Document.where(:address_type_id => self.id)
+    Address.where(:address_type_id => self.id)
   end
 
   def objects_count

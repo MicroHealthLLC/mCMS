@@ -66,6 +66,9 @@ class PlansController < UserCasesController
   def new
     @plan = Plan.new(user_id: User.current.id,
                      case_id: params[:case_id])
+    if params[:goal_id]
+      @plan.goal_plans.build(goal_id: params[:goal_id])
+    end
   end
 
   # GET /plans/1/edit

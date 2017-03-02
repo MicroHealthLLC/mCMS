@@ -8,7 +8,7 @@ class Plan < ApplicationRecord
 
   has_many :goal_plans, dependent: :destroy
   has_many :goals, through: :goal_plans
-
+  accepts_nested_attributes_for :goal_plans, reject_if: :all_blank, allow_destroy: true
 
   has_many :plan_tasks, dependent: :destroy
   has_many :tasks, through: :plan_tasks
@@ -17,7 +17,8 @@ class Plan < ApplicationRecord
   def self.safe_attributes
     [
         :priority_type_id, :user_id, :plan_status_id, :name,
-        :description, :date_completed, :date_due, :date_start,  :case_id
+        :description, :date_completed, :date_due, :date_start,  :case_id,
+        goal_plans_attributes: [GoalPlan.safe_attributes]
     ]
   end
 

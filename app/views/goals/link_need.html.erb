@@ -14,7 +14,7 @@
       <tbody>
       <% @available_needs.each do |need| %>
           <tr>
-            <td><%= need %></td>
+            <td><%= link_to need.to_s, need_path(need) %></td>
             <td id="btn_<%= need.id %>">
               <% if  @needs.include?(need) %>
                   <button class="btn plans-btn btn-danger" onclick="btn_clicked(<%= need.id %>)"> <%= t('button_remove')  %></button>

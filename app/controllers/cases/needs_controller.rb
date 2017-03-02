@@ -104,6 +104,7 @@ class NeedsController < UserCasesController
   # Use callbacks to share common setup or constraints between actions.
   def set_need
     @need = Need.find(params[:id])
+    @case = @need.case
     add_breadcrumb @need, needs_path(@need)
   rescue ActiveRecord::RecordNotFound
     render_404

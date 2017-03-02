@@ -68,6 +68,9 @@ class GoalsController <  UserCasesController
   def new
     @goal = Goal.new(user_id: User.current.id,
                      case_id: params[:case_id])
+    if params[:need_id]
+      @goal.need_goals.build(need_id: params[:need_id])
+    end
   end
 
   # GET /goals/1/edit
@@ -118,6 +121,7 @@ class GoalsController <  UserCasesController
   # Use callbacks to share common setup or constraints between actions.
   def set_goal
     @goal = Goal.find(params[:id])
+    @case = @goal.case
     add_breadcrumb @goal, goal_path(@goal)
   rescue ActiveRecord::RecordNotFound
     render_404

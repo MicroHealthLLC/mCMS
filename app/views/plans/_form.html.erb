@@ -72,7 +72,10 @@
         <%= f.text_field :date_completed , class: 'form-control date_picker' %>
       </div>
     </div>
-
+      <%= f.simple_fields_for :goal_plans do |form| %>
+          <%= form.hidden_field :plan_id %>
+          <%= form.hidden_field :goal_id %>
+      <% end %>
     <div class="form-group" >
       <div class="col-md-11">
         <%= link_to t('button_cancel'), plans_path, class: 'btn btn-warning pull-right' %>
