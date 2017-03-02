@@ -2,6 +2,9 @@
 <table class="table table-responsive table-bordered" id="goals_table">
   <thead>
   <tr>
+    <% if User.current.can?(:manage_roles) %>
+        <th><%= t('label_user') %></th>
+    <% end %>
     <th>Name</th>
     <% if show_case %>
         <th>Case</th>
@@ -18,6 +21,9 @@
   <% if @goals.any? %>
       <% @goals.each do |goal| %>
           <tr>
+            <% if User.current.can?(:manage_roles) %>
+                <th><%= goal.user %></th>
+            <% end %>
             <td><%= link_to goal.name, goal %></td>
             <% if show_case %>
                 <td><%= link_to_case goal.case %></td>

@@ -2,6 +2,9 @@
 <table class="table table-responsive table-bordered" id="plans_table">
   <thead>
   <tr>
+    <% if User.current.can?(:manage_roles) %>
+        <th><%= t('label_user') %></th>
+    <% end %>
     <th><%= t('label_name') %></th>
     <% if show_case %>
         <th><%= t('case') %></th>
@@ -17,6 +20,9 @@
   <tbody>
   <% @plans.each do |plan| %>
       <tr>
+        <% if User.current.can?(:manage_roles) %>
+            <th><%= plan.user %></th>
+        <% end %>
         <td><%= link_to plan.name, plan %></td>
         <% if show_case %>
             <td><%= link_to_case plan.case %></td>

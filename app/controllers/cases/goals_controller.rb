@@ -8,7 +8,7 @@ class GoalsController <  UserCasesController
   # GET /goals
   # GET /goals.json
   def index
-    scope =  Goal.visible
+    scope =  User.current.can?(:manage_roles) ? Goal.where(assigned_to_id: User.current.id) : Goal.visible
     scope = case params[:status_type]
               when 'all' then scope.all_data
               when 'opened' then scope.opened
@@ -59,7 +59,7 @@ class GoalsController <  UserCasesController
   def add_need
     respond_to do |format|
       format.js{
-        @need_id = params[:need_id]
+        @ne-ed_id = params[:need_id]
         g = @goal.need_goals.where(need_id: @need_id)
         if g.present?
           g.delete_all
@@ -77,6 +77,7 @@ class GoalsController <  UserCasesController
   # GET /goals/new
   def new
     @goal = Goal.new(user_id: User.current.id,
+                     assigned_to_id: User.current_user.id,
                      case_id: params[:case_id])
     if params[:need_id]
       @goal.need_goals.build(need_id: params[:need_id])

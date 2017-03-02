@@ -8,7 +8,7 @@ class PlansController < UserCasesController
   # GET /plans
   # GET /plans.json
   def index
-    scope = Plan.visible
+    scope = User.current.can?(:manage_roles) ? Plan.where(assigned_to_id: User.current.id) : Plan.visible
     scope = case params[:status_type]
               when 'all' then scope.all_data
               when 'opened' then scope.opened
@@ -75,6 +75,7 @@ class PlansController < UserCasesController
   # GET /plans/new
   def new
     @plan = Plan.new(user_id: User.current.id,
+                     assigned_to_id: User.current_user.id,
                      case_id: params[:case_id])
     if params[:goal_id]
       @plan.goal_plans.build(goal_id: params[:goal_id])

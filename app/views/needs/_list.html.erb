@@ -2,7 +2,10 @@
 <table class="table table-responsive table-bordered" id="needs_table">
   <thead>
   <tr>
-    <th><%= t('need') %></th>
+    <% if User.current.can?(:manage_roles) %>
+        <th><%= t('label_user') %></th>
+    <% end %>
+       <th><%= t('need') %></th>
     <% if show_case %>
         <th><%= t('case') %></th>
     <% end %>
@@ -18,6 +21,9 @@
   <% if @needs.any? %>
       <% @needs.each do |need| %>
           <tr>
+            <% if User.current.can?(:manage_roles) %>
+                <th><%= need.user %></th>
+            <% end %>
             <td><%= link_to need.need_enum, need %></td>
             <% if show_case %>
                 <td><%= link_to_case need.case %></td>

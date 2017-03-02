@@ -1,6 +1,7 @@
 class Goal < ApplicationRecord
   belongs_to :user
   belongs_to :case, optional: true
+  belongs_to :assigned_to, optional: true, class_name: 'User'
   belongs_to :priority_type, optional: true
   belongs_to :goal_status, optional: true
 
@@ -18,7 +19,7 @@ class Goal < ApplicationRecord
   validates_presence_of :name
   def self.safe_attributes
     [
-        :priority_type_id, :user_id, :goal_status_id, :name,
+        :priority_type_id, :user_id, :goal_status_id, :name, :assigned_to_id,
         :description, :date_completed, :date_due, :date_start,  :case_id,
         need_goals_attributes: [NeedGoal.safe_attributes]
     ]

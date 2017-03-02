@@ -9,7 +9,7 @@ class NeedsController < UserCasesController
   # GET /needs
   # GET /needs.json
   def index
-    scope =  Need.visible
+    scope =  User.current.can?(:manage_roles) ? Need.where(assigned_to_id: User.current.id) : Need.visible
     scope = case params[:status_type]
               when 'all' then scope.all_data
               when 'opened' then scope.opened
@@ -62,6 +62,7 @@ class NeedsController < UserCasesController
   # GET /needs/new
   def new
     @need = Need.new(user_id: User.current.id,
+                     assigned_to_id: User.current_user.id,
                      case_id: params[:case_id])
   end
 

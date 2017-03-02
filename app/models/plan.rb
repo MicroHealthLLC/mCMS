@@ -1,6 +1,7 @@
 class Plan < ApplicationRecord
   belongs_to :user
   belongs_to :case, optional: true
+  belongs_to :assigned_to, optional: true, class_name: 'User'
   belongs_to :priority_type, optional: true
   belongs_to :plan_status, optional: true
   validates_presence_of :name
@@ -16,7 +17,7 @@ class Plan < ApplicationRecord
 
   def self.safe_attributes
     [
-        :priority_type_id, :user_id, :plan_status_id, :name,
+        :priority_type_id, :user_id, :plan_status_id, :name, :assigned_to_id,
         :description, :date_completed, :date_due, :date_start,  :case_id,
         goal_plans_attributes: [GoalPlan.safe_attributes]
     ]

@@ -1,6 +1,7 @@
 class Need < ApplicationRecord
   belongs_to :user
   belongs_to :case, optional: true
+  belongs_to :assigned_to, optional: true, class_name: 'User'
   belongs_to :need_enum, optional: true
   belongs_to :priority_type, optional: true
   belongs_to :need_status, optional: true
@@ -12,7 +13,7 @@ class Need < ApplicationRecord
   has_many :need_notes, foreign_key: :owner_id, dependent: :destroy
 
   def self.safe_attributes
-    [ :need_enum_id, :priority_type_id, :user_id, :need_status_id,
+    [ :need_enum_id, :priority_type_id, :user_id, :need_status_id, :assigned_to_id,
       :description, :date_completed, :date_due, :date_identified, :case_id
     ]
   end
