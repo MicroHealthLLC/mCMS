@@ -46,7 +46,7 @@
 
 <% if module_enabled?('plans') %>
     <%#= link_to(t('new_goal'), new_goal_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_goals, :manage_roles, :manage_goals) %>
-    <%= link_to(t('new_goal'), new_plan_path(case_id: @case.id,  goal_id: @goal.id), class: 'btn btn-primary pull-right btn-edition') if @case && can?(:create_goals, :manage_roles, :manage_goals) %>
+    <%= link_to(t('new_plan'), new_plan_path(case_id: @case.id,  goal_id: @goal.id), class: 'btn btn-primary pull-right btn-edition') if @case && can?(:create_plans, :manage_roles, :manage_plans) %>
 
     <div class="row">
       <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

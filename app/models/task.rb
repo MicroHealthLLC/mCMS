@@ -12,6 +12,9 @@ class Task < ApplicationRecord
   has_many :plan_tasks, dependent: :destroy
   has_many :plans, through: :plan_tasks
 
+  accepts_nested_attributes_for :plan_tasks, reject_if: :all_blank, allow_destroy: true
+
+
 
   has_many :task_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :task_attachments, reject_if: :all_blank, allow_destroy: true
@@ -89,7 +92,8 @@ class Task < ApplicationRecord
   def self.safe_attributes
     [:title, :description, :related_to_id, :related_to_type, :is_private, :task_type_id, :task_status_type_id, :priority_id, :assigned_to_id, :for_individual_id,
      :date_start, :date_due, :user_id, :time_spent, :private_author_id, :date_completed,  :sub_task_id,
-     task_attachments_attributes: [Attachment.safe_attributes]]
+     task_attachments_attributes: [Attachment.safe_attributes],
+     plan_tasks_attributes: [PlanTask.safe_attributes]]
   end
 
   def to_pdf(pdf)

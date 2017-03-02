@@ -119,6 +119,7 @@ class PlansController < UserCasesController
   # Use callbacks to share common setup or constraints between actions.
   def set_plan
     @plan = Plan.find(params[:id])
+    @case = @plan.case
     add_breadcrumb @plan.to_s, @plan
   rescue ActiveRecord::RecordNotFound
     render_404

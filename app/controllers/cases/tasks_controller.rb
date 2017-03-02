@@ -60,12 +60,25 @@ class TasksController < UserCasesController
 
   # GET /tasks/new
   def new
-    @task = Task.new(user_id: User.current.id,
-                     assigned_to_id: User.current_user.id,
-                     for_individual_id: User.current.id,
-                     sub_task_id: params[:sub_task_id],
-                     related_to_id: params[:related_to],
-                     related_to_type: params[:type])
+    if params[:plan_id]
+      if params[:plan_id]
+        @task = Task.new(user_id: User.current.id,
+                         assigned_to_id: User.current_user.id,
+                         for_individual_id: User.current.id,
+                         related_to_id: params[:case_id],
+                         related_to_type: 'Case')
+        @task.plan_tasks.build(plan_id: params[:plan_id])
+      end
+    else
+      @task = Task.new(user_id: User.current.id,
+                       assigned_to_id: User.current_user.id,
+                       for_individual_id: User.current.id,
+                       sub_task_id: params[:sub_task_id],
+                       related_to_id: params[:related_to],
+                       related_to_type: params[:type])
+    end
+
+
   end
 
   # GET /tasks/1/edit

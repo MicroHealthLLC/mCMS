@@ -83,6 +83,10 @@
           <%= f.text_field :date_completed, value: format_date_time(f.object.date_completed) , class: 'form-control datetimepicker' %>
         </div>
       </div>
+      <%= f.simple_fields_for :plan_tasks do |form| %>
+          <%= form.hidden_field :plan_id %>
+          <%= form.hidden_field :task_id %>
+      <% end %>
 
       <div class="form-group">
         <div class="col-md-12">
