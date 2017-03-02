@@ -51,30 +51,12 @@ class Case < ApplicationRecord
         references(:case_type, :case_status_type, :case_category_type, :priority_type, :case_source)
   end
 
-  # Enumeration Status
-  def self.priority_type(status = nil)
-    case status
-      when 'closed' then where(priority_id: PriorityType.closed.pluck(:id) )
-      when 'flagged' then where(priority_id: PriorityType.flagged.pluck(:id) )
-      else
-        where.not(priority_id: PriorityType.closed.or(PriorityType.flagged).pluck(:id) )
-    end
-  end
 
   def priority_type
     if priority_id
       super
     else
       PriorityType.default
-    end
-  end
-
-  def self.case_category_type(status= nil)
-    case status
-      when 'closed' then where(case_category_id: CaseCategoryType.closed.pluck(:id) )
-      when 'flagged' then where(case_category_id: CaseCategoryType.flagged.pluck(:id) )
-      else
-        where.not(case_category_id: CaseCategoryType.closed.or(CaseCategoryType.flagged).pluck(:id) )
     end
   end
 
@@ -86,29 +68,11 @@ class Case < ApplicationRecord
     end
   end
 
-  def self.case_status_type(status= nil)
-    case status
-      when 'closed' then where(case_status_type_id: CaseStatusType.closed.pluck(:id) )
-      when 'flagged' then where(case_status_type_id: CaseStatusType.flagged.pluck(:id) )
-      else
-        where.not(case_status_type_id: CaseStatusType.closed.or(CaseStatusType.flagged).pluck(:id) )
-    end
-  end
-
   def case_source
     if case_source_id
       super
     else
       CaseSource.default
-    end
-  end
-
-  def self.case_source(status= nil)
-    case status
-      when 'closed' then where(case_source_id: CaseSource.closed.pluck(:id) )
-      when 'flagged' then where(case_source_id: CaseSource.flagged.pluck(:id) )
-      else
-        where.not(case_source_id: CaseSource.closed.or(CaseSource.flagged).pluck(:id) )
     end
   end
 
@@ -120,16 +84,6 @@ class Case < ApplicationRecord
     end
   end
 
-  def self.case_type(status= nil)
-    case status
-      when 'closed' then where(case_type_id: CaseType.closed.pluck(:id) )
-      when 'flagged' then where(case_type_id: CaseType.flagged.pluck(:id) )
-      else
-        where.not(case_type_id: CaseType.closed.or(CaseType.flagged).pluck(:id) )
-    end
-  end
-
-
   def case_type
     if case_type_id
       super
@@ -137,32 +91,19 @@ class Case < ApplicationRecord
       CaseType.default
     end
   end
+
   def self.all_data
     opened.or(Case.flagged)
   end
 
-  def self.opened
-    Case.priority_type.
-        case_category_type.
-        case_status_type.
-        case_type.
-        case_source
-  end
-
-  def self.closed
-    Case.priority_type('closed').
-        or(Case.case_category_type('closed')).
-        or(Case.case_status_type('closed')).
-        or(Case.case_source('closed')).
-        or(Case.case_type('closed'))
-  end
-
-  def self.flagged
-    Case.priority_type('flagged').
-        or(Case.case_category_type('flagged')).
-        or(Case.case_status_type('flagged')).
-        or(Case.case_source('flagged')).
-        or(Case.case_type('flagged'))
+  def self.enumeration_columns
+    [
+        ["#{CaseType}", 'case_type_id'],
+        ["#{CaseSource}", 'case_source_id'],
+        ["#{PriorityType}", 'priority_id'],
+        ["#{CaseStatusType}", 'case_status_type_id'],
+        ["#{CaseCategoryType}", 'case_category_id']
+    ]
   end
 
   def surveys
