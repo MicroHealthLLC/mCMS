@@ -4,6 +4,6 @@ class NeedGoal < ApplicationRecord
   validates_presence_of  :need_id
 
   def self.safe_attributes
-    [:goal_id, :need_id]
+    [:id, :goal_id, :need_id]
   end
 end
