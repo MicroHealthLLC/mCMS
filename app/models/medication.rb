@@ -7,6 +7,12 @@ class Medication < ApplicationRecord
 
   validates_presence_of :user_id, :medication
 
+  def self.enumeration_columns
+    [
+        ["#{MedicationStatus}", 'medication_status_id']
+    ]
+  end
+
 
   def medication_status
     if medication_status_id

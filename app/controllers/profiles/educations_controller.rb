@@ -11,7 +11,16 @@ class EducationsController < UserProfilesController
   # GET /educations
   # GET /educations.json
   def index
-    @educations = Education.visible
+    scope = Education.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+    @educations = scope
   end
 
   # GET /educations/1

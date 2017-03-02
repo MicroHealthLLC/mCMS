@@ -15,6 +15,13 @@ class Enrollment < ApplicationRecord
      :date_start, :date_end, :note, enrollment_attachments_attributes: [Attachment.safe_attributes]]
   end
 
+  def self.enumeration_columns
+    [
+        ["#{EnrollmentType}", 'enrollment_type_id'],
+        ["#{EnrollmentStatus}", 'enrollment_status_id']
+    ]
+  end
+
   def enrollment_type
     if self.enrollment_type_id
       super

@@ -9,6 +9,13 @@ class HealthCareFacility < ApplicationRecord
   has_many :health_care_facility_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :health_care_facility_attachments, reject_if: :all_blank, allow_destroy: true
 
+  def self.enumeration_columns
+    [
+        ["#{HealthCareFacilityStatus}", 'health_care_facility_status_id'],
+        ["#{HealthCareFacilityType}", 'health_care_facility_type_id']
+    ]
+  end
+
   def health_care_facility_status
     if health_care_facility_status_id
       super

@@ -8,8 +8,17 @@ class ContactsController < UserProfilesController
   # GET /contacts
   # GET /contacts.json
   def index
+    scope = Contact.visible
+        scope = case params[:status_type]
+                  when 'all' then scope.all_data
+                  when 'opened' then scope.opened
+                  when 'closed' then scope.closed
+                  when 'flagged' then scope.flagged
+                  else
+                    scope.opened
+                end
     respond_to do |format|
-      format.html{@contacts = Contact.visible}
+      format.html{@contacts = scope}
     end
   end
 

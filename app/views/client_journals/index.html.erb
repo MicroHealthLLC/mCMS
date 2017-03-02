@@ -1,6 +1,7 @@
 <%= link_to( 'New Client Journal', new_client_journal_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_client_journals, :manage_roles, :manage_client_journals)%>
 
 <section id="widget-grid" class="clearances_section">
+  <%= render partial: 'state_button_filter'%>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'list',

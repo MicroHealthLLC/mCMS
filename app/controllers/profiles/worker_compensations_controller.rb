@@ -11,7 +11,16 @@ class WorkerCompensationsController < UserProfilesController
 # GET /worker_compensations
 # GET /worker_compensations.json
   def index
-    @worker_compensations = WorkerCompensation.visible
+    scope =  WorkerCompensation.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+    @worker_compensations = scope
   end
 
 # GET /worker_compensations/1

@@ -30,7 +30,7 @@ class AppointmentDatatable < AjaxDatatablesRails::Base
   def searchable_columns
     # Declare strings in this format: ModelName.column_name
     if User.current.can?(:manage_roles)
-    @searchable_columns ||= %w{
+      @searchable_columns ||= %w{
      CoreDemographic.first_name
         Appointment.title
         Enumeration.name
@@ -75,7 +75,16 @@ class AppointmentDatatable < AjaxDatatablesRails::Base
   end
 
   def get_raw_records
-    Appointment.include_enumerations.
+    scope = Appointment
+    scope = case @options[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+    scope.include_enumerations.
         includes(:user=> :core_demographic).
         references(:user=> :core_demographic).
         my_appointments

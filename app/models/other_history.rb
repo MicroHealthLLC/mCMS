@@ -9,6 +9,13 @@ class OtherHistory < ApplicationRecord
 
   validates_presence_of :user_id, :name
 
+  def self.enumeration_columns
+    [
+        ["#{OtherHistoryType}", 'other_history_type_id'],
+        ["#{OtherHistoryStatus}", 'other_history_status_id']
+    ]
+  end
+
   def other_history_type
     if other_history_type_id
       super

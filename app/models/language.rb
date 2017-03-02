@@ -12,6 +12,14 @@ class Language < ApplicationRecord
     UserMailer.language_notification(self).deliver_later
   end
 
+  def self.enumeration_columns
+    [
+        ["#{LanguageType}", 'language_type_id'],
+        ["#{ProficiencyType}", 'proficiency_id'],
+        ["#{LanguageStatus}", 'status_id']
+    ]
+  end
+
   def language_type
     if language_type_id
       super

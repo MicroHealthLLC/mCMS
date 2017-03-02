@@ -9,6 +9,13 @@ class FamilyHistory < ApplicationRecord
 
   validates_presence_of :user_id, :name
 
+  def self.enumeration_columns
+    [
+        ["#{FamilyType}", 'family_type_id'],
+        ["#{FamilyStatus}", 'family_status_id']
+    ]
+  end
+
   def family_type
     if family_type_id
       super

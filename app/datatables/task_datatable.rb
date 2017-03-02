@@ -55,7 +55,16 @@ class TaskDatatable < AjaxDatatablesRails::Base
   end
 
   def get_raw_records
-    @tasks = Task.root.include_enumerations.
+    scope = Task.root
+    scope = case @options[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+    scope.include_enumerations.
         where('tasks.assigned_to_id = :user OR tasks.for_individual_id = :user', user:  User.current.id)
   end
 

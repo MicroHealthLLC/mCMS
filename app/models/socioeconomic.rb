@@ -9,6 +9,13 @@ class Socioeconomic < ApplicationRecord
 
   validates_presence_of :user_id, :name
 
+  def self.enumeration_columns
+    [
+        ["#{SocioeconomicType}", 'socioeconomic_type_id'],
+        ["#{SocioeconomicStatus}", 'socioeconomic_status_id']
+    ]
+  end
+
   def socioeconomic_type
     if socioeconomic_type_id
       super

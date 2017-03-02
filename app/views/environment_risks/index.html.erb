@@ -1,5 +1,6 @@
 <%= link_to(t('new_environment_risk'), new_environment_risk_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_environment_risks, :manage_roles, :manage_environment_risks) %>
 <section id="widget-grid" class="environment_risks_section">
+  <%= render partial: 'state_button_filter'%>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'list',

@@ -9,7 +9,16 @@ class ServiceHistoriesController < UserHistoryController
   # GET /service_histories
   # GET /service_histories.json
   def index
-    @service_histories = ServiceHistory.visible
+    scope = ServiceHistory.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+    @service_histories = scope
   end
 
   # GET /service_histories/1

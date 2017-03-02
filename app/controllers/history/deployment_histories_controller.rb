@@ -9,7 +9,17 @@ class DeploymentHistoriesController < UserHistoryController
   # GET /deployment_histories
   # GET /deployment_histories.json
   def index
-    @deployment_histories = DeploymentHistory.visible
+    scope = DeploymentHistory.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+
+    @deployment_histories = scope
   end
 
   # GET /deployment_histories/1

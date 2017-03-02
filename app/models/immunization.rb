@@ -9,6 +9,12 @@ class Immunization < ApplicationRecord
   validates_presence_of :user_id, :medication
 
 
+  def self.enumeration_columns
+    [
+        ["#{ImmunizationStatus}", 'immunization_status_id']
+    ]
+  end
+
   def immunization_status
     if immunization_status_id
       super

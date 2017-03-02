@@ -23,6 +23,14 @@ class Contact < ApplicationRecord
     where(status: true)
   end
 
+  def self.enumeration_columns
+    [
+        ["#{LanguageType}", 'language_type_id'],
+        ["#{ContactStatus}", 'contact_status_id'],
+        ["#{ContactType}", 'contact_type_id']
+    ]
+  end
+
   def language_type
     if language_type_id
       super

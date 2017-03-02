@@ -1,7 +1,7 @@
 class DeploymentHistory < ApplicationRecord
   belongs_to :user
   belongs_to :deployment_operation, optional: true
-  belongs_to :state_type, optional: true
+  belongs_to :state, optional: true, class_name: 'StateType'
   belongs_to :country_type, optional: true
 
   has_many :deployment_history_attachments, foreign_key: :owner_id, dependent: :destroy
@@ -10,6 +10,13 @@ class DeploymentHistory < ApplicationRecord
   validates_presence_of :user_id, :deployment_operation_id
 
 
+  def self.enumeration_columns
+    [
+        ["#{DeploymentOperation}", 'deployment_operation_id'],
+        ["#{CountryType}", 'country_id'],
+        ["#{StateType}", 'state_id']
+    ]
+  end
 
   def deployment_operation
     if self.deployment_operation_id
@@ -19,9 +26,9 @@ class DeploymentHistory < ApplicationRecord
     end
   end
 
-  def state_type
+  def state
     if state_id
-      StateType.find_by(id: state_id)
+      super
     else
       StateType.default
     end

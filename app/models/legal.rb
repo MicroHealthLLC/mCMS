@@ -8,6 +8,13 @@ class Legal < ApplicationRecord
 
   validates_presence_of :user_id, :title
 
+  def self.enumeration_columns
+    [
+        ["#{LegalHistoryType}", 'legal_history_type_id'],
+        ["#{LegalHistoryStatus}", 'legal_history_status_id']
+    ]
+  end
+
   def legal_history_type
     if legal_history_type_id
       super

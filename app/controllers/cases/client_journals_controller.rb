@@ -9,7 +9,18 @@ class ClientJournalsController < UserCasesController
   # GET /client_journals
   # GET /client_journals.json
   def index
-    @client_journals = ClientJournal.visible
+    scope = ClientJournal.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+
+
+    @client_journals = scope
   end
 
   # GET /client_journals/1

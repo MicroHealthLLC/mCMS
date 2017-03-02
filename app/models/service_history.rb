@@ -12,6 +12,16 @@ class ServiceHistory < ApplicationRecord
   validates_presence_of :service_type_id, :user_id
 
 
+  def self.enumeration_columns
+    [
+        ["#{ServiceStatus}", 'service_status_id'],
+        ["#{ServiceType}", 'service_type_id'],
+        ["#{DischargeType}", 'rank_id'],
+        ["#{Component}", 'discharge_type_id'],
+        ["#{Rank}", 'component_id']
+    ]
+  end
+
   def service_status
     super || ServiceStatus.default
   end

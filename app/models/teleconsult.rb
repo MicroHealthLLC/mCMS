@@ -23,6 +23,14 @@ class Teleconsult < ApplicationRecord
     contact_method
   end
 
+  def self.enumeration_columns
+    [
+        ["#{ContactMethod}", 'contact_method_id'],
+        ["#{ContactType}", 'contact_type_id'],
+        ["#{ConsultStatus}", 'consult_status_id']
+    ]
+  end
+
   def contact_method
     if contact_method_id
       super

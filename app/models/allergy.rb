@@ -12,6 +12,12 @@ class Allergy < ApplicationRecord
     icdcm_code
   end
 
+  def self.enumeration_columns
+    [
+        ["#{AllergyStatus}", 'allergy_status_id']
+    ]
+  end
+
   def allergy_status
     if allergy_status_id
       super

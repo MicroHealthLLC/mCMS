@@ -9,6 +9,13 @@ class BehavioralRisk < ApplicationRecord
 
   validates_presence_of :user_id, :name
 
+  def self.enumeration_columns
+    [
+        ["#{BehavioralRiskType}", 'behavioral_risk_type_id'],
+        ["#{BehavioralRiskStatus}", 'behavioral_risk_status_id']
+    ]
+  end
+
   def behavioral_risk_type
     if behavioral_risk_type_id
       super

@@ -8,6 +8,13 @@ class UserInsurance < ApplicationRecord
   accepts_nested_attributes_for :user_insurance_attachments, reject_if: :all_blank, allow_destroy: true
 
 
+  def self.enumeration_columns
+    [
+        ["#{InsuranceType}", 'insurance_type_id'],
+        ["#{InsuranceStatus}", 'status_id']
+    ]
+  end
+
   def insurance_type
     if insurance_type_id
       super

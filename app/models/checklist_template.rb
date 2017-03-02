@@ -16,6 +16,14 @@ class ChecklistTemplate < ApplicationRecord
 
   validates_presence_of :title
 
+
+  def self.enumeration_columns
+    [
+        ["#{ChecklistStatusType}", 'checklist_status_type_id'],
+        ["#{ChecklistType}", 'checklist_type_id']
+    ]
+  end
+
   def checklist_status_type
     if checklist_status_type_id
       super

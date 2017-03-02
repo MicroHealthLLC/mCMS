@@ -8,7 +8,17 @@ class TransportationsController < UserHistoryController
   # GET /transportations
   # GET /transportations.json
   def index
-    @transportations = Transportation.visible
+    scope = Transportation.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+
+    @transportations = scope
   end
 
   # GET /transportations/1

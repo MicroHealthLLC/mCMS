@@ -36,6 +36,12 @@ class Document < ApplicationRecord
     end
   end
 
+  def self.enumeration_columns
+    [
+        ["#{DocumentType}", 'document_type_id']
+    ]
+  end
+
   def document_type
     if document_type_id
       super

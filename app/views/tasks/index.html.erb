@@ -1,6 +1,7 @@
 
 <%#= link_to('New Task', new_task_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_tasks, :manage_tasks, :manage_roles) and !(User.current.allowed_to?(:manage_roles) and session[:employee_id].nil?) %>
 <section id="widget-grid" class="tasks_section">
+  <%= render partial: 'state_button_filter'%>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'list_ajax',

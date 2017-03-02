@@ -10,6 +10,13 @@ class WorkerCompensation < ApplicationRecord
 
   validates_presence_of :user_id, :injury_id
 
+  def self.enumeration_columns
+    [
+        ["#{CompensationType}", 'compensation_type_id'],
+        ["#{CompensationStatus}", 'compensation_status_id']
+    ]
+  end
+
   def compensation_type
     if compensation_type_id
       super
@@ -28,7 +35,7 @@ class WorkerCompensation < ApplicationRecord
 
 
   def to_s
-    injury
+    injury.to_s
   end
 
   def self.safe_attributes

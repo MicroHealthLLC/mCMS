@@ -1,5 +1,6 @@
 <%= link_to( t('new_daily_living'), new_daily_living_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_daily_livings, :manage_roles, :manage_daily_livings) %>
 <section id="widget-grid" class="daily_livings_section">
+  <%= render partial: 'state_button_filter'%>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'list',

@@ -10,6 +10,13 @@ class Clearance < ApplicationRecord
     UserMailer.clearance_notification(self).deliver_later
   end
 
+  def self.enumeration_columns
+    [
+        ["#{ClearenceStatus}", 'status_id'],
+        ["#{ClearenceType}", 'clearence_type_id']
+    ]
+  end
+
   def clearence_status
     if status_id
       super

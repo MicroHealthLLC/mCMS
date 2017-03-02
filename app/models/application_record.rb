@@ -12,10 +12,6 @@ class ApplicationRecord < ActiveRecord::Base
     self.try(:user) == User.current
   end
 
-  # type should be [
-  #    ["CaseStatusType", "case_status_type_id", {:is_closed=>true}], ...
-  # ]
-
   # example:  Case.include_enumerations.join_enumeration(types)
   def self.join_enumeration(types, status, type = ' OR ')
     scope = self
@@ -42,9 +38,13 @@ class ApplicationRecord < ActiveRecord::Base
     )
   end
 
+  def self.all_data
+    where.not(id: closed.pluck(:id))
+  end
+
   def self.opened
-    # join_enumeration(enumeration_columns, { is_closed: false, is_flagged: false}, ' AND ')
-    where.not(id: closed.pluck(:id)+ flagged.pluck(:id))
+    # join_enumeration(enumeration_columns, { is_closed: false, is_flagged: false}, ' AND ', '!=')
+    where.not(id: closed_or_flagged.pluck(:id))
   end
 
   def self.closed
@@ -53,5 +53,9 @@ class ApplicationRecord < ActiveRecord::Base
 
   def self.flagged
     join_enumeration(enumeration_columns, { is_flagged: true})
+  end
+
+  def self.closed_or_flagged
+    join_enumeration(enumeration_columns, { is_closed: true, is_flagged: true})
   end
 end

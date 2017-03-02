@@ -19,7 +19,7 @@
 <script>
   $(document).ready(function(){
     var table = $('#tasks_table').DataTable({
-      "ajax": "<%= tasks_path(format: :json) %>",
+      "ajax": "<%= tasks_path(format: :json, status_type: params[:status_type]) %>",
       processing: true,
       serverSide: true,
       responsive: true,

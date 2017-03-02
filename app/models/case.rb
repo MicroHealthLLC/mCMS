@@ -92,10 +92,6 @@ class Case < ApplicationRecord
     end
   end
 
-  def self.all_data
-    opened.or(Case.flagged)
-  end
-
   def self.enumeration_columns
     [
         ["#{CaseType}", 'case_type_id'],

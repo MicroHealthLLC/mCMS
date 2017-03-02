@@ -30,6 +30,13 @@ class Plan < ApplicationRecord
     self.case.try(:goals) || []
   end
 
+  def self.enumeration_columns
+    [
+        ["#{PriorityType}", 'priority_type_id'],
+        ["#{PlanStatus}", 'plan_status_id']
+    ]
+  end
+
   def priority_type
     if priority_type_id
       super

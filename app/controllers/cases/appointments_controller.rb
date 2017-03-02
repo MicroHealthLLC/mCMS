@@ -12,6 +12,7 @@ class AppointmentsController < UserCasesController
       format.html{}
       format.json{
         options = Hash.new
+        options[:status_type] = params[:status_type]
         render json: AppointmentDatatable.new(view_context, options)
       }
     end

@@ -11,7 +11,16 @@ class JobApplicationsController < UserProfilesController
 # GET /job_applications
 # GET /job_applications.json
   def index
-    @job_applications = JobApplication.visible
+    scope = JobApplication.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+    @job_applications = scope
   end
 
 # GET /job_applications/1

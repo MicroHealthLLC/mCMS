@@ -14,6 +14,7 @@ class TasksController < UserCasesController
       format.html{}
       format.json{
         options = Hash.new
+        options[:status_type] = params[:status_type]
         render json: TaskDatatable.new(view_context, options)
       }
     end

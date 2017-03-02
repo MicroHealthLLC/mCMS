@@ -15,6 +15,13 @@ class Education < ApplicationRecord
     User.current == user or User.current.allowed_to?(:edit_educations) or User.current.allowed_to?(:manage_educations)
   end
 
+  def self.enumeration_columns
+    [
+        ["#{EducationType}", 'education_type_id'],
+        ["#{EducationStatus}", 'status_id']
+    ]
+  end
+
   def education_type
     if education_type_id
       super

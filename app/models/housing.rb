@@ -10,6 +10,15 @@ class Housing < ApplicationRecord
 
   validates_presence_of :user_id
 
+
+  def self.enumeration_columns
+    [
+        ["#{HousingStatus}", 'housing_status_id'],
+        ["#{CohabitationType}", 'cohabitation_type_id'],
+        ["#{HousingType}", 'housing_type_id']
+    ]
+  end
+
   def housing_status
     if housing_status_id
       super

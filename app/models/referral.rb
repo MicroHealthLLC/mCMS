@@ -22,6 +22,13 @@ class Referral < ApplicationRecord
   
   validates_presence_of :user_id, :title
 
+  def self.enumeration_columns
+    [
+        ["#{ReferralType}", 'referral_type_id'],
+        ["#{ReferralStatus}", 'referral_status_id']
+    ]
+  end
+
   def referral_type
     if referral_type_id
       super

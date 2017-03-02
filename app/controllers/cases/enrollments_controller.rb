@@ -9,7 +9,17 @@ class EnrollmentsController < UserCasesController
   # GET /enrollments
   # GET /enrollments.json
   def index
-    @enrollments = Enrollment.visible
+    scope =  Enrollment.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+
+    @enrollments = scope
   end
 
   # GET /enrollments/1

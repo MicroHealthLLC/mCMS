@@ -10,6 +10,13 @@ class Surgical < ApplicationRecord
 
   validates_presence_of :user_id, :name
 
+  def self.enumeration_columns
+    [
+        ["#{SurgeryType}", 'surgery_type_id'],
+        ["#{SurgeryStatus}", 'surgery_status_id']
+    ]
+  end
+
   def surgery_type
     if surgery_type_id
       super

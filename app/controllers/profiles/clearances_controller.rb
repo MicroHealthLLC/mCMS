@@ -9,7 +9,16 @@ class ClearancesController < UserProfilesController
   # GET /clearances
   # GET /clearances.json
   def index
-    @clearances = Clearance.visible
+    scope = Clearance.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+    @clearances = scope
   end
 
   # GET /clearances/1

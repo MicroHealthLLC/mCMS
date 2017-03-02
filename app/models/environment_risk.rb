@@ -9,6 +9,13 @@ class EnvironmentRisk < ApplicationRecord
 
   validates_presence_of :user_id, :name
 
+  def self.enumeration_columns
+    [
+        ["#{EnvironmentType}", 'environment_type_id'],
+        ["#{EnvironmentStatus}", 'environment_status_id']
+    ]
+  end
+
   def environment_type
     if environment_type_id
       super

@@ -10,6 +10,14 @@ class Transportation < ApplicationRecord
 
   validates_presence_of :user_id
 
+  def self.enumeration_columns
+    [
+        ["#{TransportationType}", 'transportation_type_id'],
+        ["#{TransportationMean}", 'transportation_mean_id'],
+        ["#{TransportationStatus}", 'transportation_status_id']
+    ]
+  end
+
   def transportation_type
     if transportation_type_id
       super

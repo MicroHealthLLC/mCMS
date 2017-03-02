@@ -10,6 +10,13 @@ class Injury < ApplicationRecord
 
   validates_presence_of :user_id
 
+  def self.enumeration_columns
+    [
+        ["#{InjuryType}", 'injury_type_id'],
+        ["#{InjuryStatus}", 'injury_status_id']
+    ]
+  end
+
   def injury_type
     if injury_type_id
       super

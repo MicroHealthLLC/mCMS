@@ -9,7 +9,16 @@ class OtherHistoriesController < UserHistoryController
   # GET /other_histories
   # GET /other_histories.json
   def index
-    @other_histories = OtherHistory.visible
+    scope = OtherHistory.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+    @other_histories = scope
   end
 
   # GET /other_histories/1

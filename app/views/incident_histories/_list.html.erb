@@ -14,7 +14,6 @@
     <th>Verified personal casualty reporting</th>
     <th>Line of duty investigation</th>
     <th>Cause of injury</th>
-    <th>Injury description</th>
     <th>Pending operation procedure</th>
   </tr>
   </thead>
@@ -22,20 +21,19 @@
   <tbody>
   <% @incident_histories.each do |incident_history| %>
       <tr>
-        <td><%= incident_history.incident %></td>
+        <td><%= link_to incident_history.incident, incident_history %></td>
         <td><%= incident_history.incident_type %></td>
         <td><%= incident_history.incident_category %></td>
-        <td><%= incident_history.date_od_incident %></td>
+        <td><%= incident_history.date_of_incident %></td>
         <td><%= incident_history.date_diagnosed %></td>
         <td><%= incident_history.incident_location_address %></td>
         <td><%= incident_history.incident_location_city %></td>
-        <td><%= incident_history.state %></td>
-        <td><%= incident_history.country %></td>
+        <td><%= incident_history.state_type %></td>
+        <td><%= incident_history.country_type %></td>
         <td><%= incident_history.operation %></td>
-        <td><%= incident_history.verified_personal_casualty_reporting %></td>
+        <td><%= incident_history.verified_personnel_casualty_reporting_system %></td>
         <td><%= incident_history.line_of_duty_investigation %></td>
         <td><%= incident_history.cause_of_injury %></td>
-        <td><%= incident_history.injury_description %></td>
         <td><%= incident_history.pending_operation_procedure %></td>
       </tr>
   <% end %>

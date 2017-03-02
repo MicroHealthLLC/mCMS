@@ -8,7 +8,16 @@ class DocumentsController < UserCasesController
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.for_cases.visible
+    scope = Document.for_cases.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+    @documents = scope
   end
 
   def all_files

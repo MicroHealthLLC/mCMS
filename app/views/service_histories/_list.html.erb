@@ -19,7 +19,7 @@
   <tbody>
   <% @service_histories.each do |service_history| %>
       <tr>
-        <td><%= service_history.rank %></td>
+        <td><%= link_to service_history.rank, service_history%></td>
         <td><%= service_history.service_type %></td>
         <td><%= service_history.service_status %></td>
         <td><%= service_history.component %></td>

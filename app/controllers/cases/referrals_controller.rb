@@ -9,7 +9,17 @@ class ReferralsController < UserCasesController
 # GET /referrals
 # GET /referrals.json
   def index
-    @referrals = Referral.visible
+    scope =  Referral.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+
+    @referrals = scope
   end
 
   def links

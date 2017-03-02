@@ -11,7 +11,17 @@ class PositionsController < UserProfilesController
   # GET /positions
   # GET /positions.json
   def index
-    @positions = Position.visible
+    scope =  Position.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+
+    @positions = scope
   end
 
   # GET /positions/1

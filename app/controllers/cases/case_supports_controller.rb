@@ -9,8 +9,17 @@ class CaseSupportsController < UserCasesController
   # GET /case_supports
   # GET /case_supports.json
   def index
+    scope = CaseSupport.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
     respond_to do |format|
-      format.html{ @case_supports = CaseSupport.visible}
+      format.html{ @case_supports = scope}
     end
   end
 

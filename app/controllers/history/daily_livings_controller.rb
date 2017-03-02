@@ -8,7 +8,17 @@ class DailyLivingsController < UserHistoryController
   # GET /daily_livings
   # GET /daily_livings.json
   def index
-    @daily_livings = DailyLiving.visible
+    scope = DailyLiving.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+
+    @daily_livings = scope
   end
 
   # GET /daily_livings/1

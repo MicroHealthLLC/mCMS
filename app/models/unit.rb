@@ -9,6 +9,13 @@ class Unit < ApplicationRecord
 
   validates_presence_of :unit_enum_id, :user_id
 
+  def self.enumeration_columns
+    [
+        ["#{UnitEnum}", 'unit_enum_id'],
+        ["#{InstallationName}", 'installation_name_id']
+    ]
+  end
+
 
   def unit_enum
     if self.unit_enum_id

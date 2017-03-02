@@ -1,5 +1,6 @@
 <%= link_to(t('new_immunization'), new_immunization_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_immunizations, :manage_roles, :manage_immunizations) %>
 <section id="widget-grid" class="immunizations_section">
+  <%= render partial: 'state_button_filter'%>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'list',

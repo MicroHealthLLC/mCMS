@@ -9,7 +9,17 @@ class AdmissionsController < UserHistoryController
   # GET /admissions
   # GET /admissions.json
   def index
-    @admissions = Admission.visible
+    scope = Admission.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+
+    @admissions = scope
   end
 
   # GET /admissions/1

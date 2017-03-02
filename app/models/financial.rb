@@ -9,6 +9,13 @@ class Financial < ApplicationRecord
 
   validates_presence_of :user_id, :title
 
+  def self.enumeration_columns
+    [
+        ["#{FinancialType}", 'financial_type_id'],
+        ["#{FinancialStatus}", 'financial_status_id']
+    ]
+  end
+
   def financial_type
     if financial_type_id
       super

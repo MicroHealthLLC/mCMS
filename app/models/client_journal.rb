@@ -18,6 +18,12 @@ class ClientJournal < ApplicationRecord
      client_journal_attachments_attributes: [Attachment.safe_attributes]]
   end
 
+  def self.enumeration_columns
+    [
+        ["#{ClientJournalType}", 'client_journal_type_id']
+    ]
+  end
+
   def client_journal_type
     if client_journal_type_id
       super

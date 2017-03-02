@@ -10,6 +10,13 @@ class ChecklistCase < ApplicationRecord
     includes(:checklist_status_type).references(:checklist_status_type)
   end
 
+
+  def self.enumeration_columns
+    [
+        ["#{ChecklistStatusType}", 'checklist_status_type_id']
+    ]
+  end
+
   def checklist_status_type
     if checklist_status_type_id
       super

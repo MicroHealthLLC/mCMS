@@ -34,6 +34,13 @@ class OtherSkill < ApplicationRecord
      skill_attachments_attributes: [Attachment.safe_attributes]]
   end
 
+  def self.enumeration_columns
+    [
+        ["#{OtherSkillStatus}", 'status_id'],
+        ["#{OtherSkillType}", 'skill_type_id']
+    ]
+  end
+
   def skill_status
     if status_id
       other_skill_status

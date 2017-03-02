@@ -42,6 +42,14 @@ class Task < ApplicationRecord
     UserMailer.task_notification(self).deliver_later
   end
 
+  def self.enumeration_columns
+    [
+        ["#{PriorityType}", 'priority_id'],
+        ["#{TaskType}", 'task_type_id'],
+        ["#{TaskStatusType}", 'task_status_type_id']
+    ]
+  end
+
   def priority_type
     if priority_id
       super

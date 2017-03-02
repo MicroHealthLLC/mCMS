@@ -9,7 +9,16 @@ class ProblemListsController < UserHistoryController
   # GET /problem_lists
   # GET /problem_lists.json
   def index
-    @problem_lists = ProblemList.visible
+    scope = ProblemList.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+    @problem_lists = scope
   end
 
   # GET /problem_lists/1

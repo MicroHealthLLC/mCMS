@@ -16,11 +16,11 @@
   <% @deployment_histories.each do |deployment_history| %>
       <tr>
       
-        <td><%= deployment_history.deployment_operation %></td>
+        <td><%= link_to deployment_history.deployment_operation, deployment_history %></td>
         <td><%= deployment_history.location %></td>
         <td><%= deployment_history.city %></td>
         <td><%= deployment_history.state %></td>
-        <td><%= deployment_history.country %></td>
+        <td><%= deployment_history.country_type %></td>
         <td><%= deployment_history.date_start %></td>
         <td><%= deployment_history.date_end %></td>
        </tr>

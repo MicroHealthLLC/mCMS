@@ -9,7 +9,16 @@ class FamilyHistoriesController < UserHistoryController
   # GET /family_histories
   # GET /family_histories.json
   def index
-    @family_histories = FamilyHistory.visible
+    scope = FamilyHistory.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+    @family_histories = scope
   end
 
   # GET /family_histories/1

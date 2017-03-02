@@ -9,7 +9,16 @@ class MedicationsController < UserHistoryController
   # GET /medications
   # GET /medications.json
   def index
-    @medications = Medication.visible
+    scope = Medication.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+    @medications = scope
   end
 
   # GET /medications/1

@@ -8,7 +8,17 @@ class LegalsController < UserHistoryController
   # GET /legals
   # GET /legals.json
   def index
-    @legals = Legal.visible
+    scope = Legal.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+
+    @legals = scope
   end
 
   # GET /legals/1

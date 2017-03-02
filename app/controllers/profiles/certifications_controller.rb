@@ -10,7 +10,16 @@ class CertificationsController < UserProfilesController
   # GET /certifications
   # GET /certifications.json
   def index
-    @certifications = Certification.visible
+    scope = Certification.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+    @certifications = scope
   end
 
   # GET /certifications/1

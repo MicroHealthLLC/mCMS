@@ -14,6 +14,14 @@ class MtfHospital < ApplicationRecord
   validates_presence_of :user_id, :mtf_hospital
 
 
+  def self.enumeration_columns
+    [
+        ["#{IncidentCategory}", 'incident_category_id'],
+        ["#{LineOfDutyInvestigation}", 'line_of_duty_investigation_id'],
+        ["#{IncidentType}", 'incident_type_id']
+    ]
+  end
+
   def incident_category
     if self.incident_category_id
       super

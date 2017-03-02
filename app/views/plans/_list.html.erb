@@ -15,29 +15,23 @@
   </thead>
 
   <tbody>
-  <% if @plans.any? %>
-      <% @plans.each do |plan| %>
-          <tr>
-            <td><%= link_to plan.name, plan %></td>
-            <% if show_case %>
-                <td><%= link_to_case plan.case %></td>
-            <% end %>
-            <td><%= plan.priority_type %></td>
-            <td><%= plan.plan_status %></td>
-            <td><%= plan.date_start %></td>
-            <td><%= plan.date_due %></td>
-            <td><%= plan.date_completed %></td>
-          </tr>
-      <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
+  <% @plans.each do |plan| %>
+      <tr>
+        <td><%= link_to plan.name, plan %></td>
+        <% if show_case %>
+            <td><%= link_to_case plan.case %></td>
+        <% end %>
+        <td><%= plan.priority_type %></td>
+        <td><%= plan.plan_status %></td>
+        <td><%= plan.date_start %></td>
+        <td><%= plan.date_due %></td>
+        <td><%= plan.date_completed %></td>
       </tr>
   <% end %>
   </tbody>
 </table>
 <script>
   $(document).ready(function(){
-    <%  if @plans.present? %> initDataTable('plans_table') <% end %>
+    initDataTable('plans_table')
   } );
 </script>

@@ -9,7 +9,16 @@ class MtfHospitalsController < UserHistoryController
   # GET /mtf_hospitals
   # GET /mtf_hospitals.json
   def index
-    @mtf_hospitals = MtfHospital.visible
+    scope = MtfHospital.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+    @mtf_hospitals = scope
   end
 
   # GET /mtf_hospitals/1

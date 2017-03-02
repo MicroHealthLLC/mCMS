@@ -10,7 +10,16 @@ class LanguagesController < UserProfilesController
   # GET /languages
   # GET /languages.json
   def index
-    @languages = Language.visible
+    scope = Language.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+    @languages = scope
   end
 
   # GET /languages/1

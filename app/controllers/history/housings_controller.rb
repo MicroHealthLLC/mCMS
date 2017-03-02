@@ -9,7 +9,17 @@ class HousingsController < UserHistoryController
   # GET /housings
   # GET /housings.json
   def index
-    @housings = Housing.visible
+    scope = Housing.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+
+    @housings = scope
   end
 
   # GET /housings/1

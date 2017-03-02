@@ -8,6 +8,13 @@ class DailyLiving < ApplicationRecord
   has_many :daily_living_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :daily_living_attachments, reject_if: :all_blank, allow_destroy: true
 
+  def self.enumeration_columns
+    [
+        ["#{DailyLivingStatus}", 'daily_living_status_id'],
+        ["#{DailyLivingType}", 'daily_living_type_id']
+    ]
+  end
+
   def daily_living_status
     if daily_living_status_id
       super

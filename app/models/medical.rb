@@ -9,6 +9,13 @@ class Medical < ApplicationRecord
 
   validates_presence_of :user_id, :name
 
+  def self.enumeration_columns
+    [
+        ["#{MedicalHistoryType}", 'medical_history_type_id'],
+        ["#{MedicalHistoryStatus}", 'medical_history_status_id']
+    ]
+  end
+
   def medical_history_type
     if medical_history_type_id
       super

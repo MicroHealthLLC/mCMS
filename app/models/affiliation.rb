@@ -16,6 +16,13 @@ class Affiliation < ApplicationRecord
     UserMailer.affiliation_notification(self).deliver_later
   end
 
+  def self.enumeration_columns
+    [
+        ["#{AffiliationType}", 'affiliation_type_id'],
+        ["#{AffiliationStatus}", 'status_id']
+    ]
+  end
+
   def affiliation_status
     if status_id
       super

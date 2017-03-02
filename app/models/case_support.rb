@@ -17,6 +17,13 @@ class CaseSupport < ApplicationRecord
     case_support_extend_demography || CaseSupportExtendDemography.new(case_support_id: self.id)
   end
 
+  def self.enumeration_columns
+    [
+        ["#{CaseSupportType}", 'case_support_type_id'],
+        ["#{SupportStatus}", 'support_status_id']
+    ]
+  end
+
   def to_s
     name
   end

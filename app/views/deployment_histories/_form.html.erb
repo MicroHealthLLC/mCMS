@@ -40,7 +40,7 @@
       <div class="form-group">
         <%= f.label :state_, class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :state_id, options_for_select(StateType.active.pluck(:name, :id), selected: f.object.state_type.try(:id)) , {} ,{class: 'form-control'} %>
+          <%= f.select :state_id, options_for_select(StateType.active.pluck(:name, :id), selected: f.object.state.try(:id)) , {} ,{class: 'form-control'} %>
         </div>
       </div>
 

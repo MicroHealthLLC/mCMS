@@ -9,6 +9,13 @@ class Award < ApplicationRecord
   validates_presence_of :award_enum_id, :user_id
 
 
+  def self.enumeration_columns
+    [
+        ["#{AwardEnum}", 'award_type_id'],
+        ["#{AwardType}", 'award_enum_id']
+    ]
+  end
+
   def award_enum
     if self.award_enum_id
       super

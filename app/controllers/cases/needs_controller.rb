@@ -9,7 +9,16 @@ class NeedsController < UserCasesController
   # GET /needs
   # GET /needs.json
   def index
-    @needs = Need.visible
+    scope =  Need.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+    @needs = scope
   end
 
   # GET /needs/1

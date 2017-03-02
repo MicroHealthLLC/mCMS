@@ -1,5 +1,6 @@
 <%= link_to(t('new_allergy'), new_allergy_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_allergies, :manage_roles, :manage_allergies) %>
 <section id="widget-grid" class="allergies_section">
+  <%= render partial: 'state_button_filter'%>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'list',

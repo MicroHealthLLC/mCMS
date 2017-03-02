@@ -1,6 +1,7 @@
 <%= link_to(t('new_insurance'), new_user_insurance_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_insurances, :manage_insurances, :manage_roles) %>
 
 <section id="widget-grid" class="insurances_section">
+  <%= render partial: 'state_button_filter'%>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'list',

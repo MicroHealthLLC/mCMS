@@ -8,7 +8,17 @@ class FinancialsController < UserHistoryController
   # GET /financials
   # GET /financials.json
   def index
-    @financials = Financial.visible
+    scope = Financial.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+
+    @financials = scope
   end
 
   # GET /financials/1

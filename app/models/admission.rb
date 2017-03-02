@@ -16,6 +16,13 @@ class Admission < ApplicationRecord
     end
   end
 
+  def self.enumeration_columns
+    [
+        ["#{AdmissionType}", 'admission_type_id'],
+        ["#{AdmissionStatus}", 'admission_status_id']
+    ]
+  end
+
   def admission_type
     if admission_type_id
       super

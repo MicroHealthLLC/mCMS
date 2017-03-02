@@ -9,7 +9,17 @@ class UserInsurancesController < UserProfilesController
   # GET /user_insurances
   # GET /user_insurances.json
   def index
-    @user_insurances = UserInsurance.visible.paginate(page: params[:page], per_page: 25)
+    scope =  UserInsurance.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+
+    @user_insurances = scope.visible.paginate(page: params[:page], per_page: 25)
   end
 
   # GET /user_insurances/1

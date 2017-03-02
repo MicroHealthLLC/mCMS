@@ -18,6 +18,14 @@ class Position < ApplicationRecord
     UserMailer.position_notification(self).deliver_later
   end
 
+  def self.enumeration_columns
+    [
+        ["#{PayRateType}", 'pay_rate_id'],
+        ["#{EmploymentType}", 'employment_type_id'],
+        ["#{PositionStatus}", 'status_id']
+    ]
+  end
+
   def pay_rate_type
     if pay_rate_id
       super

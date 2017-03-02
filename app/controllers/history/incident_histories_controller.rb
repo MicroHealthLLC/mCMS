@@ -9,7 +9,17 @@ class IncidentHistoriesController < UserHistoryController
   # GET /incident_histories
   # GET /incident_histories.json
   def index
-    @incident_histories = IncidentHistory.visible
+    scope = IncidentHistory.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+
+    @incident_histories = scope
   end
 
   # GET /incident_histories/1

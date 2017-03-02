@@ -12,6 +12,15 @@ class JobApplication < ApplicationRecord
 
   validates_presence_of :user_id, :employer
 
+  def self.enumeration_columns
+    [
+        ["#{ApplicationType}", 'application_type_id'],
+        ["#{ApplicationStatus}", 'application_status_id'],
+        ["#{InterviewStatus}", 'interview_status_id'],
+        ["#{InterviewType}", 'interview_type_id']
+    ]
+  end
+
   def application_type
     if application_type_id
       super

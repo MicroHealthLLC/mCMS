@@ -28,6 +28,13 @@ class Appointment < ApplicationRecord
         references(:appointment_type, :appointment_status)
   end
 
+  def self.enumeration_columns
+    [
+        ["#{AppointmentType}", 'appointment_type_id'],
+        ["#{AppointmentStatus}", 'appointment_status_id']
+    ]
+  end
+
   def to_s
     title
   end

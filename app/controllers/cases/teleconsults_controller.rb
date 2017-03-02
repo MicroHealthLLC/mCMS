@@ -9,7 +9,16 @@ class TeleconsultsController  < UserCasesController
   # GET /teleconsults
   # GET /teleconsults.json
   def index
-    @teleconsults = Teleconsult.visible
+    scope = Teleconsult.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+    @teleconsults = scope
   end
 
   # GET /teleconsults/1

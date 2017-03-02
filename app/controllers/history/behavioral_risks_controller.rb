@@ -9,7 +9,17 @@ class BehavioralRisksController < UserHistoryController
   # GET /behavioral_risks
   # GET /behavioral_risks.json
   def index
-    @behavioral_risks = BehavioralRisk.visible
+    scope = BehavioralRisk.visible
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+
+    @behavioral_risks = scope
   end
 
   # GET /behavioral_risks/1

@@ -11,6 +11,13 @@ class Certification < ApplicationRecord
     UserMailer.certification_notification(self).deliver_later
   end
 
+  def self.enumeration_columns
+    [
+        ["#{CertificationType}", 'certification_type_id'],
+        ["#{CertificationStatus}", 'status_id']
+    ]
+  end
+
   def certification_type
     if certification_type_id
       super

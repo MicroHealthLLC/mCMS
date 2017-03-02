@@ -1,5 +1,6 @@
 <%= link_to(t('new_medical'), new_medical_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_medicals, :manage_roles, :manage_medicals) %>
 <section id="widget-grid" class="medicals_section">
+  <%= render partial: 'state_button_filter'%>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'list',

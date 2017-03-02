@@ -4,7 +4,16 @@ class ChecklistCasesController < UserCasesController
   def index
     cases = Case.root
     cases = cases.visible
-    @checklists = ChecklistCase.includes(:checklist_template).
+    scope =  ChecklistCase
+    scope = case params[:status_type]
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.opened
+            end
+    @checklists = scope.includes(:checklist_template).
         references(:checklist_template).include_enumerations.
         where(assigned_to_id:  cases.pluck(:id))
     # Use AJAx DataTable next time
