@@ -37,7 +37,7 @@
                 ( module_enabled?('plans')  && can?(:manage_roles, :view_plans, :manage_plans)) ||
                 ( module_enabled?( 'tasks') && can?(:manage_roles, :view_tasks, :manage_tasks)) %>
             <li>
-              <a href="#"><i class="fa fa-flash"></i> N.G.P.A</a>
+              <a href="#"><i class="fa fa-flash"></i> Care Plan</a>
               <ul>
                 <% if module_enabled?( 'needs')  && can?(:manage_roles, :view_needs, :manage_needs) %>
                     <li class="<%= menu_active?('needs') %>">
@@ -64,7 +64,7 @@
                 <% end %>
                 <% if module_enabled?( 'jsignatures') && can?(:manage_roles, :view_jsignatures, :manage_jsignatures) %>
                     <li class="<%= menu_active?('jsignatures') %>">
-                      <a href="/jsignatures" title="<%= t :jsignatures %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent">Plan of Care Agreement</span></a>
+                      <a href="/jsignatures" title="<%= t :jsignatures %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent">Care Plan Agreement</span></a>
                     </li>
                 <% end %>
               </ul>
