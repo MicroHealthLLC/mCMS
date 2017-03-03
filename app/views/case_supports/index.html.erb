@@ -1,13 +1,30 @@
 <section id="widget-grid" class="case_support">
   <%= render partial: 'state_button_filter'%>
+  <% if can?(:create_case_supports, :manage_roles, :manage_case_supports) %>
+      <div class="btn-group pull-right btn-edition">
+        <button class="btn btn-primary">
+          Add Case support For
+        </button>
+        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <% @cases_for_btn.each do |c| %>
+              <li>
+                <%= link_to c, new_case_support_path(case_id: c.id) %>
+              </li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'list',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     case_supports: @case_supports,
-                     wid_id: 'case_support',
-                     wid_title: t('cases_support')
+                         case_supports: @case_supports,
+                         wid_id: 'case_support',
+                         wid_title: t('cases_support')
                  } %>
     </article>
   </div>

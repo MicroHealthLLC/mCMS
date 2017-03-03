@@ -1,12 +1,29 @@
 <section id="widget-grid" class="goals_section">
   <%= render partial: 'state_button_filter'%>
+  <% if can?(:create_goals, :manage_roles, :manage_goals) %>
+      <div class="btn-group pull-right btn-edition">
+        <button class="btn btn-primary">
+          Add Goal For
+        </button>
+        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <% @cases_for_btn.each do |c| %>
+              <li>
+                <%= link_to c, new_goal_path(case_id: c.id) %>
+              </li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'list',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     wid_id: 'goals',
-                     wid_title: t('goals')
+                         wid_id: 'goals',
+                         wid_title: t('goals')
                  } %>
     </article>
   </div>

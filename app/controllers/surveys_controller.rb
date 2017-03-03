@@ -7,6 +7,7 @@ class SurveysController < ApplicationController
     if User.current.admin?
       scope = scope.order('id DESC').paginate(page: params[:page], per_page: 25)
     else
+      @cases_for_btn = Case.visible
       scope = SurveyCase.visible
     end
     @surveys = scope

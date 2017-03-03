@@ -1,12 +1,29 @@
 <section id="widget-grid" class="needs_section">
   <%= render partial: 'state_button_filter'%>
+  <% if can?(:create_needs, :manage_roles, :manage_needs) %>
+      <div class="btn-group pull-right btn-edition">
+        <button class="btn btn-primary">
+          Add Need For
+        </button>
+        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <% @cases_for_btn.each do |c| %>
+              <li>
+                <%= link_to c, new_need_path(case_id: c.id) %>
+              </li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'list',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     wid_id: 'needs',
-                     wid_title: t('needs')
+                         wid_id: 'needs',
+                         wid_title: t('needs')
                  } %>
     </article>
   </div>

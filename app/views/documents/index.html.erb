@@ -3,14 +3,31 @@
 <% end %>
 <section id="widget-grid" class="documents_section">
   <%= render partial: 'state_button_filter'%>
+  <% if params[:controller] == 'documents' and can?(:create_documents, :manage_roles, :manage_documents) %>
+      <div class="btn-group pull-right btn-edition">
+        <button class="btn btn-primary">
+          Add Document For
+        </button>
+        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <% @cases_for_btn.each do |c| %>
+              <li>
+                <%= link_to c, new_document_path(case_id: c.id) %>
+              </li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'documents/list',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     documents: @documents,
-                     wid_id: 'documents',
-                     wid_title: t('documents')
+                         documents: @documents,
+                         wid_id: 'documents',
+                         wid_title: t('documents')
                  } %>
     </article>
   </div>

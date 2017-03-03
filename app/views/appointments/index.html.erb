@@ -1,12 +1,29 @@
 <section id="widget-grid" class="appointments_section">
   <%= render partial: 'state_button_filter'%>
+  <% if can?(:create_appointments, :manage_roles, :manage_appointments) %>
+      <div class="btn-group pull-right btn-edition">
+        <button class="btn btn-primary">
+          Add Appointment For
+        </button>
+        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <% @cases_for_btn.each do |c| %>
+              <li>
+                <%= link_to c, new_appointment_path(case_id: c.id) %>
+              </li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'list_ajax',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     wid_id: 'appointments',
-                     wid_title: t('appointments')
+                         wid_id: 'appointments',
+                         wid_title: t('appointments')
                  } %>
     </article>
   </div>

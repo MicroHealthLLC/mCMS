@@ -1,13 +1,30 @@
 
 <section id="widget-grid" class="checklists_account">
+  <% if can?(:create_case_watchers, :manage_roles, :manage_case_watchers) %>
+      <div class="btn-group pull-right btn-edition">
+        <button class="btn btn-primary">
+          Manage Watchers For
+        </button>
+        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <% @cases_for_btn.each do |c| %>
+              <li>
+                <%= link_to c, watchers_case_path(c) %>
+              </li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'list',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     case_watchers: @case_watchers,
-                     wid_id: 'watchers',
-                     wid_title: t('watchers')
+                         case_watchers: @case_watchers,
+                         wid_id: 'watchers',
+                         wid_title: t('watchers')
                  } %>
     </article>
   </div>

@@ -5,14 +5,31 @@
     <%= will_paginate @surveys, renderer: BootstrapPagination::Rails %>
 <% else %>
     <section id="widget-grid" class="surveys_section">
+      <% if can?(:create_surveys, :manage_roles, :manage_surveys) %>
+          <div class="btn-group pull-right btn-edition">
+            <button class="btn btn-primary">
+              Add Survey For
+            </button>
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <% @cases_for_btn.each do |c| %>
+                  <li>
+                    <%= link_to c, new_assign_survey_case_path(c.id) %>
+                  </li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'display_survey_case',
                      layout: 'shared/smart_widget_wrapper',
                      locals: {
-                         surveys: @surveys,
-                         wid_id: 'surveys',
-                         wid_title: t('surveys')
+                             surveys: @surveys,
+                             wid_id: 'surveys',
+                             wid_title: t('surveys')
                      } %>
         </article>
       </div>
