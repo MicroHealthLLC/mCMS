@@ -1,3 +1,5 @@
+<%= link_to(t('new_cases_support'), new_case_support_path(case_id: params[:case_id]), class: 'btn btn-primary pull-right btn-edition') if can?(:create_cases, :manage_roles, :manage_case_supports) %>
+
 <div class="row">
   <div class="col-xs-12">
     <%= text_field_tag :contact_search, '', class: 'form-control case_support-autocomplete' %>

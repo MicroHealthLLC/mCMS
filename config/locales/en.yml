@@ -242,6 +242,7 @@ en:
   label_fax_type: Fax Type
   label_phone_type: Phone Type
   label_search: Search client
+  label_search_suuport: Search support
   proficiency: Proficiency
   language_type: Language Type
   language_status: Language Status
