@@ -163,6 +163,7 @@ en:
   # NEEDS
   need: Need
   needs: Needs
+  my_needs: My Needs
   new_need: New Need
   edit_need: Edit Need
   need_status: Need Status
@@ -170,6 +171,7 @@ en:
  # GOALS
   goal: Goal
   goals: Goals
+  my_goals: My Goals
   new_goal: New goal
   edit_goal: Edit goal
   goal_status: Goal Status
@@ -177,6 +179,7 @@ en:
 # PLANS
   plan: Plan
   plans: Plans
+  my_plans: My Plans
   new_plan: New plan
   edit_plan: Edit plan
   plan_status: Plan Status

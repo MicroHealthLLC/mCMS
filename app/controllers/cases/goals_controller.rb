@@ -24,6 +24,10 @@ class GoalsController <  UserCasesController
   # GET /goals/1
   # GET /goals/1.json
   def show
+    if current_user.allowed_to?(:manage_roles) and @goal.user
+      session[:employee_id] = @goal.user.id
+      User.current = @goal.user
+    end
     @plans = @goal.plans
     @tasks = @plans.map(&:tasks).flatten.uniq
   end
