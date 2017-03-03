@@ -61,7 +61,7 @@
      <div class="form-group">
         <%= f.label :referred_to, class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= text_field_tag :client_organization, f.object.referred_to,  class: 'form-control' %>
+          <%= text_field_tag :client_organization, f.object.referred_to.to_s,  class: 'form-control' %>
           <script>
             $(document).ready(function(){
               $('#client_organization').autocomplete({
