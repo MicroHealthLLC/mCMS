@@ -8,7 +8,7 @@ class JsignaturesController < ApplicationController
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
 
-  before_action :set_appointment_links, only: [:show]
+  # before_action :set_appointment_links, only: [:show]
 
   def index
     @jsignatures = Case.visible.map(&:jsignatures).flatten
@@ -115,14 +115,5 @@ class JsignaturesController < ApplicationController
 
   def authorize_delete
     raise Unauthorized unless User.current_user.admin?
-  end
-
-  def set_appointment_links
-    @link_id = params[:id]
-    @link_type = params[:controller].classify
-    c = @link_type.constantize.find(@link_id).case
-    @appointments = Appointment.where(related_to_id: c.id).visible
-  rescue Exception => e
-    @link_type = nil
   end
 end
