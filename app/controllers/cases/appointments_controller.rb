@@ -30,19 +30,22 @@ class AppointmentsController < UserCasesController
       User.current = @appointment.user
     end
     @case =  @appointment.case
-    update_rails = @appointment.updated_at.to_date
+    # update_rails = @appointment.updated_at.to_date
+    # @appointment_links = @appointment.appointment_links
     if @case
-      @tasks       = @case.tasks.where('date(updated_at) = ?', update_rails)
-      @surveys     = @case.survey_cases.where('date(updated_at) = ?', update_rails)
-      @documents   = @case.documents.where('date(updated_at) = ?', update_rails)
-      @checklists  = @case.checklists.where('date(updated_at) = ?', update_rails).map(&:checklist_template)
-      @notes       = @case.case_notes.where('date(updated_at) = ?', update_rails)
-      @appointments= @case.appointments.where('date(updated_at) = ?', update_rails).where.not(id: @appointment.id)
-      @needs       = @case.needs.where('date(updated_at) = ?', update_rails)
-      @plans       = @case.plans.where('date(updated_at) = ?', update_rails)
-      @goals       = @case.goals.where('date(updated_at) = ?', update_rails)
-      @watchers    = @case.watchers.where('date(updated_at) = ?', update_rails).includes(:user=> :core_demographic)
-      @case_supports = @case.case_supports.active.where('date(updated_at) = ?', update_rails)
+    @tasks       = @appointment.appointment_links.where(linkable_type: 'Task').map(&:linkable)
+    # @surveys     = @case.survey_cases.where('date(updated_at) = ?', update_rails)
+    @documents   = @appointment.appointment_links.where(linkable_type: 'Document').map(&:linkable)
+    # @checklists  = @case.checklists.where('date(updated_at) = ?', update_rails).map(&:checklist_template)
+    # @notes       = @appointment.appointment_links.where(linkable_type: 'Note').map(&:linkable)
+    @appointments= @appointment.appointment_links.where(linkable_type: 'Appointment').map(&:linkable)
+    @needs       = @appointment.appointment_links.where(linkable_type: 'Need').map(&:linkable)
+    @plans       = @appointment.appointment_links.where(linkable_type: 'Plan').map(&:linkable)
+    @goals       = @appointment.appointment_links.where(linkable_type: 'Goal').map(&:linkable)
+    # @watchers    = @case.watchers.where('date(updated_at) = ?', update_rails).includes(:user=> :core_demographic)
+    @case_supports = @appointment.appointment_links.where(linkable_type: 'CaseSupport').map(&:linkable)
+    @enrollments = @appointment.appointment_links.where(linkable_type: 'Enrollment').map(&:linkable)
+    @teleconsults = @appointment.appointment_links.where(linkable_type: 'Teleconsult').map(&:linkable)
     end
   end
 

@@ -18,7 +18,7 @@ class Referral < ApplicationRecord
 
   has_many :referral_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :referral_attachments, reject_if: :all_blank, allow_destroy: true
-
+  has_many :appointment_links, as: :linkable
   
   validates_presence_of :user_id, :title
 

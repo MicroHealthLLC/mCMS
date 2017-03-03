@@ -6,6 +6,7 @@ class Teleconsult < ApplicationRecord
   belongs_to :consult_status, optional: true
   belongs_to :contact_type, optional: true
 
+  has_many :appointment_links, as: :linkable
 
   has_many :consult_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :consult_attachments, reject_if: :all_blank, allow_destroy: true

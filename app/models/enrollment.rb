@@ -6,7 +6,7 @@ class Enrollment < ApplicationRecord
 
   has_many :enrollment_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :enrollment_attachments, reject_if: :all_blank, allow_destroy: true
-
+  has_many :appointment_links, as: :linkable
 
   validates_presence_of :name, :user_id, :note, :case_id
 

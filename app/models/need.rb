@@ -6,6 +6,7 @@ class Need < ApplicationRecord
   belongs_to :priority_type, optional: true
   belongs_to :need_status, optional: true
 
+  has_many :appointment_links, as: :linkable
 
   has_many :need_goals,  dependent: :destroy
   has_many :goals, through: :need_goals

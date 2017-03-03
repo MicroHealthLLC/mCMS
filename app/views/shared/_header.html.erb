@@ -8,9 +8,27 @@
 
   </div>
   <% if session[:employee_id] %>
-      <%= cache User.current do %>
-          <%= render_employee_information.html_safe %>
-      <% end %>
+      <div class='col-xs-8 margin-top-10' style='float: left; <%= Setting.theme_style == 'smart-style-1' ? 'color:white; ' : '' %> font-weight: bold;'>
+        <%= cache User.current do %>
+            <%= render_employee_information.html_safe %>
+        <% end %>
+
+          <% if @link_type and @appointments.present? %>
+              <%= form_tag(add_appointment_link_path, method: 'post') do %>
+                  <%= hidden_field_tag :link_id, @link_id %>
+                  <%= hidden_field_tag :link_type, @link_type %>
+                <div class='col-xs-2' >
+                  <%= select_tag(:appointment_id, options_for_select(@appointments.map{|a|[a.to_s, a.id]}.insert(0, ["Link to Appointment", ""]),
+                                                                     selected: session[:appointment_store_id]), {required: true}) %>
+                </div>
+                <div class='col-xs-1' >
+                  <%= submit_tag :save, class: 'btn btn-default' %>
+                </div>
+            <% end %>
+        <% end %>
+        </div>
+
+
   <% end %>
   <!-- end projects dropdown -->
 

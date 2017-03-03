@@ -12,6 +12,10 @@ class ApplicationRecord < ActiveRecord::Base
     self.try(:user) == User.current
   end
 
+  def empty?
+    new_record? ? false : true
+  end
+
   # example:  Case.include_enumerations.join_enumeration(types)
   def self.join_enumeration(types, status, type = ' OR ')
     scope = self

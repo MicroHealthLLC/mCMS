@@ -10,6 +10,7 @@ class CaseSupport < ApplicationRecord
 
   scope :not_show_in_search, ->{ where(not_show_in_search: false)}
 
+  has_many :appointment_links, as: :linkable
 
   validates_presence_of :case_id, :user_id
 

@@ -14,7 +14,7 @@ class Task < ApplicationRecord
 
   accepts_nested_attributes_for :plan_tasks, reject_if: :all_blank, allow_destroy: true
 
-
+  has_many :appointment_links, as: :linkable
 
   has_many :task_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :task_attachments, reject_if: :all_blank, allow_destroy: true

@@ -1,0 +1,23 @@
+<table class="table table-bordered table-responsive" id="appointment_links_table">
+  <thead>
+  <tr>
+    <th>Module Type</th>
+    <th><%= t('title') %></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @appointment_links.each do |app_link| %>
+      <tr>
+       <td><%= t(app_link.linkable_type.downcase) %></td>
+       <td><%= link_to app_link.linkable.to_s, app_link.linkable %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+    initDataTable('appointment_links_table')
+  } );
+</script>

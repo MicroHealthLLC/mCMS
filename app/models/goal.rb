@@ -8,6 +8,8 @@ class Goal < ApplicationRecord
   has_many :need_goals, dependent: :destroy
   has_many :needs, through: :need_goals
 
+  has_many :appointment_links, as: :linkable
+
   accepts_nested_attributes_for :need_goals, reject_if: :all_blank, allow_destroy: true
 
 

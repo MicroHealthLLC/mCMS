@@ -13,7 +13,7 @@ class Plan < ApplicationRecord
 
   has_many :plan_tasks, dependent: :destroy
   has_many :tasks, through: :plan_tasks
-
+  has_many :appointment_links, as: :linkable
 
   def self.safe_attributes
     [
