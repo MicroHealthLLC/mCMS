@@ -53,6 +53,10 @@ class UserCasesController < ApplicationController
     if modules.include?(@link_type)
       c = @link_type.constantize.find(@link_id).case
       @appointments_case = Appointment.visible.opened.where(related_to_id: c.id) if c
+    elsif @link_type == 'Case'
+      c = Case.find(@link_id)
+      cc= [c.id, c.case.try(:id)].compact
+      @appointments_case = Appointment.visible.opened.where(related_to_id: cc)
     elsif @link_type == 'Appointment'
       app = Appointment.find(@link_id)
       c = app.case
