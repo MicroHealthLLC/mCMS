@@ -40,7 +40,20 @@ class Medical < ApplicationRecord
     [:name, :user_id, :icdcm_code_id, :medical_facility, :date_of_diagnosis,
      :medical_history_status_id, :medical_history_type_id, :description,
      medical_attachments_attributes: [Attachment.safe_attributes]
-
     ]
   end
+
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Medical History ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
+    pdf.text "<b>Name: </b> #{name}", :inline_format =>  true
+    pdf.text "<b>Icdcm code: </b> #{icdcm_code}", :inline_format =>  true
+    pdf.text "<b>Medical facility: </b> #{medical_facility}", :inline_format =>  true
+    pdf.text "<b>Medical History Type: </b> #{medical_history_type}", :inline_format =>  true
+    pdf.text "<b>Medical History Status: </b> #{medical_history_status}", :inline_format =>  true
+    pdf.text "<b>Date of diagnosis: </b> #{date_of_diagnosis}", :inline_format =>  true
+
+    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+  end
+
 end

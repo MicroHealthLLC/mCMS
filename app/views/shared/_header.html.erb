@@ -8,7 +8,7 @@
 
   </div>
   <% if session[:employee_id] %>
-      <div class='row'>
+      <div class='col-xs-9'>
         <div class='col-xs-12 col-sm-8 margin-top-10' style='float: left; <%= Setting.theme_style == 'smart-style-1' ? 'color:white; ' : '' %> font-weight: bold;'>
           <%= cache User.current do %>
               <%= render_employee_information.html_safe %>

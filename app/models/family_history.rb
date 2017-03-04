@@ -40,4 +40,15 @@ class FamilyHistory < ApplicationRecord
     [:name, :user_id, :icdcm_code_id, :date_identified, :family_status_id,
      :family_type_id, :description]
   end
+
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Family History ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
+    pdf.text "<b>Name: </b> #{name}", :inline_format =>  true
+    pdf.text "<b>Icdcm Code: </b> #{icdcm_code}", :inline_format =>  true
+    pdf.text "<b>Family History Status: </b> #{family_status}", :inline_format =>  true
+    pdf.text "<b>Family History Type: </b> #{family_type}", :inline_format =>  true
+    pdf.text "<b>date identified: </b> #{date_identified}", :inline_format =>  true
+    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+  end
 end

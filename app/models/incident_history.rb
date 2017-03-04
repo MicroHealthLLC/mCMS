@@ -85,7 +85,7 @@ class IncidentHistory < ApplicationRecord
   def self.safe_attributes
     [
         :user_id, :incident, :incident_type_id,
-        :incident_category_id, :date_od_incident, :date_diagnosed,
+        :incident_category_id, :date_of_incident, :date_diagnosed,
         :incident_location_address, :incident_location_city, :state_id,
         :country_id, :operation_id, :verified_personnel_casualty_reporting_system_id,
         :line_of_duty_investigation_id,
@@ -93,4 +93,22 @@ class IncidentHistory < ApplicationRecord
         incident_history_attachments_attributes: [Attachment.safe_attributes]
     ]
   end
+
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Incident History ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
+    pdf.text "<b>Incident: </b> #{incident}", :inline_format =>  true
+    pdf.text "<b>Incident Type: </b> #{incident_type}", :inline_format =>  true
+    pdf.text "<b>Incident Category: </b> #{incident_category}", :inline_format =>  true
+    pdf.text "<b>Date of incident: </b> #{date_of_incident}", :inline_format =>  true
+    pdf.text "<b>Date diagnosed: </b> #{date_diagnosed}", :inline_format =>  true
+    pdf.text "<b>Location Address: </b> #{incident_location_address}", :inline_format =>  true
+    pdf.text "<b>Location City: </b> #{incident_location_city}", :inline_format =>  true
+    pdf.text "<b>Location State: </b> #{state_type}", :inline_format =>  true
+    pdf.text "<b>Verified personnel casualty reporting system  : </b> #{verified_personnel_casualty_reporting_system}", :inline_format =>  true
+    pdf.text "<b>Line of duty investigation id  : </b> #{line_of_duty_investigation}", :inline_format =>  true
+    pdf.text "<b>Cause of injury : </b> #{cause_of_injury}", :inline_format =>  true
+    pdf.text "<b>Description: </b> #{ActionView::Base.full_sanitizer.sanitize(injury_description)}", :inline_format =>  true
+  end
+
 end

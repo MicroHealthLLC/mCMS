@@ -45,5 +45,18 @@ class Injury < ApplicationRecord
         injury_attachments_attributes: [Attachment.safe_attributes]
     ]
   end
-  
+
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Injury ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
+    pdf.text "<b>Name: </b> #{injury_name}", :inline_format =>  true
+    pdf.text "<b>Injury Cause name: </b> #{injury_cause_name}", :inline_format =>  true
+    pdf.text "<b>Injury Status: </b> #{injury_status}", :inline_format =>  true
+    pdf.text "<b>Injury Type: </b> #{injury_type}", :inline_format =>  true
+    pdf.text "<b>Injury Cause: </b> #{injury_cause}", :inline_format =>  true
+    pdf.text "<b>date of injury: </b> #{date_of_injury}", :inline_format =>  true
+    pdf.text "<b>date of resolved: </b> #{date_resolved}", :inline_format =>  true
+    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+  end
+
 end

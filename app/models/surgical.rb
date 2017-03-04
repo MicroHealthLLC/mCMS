@@ -37,6 +37,18 @@ class Surgical < ApplicationRecord
     name
   end
 
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Surgery ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
+    pdf.text "<b>Name: </b> #{name}", :inline_format =>  true
+    pdf.text "<b>HCPCS: </b> #{hcpc}", :inline_format =>  true
+    pdf.text "<b>Medical facility: </b> #{medical_facility}", :inline_format =>  true
+    pdf.text "<b>Surgery Type: </b> #{surgery_type}", :inline_format =>  true
+    pdf.text "<b>Surgery Status: </b> #{surgery_status}", :inline_format =>  true
+
+    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+  end
+  
   def self.safe_attributes
     [:name, :icdcm_code_id, :user_id, :medical_facility,
      :surgery_status_id, :surgery_type_id, :hcpc_id,

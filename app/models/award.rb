@@ -44,4 +44,13 @@ class Award < ApplicationRecord
     ]
   end
 
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Award ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
+    pdf.text "<b>Award: </b> #{award_enum}", :inline_format =>  true
+    pdf.text "<b>Award Type: </b> #{award_type}", :inline_format =>  true
+    pdf.text "<b>Award date: </b> #{award_date}", :inline_format =>  true
+    pdf.text "<b>Noyr: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+  end
+  
 end

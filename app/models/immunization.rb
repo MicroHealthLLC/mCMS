@@ -33,4 +33,17 @@ class Immunization < ApplicationRecord
      :expiration_date, :immunization_status_id, :description,
      immunization_attachments_attributes: [Attachment.safe_attributes]]
   end
+
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Immunization ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
+    pdf.text "<b>Immunization: </b> #{immunization_cvx}", :inline_format =>  true
+    pdf.text "<b>Next Date due: </b> #{next_date_due}", :inline_format =>  true
+    pdf.text "<b>Date immunized: </b> #{date_immunized}", :inline_format =>  true
+    pdf.text "<b>Manufacturer: </b> #{manufacturer}", :inline_format =>  true
+    pdf.text "<b>Lot Number: </b> #{lot_number}", :inline_format =>  true
+    pdf.text "<b>Expiration date: </b> #{expiration_date}", :inline_format =>  true
+    pdf.text "<b>Immunization Status: </b> #{immunization_status}", :inline_format =>  true
+    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+  end
 end

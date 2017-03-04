@@ -42,4 +42,17 @@ class BehavioralRisk < ApplicationRecord
      :behavioral_risk_status_id, :behavioral_risk_type_id, :description,
      behavioral_risk_attachments_attributes: [Attachment.safe_attributes]]
   end
+
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Behavioral Risk ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
+    pdf.text "<b>Name: </b> #{name}", :inline_format =>  true
+    pdf.text "<b>Icdcm Code: </b> #{icdcm_code}", :inline_format =>  true
+    pdf.text "<b>Behavioral Risk Type: </b> #{behavioral_risk_type}", :inline_format =>  true
+    pdf.text "<b>Behavioral Risk Status: </b> #{behavioral_risk_status}", :inline_format =>  true
+    pdf.text "<b>Behavioral Risk date started: </b> #{date_started}", :inline_format =>  true
+    pdf.text "<b>Behavioral Risk date ended: </b> #{date_ended}", :inline_format =>  true
+    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+  end
+  
 end

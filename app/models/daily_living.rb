@@ -43,7 +43,7 @@ class DailyLiving < ApplicationRecord
     ]
   end
 
-  def to_pdf
+  def to_pdf(pdf)
     pdf.font_size(25){  pdf.text "Daily living ##{id}", :style => :bold}
     user.to_pdf_brief_info(pdf)
     pdf.text "<b>Title: </b> #{title}", :inline_format =>  true

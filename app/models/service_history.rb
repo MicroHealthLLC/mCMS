@@ -58,4 +58,23 @@ class ServiceHistory < ApplicationRecord
         service_history_attachments_attributes: [Attachment.safe_attributes]
     ]
   end
+
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Service History ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
+    pdf.text "<b>Service Type: </b> #{service_type}", :inline_format =>  true
+    pdf.text "<b>Service Status: </b> #{service_status}", :inline_format =>  true
+    pdf.text "<b>Service Rank: </b> #{rank}", :inline_format =>  true
+    pdf.text "<b>Component: </b> #{component}", :inline_format =>  true
+    pdf.text "<b>Discharge Type: </b> #{discharge_type}", :inline_format =>  true
+    pdf.text "<b>Date entered: </b> #{date_entered}", :inline_format =>  true
+    pdf.text "<b>End Active Obliged Service: </b> #{end_active_obliged_service}", :inline_format =>  true
+    pdf.text "<b>Demobilization: </b> #{demobilization}", :inline_format =>  true
+    pdf.text "<b>Separation: </b> #{separation}", :inline_format =>  true
+    pdf.text "<b>Temporary disability retirement list: </b> #{temporary_disability_retirement_list}", :inline_format =>  true
+    pdf.text "<b>Permanent disability retirement list: </b> #{permanent_disability_retirement_list}", :inline_format =>  true
+
+    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+  end
+
 end

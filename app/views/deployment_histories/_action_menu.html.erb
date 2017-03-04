@@ -5,5 +5,5 @@
   %>
   <%= link_to( 'Edit', edit_deployment_history_path(@deployment_history), class: 'btn btn-success pull-right') if @deployment_history.can?(:manage_roles, :manages_deployment_histories, :edit_deployment_histories) %>
   <%= link_to t('button_cancel'), deployment_histories_path, class: 'btn btn-warning pull-right' %>
-  <%#= link_to t('button_print'), deployment_history_path(@deployment_history, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+  <%= link_to t('button_print'), deployment_history_path(@deployment_history, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 </div>

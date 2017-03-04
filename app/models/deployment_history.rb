@@ -55,4 +55,18 @@ class DeploymentHistory < ApplicationRecord
         deployment_history_attachments_attributes: [Attachment.safe_attributes]
     ]
   end
+
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Deployment History ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
+    pdf.text "<b>Deployment Operation: </b> #{deployment_operation}", :inline_format =>  true
+    pdf.text "<b>location: </b> #{location}", :inline_format =>  true
+    pdf.text "<b>City: </b> #{city}", :inline_format =>  true
+    pdf.text "<b>State: </b> #{state}", :inline_format =>  true
+    pdf.text "<b>Country: </b> #{country_type}", :inline_format =>  true
+    pdf.text "<b>Start date: </b> #{date_start}", :inline_format =>  true
+    pdf.text "<b>End date: </b> #{date_end}", :inline_format =>  true
+    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+  end
+
 end

@@ -41,4 +41,18 @@ class ProblemList < ApplicationRecord
     [:name, :icdcm_code_id, :user_id, :date_onset, :date_resolved, :problem_status_id, :problem_type_id, :description,
      problem_list_attachments_attributes: [Attachment.safe_attributes]]
   end
+
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Problem List ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
+    pdf.text "<b>Name: </b> #{name}", :inline_format =>  true
+    pdf.text "<b>#{I18n.t('icdcm_code')}: </b> #{icdcm_code}", :inline_format =>  true
+    pdf.text "<b>Problem List Type: </b> #{problem_type}", :inline_format =>  true
+    pdf.text "<b>Problem List Status: </b> #{problem_status}", :inline_format =>  true
+    pdf.text "<b>Date resolved: </b> #{date_resolved}", :inline_format =>  true
+    pdf.text "<b>Date onset: </b> #{date_onset}", :inline_format =>  true
+
+    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+  end
+  
 end

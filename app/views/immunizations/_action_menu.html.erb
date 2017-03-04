@@ -5,5 +5,5 @@
   %>
   <%= link_to( 'Edit', edit_immunization_path(@immunization), class: 'btn btn-success pull-right') if @immunization.can?(:manage_roles, :manages_immunizations, :edit_immunizations) %>
   <%= link_to t('button_cancel'), immunizations_path, class: 'btn btn-warning pull-right' %>
-  <%#= link_to t('button_print'), immunization_path(@immunization, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+  <%= link_to t('button_print'), immunization_path(@immunization, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 </div>

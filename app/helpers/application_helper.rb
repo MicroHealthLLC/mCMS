@@ -79,11 +79,13 @@ module ApplicationHelper
 
   def render_employee_information
     output = ""
-    output<< "<div class='col-xs-2 col-sm-1' style='top: -4px; margin-left: 5px;' >#{image_tag(User.current.profile_image, size: '35x35', class:'pull-right')}</div>"
-    output<< "<div class='col-xs-3 col-sm-2' >#{User.current.name}</div>"
-    output<< "<div class='col-xs-2 col-sm-2' >#{User.current.gender}</div>"
-    output<< "<div class='col-xs-3 col-sm-3' >#{User.current.birthday}</div>"
-    output<< "<div class='col-xs-2 col-sm-2' >#{User.current.active?}</div>"
+    output = "<div class='row'>"
+    output<< "<div class='col-xs-2 col-sm-2 col-md-2' style='padding:0; top: -4px; margin-left: 5px;' >#{image_tag(User.current.profile_image, size: '35x35', class:'')}</div>"
+    output<< "<div class='col-xs-2 col-sm-2 col-md-2' >#{User.current.name}</div>"
+    output<< "<div class='col-xs-2 col-sm-2 col-md-2' >#{User.current.gender}</div>"
+    output<< "<div class='col-xs-3 col-sm-3 col-md-3' >#{User.current.birthday}</div>"
+    output<< "<div class='col-xs-2 col-sm-2 col-md-2' >#{User.current.active?}</div>"
+    output<< "</div>"
     output
   end
 

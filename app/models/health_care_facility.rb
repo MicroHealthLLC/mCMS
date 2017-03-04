@@ -45,4 +45,18 @@ class HealthCareFacility < ApplicationRecord
         :health_care_facility_attachments_attributes=> [Attachment.safe_attributes]
     ]
   end
+
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Health Care Facility ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
+    pdf.text "<b>Name: </b> #{name}", :inline_format =>  true
+    pdf.text "<b>Health Care Facility Type: </b> #{health_care_facility_type}", :inline_format =>  true
+    pdf.text "<b>Health Care Facility Status: </b> #{health_care_facility_status}", :inline_format =>  true
+    pdf.text "<b>Health Care Facility Contact: </b> #{health_care_facility_contact}", :inline_format =>  true
+    pdf.text "<b>Date started: </b> #{date_started}", :inline_format =>  true
+    pdf.text "<b>Date end: </b> #{date_end}", :inline_format =>  true
+
+    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+  end
+
 end

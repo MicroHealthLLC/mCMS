@@ -5,5 +5,5 @@
   %>
   <%= link_to( 'Edit', edit_family_history_path(@family_history), class: 'btn btn-success pull-right') if @family_history.can?(:manage_roles, :manages_family_histories, :edit_family_histories) %>
   <%= link_to t('button_cancel'), family_histories_path, class: 'btn btn-warning pull-right' %>
-  <%#= link_to t('button_print'), family_history_path(@family_history, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+  <%= link_to t('button_print'), family_history_path(@family_history, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 </div>

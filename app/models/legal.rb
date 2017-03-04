@@ -40,4 +40,16 @@ class Legal < ApplicationRecord
     [:user_id, :title, :legal_history_id, :legal_history_status_id, :description, :date_start,
      :date_end, legal_attachments_attributes: [Attachment.safe_attributes]]
   end
+
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Legal ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
+    pdf.text "<b>Title: </b> #{title}", :inline_format =>  true
+    pdf.text "<b>Legal Status: </b> #{legal_history_status}", :inline_format =>  true
+    pdf.text "<b>Legal Type: </b> #{legal_history_type}", :inline_format =>  true
+    pdf.text "<b>date start: </b> #{date_start}", :inline_format =>  true
+    pdf.text "<b>date end: </b> #{date_end}", :inline_format =>  true
+    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+  end
+  
 end

@@ -43,4 +43,14 @@ class Admission < ApplicationRecord
     ]
   end
 
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Admission ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
+    pdf.text "<b>name: </b> #{care_family_name}", :inline_format =>  true
+    pdf.text "<b>Admission Type: </b> #{admission_type}", :inline_format =>  true
+    pdf.text "<b>Admission Status: </b> #{admission_status}", :inline_format =>  true
+    pdf.text "<b>Date Admitted: </b> #{date_admitted}", :inline_format =>  true
+    pdf.text "<b>Date discharged: </b> #{date_discharged}", :inline_format =>  true
+    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+  end
 end

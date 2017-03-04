@@ -39,4 +39,14 @@ class Allergy < ApplicationRecord
         allergy_attachments_attributes: [Attachment.safe_attributes]
     ]
   end
+
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Allergy ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
+    pdf.text "<b>medication: </b> #{icdcm_code}", :inline_format =>  true
+    pdf.text "<b>Allergy Type: </b> #{allergy_type}", :inline_format =>  true
+    pdf.text "<b>Allergy Status: </b> #{allergy_status}", :inline_format =>  true
+    pdf.text "<b>Allergy date: </b> #{allergy_date}", :inline_format =>  true
+    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+  end
 end

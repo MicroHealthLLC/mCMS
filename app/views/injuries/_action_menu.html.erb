@@ -5,5 +5,5 @@
   %>
   <%= link_to( 'Edit', edit_injury_path(@injury), class: 'btn btn-success pull-right') if @injury.can?(:manage_roles, :manages_injuries, :edit_injuries) %>
   <%= link_to t('button_cancel'), injuries_path, class: 'btn btn-warning pull-right' %>
-  <%#= link_to t('button_print'), injury_path(@injury, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+  <%= link_to t('button_print'), injury_path(@injury, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 </div>

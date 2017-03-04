@@ -60,4 +60,18 @@ class Referral < ApplicationRecord
         referral_attachments_attributes: [Attachment.safe_attributes]
     ]
   end
+
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Referral ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
+    pdf.text "<b>Title: </b> #{title}", :inline_format =>  true
+    pdf.text "<b>Referral Type: </b> #{referral_type}", :inline_format =>  true
+    pdf.text "<b>Referral Status: </b> #{referral_status}", :inline_format =>  true
+    pdf.text "<b>Referral date: </b> #{referral_date}", :inline_format =>  true
+    pdf.text "<b>Referral appointment: </b> #{referral_appointment}", :inline_format =>  true
+    pdf.text "<b>Referred By: </b> #{referred_by}", :inline_format =>  true
+    pdf.text "<b>Referred To: </b> #{referred_to.to_s}", :inline_format =>  true
+    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(referral_reason)}", :inline_format =>  true
+  end
+  
 end

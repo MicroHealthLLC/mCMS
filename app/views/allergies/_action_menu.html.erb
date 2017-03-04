@@ -5,5 +5,5 @@
   %>
   <%= link_to( 'Edit', edit_allergy_path(@allergy), class: 'btn btn-success pull-right') if @allergy.can?(:manage_roles, :manages_allergies, :edit_allergies) %>
   <%= link_to t('button_cancel'), allergies_path, class: 'btn btn-warning pull-right' %>
-  <%#= link_to t('button_print'), allergy_path(@allergy, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+  <%= link_to t('button_print'), allergy_path(@allergy, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 </div>

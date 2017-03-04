@@ -61,4 +61,19 @@ class Transportation < ApplicationRecord
      :description, :estimated_monthly_cost, :date_start,
      :date_end, transportation_attachments_attributes: [Attachment.safe_attributes]]
   end
+
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Transportation ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
+    pdf.text "<b>Title: </b> #{title}", :inline_format =>  true
+    pdf.text "<b>Transportation Mean: </b> #{transportation_mean}", :inline_format =>  true
+    pdf.text "<b>Transportation Type: </b> #{transportation_type}", :inline_format =>  true
+    pdf.text "<b>Transportation Status: </b> #{transportation_status}", :inline_format =>  true
+    pdf.text "<b>Transportation accessibility: </b> #{transportation_accessibility}", :inline_format =>  true
+    pdf.text "<b>Estimated monthly cost: </b> #{estimated_monthly_cost}", :inline_format =>  true
+    pdf.text "<b>Start date: </b> #{date_start}", :inline_format =>  true
+    pdf.text "<b>End date: </b> #{date_end}", :inline_format =>  true
+    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+  end
+  
 end

@@ -5,7 +5,7 @@
   %>
   <%= link_to t('button_cancel'), :back, class: 'btn btn-warning pull-right' %>
   <%= link_to( t('add_note'), new_note_path(type: 'ChecklistNote', owner_id: @checklist_case.id), class: 'btn btn-success pull-right') if can?(:add_notes, :manage_roles) %>
-
+  <%= link_to t('button_print'), checklist_case_path(@checklist_case, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 </div>
 <section id="widget-grid" class="checklists_account">
   <div class="row">
