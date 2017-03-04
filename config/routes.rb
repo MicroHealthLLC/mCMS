@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   post 'add_appointment_link', to: 'user_cases#add_appointment_link'
+  get 'unlink_appointment', to: 'user_cases#unlink_appointment'
   resources :referrals do
     resources :referral_results, except: [:index]
     collection do

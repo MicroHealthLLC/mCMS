@@ -12,6 +12,9 @@
     <th><%= t :appointment_type %></th>
     <th><%= t :appointment_status %></th>
     <th><%= t('label_date') %></th>
+    <% if @appointment %>
+        <th>    </th>
+    <% end %>
   </tr>
   </thead>
 
@@ -27,6 +30,9 @@
             <td><%= appointment.appointment_type %></td>
             <td><%= appointment.appointment_status %></td>
             <td><%= appointment.start_time_to_time %></td>
+            <% if @appointment and can?(:manage_roles) %>
+                <td><%= link_to "<i class='fa fa-unlink fa-lg'></i>".html_safe, unlink_appointment_path(appointment_id: @appointment.id, type: 'Appointment', id: appointment.id ) %></td>
+            <% end %>
           </tr>
       <% end %>
 

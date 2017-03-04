@@ -13,6 +13,9 @@
     <th><%= t('status') %></th>
     <th><%= t('date_start') %></th>
     <th><%= t('date_end') %></th>
+    <% if @appointment %>
+       <th></th>
+    <% end %>
   </tr>
   </thead>
 
@@ -31,6 +34,10 @@
             <td><%= task.task_status_type %></td>
             <td><%= format_date_time task.date_start %></td>
             <td><%= format_date_time task.date_completed %></td>
+            <% if @appointment %>
+                <td><%= link_to "<i class='fa fa-unlink fa-lg'></i>".html_safe,
+                                unlink_appointment_path(appointment_id: @appointment.id, type: 'Task', id: task.id ) %></td>
+            <% end %>
             <!--<td><%#= edit_link(edit_task_path(task))  if task.can?(:edit_tasks, :manage_tasks) %></td>-->
             <!--<td><%#= delete_link(task)  if task.can?(:delete_tasks, :manage_tasks)%></td>-->
           </tr>

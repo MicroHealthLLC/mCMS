@@ -6,6 +6,9 @@
     <th>Enrollment Status</th>
     <th>Date start</th>
     <th>Date end</th>
+    <% if @appointment %>
+       <th></th>
+    <% end %>
   </tr>
   </thead>
 
@@ -18,6 +21,10 @@
         <td><%= enrollment.enrollment_status %></td>
         <td><%= enrollment.date_start %></td>
         <td><%= enrollment.date_end %></td>
+        <% if @appointment and can?(:manage_roles) %>
+            <td><%= link_to "<i class='fa fa-unlink fa-lg'></i>".html_safe,
+                            unlink_appointment_path(appointment_id: @appointment.id, type: 'Enrollment', id: enrollment.id ) %></td>
+        <% end %>
       </tr>
   <% end %>
   </tbody>

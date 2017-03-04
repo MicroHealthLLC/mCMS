@@ -10,6 +10,9 @@
     <th><%= t('support_status')%></th>
     <th><%= t('date_started')%></th>
     <th><%= t('date_ended')%></th>
+    <% if @appointment %>
+        <th> Unlink </th>
+    <% end %>
   </tr>
   </thead>
 
@@ -25,6 +28,9 @@
             <td><%= case_support.support_status %></td>
             <td><%= case_support.date_started %></td>
             <td><%= case_support.date_ended %></td>
+            <% if @appointment and can?(:manage_roles) %>
+                <td><%= link_to "<i class='fa fa-unlink fa-lg'></i>".html_safe, unlink_appointment_path(appointment_id: @appointment.id, type: 'CaseSuppport', id: case_support.id ) %></td>
+            <% end %>
           </tr>
       <% end %>
   <% else %>

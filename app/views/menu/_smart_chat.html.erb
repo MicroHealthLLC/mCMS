@@ -34,11 +34,11 @@
     $('.chat-user-filter').on('blur', function(){
       setTimeout(function(){ get_recently_connected= true; }, 5000)
     })
+    get_recently_connected_person()
+
     <% end %>
     $('#chat-user-filter').on('change', function(){
       $.getScript('/users/search_users.js?q='+$(this).val())
     })
-    get_recently_connected_person()
-
   })
 </script>

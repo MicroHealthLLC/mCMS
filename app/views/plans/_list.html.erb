@@ -14,6 +14,9 @@
     <th><%= t('date_start') %></th>
     <th><%= t('date_due') %></th>
     <th><%= t('date_completed') %></th>
+    <% if @appointment %>
+        <th></th>
+    <% end %>
   </tr>
   </thead>
 
@@ -32,6 +35,9 @@
         <td><%= plan.date_start %></td>
         <td><%= plan.date_due %></td>
         <td><%= plan.date_completed %></td>
+        <% if @appointment  and can?(:manage_roles) %>
+            <td><%= link_to "<i class='fa fa-unlink fa-lg'></i>".html_safe, unlink_appointment_path(appointment_id: @appointment.id, type: 'Plan', id: plan.id ) %></td>
+        <% end %>
       </tr>
   <% end %>
   </tbody>

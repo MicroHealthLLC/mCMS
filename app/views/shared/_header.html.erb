@@ -14,7 +14,7 @@
               <%= render_employee_information.html_safe %>
           <% end %>
         </div>
-        <% if @link_type and @appointments.present? %>
+        <% if @link_type and @appointments_case.present? %>
             <div class='col-xs-10 col-sm-6 col-md-4 margin-top-10' >
               <div class='row' style="float: right">
                 <%= form_tag(add_appointment_link_path, method: 'post') do %>
@@ -22,7 +22,7 @@
                     <%= hidden_field_tag :link_type, @link_type %>
                     <div class='col-xs-9 col-sm-9 col-md-10' >
                       <!--<em style="font-size: 11px;">Related Appointment</em>-->
-                      <%= select_tag(:appointment_id, options_for_select(@appointments.map{|a|[a.to_s, a.id]},
+                      <%= select_tag(:appointment_id, options_for_select(@appointments_case.map{|a|[a.to_s, a.id]},
                                                                          selected: session[:appointment_store_id]), {required: true}) %>
                     </div>
                     <div class='col-xs-2 col-sm-2 col-md-1' >

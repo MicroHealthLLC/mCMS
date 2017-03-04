@@ -8,6 +8,9 @@
     <% end %>
     <th><%= t(:document_type)%></th>
     <th><%= t('label_date') %></th>
+    <% if @appointment and can?(:manage_roles) %>
+        <th></th>
+    <% end %>
   </tr>
   </thead>
 
@@ -21,6 +24,9 @@
             <% end %>
             <td><%= document.document_type %></td>
             <td><%= document.date %></td>
+            <% if @appointment and can?(:manage_roles) %>
+                <td><%= link_to "<i class='fa fa-unlink fa-lg'></i>".html_safe, unlink_appointment_path(appointment_id: @appointment.id, type: 'Document', id: document.id ) %></td>
+            <% end %>
           </tr>
       <% end %>
   <% else %>
