@@ -16,6 +16,7 @@
 
 <script>
   $(document).ready(function(){
+    <% unless Rails.env.development? %>
     var get_recently_connected = true;
     var get_recently_connected_person = function(){
       if(get_recently_connected)
@@ -33,7 +34,7 @@
     $('.chat-user-filter').on('blur', function(){
       setTimeout(function(){ get_recently_connected= true; }, 5000)
     })
-
+    <% end %>
     $('#chat-user-filter').on('change', function(){
       $.getScript('/users/search_users.js?q='+$(this).val())
     })
