@@ -8,6 +8,9 @@
     <% end %>
     <th><%= t('checklist_type') %></th>
     <th><%= t('checklist_status') %></th>
+    <% if @appointment %>
+        <th>    </th>
+    <% end %>
   </tr>
   </thead>
 
@@ -21,6 +24,9 @@
             <% end %>
             <td><%= checklist_template.checklist_type %></td>
             <td><%= checklist_case.checklist_status_type %></td>
+            <% if @appointment and can?(:manage_roles) %>
+                <td><%= link_to "<i class='fa fa-unlink fa-lg'></i>".html_safe, unlink_appointment_path(appointment_id: @appointment.id, type: 'ChecklistCase', id: checklist_case.id ) %></td>
+            <% end %>
           </tr>
       <% end %>
   </tbody>

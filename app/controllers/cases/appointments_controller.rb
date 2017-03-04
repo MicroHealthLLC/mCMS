@@ -37,6 +37,8 @@ class AppointmentsController < UserCasesController
     # @surveys     = @case.survey_cases.where('date(updated_at) = ?', update_rails)
     @documents   = @appointment.appointment_links.where(linkable_type: 'Document').map(&:linkable)
     # @checklists  = @case.checklists.where('date(updated_at) = ?', update_rails).map(&:checklist_template)
+    # @surveys     = @appointment.appointment_links.where(linkable_type: 'SurveyCase').map(&:linkable)
+    @checklists  = @appointment.appointment_links.where(linkable_type: 'ChecklistCase').map(&:linkable)
     @notes       = @appointment.appointment_links.where(linkable_type: 'Note').map(&:linkable)
     @appointments= @appointment.appointment_links.where(linkable_type: 'Appointment').map(&:linkable)
     @needs       = @appointment.appointment_links.where(linkable_type: 'Need').map(&:linkable)

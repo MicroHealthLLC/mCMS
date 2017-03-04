@@ -48,7 +48,7 @@ class UserCasesController < ApplicationController
     @link_type = params[:controller].classify
     puts "Related Appointment =>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#{@link_type}"
     modules = ['Referral', 'Need', 'Goal', 'Task',
-               'CaseSupport', 'Enrollment', 'Document', 'Teleconsult', 'Plan']
+               'CaseSupport', 'ChecklistCase', 'Enrollment', 'Document', 'Teleconsult', 'Plan']
     puts "Related Appointment ID =>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#{@link_id}"
     if modules.include?(@link_type)
       c = @link_type.constantize.find(@link_id).case
