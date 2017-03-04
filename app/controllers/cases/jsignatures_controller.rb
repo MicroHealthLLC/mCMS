@@ -11,7 +11,8 @@ class JsignaturesController < ApplicationController
   # before_action :set_appointment_links, only: [:show]
 
   def index
-    @jsignatures = Case.visible.map(&:jsignatures).flatten
+    @jsignatures = Jsignature.where(signature_owner_type: 'Case',
+                                    signature_owner_id: Case.visible.pluck(:id) )
   end
 
   # GET /jsignatures/1
@@ -21,23 +22,15 @@ class JsignaturesController < ApplicationController
 
   # GET /jsignatures/new
   def new
-    @jsignature = Jsignature.new(user_id: User.current_user.id )
-
-    if params[:appointment_id]
-      @owner = Appointment.find(params[:appointment_id])
-      @jsignature = Jsignature.new(user_id: User.current_user.id,
-                                   appointment_id: @owner.id
-      )
-    elsif params[:case_id]
-      @owner = Case.find(params[:case_id])
-      @jsignature = Jsignature.new(user_id: User.current_user.id,
-                                   case_id: @owner.id
-      )
-    else
-      render_404
-    end
+    @owner = params[:owner_type].constantize.visible.find params[:owner_id]
+    @jsignature = Jsignature.new(user_id: User.current_user.id,
+                                 signature_owner_type: @owner.class,
+                                 signature_owner_id: @owner.id
+    )
 
   rescue ActiveRecord::RecordNotFound
+    render_404
+  rescue StandardError::StandardError
     render_404
   end
 
@@ -89,7 +82,7 @@ class JsignaturesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_jsignature
     @jsignature = Jsignature.find(params[:id])
-    @owner = @jsignature.appointment || @jsignature.case
+    @owner = @jsignature.signature_owner
     add_breadcrumb @owner.to_s, @owner
     add_breadcrumb @jsignature, @jsignature
   rescue ActiveRecord::RecordNotFound

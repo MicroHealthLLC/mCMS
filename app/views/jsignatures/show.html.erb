@@ -12,22 +12,16 @@
       <%= @jsignature.user %>
     </p>
 
-     <p>
+    <p>
       <strong>Created at:</strong>
       <%= format_date_time @jsignature.created_at %>
     </p>
 
-    <% if @jsignature.case %>
-        <p>
-          <strong>Case:</strong>
-          <%= link_to_case @jsignature.case %>
-        </p>
-    <% else %>
-        <p>
-          <strong>Appointment:</strong>
-          <%= link_to @jsignature.appointment, appointment_path(@jsignature.appointment )%>
-        </p>
-    <% end %>
+    <p>
+      <strong><%= @jsignature.signature_owner.class %>:</strong>
+      <%= link_to @jsignature.signature_owner.to_s, @jsignature.signature_owner %>
+    </p>
+
 
     <p>
       <strong>Signature:</strong>

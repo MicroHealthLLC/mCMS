@@ -3,6 +3,7 @@ class UserInsurance < ApplicationRecord
   belongs_to :insurance
   belongs_to :insurance_type, optional: true
   belongs_to :insurance_status, optional: true, foreign_key: :status_id
+  has_many :jsignatures, as: :signature_owner, dependent: :destroy
 
   has_many :user_insurance_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :user_insurance_attachments, reject_if: :all_blank, allow_destroy: true

@@ -58,5 +58,18 @@
 
   </div>
 </div>
+<%= link_to( t('add_jsignature'), new_jsignature_path(owner_type: "#{@user_insurance.class}", owner_id: @user_insurance.id), class: 'btn btn-primary pull-right btn-edition') if can?(:add_jsignatures, :manage_roles) %>
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render partial: 'jsignatures/list',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                   show_case_column: true,
+                   jsignatures:  @user_insurance.jsignatures,
+                   wid_id: 'jsignatures',
+                   wid_title: "Authorized Person’s Signature"
+               } %>
+  </article>
+</div>
 
 <%= render_extend_demography_information(@user_insurance.insurance.insurance_extend_demography) if @user_insurance.insurance %>

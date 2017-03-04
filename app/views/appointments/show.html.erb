@@ -104,7 +104,7 @@
   </article>
 </div>
 
-<%= link_to( t('add_jsignature'), new_jsignature_path(appointment_id: @appointment.id), class: 'btn btn-primary pull-right btn-edition') if can?(:add_jsignatures, :manage_roles) %>
+<%= link_to( t('add_jsignature'), new_jsignature_path(owner_type: "#{@appointment.class}", owner_id: @appointment.id), class: 'btn btn-primary pull-right btn-edition') if can?(:add_jsignatures, :manage_roles) %>
 <div class="row">
   <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <%= render partial: 'jsignatures/list',
