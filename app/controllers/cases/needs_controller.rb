@@ -24,10 +24,7 @@ class NeedsController < UserCasesController
   # GET /needs/1
   # GET /needs/1.json
   def show
-    if current_user.allowed_to?(:manage_roles) and @need.user
-      session[:employee_id] = @need.user.id
-      User.current = @need.user
-    end
+    set_client_profile(@need)
     @goals = @need.goals
     @plans = @goals.map(&:plans).flatten.uniq
     @tasks = @plans.map(&:tasks).flatten.uniq
@@ -81,6 +78,7 @@ class NeedsController < UserCasesController
 
     respond_to do |format|
       if @need.save
+        set_link_to_appointment(@need)
         format.html { redirect_to @need, notice: 'Need was successfully created.' }
         format.json { render :show, status: :created, location: @need }
       else

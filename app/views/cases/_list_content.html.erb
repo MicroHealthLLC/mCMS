@@ -9,6 +9,9 @@
     <th><%= t('date_start') %></th>
     <th><%= t('date_due')%></th>
     <th><%= t('date_completed') %></th>
+    <% if @appointment %>
+        <th> Unlink </th>
+    <% end %>
   </tr>
   </thead>
 
@@ -24,6 +27,11 @@
             <td><%= c.date_start %></td>
             <td><%= c.date_due %></td>
             <td><%= c.date_completed %></td>
+            <% if @appointment and can?(:manage_roles) %>
+                <td><%= link_to "<i class='fa fa-unlink fa-lg'></i>".html_safe,
+                                unlink_appointment_path(appointment_id: @appointment.id,
+                                                        type: 'Case', id: c.id ) %></td>
+            <% end %>
           </tr>
       <% end %>
   <% else %>

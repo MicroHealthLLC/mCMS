@@ -122,6 +122,7 @@
 <%#= render partial: 'notes/notes', locals: {notes: @appointment.appointment_notes} %>
 
 <% if @case %>
+    <%= render( partial: 'cases/show_case/subcases') if @cases.present? %>
     <%= render( partial: 'cases/show_case/case_support') if @case_supports.present? %>
     <%= render( partial: 'cases/show_case/notes') if @notes.present? %>
     <%= render( partial: 'cases/show_case/needs') if @needs.present? %>

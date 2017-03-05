@@ -48,6 +48,7 @@ class DocumentsController < UserCasesController
 
     respond_to do |format|
       if @document.save
+        set_link_to_appointment(@document)
         format.html { redirect_to back_url, notice: 'Document was successfully created.' }
       else
         format.html { render :new }

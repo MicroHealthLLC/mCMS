@@ -76,6 +76,7 @@ class ReferralsController < UserCasesController
     @referral.referred_to_id = org_id
     respond_to do |format|
       if @referral.save
+        set_link_to_appointment(@referral)
         format.html { redirect_to @referral, notice: 'Referral was successfully created.' }
         format.json { render :show, status: :created, location: @referral }
       else

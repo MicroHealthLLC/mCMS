@@ -25,14 +25,12 @@ class AppointmentsController < UserCasesController
   # GET /appointments/1
   # GET /appointments/1.json
   def show
-    if current_user.allowed_to?(:manage_roles) and @appointment.user
-      session[:employee_id] = @appointment.user.id
-      User.current = @appointment.user
-    end
+    set_client_profile(@appointment)
     @case =  @appointment.case
     # update_rails = @appointment.updated_at.to_date
     # @appointment_links = @appointment.appointment_links
     if @case
+    @cases       = @appointment.appointment_links.where(linkable_type: 'Case').map(&:linkable)
     @tasks       = @appointment.appointment_links.where(linkable_type: 'Task').map(&:linkable)
     # @surveys     = @case.survey_cases.where('date(updated_at) = ?', update_rails)
     @documents   = @appointment.appointment_links.where(linkable_type: 'Document').map(&:linkable)
@@ -69,6 +67,7 @@ class AppointmentsController < UserCasesController
 
     respond_to do |format|
       if @appointment.save
+        set_link_to_appointment(@appointment)
         format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
         format.json { render :show, status: :created, location: @appointment }
       else

@@ -53,6 +53,7 @@ class CaseSupportsController < UserCasesController
 
     respond_to do |format|
       if @case_support.save
+        set_link_to_appointment(@case_support)
         format.html { redirect_to @case_support, notice: 'Case support was successfully created.' }
         format.json { render :show, status: :created, location: @case_support }
       else

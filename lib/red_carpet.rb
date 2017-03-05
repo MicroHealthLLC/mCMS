@@ -594,7 +594,7 @@ RedCarpet::AccessControl.map do |map|
         :goals => [:link_need, :add_need, :links, :add_plan, :index, :show, :new, :create, :edit, :update, :destroy],
         :checklist_cases => [:index, :show, :new, :create, :edit, :update, :destroy],
         :sticky => [:index, :save],
-        :user_cases => [:add_appointment_link, :unlink_appointment],
+        :user_cases => [:add_appointment_link, :unlink_appointment, :set_appointment_store_id],
         :wikis => [:new, :index, :show, :create, :edit, :update, :history, :compare, :add_attachment, :destroy]
 
     },  :read => true

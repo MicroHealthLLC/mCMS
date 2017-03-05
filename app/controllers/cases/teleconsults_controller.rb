@@ -43,6 +43,7 @@ class TeleconsultsController  < UserCasesController
 
     respond_to do |format|
       if @teleconsult.save
+        set_link_to_appointment(@teleconsult)
         format.html { redirect_to @teleconsult, notice: 'Teleconsult was successfully created.' }
         format.json { render :show, status: :created, location: @teleconsult }
       else

@@ -45,10 +45,7 @@ class CasesController < UserCasesController
   # GET /cases/1
   # GET /cases/1.json
   def show
-    if current_user.allowed_to?(:manage_roles) and @case.user
-      session[:employee_id] = @case.user.id
-      User.current = @case.user
-    end
+    set_client_profile(@case)
     @cases        = @case.sub_cases
     @relations    = @case.relations
 
@@ -104,6 +101,7 @@ class CasesController < UserCasesController
       @checklist = ChecklistCase.new(params.require(:checklist_case).permit!)
 
       if @checklist.save
+        set_link_to_appointment(@checklist)
         redirect_to checklist_case_path(@checklist)
       else
         @checklists = ChecklistTemplate.order('title ASC') #- ChecklistTemplate.where(id: ChecklistCase.where(assigned_to_id: @case.id).pluck(:checklist_template_id))

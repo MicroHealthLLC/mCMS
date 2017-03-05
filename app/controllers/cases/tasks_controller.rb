@@ -51,12 +51,9 @@ class TasksController < UserCasesController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+    set_client_profile(@task)
     @notes = @task.task_notes
     @tasks = @task.sub_tasks
-    if current_user.allowed_to?(:manage_roles) and @task.user
-      session[:employee_id] = @task.user.id
-      User.current = @task.user
-    end
   end
 
   # GET /tasks/new
@@ -95,6 +92,7 @@ class TasksController < UserCasesController
 
     respond_to do |format|
       if @task.save
+        set_link_to_appointment(@task)
         format.html { redirect_to back_url, notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else

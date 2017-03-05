@@ -24,10 +24,7 @@ class PlansController < UserCasesController
   # GET /plans/1
   # GET /plans/1.json
   def show
-    if current_user.allowed_to?(:manage_roles) and @plan.user
-      session[:employee_id] = @plan.user.id
-      User.current = @plan.user
-    end
+    set_client_profile(@plan)
     @tasks = @plan.tasks
   end
 
@@ -97,6 +94,7 @@ class PlansController < UserCasesController
 
     respond_to do |format|
       if @plan.save
+        set_link_to_appointment(@plan)
         format.html { redirect_to @plan, notice: 'Plan was successfully created.' }
         format.json { render :show, status: :created, location: @plan }
       else
