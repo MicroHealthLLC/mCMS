@@ -20,5 +20,6 @@ INSTALLATION:
 - rails enumeration:print_subclasses
 - import hcpcs codes rails import_data:hcpc
 - import immunization codes rails import_data:immunization
+- import place of service codes rails import_data:place_of_service
 - start search services rake sunspot:solr:start RAILS_ENV=production
 - start your app rails s -e production -b localhost -d
