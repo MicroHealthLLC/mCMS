@@ -28,25 +28,25 @@ class AppointmentsController < UserCasesController
     set_client_profile(@appointment)
     @case =  @appointment.case
     # update_rails = @appointment.updated_at.to_date
-    # @appointment_links = @appointment.appointment_links
-    if @case
-    @cases       = @appointment.appointment_links.where(linkable_type: 'Case').map(&:linkable)
-    @tasks       = @appointment.appointment_links.where(linkable_type: 'Task').map(&:linkable)
+    @appointment_links = @appointment.appointment_links.includes(:linkable)
+
+    @cases       = @appointment_links.where(linkable_type: 'Case').map(&:linkable)
+    @tasks       = @appointment_links.where(linkable_type: 'Task').map(&:linkable)
     # @surveys     = @case.survey_cases.where('date(updated_at) = ?', update_rails)
-    @documents   = @appointment.appointment_links.where(linkable_type: 'Document').map(&:linkable)
+    @documents   = @appointment_links.where(linkable_type: 'Document').map(&:linkable)
     # @checklists  = @case.checklists.where('date(updated_at) = ?', update_rails).map(&:checklist_template)
-    # @surveys     = @appointment.appointment_links.where(linkable_type: 'SurveyCase').map(&:linkable)
-    @checklists  = @appointment.appointment_links.where(linkable_type: 'ChecklistCase').map(&:linkable)
-    @notes       = @appointment.appointment_links.where(linkable_type: 'Note').map(&:linkable)
-    @appointments= @appointment.appointment_links.where(linkable_type: 'Appointment').map(&:linkable)
-    @needs       = @appointment.appointment_links.where(linkable_type: 'Need').map(&:linkable)
-    @plans       = @appointment.appointment_links.where(linkable_type: 'Plan').map(&:linkable)
-    @goals       = @appointment.appointment_links.where(linkable_type: 'Goal').map(&:linkable)
+    # @surveys     = @appointment_links.where(linkable_type: 'SurveyCase').map(&:linkable)
+    @checklists  = @appointment_links.where(linkable_type: 'ChecklistCase').map(&:linkable)
+    @notes       = @appointment_links.where(linkable_type: 'Note').map(&:linkable)
+    @appointments= @appointment_links.where(linkable_type: 'Appointment').map(&:linkable)
+    @needs       = @appointment_links.where(linkable_type: 'Need').map(&:linkable)
+    @plans       = @appointment_links.where(linkable_type: 'Plan').map(&:linkable)
+    @goals       = @appointment_links.where(linkable_type: 'Goal').map(&:linkable)
     # @watchers    = @case.watchers.where('date(updated_at) = ?', update_rails).includes(:user=> :core_demographic)
-    @case_supports = @appointment.appointment_links.where(linkable_type: 'CaseSupport').map(&:linkable)
-    @enrollments = @appointment.appointment_links.where(linkable_type: 'Enrollment').map(&:linkable)
-    @teleconsults = @appointment.appointment_links.where(linkable_type: 'Teleconsult').map(&:linkable)
-    end
+    @case_supports = @appointment_links.where(linkable_type: 'CaseSupport').map(&:linkable)
+    @enrollments = @appointment_links.where(linkable_type: 'Enrollment').map(&:linkable)
+    @teleconsults = @appointment_links.where(linkable_type: 'Teleconsult').map(&:linkable)
+
   end
 
   # GET /appointments/new
@@ -117,7 +117,7 @@ class AppointmentsController < UserCasesController
   def appointment_params
     params.require(:appointment).permit(Appointment.safe_attributes)
   end
-  
+
   def authorize_edit
     raise Unauthorized unless @appointment.can?(:edit_appointments, :manage_appointments, :manage_roles)
   end

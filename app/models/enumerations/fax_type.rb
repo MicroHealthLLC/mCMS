@@ -8,7 +8,7 @@ class FaxType < Enumeration
   end
 
   def objects
-    Organization.where(:fax_type_id => self.id)
+    Fax.where(:fax_type_id => self.id)
   end
 
   def objects_count

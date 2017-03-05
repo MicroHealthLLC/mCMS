@@ -69,6 +69,7 @@
           <%= f.select :behavioral_risk_status_id, options_for_select(BehavioralRiskStatus.active.pluck(:name, :id), selected: f.object.behavioral_risk_status.try(:id)) , {} ,{class: 'form-control'} %>
         </div>
       </div>
+
       <div class="form-group">
         <%= f.label t(:description) , class: 'col-md-2 control-label' %>
         <div class="col-md-9">

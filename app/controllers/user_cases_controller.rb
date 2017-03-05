@@ -59,7 +59,7 @@ class UserCasesController < ApplicationController
     @modules = [
         'Referral', 'Need', 'Goal', 'Case',
         'Task', 'CaseSupport', 'ChecklistCase',
-        'Note', 'Appointment', 'Enrollment',
+        'Note', 'Appointment', 'Enrollment', 'Jsignature',
         'Document', 'Teleconsult', 'Plan'
     ]
     if session[:appointment_store_id] and @appointments_case.pluck(:id).include?(session[:appointment_store_id].to_i)

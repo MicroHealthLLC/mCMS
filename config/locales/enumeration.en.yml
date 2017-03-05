@@ -116,6 +116,9 @@ en:
   enumeration_interview_status: Interview Status
   enumeration_referral_status: Referral Status
   enumeration_referral_type: Referral Type
+  enumeration_epsdt: EPSDT
+  enumeration_emergency: Emergency
+  enumeration_em_code: E&M CODE
 
   enumeration_award_enum: Award
   enumeration_award_type: Award Type

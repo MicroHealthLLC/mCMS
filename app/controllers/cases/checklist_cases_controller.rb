@@ -54,7 +54,7 @@ class ChecklistCasesController < UserCasesController
   end
 
   def set_checklist_case
-    @checklist_case = ChecklistCase.find(params[:id])
+    @checklist_case = ChecklistCase.includes(:checklist_template).find(params[:id])
     @checklist = @checklist_case.checklist_template
   rescue ActiveRecord::RecordNotFound
     render_404

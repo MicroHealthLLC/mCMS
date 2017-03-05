@@ -17,6 +17,7 @@ class AppointmentProceduresController < ApplicationController
   def new
     @appointment = Appointment.find(params[:appointment_id])
     @appointment_procedure = AppointmentProcedure.new(user_id: User.current.id,
+                                                      provider_id: User.current_user.id,
                                                       appointment_id: @appointment.id
     )
   rescue ActiveRecord::RecordNotFound

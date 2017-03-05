@@ -8,7 +8,7 @@ class EmailType < Enumeration
   end
 
   def objects
-    Organization.where(:email_type_id => self.id)
+    Email.where(:email_type_id => self.id)
   end
 
   def objects_count

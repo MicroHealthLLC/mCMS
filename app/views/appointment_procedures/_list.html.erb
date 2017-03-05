@@ -4,6 +4,10 @@
     <th><%= t :hcpc %></th>
     <th>Modifier</th>
     <th>Date Recorded</th>
+    <th>Unit</th>
+    <th>Charges</th>
+    <th>Diagnosis Pointer</th>
+    <th>Provider</th>
 
   </tr>
   </thead>
@@ -15,6 +19,10 @@
         <td><%= link_to capture.hcpc , capture  %></td>
         <td><%= capture.modifier   %></td>
         <td><%= capture.date_recorded   %></td>
+        <td><%= capture.unit   %></td>
+        <td><%= capture.charges   %></td>
+        <td><%= capture.diagnosis_pointer   %></td>
+        <td><%= capture.provider   %></td>
 
       </tr>
   <% end %>

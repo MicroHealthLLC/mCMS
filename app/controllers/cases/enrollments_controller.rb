@@ -80,7 +80,7 @@ class EnrollmentsController < UserCasesController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_enrollment
-    @enrollment = Enrollment.find(params[:id])
+    @enrollment = Enrollment.includes(:user).find(params[:id])
     add_breadcrumb @enrollment.to_s, @enrollment
   rescue ActiveRecord::RecordNotFound
     render_404

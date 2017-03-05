@@ -137,7 +137,7 @@ class ReferralsController < UserCasesController
   private
 # Use callbacks to share common setup or constraints between actions.
   def set_referral
-    @referral = Referral.find(params[:id])
+    @referral = Referral.includes(:user, :referred_by, :referred_to).find(params[:id])
     add_breadcrumb @referral.to_s, @referral
   rescue ActiveRecord::RecordNotFound
     render_404

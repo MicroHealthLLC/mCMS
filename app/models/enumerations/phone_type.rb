@@ -8,7 +8,7 @@ class PhoneType < Enumeration
   end
 
   def objects
-    Organization.where(:phone_type_id => self.id)
+    Phone.where(:phone_type_id => self.id)
   end
 
   def objects_count

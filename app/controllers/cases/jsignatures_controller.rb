@@ -1,6 +1,4 @@
-class JsignaturesController < ApplicationController
-  add_breadcrumb I18n.t(:home), :root_path
-  before_action  :authenticate_user!
+class JsignaturesController < UserCasesController
 
   before_action :set_jsignature, only: [:show, :edit, :update, :destroy]
   before_action :authorize_create, only: [:new, :create]
@@ -11,8 +9,9 @@ class JsignaturesController < ApplicationController
   # before_action :set_appointment_links, only: [:show]
 
   def index
-    @jsignatures = Jsignature.where(signature_owner_type: 'Case',
-                                    signature_owner_id: Case.visible.pluck(:id) )
+    @jsignatures = Jsignature.includes(:user).
+        where(signature_owner_type: 'Case',
+              signature_owner_id: Case.visible.pluck(:id) )
   end
 
   # GET /jsignatures/1
@@ -45,6 +44,7 @@ class JsignaturesController < ApplicationController
 
     respond_to do |format|
       if @jsignature.save
+        set_link_to_appointment(@jsignature)
         format.html { redirect_to @jsignature, notice: 'Jsignature was successfully created.' }
         format.json { render :show, status: :created, location: @jsignature }
       else
@@ -108,5 +108,9 @@ class JsignaturesController < ApplicationController
 
   def authorize_delete
     raise Unauthorized unless User.current_user.admin?
+  end
+
+  def authorize
+    true
   end
 end
