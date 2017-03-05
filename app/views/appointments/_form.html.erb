@@ -28,6 +28,17 @@
         </div>
       </div>
 
+
+
+      <div class="form-group">
+        <%= f.label :place_of_service, class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :place_of_service_id, PlaceOfService.pluck(:name, :id) ,{}, {class: 'form-control'} %>
+        </div>
+      </div>
+
+
+
       <div class="form-group">
         <%= f.label 'with who', class: 'col-md-2 control-label' %>
         <div class="col-md-9">

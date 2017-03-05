@@ -2,6 +2,7 @@ class Appointment < ApplicationRecord
   belongs_to :user
   belongs_to :appointment_type, optional: true
   belongs_to :appointment_status, optional: true
+  belongs_to :place_of_service, optional: true
   belongs_to :case, optional: true, foreign_key: :related_to_id
 
   has_many :appointment_notes, foreign_key: :owner_id, dependent: :destroy
@@ -93,7 +94,7 @@ class Appointment < ApplicationRecord
 
   def self.safe_attributes
     [:title, :description, :time, :with_who_id, :with_who_type,
-     :appointment_type_id, :appointment_status_id, :end_time,
+     :appointment_type_id, :appointment_status_id, :end_time, :place_of_service_id,
      :user_id, :date, :related_to_id, appointment_attachments_attributes: [Attachment.safe_attributes]]
   end
 

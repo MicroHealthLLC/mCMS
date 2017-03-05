@@ -36,6 +36,21 @@ class SpreadsheetEnumerationUpload
     end
   end
 
+  def upload_place_of_service
+    roo_csv  = Roo::Excelx.new(file)
+    sheet = roo_csv.sheet(0)
+    parse_sheet(sheet) do  |row|
+      next if row[0].nil?
+      params = {
+          name: row[1],
+          description: row[2],
+      }
+      i = PlaceOfService.where(code: "#{row[0]}".strip ).first_or_initialize
+      i.update(params)
+    end
+
+  end
+
   def upload_immunization_cvx
     roo_csv  = Roo::Excelx.new(file)
     sheet = roo_csv.sheet(0)
