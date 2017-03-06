@@ -390,12 +390,12 @@ en:
   selection_status: Selection Status
   interview_type: Job Interview Type
 
-  worker_compensation: Worker Compensation
-  new_worker_compensation: New Worker Compensation
-  edit_worker_compensation: Edit Worker Compensation
-  worker_compensations: Worker Compensations
-  compensation_status: Worker Compensation Status
-  compensation_type: Worker Compensation Type
+  worker_compensation: Worker Comp
+  new_worker_compensation: New Worker Comp
+  edit_worker_compensation: Edit Worker Comp
+  worker_compensations: Workers Comp
+  compensation_status: Worker Comp Status
+  compensation_type: Worker Comp Type
 
   service_history: Service History
   service_histories: Service Histories

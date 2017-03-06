@@ -3,6 +3,18 @@ class Note < ApplicationRecord
   scope :not_private, -> {where(is_private: false)}
   default_scope -> {where(is_private: false).or(where(private_author_id: User.current.id)).includes(:user) }
 
+  CASES_MODULE = [  'TaskNote'           ,
+                    'SurveyNote'         ,
+                    'CaseNote'           ,
+                    'ChecklistNote'      ,
+                    'AppointmentNote'    ,
+                    'NeedNote'           ,
+                    'GoalNote'           ,
+                    'PlanNote'           ,
+                    'DocumentNote'       ,
+                    'AttemptNote'        ,
+                    'ReferralNote'
+  ]
   validates_presence_of :type, :owner_id
 
   def self.safe_attributes

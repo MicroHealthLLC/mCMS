@@ -35,7 +35,8 @@ class NoteDatatable < AjaxDatatablesRails::Base
   end
 
   def get_raw_records
-    Note.where(user_id: [User.current.id, User.current_user.id])
+    Note.where(user_id: [User.current.id, User.current_user.id]).
+        where(type: Note::CASES_MODULE)
   end
 
   # ==== Insert 'presenter'-like methods below if necessary
