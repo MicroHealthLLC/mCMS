@@ -25,6 +25,13 @@
         </div>
       </div>
 
+       <div class="form-group">
+        <%= f.label :related_to , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :related_to_id, options_for_select(DispositionRelatedTo.active.pluck(:name, :id), selected: f.object.related_to.try(:id)), {} , {class: 'form-control'} %>
+        </div>
+      </div>
+
       <div class="form-group">
         <%= f.label 'date_recorded' , class: 'col-md-2 control-label' %>
         <div class="col-md-9">

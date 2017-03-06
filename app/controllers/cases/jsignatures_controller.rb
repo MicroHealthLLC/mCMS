@@ -21,7 +21,7 @@ class JsignaturesController < UserCasesController
 
   # GET /jsignatures/new
   def new
-    @owner = params[:owner_type].constantize.visible.find params[:owner_id]
+    @owner = params[:owner_type] == 'User' ? User.find(params[:owner_id]) : params[:owner_type].constantize.visible.find( params[:owner_id])
     @jsignature = Jsignature.new(user_id: User.current_user.id,
                                  signature_owner_type: @owner.class,
                                  signature_owner_id: @owner.id

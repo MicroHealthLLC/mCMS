@@ -2,6 +2,6 @@ class PlaceOfService < ApplicationRecord
   has_many :appointments
 
   def to_s
-    "#{name} -- #{description}"
+    "(#{code}) #{name}"
   end
 end

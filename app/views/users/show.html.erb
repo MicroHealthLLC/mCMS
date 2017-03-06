@@ -6,53 +6,71 @@
       <%= render partial: 'password',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     wid_id: 'password',
-                     wid_title: 'Change password',
-                     user: @user
+                         wid_id: 'password',
+                         wid_title: 'Change password',
+                         user: @user
                  } %>
       <%= render partial: 'user_basic_info',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     wid_id: 'basic_info',
-                     wid_title: 'Basic Information',
-                     user: @user
+                         wid_id: 'basic_info',
+                         wid_title: 'Basic Information',
+                         user: @user
                  } %>
 
       <%= render partial: 'user_attachments',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     wid_id: 'basic_info',
-                     wid_title: 'Basic Information',
-                     user: @user
+                         wid_id: 'basic_info',
+                         wid_title: 'Basic Information',
+                         user: @user
                  } %>
     </article>
     <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
       <%= render partial: 'core_demographics/form',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     wid_id: 'profile',
-                     wid_title: 'profile',
-                     core_demographic: @profile
+                         wid_id: 'profile',
+                         wid_title: 'profile',
+                         core_demographic: @profile
                  } %>
     </article>
     <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
       <%= render partial: 'job_details/form',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     wid_id: 'job_detail',
-                     wid_title: 'Organization',
-                     user: @user,
-                     job_detail: @user.job
+                         wid_id: 'job_detail',
+                         wid_title: 'Organization',
+                         user: @user,
+                         job_detail: @user.job
                  } %>
     </article>
     <article class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
       <%= render partial: 'extend_demographies/form',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     wid_id: 'extend_demography',
-                     wid_title: 'Contact informations',
-                     extend_demography: @user.extend_informations
+                         wid_id: 'extend_demography',
+                         wid_title: 'Contact informations',
+                         extend_demography: @user.extend_informations
                  } %>
     </article>
+
   </div>
+</section>
+
+<section id="widget-grid" class="show_customer_account">
+  <%= link_to( t('add_jsignature'),
+               new_jsignature_path(owner_type: "User", owner_id: User.current.id),
+               class: 'btn btn-primary pull-right btn-edition') if can?(:add_jsignatures, :manage_roles) %>
+
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render partial: 'jsignatures/list',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                       show_case_column: true,
+                       jsignatures:  User.current.jsignatures,
+                       wid_id: 'jsignatures',
+                       wid_title: "Release of Information"
+               } %>
+  </article>
 </section>

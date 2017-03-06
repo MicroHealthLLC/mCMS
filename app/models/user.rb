@@ -30,6 +30,7 @@ class User < ApplicationRecord
   has_many :educations, dependent: :destroy
   has_many :positions, dependent: :destroy
   has_many :user_insurances, dependent: :destroy
+  has_many :jsignatures, as: :signature_owner, dependent: :destroy
 
 
   #HAS MANY FO CASES

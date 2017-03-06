@@ -2,6 +2,7 @@
   <thead>
   <tr>
     <th>Disposition</th>
+    <th>Related to</th>
     <th>Date Recorded</th>
   </tr>
   </thead>
@@ -11,6 +12,7 @@
   <% captures.each do |capture| %>
       <tr>
         <td><%= link_to capture.disposition, capture %></td>
+        <td><%= capture.related_to   %></td>
         <td><%= capture.date_recorded   %></td>
       </tr>
   <% end %>
