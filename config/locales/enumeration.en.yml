@@ -119,6 +119,8 @@ en:
   enumeration_epsdt: EPSDT
   enumeration_emergency: Emergency
   enumeration_em_code: E&M CODE
+  enumeration_insurance_relationship: Insurance Relationship
+  enumeration_related_to: Disposition related to
 
   enumeration_award_enum: Award
   enumeration_award_type: Award Type

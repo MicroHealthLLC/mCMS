@@ -3,6 +3,7 @@ class UserInsurance < ApplicationRecord
   belongs_to :insurance
   belongs_to :insurance_type, optional: true
   belongs_to :insurance_status, optional: true, foreign_key: :status_id
+  belongs_to :insurance_relationship, optional: true
   has_many :jsignatures, as: :signature_owner, dependent: :destroy
 
   has_many :user_insurance_attachments, foreign_key: :owner_id, dependent: :destroy
@@ -33,10 +34,18 @@ class UserInsurance < ApplicationRecord
     end
   end
 
+   def insurance_relationship
+    if insurance_relationship_id
+      super
+    else
+      InsuranceRelationship.default
+    end
+  end
+
 
   def self.safe_attributes
     [:user_id, :insurance_id, :insurance_type_id, :issue_date, :expiration_date,
-     :insurance_identifier, :note, :status_id,
+     :insurance_identifier, :note, :status_id, :insurance_relationship_id, :insured_name,
      user_insurance_attachments_attributes: [Attachment.safe_attributes]]
   end
 
@@ -48,6 +57,8 @@ class UserInsurance < ApplicationRecord
     pdf.font_size(25){  pdf.text "Insurance ##{id}", :style => :bold}
     user.to_pdf_brief_info(pdf)
     pdf.text "<b>Insurance name: </b> #{insurance}", :inline_format =>  true
+    pdf.text "<b>Insurance Relationship: </b> #{insurance_relationship}", :inline_format =>  true
+    pdf.text "<b>Insured Name: </b> #{insured_name}", :inline_format =>  true
     pdf.text "<b>Insurance type: </b> #{insurance_type}", :inline_format =>  true
     pdf.text "<b>Insurance ID: </b> #{insurance_identifier}", :inline_format =>  true
     pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true

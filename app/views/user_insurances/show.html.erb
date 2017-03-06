@@ -20,11 +20,21 @@
     </p>
 
     <p>
+      <strong>Insurance Relationship:</strong>
+      <%= @user_insurance.insurance_relationship %>
+    </p>
+
+    <p>
+      <strong>Insured name:</strong>
+      <%= @user_insurance.insured_name %>
+    </p>
+
+    <p>
       <strong>Insurance Type:</strong>
       <%= @user_insurance.insurance_type %>
     </p>
 
-     <p>
+    <p>
       <strong>Insurance Status:</strong>
       <%= @user_insurance.insurance_status %>
     </p>
@@ -64,10 +74,10 @@
     <%= render partial: 'jsignatures/list',
                layout: 'shared/smart_widget_wrapper',
                locals: {
-                   show_case_column: true,
-                   jsignatures:  @user_insurance.jsignatures,
-                   wid_id: 'jsignatures',
-                   wid_title: "Authorized Person’s Signature"
+                       show_case_column: true,
+                       jsignatures:  @user_insurance.jsignatures,
+                       wid_id: 'jsignatures',
+                       wid_title: "Authorized Person’s Signature"
                } %>
   </article>
 </div>
