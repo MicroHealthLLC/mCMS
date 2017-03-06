@@ -5,7 +5,7 @@ class HcpcController < ApplicationController
     cond_desc = []
     cond_name = []
     search.each do |s|
-      cond_desc<< "short_description LIKE '%#{s}%'"
+      cond_desc<< "long_description LIKE '%#{s}%'"
       cond_name<< "hcpc LIKE '%#{s}%'"
     end
     scope = Hcpc
