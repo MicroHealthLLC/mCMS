@@ -28,20 +28,12 @@
           </div>
         </div>
 
-         <div class="form-group">
+        <div class="form-group">
           <%= f.label :insured_name, class: 'col-md-2 control-label' %>
           <div class="col-md-9">
             <%= f.select :insured_name, options_for_select(User.current.contacts.not_show_in_search.map(&:name).insert(0, User.current.name), selected: f.object.insured_name), {} , {class: 'form-control'} %>
           </div>
         </div>
-
-        <div class="form-group">
-          <%= f.label t('insurance_status'), class: 'col-md-2 control-label' %>
-          <div class="col-md-9">
-            <%= f.select :status_id, options_for_select(InsuranceStatus.active.pluck(:name, :id), selected: f.object.insurance_status.try(:id)), {} , {class: 'form-control'} %>
-          </div>
-        </div>
-
 
         <div class="form-group">
           <%= f.label 'insurance type', class: 'col-md-2 control-label' %>
