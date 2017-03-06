@@ -2,6 +2,17 @@ class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
 
+  belongs_to :updated_by, optional: true, class_name: 'User'
+  belongs_to :created_by, optional: true, class_name: 'User'
+
+  before_save do
+    self.updated_by_id = User.current_user.id if self.class.column_names.include?('updated_by_id')
+  end
+
+  before_create do
+    self.created_by_id = User.current_user.id if self.class.column_names.include?('created_by_id')
+  end
+
   scope :visible, -> { where(user_id: User.current.id) }
 
   def can?(*args)

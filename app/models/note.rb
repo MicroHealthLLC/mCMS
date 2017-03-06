@@ -33,7 +33,9 @@ class Note < ApplicationRecord
       when 'GoalNote'           then I18n.t('goal')
       when 'PlanNote'           then I18n.t('plan')
       when 'DocumentNote'       then I18n.t('document')
-      when 'AttemptNote'       then 'Attempt'
+      when 'AttemptNote'        then 'Attempt'
+      when 'ReferralNote'       then 'Referral'
+      when 'ClientJournalNote'  then 'ClientJournal'
       else
         I18n.t('label_note')
     end
