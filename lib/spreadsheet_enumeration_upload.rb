@@ -82,6 +82,19 @@ class SpreadsheetEnumerationUpload
     end
   end
 
+  def update_hcpc
+    roo_csv  =  Roo::CSV.new(file, csv_options: {encoding: 'ISO-8859-1'})
+    sheet = roo_csv.sheet(0)
+    parse_sheet(sheet) do  |row|
+      params = {
+          long_description: row[2],
+          short_description: row[1]
+      }
+      i = Hcpc.where(hcpc: "#{row[0]}".strip ).first_or_initialize
+      i.update(params)
+    end
+  end
+
   def parse_sheet(sheet, &block)
     retries = true
     begin

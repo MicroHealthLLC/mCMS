@@ -12,6 +12,12 @@ namespace :import_data do
    s.upload_hcpc
   end
 
+ task update_hcpc: :environment do
+   file = "hcpc_code.csv"
+   s = SpreadsheetEnumerationUpload.new file
+   s.update_hcpc
+  end
+
  task place_of_service: :environment do
    file = "Place of Service.xlsx"
    s = SpreadsheetEnumerationUpload.new file
