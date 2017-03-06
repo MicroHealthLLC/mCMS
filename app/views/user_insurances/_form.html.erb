@@ -31,7 +31,7 @@
          <div class="form-group">
           <%= f.label :insured_name, class: 'col-md-2 control-label' %>
           <div class="col-md-9">
-            <%= f.select :insured_name, options_for_select(User.current.contacts.map(&:name).insert(0, User.current.name), selected: f.object.insured_name), {} , {class: 'form-control'} %>
+            <%= f.select :insured_name, options_for_select(User.current.contacts.not_show_in_search.map(&:name).insert(0, User.current.name), selected: f.object.insured_name), {} , {class: 'form-control'} %>
           </div>
         </div>
 
