@@ -2,16 +2,20 @@
 <table class="table table-responsive" id="referral_result_table">
   <thead>
   <tr>
+    <th>User</th>
     <th>Result Date</th>
     <th>Result</th>
+    <th></th>
   </tr>
   </thead>
 
   <tbody>
   <% referral_results.each do |referral_result| %>
       <tr>
+        <td><%= referral_result.user %></td>
         <td><%= referral_result.result_date %></td>
         <td><%= referral_result.result.html_safe %></td>
+        <td><%= show_link referral_result %></td>
       </tr>
   <% end %>
   </tbody>
