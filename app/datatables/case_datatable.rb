@@ -39,7 +39,7 @@ class CaseDatatable < AjaxDatatablesRails::Base
     if User.current.can?(:manage_roles)
       records.map do |c|
         [
-            @view.link_to( c.user.to_s , c.user),
+            "<b>#{c.user.to_s}<b/>".html_safe,
             @view.link_to(c.title, @view.case_path(c) ),
             c.priority_type.to_s,
             c.case_type.to_s,

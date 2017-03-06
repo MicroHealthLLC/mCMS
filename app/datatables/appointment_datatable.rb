@@ -55,7 +55,7 @@ class AppointmentDatatable < AjaxDatatablesRails::Base
     if User.current.can?(:manage_roles)
       records.map do |appointment|
         [
-            appointment.user.to_s ,
+            "<b>#{appointment.user.to_s}<b/>".html_safe,
             @view.link_to( appointment.title, @view.appointment_path(appointment) ),
             appointment.appointment_type.to_s,
             appointment.appointment_status.to_s,

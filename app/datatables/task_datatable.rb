@@ -30,7 +30,7 @@ class TaskDatatable < AjaxDatatablesRails::Base
     if User.current.can?(:manage_roles)
       records.map do |task|
         [
-            @view.link_to( task.user.to_s , task.user),
+            "<b>#{task.user.to_s}<b/>".html_safe,
             @view.link_to( task.title, task) ,
             @view.link_to_case( task.case),
             task.task_type.to_s,

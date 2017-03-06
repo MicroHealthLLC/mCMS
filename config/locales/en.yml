@@ -156,6 +156,7 @@ en:
 
   #Client Journal
 
+  client: Client
   client_journal: Client Journal
   client_journals: Client Journals
   client_journal_type: Client Journal Type
