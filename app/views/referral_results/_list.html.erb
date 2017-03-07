@@ -15,7 +15,7 @@
         <td><%= referral_result.updated_by %></td>
         <td><%= referral_result.result_date %></td>
         <td><%= referral_result.result.html_safe %></td>
-        <td><%= show_link referral_result %></td>
+        <td><%= link_to "<i class='fa fa-lg fa-eye'></i>".html_safe, referral_referral_result_path(referral_result) %></td>
       </tr>
   <% end %>
   </tbody>
