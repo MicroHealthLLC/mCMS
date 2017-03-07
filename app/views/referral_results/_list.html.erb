@@ -5,17 +5,16 @@
     <th>User</th>
     <th>Result Date</th>
     <th>Result</th>
-    <th></th>
+
   </tr>
   </thead>
 
   <tbody>
   <% referral_results.each do |referral_result| %>
       <tr>
-        <td><%= referral_result.updated_by %></td>
+        <td><%= link_to referral_result.updated_by, referral_referral_result_path(referral_result) %></td>
         <td><%= referral_result.result_date %></td>
-        <td><%= referral_result.result.html_safe %></td>
-        <td><%= link_to "<i class='fa fa-lg fa-eye'></i>".html_safe, referral_referral_result_path(referral_result) %></td>
+        <td><%= referral_result.result.html_safe %></td>      
       </tr>
   <% end %>
   </tbody>
