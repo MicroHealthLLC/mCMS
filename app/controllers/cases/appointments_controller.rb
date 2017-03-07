@@ -52,7 +52,7 @@ class AppointmentsController < UserCasesController
   # GET /appointments/new
   def new
     @appointment = Appointment.new(user_id: User.current.id,
-                                   related_to_id: params[:related_to])
+                                   related_to_id: params[:case_id])
   end
 
   # GET /appointments/1/edit
