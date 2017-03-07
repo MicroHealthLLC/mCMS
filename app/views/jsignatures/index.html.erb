@@ -1,5 +1,22 @@
 
 <section id="widget-grid" class="jsignatures_section">
+  <% if can?(:create_jsignatures, :manage_roles, :manage_jsignatures) %>
+      <div class="btn-group pull-right btn-edition">
+        <button class="btn btn-primary">
+          Add Checklist For
+        </button>
+        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <% @cases_for_btn.each do |c| %>
+              <li>
+                <%= link_to c, new_jsignature_path(owner_id: c.id, owner_type: 'Case') %>
+              </li>
+          <% end %>
+        </ul>
+      </div>
+  <% end %>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'list',
