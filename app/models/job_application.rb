@@ -75,4 +75,18 @@ class JobApplication < ApplicationRecord
     ]
   end
 
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.text "Job Application ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
+    pdf.text "<b>Employer: </b> #{employer}", :inline_format =>  true
+    pdf.text "<b>Position Applied: </b> #{position_applied}", :inline_format =>  true
+    pdf.text "<b>Projected salary: </b> #{projected_salary}", :inline_format =>  true
+    pdf.text "<b>Application Type: </b> #{application_type}", :inline_format =>  true
+    pdf.text "<b>Application Status: </b> #{application_status}", :inline_format =>  true
+    pdf.text "<b>Interview Date: </b> #{interview_date}", :inline_format =>  true
+    pdf.text "<b>Interview Type: </b> #{interview_type}", :inline_format =>  true
+    pdf.text "<b>Interview Status: </b> #{interview_status}", :inline_format =>  true
+    pdf.text "<b>Selection Status: </b> #{selection_status}", :inline_format =>  true
+  end
+
 end

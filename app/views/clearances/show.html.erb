@@ -1,9 +1,9 @@
 <div class="col-xs-12 btn-edition">
-  <%= link_to 'Delete', clearance_path(@clearance), class: 'btn btn-danger pull-right' ,
+  <%= link_to('Delete', clearance_path(@clearance), class: 'btn btn-danger pull-right' ,
               :method => :delete,
-              :data => {:confirm => t(:text_are_you_sure)}
+              :data => {:confirm => t(:text_are_you_sure)})  if @clearance.can?(:manage_roles, :manages_clearances, :delete_clearances)
   %>
-  <%= link_to 'Edit', edit_clearance_path(@clearance), class: 'btn btn-success pull-right' %>
+  <%= link_to 'Edit', edit_clearance_path(@clearance), class: 'btn btn-success pull-right'  if @clearance.can?(:manage_roles, :manages_clearances, :delete_clearances) %>
   <%= link_to t('button_cancel'), clearances_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), clearance_path(@clearance, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 </div>
