@@ -55,7 +55,7 @@ class ReferralsController < UserCasesController
   def new
     @referral = Referral.new(user_id: User.current.id,
                              referred_to_id: User.current_user.id,
-                             case_id: params[:related_to])
+                             case_id: params[:case_id])
   end
 
 # GET /referrals/1/edit
