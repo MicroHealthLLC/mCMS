@@ -16,7 +16,7 @@ class InjuriesController < UserProfilesController
               when 'closed' then scope.closed
               when 'flagged' then scope.flagged
               else
-                scope.opened
+                scope.all_data
             end
     @injuries = scope
   end

@@ -16,7 +16,7 @@ class FamilyHistoriesController < UserHistoryController
               when 'closed' then scope.closed
               when 'flagged' then scope.flagged
               else
-                scope.opened
+                scope.all_data
             end
     @family_histories = scope
   end

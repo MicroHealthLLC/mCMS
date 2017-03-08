@@ -16,7 +16,7 @@ class EnrollmentsController < UserCasesController
               when 'closed' then scope.closed
               when 'flagged' then scope.flagged
               else
-                scope.opened
+                scope.all_data
             end
 
     @enrollments = scope

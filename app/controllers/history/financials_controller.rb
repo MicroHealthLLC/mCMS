@@ -15,7 +15,7 @@ class FinancialsController < UserHistoryController
               when 'closed' then scope.closed
               when 'flagged' then scope.flagged
               else
-                scope.opened
+                scope.all_data
             end
 
     @financials = scope

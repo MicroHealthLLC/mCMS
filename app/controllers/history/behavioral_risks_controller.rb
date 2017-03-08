@@ -16,7 +16,7 @@ class BehavioralRisksController < UserHistoryController
               when 'closed' then scope.closed
               when 'flagged' then scope.flagged
               else
-                scope.opened
+                scope.all_data
             end
 
     @behavioral_risks = scope

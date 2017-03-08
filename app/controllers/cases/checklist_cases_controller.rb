@@ -11,7 +11,7 @@ class ChecklistCasesController < UserCasesController
               when 'closed' then scope.closed
               when 'flagged' then scope.flagged
               else
-                scope.opened
+                scope.all_data
             end
     @checklists = scope.includes(:checklist_template).
         references(:checklist_template).include_enumerations.

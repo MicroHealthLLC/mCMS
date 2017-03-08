@@ -16,7 +16,7 @@ class UserInsurancesController < UserProfilesController
               when 'closed' then scope.closed
               when 'flagged' then scope.flagged
               else
-                scope.opened
+                scope.all_data
             end
 
     @user_insurances = scope.visible.paginate(page: params[:page], per_page: 25)
