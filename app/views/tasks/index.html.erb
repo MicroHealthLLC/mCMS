@@ -13,7 +13,7 @@
         <ul class="dropdown-menu">
           <% @cases_for_btn.each do |c| %>
               <li>
-                <%= link_to c, new_task_path(case_id: c.id) %>
+                <%= link_to c, new_task_path(related_to: c.id, type: 'Case') %>
               </li>
           <% end %>
         </ul>
