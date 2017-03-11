@@ -66,7 +66,7 @@ class Billing < ApplicationRecord
      :resubmission_code, :original_reference_number,
      :prior_authorization_number, :outside_lab_id,
      :outside_lab_charges, :other_source_id, :total_charge,
-     :amount_paid, :note, :appointment_id,
+     :amount_paid, :note, :appointment_id, :amount_collected,
      billing_attachments_attributes: [BillingAttachment.safe_attributes]
     ]
   end
@@ -87,6 +87,7 @@ class Billing < ApplicationRecord
     pdf.text "<b>Other Source: </b> #{other_source}", :inline_format =>  true
     pdf.text "<b>Total Charge: </b> #{total_charge}", :inline_format =>  true
     pdf.text "<b>Amount Paid: </b> #{amount_paid}", :inline_format =>  true
+    pdf.text "<b>Amount Collected: </b> #{amount_collected}", :inline_format =>  true
     pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
 
 

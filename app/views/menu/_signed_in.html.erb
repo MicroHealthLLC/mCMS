@@ -3,12 +3,6 @@
     <a href="<%= "/" %>" title="Home"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">Home</span></a>
   </li>
 
-  <% if User.current.can?(:manage_roles) %>
-      <li class="<%= menu_active?('billings') %>">
-        <a href="<%= "/billings" %>" title="Billing & Collections"><i class="fa fa-lg fa-fw fa-money"></i> <span class="menu-item-parent">Billing & Collections</span></a>
-      </li>
-  <% end %>
-
   <% if can?(:manage_roles) %>
       <li class="<%= menu_active?('employees') %>">
         <a href="<%= "/persons" %>" title="<%= t 'label_search' %>"><i class="fa fa-lg fa-fw fa-users"></i> <span class="menu-item-parent"><%= t :label_search %></span></a>

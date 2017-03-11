@@ -21,10 +21,12 @@ class BillingsController < UserProfilesController
             end
 
     if User.current.can?(:manage_roles)
-      bill_date = params[:bill_date] || 1.month.ago
+      from = params[:from] || 1.month.ago
+      to = params[:to] || 1.month.from_now
       @billings = scope.default_includes.
           where(appointment_id: Appointment.my_appointments.pluck(:id)).
-          where('bill_date >= ?', bill_date)
+          where('bill_date >= ?', from).
+          where('bill_date <= ?', to)
     else
       @billings = scope.visible
     end

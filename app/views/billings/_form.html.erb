@@ -59,21 +59,21 @@
       <div class="form-group">
         <%= f.label :resubmission_code , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.text_field :resubmission_code , class: 'form-control' %>
+          <%= f.text_area :resubmission_code , class: 'form-control' %>
         </div>
       </div>
 
       <div class="form-group">
         <%= f.label :original_reference_number , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.text_field :original_reference_number , class: 'form-control' %>
+          <%= f.text_area :original_reference_number , class: 'form-control' %>
         </div>
       </div>
 
       <div class="form-group">
         <%= f.label :prior_authorization_number , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.text_field :prior_authorization_number , class: 'form-control' %>
+          <%= f.text_area :prior_authorization_number , class: 'form-control' %>
         </div>
       </div>
 
@@ -115,7 +115,14 @@
           <%= f.number_field :amount_paid, class: 'form-control', step: 0.01 %>
         </div>
       </div>
-      
+
+      <div class="form-group">
+        <%= f.label :amount_collected , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.number_field :amount_collected, class: 'form-control', step: 0.01 %>
+        </div>
+      </div>
+
 
       <div class="form-group">
         <%= f.label t(:note) , class: 'col-md-2 control-label' %>

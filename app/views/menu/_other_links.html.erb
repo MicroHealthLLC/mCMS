@@ -26,6 +26,10 @@
     <li class="<%= menu_active?('document_managers') %>">
       <a href="/document_managers" title="<%= t 'document_managers' %>"><i class="fa fa-lg fa-fw fa-folder-open"></i><span class="menu-item-parent"><%= t 'document_managers' %></span></a>
     </li>
+
+    <li class="<%= menu_active?('billings') %>">
+      <a href="<%= "/billings" %>" title="Billing & Collections"><i class="fa fa-lg fa-fw fa-money"></i> <span class="menu-item-parent">Billing & Collections</span></a>
+    </li>
 <% else %>
     <% if module_enabled?('all_files')  && can?(:manage_roles, :manage_documents) %>
         <li class="<%= menu_active?('documents', 'all_files') %>">
