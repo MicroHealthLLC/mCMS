@@ -1,5 +1,7 @@
 <section id="widget-grid" class="educations_section">
   <% if @educations %>
+      <%= link_to( t('new_education'), new_education_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_educations, :manage_roles, :manage_educations) %>
+
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'educations/list',
@@ -13,6 +15,8 @@
       </div>
   <% end %>
   <% if @other_skills %>
+      <%= link_to( 'New skill', new_other_skill_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_other_skills)%>
+
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'other_skills/list',
@@ -26,6 +30,8 @@
       </div>
   <% end %>
   <% if @certifications %>
+      <%= link_to( 'New Certification', new_certification_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_certifications)%>
+
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'certifications/list',
@@ -40,6 +46,8 @@
 
   <% end %>
   <% if @clearances %>
+      <%= link_to( 'New clearance', new_clearance_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_clearances)%>
+
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'clearances/list',
@@ -53,6 +61,7 @@
       </div>
   <% end %>
   <% if @positions %>
+      <%= link_to('New Position', new_position_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_positions, :manage_positions, :manage_roles) %>
 
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -67,6 +76,8 @@
       </div>
   <% end %>
   <% if @injuries %>
+      <%= link_to(t('new_injury'), new_injury_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_injuries, :manage_roles, :manage_injuries) %>
+
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'injuries/list',
@@ -80,6 +91,7 @@
 
   <% end %>
   <% if @worker_compensations %>
+      <%= link_to(t('new_worker_compensation'), new_worker_compensation_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_worker_compensations, :manage_roles, :manage_worker_compensations) %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'worker_compensations/list',
@@ -92,6 +104,7 @@
       </div>
   <% end %>
   <% if @job_applications %>
+      <%= link_to(t('new_job_application'), new_job_application_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_job_applications, :manage_roles, :manage_job_applications) %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'job_applications/list',

@@ -2,6 +2,7 @@
 <section id="widget-grid" class="languages_section">
 
   <% if @languages %>
+      <%= link_to('New Language', new_language_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_languages, :manage_roles, :manage_languages) %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'languages/list',
@@ -15,6 +16,7 @@
       </div>
   <% end %>
   <% if @affiliations %>
+      <%= link_to( t(:new_affiliation), new_affiliation_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_affiliations, :manage_affiliations, :manage_roles) %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'affiliations/list',
@@ -29,6 +31,13 @@
   <% end %>
   <% if @contacts %>
       <div class="row">
+        <div class="col-xs-12">
+          <%= link_to( 'Search Contact', search_contacts_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:search_contacts, :manage_contacts, :manage_roles)  %>
+          <%= link_to( 'New Contact', new_contact_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_contacts, :manage_contacts, :manage_roles)  %>
+        </div>
+      </div>
+
+      <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'contacts/list',
                      layout: 'shared/smart_widget_wrapper',
@@ -41,6 +50,8 @@
       </div>
   <% end %>
   <% if @user_insurances %>
+      <%= link_to(t('new_insurance'), new_user_insurance_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_insurances, :manage_insurances, :manage_roles) %>
+
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'user_insurances/list',
@@ -54,6 +65,7 @@
       </div>
   <% end %>
   <% if @documents %>
+      <%= link_to( t('new_document'), new_client_document_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_documents, :manage_roles, :manage_documents) %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'documents/list',
