@@ -26,6 +26,8 @@ class BillingsController < UserProfilesController
       @billings = scope.default_includes.
           where('bill_date >= ?', from).
           where('bill_date <= ?', to)
+
+      @appointments = Appointment.where.not(id: Billing.pluck(:appointment_id))
     else
       @billings = scope.visible
     end

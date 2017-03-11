@@ -42,6 +42,17 @@
                      } %>
         </article>
       </div>
+    <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'no_billing_appointment_list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         appointments: @appointments,
+                         wid_id: 'no_billing',
+                         wid_title: 'No billing for appointments'
+                     } %>
+        </article>
+      </div>
   <% else %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

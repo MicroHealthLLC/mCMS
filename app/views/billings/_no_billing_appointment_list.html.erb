@@ -1,0 +1,24 @@
+<table class="table table-responsive" id="no_billings_appointment_table">
+  <thead>
+  <tr>
+    <th>User</th>
+    <th>Appointment</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% appointments.each do |appointment| %>
+      <tr>
+        <td><b><%= appointment.user %></b></td>
+        <td><%= link_to appointment, appointment %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<script>
+  $(document).ready(function(){
+    initDataTable('no_billings_appointment_table')
+  })
+</script>
