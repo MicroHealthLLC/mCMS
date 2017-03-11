@@ -39,9 +39,9 @@
     </span>
     <% end %>
     <% if topic.can_destroy? %>
-        <span class="thredded--topic-delete--wrapper pull-right">
+        <span class="thredded--topic-delete--wrapper">
           <%= button_to t('thredded.topics.delete_topic'), topic.destroy_path, method: :delete,
-                        form_class: 'thredded--topic-delete-form col-md-3 pull-right',
+                        form_class: 'thredded--topic-delete-form col-xs-3 col-md-2 pull-right',
                         class: 'thredded--button btn-danger ',
                         'data-confirm' => t('thredded.topics.delete_confirm') %>
         </span>
