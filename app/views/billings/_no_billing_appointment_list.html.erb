@@ -3,6 +3,7 @@
   <tr>
     <th>User</th>
     <th>Appointment</th>
+    <th>Appointment Date</th>
   </tr>
   </thead>
 
@@ -11,6 +12,7 @@
       <tr>
         <td><b><%= appointment.user %></b></td>
         <td><%= link_to appointment, appointment %></td>
+        <td><%= format_date appointment.date %></td>
       </tr>
   <% end %>
   </tbody>
