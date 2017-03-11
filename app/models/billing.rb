@@ -67,6 +67,7 @@ class Billing < ApplicationRecord
      :prior_authorization_number, :outside_lab_id,
      :outside_lab_charges, :other_source_id, :total_charge,
      :amount_paid, :note, :appointment_id, :amount_collected,
+     :associated_icd, :associated_hcpc,
      billing_attachments_attributes: [BillingAttachment.safe_attributes]
     ]
   end
@@ -88,6 +89,8 @@ class Billing < ApplicationRecord
     pdf.text "<b>Total Charge: </b> #{total_charge}", :inline_format =>  true
     pdf.text "<b>Amount Paid: </b> #{amount_paid}", :inline_format =>  true
     pdf.text "<b>Amount Collected: </b> #{amount_collected}", :inline_format =>  true
+    pdf.text "<b>Associated ICD10: </b> #{associated_icd}", :inline_format =>  true
+    pdf.text "<b>Associated HCPCS: </b> #{associated_hcpc}", :inline_format =>  true
     pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
 
 

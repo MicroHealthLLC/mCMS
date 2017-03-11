@@ -32,6 +32,16 @@
       <%= @billing.accept_assignment%>
     </p>
 
+     <p>
+      <strong>Associated ICD10:</strong>
+      <%= @billing.associated_icd %>
+    </p>
+
+     <p>
+      <strong>Associated HCPCS:</strong>
+      <%= @billing.associated_hcpc%>
+    </p>
+
     <p>
       <strong>Resubmission code:</strong>
       <%= @billing.resubmission_code %>
