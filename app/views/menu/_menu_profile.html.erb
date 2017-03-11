@@ -2,15 +2,15 @@
     <li>
       <a href="#" id="ul_profile"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Profile</span></a>
       <ul id="profile_menu">
-        <li class="<%= menu_active?('devise/registrations') %>">
-          <a href= "/users/edit" title="<%= t('profile.profile') %>"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent"><%= t('profile.profile') %></span></a>
-        </li>
-
         <% if module_enabled?( 'profile_record') %>
             <li class="<%= menu_active?('profile_record') %> ">
               <a href= "/profile_record" title="Profile record"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Profile record</span></a>
             </li>
         <% end %>
+
+        <li class="<%= menu_active?('devise/registrations') %>">
+          <a href= "/users/edit" title="<%= t('profile.profile') %>"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent"><%= t('profile.profile') %></span></a>
+        </li>
 
         <% if module_enabled?( 'languages')  && can?(:manage_roles, :view_languages, :manage_languages) %>
             <li class="<%= menu_active?('languages') %>">
