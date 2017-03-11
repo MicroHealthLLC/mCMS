@@ -21,10 +21,10 @@
           <%= hidden_field_tag :status_type, params[:status_type]  %>
           <div class="row btn-edition">
             <div class="col-xs-12 col-sm-4 btn-edition">
-              <input type="text" id="from" name="from" class="form-control" placeholder="FROM">
+              <input type="text" id="from" name="from" value="<%= params[:from] || 1.month.ago.strftime('%d/%m/%y') %>" class="form-control" placeholder="FROM">
             </div>
             <div class="col-xs-12 col-sm-4 btn-edition">
-              <input type="text" id="to" name="to" class="form-control" placeholder="TO">
+              <input type="text" id="to" name="to" value="<%= params[:to] || 1.month.from_now.strftime('%d/%m/%y') %>" class="form-control" placeholder="TO">
             </div>
             <div class="col-xs-4 col-sm-2 btn-edition ">
               <input type="submit" class="btn btn-default">
