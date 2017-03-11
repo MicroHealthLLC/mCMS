@@ -15,10 +15,10 @@
       <tr>
         <td><%= link_to problem_list.name, problem_list %></td>
         <td><%= link_to problem_list.icdcm_code, problem_list %></td>
-        <td><%= problem_list.date_onset %></td>
-        <td><%= problem_list.date_resolved %></td>
+        <td><%= format_date problem_list.date_onset %></td>
+        <td><%= format_date problem_list.date_resolved %></td>
         <td><%= problem_list.problem_status %></td>
-        <td><%= problem_list.problem_type %></td>
+        <td><%=  problem_list.problem_type %></td>
          </tr>
   <% end %>
   </tbody>

@@ -26,8 +26,8 @@
             <% end %>
             <td><%= case_support.case_support_type %></td>
             <td><%= case_support.support_status %></td>
-            <td><%= case_support.date_started %></td>
-            <td><%= case_support.date_ended %></td>
+            <td><%= format_date case_support.date_started %></td>
+            <td><%= format_date case_support.date_ended %></td>
             <% if @appointment and can?(:manage_roles) %>
                 <td><%= link_to "<i class='fa fa-unlink fa-lg'></i>".html_safe, unlink_appointment_path(appointment_id: @appointment.id, type: 'CaseSuppport', id: case_support.id ) %></td>
             <% end %>

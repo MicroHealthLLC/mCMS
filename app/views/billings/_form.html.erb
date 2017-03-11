@@ -1,0 +1,146 @@
+<fieldset>
+  <legend></legend>
+  <%= form_for(billing, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+      <% if billing.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(billing.errors.count, "error") %> prohibited this billing from being saved:</h2>
+
+            <ul>
+              <% billing.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <%= f.hidden_field :user_id %>
+      <%= f.hidden_field :appointment_id %>
+
+
+
+      <div class="form-group">
+        <%= f.label t(:bill_type), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :bill_type_id, options_for_select(BillType.active.pluck(:name, :id), selected: f.object.bill_type.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.label t(:bill_status), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :bill_status_id, options_for_select(BillStatus.active.pluck(:name, :id), selected: f.object.bill_status.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :bill_date , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :bill_date , class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.label :bill_amount , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.number_field :bill_amount , class: 'form-control', step: 1 %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :accept_assignment, class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :accept_assignment_id, options_for_select(AcceptAssignment.active.pluck(:name, :id), selected: f.object.accept_assignment.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.label :resubmission_code , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :resubmission_code , class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :original_reference_number , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :original_reference_number , class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :prior_authorization_number , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :prior_authorization_number , class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :outside_lab, class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :outside_lab_id, options_for_select(OutsideLab.active.pluck(:name, :id), selected: f.object.outside_lab.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.label :outside_lab_charges , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.number_field :outside_lab_charges, class: 'form-control', step: 0.01 %>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.label :other_source, class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :other_source_id, options_for_select(CaseSupport.visible.map{|cs| [cs.to_s, cs.id]}, selected: f.object.other_source.try(:id)) , {include_blank: true} ,{class: 'form-control'} %>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.label :total_charge , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.number_field :total_charge, class: 'form-control', step: 0.01 %>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <%= f.label :amount_paid , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.number_field :amount_paid, class: 'form-control', step: 0.01 %>
+        </div>
+      </div>
+      
+
+      <div class="form-group">
+        <%= f.label t(:note) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :note , class: 'form-control ck-editor' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-md-12">
+          <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+        </div>
+        <%= f.simple_fields_for :billing_attachments do |attachment| %>
+            <%= render 'attachments/attachment_show', :f => attachment %>
+        <% end %>
+        <div id="attachment_fields" class="col-md-2 margin-top-10 " style="padding-right: 2px;" >
+          <%= link_to_add_association 'add file', f, :billing_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= link_to t('button_cancel'), @appointment, class: 'btn btn-warning pull-right' %>
+          <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+  <% end %>
+</fieldset>

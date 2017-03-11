@@ -14,7 +14,7 @@
       <tr>
         <td><%= link_to family_history.name, family_history %></td>
         <td><%= link_to family_history.icdcm_code, family_history %></td>
-        <td><%= family_history.date_identified %></td>
+        <td><%= format_date family_history.date_identified %></td>
         <td><%= family_history.family_status %></td>
         <td><%= family_history.family_type %></td>
        </tr>

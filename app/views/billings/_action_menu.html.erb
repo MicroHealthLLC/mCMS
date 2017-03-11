@@ -1,0 +1,9 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to( 'Delete', billing_path(@billing), class: 'btn btn-danger pull-right',
+               :method => :delete,
+               :data => {:confirm => t(:text_are_you_sure)}) if @billing.can?(:manage_roles, :manages_billings, :delete_billings)
+  %>
+  <%= link_to( 'Edit', edit_billing_path(@billing), class: 'btn btn-success pull-right') if @billing.can?(:manage_roles, :manages_billings, :edit_billings) %>
+  <%= link_to t('button_cancel'), @appointment, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_print'), billing_path(@billing, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+</div>

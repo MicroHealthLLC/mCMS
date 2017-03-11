@@ -14,8 +14,8 @@
           <tr>
             <td><%= link_to clearance.clearence_type, clearance_path(clearance)%></td>
             <td><%= clearance.clearence_status %></td>
-            <td><%= clearance.date_received %></td>
-            <td><%= clearance.date_expired %></td>
+            <td><%= format_date clearance.date_received %></td>
+            <td><%= format_date clearance.date_expired %></td>
 
           </tr>
       <% end %>

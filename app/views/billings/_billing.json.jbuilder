@@ -1,0 +1,2 @@
+json.extract! billing, :id, :user_id, :bill_type_id, :bill_status_id, :bill_date, :bill_amount, :accept_assignment_id, :resubmission_code, :original_reference_number, :prior_authorization_number, :outside_lab_id, :outside_lab_charges, :othre_source_id, :total_charge, :amount_paid, :note, :created_at, :updated_at
+json.url billing_url(billing, format: :json)

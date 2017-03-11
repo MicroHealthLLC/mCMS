@@ -26,7 +26,7 @@
             <td><%= link_to_case referral.case %></td>
         <% end %>
         <td><%= referral.referral_type %></td>
-        <td><%= referral.referral_date %></td>
+        <td><%= format_date referral.referral_date %></td>
         <td><%= referral.referral_appointment %></td>
         <td><%= referral.referral_status %></td>
         <td><%= referral.referred_by %></td>

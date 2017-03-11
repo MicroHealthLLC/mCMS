@@ -17,7 +17,7 @@
         <td><%= link_to medical.name, medical %></td>
         <td><%= link_to medical.icdcm_code, medical %></td>
         <td><%= medical.medical_facility %></td>
-        <td><%= medical.date_of_diagnosis %></td>
+        <td><%= format_date medical.date_of_diagnosis %></td>
         <td><%= medical.medical_history_status %></td>
         <td><%= medical.medical_history_type %></td>
       </tr>

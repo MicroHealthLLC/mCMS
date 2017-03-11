@@ -20,8 +20,8 @@
         <td><%= financial.financial_status %></td>
         <td><%= financial.financial_state %></td>
         <td><%= financial.estimated_amount %></td>
-        <td><%= financial.date_start %></td>
-        <td><%= financial.date_end %></td>
+        <td><%= format_date financial.date_start %></td>
+        <td><%= format_date financial.date_end %></td>
        </tr>
   <% end %>
   </tbody>

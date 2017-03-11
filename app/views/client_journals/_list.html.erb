@@ -13,7 +13,7 @@
       <tr>
         <td><%= link_to client_journal.title, client_journal %></td>
         <td><%= client_journal.client_journal_type %></td>
-        <td><%= client_journal.date.to_date %></td>
+        <td><%= format_date client_journal.date %></td>
       </tr>
   <% end %>
   </tbody>

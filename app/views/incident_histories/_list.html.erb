@@ -24,8 +24,8 @@
         <td><%= link_to incident_history.incident, incident_history %></td>
         <td><%= incident_history.incident_type %></td>
         <td><%= incident_history.incident_category %></td>
-        <td><%= incident_history.date_of_incident %></td>
-        <td><%= incident_history.date_diagnosed %></td>
+        <td><%= format_date incident_history.date_of_incident %></td>
+        <td><%= format_date incident_history.date_diagnosed %></td>
         <td><%= incident_history.incident_location_address %></td>
         <td><%= incident_history.incident_location_city %></td>
         <td><%= incident_history.state_type %></td>

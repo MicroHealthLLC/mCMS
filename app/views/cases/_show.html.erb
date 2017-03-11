@@ -36,12 +36,12 @@
 
   <p>
     <strong><%= t('date_start') %>:</strong>
-    <%= @case.date_start %>
+    <%= format_date @case.date_start %>
   </p>
 
   <p>
     <strong><%= t('date_due') %>:</strong>
-    <%= @case.date_due %>
+    <%= format_date @case.date_due %>
   </p>
 
   <p>

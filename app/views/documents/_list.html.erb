@@ -23,7 +23,7 @@
                 <td><%= link_to_case document.case %></td>
             <% end %>
             <td><%= document.document_type %></td>
-            <td><%= document.date %></td>
+            <td><%= format_date document.date %></td>
             <% if @appointment and can?(:manage_roles) %>
                 <td><%= link_to "<i class='fa fa-unlink fa-lg'></i>".html_safe, unlink_appointment_path(appointment_id: @appointment.id, type: 'Document', id: document.id ) %></td>
             <% end %>

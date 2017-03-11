@@ -23,10 +23,10 @@
         <td><%= job_application.position_applied %></td>
         <td><%= job_application.projected_salary %></td>
         <td><%= job_application.application_type %></td>
-        <td><%= job_application.application_date %></td>
+        <td><%= format_date job_application.application_date %></td>
         <td><%= job_application.application_status %></td>
         <td><%= job_application.interview_type %></td>
-        <td><%= job_application.interview_date %></td>
+        <td><%= format_date job_application.interview_date %></td>
         <td><%= job_application.interview_status %></td>
         <td><%= job_application.selection_status %></td>
        </tr>

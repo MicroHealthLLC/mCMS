@@ -12,7 +12,7 @@
       <tr>
         <td><%= link_to award.award_enum, award %></td>
         <td><%= award.award_type %></td>
-        <td><%= award.award_date %></td>
+        <td><%= format_date award.award_date %></td>
       </tr>
   <% end %>
   </tbody>

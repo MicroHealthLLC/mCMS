@@ -13,7 +13,7 @@
       <tr>
         <td><%= link_to capture.disposition, capture %></td>
         <td><%= capture.related_to   %></td>
-        <td><%= capture.date_recorded   %></td>
+        <td><%= format_date capture.date_recorded   %></td>
       </tr>
   <% end %>
   </tbody>

@@ -18,8 +18,8 @@
           <tr>
             <td><%= link_to position.title, position %></td>
             <td><%= position.location_type %></td>
-            <td><%= position.date_start %></td>
-            <td><%= position.date_end %></td>
+            <td><%= format_date position.date_start %></td>
+            <td><%= format_date position.date_end %></td>
             <td><%= position.employment_type %></td>
             <td><%= position.position_status %></td>
             <td><%= position.estimated_monthly_amount %></td>

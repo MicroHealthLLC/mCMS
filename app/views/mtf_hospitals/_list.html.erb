@@ -24,8 +24,8 @@
         <td><%= link_to mtf_hospital.mtf_hospital, mtf_hospital %></td>
         <td><%= mtf_hospital.incident_type %></td>
         <td><%= mtf_hospital.incident_category %></td>
-        <td><%= mtf_hospital.date_of_incident %></td>
-        <td><%= mtf_hospital.date_diagnosed %></td>
+        <td><%= format_date mtf_hospital.date_of_incident %></td>
+        <td><%= format_date mtf_hospital.date_diagnosed %></td>
         <td><%= mtf_hospital.incident_location_address %></td>
         <td><%= mtf_hospital.incident_location_city %></td>
         <td><%= mtf_hospital.state_type %></td>

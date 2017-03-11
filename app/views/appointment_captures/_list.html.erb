@@ -11,7 +11,7 @@
   <% captures.each do |capture| %>
       <tr>
         <td><%= link_to capture.icdcm_code, capture  %></td>
-        <td><%= capture.date_recorded   %></td>
+        <td><%= format_date capture.date_recorded   %></td>
       </tr>
   <% end %>
   </tbody>

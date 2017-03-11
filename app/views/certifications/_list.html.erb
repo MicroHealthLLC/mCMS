@@ -16,8 +16,8 @@
             <td><%= link_to certification.name, certification_path(certification) %></td>
             <td><%=  certification.certification_type %></td>
             <td><%= certification.certification_status %></td>
-            <td><%= certification.date_received %></td>
-            <td><%= certification.date_expired %></td>
+            <td><%= format_date certification.date_received %></td>
+            <td><%= format_date certification.date_expired %></td>
           </tr>
       <% end %>
   <% else %>

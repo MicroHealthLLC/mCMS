@@ -11,12 +11,12 @@
 
     <p>
       <strong>Next date due:</strong>
-      <%= @immunization.next_date_due %>
+      <%= format_date @immunization.next_date_due %>
     </p>
 
     <p>
       <strong>Date immunized:</strong>
-      <%= @immunization.date_immunized %>
+      <%= format_date @immunization.date_immunized %>
     </p>
 
     <p>
@@ -31,7 +31,7 @@
 
     <p>
       <strong>Expiration date:</strong>
-      <%= @immunization.expiration_date %>
+      <%= format_date @immunization.expiration_date %>
     </p>
 
     <p>

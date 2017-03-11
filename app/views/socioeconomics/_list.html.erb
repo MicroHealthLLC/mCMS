@@ -17,8 +17,8 @@
       <tr>
         <td><%= link_to socioeconomic.name, socioeconomic %></td>
         <td><%= link_to socioeconomic.icdcm_code, socioeconomic %></td>
-        <td><%= socioeconomic.date_identified %></td>
-        <td><%= socioeconomic.date_resolved %></td>
+        <td><%= format_date socioeconomic.date_identified %></td>
+        <td><%= format_date socioeconomic.date_resolved %></td>
         <td><%= socioeconomic.socioeconomic_status %></td>
         <td><%= socioeconomic.socioeconomic_type %></td>
       </tr>

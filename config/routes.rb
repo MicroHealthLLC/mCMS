@@ -1,7 +1,16 @@
 Rails.application.routes.draw do
+  resources :billings, except: [:new]
+  resources :appointments do
+    resources :billings, only: [:new]
+  end
+  resources :appointment_procedures
+  resources :appointment_dispositions
+  resources :appointment_captures, except: [:index]
+
   post 'add_appointment_link', to: 'user_cases#add_appointment_link'
   get 'unlink_appointment', to: 'user_cases#unlink_appointment'
   post 'set_appointment_store', to: 'user_cases#set_appointment_store_id'
+
   resources :referrals do
     resources :referral_results, except: [:index]
     collection do
@@ -55,8 +64,6 @@ Rails.application.routes.draw do
   resources :daily_livings
   resources :teleconsults
   resources :enrollments
-  resources :appointment_procedures
-  resources :appointment_dispositions
   resources :client_journals
 
   resources :groups do
@@ -97,7 +104,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :appointment_captures, except: [:index]
+
   resources :checklist_cases, only: [:index, :destroy, :show, :update]
   resources :note_templates
   resources :case_supports do
@@ -133,7 +140,6 @@ Rails.application.routes.draw do
   resources :insurances do
     resources :insurance_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
-  resources :appointments
   resources :news
   match '/wiki_pages/new_page_title', via: [:get, :post]
   wiki_root '/wiki'

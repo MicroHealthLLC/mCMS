@@ -22,12 +22,12 @@
 
     <p>
       <strong>Date prescripted:</strong>
-      <%= @medication.date_prescribed %>
+      <%= format_date @medication.date_prescribed %>
     </p>
 
     <p>
       <strong>Date expired:</strong>
-      <%= @medication.date_expired %>
+      <%= format_date @medication.date_expired %>
     </p>
 
     <p>

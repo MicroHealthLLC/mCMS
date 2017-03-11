@@ -66,7 +66,7 @@ module ApplicationHelper
   end
 
   def format_date datetime
-    datetime.strftime(t('date.formats.default'))
+    datetime.to_date.strftime(Setting['format_date']) if datetime.present?
   end
 
   def show_link(object, options={})

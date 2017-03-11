@@ -1,0 +1,46 @@
+<table class="table table-responsive" id="billings_table">
+  <thead>
+  <tr>
+    <th>Bill type</th>
+    <th>Bill status</th>
+    <th>Bill date</th>
+    <th>Bill amount</th>
+    <th>Accept assignment</th>
+    <th>Resubmission code</th>
+    <th>Original reference number</th>
+    <th>Prior authorization number</th>
+    <th>Outside lab</th>
+    <th>Outside lab charges</th>
+    <th>Other source</th>
+    <th>Total charge</th>
+    <th>Amount paid</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% billings.each do |billing| %>
+      <tr>
+        <td><%= link_to billing.bill_type, billing %></td>
+        <td><%= billing.bill_status %></td>
+        <td><%= format_date billing.bill_date %></td>
+        <td><%= billing.bill_amount %></td>
+        <td><%= billing.accept_assignment %></td>
+        <td><%= billing.resubmission_code %></td>
+        <td><%= billing.original_reference_number %></td>
+        <td><%= billing.prior_authorization_number %></td>
+        <td><%= billing.outside_lab %></td>
+        <td><%= billing.outside_lab_charges %></td>
+        <td><%= billing.other_source %></td>
+        <td><%= billing.total_charge %></td>
+        <td><%= billing.amount_paid %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+
+<script>
+  $(document).ready(function(){
+    initDataTable('billings_table')
+  })
+</script>

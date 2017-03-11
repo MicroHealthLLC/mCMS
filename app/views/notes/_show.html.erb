@@ -11,7 +11,7 @@
 
    <p>
     <strong>Update at:</strong>
-    <%= @note.updated_at.to_date %>
+    <%= format_date @note.updated_at %>
   </p>
 
   <% if @note.object.class != News %>

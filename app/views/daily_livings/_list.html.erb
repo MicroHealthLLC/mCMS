@@ -13,8 +13,8 @@
       <tr>
         <td><%= link_to daily_living.daily_living_type, daily_living %></td>
         <td><%= daily_living.daily_living_status %></td>
-        <td><%= daily_living.date_start %></td>
-        <td><%= daily_living.date_end %></td>
+        <td><%= format_date daily_living.date_start %></td>
+        <td><%= format_date daily_living.date_end %></td>
       </tr>
   <% end %>
   </tbody>

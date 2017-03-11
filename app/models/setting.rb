@@ -1,5 +1,22 @@
 class Setting < ApplicationRecord
 
+  DATE_FORMATS = [
+      '%Y-%m-%d',
+      '%d/%m/%Y',
+      '%d.%m.%Y',
+      '%d-%m-%Y',
+      '%m/%d/%Y',
+      '%d %b %Y',
+      '%d %B %Y',
+      '%b %d, %Y',
+      '%B %d, %Y'
+  ]
+
+  TIME_FORMATS = [
+      '%H:%M',
+      '%I:%M %p'
+  ]
+
   cattr_accessor :available_settings, :cached_settings
   self.available_settings ||= {}
   self.cached_settings ||= {}

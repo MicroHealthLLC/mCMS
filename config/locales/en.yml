@@ -150,12 +150,21 @@ en:
  # APPOINTMENT
   my_appointments: My Appointments
   new_appointment: New Appointment
+  edit_appointment: Edit Appointment
   appointments: Appointments
   appointment_type: Appointment Type
   appointment_status: Appointment Status
 
-  #Client Journal
+ # Billings
+  my_billings: My billings
+  new_billing: New billing
+  edit_billing: Edit billing
+  billing: Billing
+  billings: Billings
+  bill_type: Bill Type
+  bill_status: Bill Status
 
+  #Client Journal
   client: Client
   client_journal: Client Journal
   client_journals: Client Journals

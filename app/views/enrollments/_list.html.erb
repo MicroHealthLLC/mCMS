@@ -19,8 +19,8 @@
         <td><%= link_to enrollment.name, enrollment %></td>
         <td><%= enrollment.enrollment_type %></td>
         <td><%= enrollment.enrollment_status %></td>
-        <td><%= enrollment.date_start %></td>
-        <td><%= enrollment.date_end %></td>
+        <td><%= format_date enrollment.date_start %></td>
+        <td><%= format_date enrollment.date_end %></td>
         <% if @appointment and can?(:manage_roles) %>
             <td><%= link_to "<i class='fa fa-unlink fa-lg'></i>".html_safe,
                             unlink_appointment_path(appointment_id: @appointment.id, type: 'Enrollment', id: enrollment.id ) %></td>

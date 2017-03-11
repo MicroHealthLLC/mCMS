@@ -37,12 +37,12 @@
 
    <p>
     <strong><%= t('date_ended') %>:</strong>
-    <%= @case_support.date_ended %>
+    <%= format_date @case_support.date_ended %>
   </p>
 
   <p>
     <strong><%= t('label_note') %>:</strong>
-    <%= @case_support.note.html_safe %>
+    <%= format_date @case_support.note.html_safe %>
   </p>
   <p>
     <strong><%= t('attachments') %>:</strong>

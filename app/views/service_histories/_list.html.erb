@@ -24,12 +24,12 @@
         <td><%= service_history.service_status %></td>
         <td><%= service_history.component %></td>
         <td><%= service_history.discharge_type %></td>
-        <td><%= service_history.date_entered %></td>
-        <td><%= service_history.end_active_obliged_service %></td>
-        <td><%= service_history.demobilization %></td>
-        <td><%= service_history.separation %></td>
-        <td><%= service_history.temporary_disability_retirement_list %></td>
-        <td><%= service_history.permanent_disability_retirement_list %></td>
+        <td><%= format_date service_history.date_entered %></td>
+        <td><%= format_date service_history.end_active_obliged_service %></td>
+        <td><%= format_date service_history.demobilization %></td>
+        <td><%= format_date service_history.separation %></td>
+        <td><%= format_date service_history.temporary_disability_retirement_list %></td>
+        <td><%= format_date service_history.permanent_disability_retirement_list %></td>
       </tr>
   <% end %>
   </tbody>

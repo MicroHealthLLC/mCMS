@@ -18,6 +18,8 @@ maximum_attempts:
   default: 5
 unlock_in:
   default: 60
+format_date:
+  default: "%d/%m/%Y"
 email_header:
   default: ""
 email_footer:

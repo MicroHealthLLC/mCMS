@@ -26,7 +26,7 @@
         <% end %>
         <td><%= teleconsult.contact_type %></td>
         <td><%= teleconsult.consult_status %></td>
-        <td><%= teleconsult.date %></td>
+        <td><%= format_date teleconsult.date %></td>
         <td><%= teleconsult.time %></td>
         <% if @appointment and can?(:manage_roles) %>
             <td><%= link_to "<i class='fa fa-unlink fa-lg'></i>".html_safe, unlink_appointment_path(appointment_id: @appointment.id, type: 'Teleconsult', id: teleconsult.id ) %></td>

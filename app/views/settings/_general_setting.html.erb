@@ -6,14 +6,21 @@
       </div>
     </div>
 
-   <div class="form-group">
+    <div class="form-group">
       <%= label_tag "email_from", "Email from: ", class: 'col-md-2 control-label' %>
       <div class="col-md-9">
         <%= text_field_tag :email_from, Setting['email_from'], class: 'form-control' %>
       </div>
     </div>
 
-     <div class="form-group">
+    <div class="form-group">
+      <%= label_tag "Format date", "Format date: ", class: 'col-md-2 control-label' %>
+      <div class="col-md-9">
+        <%= select_tag :format_date, options_for_select(date_format_setting_options('en'), selected: Setting['format_date']), {class: 'form-control'} %>
+      </div>
+    </div>
+
+    <div class="form-group">
       <%= label_tag "conference_url", "Conference URL: ", class: 'col-md-2 control-label' %>
       <div class="col-md-9">
         <em>Add $room_number$ to generate unique room for every call(ex: http://www.appear.in/$room_number$ )</em>

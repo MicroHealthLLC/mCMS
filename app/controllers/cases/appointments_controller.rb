@@ -27,6 +27,7 @@ class AppointmentsController < UserCasesController
   def show
     set_client_profile(@appointment)
     @case =  @appointment.case
+    @billings =  @appointment.billings
     # update_rails = @appointment.updated_at.to_date
     @appointment_links = @appointment.appointment_links.includes(:linkable)
 

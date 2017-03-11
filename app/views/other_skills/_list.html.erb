@@ -16,8 +16,8 @@
             <td><%= link_to other_skill.name, other_skill_path(other_skill)%></td>
             <td><%= other_skill.skill_status %></td>
             <td><%= other_skill.skill_type %></td>
-            <td><%= other_skill.date_received %></td>
-            <td><%= other_skill.date_expired %></td>
+            <td><%= format_date other_skill.date_received %></td>
+            <td><%= format_date other_skill.date_expired %></td>
           </tr>
       <% end %>
   <% else %>

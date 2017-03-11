@@ -38,12 +38,12 @@
 
     <p>
       <strong><%= t('date_completed') %>:</strong>
-      <%= @need.date_completed %>
+      <%= format_date @need.date_completed %>
     </p>
 
     <p>
       <strong><%= t('date_identified') %>:</strong>
-      <%= @need.date_identified %>
+      <%= format_date @need.date_identified %>
     </p>
 
   </div>

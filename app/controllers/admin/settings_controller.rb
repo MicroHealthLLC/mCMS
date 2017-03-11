@@ -15,6 +15,7 @@ class SettingsController < ApplicationController
 
     Setting['application_name'] = params['application_name']
     Setting['email_from'] = params['email_from']
+    Setting['format_date'] = params['format_date']
     Setting['conference_url'] = params['conference_url']
     Setting['open_new_tab_url'] = params['open_new_tab_url']
     Setting['use_iframe'] = params['use_iframe']

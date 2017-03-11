@@ -33,9 +33,9 @@
             <% end %>
             <td><%= goal.priority_type %></td>
             <td><%= goal.goal_status %></td>
-            <td><%= goal.date_start %></td>
-            <td><%= goal.date_due %></td>
-            <td><%= goal.date_completed %></td>
+            <td><%= format_date goal.date_start %></td>
+            <td><%= format_date goal.date_due %></td>
+            <td><%= format_date  goal.date_completed %></td>
             <% if @appointment  and can?(:manage_roles) %>
                 <td><%= link_to "<i class='fa fa-unlink fa-lg'></i>".html_safe, unlink_appointment_path(appointment_id: @appointment.id, type: 'Goal', id: goal.id ) %></td>
             <% end %>

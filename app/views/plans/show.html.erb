@@ -33,17 +33,17 @@
 
     <p>
       <strong><%= t('date_start') %>:</strong>
-      <%= @plan.date_start %>
+      <%= format_date @plan.date_start %>
     </p>
 
     <p>
       <strong><%= t('date_due') %>:</strong>
-      <%= @plan.date_due %>
+      <%= format_date @plan.date_due %>
     </p>
 
     <p>
       <strong><%= t('date_completed') %>:</strong>
-      <%= @plan.date_completed %>
+      <%= format_date @plan.date_completed %>
     </p>
 
   </div>

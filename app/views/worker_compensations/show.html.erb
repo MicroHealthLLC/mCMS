@@ -24,18 +24,19 @@
 
     <p>
       <strong>Date of compensation start:</strong>
-      <%= @worker_compensation.date_of_compensation_start %>
+      <%= format_date @worker_compensation.date_of_compensation_start %>
     </p>
+
+    <p>
+      <strong>Date of compensation end:</strong>
+      <%= format_date @worker_compensation.date_of_compensation_end %>
+    </p>
+
     <p>
       <strong><%= t('attachments') %>:</strong>
       <% @worker_compensation.worker_compensation_attachments.each do |attachment| %>
           <%= render 'attachments/attachment_show_only', :attachment => attachment %>
       <% end %>
-    </p>
-
-    <p>
-      <strong>Date of compensation end:</strong>
-      <%= @worker_compensation.date_of_compensation_end %>
     </p>
 
   </div>

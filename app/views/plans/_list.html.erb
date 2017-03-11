@@ -32,9 +32,9 @@
         <% end %>
         <td><%= plan.priority_type %></td>
         <td><%= plan.plan_status %></td>
-        <td><%= plan.date_start %></td>
-        <td><%= plan.date_due %></td>
-        <td><%= plan.date_completed %></td>
+        <td><%= format_date plan.date_start %></td>
+        <td><%= format_date plan.date_due %></td>
+        <td><%= format_date plan.date_completed %></td>
         <% if @appointment  and can?(:manage_roles) %>
             <td><%= link_to "<i class='fa fa-unlink fa-lg'></i>".html_safe, unlink_appointment_path(appointment_id: @appointment.id, type: 'Plan', id: plan.id ) %></td>
         <% end %>

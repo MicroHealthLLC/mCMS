@@ -94,6 +94,20 @@
   </article>
 </div>
 
+<%= link_to(t('new_billing'), new_appointment_billing_path(@appointment), class: 'btn btn-primary pull-right btn-edition') if can?(:add_captures, :manage_roles) %>
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+    <%= render partial: 'billings/list',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                   billings: @billings,
+                   wid_id: 'billings',
+                   wid_title: t('billings')
+               } %>
+  </article>
+</div>
+
 <%= link_to( t('add_note'), new_note_path(type: 'AppointmentNote', owner_id: @appointment.id), class: 'btn btn-primary pull-right btn-edition') if can?(:add_notes, :manage_roles) %>
 <div class="row">
   <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

@@ -13,7 +13,7 @@
   <% referral_results.each do |referral_result| %>
       <tr>
         <td><%= link_to referral_result.updated_by, referral_referral_result_path(referral_result) %></td>
-        <td><%= referral_result.result_date %></td>
+        <td><%= format_date referral_result.result_date %></td>
         <td><%= referral_result.result.html_safe %></td>      
       </tr>
   <% end %>

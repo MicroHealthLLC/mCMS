@@ -15,7 +15,7 @@
             <td><%= link_to language.language_type, language %></td>
             <td><%= language.language_status %></td>
             <td><%= language.proficiency_type %></td>
-            <td><%= language.updated_at.strftime("%d/%m/%y") %></td>
+            <td><%= format_date language.updated_at %></td>
           </tr>
       <% end %>
   <% else %>

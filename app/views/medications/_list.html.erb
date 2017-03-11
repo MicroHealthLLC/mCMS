@@ -18,8 +18,8 @@
         <td><%= link_to medication.medication_synonym, medication %></td>
         <td><%= medication.dose %></td>
         <td><%= medication.description %></td>
-        <td><%= medication.date_prescribed %></td>
-        <td><%= medication.date_expired %></td>
+        <td><%= format_date medication.date_prescribed %></td>
+        <td><%= format_date medication.date_expired %></td>
         <td><%= medication.total_refills %></td>
         <td><%= medication.refills_left %></td>
         <td><%= medication.medication_status %></td>

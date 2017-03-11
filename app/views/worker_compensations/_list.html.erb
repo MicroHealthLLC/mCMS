@@ -15,8 +15,8 @@
         <td><%= link_to worker_compensation.injury.to_s, worker_compensation %></td>
         <td><%= worker_compensation.compensation_type %></td>
         <td><%= worker_compensation.compensation_status %></td>
-        <td><%= worker_compensation.date_of_compensation_start %></td>
-        <td><%= worker_compensation.date_of_compensation_end %></td>
+        <td><%= format_date worker_compensation.date_of_compensation_start %></td>
+        <td><%= format_date worker_compensation.date_of_compensation_end %></td>
         </tr>
   <% end %>
   </tbody>

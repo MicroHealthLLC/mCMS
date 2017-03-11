@@ -32,17 +32,17 @@
 
     <p>
       <strong><%= t('date_start') %>:</strong>
-      <%= @goal.date_start %>
+      <%= format_date @goal.date_start %>
     </p>
 
     <p>
       <strong><%= t('date_due') %>:</strong>
-      <%= @goal.date_due %>
+      <%= format_date @goal.date_due %>
     </p>
 
     <p>
       <strong><%= t('date_completed') %>:</strong>
-      <%= @goal.date_completed %>
+      <%= format_date @goal.date_completed %>
     </p>
   </div>
 </div>

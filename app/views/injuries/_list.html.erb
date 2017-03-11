@@ -25,7 +25,7 @@
         <td><%= injury.injury_status %></td>
         <td><%= injury.employer %></td>
         <td><%= injury.date_of_injury %></td>
-        <td><%= injury.date_resolved %></td>
+        <td><%= format_date injury.date_resolved %></td>
         </tr>
   <% end %>
   </tbody>

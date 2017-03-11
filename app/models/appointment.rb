@@ -11,6 +11,7 @@ class Appointment < ApplicationRecord
   has_many :appointment_dispositions, dependent: :destroy
   has_many :appointment_procedures, dependent: :destroy
   has_many :appointment_links, dependent: :destroy
+  has_many :billings, dependent: :destroy
 
   has_many :appointment_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :appointment_attachments, reject_if: :all_blank, allow_destroy: true
@@ -100,6 +101,7 @@ class Appointment < ApplicationRecord
 
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.text "Apointment ##{id}", :style => :bold}
+    user.to_pdf_brief_info(pdf)
     pdf.text "<b>Description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
     pdf.text "<b>Appointment type: </b> #{appointment_type}", :inline_format =>  true
     pdf.text "<b>Appointment status: </b> #{appointment_status}", :inline_format =>  true

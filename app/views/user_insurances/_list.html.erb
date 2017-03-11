@@ -18,8 +18,8 @@
         <td><%= user_insurance.insurance_type %></td>
         <td><%= user_insurance.insurance_status %></td>
         <td><%= user_insurance.insurance_identifier %></td>
-        <td><%= user_insurance.issue_date %></td>
-        <td><%= user_insurance.expiration_date %></td>
+        <td><%= format_date user_insurance.issue_date %></td>
+        <td><%= format_date user_insurance.expiration_date %></td>
       </tr>
   <% end %>
   </tbody>
