@@ -1,6 +1,7 @@
 <section id="widget-grid" class="admissions_section">
 
   <% if @admissions %>
+      <%= link_to('New Admission', new_admission_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_admissions, :manage_admissions, :manage_roles) %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'admissions/list',
@@ -15,6 +16,7 @@
 
   <% end %>
   <% if @problem_lists %>
+      <%= link_to(t('new_problem_list'), new_problem_list_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_problem_lists, :manage_problem_lists, :manage_roles) %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'problem_lists/list',
@@ -28,6 +30,7 @@
       </div>
   <% end %>
   <% if @health_care_facilities %>
+      <%= link_to('New Health Care Facility', new_health_care_facility_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_health_care_facilitiess, :manage_roles, :manage_health_care_facilitiess) %>
 
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -41,6 +44,7 @@
       </div>
   <% end %>
   <% if @surgicals %>
+      <%= link_to(t('new_surgical'), new_surgical_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_surgicals, :manage_surgicals, :manage_roles) %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'surgicals/list',
@@ -54,6 +58,7 @@
       </div>
   <% end %>
   <% if @medicals %>
+      <%= link_to(t('new_medical'), new_medical_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_medicals, :manage_roles, :manage_medicals) %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'medicals/list',
@@ -66,6 +71,7 @@
       </div>
   <% end %>
   <% if @medications %>
+      <%= link_to(t('new_medication'), new_medication_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_medications, :manage_roles, :manage_medications) %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'medications/list',
@@ -78,6 +84,7 @@
       </div>
   <% end %>
   <% if @behavioral_risks %>
+      <%= link_to(t('new_behavioral_risk'), new_behavioral_risk_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_behavioral_risks, :manage_roles, :manage_behavioral_risks) %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'behavioral_risks/list',
@@ -90,6 +97,7 @@
       </div>
   <% end %>
   <% if @family_histories %>
+      <%= link_to(t('new_family_history'), new_family_history_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_family_histories, :manage_roles, :manage_family_histories) %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'family_histories/list',
@@ -102,6 +110,7 @@
       </div>
   <% end %>
   <% if @immunizations %>
+      <%= link_to(t('new_immunization'), new_immunization_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_immunizations, :manage_roles, :manage_immunizations) %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'immunizations/list',
@@ -114,6 +123,7 @@
       </div>
   <% end %>
   <% if @allergies %>
+      <%= link_to(t('new_allergy'), new_allergy_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_allergies, :manage_roles, :manage_allergies) %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'allergies/list',

@@ -1,6 +1,7 @@
 <section id="widget-grid" class="daily_livings_section">
 
   <% if @daily_livings %>
+      <%= link_to( t('new_daily_living'), new_daily_living_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_daily_livings, :manage_roles, :manage_daily_livings) %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'daily_livings/list',
@@ -13,6 +14,7 @@
       </div>
   <% end %>
   <% if @socioeconomics %>
+      <%= link_to(t('new_socioeconomic'), new_socioeconomic_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_socioeconomics, :manage_socioeconomics, :manage_roles) %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'socioeconomics/list',
@@ -26,6 +28,7 @@
       </div>
   <% end %>
   <% if @environment_risks %>
+      <%= link_to(t('new_environment_risk'), new_environment_risk_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_environment_risks, :manage_roles, :manage_environment_risks) %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'environment_risks/list',
@@ -38,6 +41,7 @@
       </div>
   <% end %>
   <% if @housings %>
+      <%= link_to('New Housing', new_housing_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_housings, :manage_roles, :manage_housings) %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'housings/list',
@@ -50,6 +54,7 @@
       </div>
   <% end %>
   <% if @financials %>
+      <%= link_to('New Financial', new_financial_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_financials, :manage_roles, :manage_financials) %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'financials/list',
@@ -62,6 +67,7 @@
       </div>
   <% end %>
   <% if @legals %>
+      <%= link_to(t('new_legal'), new_legal_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_legals, :manage_roles, :manage_legals) %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'legals/list',
@@ -74,6 +80,7 @@
       </div>
   <% end %>
   <% if @transportations %>
+      <%= link_to(t('new_transportation'), new_transportation_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_transportations, :manage_roles, :manage_transportations) %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'transportations/list',
@@ -86,6 +93,7 @@
       </div>
   <% end %>
   <% if @other_histories %>
+      <%= link_to(t('new_other_history'), new_other_history_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_other_histories, :manage_roles, :manage_other_histories) %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'other_histories/list',
