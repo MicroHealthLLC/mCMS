@@ -7,6 +7,12 @@ Rails.application.routes.draw do
   resources :appointment_dispositions
   resources :appointment_captures, except: [:index]
 
+  get 'profile_record',  to: 'user_profiles#profile_record'
+  get 'occupational_record',  to: 'user_profiles#occupational_record'
+  get 'medical_record', to: 'user_history#medical_record'
+  get 'socioeconomic_record', to: 'user_history#socioeconomic_record'
+
+
   post 'add_appointment_link', to: 'user_cases#add_appointment_link'
   get 'unlink_appointment', to: 'user_cases#unlink_appointment'
   post 'set_appointment_store', to: 'user_cases#set_appointment_store_id'

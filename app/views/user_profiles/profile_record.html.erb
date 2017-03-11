@@ -1,0 +1,69 @@
+
+<section id="widget-grid" class="languages_section">
+
+  <% if @languages %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'languages/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         languages: @languages,
+                         wid_id: 'languages',
+                         wid_title: t('languages')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @affiliations %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'affiliations/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         affiliations: @affiliations,
+                         wid_id: 'affiliations',
+                         wid_title: t('affiliations')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @contacts %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'contacts/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         contacts: @contacts,
+                         wid_id: 'contacts',
+                         wid_title: t('contacts')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @user_insurances %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'user_insurances/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         user_insurances: @user_insurances,
+                         wid_id: 'insurances',
+                         wid_title: t('insurance')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @documents %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'documents/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         documents: @documents,
+                         wid_id: 'documents',
+                         wid_title: t('documents')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+</section>

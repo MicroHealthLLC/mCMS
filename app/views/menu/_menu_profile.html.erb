@@ -6,6 +6,12 @@
           <a href= "/users/edit" title="<%= t('profile.profile') %>"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent"><%= t('profile.profile') %></span></a>
         </li>
 
+        <% if module_enabled?( 'profile_record') %>
+            <li class="<%= menu_active?('profile_record') %> ">
+              <a href= "/profile_record" title="Profile record"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Profile record</span></a>
+            </li>
+        <% end %>
+
         <% if module_enabled?( 'languages')  && can?(:manage_roles, :view_languages, :manage_languages) %>
             <li class="<%= menu_active?('languages') %>">
               <a href="/languages" title="<%= t(:languages) %>"><i class="fa fa-lg fa-fw fa-language"></i> <span class="menu-item-parent"><%= t(:languages) %></span></a>

@@ -1,0 +1,100 @@
+<section id="widget-grid" class="daily_livings_section">
+
+  <% if @daily_livings %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'daily_livings/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'daily_living',
+                         wid_title: t('daily_livings')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @socioeconomics %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'socioeconomics/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         socioeconomics: @socioeconomics,
+                         wid_id: 'socioeconomics',
+                         wid_title: t('socioeconomics')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @environment_risks %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'environment_risks/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'environment_risk',
+                         wid_title: t('environment_risks')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @housings %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'housings/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'housing',
+                         wid_title: t('housings')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @financials %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'financials/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'financial',
+                         wid_title: t('financials')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @legals %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'legals/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'legal',
+                         wid_title: t('legals')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @transportations %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'transportations/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'transportation',
+                         wid_title: t('transportations')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @other_histories %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'other_histories/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'other_history',
+                         wid_title: t('other_histories')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+</section>

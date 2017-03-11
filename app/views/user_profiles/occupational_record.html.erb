@@ -1,0 +1,106 @@
+<section id="widget-grid" class="educations_section">
+  <% if @educations %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'educations/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         educations: @educations,
+                         wid_id: 'educations',
+                         wid_title: t('educations')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @other_skills %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'other_skills/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         other_skills: @other_skills,
+                         wid_id: 'other_skills',
+                         wid_title: t('other_skills')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @certifications %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'certifications/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         certifications: @certifications,
+                         wid_id: 'certifications',
+                         wid_title: t('certifications')
+                     } %>
+        </article>
+      </div>
+
+  <% end %>
+  <% if @clearances %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'clearances/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         clearances: @clearances,
+                         wid_id: 'clearances',
+                         wid_title: t('clearances')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @positions %>
+
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'positions/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         positions: @positions,
+                         wid_id: 'positions',
+                         wid_title: t('positions')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @injuries %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'injuries/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'injury',
+                         wid_title: t('injuries')
+                     } %>
+        </article>
+      </div>
+
+  <% end %>
+  <% if @worker_compensations %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'worker_compensations/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'worker_compensation',
+                         wid_title: t('worker_compensations')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @job_applications %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'job_applications/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'job_application',
+                         wid_title: t('job_applications')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+</section>

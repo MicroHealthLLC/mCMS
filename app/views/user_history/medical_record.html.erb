@@ -1,0 +1,128 @@
+<section id="widget-grid" class="admissions_section">
+
+  <% if @admissions %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'admissions/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         admissions: @admissions,
+                         wid_id: 'admissions',
+                         wid_title: t('admissions')
+                     } %>
+        </article>
+      </div>
+
+  <% end %>
+  <% if @problem_lists %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'problem_lists/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         problem_lists: @problem_lists,
+                         wid_id: 'problem_lists',
+                         wid_title: t('problem_lists')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @health_care_facilities %>
+
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'health_care_facilities/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'health_care_facilities',
+                         wid_title: t('health_care_facilities')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @surgicals %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'surgicals/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         surgicals: @surgicals,
+                         wid_id: 'surgicals',
+                         wid_title: t('surgicals')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @medicals %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'medicals/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'medical',
+                         wid_title: t('medicals')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @medications %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'medications/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'medication',
+                         wid_title: t('medications')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @behavioral_risks %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'behavioral_risks/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'behavioral_risk',
+                         wid_title: t('behavioral_risks')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @family_histories %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'family_histories/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'family_history',
+                         wid_title: t('family_histories')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @immunizations %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'immunizations/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'immunization',
+                         wid_title: t('immunizations')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+  <% if @allergies %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'allergies/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'allergy',
+                         wid_title: t('allergies')
+                     } %>
+        </article>
+      </div>
+  <% end %>
+</section>

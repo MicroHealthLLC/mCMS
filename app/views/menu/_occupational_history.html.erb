@@ -2,6 +2,13 @@
     <li>
       <a href="#" id="ul_occupation_history"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Occupational History</span></a>
       <ul id="occupation_history_menu">
+
+        <% if module_enabled?( 'occupational_record') %>
+            <li class="<%= menu_active?('profile_record') %> ">
+              <a href= "/occupational_record" title="Occupational record"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Occupational record</span></a>
+            </li>
+        <% end %>
+
         <% if module_enabled?( 'educations') && can?(:manage_roles, :view_educations, :manage_educations)%>
             <li class="<%= menu_active?('educations') %>">
               <a href="/educations" title="<%= t(:education) %>"><i class="fa fa-lg fa-fw fa-graduation-cap"></i> <span class="menu-item-parent"><%= t(:education) %></span></a>
