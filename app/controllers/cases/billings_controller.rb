@@ -24,7 +24,6 @@ class BillingsController < UserProfilesController
       from = params[:from] || 1.month.ago
       to = params[:to] || 1.month.from_now
       @billings = scope.default_includes.
-          where(appointment_id: Appointment.my_appointments.pluck(:id)).
           where('bill_date >= ?', from).
           where('bill_date <= ?', to)
     else
