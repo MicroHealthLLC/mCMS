@@ -111,7 +111,10 @@
 <%= javascript_include_tag 'smart_admin/smart_admin' %>
 <script>
     $(document).ready(function() {
-
+      toastr.options = {
+        "progressBar": true,
+        "timeOut": "20000"
+      }
         // DO NOT REMOVE : GLOBAL FUNCTIONS!
         pageSetUp();
     });

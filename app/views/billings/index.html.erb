@@ -1,26 +1,6 @@
 <section id="widget-grid" class="billings_section">
   <%= render partial: 'state_button_filter'%>
   <% if User.current.can?(:manage_roles) %>
-      <script>
-        $( function() {
-          var dateFormat = "mm/dd/yy"
-          $('#from').datetimepicker({format: 'DD/MM/YYYY',});
-          $('#to').datetimepicker({
-            format: 'DD/MM/YYYY',
-            useCurrent: false //Important! See issue #1075
-          });
-          $("#from").on("dp.change", function (e) {
-            $('#to').data("DateTimePicker").minDate(e.date);
-          });
-          $("#to").on("dp.change", function (e) {
-            $('#from').data("DateTimePicker").maxDate(e.date);
-          });
-        } );
-      </script>
-      <label for="from">From</label>
-      <input type="text" id="from" name="from">
-      <label for="to">to</label>
-      <input type="text" id="to" name="to">
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'billing_appointment_list',
