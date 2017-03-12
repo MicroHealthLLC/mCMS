@@ -25,8 +25,8 @@
   *= require buttons.dataTables.min
   *= require pivot
   *= require clockpicker
-  *= require easy-autocomplete.min
   *= require toastr
   *= require bootstrap-datetimepicker.min
   *= require style.css
+  *= require easy-autocomplete.min
  */

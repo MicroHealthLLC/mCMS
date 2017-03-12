@@ -106,7 +106,11 @@ var named_function = function(){
 
     $('a').attr('data-turbolinks', "false");
     // initialize persistent state
-    $('.date_picker').datepicker({ dateFormat: 'dd-mm-yy' });
+    $('.date_picker').datepicker({
+        dateFormat: 'yy-mm-dd',
+        "prevText":'<i class="fa fa-chevron-left"></i>',
+        "nextText":'<i class="fa fa-chevron-right"></i>'
+    });
 
     $( "select").css('width', '100%')
     $( "select").css('padding', '0')
@@ -115,7 +119,7 @@ var named_function = function(){
     });
     $('.clockpicker').datetimepicker({format: 'LT'});
     $('.datetimepicker').datetimepicker({
-        format: 'DD/MM/YYYY LT'
+        format: 'YYYY-MM-DD LT'
     });
 
     handle_menu('admin');
