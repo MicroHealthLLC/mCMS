@@ -26,7 +26,7 @@ class EmployeesController < ApplicationController
 
   def create
     @user = User.new(params.require(:user).permit(employee_params))
-    if params[:auto_password]
+    if params[:anonyme_client]
        @user.anonyme_user = true
        @user.email = random_email(params)
     end
