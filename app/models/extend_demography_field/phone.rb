@@ -27,7 +27,7 @@ class Phone < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.text "<b>Phone type:</b> #{phone_type}. <b>Phone number:</b> #{phone_number}", :inline_format =>  true
+    pdf.table([[ "Phone type:", " #{phone_type}", " Phone number:", " #{phone_number}"]], :column_widths => [ 100,150, 100, 173])
   end
 
 end

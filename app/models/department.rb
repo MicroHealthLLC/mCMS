@@ -77,13 +77,13 @@ class Department < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Department ##{id}", :style => :bold}
-    pdf.text "<b>Department type: </b> #{department_type}", :inline_format =>  true
-    pdf.text "<b>Organization: </b> #{organization}", :inline_format =>  true
-    pdf.text "<b>Date received: </b> #{date_start}", :inline_format =>  true
-    pdf.text "<b>Date expired: </b> #{date_end}", :inline_format =>  true
-    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
-    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+    pdf.font_size(25){  pdf.table([[ "Department ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
+    pdf.table([[ "Department type: ", " #{department_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Organization: ", " #{organization}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date received: ", " #{date_start}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date expired: ", " #{date_end}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
 end

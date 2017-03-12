@@ -76,17 +76,17 @@ class JobApplication < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Job Application ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Job Application ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Employer: </b> #{employer}", :inline_format =>  true
-    pdf.text "<b>Position Applied: </b> #{position_applied}", :inline_format =>  true
-    pdf.text "<b>Projected salary: </b> #{projected_salary}", :inline_format =>  true
-    pdf.text "<b>Application Type: </b> #{application_type}", :inline_format =>  true
-    pdf.text "<b>Application Status: </b> #{application_status}", :inline_format =>  true
-    pdf.text "<b>Interview Date: </b> #{interview_date}", :inline_format =>  true
-    pdf.text "<b>Interview Type: </b> #{interview_type}", :inline_format =>  true
-    pdf.text "<b>Interview Status: </b> #{interview_status}", :inline_format =>  true
-    pdf.text "<b>Selection Status: </b> #{selection_status}", :inline_format =>  true
+    pdf.table([[ "Employer: ", " #{employer}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Position Applied: ", " #{position_applied}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Projected salary: ", " #{projected_salary}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Application Type: ", " #{application_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Application Status: ", " #{application_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Interview Date: ", " #{interview_date}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Interview Type: ", " #{interview_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Interview Status: ", " #{interview_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Selection Status: ", " #{selection_status}"]], :column_widths => [ 150, 373])
   end
 
 end

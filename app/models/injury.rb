@@ -47,16 +47,16 @@ class Injury < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Injury ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Injury ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Name: </b> #{injury_name}", :inline_format =>  true
-    pdf.text "<b>Injury Cause name: </b> #{injury_cause_name}", :inline_format =>  true
-    pdf.text "<b>Injury Status: </b> #{injury_status}", :inline_format =>  true
-    pdf.text "<b>Injury Type: </b> #{injury_type}", :inline_format =>  true
-    pdf.text "<b>Injury Cause: </b> #{injury_cause}", :inline_format =>  true
-    pdf.text "<b>date of injury: </b> #{date_of_injury}", :inline_format =>  true
-    pdf.text "<b>date of resolved: </b> #{date_resolved}", :inline_format =>  true
-    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+    pdf.table([[ "Name: ", " #{injury_name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Injury Cause name: ", " #{injury_cause_name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Injury Status: ", " #{injury_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Injury Type: ", " #{injury_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Injury Cause: ", " #{injury_cause}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "date of injury: ", " #{date_of_injury}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "date of resolved: ", " #{date_resolved}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
 
 end

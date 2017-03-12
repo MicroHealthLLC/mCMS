@@ -34,19 +34,19 @@ class Medication < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Medication ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Medication ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Medication: </b> #{medication_synonym}", :inline_format =>  true
-    pdf.text "<b>Medication TTY: </b> #{medication_tty}", :inline_format =>  true
-    pdf.text "<b>Direction: </b> #{description}", :inline_format =>  true
-    pdf.text "<b>Count: </b> #{dose}", :inline_format =>  true
-    pdf.text "<b>Date Prescribed: </b> #{date_prescribed}", :inline_format =>  true
-    pdf.text "<b>Date Expired: </b> #{date_expired}", :inline_format =>  true
-    pdf.text "<b>Total Refill: </b> #{total_refills}", :inline_format =>  true
-    pdf.text "<b>Refill Left: </b> #{refills_left}", :inline_format =>  true
-    pdf.text "<b>Medication Status: </b> #{medication_status}", :inline_format =>  true
+    pdf.table([[ "Medication: ", " #{medication_synonym}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Medication TTY: ", " #{medication_tty}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Direction: ", " #{description}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Count: ", " #{dose}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date Prescribed: ", " #{date_prescribed}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date Expired: ", " #{date_expired}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Total Refill: ", " #{total_refills}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Refill Left: ", " #{refills_left}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Medication Status: ", " #{medication_status}"]], :column_widths => [ 150, 373])
 
-    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(medication_description)}", :inline_format =>  true
+    pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(medication_description)}"]], :column_widths => [ 150, 373])
   end
   
 end

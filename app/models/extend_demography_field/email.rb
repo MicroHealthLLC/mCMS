@@ -27,7 +27,7 @@ class Email < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.text "<b>Email type:</b> #{email_type}. <b> Email:</b> #{email_address}", :inline_format =>  true
+    pdf.table([[ "Email type:", " #{email_type} ", "  Email:", " #{email_address}"]], :column_widths => [ 100,150, 100, 173])
   end
 
 end

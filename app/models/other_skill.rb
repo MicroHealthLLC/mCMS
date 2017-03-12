@@ -62,14 +62,14 @@ class OtherSkill < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Skill ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Skill ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Skill: </b> #{name}", :inline_format =>  true
-    pdf.text "<b>Skill Status: </b> #{skill_status}", :inline_format =>  true
-    pdf.text "<b>Skill Type: </b> #{skill_type}", :inline_format =>  true
-    pdf.text "<b>Date received: </b> #{date_received}", :inline_format =>  true
-    pdf.text "<b>Date expired: </b> #{date_expired}", :inline_format =>  true
-    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+    pdf.table([[ "Skill: ", " #{name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Skill Status: ", " #{skill_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Skill Type: ", " #{skill_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date received: ", " #{date_received}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date expired: ", " #{date_expired}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
   def for_mail

@@ -44,13 +44,13 @@ class EnvironmentRisk < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Environment Risk ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Environment Risk ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Icdcm Code: </b> #{icdcm_code}", :inline_format =>  true
-    pdf.text "<b>Environment Risk Type: </b> #{environment_type}", :inline_format =>  true
-    pdf.text "<b>Environment Risk Status: </b> #{environment_status}", :inline_format =>  true
-    pdf.text "<b>date started: </b> #{date_started}", :inline_format =>  true
-    pdf.text "<b>date ended: </b> #{date_ended}", :inline_format =>  true
-    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+    pdf.table([[ "Icdcm Code: ", " #{icdcm_code}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Environment Risk Type: ", " #{environment_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Environment Risk Status: ", " #{environment_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "date started: ", " #{date_started}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "date ended: ", " #{date_ended}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
 end

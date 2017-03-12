@@ -43,13 +43,13 @@ class Clearance < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Clearance ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Clearance ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Clearance type: </b> #{clearence_type}", :inline_format =>  true
-    pdf.text "<b>Clearance Status: </b> #{clearence_status}", :inline_format =>  true
-    pdf.text "<b>Date received: </b> #{date_received}", :inline_format =>  true
-    pdf.text "<b>Date expired: </b> #{date_expired}", :inline_format =>  true
-    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+    pdf.table([[ "Clearance type: ", " #{clearence_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Clearance Status: ", " #{clearence_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date received: ", " #{date_received}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date expired: ", " #{date_expired}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
   def for_mail

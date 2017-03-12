@@ -37,11 +37,11 @@ class ClientJournal < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Client Journal ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Client Journal ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Title: </b> #{title}", :inline_format =>  true
-    pdf.text "<b>Client Journal Type: </b> #{client_journal_type}", :inline_format =>  true
-    pdf.text "<b>date: </b> #{date}", :inline_format =>  true
-    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+    pdf.table([[ "Title: ", " #{title}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Client Journal Type: ", " #{client_journal_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "date: ", " #{date}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 end

@@ -77,17 +77,17 @@ class Position < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Position ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Position ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>title: </b> #{title}", :inline_format =>  true
-    pdf.text "<b>Position description: </b> #{ActionView::Base.full_sanitizer.sanitize(position_description)}", :inline_format =>  true
-    pdf.text "<b>Position Status: </b> #{position_status}", :inline_format =>  true
-    pdf.text "<b>Location: </b> #{location_type}", :inline_format =>  true
-    pdf.text "<b>Special requirement: </b> #{special_requirement}", :inline_format =>  true
-    pdf.text "<b>Date start: </b> #{date_start}", :inline_format =>  true
-    pdf.text "<b>Date end: </b> #{date_end}", :inline_format =>  true
-    pdf.text "<b>Employment type: </b> #{employment_type}", :inline_format =>  true
-    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+    pdf.table([[ "title: ", " #{title}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Position description: ", " #{ActionView::Base.full_sanitizer.sanitize(position_description)}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Position Status: ", " #{position_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Location: ", " #{location_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Special requirement: ", " #{special_requirement}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date start: ", " #{date_start}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date end: ", " #{date_end}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Employment type: ", " #{employment_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
   def for_mail

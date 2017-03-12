@@ -54,14 +54,14 @@ class UserInsurance < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Insurance ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Insurance ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Insurance name: </b> #{insurance}", :inline_format =>  true
-    pdf.text "<b>Insurance Relationship: </b> #{insurance_relationship}", :inline_format =>  true
-    pdf.text "<b>Insured Name: </b> #{insured_name}", :inline_format =>  true
-    pdf.text "<b>Insurance type: </b> #{insurance_type}", :inline_format =>  true
-    pdf.text "<b>Insurance ID: </b> #{insurance_identifier}", :inline_format =>  true
-    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+    pdf.table([[ "Insurance name: ", " #{insurance}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Insurance Relationship: ", " #{insurance_relationship}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Insured Name: ", " #{insured_name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Insurance type: ", " #{insurance_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Insurance ID: ", " #{insurance_identifier}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
 end

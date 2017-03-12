@@ -52,15 +52,15 @@ class Financial < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Financial ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Financial ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Title: </b> #{title}", :inline_format =>  true
-    pdf.text "<b>Financial Type: </b> #{financial_type}", :inline_format =>  true
-    pdf.text "<b>Financial Status: </b> #{financial_status}", :inline_format =>  true
-    pdf.text "<b>Estimated Amount: </b> #{estimated_amount}", :inline_format =>  true
-    pdf.text "<b>date start: </b> #{date_start}", :inline_format =>  true
-    pdf.text "<b>date end: </b> #{date_end}", :inline_format =>  true
-    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+    pdf.table([[ "Title: ", " #{title}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Financial Type: ", " #{financial_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Financial Status: ", " #{financial_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Estimated Amount: ", " #{estimated_amount}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "date start: ", " #{date_start}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "date end: ", " #{date_end}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
   
 end

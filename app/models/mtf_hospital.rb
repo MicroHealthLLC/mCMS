@@ -94,19 +94,19 @@ class MtfHospital < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Mtf Hospital ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Mtf Hospital ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>mtf hospital: </b> #{mtf_hospital}", :inline_format =>  true
-    pdf.text "<b>Incident Type: </b> #{incident_type}", :inline_format =>  true
-    pdf.text "<b>Incident Category: </b> #{incident_category}", :inline_format =>  true
-    pdf.text "<b>Date of incident: </b> #{date_of_incident}", :inline_format =>  true
-    pdf.text "<b>Date diagnosed: </b> #{date_diagnosed}", :inline_format =>  true
-    pdf.text "<b>Location Address: </b> #{incident_location_address}", :inline_format =>  true
-    pdf.text "<b>Location City: </b> #{incident_location_city}", :inline_format =>  true
-    pdf.text "<b>Location State: </b> #{state_type}", :inline_format =>  true
-    pdf.text "<b>Verified personnel casualty reporting system  : </b> #{verified_personnel_casualty_reporting_system}", :inline_format =>  true
-    pdf.text "<b>Line of duty investigation id  : </b> #{line_of_duty_investigation}", :inline_format =>  true
-    pdf.text "<b>Cause of injury : </b> #{cause_of_injury}", :inline_format =>  true
-    pdf.text "<b>Description: </b> #{ActionView::Base.full_sanitizer.sanitize(injury_description)}", :inline_format =>  true
+    pdf.table([[ "mtf hospital: ", " #{mtf_hospital}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Incident Type: ", " #{incident_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Incident Category: ", " #{incident_category}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date of incident: ", " #{date_of_incident}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date diagnosed: ", " #{date_diagnosed}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Location Address: ", " #{incident_location_address}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Location City: ", " #{incident_location_city}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Location State: ", " #{state_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Verified personnel casualty reporting system  : ", " #{verified_personnel_casualty_reporting_system}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Line of duty investigation id  : ", " #{line_of_duty_investigation}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Cause of injury : ", " #{cause_of_injury}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Description: ", " #{ActionView::Base.full_sanitizer.sanitize(injury_description)}"]], :column_widths => [ 150, 373])
   end
 end

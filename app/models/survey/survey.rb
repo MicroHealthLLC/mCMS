@@ -74,14 +74,14 @@ class Survey::Survey < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Survey ##{id}", :style => :bold}
-    pdf.text "<b>name: </b> #{name}", :inline_format =>  true
-    pdf.text "<b>Description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+    pdf.font_size(25){  pdf.table([[ "Survey ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
+    pdf.table([[ "name: ", " #{name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
     self.questions.each_with_index do |question, index|
-      pdf.text "<b>Q#{index+1}: </b>", :inline_format =>  true
-      pdf.text "<b>#{question.text}: </b>", :inline_format =>  true
+      pdf.table([[ "Q#{index+1}: ", ""]], :column_widths => [ 150, 373])
+      pdf.table([[ "#{question.text}: ", ""]], :column_widths => [ 150, 373])
       question.options.each do |option|
-        pdf.text "-#{option.text}: </b>", :inline_format =>  true
+        pdf.table([[ "-#{option.text}: ", ""]], :column_widths => [ 150, 373])
       end
     end
   end

@@ -44,12 +44,12 @@ class DailyLiving < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Daily living ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Daily living ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Title: </b> #{title}", :inline_format =>  true
-    pdf.text "<b>Description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
-    pdf.text "<b>Type: </b> #{daily_living_type}", :inline_format =>  true
-    pdf.text "<b>Status: </b> #{daily_living_status}", :inline_format =>  true
+    pdf.table([[ "Title: ", " #{title}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Type: ", " #{daily_living_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Status: ", " #{daily_living_status}"]], :column_widths => [ 150, 373])
 
   end
 

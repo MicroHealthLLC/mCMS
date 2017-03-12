@@ -62,16 +62,16 @@ class Referral < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Referral ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Referral ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Title: </b> #{title}", :inline_format =>  true
-    pdf.text "<b>Referral Type: </b> #{referral_type}", :inline_format =>  true
-    pdf.text "<b>Referral Status: </b> #{referral_status}", :inline_format =>  true
-    pdf.text "<b>Referral date: </b> #{referral_date}", :inline_format =>  true
-    pdf.text "<b>Referral appointment: </b> #{referral_appointment}", :inline_format =>  true
-    pdf.text "<b>Referred By: </b> #{referred_by}", :inline_format =>  true
-    pdf.text "<b>Referred To: </b> #{referred_to.to_s}", :inline_format =>  true
-    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(referral_reason)}", :inline_format =>  true
+    pdf.table([[ "Title: ", " #{title}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Referral Type: ", " #{referral_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Referral Status: ", " #{referral_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Referral date: ", " #{referral_date}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Referral appointment: ", " #{referral_appointment}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Referred By: ", " #{referred_by}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Referred To: ", " #{referred_to.to_s}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(referral_reason)}"]], :column_widths => [ 150, 373])
   end
   
 end

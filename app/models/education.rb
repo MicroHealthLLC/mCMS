@@ -49,13 +49,13 @@ class Education < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Education ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Education ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Education Type: </b> #{education_type}", :inline_format =>  true
-    pdf.text "<b>Education Status: </b> #{education_status}", :inline_format =>  true
-    pdf.text "<b>Date received: </b> #{date_recieved}", :inline_format =>  true
-    pdf.text "<b>Date expired: </b> #{date_expired}", :inline_format =>  true
-    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+    pdf.table([[ "Education Type: ", " #{education_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Education Status: ", " #{education_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date received: ", " #{date_recieved}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date expired: ", " #{date_expired}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
   def for_mail

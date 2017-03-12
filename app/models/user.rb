@@ -359,27 +359,39 @@ class User < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "User ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "User ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
+
     pdf.image("#{Rails.root}/public/#{avatar.resized.url}") if avatar_url
     pdf.move_down 10
-    pdf.text "<b>Login: </b> #{login}", :inline_format =>  true
-    pdf.text "<b>Email: </b> #{email}", :inline_format =>  true
-    pdf.text "<b>Active: </b> #{state?}", :inline_format =>  true
-    pdf.move_down 10
-    pdf.font_size(25){  pdf.text "Profile information", :style => :bold}
-    pdf.text "<b>Name: </b> #{profile_name}", :inline_format =>  true
-    pdf.text "<b>Gender: </b> #{gender}", :inline_format =>  true
-    pdf.text "<b>Birthday: </b> #{birthday}", :inline_format =>  true
-    pdf.text "<b>Religion: </b> #{religion}", :inline_format =>  true
-    pdf.text "<b>Ethnicity: </b> #{ethnicity}", :inline_format =>  true
-    pdf.text "<b>Citizenship: </b> #{citizenship}", :inline_format =>  true
+    data = []
+    pdf.table([["User Information"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
+    data << ["Login", login]
+    data << ["Email", email]
+    data << ["Active", state?]
+    pdf.table(data, :column_widths => [ 150 , 373])
 
     pdf.move_down 10
 
+    data = []
+     pdf.table([["Profile Information"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
+    data << ["Name", profile_name]
+    data << ["Gender", gender]
+    data << ["Birthday", birthday]
+    data << ["Religion", religion]
+    data << ["Ethnicity", ethnicity]
+    data << ["Citizenship", citizenship]
+    pdf.table(data, :column_widths => [ 150 , 373])
+    pdf.move_down 10
   end
 
   def to_pdf_brief_info(pdf)
-    pdf.text "User: #{name}  #{birthday}  #{gender} #{active?}", :inline_format =>  true
+    data = []
+    pdf.table([["Client Information"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
+    data << ["First Name", first_name]
+    data << ["Middle Name", middle_name]
+    data << ["Last Name", last_name]
+    data << ["Gender", "#{gender}"]
+    pdf.table(data, :column_widths => [ 150 , 373])
     pdf.move_down 10
   end
 

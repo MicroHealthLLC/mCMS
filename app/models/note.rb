@@ -54,11 +54,11 @@ class Note < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Note ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Note ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Created at: </b> #{created_at.to_date}", :inline_format =>  true
-    pdf.text "<b>Belongs to: </b> #{object}", :inline_format =>  true
-    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+    pdf.table([[ "Created at: ", " #{created_at.to_date}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Belongs to: ", " #{object}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
 end

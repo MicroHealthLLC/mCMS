@@ -47,16 +47,16 @@ class HealthCareFacility < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Health Care Facility ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Health Care Facility ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Name: </b> #{name}", :inline_format =>  true
-    pdf.text "<b>Health Care Facility Type: </b> #{health_care_facility_type}", :inline_format =>  true
-    pdf.text "<b>Health Care Facility Status: </b> #{health_care_facility_status}", :inline_format =>  true
-    pdf.text "<b>Health Care Facility Contact: </b> #{health_care_facility_contact}", :inline_format =>  true
-    pdf.text "<b>Date started: </b> #{date_started}", :inline_format =>  true
-    pdf.text "<b>Date end: </b> #{date_end}", :inline_format =>  true
+    pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Health Care Facility Type: ", " #{health_care_facility_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Health Care Facility Status: ", " #{health_care_facility_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Health Care Facility Contact: ", " #{health_care_facility_contact}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date started: ", " #{date_started}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date end: ", " #{date_end}"]], :column_widths => [ 150, 373])
 
-    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+    pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
 
 end

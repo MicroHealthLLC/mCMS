@@ -26,6 +26,7 @@ class ContactsController < UserProfilesController
   # GET /contacts/1.json
   def show
     respond_to do |format|
+      format.pdf{}
       format.html{}
       format.js{
         @contact = @contact.dup

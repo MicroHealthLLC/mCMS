@@ -44,16 +44,16 @@ class Medical < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Medical History ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Medical History ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Name: </b> #{name}", :inline_format =>  true
-    pdf.text "<b>Icdcm code: </b> #{icdcm_code}", :inline_format =>  true
-    pdf.text "<b>Medical facility: </b> #{medical_facility}", :inline_format =>  true
-    pdf.text "<b>Medical History Type: </b> #{medical_history_type}", :inline_format =>  true
-    pdf.text "<b>Medical History Status: </b> #{medical_history_status}", :inline_format =>  true
-    pdf.text "<b>Date of diagnosis: </b> #{date_of_diagnosis}", :inline_format =>  true
+    pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Icdcm code: ", " #{icdcm_code}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Medical facility: ", " #{medical_facility}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Medical History Type: ", " #{medical_history_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Medical History Status: ", " #{medical_history_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date of diagnosis: ", " #{date_of_diagnosis}"]], :column_widths => [ 150, 373])
 
-    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+    pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
 
 end

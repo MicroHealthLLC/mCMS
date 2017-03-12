@@ -73,25 +73,25 @@ class Billing < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Billing ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Billing ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Bill type: </b> #{bill_type}", :inline_format =>  true
-    pdf.text "<b>Bill status: </b> #{bill_status}", :inline_format =>  true
-    pdf.text "<b>Bill Date: </b> #{bill_date}", :inline_format =>  true
-    pdf.text "<b>Bill Amount: </b> #{bill_amount}", :inline_format =>  true
-    pdf.text "<b>Accept Assignment: </b> #{accept_assignment}", :inline_format =>  true
-    pdf.text "<b>Resubmission Code: </b> #{resubmission_code}", :inline_format =>  true
-    pdf.text "<b>Original Reference Number: </b> #{original_reference_number}", :inline_format =>  true
-    pdf.text "<b>Prior Authorization Number: </b> #{prior_authorization_number}", :inline_format =>  true
-    pdf.text "<b>Outside Lab: </b> #{outside_lab}", :inline_format =>  true
-    pdf.text "<b>Outside Lab Charges: </b> #{outside_lab_charges}", :inline_format =>  true
-    pdf.text "<b>Other Source: </b> #{other_source}", :inline_format =>  true
-    pdf.text "<b>Total Charge: </b> #{total_charge}", :inline_format =>  true
-    pdf.text "<b>Amount Paid: </b> #{amount_paid}", :inline_format =>  true
-    pdf.text "<b>Amount Collected: </b> #{amount_collected}", :inline_format =>  true
-    pdf.text "<b>Associated ICD10: </b> #{associated_icd}", :inline_format =>  true
-    pdf.text "<b>Associated HCPCS: </b> #{associated_hcpc}", :inline_format =>  true
-    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+    pdf.table([[ "Bill type: ", " #{bill_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Bill status: ", " #{bill_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Bill Date: ", " #{bill_date}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Bill Amount: ", " #{bill_amount}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Accept Assignment: ", " #{accept_assignment}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Resubmission Code: ", " #{resubmission_code}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Original Reference Number: ", " #{original_reference_number}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Prior Authorization Number: ", " #{prior_authorization_number}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Outside Lab: ", " #{outside_lab}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Outside Lab Charges: ", " #{outside_lab_charges}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Other Source: ", " #{other_source}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Total Charge: ", " #{total_charge}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Amount Paid: ", " #{amount_paid}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Amount Collected: ", " #{amount_collected}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Associated ICD10: ", " #{associated_icd}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Associated HCPCS: ", " #{associated_hcpc}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
 
 
   end

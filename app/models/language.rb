@@ -58,12 +58,12 @@ class Language < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Language ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Language ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Language type: </b> #{language_type}", :inline_format =>  true
-    pdf.text "<b>Language Status: </b> #{language_status}", :inline_format =>  true
-    pdf.text "<b>Proficiency: </b> #{proficiency_type}", :inline_format =>  true
-    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+    pdf.table([[ "Language type: ", " #{language_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Language Status: ", " #{language_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Proficiency: ", " #{proficiency_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
   def for_mail

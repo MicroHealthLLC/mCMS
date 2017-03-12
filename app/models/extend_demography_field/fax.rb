@@ -27,7 +27,7 @@ class Fax < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.text "<b>fax type:</b> #{fax_type}. <b>Fax number:</b> #{fax_number}", :inline_format =>  true
+    pdf.table([[ "fax type:", " #{fax_type}", " Fax number:", " #{fax_number}"]], :column_widths => [ 100,150, 100, 173])
   end
 
 end

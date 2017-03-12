@@ -15,8 +15,8 @@ class Insurance < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Affiliation ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Affiliation ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>name: </b> #{name}", :inline_format =>  true
+    pdf.table([[ "name: ", " #{name}"]], :column_widths => [ 150, 373])
   end
 end

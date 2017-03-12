@@ -44,13 +44,13 @@ class Admission < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Admission ##{id}", :style => :bold}
+    pdf.font_size(25){ pdf.table([[ "Admission ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>name: </b> #{care_family_name}", :inline_format =>  true
-    pdf.text "<b>Admission Type: </b> #{admission_type}", :inline_format =>  true
-    pdf.text "<b>Admission Status: </b> #{admission_status}", :inline_format =>  true
-    pdf.text "<b>Date Admitted: </b> #{date_admitted}", :inline_format =>  true
-    pdf.text "<b>Date discharged: </b> #{date_discharged}", :inline_format =>  true
-    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+    pdf.table([[ "name: ", " #{care_family_name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Admission Type: ", " #{admission_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Admission Status: ", " #{admission_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date Admitted: ", " #{date_admitted}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date discharged: ", " #{date_discharged}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
 end

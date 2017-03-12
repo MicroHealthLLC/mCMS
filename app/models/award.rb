@@ -45,12 +45,12 @@ class Award < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Award ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Award ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Award: </b> #{award_enum}", :inline_format =>  true
-    pdf.text "<b>Award Type: </b> #{award_type}", :inline_format =>  true
-    pdf.text "<b>Award date: </b> #{award_date}", :inline_format =>  true
-    pdf.text "<b>Noyr: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+    pdf.table([[ "Award: ", " #{award_enum}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Award Type: ", " #{award_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Award date: ", " #{award_date}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Noyr: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
   
 end

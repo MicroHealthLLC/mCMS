@@ -56,14 +56,14 @@ class Affiliation < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Affiliation ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Affiliation ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center}) }
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>name: </b> #{name}", :inline_format =>  true
-    pdf.text "<b>Affiliation Type: </b> #{affiliation_type}", :inline_format =>  true
-    pdf.text "<b>Affiliation Status: </b> #{affiliation_status}", :inline_format =>  true
-    pdf.text "<b>Date Start: </b> #{date_start}", :inline_format =>  true
-    pdf.text "<b>Date End: </b> #{date_end}", :inline_format =>  true
-    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+    pdf.table([[ "name: ", " #{name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Affiliation Type: ", " #{affiliation_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Affiliation Status: ", " #{affiliation_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date Start: ", " #{date_start}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date End: ", " #{date_end}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
   def for_mail

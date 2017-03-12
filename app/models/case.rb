@@ -134,21 +134,21 @@ class Case < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Case ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Case ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
 
-    pdf.text "<b>Title: </b> #{title}", :inline_format =>  true
-    pdf.text "<b>Description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
-    pdf.text "<b>Case type: </b> #{case_type}", :inline_format =>  true
-    pdf.text "<b>Case status: </b> #{case_status_type}", :inline_format =>  true
-    pdf.text "<b>Case category: </b> #{case_category_type}", :inline_format =>  true
-    pdf.text "<b>Case Source: </b> #{case_source}", :inline_format =>  true
-    pdf.text "<b>Priority: </b> #{priority_type}", :inline_format =>  true
+    pdf.table([[ "Title: ", " #{title}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Case type: ", " #{case_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Case status: ", " #{case_status_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Case category: ", " #{case_category_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Case Source: ", " #{case_source}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Priority: ", " #{priority_type}"]], :column_widths => [ 150, 373])
 
-    pdf.text "<b>Date start: </b> #{date_start}", :inline_format =>  true
-    pdf.text "<b>Date due: </b> #{date_due}", :inline_format =>  true
-    pdf.text "<b>Date completed: </b> #{date_completed}", :inline_format =>  true
+    pdf.table([[ "Date start: ", " #{date_start}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date due: ", " #{date_due}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date completed: ", " #{date_completed}"]], :column_widths => [ 150, 373])
 
-    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+    pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
 end

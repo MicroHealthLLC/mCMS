@@ -44,14 +44,14 @@ class Certification < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Certification ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Certification ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Name: </b> #{name}", :inline_format =>  true
-    pdf.text "<b>Certification type: </b> #{certification_type}", :inline_format =>  true
-    pdf.text "<b>Certification Status: </b> #{certification_status}", :inline_format =>  true
-    pdf.text "<b>Date received: </b> #{date_received}", :inline_format =>  true
-    pdf.text "<b>Date expired: </b> #{date_expired}", :inline_format =>  true
-    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+    pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Certification type: ", " #{certification_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Certification Status: ", " #{certification_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date received: ", " #{date_received}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date expired: ", " #{date_expired}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
   def for_mail

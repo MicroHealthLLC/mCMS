@@ -81,12 +81,12 @@ class Contact < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Contact ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Contact ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Emergency contact: </b> #{emergency_contact}", :inline_format =>  true
-    pdf.text "<b>Language: </b> #{language_type}", :inline_format =>  true
-    pdf.text "<b>Name: </b> #{name}", :inline_format =>  true
-    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+    pdf.table([[ "Emergency contact: ", " #{emergency_contact}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Language: ", " #{language_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
   def for_mail

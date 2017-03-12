@@ -54,14 +54,14 @@ class Unit < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Unit ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Unit ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Unit: </b> #{unit_enum}", :inline_format =>  true
-    pdf.text "<b>Unit Type: </b> #{unit_type}", :inline_format =>  true
-    pdf.text "<b>Installation Name: </b> #{installation_name}", :inline_format =>  true
-    pdf.text "<b>Start date: </b> #{date_start}", :inline_format =>  true
-    pdf.text "<b>End date: </b> #{date_end}", :inline_format =>  true
-    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+    pdf.table([[ "Unit: ", " #{unit_enum}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Unit Type: ", " #{unit_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Installation Name: ", " #{installation_name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Start date: ", " #{date_start}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "End date: ", " #{date_end}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
 end

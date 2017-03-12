@@ -66,16 +66,16 @@ class CoreDemographic < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.text "<b>First name: </b> #{first_name}", :inline_format =>  true
-    pdf.text "<b>Middle name: </b> #{middle_name}", :inline_format =>  true
-    pdf.text "<b>Last name: </b> #{last_name}", :inline_format =>  true
-    pdf.text "<b>Gender: </b> #{gender_type}", :inline_format =>  true
-    pdf.text "<b>Birthday: </b> #{birth_date}", :inline_format =>  true
-    pdf.text "<b>Religion: </b> #{religion_type}", :inline_format =>  true
-    pdf.text "<b>Marital Status: </b> #{marital_status}", :inline_format =>  true
-    pdf.text "<b>Tile: </b> #{title}", :inline_format =>  true
-    pdf.text "<b>Ethnicity: </b> #{ethnicity_type}", :inline_format =>  true
-    pdf.text "<b>Citizenship: </b> #{citizenship_type}", :inline_format =>  true
-    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+    pdf.table([[ "First name: ", " #{first_name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Middle name: ", " #{middle_name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Last name: ", " #{last_name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Gender: ", " #{gender_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Birthday: ", " #{birth_date}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Religion: ", " #{religion_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Marital Status: ", " #{marital_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Tile: ", " #{title}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Ethnicity: ", " #{ethnicity_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Citizenship: ", " #{citizenship_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 end

@@ -42,13 +42,13 @@ class FamilyHistory < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Family History ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Family History ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Name: </b> #{name}", :inline_format =>  true
-    pdf.text "<b>Icdcm Code: </b> #{icdcm_code}", :inline_format =>  true
-    pdf.text "<b>Family History Status: </b> #{family_status}", :inline_format =>  true
-    pdf.text "<b>Family History Type: </b> #{family_type}", :inline_format =>  true
-    pdf.text "<b>date identified: </b> #{date_identified}", :inline_format =>  true
-    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+    pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Icdcm Code: ", " #{icdcm_code}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Family History Status: ", " #{family_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Family History Type: ", " #{family_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "date identified: ", " #{date_identified}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
 end

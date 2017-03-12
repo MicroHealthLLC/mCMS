@@ -44,15 +44,15 @@ class BehavioralRisk < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Behavioral Risk ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Behavioral Risk ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Name: </b> #{name}", :inline_format =>  true
-    pdf.text "<b>Icdcm Code: </b> #{icdcm_code}", :inline_format =>  true
-    pdf.text "<b>Behavioral Risk Type: </b> #{behavioral_risk_type}", :inline_format =>  true
-    pdf.text "<b>Behavioral Risk Status: </b> #{behavioral_risk_status}", :inline_format =>  true
-    pdf.text "<b>Behavioral Risk date started: </b> #{date_started}", :inline_format =>  true
-    pdf.text "<b>Behavioral Risk date ended: </b> #{date_ended}", :inline_format =>  true
-    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+    pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Icdcm Code: ", " #{icdcm_code}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Behavioral Risk Type: ", " #{behavioral_risk_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Behavioral Risk Status: ", " #{behavioral_risk_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Behavioral Risk date started: ", " #{date_started}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Behavioral Risk date ended: ", " #{date_ended}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
   
 end

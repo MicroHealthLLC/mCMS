@@ -35,15 +35,15 @@ class Immunization < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Immunization ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Immunization ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Immunization: </b> #{immunization_cvx}", :inline_format =>  true
-    pdf.text "<b>Next Date due: </b> #{next_date_due}", :inline_format =>  true
-    pdf.text "<b>Date immunized: </b> #{date_immunized}", :inline_format =>  true
-    pdf.text "<b>Manufacturer: </b> #{manufacturer}", :inline_format =>  true
-    pdf.text "<b>Lot Number: </b> #{lot_number}", :inline_format =>  true
-    pdf.text "<b>Expiration date: </b> #{expiration_date}", :inline_format =>  true
-    pdf.text "<b>Immunization Status: </b> #{immunization_status}", :inline_format =>  true
-    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+    pdf.table([[ "Immunization: ", " #{immunization_cvx}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Next Date due: ", " #{next_date_due}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date immunized: ", " #{date_immunized}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Manufacturer: ", " #{manufacturer}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Lot Number: ", " #{lot_number}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Expiration date: ", " #{expiration_date}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Immunization Status: ", " #{immunization_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
 end

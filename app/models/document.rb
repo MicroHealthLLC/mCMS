@@ -60,11 +60,11 @@ class Document < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Document ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Document ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Title: </b> #{title}", :inline_format =>  true
-    pdf.text "<b>Description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
-    pdf.text "<b>Document type: </b> #{document_type}", :inline_format =>  true
+    pdf.table([[ "Title: ", " #{title}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Document type: ", " #{document_type}"]], :column_widths => [ 150, 373])
   end
 
   def for_mail

@@ -105,19 +105,19 @@ class Task < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Task ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Task ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Title: </b> #{title}", :inline_format =>  true
-    pdf.text "<b>Description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
-    pdf.text "<b>Task type: </b> #{task_type}", :inline_format =>  true
-    pdf.text "<b>Status: </b> #{task_status_type}", :inline_format =>  true
-    pdf.text "<b>Assigned to: </b> #{assigned_to}", :inline_format =>  true
-    pdf.text "<b>For individual: </b> #{for_individual}", :inline_format =>  true
-    pdf.text "<b>Priority: </b> #{priority_type}", :inline_format =>  true
+    pdf.table([[ "Title: ", " #{title}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Task type: ", " #{task_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Status: ", " #{task_status_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Assigned to: ", " #{assigned_to}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "For individual: ", " #{for_individual}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Priority: ", " #{priority_type}"]], :column_widths => [ 150, 373])
 
-    pdf.text "<b>Date start: </b> #{date_start}", :inline_format =>  true
-    pdf.text "<b>Date due: </b> #{date_due}", :inline_format =>  true
-    pdf.text "<b>Date completed: </b> #{date_completed}", :inline_format =>  true
+    pdf.table([[ "Date start: ", " #{date_start}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date due: ", " #{date_due}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date completed: ", " #{date_completed}"]], :column_widths => [ 150, 373])
     if User.current.allowed_to?(:manage_roles) or User.current.allowed_to?(:view_notes)
 
     end

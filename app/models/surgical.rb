@@ -38,15 +38,15 @@ class Surgical < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Surgery ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Surgery ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Name: </b> #{name}", :inline_format =>  true
-    pdf.text "<b>HCPCS: </b> #{hcpc}", :inline_format =>  true
-    pdf.text "<b>Medical facility: </b> #{medical_facility}", :inline_format =>  true
-    pdf.text "<b>Surgery Type: </b> #{surgery_type}", :inline_format =>  true
-    pdf.text "<b>Surgery Status: </b> #{surgery_status}", :inline_format =>  true
+    pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "HCPCS: ", " #{hcpc}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Medical facility: ", " #{medical_facility}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Surgery Type: ", " #{surgery_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Surgery Status: ", " #{surgery_status}"]], :column_widths => [ 150, 373])
 
-    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+    pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
   
   def self.safe_attributes

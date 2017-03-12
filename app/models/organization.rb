@@ -41,10 +41,10 @@ class Organization < ApplicationRecord
 
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Organization ##{id}", :style => :bold}
-    pdf.text "<b>Name </b> #{name}", :inline_format =>  true
-    pdf.text "<b>Organization type </b> #{organization_type}", :inline_format =>  true
-    pdf.text "<b>Note: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+    pdf.font_size(25){  pdf.table([[ "Organization ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
+    pdf.table([[ "Name ", " #{name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Organization type ", " #{organization_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
 end

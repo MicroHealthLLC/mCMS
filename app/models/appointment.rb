@@ -100,14 +100,14 @@ class Appointment < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Apointment ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Apointment ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
-    pdf.text "<b>Appointment type: </b> #{appointment_type}", :inline_format =>  true
-    pdf.text "<b>Appointment status: </b> #{appointment_status}", :inline_format =>  true
-    pdf.text "<b>Date: </b> #{date}", :inline_format =>  true
-    pdf.text "<b>Time: </b> #{time}", :inline_format =>  true
-    pdf.text "<b>With: </b> #{with_who}", :inline_format =>  true
+    pdf.table([[ "Description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Appointment type: ", " #{appointment_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Appointment status: ", " #{appointment_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date: ", " #{date}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Time: ", " #{time}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "With: ", " #{with_who}"]], :column_widths => [ 150, 373])
 
   end
 

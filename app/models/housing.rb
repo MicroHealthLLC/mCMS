@@ -56,16 +56,16 @@ class Housing < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Housing ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Housing ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Title: </b> #{title}", :inline_format =>  true
-    pdf.text "<b>Housing Type: </b> #{housing_type}", :inline_format =>  true
-    pdf.text "<b>Housing Status: </b> #{housing_status}", :inline_format =>  true
-    pdf.text "<b>Primary Address: </b> #{primary_address}", :inline_format =>  true
-    pdf.text "<b>Cohabitation Type: </b> #{cohabitation_type}", :inline_format =>  true
-    pdf.text "<b>Start date: </b> #{date_start}", :inline_format =>  true
-    pdf.text "<b>End date: </b> #{date_end}", :inline_format =>  true
-    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+    pdf.table([[ "Title: ", " #{title}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Housing Type: ", " #{housing_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Housing Status: ", " #{housing_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Primary Address: ", " #{primary_address}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Cohabitation Type: ", " #{cohabitation_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Start date: ", " #{date_start}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "End date: ", " #{date_end}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
   
 end

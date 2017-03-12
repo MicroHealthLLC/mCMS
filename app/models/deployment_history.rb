@@ -57,16 +57,16 @@ class DeploymentHistory < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Deployment History ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Deployment History ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Deployment Operation: </b> #{deployment_operation}", :inline_format =>  true
-    pdf.text "<b>location: </b> #{location}", :inline_format =>  true
-    pdf.text "<b>City: </b> #{city}", :inline_format =>  true
-    pdf.text "<b>State: </b> #{state}", :inline_format =>  true
-    pdf.text "<b>Country: </b> #{country_type}", :inline_format =>  true
-    pdf.text "<b>Start date: </b> #{date_start}", :inline_format =>  true
-    pdf.text "<b>End date: </b> #{date_end}", :inline_format =>  true
-    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(note)}", :inline_format =>  true
+    pdf.table([[ "Deployment Operation: ", " #{deployment_operation}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "location: ", " #{location}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "City: ", " #{city}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "State: ", " #{state}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Country: ", " #{country_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Start date: ", " #{date_start}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "End date: ", " #{date_end}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
 end

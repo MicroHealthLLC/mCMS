@@ -42,14 +42,14 @@ class Legal < ApplicationRecord
   end
 
   def to_pdf(pdf)
-    pdf.font_size(25){  pdf.text "Legal ##{id}", :style => :bold}
+    pdf.font_size(25){  pdf.table([[ "Legal ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
-    pdf.text "<b>Title: </b> #{title}", :inline_format =>  true
-    pdf.text "<b>Legal Status: </b> #{legal_history_status}", :inline_format =>  true
-    pdf.text "<b>Legal Type: </b> #{legal_history_type}", :inline_format =>  true
-    pdf.text "<b>date start: </b> #{date_start}", :inline_format =>  true
-    pdf.text "<b>date end: </b> #{date_end}", :inline_format =>  true
-    pdf.text "<b>description: </b> #{ActionView::Base.full_sanitizer.sanitize(description)}", :inline_format =>  true
+    pdf.table([[ "Title: ", " #{title}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Legal Status: ", " #{legal_history_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Legal Type: ", " #{legal_history_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "date start: ", " #{date_start}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "date end: ", " #{date_end}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
   
 end
