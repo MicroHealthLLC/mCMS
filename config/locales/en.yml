@@ -90,6 +90,7 @@ en:
   user_subscription: User subscription
   login: Username
   email: Email
+  new_user: New User
   fax: Fax
   phone: Phone Number
   label_user: User
