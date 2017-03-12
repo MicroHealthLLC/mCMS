@@ -18,7 +18,7 @@
       <div class="form-group">
         <%= f.label t('organization'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :organization_id, options_for_select(Organization.all.map{|org| [org.name, org.id] }, selected: job_detail.organization_id), {},{ class: 'form-control'} %>
+          <%= f.select :organization_id, options_for_select(Organization.all.map{|org| [org.name, org.id] }, selected: job_detail.organization_id), {include_blank: true},{ class: 'form-control'} %>
         </div>
       </div>
 

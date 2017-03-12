@@ -1,6 +1,7 @@
 class JobDetailsController < ApplicationController
   before_action  :authenticate_user!
   before_action :set_job_detail, only: [:update]
+  before_action :authorize
 
 
   def create
@@ -8,7 +9,7 @@ class JobDetailsController < ApplicationController
 
     respond_to do |format|
       if @job_detail.save
-        format.html { redirect_to root_path , notice: I18n.t(:notice_successful_create) }
+        format.html { redirect_back fallback_location: root_path , notice: I18n.t(:notice_successful_create) }
       else
         format.html { render :edit }
       end
@@ -20,7 +21,7 @@ class JobDetailsController < ApplicationController
   def update
     respond_to do |format|
       if @job_detail.update(job_detail_params)
-        format.html { redirect_to root_path, notice: I18n.t(:notice_successful_update) }
+        format.html { redirect_back fallback_location: root_path, notice: I18n.t(:notice_successful_update) }
       else
         format.html { render :edit }
       end

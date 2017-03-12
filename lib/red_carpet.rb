@@ -136,13 +136,14 @@ RedCarpet::AccessControl.map do |map|
   #   map.permission :manage_departments, {:departments => [:new, :create, :edit, :update, :destroy]},  :read => true
   # end
   #
-  # map.project_module :organizations do |map|
-  #   map.permission :view_organizations, {:organizations => [:index]},  :read => true
-  #   map.permission :create_organizations, {:organizations => [:new, :create]},  :read => true
-  #   map.permission :edit_organizations, {:organizations => [:edit, :update]},  :read => true
-  #   map.permission :delete_organizations, {:organizations => [:destroy]},  :read => true
-  #   map.permission :manage_organizations, {:organizations => [:new, :create, :edit, :update, :destroy]},  :read => true
-  # end
+  map.project_module :organizations do |map|
+    map.permission :manage_user_job_details, {:job_details => [:create, :update]},  :read => true
+    map.permission :view_organizations, {:organizations => [:index]},  :read => true
+    map.permission :create_organizations, {:organizations => [:new, :create]},  :read => true
+    map.permission :edit_organizations, {:organizations => [:edit, :update]},  :read => true
+    map.permission :delete_organizations, {:organizations => [:destroy]},  :read => true
+    map.permission :manage_organizations, {:job_details => [:create, :update], :organizations => [:new, :create, :edit, :update, :destroy]},  :read => true
+  end
 
   # User HISTORY
 
@@ -587,6 +588,8 @@ RedCarpet::AccessControl.map do |map|
         :legals => [:index, :show, :new, :create, :edit, :update, :destroy],
         :billings => [:index, :show, :new, :create, :edit, :update, :destroy],
         :financials => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :organizations => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :job_details => [:create, :update],
         :transportations => [:index, :show, :new, :create, :edit, :update, :destroy],
         :surveys => [:new_assign_survey, :index, :show, :new, :create, :edit, :update, :destroy, :show],
         :attempts => [:index, :show, :new, :create, :show],

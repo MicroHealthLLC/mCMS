@@ -21,15 +21,19 @@
                      core_demographic: User.current.profile
                  } %>
     </article>
-    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <%#= render partial: 'core_demographics/form',
-                 layout: 'shared/smart_widget_wrapper',
-                 locals: {
-                     wid_id: 'profile',
-                     wid_title: 'profile',
-                     core_demographic: User.current.profile
-                 } %>
-    </article>
+
+    <% if can?(:manage_roles, :manage_user_job_details, :manage_organizations) %>
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'job_details/form',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'job_detail',
+                         wid_title: 'Organization',
+                         user: User.current,
+                         job_detail: User.current.job
+                     } %>
+        </article>
+    <% end %>
 
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'extend_demographies/form',
