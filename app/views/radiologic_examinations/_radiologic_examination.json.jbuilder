@@ -1,0 +1,2 @@
+json.extract! radiologic_examination, :id, :user_id, :name, :facility, :date, :result, :radiologic_result_status_id, :created_at, :updated_at
+json.url radiologic_examination_url(radiologic_examination, format: :json)

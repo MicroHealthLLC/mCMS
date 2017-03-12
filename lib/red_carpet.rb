@@ -422,6 +422,24 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_enrollments, {:enrollments => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
+   map.project_module :radiologic_examinations do |map|
+    map.permission :view_radiologic_examinations, {:radiologic_examinations => [:index]},  :read => true
+    map.permission :show_radiologic_examinations, {:radiologic_examinations => [:show]},  :read => true
+    map.permission :create_radiologic_examinations, {:radiologic_examinations => [ :new, :create]},  :read => true
+    map.permission :edit_radiologic_examinations, {:radiologic_examinations => [:edit, :update]},  :read => true
+    map.permission :delete_radiologic_examinations, {:radiologic_examinations => [:destroy]},  :read => true
+    map.permission :manage_radiologic_examinations, {:radiologic_examinations => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
+  map.project_module :laboratory_examinations do |map|
+    map.permission :view_laboratory_examinations, {:laboratory_examinations => [:index]},  :read => true
+    map.permission :show_laboratory_examinations, {:laboratory_examinations => [:show]},  :read => true
+    map.permission :create_laboratory_examinations, {:laboratory_examinations => [ :new, :create]},  :read => true
+    map.permission :edit_laboratory_examinations, {:laboratory_examinations => [:edit, :update]},  :read => true
+    map.permission :delete_laboratory_examinations, {:laboratory_examinations => [:destroy]},  :read => true
+    map.permission :manage_laboratory_examinations, {:laboratory_examinations => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
   map.project_module :teleconsults do |map|
     map.permission :view_teleconsults, {:teleconsults => [:index]},  :read => true
     map.permission :show_teleconsults, {:teleconsults => [:show]},  :read => true
@@ -591,6 +609,8 @@ RedCarpet::AccessControl.map do |map|
         :organizations => [:index, :show, :new, :create, :edit, :update, :destroy],
         :job_details => [:create, :update],
         :transportations => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :radiologic_examinations => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :laboratory_examinations => [:index, :show, :new, :create, :edit, :update, :destroy],
         :surveys => [:new_assign_survey, :index, :show, :new, :create, :edit, :update, :destroy, :show],
         :attempts => [:index, :show, :new, :create, :show],
         :tasks => [:link_plan, :add_plan, :index, :my, :show, :new, :create, :edit, :update, :destroy],

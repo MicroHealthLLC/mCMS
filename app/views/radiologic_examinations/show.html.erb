@@ -1,0 +1,35 @@
+<%= render partial: 'action_menu' %>
+<div class="row">
+  <div class="col-xs-12">
+
+    <p>
+      <strong>Name:</strong>
+      <%= @radiologic_examination.name %>
+    </p>
+
+    <p>
+      <strong>Facility:</strong>
+      <%= @radiologic_examination.facility %>
+    </p>
+
+    <p>
+      <strong>Date:</strong>
+      <%= @radiologic_examination.date %>
+    </p>
+    <p>
+      <strong>Laboratory result status:</strong>
+      <%= @radiologic_examination.radiologic_result_status %>
+    </p>
+    <p>
+      <strong>Result:</strong>
+      <%= @radiologic_examination.result.html_safe %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @radiologic_examination.radiologic_examination_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
+</div>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :radiologic_examinations
+  resources :laboratory_examinations
   resources :billings, except: [:new]
   resources :appointments do
     resources :billings, only: [:new]

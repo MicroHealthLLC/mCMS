@@ -1,0 +1,27 @@
+<table class="table table-responsive table-bordered" id="laboratory_examination_table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Facility</th>
+    <th>Date</th>
+    <th>Laboratory result status</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @laboratory_examinations.each do |laboratory_examination| %>
+      <tr>
+        <td><%= link_to laboratory_examination.name, laboratory_examination %></td>
+        <td><%= laboratory_examination.facility %></td>
+        <td><%= format_date laboratory_examination.date %></td>
+        <td><%= laboratory_examination.laboratory_result_status %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+    initDataTable('laboratory_examination_table')
+  })
+</script>

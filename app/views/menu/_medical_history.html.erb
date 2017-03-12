@@ -2,7 +2,10 @@
     <% modules = ['admissions', 'health_care_facilities',
                   'problem_lists', 'surgicals',
                   'medicals', 'behavioral_risks',
-                  'family_histories', 'immunizations', 'allergies']
+                  'family_histories', 'immunizations', 
+                  'allergies', 'laboratory_examinations', 
+                  'rediologic_examinations'
+    ]
     %>
     <% if can_view_submenu?(modules) %>
         <li>
@@ -63,6 +66,16 @@
             <% if module_enabled?( 'allergies') && can?(:manage_roles, :view_allergies, :manage_allergies)%>
                 <li class="<%= menu_active?('allergies') %>">
                   <a href="/allergies" title="<%= t(:allergies) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:allergies) %></span></a>
+                </li>
+            <% end %>
+           <% if module_enabled?( 'laboratory_examinations') && can?(:manage_roles, :view_laboratory_examinations, :manage_laboratory_examinations)%>
+                <li class="<%= menu_active?('allergies') %>">
+                  <a href="/laboratory_examinations" title="<%= t(:laboratory_examinations) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:laboratory_examinations_short) %></span></a>
+                </li>
+            <% end %>
+            <% if module_enabled?( 'radiologic_examinations') && can?(:manage_roles, :view_radiologic_examinations, :manage_radiologic_examinations)%>
+                <li class="<%= menu_active?('allergies') %>">
+                  <a href="/radiologic_examinations" title="<%= t(:radiologic_examinations) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:radiologic_examinations_short) %></span></a>
                 </li>
             <% end %>
           </ul>

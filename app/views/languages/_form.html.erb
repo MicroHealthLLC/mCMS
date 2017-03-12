@@ -21,7 +21,7 @@
         </div>
       </div>
 
-       <div class="form-group">
+      <div class="form-group">
         <%= f.label t('language_status'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.select :status_id, options_for_select(LanguageStatus.pluck(:name, :id), selected: language.language_status.try(:id)), {},{ class: 'form-control'} %>

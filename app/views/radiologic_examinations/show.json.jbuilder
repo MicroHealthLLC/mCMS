@@ -1,0 +1,1 @@
+json.partial! "radiologic_examinations/radiologic_examination", radiologic_examination: @radiologic_examination

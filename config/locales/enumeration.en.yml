@@ -121,6 +121,13 @@ en:
   enumeration_em_code: E&M CODE
   enumeration_insurance_relationship: Insurance Relationship
   enumeration_related_to: Disposition related to
+  enumeration_radiologic_result_status: Radiologic Result Status
+  enumeration_laboratory_result_status: Laboratory Result Status
+  enumeration_outside_lab: Outside Lab
+  enumeration_accept_assignment: Accept Assignment
+  enumeration_bill_status: Bill status
+  enumeration_bill_type: Bill type
+  enumeration_selection_status: Selection Status
 
   enumeration_award_enum: Award
   enumeration_award_type: Award Type

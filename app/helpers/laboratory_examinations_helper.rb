@@ -1,0 +1,2 @@
+module LaboratoryExaminationsHelper
+end
