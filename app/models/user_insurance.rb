@@ -44,7 +44,7 @@ class UserInsurance < ApplicationRecord
 
 
   def self.safe_attributes
-    [:user_id, :insurance_id, :insurance_type_id, :issue_date, :expiration_date,
+    [:user_id, :insurance_id, :insurance_type_id, :issue_date, :expiration_date, :group_id,
      :insurance_identifier, :note, :status_id, :insurance_relationship_id, :insured_name,
      user_insurance_attachments_attributes: [Attachment.safe_attributes]]
   end
