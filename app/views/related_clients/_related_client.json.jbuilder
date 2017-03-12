@@ -1,0 +1,2 @@
+json.extract! related_client, :id, :user_id, :related_client_id, :relationship_id, :date_start, :date_end, :description, :created_at, :updated_at
+json.url related_client_url(related_client, format: :json)

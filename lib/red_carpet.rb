@@ -440,6 +440,15 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_laboratory_examinations, {:laboratory_examinations => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
+  map.project_module :related_clients do |map|
+    map.permission :view_related_clients, {:related_clients => [:index]},  :read => true
+    map.permission :show_related_clients, {:related_clients => [:show]},  :read => true
+    map.permission :create_related_clients, {:related_clients => [ :new, :create]},  :read => true
+    map.permission :edit_related_clients, {:related_clients => [:edit, :update]},  :read => true
+    map.permission :delete_related_clients, {:related_clients => [:destroy]},  :read => true
+    map.permission :manage_related_clients, {:related_clients => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
   map.project_module :teleconsults do |map|
     map.permission :view_teleconsults, {:teleconsults => [:index]},  :read => true
     map.permission :show_teleconsults, {:teleconsults => [:show]},  :read => true
@@ -611,6 +620,7 @@ RedCarpet::AccessControl.map do |map|
         :transportations => [:index, :show, :new, :create, :edit, :update, :destroy],
         :radiologic_examinations => [:index, :show, :new, :create, :edit, :update, :destroy],
         :laboratory_examinations => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :related_clients => [:index, :show, :new, :create, :edit, :update, :destroy],
         :surveys => [:new_assign_survey, :index, :show, :new, :create, :edit, :update, :destroy, :show],
         :attempts => [:index, :show, :new, :create, :show],
         :tasks => [:link_plan, :add_plan, :index, :my, :show, :new, :create, :edit, :update, :destroy],

@@ -1,0 +1,1 @@
+json.partial! "related_clients/related_client", related_client: @related_client

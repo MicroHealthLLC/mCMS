@@ -35,6 +35,7 @@ class User < ApplicationRecord
 
   #HAS MANY FO CASES
   has_many :documents, dependent: :destroy
+  has_many :related_clients, dependent: :destroy
   has_many :appointments, dependent: :destroy
   has_many :organizations, dependent: :destroy
   has_many :departments, dependent: :destroy

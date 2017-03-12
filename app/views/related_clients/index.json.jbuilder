@@ -1,0 +1,1 @@
+json.array! @related_clients, partial: 'related_clients/related_client', as: :related_client

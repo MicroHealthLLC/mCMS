@@ -1,0 +1,29 @@
+<%= render partial: 'action_menu' %>
+<div class="row">
+  <div class="col-xs12">
+    <p>
+      <strong>Related client:</strong>
+      <%= @related_client.related_client %>
+    </p>
+
+    <p>
+      <strong>Relationship:</strong>
+      <%= @related_client.relationship %>
+    </p>
+
+    <p>
+      <strong>Date start:</strong>
+      <%= format_date @related_client.date_start %>
+    </p>
+
+    <p>
+      <strong>Date end:</strong>
+      <%= format_date @related_client.date_end %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @related_client.description.html_safe %>
+    </p>
+  </div>
+</div>

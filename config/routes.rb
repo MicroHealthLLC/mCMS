@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :related_clients
   resources :radiologic_examinations
   resources :laboratory_examinations
   resources :billings, except: [:new]

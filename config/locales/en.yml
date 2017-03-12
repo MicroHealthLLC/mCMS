@@ -48,7 +48,7 @@ en:
   radiologic_examination: Radiologic Examination
   radiologics: Radiologic Examinations
   radiologic_examinations: Radiologic Examinations
-  radiologic_examinations_short: Radiologic Exam
+  radiologic_examinations_short: Rad Exam
   radiologic_result_status: Radiologic Result Status
   new_radiologic_examination: New Radiologic Examination
   edit_radiologic_examination: Edit Radiologic Examination
@@ -56,7 +56,7 @@ en:
   # Laboratory examination
   laboratory_examination: Laboratory Examination
   laboratory_examinations: Laboratory Examinations
-  laboratory_examinations_short: Laboratory Exam
+  laboratory_examinations_short: Lab Exam
   laboratory: Laboratory Examination
   laboratories: Laboratory Examinations
   laboratory_result_status: Laboratory Result Status
@@ -70,6 +70,13 @@ en:
   referral_status: Referral Status
   new_referral: New Referral
   edit_referral: Edit Referral
+
+  related_client: Related Client
+  related_clients: Related Clients
+  related_client_type: Related Client Type
+  related_client_status: Related Client Status
+  new_related_client: New Related Client
+  edit_related_client: Edit Related Client
 
   referral_result: Referral Result
   referral_results: Referral Results
