@@ -1,0 +1,15 @@
+
+<section id="widget-grid" class="related_clients_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                         related_clients: @related_clients,
+                         wid_id: 'related_clients',
+                         wid_title: t('related_clients')
+                 } %>
+    </article>
+  </div>
+</section>
+

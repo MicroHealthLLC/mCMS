@@ -9,6 +9,10 @@ class RelatedClientsController < UserProfilesController
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
 
+
+  def index
+    @related_clients = RelatedClient.visible
+  end
   # GET /related_clients/1
   # GET /related_clients/1.json
   def show

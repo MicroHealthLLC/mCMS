@@ -15,6 +15,8 @@ class UserHistoryController < ApplicationController
     @family_histories = FamilyHistory.visible.all_data if module_enabled?( 'family_histories')  && can?(:manage_roles, :view_family_histories, :manage_family_histories)
     @immunizations = Immunization.visible.all_data if module_enabled?( 'immunizations')  && can?(:manage_roles, :view_immunizations, :manage_immunizations)
     @allergies = Allergy.visible.all_data if module_enabled?( 'allergies')  && can?(:manage_roles, :view_allergies, :manage_allergies)
+    @laboratory_examinations = LaboratoryExamination.visible.all_data if module_enabled?( 'allergies')  && can?(:manage_roles, :view_allergies, :manage_allergies)
+    @radiologic_examinations = RadiologicExamination.visible.all_data if module_enabled?( 'allergies')  && can?(:manage_roles, :view_allergies, :manage_allergies)
   end
 
   def socioeconomic_record

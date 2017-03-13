@@ -38,6 +38,11 @@
               <a href="/client_documents" title="<%= t(:client_documents) %>"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent"><%= t(:client_documents) %></span></a>
             </li>
         <% end %>
+        <% if module_enabled?( 'related_clients')  && can?(:manage_roles, :view_related_clients, :manage_related_clients) %>
+            <li class="<%= menu_active?('related_clients') %>">
+              <a href="/related_clients" title="<%= t(:related_clients) %>"><i class="fa fa-lg fa-fw fa-users"></i> <span class="menu-item-parent"><%= t(:related_clients) %></span></a>
+            </li>
+        <% end %>
       </ul>
     </li>
 <% else %>
