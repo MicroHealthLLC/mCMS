@@ -1,5 +1,5 @@
 
-<table class="table table-bordered table-responsive">
+<table class="table table-bordered table-responsive" id="oposition_table">
   <thead>
   <tr>
     <th><%= t('title') %></th>
@@ -13,7 +13,6 @@
   </thead>
 
   <tbody>
-  <% if @positions.any? %>
       <% @positions.each do |position| %>
           <tr>
             <td><%= link_to position.title, position %></td>
@@ -25,10 +24,11 @@
             <td><%= position.estimated_monthly_amount %></td>
           </tr>
       <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
-      </tr>
-  <% end %>
   </tbody>
 </table>
+<script>
+  $(document).ready(function(){
+    initDataTable('oposition_table')
+  } );
+</script>
+

@@ -133,8 +133,10 @@ class Case < ApplicationRecord
     ]
   end
 
-  def to_pdf(pdf)
+  def to_pdf(pdf, show_user = true)
     pdf.font_size(25){  pdf.table([[ "Case ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
+    user.to_pdf_brief_info(pdf) if show_user
+    pdf.table([[" Case "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
 
     pdf.table([[ "Title: ", " #{title}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])

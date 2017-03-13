@@ -25,7 +25,7 @@ class SocialMedium < ApplicationRecord
     end
   end
 
-  def to_pdf(pdf)
+  def to_pdf(pdf, show_user = true)
     pdf.move_down 10
     pdf.table([[ "Social media type:", " #{social_media_type}", " #:", " #{social_media_handle}"]], :column_widths => [ 100,150, 100, 173])
   end

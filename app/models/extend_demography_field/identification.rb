@@ -39,7 +39,7 @@ class Identification < ApplicationRecord
 
 
 
-  def to_pdf(pdf)
+  def to_pdf(pdf, show_user = true)
     pdf.table([[ "Identification type:", " #{identification_type}", " Id number:", " #{identification_number}"]], :column_widths => [ 100,150, 100, 173])
   end
 

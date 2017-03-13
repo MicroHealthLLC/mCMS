@@ -15,6 +15,19 @@ class ApplicationRecord < ActiveRecord::Base
 
   scope :visible, -> { where(user_id: User.current.id) }
 
+  def self.for_status(status)
+    scope =  self.visible
+    scope = case status
+              when 'all' then scope.all_data
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.all_data
+            end
+    scope
+  end
+
   def can?(*args)
     User.current.admin? or (owner? and args.map{|action| User.current_user.allowed_to? action }.include?(true) )
   end

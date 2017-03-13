@@ -27,4 +27,17 @@ class RadiologicExamination < ApplicationRecord
         radiologic_examination_attachments_attributes: [Attachment.safe_attributes]
     ]
   end
+
+  def to_pdf(pdf, show_user = true)
+    pdf.font_size(25){  pdf.table([[ "Radiologic Examination ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
+    user.to_pdf_brief_info(pdf) if show_user
+    pdf.table([[" Radiologic Examination "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
+
+    pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Facility: ", " #{facility}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date: ", " #{date}"]], :column_widths => [ 150, 373])
+
+    pdf.table([[ "Radiologic Result Status: ", " #{radiologic_result_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Description: ", " #{ActionView::Base.full_sanitizer.sanitize(result)}"]], :column_widths => [ 150, 373])
+  end
 end

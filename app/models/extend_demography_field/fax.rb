@@ -26,7 +26,7 @@ class Fax < ApplicationRecord
     end
   end
 
-  def to_pdf(pdf)
+  def to_pdf(pdf, show_user = true)
     pdf.table([[ "fax type:", " #{fax_type}", " Fax number:", " #{fax_number}"]], :column_widths => [ 100,150, 100, 173])
   end
 

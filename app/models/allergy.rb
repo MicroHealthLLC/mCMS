@@ -40,10 +40,10 @@ class Allergy < ApplicationRecord
     ]
   end
 
-  def to_pdf(pdf)
+  def to_pdf(pdf, show_user = true)
     pdf.font_size(25){  pdf.table([[ "Allergy ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
-    user.to_pdf_brief_info(pdf)
-    pdf.table([["Informations Data "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
+    user.to_pdf_brief_info(pdf) if show_user
+    pdf.table([[" Allergy "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "medication: ", " #{icdcm_code}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Allergy Type: ", " #{allergy_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Allergy Status: ", " #{allergy_status}"]], :column_widths => [ 150, 373])

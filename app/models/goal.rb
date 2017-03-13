@@ -62,17 +62,19 @@ class Goal < ApplicationRecord
     name
   end
 
-  def to_pdf(pdf)
+  def to_pdf(pdf, show_user = true)
     pdf.font_size(25){  pdf.table([[ "Goal ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
 
-    pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Goal status: ", " #{goal_status}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Priority: ", " #{priority_type}"]], :column_widths => [ 150, 373])
+    user.to_pdf_brief_info(pdf) if show_user
+    pdf.table([[" Goal "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
+    pdf.table([[ "Name ", " #{name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Description ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Goal status ", " #{goal_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Priority ", " #{priority_type}"]], :column_widths => [ 150, 373])
 
-    pdf.table([[ "Date start: ", " #{date_start}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Date due: ", " #{date_due}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Date completed: ", " #{date_completed}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date start ", " #{date_start}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date due ", " #{date_due}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date completed ", " #{date_completed}"]], :column_widths => [ 150, 373])
   end
 
 end

@@ -1,4 +1,4 @@
-<table class="table table-responsive table-bordered">
+<table class="table table-responsive table-bordered" id="educations_table">
   <thead>
   <tr>
     <th><%= t :education_type %></th>
@@ -9,19 +9,21 @@
   </thead>
 
   <tbody>
-  <% if educations.any? %>
-      <% educations.each do |education| %>
-          <tr>
-            <td><%= link_to education.education_type, education_path(education) %></td>
-            <td><%= education.education_status %></td>
-            <td><%= format_date education.date_recieved %></td>
-            <td><%= format_date education.date_expired %></td>
-          </tr>
-      <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
+
+  <% educations.each do |education| %>
+      <tr>
+        <td><%= link_to education.education_type, education_path(education) %></td>
+        <td><%= education.education_status %></td>
+        <td><%= format_date education.date_recieved %></td>
+        <td><%= format_date education.date_expired %></td>
       </tr>
   <% end %>
+
   </tbody>
 </table>
+
+<script>
+  $(document).ready(function(){
+    initDataTable('educations_table')
+  } );
+</script>

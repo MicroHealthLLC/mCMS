@@ -1,4 +1,4 @@
-<table class="table table-responsive table-bordered">
+<table class="table table-responsive table-bordered" id="clearance_table">
   <thead>
   <tr>
     <th><%= t('enumeration_clearence_type') %></th>
@@ -9,20 +9,20 @@
   </thead>
 
   <tbody>
-  <% if @clearances.any? %>
-      <% @clearances.each do |clearance| %>
-          <tr>
-            <td><%= link_to clearance.clearence_type, clearance_path(clearance)%></td>
-            <td><%= clearance.clearence_status %></td>
-            <td><%= format_date clearance.date_received %></td>
-            <td><%= format_date clearance.date_expired %></td>
+  <% @clearances.each do |clearance| %>
+      <tr>
+        <td><%= link_to clearance.clearence_type, clearance_path(clearance)%></td>
+        <td><%= clearance.clearence_status %></td>
+        <td><%= format_date clearance.date_received %></td>
+        <td><%= format_date clearance.date_expired %></td>
 
-          </tr>
-      <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
       </tr>
   <% end %>
   </tbody>
 </table>
+
+<script>
+  $(document).ready(function(){
+    initDataTable('clearance_table')
+  } );
+</script>

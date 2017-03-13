@@ -358,7 +358,7 @@ class User < ApplicationRecord
     end
   end
 
-  def to_pdf(pdf)
+  def to_pdf(pdf, show_user = true)
     pdf.font_size(25){  pdf.table([[ "User ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
 
     pdf.image("#{Rails.root}/public/#{avatar.resized.url}") if avatar_url
@@ -390,6 +390,7 @@ class User < ApplicationRecord
     data << ["First Name", first_name]
     data << ["Middle Name", middle_name]
     data << ["Last Name", last_name]
+    data << ["Birthday", "#{birthday}"]
     data << ["Gender", "#{gender}"]
     pdf.table(data, :column_widths => [ 150 , 373])
     pdf.move_down 10

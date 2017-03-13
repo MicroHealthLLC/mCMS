@@ -99,10 +99,10 @@ class Appointment < ApplicationRecord
      :user_id, :date, :related_to_id, appointment_attachments_attributes: [Attachment.safe_attributes]]
   end
 
-  def to_pdf(pdf)
+  def to_pdf(pdf, show_user = true)
     pdf.font_size(25){  pdf.table([[ "Apointment ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
-    user.to_pdf_brief_info(pdf)
-    pdf.table([["Informations Data "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
+    user.to_pdf_brief_info(pdf) if show_user
+    pdf.table([[" Appointment"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Appointment type: ", " #{appointment_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Appointment status: ", " #{appointment_status}"]], :column_widths => [ 150, 373])

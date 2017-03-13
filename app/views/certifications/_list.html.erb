@@ -1,4 +1,4 @@
-<table class="table table-responsive table-bordered">
+<table class="table table-responsive table-bordered" id="certifications_table">
   <thead>
   <tr>
     <th><%= t('label_name') %></th>
@@ -10,7 +10,6 @@
   </thead>
 
   <tbody>
-  <% if @certifications.any? %>
       <% @certifications.each do |certification| %>
           <tr>
             <td><%= link_to certification.name, certification_path(certification) %></td>
@@ -20,10 +19,11 @@
             <td><%= format_date certification.date_expired %></td>
           </tr>
       <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
-      </tr>
-  <% end %>
   </tbody>
 </table>
+
+<script>
+  $(document).ready(function(){
+    initDataTable('certifications_table')
+  } );
+</script>

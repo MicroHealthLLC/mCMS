@@ -1,4 +1,4 @@
-<table class="table table-responsive table-bordered">
+<table class="table table-responsive table-bordered" id="language_table">
   <thead>
   <tr>
     <th><%= t('language_type') %></th>
@@ -9,19 +9,21 @@
   </thead>
 
   <tbody>
-  <% if @languages.any?  %>
-      <% @languages.each do |language| %>
-          <tr>
-            <td><%= link_to language.language_type, language %></td>
-            <td><%= language.language_status %></td>
-            <td><%= language.proficiency_type %></td>
-            <td><%= format_date language.updated_at %></td>
-          </tr>
-      <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
+  <% @languages.each do |language| %>
+      <tr>
+        <td><%= link_to language.language_type, language %></td>
+        <td><%= language.language_status %></td>
+        <td><%= language.proficiency_type %></td>
+        <td><%= format_date language.updated_at %></td>
       </tr>
   <% end %>
   </tbody>
 </table>
+
+<script>
+  $(document).ready(function(){
+    initDataTable('language_table')
+  } );
+</script>
+
+

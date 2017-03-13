@@ -72,9 +72,10 @@ class Billing < ApplicationRecord
     ]
   end
 
-  def to_pdf(pdf)
+  def to_pdf(pdf, show_user = true)
     pdf.font_size(25){  pdf.table([[ "Billing ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
-    user.to_pdf_brief_info(pdf) ; pdf.table([["Informations Data "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
+    user.to_pdf_brief_info(pdf) if show_user
+    pdf.table([["Billing"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Bill type: ", " #{bill_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Bill status: ", " #{bill_status}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Bill Date: ", " #{bill_date}"]], :column_widths => [ 150, 373])

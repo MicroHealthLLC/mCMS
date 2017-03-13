@@ -60,7 +60,7 @@ class Address < ApplicationRecord
     output.html_safe
   end
 
-  def to_pdf(pdf)
+  def to_pdf(pdf, show_user = true)
     pdf.table([[ "Address type:", " #{address_type} ", " Address:", " #{full_address}"]], :column_widths => [ 100,150, 100, 173])
   end
 

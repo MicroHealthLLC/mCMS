@@ -45,4 +45,18 @@ class WorkerCompensation < ApplicationRecord
         worker_compensation_attachments_attributes: [Attachment.safe_attributes]
     ]
   end
+
+  def to_pdf(pdf, show_user = true)
+    pdf.font_size(25){  pdf.table([[ "Worker Compensation ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
+    user.to_pdf_brief_info(pdf) if show_user
+    pdf.table([[" Worker Compensation "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
+
+    pdf.table([[ "Injury: ", " #{injury.to_s}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Compensation Type: ", " #{compensation_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Compensation status: ", " #{compensation_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date  Of Compensation start: ", " #{date_of_compensation_start}"]], :column_widths => [ 150, 373])
+
+    pdf.table([[ "Date Of Compensation End: ", " #{date_of_compensation_end}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
+  end
 end

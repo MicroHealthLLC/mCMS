@@ -1,3 +1,4 @@
+<%= render partial: 'state_button_filter'%>
 <section id="widget-grid" class="educations_section">
   <% if @educations %>
       <%= link_to( t('new_education'), new_education_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_educations, :manage_roles, :manage_educations) %>

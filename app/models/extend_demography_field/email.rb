@@ -26,7 +26,7 @@ class Email < ApplicationRecord
     end
   end
 
-  def to_pdf(pdf)
+  def to_pdf(pdf, show_user = true)
     pdf.table([[ "Email type:", " #{email_type} ", "  Email:", " #{email_address}"]], :column_widths => [ 100,150, 100, 173])
   end
 

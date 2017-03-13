@@ -42,9 +42,10 @@ class ProblemList < ApplicationRecord
      problem_list_attachments_attributes: [Attachment.safe_attributes]]
   end
 
-  def to_pdf(pdf)
+  def to_pdf(pdf, show_user = true)
     pdf.font_size(25){  pdf.table([[ "Problem List ##{id}" ]], :column_widths => [ 523], :cell_style=> {:style => :bold, align: :center})}
-    user.to_pdf_brief_info(pdf) ; pdf.table([["Informations Data "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
+    user.to_pdf_brief_info(pdf) if show_user
+    pdf.table([[" Problem List "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
     pdf.table([[ "#{I18n.t('icdcm_code')}: ", " #{icdcm_code}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Problem List Type: ", " #{problem_type}"]], :column_widths => [ 150, 373])

@@ -76,7 +76,7 @@ class Department < ApplicationRecord
     "#{id} #{department_type}"
   end
 
-  def to_pdf(pdf)
+  def to_pdf(pdf, show_user = true)
     pdf.font_size(25){  pdf.table([[ "Department ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     pdf.table([[ "Department type: ", " #{department_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Organization: ", " #{organization}"]], :column_widths => [ 150, 373])

@@ -26,7 +26,7 @@ class Phone < ApplicationRecord
     end
   end
 
-  def to_pdf(pdf)
+  def to_pdf(pdf, show_user = true)
     pdf.table([[ "Phone type:", " #{phone_type}", " Phone number:", " #{phone_number}"]], :column_widths => [ 100,150, 100, 173])
   end
 

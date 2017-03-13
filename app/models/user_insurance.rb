@@ -53,14 +53,19 @@ class UserInsurance < ApplicationRecord
     insurance
   end
 
-  def to_pdf(pdf)
+  def to_pdf(pdf, show_user = true)
     pdf.font_size(25){  pdf.table([[ "Insurance ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
-    user.to_pdf_brief_info(pdf) ; pdf.table([["Informations Data "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
+    user.to_pdf_brief_info(pdf) if show_user
+    pdf.table([[" Insurance "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Insurance name: ", " #{insurance}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Status: ", " #{insurance_status}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Insurance Relationship: ", " #{insurance_relationship}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Insured Name: ", " #{insured_name}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Insurance type: ", " #{insurance_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Insurance ID: ", " #{insurance_identifier}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Issue Date: ", " #{issue_date}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Expiration Date: ", " #{expiration_date}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Group ID: ", " #{group_id}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 

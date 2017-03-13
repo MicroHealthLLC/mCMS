@@ -93,9 +93,10 @@ class MtfHospital < ApplicationRecord
     ]
   end
 
-  def to_pdf(pdf)
+  def to_pdf(pdf, show_user = true)
     pdf.font_size(25){  pdf.table([[ "Mtf Hospital ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
-    user.to_pdf_brief_info(pdf) ; pdf.table([["Informations Data "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
+    user.to_pdf_brief_info(pdf) if show_user
+    pdf.table([[" MTF Hospital "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "mtf hospital: ", " #{mtf_hospital}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Incident Type: ", " #{incident_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Incident Category: ", " #{incident_category}"]], :column_widths => [ 150, 373])

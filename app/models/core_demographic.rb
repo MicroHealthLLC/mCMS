@@ -65,7 +65,7 @@ class CoreDemographic < ApplicationRecord
     gender_type
   end
 
-  def to_pdf(pdf)
+  def to_pdf(pdf, show_user = true)
     pdf.table([[ "First name: ", " #{first_name}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Middle name: ", " #{middle_name}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Last name: ", " #{last_name}"]], :column_widths => [ 150, 373])

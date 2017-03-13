@@ -1,4 +1,4 @@
-<table class="table table-bordered table-responsive">
+<table class="table table-bordered table-responsive" id="contact_table">
   <thead>
   <tr>
 
@@ -9,26 +9,25 @@
     <th><%= t('language') %></th>
     <th><%= t('date_started') %></th>
     <th><%= t('date_end') %></th>
-   </tr>
+  </tr>
   </thead>
 
   <tbody>
-  <% if contacts.any? %>
-      <% contacts.each do |contact| %>
-          <tr>
-            <td><%= link_to contact.name, contact %></td>
-            <td><%= contact.emergency_contact %></td>
-            <td><%= contact.contact_type %></td>
-            <td><%= contact.contact_status %></td>
-            <td><%= contact.language_type %></td>
-            <td><%= format_date contact.date_started %></td>
-            <td><%= format_date contact.date_ended %></td>
-           </tr>
-      <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
+  <% contacts.each do |contact| %>
+      <tr>
+        <td><%= link_to contact.name, contact %></td>
+        <td><%= contact.emergency_contact %></td>
+        <td><%= contact.contact_type %></td>
+        <td><%= contact.contact_status %></td>
+        <td><%= contact.language_type %></td>
+        <td><%= format_date contact.date_started %></td>
+        <td><%= format_date contact.date_ended %></td>
       </tr>
   <% end %>
   </tbody>
 </table>
+<script>
+  $(document).ready(function(){
+    initDataTable('contact_table')
+  } );
+</script>

@@ -1,4 +1,4 @@
-<table class="table table-bordered table-responsive">
+<table class="table table-bordered table-responsive" id="affiliation_table">
   <thead>
   <tr>
     <th><%= t :label_name %></th>
@@ -10,7 +10,6 @@
   </thead>
 
   <tbody>
-  <% if affiliations.any? %>
       <% affiliations.each do |affiliation| %>
           <tr>
             <td><%= link_to affiliation.name, affiliation %></td>
@@ -20,10 +19,11 @@
             <td><%= format_date affiliation.date_end %></td>
             </tr>
       <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
-      </tr>
-  <% end %>
   </tbody>
 </table>
+
+<script>
+  $(document).ready(function(){
+    initDataTable('affiliation_table')
+  } );
+</script>
