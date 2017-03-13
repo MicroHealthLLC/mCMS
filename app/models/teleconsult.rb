@@ -58,7 +58,7 @@ class Teleconsult < ApplicationRecord
 
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.table([[ "TeleConsult ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
-    user.to_pdf_brief_info(pdf)
+    user.to_pdf_brief_info(pdf) ; pdf.table([["Informations Data "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Contact Method: ", " #{contact_method}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Contact type: ", " #{contact_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Status: ", " #{consult_status}"]], :column_widths => [ 150, 373])

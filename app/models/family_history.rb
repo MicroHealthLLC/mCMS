@@ -43,7 +43,7 @@ class FamilyHistory < ApplicationRecord
 
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.table([[ "Family History ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
-    user.to_pdf_brief_info(pdf)
+    user.to_pdf_brief_info(pdf) ; pdf.table([["Informations Data "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Icdcm Code: ", " #{icdcm_code}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Family History Status: ", " #{family_status}"]], :column_widths => [ 150, 373])

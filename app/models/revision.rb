@@ -38,7 +38,7 @@ class Revision < ApplicationRecord
     # Get rid of utf-8 control characters 
     contents.gsub!(/\P{ASCII}/, '') if !contents.blank?
     # Redundant line breaks are useless to us
-    self.search_text = contents.gsub(/(\r?\n)+/,"\n") if !contents.blank?
+    self.search_text = contents.gsub(/(\r?;)+/,";") if !contents.blank?
   end
 
 end

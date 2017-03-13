@@ -50,7 +50,7 @@ class Education < ApplicationRecord
 
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.table([[ "Education ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
-    user.to_pdf_brief_info(pdf)
+    user.to_pdf_brief_info(pdf) ; pdf.table([["Informations Data "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Education Type: ", " #{education_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Education Status: ", " #{education_status}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Date received: ", " #{date_recieved}"]], :column_widths => [ 150, 373])

@@ -77,7 +77,7 @@ class JobApplication < ApplicationRecord
 
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.table([[ "Job Application ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
-    user.to_pdf_brief_info(pdf)
+    user.to_pdf_brief_info(pdf) ; pdf.table([["Informations Data "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Employer: ", " #{employer}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Position Applied: ", " #{position_applied}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Projected salary: ", " #{projected_salary}"]], :column_widths => [ 150, 373])

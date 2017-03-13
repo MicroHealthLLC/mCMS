@@ -102,6 +102,7 @@ class Appointment < ApplicationRecord
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.table([[ "Apointment ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf)
+    pdf.table([["Informations Data "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Appointment type: ", " #{appointment_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Appointment status: ", " #{appointment_status}"]], :column_widths => [ 150, 373])

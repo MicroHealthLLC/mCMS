@@ -45,7 +45,7 @@ class Enrollment < ApplicationRecord
 
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.table([[ "Enrollment ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
-    user.to_pdf_brief_info(pdf)
+    user.to_pdf_brief_info(pdf) ; pdf.table([["Informations Data "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Enrollment type: ", " #{enrollment_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Enrollment Status: ", " #{enrollment_status}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Date start: ", " #{date_start}"]], :column_widths => [ 150, 373])

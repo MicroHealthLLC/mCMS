@@ -35,7 +35,7 @@ class Medication < ApplicationRecord
 
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.table([[ "Medication ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
-    user.to_pdf_brief_info(pdf)
+    user.to_pdf_brief_info(pdf) ; pdf.table([["Informations Data "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Medication: ", " #{medication_synonym}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Medication TTY: ", " #{medication_tty}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Direction: ", " #{description}"]], :column_widths => [ 150, 373])

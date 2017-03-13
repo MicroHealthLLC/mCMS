@@ -64,7 +64,7 @@ class Transportation < ApplicationRecord
 
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.table([[ "Transportation ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
-    user.to_pdf_brief_info(pdf)
+    user.to_pdf_brief_info(pdf) ; pdf.table([["Informations Data "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Title: ", " #{title}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Transportation Mean: ", " #{transportation_mean}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Transportation Type: ", " #{transportation_type}"]], :column_widths => [ 150, 373])

@@ -44,10 +44,7 @@ class ProblemList < ApplicationRecord
 
   def to_pdf(pdf)
     pdf.font_size(25){  pdf.table([[ "Problem List ##{id}" ]], :column_widths => [ 523], :cell_style=> {:style => :bold, align: :center})}
-    user.to_pdf_brief_info(pdf)
-    pdf.move_down 10
-    
-    pdf.table([["Problem List Information"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
+    user.to_pdf_brief_info(pdf) ; pdf.table([["Informations Data "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
     pdf.table([[ "#{I18n.t('icdcm_code')}: ", " #{icdcm_code}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Problem List Type: ", " #{problem_type}"]], :column_widths => [ 150, 373])
