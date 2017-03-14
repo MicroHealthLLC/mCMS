@@ -5,6 +5,7 @@ class Position < ApplicationRecord
   belongs_to :employment_type, optional: true
   belongs_to :position_status, optional: true, foreign_key: :status_id
   belongs_to :location_type, optional: true
+  belongs_to :occupation, optional: true
 
 
   has_many :position_attachments, foreign_key: :owner_id, dependent: :destroy
@@ -67,7 +68,7 @@ class Position < ApplicationRecord
 
   def self.safe_attributes
     [:user_id, :title, :position_description, :estimated_monthly_amount,
-     :location_type_id, :special_requirement, :note, :status_id,
+     :location_type_id, :special_requirement, :note, :status_id, :occupation_id,
      :date_start, :date_end, :organization_id, :salary, :pay_rate_id, :employment_type_id,
      position_attachments_attributes: [Attachment.safe_attributes]]
   end
@@ -88,6 +89,7 @@ class Position < ApplicationRecord
     pdf.table([[ "Date start: ", " #{date_start}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Date end: ", " #{date_end}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Employment type: ", " #{employment_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Occupation: ", " #{occupation}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 

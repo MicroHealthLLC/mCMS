@@ -20,7 +20,7 @@ class SpreadsheetEnumerationUpload
       when ".csv" then
         Roo::CSV.new(file.path, csv_options: {encoding: 'ISO-8859-1'})
       when ".xls" then
-        Roo::Excel.new(file.path, nil, :ignore)
+        Roo::Excel.new(file.path)
       when ".xlsx" then
         Roo::Excelx.new(file.path)
       else
@@ -78,6 +78,19 @@ class SpreadsheetEnumerationUpload
           short_description: row[4]
       }
       i = Hcpc.where(hcpc: row[0].strip ).first_or_initialize
+      i.update(params)
+    end
+  end
+
+  def occupation_import
+    roo_csv  = Roo::Excel.new(file)
+    sheet = roo_csv.sheet(0)
+    parse_sheet(sheet) do  |row|
+      next if row[1].blank?
+      params = {
+          name: row[0]
+      }
+      i = Occupation.where(code: "#{row[1]}".strip ).first_or_initialize
       i.update(params)
     end
   end

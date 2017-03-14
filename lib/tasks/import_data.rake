@@ -18,6 +18,12 @@ namespace :import_data do
    s.update_hcpc
   end
 
+ task occupation: :environment do
+   file = "occupation.xls"
+   s = SpreadsheetEnumerationUpload.new file
+   s.occupation_import
+  end
+
  task place_of_service: :environment do
    file = "Place of Service.xlsx"
    s = SpreadsheetEnumerationUpload.new file

@@ -74,6 +74,25 @@
       </div>
 
       <div class="form-group">
+        <%= f.label :occupation, class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= text_field_tag :occupation, f.object.occupation,  class: 'form-control' %>
+          <%= f.hidden_field :occupation_id %>
+          <script>
+            $(document).ready(function(){
+              $('#occupation').autocomplete({
+                source: "/occupation.json?",
+                minLength: 2,
+                select: function( event, ui ) {
+                  $('#position_occupation_id').val(ui.item.id)
+                }
+              })
+            })
+          </script>
+        </div>
+      </div>
+
+      <div class="form-group">
         <div class="col-md-12">
           <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
         </div>

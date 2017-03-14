@@ -26,15 +26,20 @@
     <%= @position.position_status %>
   </p>
 
-   <p>
+  <p>
     <strong><%= t('estimated_monthly_amount') %>:</strong>
     <%= @position.estimated_monthly_amount %>
   </p>
 
   <p>
+    <strong>Occupation:</strong>
+    <%= @position.occupation %>
+  </p>
+  <p>
     <strong>Employer:</strong>
     <%= @position.note.html_safe %>
   </p>
+
 
   <p>
     <strong>Date start:</strong>
