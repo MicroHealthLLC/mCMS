@@ -17,6 +17,7 @@ INSTALLATION:
 - Configure your email smtp
 - Run Bundle Install from the directory you did a git clone
 - import the ICD10 data rails icddata:import_data RAILS_ENV=production
+- import the BLS occupation codes rails import_data:occupation
 - rails enumeration:print_subclasses
 - import hcpcs codes rails import_data:hcpc
 - import immunization codes rails import_data:immunization
