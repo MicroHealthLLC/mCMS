@@ -7,6 +7,11 @@
   </p>
 
   <p>
+    <strong>Occupation:</strong>
+    <%= @position.occupation %>
+  </p>
+
+  <p>
     <strong>Position description:</strong>
     <%= @position.position_description.html_safe %>
   </p>
@@ -31,10 +36,6 @@
     <%= @position.estimated_monthly_amount %>
   </p>
 
-  <p>
-    <strong>Occupation:</strong>
-    <%= @position.occupation %>
-  </p>
   <p>
     <strong>Employer:</strong>
     <%= @position.note.html_safe %>

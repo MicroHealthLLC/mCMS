@@ -3,10 +3,10 @@
   <thead>
   <tr>
     <th><%= t('title') %></th>
+    <th><%= 'Occupation' %></th>
     <th><%= t('enumeration_location_type') %></th>
     <th><%= t('date_start') %></th>
     <th><%= t('date_end') %></th>
-    <th><%= 'Occupation' %></th>
     <th><%= t('employment_type') %></th>
     <th><%= t('position_status') %></th>
     <th><%= t('estimated_monthly_amount') %></th>
@@ -17,10 +17,10 @@
       <% @positions.each do |position| %>
           <tr>
             <td><%= link_to position.title, position %></td>
+            <td><%= position.occupation %></td>
             <td><%= position.location_type %></td>
             <td><%= format_date position.date_start %></td>
             <td><%= format_date position.date_end %></td>
-            <td><%= position.occupation %></td>
             <td><%= position.employment_type %></td>
             <td><%= position.position_status %></td>
             <td><%= position.estimated_monthly_amount %></td>
