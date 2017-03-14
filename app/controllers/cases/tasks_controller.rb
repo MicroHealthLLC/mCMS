@@ -12,6 +12,20 @@ class TasksController < UserCasesController
   def index
     respond_to do |format|
       format.html{}
+      format.pdf{
+        scope = Task.root
+        scope = case params[:status_type]
+                  when 'all' then scope.all_data
+                  when 'opened' then scope.opened
+                  when 'closed' then scope.closed
+                  when 'flagged' then scope.flagged
+                  else
+                    scope.opened
+                end
+        scope = scope.include_enumerations.
+            where('tasks.assigned_to_id = :user OR tasks.for_individual_id = :user', user:  User.current.id)
+        @tasks = scope
+      }
       format.json{
         options = Hash.new
         options[:status_type] = params[:status_type]

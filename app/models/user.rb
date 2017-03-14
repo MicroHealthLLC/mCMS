@@ -360,27 +360,24 @@ class User < ApplicationRecord
 
   def to_pdf(pdf, show_user = true)
     pdf.font_size(25){  pdf.table([[ "User ##{id}"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})}
-
-    pdf.image("#{Rails.root}/public/#{avatar.resized.url}") if avatar_url
-    pdf.move_down 10
-    data = []
+    if avatar_url
+      pdf.table([[ {:image => "#{Rails.root}/public/#{avatar.resized.url}", :image_height => 100, :image_width => 100} ]], :column_widths => [ 523],  :cell_style=> {align: :center})
+    end
     pdf.table([["User Information"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
-    data << ["Login", login]
-    data << ["Email", email]
-    data << ["Active", state?]
-    pdf.table(data, :column_widths => [ 150 , 373])
+    pdf.table([[ "Login: ", " #{login}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Email: ", " #{email}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Active: ", " #{active?}"]], :column_widths => [ 150, 373])
 
     pdf.move_down 10
-
-    data = []
      pdf.table([["Profile Information"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
-    data << ["Name", profile_name]
-    data << ["Gender", gender]
-    data << ["Birthday", birthday]
-    data << ["Religion", religion]
-    data << ["Ethnicity", ethnicity]
-    data << ["Citizenship", citizenship]
-    pdf.table(data, :column_widths => [ 150 , 373])
+
+    pdf.table([[ "Name: ", " #{profile_name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Gender: ", " #{gender}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Birthday: ", " #{birthday}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Religion: ", " #{religion}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Ethnicity: ", " #{ethnicity}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Citizenship: ", " #{citizenship}"]], :column_widths => [ 150, 373])
+
     pdf.move_down 10
   end
 

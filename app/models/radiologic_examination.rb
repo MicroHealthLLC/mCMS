@@ -13,6 +13,10 @@ class RadiologicExamination < ApplicationRecord
     [["#{RadiologicResultStatus}", 'radiologic_result_status_id' ]]
   end
 
+  def to_s
+    name
+  end
+
   def radiologic_result_status
     if radiologic_result_status_id
       super

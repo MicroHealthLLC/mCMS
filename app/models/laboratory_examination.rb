@@ -13,6 +13,9 @@ class LaboratoryExamination < ApplicationRecord
     [["#{LaboratoryResultStatus}", 'laboratory_result_status_id' ]]
   end
 
+  def to_s
+    name
+  end
 
   def laboratory_result_status
     if laboratory_result_status_id

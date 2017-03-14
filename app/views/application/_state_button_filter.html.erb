@@ -3,4 +3,7 @@
   <%= link_to 'CLOSED', params.permit(:from, :to).merge(status_type: 'closed'), class: 'btn btn-danger'  %>
   <%= link_to 'FLAGGED', params.permit(:from, :to).merge(status_type: 'flagged'), class: 'btn btn-warning'  %>
   <%= link_to 'ALL', params.permit(:from, :to).merge(status_type: 'all'), class: 'btn btn-primary'  %>
+  <% unless params[:controller].in? ['user_profiles', 'user_history' ] %>
+      <%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
+  <% end %>
 </div>

@@ -18,8 +18,10 @@ class CaseSupportsController < UserCasesController
               else
                 scope.all_data
             end
+    @case_supports = scope
     respond_to do |format|
-      format.html{ @case_supports = scope}
+      format.html{ }
+      format.pdf{}
     end
   end
 
@@ -28,6 +30,7 @@ class CaseSupportsController < UserCasesController
   def show
     respond_to do |format|
       format.html{}
+      format.pdf{}
       format.js{
         @case_support = @case_support.dup
         @case_support.user_id = User.current.id

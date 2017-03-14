@@ -116,8 +116,8 @@ class Task < ApplicationRecord
     pdf.table([[ "For individual: ", " #{for_individual}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Priority: ", " #{priority_type}"]], :column_widths => [ 150, 373])
 
-    pdf.table([[ "Date start: ", " #{date_start}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Date due: ", " #{date_due}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date start: ", " #{date_start.strftime("#{Setting['format_date']} %I:%M %p") if date_start}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date due: ", " #{date_due.strftime("#{Setting['format_date']} %I:%M %p") if date_due}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Date completed: ", " #{date_completed}"]], :column_widths => [ 150, 373])
     if User.current.allowed_to?(:manage_roles) or User.current.allowed_to?(:view_notes)
 

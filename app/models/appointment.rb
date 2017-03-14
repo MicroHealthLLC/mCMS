@@ -106,8 +106,7 @@ class Appointment < ApplicationRecord
     pdf.table([[ "Description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Appointment type: ", " #{appointment_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Appointment status: ", " #{appointment_status}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Date: ", " #{date}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Time: ", " #{time}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date: ", " #{date.strftime("#{Setting['format_date']} %I:%M %p") if date}"]], :column_widths => [ 150, 373])
     pdf.table([[ "With: ", " #{with_who}"]], :column_widths => [ 150, 373])
 
   end

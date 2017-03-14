@@ -1,4 +1,8 @@
-
+<div class="row btn-edition">
+  <div class="col-xs-12">
+    <%= link_to 'Print', {}.merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
+  </div>
+</div>
 <section id="widget-grid" class="show_customer_account">
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -9,7 +13,7 @@
                      wid_title: 'Basic Information',
                      user: User.current
                  } %>
-   
+
     </article>
 
     <article class="col-xs-12  col-sm-12 col-md-12 col-lg-12">

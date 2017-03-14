@@ -164,7 +164,7 @@ module ApplicationHelper
   end
 
   def format_date_time(datetime)
-    datetime.strftime(I18n.t('time.formats.default')) if datetime
+    datetime.strftime("#{Setting['format_date']} %I:%M %p") if datetime
   end
 
   def resource

@@ -10,6 +10,21 @@ class AppointmentsController < UserCasesController
   def index
     respond_to do |format|
       format.html{}
+      format.pdf{
+        scope = Appointment
+        scope = case params[:status_type]
+                  when 'all' then scope.all_data
+                  when 'opened' then scope.opened
+                  when 'closed' then scope.closed
+                  when 'flagged' then scope.flagged
+                  else
+                    scope.opened
+                end
+        @appointments = scope.include_enumerations.
+            includes(:user=> :core_demographic).
+            references(:user=> :core_demographic).
+            my_appointments
+      }
       format.json{
         options = Hash.new
         options[:status_type] = params[:status_type]

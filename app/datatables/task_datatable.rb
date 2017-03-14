@@ -64,8 +64,9 @@ class TaskDatatable < AjaxDatatablesRails::Base
               else
                 scope.opened
             end
-    scope.include_enumerations.
+    scope = scope.include_enumerations.
         where('tasks.assigned_to_id = :user OR tasks.for_individual_id = :user', user:  User.current.id)
+    scope
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

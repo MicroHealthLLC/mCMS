@@ -75,7 +75,11 @@ class CaseSupport < ApplicationRecord
     pdf.font_size(25){  pdf.table([[ "Case Support  ##{id}"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf) if show_user
     pdf.table([[" Case Support "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
-     pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date Started: ", " #{date_started}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date Ended: ", " #{date_ended}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Support Status: ", " #{support_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Case Support Type: ", " #{case_support_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
