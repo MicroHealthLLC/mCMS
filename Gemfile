@@ -162,3 +162,4 @@ gem 'textractor'
 # Use Sunspot Rails and Sunspot Solr for our search engine
 gem 'sunspot_rails'
 gem 'sunspot_solr'
+gem 'roo-xls'
