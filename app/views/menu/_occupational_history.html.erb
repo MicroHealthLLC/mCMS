@@ -50,6 +50,11 @@
               <a href="/job_applications" title="<%= t(:job_applications) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:job_applications) %></span></a>
             </li>
         <% end %>
+       <% if module_enabled?( 'resumes') && can?(:manage_roles, :view_resumes, :manage_resumes) %>
+            <li class="<%= menu_active?('resumes') %>">
+              <a href="/resumes" title="<%= t(:resumes) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:resumes) %></span></a>
+            </li>
+        <% end %>
       </ul>
     </li>
 <% end %>

@@ -1,0 +1,26 @@
+<table class="table table-responsive" id="resumes_table">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Date</th>
+    <th>Resume type</th>
+    <th>Resume status</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @resumes.each do |resume| %>
+      <tr>
+        <td><%= link_to resume.title, resume %></td>
+        <td><%= format_date resume.date %></td>
+        <td><%= resume.resume_type %></td>
+        <td><%= resume.resume_status %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<script>
+  $(document).ready(function(){
+    initDataTable('resumes_table')
+  })
+</script>

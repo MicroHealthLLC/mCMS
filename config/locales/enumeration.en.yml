@@ -143,5 +143,7 @@ en:
   enumeration_service_status: Service Status
   enumeration_unit_enum: Unit
   enumeration_unit_type: Unit Type
+  enumeration_resume_type: Resume Type
+  enumeration_resume_status: Resume Status
   enumeration_verified_personnel_casualty_reporting_system: Verified Personnel Casualty Reporting System(s)
   enumeration_rank: Rank

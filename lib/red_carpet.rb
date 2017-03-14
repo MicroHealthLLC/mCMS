@@ -22,6 +22,15 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_languages, {:languages => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
+   map.project_module :resumes do |map|
+    map.permission :view_resumes, {:resumes => [:index]},  :read => true
+    map.permission :show_resumes, {:resumes => [:show]},  :read => true
+    map.permission :create_resumes, {:resumes => [:new, :create]},  :read => true
+    map.permission :edit_resumes, {:resumes => [:edit, :update]},  :read => true
+    map.permission :delete_resumes, {:resumes => [:destroy]},  :read => true
+    map.permission :manage_resumes, {:resumes => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
   map.project_module :job_applications do |map|
     map.permission :view_job_applications, {:job_applications => [:index]},  :read => true
     map.permission :show_job_applications, {:job_applications => [:show]},  :read => true
@@ -620,6 +629,7 @@ RedCarpet::AccessControl.map do |map|
         :transportations => [:index, :show, :new, :create, :edit, :update, :destroy],
         :radiologic_examinations => [:index, :show, :new, :create, :edit, :update, :destroy],
         :laboratory_examinations => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :resumes => [:index, :show, :new, :create, :edit, :update, :destroy],
         :related_clients => [:index, :show, :new, :create, :edit, :update, :destroy],
         :surveys => [:new_assign_survey, :index, :show, :new, :create, :edit, :update, :destroy, :show],
         :attempts => [:index, :show, :new, :create, :show],

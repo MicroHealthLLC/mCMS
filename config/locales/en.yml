@@ -462,6 +462,13 @@ en:
   financial_status: Financial Status
   financial_state: Financial State
 
+  resume: Resume
+  new_resume: New Resume
+  edit_resume: Edit Resume
+  resumes: Resumes
+  resume_type: Resume Type
+  resume_status: Resume Status
+ 
   surgical: Surgery
   new_surgical: New Surgery
   edit_surgical: Edit Surgery
