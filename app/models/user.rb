@@ -359,12 +359,12 @@ class User < ApplicationRecord
   end
 
   def to_pdf(pdf, show_user = true)
-    pdf.font_size(25){  pdf.table([[ "User ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
+    pdf.font_size(25){  pdf.table([[ "User ##{id}"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})}
 
     pdf.image("#{Rails.root}/public/#{avatar.resized.url}") if avatar_url
     pdf.move_down 10
     data = []
-    pdf.table([["User Information"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
+    pdf.table([["User Information"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
     data << ["Login", login]
     data << ["Email", email]
     data << ["Active", state?]
@@ -373,7 +373,7 @@ class User < ApplicationRecord
     pdf.move_down 10
 
     data = []
-     pdf.table([["Profile Information"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
+     pdf.table([["Profile Information"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
     data << ["Name", profile_name]
     data << ["Gender", gender]
     data << ["Birthday", birthday]
@@ -386,7 +386,7 @@ class User < ApplicationRecord
 
   def to_pdf_brief_info(pdf)
     data = []
-    pdf.table([["Client Information"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
+    pdf.table([["Client Information"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
     data << ["First Name", first_name]
     data << ["Middle Name", middle_name]
     data << ["Last Name", last_name]

@@ -43,9 +43,9 @@ class Socioeconomic < ApplicationRecord
   end
 
   def to_pdf(pdf, show_user = true)
-    pdf.font_size(25){  pdf.table([[ "Socioeconomic ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
+    pdf.font_size(25){  pdf.table([[ "Socioeconomic ##{id}"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf) if show_user
-    pdf.table([[" Socioeconomic "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
+    pdf.table([[" Socioeconomic "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Icdcm code: ", " #{icdcm_code}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Status: ", " #{socioeconomic_status}"]], :column_widths => [ 150, 373])

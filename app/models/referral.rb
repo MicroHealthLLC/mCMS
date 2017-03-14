@@ -62,9 +62,9 @@ class Referral < ApplicationRecord
   end
 
   def to_pdf(pdf, show_user = true)
-    pdf.font_size(25){  pdf.table([[ "Referral ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
+    pdf.font_size(25){  pdf.table([[ "Referral ##{id}"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf) if show_user
-    pdf.table([[" Referral "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
+    pdf.table([[" Referral "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Title: ", " #{title}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Referral Type: ", " #{referral_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Referral Status: ", " #{referral_status}"]], :column_widths => [ 150, 373])

@@ -53,10 +53,10 @@ class ChecklistTemplate < ApplicationRecord
  end
 
   def to_pdf(pdf, show_user = true)
-    pdf.font_size(25){  pdf.table([[ "Checklist ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
+    pdf.font_size(25){  pdf.table([[ "Checklist ##{id}"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})}
     User.current.to_pdf_brief_info(pdf) if show_user
 
-    pdf.table([[" Checklist Template "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
+    pdf.table([[" Checklist Template "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
 
     pdf.table([[ "Title: ", " #{title}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Type: ", " #{checklist_type}"]], :column_widths => [ 150, 373])

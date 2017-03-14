@@ -100,9 +100,9 @@ class Appointment < ApplicationRecord
   end
 
   def to_pdf(pdf, show_user = true)
-    pdf.font_size(25){  pdf.table([[ "Apointment ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
+    pdf.font_size(25){  pdf.table([[ "Apointment ##{id}"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf) if show_user
-    pdf.table([[" Appointment"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
+    pdf.table([[" Appointment"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Appointment type: ", " #{appointment_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Appointment status: ", " #{appointment_status}"]], :column_widths => [ 150, 373])

@@ -54,9 +54,9 @@ class UserInsurance < ApplicationRecord
   end
 
   def to_pdf(pdf, show_user = true)
-    pdf.font_size(25){  pdf.table([[ "Insurance ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
+    pdf.font_size(25){  pdf.table([[ "Insurance ##{id}"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf) if show_user
-    pdf.table([[" Insurance "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
+    pdf.table([[" Insurance "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Insurance name: ", " #{insurance}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Status: ", " #{insurance_status}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Insurance Relationship: ", " #{insurance_relationship}"]], :column_widths => [ 150, 373])

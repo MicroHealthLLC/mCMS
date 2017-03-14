@@ -41,7 +41,7 @@ class Organization < ApplicationRecord
 
 
   def to_pdf(pdf, show_user = true)
-    pdf.font_size(25){  pdf.table([[ "Organization ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
+    pdf.font_size(25){  pdf.table([[ "Organization ##{id}"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})}
     pdf.table([[ "Name ", " #{name}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Organization type ", " #{organization_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])

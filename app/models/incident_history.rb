@@ -95,9 +95,9 @@ class IncidentHistory < ApplicationRecord
   end
 
   def to_pdf(pdf, show_user = true)
-    pdf.font_size(25){  pdf.table([[ "Incident History ##{id}"]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})}
+    pdf.font_size(25){  pdf.table([[ "Incident History ##{id}"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf) if show_user
-    pdf.table([[" Incident History "]], :row_colors => ['#D999FF'], :column_widths => [ 523], :cell_style=> {align: :center})
+    pdf.table([[" Incident History "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Incident: ", " #{incident}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Incident Type: ", " #{incident_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Incident Category: ", " #{incident_category}"]], :column_widths => [ 150, 373])
