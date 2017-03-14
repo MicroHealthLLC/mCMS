@@ -390,7 +390,7 @@ en:
 
   # Housing
   housing: Housing
-  housings: Housings
+  housings: Housing
   new_housing: New Housing
   edit_housing: Edit Housing
   housing_type: Housing Type
@@ -401,7 +401,7 @@ en:
   legal: Legal
   new_legal: New Legal
   edit_legal: Edit Legal
-  legals: Legals
+  legals: Legal
   legal_history_type: Legal History Type
   legal_history_status: Legal History Status
 
@@ -448,7 +448,7 @@ en:
   transportation: Transportation
   new_transportation: New Transportation
   edit_transportation: Edit Transportation
-  transportations: Transportations
+  transportations: Transportation
   transportation_type: Transportation Type
   transportation_status: Transportation Status
   transportation_mean: Transportation Mean
@@ -494,7 +494,7 @@ en:
   other_history: Other History
   new_other_history: New Other History
   edit_other_history: Edit Other History
-  other_histories: Other Histories
+  other_histories: Other History
   other_history_type: Other History Type
   other_history_status: Other History Status
 

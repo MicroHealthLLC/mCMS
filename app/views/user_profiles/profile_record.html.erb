@@ -133,6 +133,7 @@
         </article>
       </div>
   <% end %>
+
   <% if @documents %>
       <%= link_to( t('new_document'), new_client_document_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_documents, :manage_roles, :manage_documents) %>
       <div class="row">
