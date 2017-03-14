@@ -381,6 +381,13 @@ class User < ApplicationRecord
     pdf.move_down 10
   end
 
+  def to_pdf_organization(pdf)
+    if job_detail
+      org = job_detail.organization
+      org.to_pdf_short_desc(pdf)
+    end
+  end
+
   def to_pdf_brief_info(pdf)
     data = []
     pdf.table([["Client Information"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})

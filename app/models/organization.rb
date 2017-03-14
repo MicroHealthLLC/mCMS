@@ -47,4 +47,27 @@ class Organization < ApplicationRecord
     pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
+  def to_pdf_short_desc(pdf)
+    pdf.text "#{name}"
+    extend_informations = @organization.extend_informations
+    if extend_informations
+      if extend_demo.addresses.present?
+        address = extend_demo.addresses.first
+        pdf.text address.address
+        pdf.text address.second_address
+        pdf.text address.city
+        pdf.text address.zip_code
+      end
+      if extend_demo.phones.present?
+        phone = extend_demo.phones.first
+        pdf.text phone.phone_number
+      end
+      if extend_demo.emails.present?
+        email = extend_demo.emails.first
+        pdf.text email.email_address
+      end
+      pdf.move_down 10
+    end
+  end
+
 end
