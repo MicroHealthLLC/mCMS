@@ -4,6 +4,7 @@
         <%= link_to(t('new_note'), new_note_path(type: 'AttemptNote', owner_id: attempt.id), class: 'btn btn-primary pull-right') if can?(:add_notes, :manage_roles) %>
         <%= link_to( 'show', survey_attempt_path( attempt), class: 'btn btn-success pull-right') %>
         <%= link_to( t('button_cancel'), attempts_path(survey_id: attempt.survey.id, case_id: attempt.participant_id), class: 'btn btn-warning pull-right') %>
+        <%= link_to( t('button_print'), survey_attempt_path( attempt, format: :pdf), class: 'btn btn-primary pull-right') %>
       </div>
     </div>
 <% end %>

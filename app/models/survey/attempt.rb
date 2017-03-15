@@ -62,6 +62,23 @@ class Survey::Attempt < ApplicationRecord
     "ATTEMPT FOR #{survey}"
   end
 
+  def to_pdf(pdf)
+     pdf.text "ATTEMPT #{defined?(index) ? "##{index + 1}" : nil}"
+     pdf.text answers.first.created_at.strftime(Setting['format_date']) if answers.first
+     pdf.table( [["Survey", survey.to_s ]], :column_widths => [ 150, 373])
+     pdf.table( [["Survey Status", survey.active? ? 'Active' : (survey.finished? ? 'Finished' : 'Not active') ]], :column_widths => [ 150, 373])
+     pdf.move_down(10)
+
+     answers.each do |answer|
+       pdf.text answer.question.text
+
+       answer.question.options.each do |option|
+         pdf.text "(#{answer.option_id == option.id ? 'X' : ' '}) #{option.text}"
+       end
+       pdf.move_down(7)
+     end
+  end
+
   private
 
   def check_number_of_attempts_by_survey

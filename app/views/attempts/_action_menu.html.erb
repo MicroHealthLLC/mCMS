@@ -6,5 +6,6 @@
         <%= link_to 'New attempt', new_attempt_path(survey_id: @survey.id), class: 'btn btn-primary pull-right' %>
     <% end %>
     <%= link_to t('button_cancel'), surveys_path, class: 'btn btn-warning pull-right' %>
+    <%= link_to t('button_print'), params.permit(:case_id, :survey_id).merge({format: :pdf}), class: 'btn btn-primary pull-right' %>
   </div>
 </div>
