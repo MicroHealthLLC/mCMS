@@ -1,3 +1,4 @@
+<%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
 <%= link_to( t('new_service_history'), new_service_history_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_service_histories, :manage_roles, :manage_service_histories) %>
 <section id="widget-grid" class="service_histories_section">
   <%= render partial: 'state_button_filter'%>

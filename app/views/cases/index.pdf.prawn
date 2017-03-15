@@ -1,4 +1,5 @@
 prawn_document(:page_layout => :portrait) do |pdf|
+   User.current.to_pdf_organization(pdf)
   if User.current.can?(:manage_roles)
       @cases.each_with_index do |object, idx|
         object.to_pdf(pdf)

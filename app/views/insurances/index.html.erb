@@ -1,3 +1,4 @@
+<%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
 <%= link_to( t('new_insurance'), new_insurance_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_insurances, :manage_roles, :manage_insurances)%>
 <section id="widget-grid" class="insurances_section">
   <%= render partial: 'state_button_filter'%>

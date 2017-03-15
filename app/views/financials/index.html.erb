@@ -1,3 +1,4 @@
+<%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
 <%= link_to('New Financial', new_financial_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_financials, :manage_roles, :manage_financials) %>
 <section id="widget-grid" class="financials_section">
   <%= render partial: 'state_button_filter'%>

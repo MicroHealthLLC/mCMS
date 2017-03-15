@@ -42,7 +42,13 @@ class Devise::RegistrationsController < DeviseController
   # GET /resource/edit
   def edit
     @core_demographic = User.current.core_demographic || CoreDemographic.new(user_id: User.current.id)
-    render :edit
+    respond_to do |format|
+      format.html{
+        render :edit
+      }
+      format.pdf{
+      }
+    end
   end
 
   # PUT /resource

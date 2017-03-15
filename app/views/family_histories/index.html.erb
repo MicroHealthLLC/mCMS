@@ -1,3 +1,4 @@
+<%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
 <%= link_to(t('new_family_history'), new_family_history_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_family_histories, :manage_roles, :manage_family_histories) %>
 <section id="widget-grid" class="family_histories_section">
   <%= render partial: 'state_button_filter'%>

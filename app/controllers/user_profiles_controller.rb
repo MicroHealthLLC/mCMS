@@ -21,5 +21,6 @@ class UserProfilesController < ApplicationController
     @injuries = Injury.for_status(params[:status_type]) if module_enabled?( 'injuries')  && can?(:manage_roles, :view_injuries, :manage_injuries)
     @worker_compensations = WorkerCompensation.for_status(params[:status_type]) if module_enabled?( 'worker_compensations')  && can?(:manage_roles, :view_worker_compensations, :manage_worker_compensations)
     @job_applications = JobApplication.for_status(params[:status_type]) if module_enabled?( 'job_applications')  && can?(:manage_roles, :view_job_applications, :manage_job_applications)
+    @resumes = Resume.for_status(params[:status_type]) if module_enabled?( 'resumes')  && can?(:manage_roles, :view_resumes, :manage_resumes)
   end
 end

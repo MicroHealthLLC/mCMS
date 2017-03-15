@@ -1,3 +1,4 @@
+<%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
 <section id="widget-grid" class="enrollments_section">
   <%= render partial: 'state_button_filter'%>
   <div class="btn-group pull-right btn-edition">

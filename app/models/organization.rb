@@ -49,8 +49,8 @@ class Organization < ApplicationRecord
 
   def to_pdf_short_desc(pdf)
     pdf.text "#{name}"
-    extend_informations = @organization.extend_informations
-    if extend_informations
+    extend_demo = self.extend_informations
+    if extend_demo
       if extend_demo.addresses.present?
         address = extend_demo.addresses.first
         pdf.text address.address

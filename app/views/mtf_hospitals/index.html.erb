@@ -1,3 +1,4 @@
+<%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
 <%= link_to( t('new_mtf_hospital'), new_mtf_hospital_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_mtf_hospitals, :manage_roles, :manage_mtf_hospitals) %>
 <section id="widget-grid" class="mtf_hospitals_section">
   <%= render partial: 'state_button_filter'%>

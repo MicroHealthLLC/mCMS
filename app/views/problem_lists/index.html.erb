@@ -1,3 +1,4 @@
+<%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
 <%= link_to(t('new_problem_list'), new_problem_list_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_problem_lists, :manage_problem_lists, :manage_roles) %>
 <section id="widget-grid" class="problem_lists_section">
   <%= render partial: 'state_button_filter'%>

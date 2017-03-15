@@ -1,3 +1,4 @@
+<%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
 <%= link_to( 'New Client Journal', new_client_journal_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_client_journals, :manage_roles, :manage_client_journals)%>
 
 <section id="widget-grid" class="clearances_section">

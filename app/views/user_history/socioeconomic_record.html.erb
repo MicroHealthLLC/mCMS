@@ -1,4 +1,6 @@
+<%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
 <%= render partial: 'state_button_filter'%>
+
 <section id="widget-grid" class="daily_livings_section">
   <% if @daily_livings %>
       <%= link_to( t('new_daily_living'), new_daily_living_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_daily_livings, :manage_roles, :manage_daily_livings) %>

@@ -1,4 +1,5 @@
 prawn_document(:page_layout => :portrait) do |pdf|
+   User.current.to_pdf_organization(pdf)
   User.current.to_pdf_brief_info(pdf)
   @plans.each do |object|
     object.to_pdf(pdf, false)

@@ -1,3 +1,4 @@
+<%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
 <%= link_to('New Position', new_position_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_positions, :manage_positions, :manage_roles) %>
 
 <section id="widget-grid" class="positions_section">

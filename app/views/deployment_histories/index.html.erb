@@ -1,3 +1,4 @@
+<%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
 <%= link_to( t('new_deployment_history'), new_deployment_history_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_deployment_histories, :manage_roles, :manage_deployment_histories) %>
 <section id="widget-grid" class="deployment_histories_section">
   <%= render partial: 'state_button_filter'%>

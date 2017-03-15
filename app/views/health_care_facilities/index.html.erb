@@ -1,3 +1,4 @@
+<%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
 <%= link_to('New Health Care Facility', new_health_care_facility_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_health_care_facilitiess, :manage_roles, :manage_health_care_facilitiess) %>
 <section id="widget-grid" class="goals_section">
   <%= render partial: 'state_button_filter'%>

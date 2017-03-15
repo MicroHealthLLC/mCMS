@@ -1,3 +1,4 @@
+<%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
 <%= link_to( 'New Certification', new_certification_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_certifications)%>
 
 <section id="widget-grid" class="certifications_section">
