@@ -13,7 +13,11 @@
         <% end %>
         <h4> Download the latest revision here </h4>
     <% end %>
-    <%= "From #{@document.user.username} on #{@document.current_revision.updated_at.to_date}" %>
+    <%  if @document.current_revision %>
+        <%= "From #{@document.user.username} on #{@document.current_revision.updated_at.to_date}" %>
+    <% else %>
+        <%= "From #{@document.user.username}" %>
+    <% end %>
     <br />
     <%= "Download count: #{@document.total_downloads}" %>
     <br />
@@ -43,7 +47,7 @@
                               <% else %>
                                   <%= image_tag "icons/icon_other_40.png" %>
                               <% end %>
-                      <%= "Revision #{revision.position}" %>
+                              <%= "Revision #{revision.position}" %>
                               <span class="pull-right">
                         <%= "by #{User.find(revision.user_id).full_name} on #{revision.updated_at.to_date}" %>
                       </span>
