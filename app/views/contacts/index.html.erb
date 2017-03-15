@@ -1,9 +1,8 @@
-<%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
-<div class="row">
-  <div class="col-xs-12">
-    <%= link_to( 'Search Contact', search_contacts_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:search_contacts, :manage_contacts, :manage_roles)  %>
-    <%= link_to( 'New Contact', new_contact_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_contacts, :manage_contacts, :manage_roles)  %>
-  </div>
+<div class="col-xs-4 pull-right">
+  <%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
+
+  <%= link_to( 'Search Contact', search_contacts_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:search_contacts, :manage_contacts, :manage_roles)  %>
+  <%= link_to( 'New Contact', new_contact_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_contacts, :manage_contacts, :manage_roles)  %>
 </div>
 <section id="widget-grid" class="contacts_section">
   <%= render partial: 'state_button_filter'%>

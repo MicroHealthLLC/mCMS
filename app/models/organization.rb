@@ -48,23 +48,24 @@ class Organization < ApplicationRecord
   end
 
   def to_pdf_short_desc(pdf)
-    pdf.text "#{name}"
+    pdf.text "#{name}", :align => :center
+
     extend_demo = self.extend_informations
     if extend_demo
       if extend_demo.addresses.present?
         address = extend_demo.addresses.first
-        pdf.text address.address
-        pdf.text address.second_address
-        pdf.text address.city
-        pdf.text address.zip_code
+        pdf.text address.address,:align => :center if address.address.present?
+        pdf.text address.second_address,:align => :center  if address.second_address.present?
+        pdf.text address.city,:align => :center if address.city.present?
+        pdf.text address.zip_code,:align => :center if address.zip_code.present?
       end
       if extend_demo.phones.present?
         phone = extend_demo.phones.first
-        pdf.text phone.phone_number
+        pdf.text phone.phone_number , :align => :center
       end
       if extend_demo.emails.present?
         email = extend_demo.emails.first
-        pdf.text email.email_address
+        pdf.text email.email_address, :align => :center
       end
       pdf.move_down 10
     end
