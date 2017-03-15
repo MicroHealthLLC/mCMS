@@ -56,8 +56,7 @@ class Organization < ApplicationRecord
         address = extend_demo.addresses.first
         pdf.text address.address,:align => :center if address.address.present?
         pdf.text address.second_address,:align => :center  if address.second_address.present?
-        pdf.text address.city,:align => :center if address.city.present?
-        pdf.text address.zip_code,:align => :center if address.zip_code.present?
+        pdf.text "#{address.state_type}, #{address.city} #{address.zip_code}",:align => :center
       end
       if extend_demo.phones.present?
         phone = extend_demo.phones.first

@@ -2,21 +2,27 @@ prawn_document(:page_layout => :portrait) do |pdf|
    User.current.to_pdf_organization(pdf)
   @appointment.to_pdf(pdf)
 
-  pdf.start_new_page  if @cases.present?
+  pdf.start_new_page  if @appointment.appointment_captures.present?
    @appointment.appointment_captures.each do |object|
       object.to_pdf(pdf, false)
       pdf.move_down 20
     end
-    pdf.start_new_page  if @cases.present?
+    pdf.start_new_page  if @appointment.appointment_dispositions.present?
    @appointment.appointment_dispositions.each do |object|
       object.to_pdf(pdf, false)
       pdf.move_down 20
     end
-      pdf.start_new_page  if @cases.present?
-       @appointment.appointment_procedures.each do |object|
-          object.to_pdf(pdf, false)
-          pdf.move_down 20
-        end
+  pdf.start_new_page  if @appointment.appointment_procedures.present?
+   @appointment.appointment_procedures.each do |object|
+      object.to_pdf(pdf, false)
+      pdf.move_down 20
+    end
+
+   pdf.start_new_page  if @billings.present?
+   @billings.each do |object|
+      object.to_pdf(pdf, false)
+      pdf.move_down 20
+    end
 
 
     pdf.start_new_page  if @cases.present?
