@@ -24,4 +24,13 @@ class AppointmentCapture < ApplicationRecord
     assessment
   end
 
+  def to_pdf(pdf, show_user= true)
+    pdf.font_size(25){  pdf.table([[ "Assessment ##{id}"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})}
+    pdf.table([[ "Assessment: ", " #{assessment}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "#{I18n.t('icdcm_code')}: ", " #{icdcm_code}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date Recorded: ", " #{date_recorded}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
+
+  end
+
 end

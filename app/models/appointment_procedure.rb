@@ -56,4 +56,18 @@ class AppointmentProcedure < ApplicationRecord
     end
   end
 
+  def to_pdf(pdf, show_user= true)
+    pdf.font_size(25){  pdf.table([[ "Procedure ##{id}"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})}
+    pdf.table([[ "Procedure: ", " #{procedure}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "HCPCS: ", " #{hcpc}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Emergency: ", " #{emergency}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Provider: ", " #{provider}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Modifier: ", " #{modifier}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Charges: ", " #{charges}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Unit: ", " #{unit}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Diagnosis Pointer: ", " #{diagnosis_pointer}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
+
+  end
+
 end

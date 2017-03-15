@@ -33,4 +33,13 @@ class AppointmentDisposition < ApplicationRecord
     end
   end
 
+  def to_pdf(pdf, show_user= true)
+    pdf.font_size(25){  pdf.table([[ "Disposition ##{id}"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})}
+    pdf.table([[ "Disposition: ", " #{disposition}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Related To: ", " #{related_to}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date Recorded: ", " #{date_recorded}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
+
+  end
+
 end
