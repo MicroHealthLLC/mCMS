@@ -5,16 +5,21 @@
     <p> <%= @document.description %> </p>
     <br />
     <%= link_to download_document_manager_path, "data-no-turbolink" => true do %>
-      <%= image_tag "icons/#{document_icon(@document.current_revision.extension_type)}" %>
-      <h4> Download the latest revision here </h4>
+        <% if @document.current_revision %>
+            <%= image_tag "icons/#{document_icon(@document.current_revision.extension_type)}" %>
+        <% else %>
+            <%= image_tag "icons/icon_other.png" %>
+
+        <% end %>
+        <h4> Download the latest revision here </h4>
     <% end %>
     <%= "From #{@document.user.username} on #{@document.current_revision.updated_at.to_date}" %>
     <br />
     <%= "Download count: #{@document.total_downloads}" %>
     <br />
     <% if can_edit_document(@document) %>
-      <br />
-      <%= render partial: "edit_document" %> 
+        <br />
+        <%= render partial: "edit_document" %>
     <% end %>
   </div>
   <div class="col-md-7">
@@ -22,30 +27,34 @@
       <ol class="breadcrumb">
         <li> Document Revision History </li>
         <% if can_revise_document(@document) %>
-          <div class="pull-right"><%= render partial: "revisions/upload.html.erb" %></div>
+            <div class="pull-right"><%= render partial: "revisions/upload.html.erb" %></div>
         <% end %>
       </ol>
       <div class="panel-body">
         <% if @document.revisions.length > 1 %>
-          <% @document.revisions.order("position asc").each do |revision| %>
-            <% if revision.position != 0 %>
-              <div class= "unstyled_link">
-                <%= link_to download_document_manager_revision_path(document_manager_id: params[:id], revision_id: revision.id), "data-no-turbolink" => true do %>
-                  <div class="document_listitem_hover">
-                    <p>
-                      <%= image_tag "icons/#{small_document_icon(revision.extension_type)}" %>
-                      <%= "Revision #{revision.position}" %> 
-                      <span class="pull-right">
+            <% @document.revisions.order("position asc").each do |revision| %>
+                <% if revision.position != 0 %>
+                    <div class= "unstyled_link">
+                      <%= link_to download_document_manager_revision_path(document_manager_id: params[:id], revision_id: revision.id), "data-no-turbolink" => true do %>
+                          <div class="document_listitem_hover">
+                            <p>
+                              <% if revision %>
+                                  <%= image_tag "icons/#{small_document_icon(revision.extension_type)}" %>
+                              <% else %>
+                                  <%= image_tag "icons/icon_other_40.png" %>
+                              <% end %>
+                      <%= "Revision #{revision.position}" %>
+                              <span class="pull-right">
                         <%= "by #{User.find(revision.user_id).full_name} on #{revision.updated_at.to_date}" %>
                       </span>
-                    </p>
-                  </div>
-               <% end %>
-              </div>
+                            </p>
+                          </div>
+                      <% end %>
+                    </div>
+                <% end %>
             <% end %>
-          <% end %>
         <% else %>
-          <p> This document has not been revised yet. </p>
+            <p> This document has not been revised yet. </p>
         <% end %>
       </div>
     </div>
