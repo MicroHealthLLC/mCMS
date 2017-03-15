@@ -4,7 +4,7 @@
 <div class="nested-fields row margin-top-5">
   <fieldset>
     <div class="col-xs-1">
-      <%= check_box_tag "checklist_answer_#{index}_status", checklist_answer.status, checklist_answer.status, name: "checklist_answer[#{index}][status]" %>
+      <%= check_box_tag "checklist_answer_#{index}_status", true, checklist_answer.status, name: "checklist_answer[#{index}][status]" %>
     </div>
     <div class="col-xs-6">
       <%= checklist.description.html_safe %>
