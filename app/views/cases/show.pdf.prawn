@@ -62,4 +62,9 @@ prawn_document(:page_layout => :portrait) do |pdf|
       object.to_pdf(pdf, false)
       pdf.move_down 20
     end
+  pdf.start_new_page  if @jsignatures.present?
+   @jsignatures.each do |object|
+      object.to_pdf(pdf, "Plan of Care Agreement")
+      pdf.move_down 20
+    end
 end

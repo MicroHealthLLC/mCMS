@@ -45,7 +45,7 @@ class AppointmentsController < UserCasesController
     @billings =  @appointment.billings
     # update_rails = @appointment.updated_at.to_date
     @appointment_links = @appointment.appointment_links.includes(:linkable)
-
+    @jsignatures= @appointment.jsignatures
     @cases       = @appointment_links.where(linkable_type: 'Case').map(&:linkable)
     @tasks       = @appointment_links.where(linkable_type: 'Task').map(&:linkable)
     # @surveys     = @case.survey_cases.where('date(updated_at) = ?', update_rails)
