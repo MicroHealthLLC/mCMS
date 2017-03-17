@@ -14,7 +14,7 @@ class LaboratoryExamination < ApplicationRecord
   end
 
   def to_s
-    name
+    snomed
   end
 
   def laboratory_result_status
@@ -37,8 +37,7 @@ class LaboratoryExamination < ApplicationRecord
     user.to_pdf_brief_info(pdf) if show_user
     pdf.table([[" Laboratory Examination "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
 
-    pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Snomed: ", " #{snomed}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Name: ", " #{snomed}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Facility: ", " #{facility}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Date: ", " #{date}"]], :column_widths => [ 150, 373])
 

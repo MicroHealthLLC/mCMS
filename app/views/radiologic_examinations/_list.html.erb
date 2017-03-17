@@ -2,7 +2,6 @@
   <thead>
   <tr>
     <th>Name</th>
-    <th>Snomed</th>
     <th>Facility</th>
     <th>Date</th>
     <th>Radiologic result status</th>
@@ -12,8 +11,7 @@
   <tbody>
   <% @radiologic_examinations.each do |radiologic_examination| %>
       <tr>
-        <td><%= link_to radiologic_examination.name, radiologic_examination %></td>
-        <td><%= radiologic_examination.snomed %></td>
+        <td><%= link_to radiologic_examination.snomed, radiologic_examination %></td>
         <td><%= radiologic_examination.facility %></td>
         <td><%= format_date radiologic_examination.date %></td>
         <td><%= radiologic_examination.radiologic_result_status %></td>

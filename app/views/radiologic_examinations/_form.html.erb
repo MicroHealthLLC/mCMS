@@ -18,15 +18,9 @@
       <div class="form-group">
         <%= f.label t(:label_name), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.text_field :name , class: 'form-control' %>
-        </div>
-      </div>
-      <div class="form-group">
-        <%= f.label :snomed, class: 'col-md-2 control-label' %>
-
-        <div class="col-md-9">
           <%= text_field_tag :snomed, f.object.snomed,  class: 'form-control' %>
           <%= f.hidden_field :snomed %>
+          <%= f.hidden_field :name %>
           <script>
             $(document).ready(function(){
               $('#snomed').autocomplete({
@@ -34,6 +28,7 @@
                 minLength: 2,
                 select: function( event, ui ) {
                   $('#radiologic_examination_snomed').val(ui.item.id)
+                  $('#radiologic_examination_name').val(ui.item.id)
                 }
               })
             })
