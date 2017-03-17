@@ -119,6 +119,8 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.43'
 
 gem "jSignature", "~> 0.0.6"
+gem 'faraday'
+gem 'httparty'
 
 #installing adapter gems based on database.yml
 require 'erb'
