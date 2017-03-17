@@ -3,7 +3,7 @@
   <tr>
 
     <th>Name</th>
-    <th>Icdcm code</th>
+    <th>Snomed</th>
     <th>Date identified</th>
     <th>Date resolved</th>
     <th>Socioeconomic status</th>
@@ -16,7 +16,7 @@
   <% @socioeconomics.each do |socioeconomic| %>
       <tr>
         <td><%= link_to socioeconomic.name, socioeconomic %></td>
-        <td><%= link_to socioeconomic.icdcm_code, socioeconomic %></td>
+        <td><%= link_to socioeconomic.snomed, socioeconomic %></td>
         <td><%= format_date socioeconomic.date_identified %></td>
         <td><%= format_date socioeconomic.date_resolved %></td>
         <td><%= socioeconomic.socioeconomic_status %></td>

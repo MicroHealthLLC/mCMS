@@ -38,7 +38,7 @@ class Socioeconomic < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:name, :user_id, :icdcm_code_id, :date_identified, :date_resolved,
+    [:name, :user_id, :icdcm_code_id, :date_identified, :date_resolved, :snomed,
      :socioeconomic_status_id, :socioeconomic_type_id, :description]
   end
 
@@ -47,7 +47,7 @@ class Socioeconomic < ApplicationRecord
     user.to_pdf_brief_info(pdf) if show_user
     pdf.table([[" Socioeconomic "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Icdcm code: ", " #{icdcm_code}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Snomed code: ", " #{snomed}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Status: ", " #{socioeconomic_status}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Type: ", " #{socioeconomic_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Date identified: ", " #{date_identified}"]], :column_widths => [ 150, 373])
