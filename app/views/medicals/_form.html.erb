@@ -29,7 +29,7 @@
           <script>
             $(document).ready(function(){
               $('#snomed').autocomplete({
-                source: "/snomed.json?default=finding",
+                source: "/snomed.json?default=disorder",
                 minLength: 2,
                 select: function( event, ui ) {
                   $('#medical_snomed').val(ui.item.id)

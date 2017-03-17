@@ -28,7 +28,7 @@
           <script>
             $(document).ready(function(){
               $('#snomed_occupation').autocomplete({
-                source: "/snomed.json?default=occupational",
+                source: "/snomed.json?default=disorder",
                 minLength: 2,
                 select: function( event, ui ) {
                   $('#injury_snomed_occupation').val(ui.item.id)

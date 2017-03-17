@@ -27,7 +27,7 @@ class LaboratoryExamination < ApplicationRecord
 
   def self.safe_attributes
     [
-        :user_id, :name, :facility, :date, :result, :laboratory_result_status_id,
+        :user_id, :name, :facility, :date, :result, :laboratory_result_status_id, :snomed,
         laboratory_examination_attachments_attributes: [Attachment.safe_attributes]
     ]
   end
@@ -38,6 +38,7 @@ class LaboratoryExamination < ApplicationRecord
     pdf.table([[" Laboratory Examination "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
 
     pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Snomed: ", " #{snomed}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Facility: ", " #{facility}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Date: ", " #{date}"]], :column_widths => [ 150, 373])
 

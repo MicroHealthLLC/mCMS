@@ -2,6 +2,7 @@
   <thead>
   <tr>
     <th>Name</th>
+    <th>Snomed</th>
     <th>Facility</th>
     <th>Date</th>
     <th>Laboratory result status</th>
@@ -12,6 +13,7 @@
   <% @laboratory_examinations.each do |laboratory_examination| %>
       <tr>
         <td><%= link_to laboratory_examination.name, laboratory_examination %></td>
+        <td><%= laboratory_examination.snomed %></td>
         <td><%= laboratory_examination.facility %></td>
         <td><%= format_date laboratory_examination.date %></td>
         <td><%= laboratory_examination.laboratory_result_status %></td>
