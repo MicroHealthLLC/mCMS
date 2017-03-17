@@ -23,4 +23,13 @@ class RelatedClient < ApplicationRecord
         :date_start, :date_end, :description
     ]
   end
+
+  def to_pdf(pdf)
+    pdf.table([[" Related client ##{id} "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
+    pdf.table([[ "Related Client: ", " #{related_client}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Relationship: ", " #{relationship}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date Start: ", " #{date_start}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date End: ", " #{date_end}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
+  end
 end
