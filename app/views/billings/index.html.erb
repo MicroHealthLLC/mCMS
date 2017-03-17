@@ -1,5 +1,5 @@
 <%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
-<section id="widget-grid" class="billings_section">
+<section id="widget-grid" class="billings_section ">
   <%= render partial: 'state_button_filter'%>
   <% if User.current.can?(:manage_roles) %>
       <script>
@@ -18,20 +18,24 @@
           });
         } );
       </script>
-      <%= form_tag '/billings', method: 'get' do %>
-          <%= hidden_field_tag :status_type, params[:status_type]  %>
-          <div class="row btn-edition">
-            <div class="col-xs-12 col-sm-4 btn-edition">
-              <input type="text" id="from" name="from" value="<%= params[:from] || 1.month.ago.strftime('%y-%m-%d') %>" class="form-control" placeholder="FROM">
-            </div>
-            <div class="col-xs-12 col-sm-4 btn-edition">
-              <input type="text" id="to" name="to" value="<%= params[:to] || 1.month.from_now.strftime('%y-%m-%d') %>" class="form-control" placeholder="TO">
-            </div>
-            <div class="col-xs-4 col-sm-2 btn-edition ">
-              <input type="submit" class="btn btn-default">
-            </div>
-          </div>
-      <% end %>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= form_tag '/billings', method: 'get' do %>
+              <%= hidden_field_tag :status_type, params[:status_type]  %>
+              <div class="row btn-edition">
+                <div class="col-xs-12 col-sm-4 btn-edition">
+                  <input type="text" id="from" name="from" value="<%= params[:from] || 1.month.ago.strftime('%y-%m-%d') %>" class="form-control" placeholder="FROM">
+                </div>
+                <div class="col-xs-12 col-sm-4 btn-edition">
+                  <input type="text" id="to" name="to" value="<%= params[:to] || 1.month.from_now.strftime('%y-%m-%d') %>" class="form-control" placeholder="TO">
+                </div>
+                <div class="col-xs-4 col-sm-2 btn-edition ">
+                  <input type="submit" class="btn btn-default">
+                </div>
+              </div>
+          <% end %>
+        </article>
+      </div>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'billing_appointment_list',
@@ -43,7 +47,7 @@
                      } %>
         </article>
       </div>
-    <div class="row">
+      <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <%= render partial: 'no_billing_appointment_list',
                      layout: 'shared/smart_widget_wrapper',
