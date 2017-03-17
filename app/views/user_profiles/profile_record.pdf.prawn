@@ -39,4 +39,10 @@ prawn_document(:page_layout => :portrait) do |pdf|
     end
    end
 
+     pdf.start_new_page  if @jsignatures.present?
+       @jsignatures.each do |object|
+          object.to_pdf(pdf, "Release of Information")
+          pdf.move_down 20
+        end
+
 end
