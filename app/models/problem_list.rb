@@ -38,7 +38,7 @@ class ProblemList < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:name, :icdcm_code_id, :user_id, :date_onset, :date_resolved, :problem_status_id, :problem_type_id, :description,
+    [:name, :icdcm_code_id, :user_id, :date_onset, :snomed, :date_resolved, :problem_status_id, :problem_type_id, :description,
      problem_list_attachments_attributes: [Attachment.safe_attributes]]
   end
 

@@ -21,11 +21,7 @@ class Language < ApplicationRecord
   end
 
   def language_type
-    if language_type_id
-      super
-    else
-      LanguageType.default
-    end
+    snomed
   end
 
  def language_status
@@ -49,7 +45,7 @@ class Language < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:user_id, :note, :language_type_id, :proficiency_id, :status_id,
+    [:user_id, :note, :language_type_id, :proficiency_id, :status_id, :snomed,
      language_attachments_attributes: [Attachment.safe_attributes]]
   end
 

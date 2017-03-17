@@ -2,7 +2,7 @@
   <thead>
   <tr>
     <th>Name</th>
-    <th>Icdcm code</th>
+    <th>Snomed</th>
     <th>Date started</th>
     <th>Date ended</th>
     <th>Environment status</th>
@@ -14,7 +14,7 @@
   <% @environment_risks.each do |environment_risk| %>
       <tr>
         <td><%= link_to environment_risk.name, environment_risk %></td>
-        <td><%= link_to environment_risk.icdcm_code, environment_risk %></td>
+        <td><%= link_to environment_risk.snomed, environment_risk %></td>
         <td><%= environment_risk.date_started %></td>
         <td><%= environment_risk.date_ended %></td>
         <td><%= environment_risk.environment_status %></td>

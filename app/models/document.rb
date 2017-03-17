@@ -56,7 +56,9 @@ class Document < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:title, :description, :is_client_document, :related_to_id, :related_to_type, :user_id, :document_type_id, :date, :private_author_id, :is_private, document_attachments_attributes: [Attachment.safe_attributes]]
+    [:title, :description, :is_client_document, :related_to_id, :snomed,
+     :related_to_type, :user_id, :document_type_id, :date, :private_author_id,
+     :is_private, document_attachments_attributes: [Attachment.safe_attributes]]
   end
 
   def to_pdf(pdf, show_user = true)

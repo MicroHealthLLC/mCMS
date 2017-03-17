@@ -38,7 +38,7 @@ class Medical < ApplicationRecord
 
   def self.safe_attributes
     [:name, :user_id, :icdcm_code_id, :medical_facility, :date_of_diagnosis,
-     :medical_history_status_id, :medical_history_type_id, :description,
+     :medical_history_status_id, :medical_history_type_id, :description, :snomed,
      medical_attachments_attributes: [Attachment.safe_attributes]
     ]
   end
@@ -48,7 +48,7 @@ class Medical < ApplicationRecord
     user.to_pdf_brief_info(pdf) if show_user
     pdf.table([[" Medical "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Icdcm code: ", " #{icdcm_code}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Snomed: ", " #{snomed}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Medical facility: ", " #{medical_facility}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Medical History Type: ", " #{medical_history_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Medical History Status: ", " #{medical_history_status}"]], :column_widths => [ 150, 373])

@@ -68,7 +68,7 @@ class Position < ApplicationRecord
 
   def self.safe_attributes
     [:user_id, :title, :position_description, :estimated_monthly_amount,
-     :location_type_id, :special_requirement, :note, :status_id, :occupation_id,
+     :location_type_id, :special_requirement, :note, :status_id, :occupation_id, :snomed,
      :date_start, :date_end, :organization_id, :salary, :pay_rate_id, :employment_type_id,
      position_attachments_attributes: [Attachment.safe_attributes]]
   end
@@ -81,7 +81,7 @@ class Position < ApplicationRecord
     pdf.font_size(25){  pdf.table([[ "Position ##{id}"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf) if show_user
     pdf.table([[" Position "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
-    pdf.table([[ "title: ", " #{title}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "title: ", " #{snomed}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Position description: ", " #{ActionView::Base.full_sanitizer.sanitize(position_description)}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Position Status: ", " #{position_status}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Location: ", " #{location_type}"]], :column_widths => [ 150, 373])
@@ -96,7 +96,7 @@ class Position < ApplicationRecord
   def for_mail
     output = ""
     output<< "<h2>Position ##{id} </h2>"
-    output<<"<b>title: </b> #{title}<br/>"
+    output<<"<b>title: </b> #{snomed}<br/>"
     output<<"<b>Position description: </b> #{position_description}<br/>"
     output<<"<b>Position Status: </b> #{position_status}<br/>"
     output<<"<b>Location: </b> #{location_type}<br/>"

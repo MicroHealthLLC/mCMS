@@ -16,17 +16,17 @@
       <%= f.hidden_field :user_id %>
 
       <div class="form-group">
-        <%= f.label t(:icdcm_code), class: 'col-md-2 control-label' %>
+        <%= f.label :snomed, class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= text_field_tag :icdcm_code, f.object.icdcm_code,  class: 'form-control' %>
-          <%= f.hidden_field :allergy_type_id %>
+          <%= text_field_tag :snomed, f.object.snomed,  class: 'form-control' %>
+          <%= f.hidden_field :snomed %>
           <script>
             $(document).ready(function(){
-              $('#icdcm_code').autocomplete({
-                source: "/idcdata.json?from=z00",
+              $('#snomed').autocomplete({
+                source: "/snomed.json?default=allergy",
                 minLength: 2,
                 select: function( event, ui ) {
-                  $('#allergy_allergy_type_id').val(ui.item.id)
+                  $('#allergy_snomed').val(ui.item.id)
                 }
               })
             })

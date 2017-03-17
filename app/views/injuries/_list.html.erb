@@ -2,10 +2,10 @@
   <thead>
   <tr>
     <th>Injury Name</th>
-    <th>Icdcm code</th>
+    <th>Snomed</th>
     <th>Injury type</th>
     <th>Injury cause</th>
-    <th><%= t 'cause_icdcm_code' %></th>
+    <th><%= 'Snmed cause' %></th>
     <th>Injury status</th>
     <th>Employer</th>
     <th>Date of injury</th>
@@ -18,10 +18,10 @@
       <tr>
        
         <td><%= link_to injury.injury_name, injury %></td>
-        <td><%= injury.icdcm_code %></td>
+        <td><%= injury.snomed_occupation %></td>
         <td><%= injury.injury_type %></td>
         <td><%= injury.injury_cause_name %></td>
-        <td><%= injury.injury_cause %></td>
+        <td><%= injury.snomed_event %></td>
         <td><%= injury.injury_status %></td>
         <td><%= injury.employer %></td>
         <td><%= injury.date_of_injury %></td>

@@ -1,4 +1,5 @@
 class IdcdataController < ApplicationController
+  include Snomed
   before_action  :authenticate_user!
   def index
     q = params[:term]
@@ -50,6 +51,13 @@ class IdcdataController < ApplicationController
         data<< hash
       end
     end
+    render json: data
+  end
+
+  def search_snomed
+    q = params[:term]
+    default_search = params[:default]
+    data = get_snomed_result(q, default_search)
     render json: data
   end
 end

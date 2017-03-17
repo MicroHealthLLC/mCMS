@@ -29,7 +29,7 @@ class Immunization < ApplicationRecord
     
   def self.safe_attributes
     [:user_id, :medication, :immunization_cvx_id, :total_number_of_doses, :doses_given,
-     :next_date_due, :date_immunized, :manufacturer, :lot_number,
+     :next_date_due, :date_immunized, :manufacturer, :lot_number, :snomed,
      :expiration_date, :immunization_status_id, :description,
      immunization_attachments_attributes: [Attachment.safe_attributes]]
   end
@@ -38,7 +38,7 @@ class Immunization < ApplicationRecord
     pdf.font_size(25){  pdf.table([[ "Immunization ##{id}"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf) if show_user
     pdf.table([[" Immunization "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
-    pdf.table([[ "Immunization: ", " #{immunization_cvx}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Immunization: ", " #{snomed}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Next Date due: ", " #{next_date_due}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Date immunized: ", " #{date_immunized}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Manufacturer: ", " #{manufacturer}"]], :column_widths => [ 150, 373])

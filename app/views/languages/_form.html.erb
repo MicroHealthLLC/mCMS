@@ -17,7 +17,19 @@
       <div class="form-group">
         <%= f.label t('language'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :language_type_id, options_for_select(LanguageType.pluck(:name, :id), selected: language.language_type.try(:id)), {},{ class: 'form-control'} %>
+          <%= text_field_tag :snomed, f.object.snomed,  class: 'form-control' %>
+          <%= f.hidden_field :snomed %>
+          <script>
+            $(document).ready(function(){
+              $('#snomed').autocomplete({
+                source: "/snomed.json?default=language",
+                minLength: 2,
+                select: function( event, ui ) {
+                  $('#language_snomed').val(ui.item.id)
+                }
+              })
+            })
+          </script>
         </div>
       </div>
 

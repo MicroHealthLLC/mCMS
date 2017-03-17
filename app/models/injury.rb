@@ -42,6 +42,7 @@ class Injury < ApplicationRecord
     [
         :user_id, :injury_cause_name, :injury_name, :icdcm_code_id, :injury_type_id, :injury_cause_id,
         :injury_status_id, :employer, :date_of_injury, :date_resolved, :description,
+        :snomed_occupation, :snomed_event,
         injury_attachments_attributes: [Attachment.safe_attributes]
     ]
   end
@@ -54,7 +55,7 @@ class Injury < ApplicationRecord
     pdf.table([[ "Injury Cause name: ", " #{injury_cause_name}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Injury Status: ", " #{injury_status}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Injury Type: ", " #{injury_type}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Injury Cause: ", " #{injury_cause}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Injury Cause: ", " #{snomed_event}"]], :column_widths => [ 150, 373])
     pdf.table([[ "date of injury: ", " #{date_of_injury}"]], :column_widths => [ 150, 373])
     pdf.table([[ "date of resolved: ", " #{date_resolved}"]], :column_widths => [ 150, 373])
     pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])

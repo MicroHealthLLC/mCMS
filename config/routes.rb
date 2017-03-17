@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   resources :hcpc, only: [:index]
 
   get 'medication_fetch', to: 'idcdata#medication'
+  get 'snomed', to: 'idcdata#search_snomed'
 
   resources :idcdata, only: [:index]
   resources :behavioral_risks

@@ -2,7 +2,7 @@
   <thead>
   <tr>
     <th>Name</th>
-    <th>Icdcm code</th>
+    <th>Snomed</th>
     <th>Date onset</th>
     <th>Date resolved</th>
     <th>Problem status</th>
@@ -14,7 +14,7 @@
   <% @problem_lists.each do |problem_list| %>
       <tr>
         <td><%= link_to problem_list.name, problem_list %></td>
-        <td><%= link_to problem_list.icdcm_code, problem_list %></td>
+        <td><%= link_to problem_list.snomed, problem_list %></td>
         <td><%= format_date problem_list.date_onset %></td>
         <td><%= format_date problem_list.date_resolved %></td>
         <td><%= problem_list.problem_status %></td>

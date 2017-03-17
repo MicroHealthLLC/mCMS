@@ -38,7 +38,7 @@ class BehavioralRisk < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:name, :user_id, :icdcm_code_id, :date_started, :date_ended,
+    [:name, :user_id, :icdcm_code_id, :date_started, :date_ended, :snomed,
      :behavioral_risk_status_id, :behavioral_risk_type_id, :description,
      behavioral_risk_attachments_attributes: [Attachment.safe_attributes]]
   end
@@ -48,7 +48,7 @@ class BehavioralRisk < ApplicationRecord
     user.to_pdf_brief_info(pdf) if show_user
     pdf.table([["Behavioral Risk"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Icdcm Code: ", " #{icdcm_code}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Snomed: ", " #{snomed}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Behavioral Risk Type: ", " #{behavioral_risk_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Behavioral Risk Status: ", " #{behavioral_risk_status}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Behavioral Risk date started: ", " #{date_started}"]], :column_widths => [ 150, 373])

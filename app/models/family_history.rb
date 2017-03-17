@@ -37,7 +37,7 @@ class FamilyHistory < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:name, :user_id, :icdcm_code_id, :date_identified, :family_status_id,
+    [:name, :user_id, :icdcm_code_id, :date_identified, :family_status_id, :snomed,
      :family_type_id, :description]
   end
 
@@ -46,7 +46,7 @@ class FamilyHistory < ApplicationRecord
     user.to_pdf_brief_info(pdf) if show_user
     pdf.table([[" Family History "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Icdcm Code: ", " #{icdcm_code}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Snomed: ", " #{snomed}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Family History Status: ", " #{family_status}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Family History Type: ", " #{family_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "date identified: ", " #{date_identified}"]], :column_widths => [ 150, 373])

@@ -2,7 +2,7 @@
   <thead>
   <tr>
     <th>Name</th>
-    <th>Icdcm code</th>
+    <th>Snomed</th>
     <th>Medical facility</th>
     <th>Date of diagnosis</th>
     <th>Medical history status</th>
@@ -15,7 +15,7 @@
   <% @medicals.each do |medical| %>
       <tr>
         <td><%= link_to medical.name, medical %></td>
-        <td><%= link_to medical.icdcm_code, medical %></td>
+        <td><%= link_to medical.snomed, medical %></td>
         <td><%= medical.medical_facility %></td>
         <td><%= format_date medical.date_of_diagnosis %></td>
         <td><%= medical.medical_history_status %></td>

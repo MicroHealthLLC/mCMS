@@ -19,14 +19,15 @@
         <%= f.label :medication , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.text_field :medication, class: 'form-control' %>
-          <%= f.hidden_field :immunization_cvx_id %>
+          <%= f.hidden_field :snomed %>
           <script>
             $(document).ready(function(){
               $('#immunization_medication').autocomplete({
-                source: "/immunization_cvx/index",
+                source: "/snomed.json?default=vaccine",
                 minLength: 2,
                 select: function( event, ui ) {
-                  $('#immunization_immunization_cvx_id').val(ui.item.id)
+                  $('#immunization_medication').val(ui.item.id)
+                  $('#immunization_snomed').val(ui.item.id)
                 }
               })
             })

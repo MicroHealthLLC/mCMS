@@ -28,14 +28,14 @@ class Allergy < ApplicationRecord
 
 
   def to_s
-    icdcm_code
+    snomed
   end
 
 
   def self.safe_attributes
     [
         :user_id, :allergy_type_id, :medication,
-        :allergy_date, :allergy_status_id, :description,
+        :allergy_date, :allergy_status_id, :description, :snomed,
         allergy_attachments_attributes: [Attachment.safe_attributes]
     ]
   end
@@ -44,8 +44,7 @@ class Allergy < ApplicationRecord
     pdf.font_size(25){  pdf.table([[ "Allergy ##{id}"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf) if show_user
     pdf.table([[" Allergy "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
-    pdf.table([[ "medication: ", " #{icdcm_code}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Allergy Type: ", " #{allergy_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Allergy Type: ", " #{snomed}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Allergy Status: ", " #{allergy_status}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Allergy date: ", " #{allergy_date}"]], :column_widths => [ 150, 373])
     pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])

@@ -15,7 +15,7 @@
   <tbody>
   <% @immunizations.each do |immunization| %>
       <tr>
-        <td><%= link_to immunization.immunization_cvx, immunization %></td>
+        <td><%= link_to immunization.snomed, immunization %></td>
 
         <td><%= format_date immunization.next_date_due %></td>
         <td><%= format_date immunization.date_immunized %></td>

@@ -3,7 +3,7 @@
   <tr>
 
     <th>Name</th>
-    <th>Icdcm code</th>
+    <th>Snomed</th>
     <th>Date started</th>
     <th>Date ended</th>
     <th>Behavioral risk status</th>
@@ -16,7 +16,7 @@
   <% @behavioral_risks.each do |behavioral_risk| %>
       <tr>
         <td><%= link_to behavioral_risk.name, behavioral_risk%></td>
-        <td><%= link_to behavioral_risk.icdcm_code, behavioral_risk%></td>
+        <td><%= link_to behavioral_risk.snomed, behavioral_risk%></td>
         <td><%= format_date behavioral_risk.date_started %></td>
         <td><%= format_date  behavioral_risk.date_ended %></td>
         <td><%= behavioral_risk.behavioral_risk_status %></td>
