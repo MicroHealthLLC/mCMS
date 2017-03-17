@@ -44,11 +44,7 @@ class Document < ApplicationRecord
   end
 
   def document_type
-    if document_type_id
-      super
-    else
-      DocumentType.default
-    end
+    snomed
   end
 
   def visible?

@@ -44,7 +44,19 @@
       <div class="form-group">
         <%= f.label t(:document_type), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :document_type_id, options_for_select(DocumentType.active.pluck(:name, :id), selected: document.document_type.try(:id)) , {} ,{class: 'form-control'} %>
+          <%= text_field_tag :snomed, f.object.snomed,  class: 'form-control' %>
+          <%= f.hidden_field :snomed %>
+          <script>
+            $(document).ready(function(){
+              $('#snomed').autocomplete({
+                source: "/snomed.json?default=record artifact",
+                minLength: 2,
+                select: function( event, ui ) {
+                  $('#document_snomed').val(ui.item.id)
+                }
+              })
+            })
+          </script>
         </div>
       </div>
 
