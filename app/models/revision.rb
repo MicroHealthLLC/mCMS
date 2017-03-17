@@ -2,8 +2,9 @@ class Revision < ApplicationRecord
 
   belongs_to :document_manager
   belongs_to :user
+  has_one :dms_document, class_name: 'DmsDocumemnt'
 
-  validates_presence_of :file_name, :file_type, :file_data
+  validates_presence_of :file_name, :file_type
 
   def extension_type
     ext = case file_type

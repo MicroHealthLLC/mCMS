@@ -46,11 +46,25 @@ class DocumentManagersController < ApplicationController
     @document = DocumentManager.find_by_id(params[:id])
     if !@document.nil?
       # Get the most recent revision when downloading a document
-      @document = @document.current_revision
+      @revision = @document.current_revision
       # Increment download count
-      @document.increment!(:download_count)
+      @revision.increment!(:download_count)
       # Send file binary data to user's browser
-      send_data(@document.file_data, :type => @document.file_type, :filename => @document.file_name, :disposition => "inline")
+      if @revision
+        if @revision.file_data
+          send_data(@revision.file_data, :type => @revision.file_type, :filename => @revision.file_name, :disposition => "inline")
+        else
+          send_file "#{Rails.root}/public/#{@revision.dms_document.doc_url}"
+        end
+      else
+        dms_document = @document.dms_documemnts.last
+        if dms_document
+          send_file "#{Rails.root}/public/#{dms_document.doc_url}"
+        else
+          render_404
+        end
+      end
+
     else
       flash[:error] = "Could not find requested document"
       redirect_to root_path
@@ -70,23 +84,32 @@ class DocumentManagersController < ApplicationController
         # Create the initial revision of the new document
         @revision = Revision.new(file_name: revision_params.original_filename,
             file_type: revision_params.content_type,
-            file_data: revision_params.read,
+            # file_data: revision_params.read,
             document_manager_id: @document.id,
             user_id: current_user.id,
             position: 0
           )
-        if !@revision.save
-          @document.destroy
-          flash[:error] = "Unable to upload revision"
-        else
-          d = DmsDocumemnt.new(document_manager_id: @document.id)
-          d.doc = params[:document][:revision][:file]
-          d.save
 
-          # Extract text from file to provide search engine with searchable content
-          @revision.extract_text
-          @revision.save
+        d = DmsDocumemnt.new(document_manager_id: @document.id)
+
+        d.doc = params[:document][:revision][:file]
+        if d.save
+          if !@revision.save
+            @document.destroy
+            flash[:error] = "Unable to upload revision"
+          else
+            d.revision_id = @revision.id
+            d.save
+            # Extract text from file to provide search engine with searchable content
+            @revision.extract_text
+            @revision.save
+          end
+        else
+          flash[:error] = d.errors.full_messages.join('<br/>').html_safe
+          @document.destroy
         end
+
+
       end
     end
 
