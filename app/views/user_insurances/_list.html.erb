@@ -1,4 +1,4 @@
-<table class="table table-bordered table-responsive">
+<table class="table table-bordered table-responsive" id="insurances_table">
 
   <thead>
   <tr>
@@ -24,3 +24,11 @@
   <% end %>
   </tbody>
 </table>
+
+
+</table>
+<script>
+  $(document).ready(function(){
+    initDataTable('insurances_table')
+  })
+</script>
