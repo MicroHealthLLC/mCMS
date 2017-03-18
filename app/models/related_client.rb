@@ -1,6 +1,6 @@
 class RelatedClient < ApplicationRecord
   belongs_to :user
-  belongs_to :relationship, optional: true
+  belongs_to :relationship, optional: true, class_name: 'ContactType'
   belongs_to :related_client, class_name: 'User'
 
   validates_presence_of :user_id, :related_client_id
@@ -13,7 +13,7 @@ class RelatedClient < ApplicationRecord
     if relationship_id
       super
     else
-      Relationship.default
+      ContactType.default
     end
   end
 

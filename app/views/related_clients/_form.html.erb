@@ -25,7 +25,7 @@
       <div class="form-group">
         <%= f.label :relationship, class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :relationship_id, options_for_select(Relationship.active.pluck(:name, :id), selected: f.object.relationship.try(:id)) , {} ,{class: 'form-control'} %>
+          <%= f.select :relationship_id, options_for_select(ContactType.active.pluck(:name, :id), selected: f.object.relationship.try(:id)) , {} ,{class: 'form-control'} %>
         </div>
       </div>
 
