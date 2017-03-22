@@ -13,6 +13,7 @@ module MHRM
     # -- all .rb files in that directory are automatically loaded.
 
     config.autoload_paths += Dir[Rails.root.join('lib')]
+    config.autoload_paths += Dir[Rails.root.join('lib/prawn/*.rb')]
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{*/}')]
     config.autoload_paths += Dir[Rails.root.join('app', 'controllers/admin')]
     config.autoload_paths += Dir[Rails.root.join('app', 'controllers/cases')]

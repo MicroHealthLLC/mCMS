@@ -43,6 +43,8 @@ class Setting < ApplicationRecord
   def self.[](name)
     v = cached_settings[name]
     v ? v : (cached_settings[name] = find_or_default(name).value)
+  rescue
+    available_settings[name]['default']
   end
 
   def self.[]=(name, v)
