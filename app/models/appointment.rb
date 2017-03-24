@@ -119,7 +119,7 @@ class Appointment < ApplicationRecord
 
   def get_cmf_form_data
     @user = self.user
-    @user_insurance = @user.user_insurances.first
+    @user_insurance = @user.user_insurances.includes(:insurance).references(:insurance).first
     hash = {}
 
     # User information
@@ -142,7 +142,6 @@ class Appointment < ApplicationRecord
                     "pt_signature"=>"",
                     "pt_date"=>"",
                     "pt_account"=> @user.id,
-
                 })
 
     @insurance = @user_insurance.insurance
@@ -195,23 +194,19 @@ class Appointment < ApplicationRecord
     @user_second_insurance = @user.user_insurances.count > 1 ? @user.user_insurances.last : UserInsurance.new
 
     hash.merge!({
-                    "other_ins_name"=> @user_second_insurance.insured_name,
-                    "other_ins_policy"=>@user_second_insurance.group_id,
+                    "other_ins_name"      => @user_second_insurance.insured_name,
+                    "other_ins_plan_name" => @user_second_insurance.insurance.to_s,
+                    "other_ins_policy"    => @user_second_insurance.group_id,
                 })
 
     # From Deposite
     @deposites = appointment_dispositions.map{|d| d.related_to.to_s }
     hash.merge!({
-                    "employment"=> @deposites.include?("Employment") ? 'YES' : 'NO',
-                    "pt_auto_accident"=>@deposites.include?("Auto Accident") ? 'YES' : 'NO',
-                    "accident_place"=> "",
-                    "other_accident"=>@deposites.include?("Other Accident") ? 'YES' : 'NO',
+                    "employment"          => @deposites.include?("Employment") ? 'YES' : 'NO',
+                    "pt_auto_accident"    => @deposites.include?("Auto Accident") ? 'YES' : 'NO',
+                    "accident_place"      => "",
+                    "other_accident"      => @deposites.include?("Other Accident") ? 'YES' : 'NO',
                 })
-
-
-
-
-
 
     # Date of current Illness
     hash.merge!({
@@ -220,40 +215,15 @@ class Appointment < ApplicationRecord
                     "cur_ill_dd"=> self.date.try(:day),
                     "cur_ill_yy"=> self.date.try(:year),
                 })
-    # # Other date
-    # hash.merge!({
-    #                 "74"=>"74",
-    #                 "sim_ill_mm"=>"sim_ill_mm",
-    #                 "sim_ill_dd"=>"sim_ill_dd",
-    #                 "sim_ill_yy"=>"sim_ill_yy",
-    #             })
-
-    # # Name of refferring provider
-    # hash.merge!({
-    #                 "85"=>"85",
-    #                 "ref_physician"=>"ref_physician",
-    #                 "id_physician"=>"id_physician",
-    #                 "physician number 17a1"=>"physician number 17a1",
-    #                 "physician number 17a"=>"physician number 17a",
-    #             })
-
-    # # Additional Claim
-    # hash.merge!({
-    #                 "96"=>"96",
-    #             })
     # Diagnosis of nature Of illness
-    assessments = self.appointment_captures
 
-    # hash.merge!({
-    #                 "99icd"=>"99ic",
-    #             })
-    assessments.each_with_index do |assessment, idx|
+    self.appointment_captures.each_with_index do |assessment, idx|
       hash.merge!({
-                      "diagnosis#{idx+1}"=> assessment.icdcm_code.name,
+                      "diagnosis#{idx+1}"=> assessment.icdcm_code.try(:name)
                   })
     end
 
-    billing = self.billings.last
+    billing = self.billings.first
     if billing
       # Outside lab
       hash.merge!({
@@ -280,41 +250,69 @@ class Appointment < ApplicationRecord
     end
 
     #Table
-    procedures = self.appointment_procedures
+    procedures = self.appointment_procedures.includes(:hcpc, :epsdt, :provider).
+        references(:hcpc, :epsdt, :provider)
     procedures.each_with_index do |procedure, idx|
+      idx += 1
+      l = case idx
+            when 1 then ''
+            when 2 then 'a'
+            when 3 then 'b'
+            when 4 then 'c'
+            when 5 then 'd'
+            when 6 then 'e'
+            else
+              'x'
+          end
       hash.merge!({
-                      "sv1_mm_from"=>"sv1_mm_from",
-                      "sv1_dd_from"=>"sv1_dd_from",
-                      "sv1_yy_from"=>"sv1_yy_from",
-                      "sv1_mm_end"=>"sv1_mm_end",
-                      "sv1_dd_end"=>"sv1_dd_end",
-                      "sv1_yy_end"=>"sv1_yy_end",
+                      "Suppl#{l}"             => procedure.to_s,
+                  })
 
-                      "place1"=>"place1",
-                      "ch1"=>"ch1",
-                      "day1"=>"day1",
-                      "diag1"=>"diag1",
-                      "emg1"=>"emg1",
-                      "local1"=>"local1",
-                      "local1a"=>"local1a",
-                      "Suppla"=>"Suppla",
-                      "epsdt1"=>"epsdt1",
-                      "Suppl"=>"Suppl",
-                      "plan1"=>"plan1",
+      hash.merge!({
+                      "sv#{idx}_mm_from"  => self.date.try(:month),
+                      "sv#{idx}_dd_from"  => self.date.try(:day),
+                      "sv#{idx}_yy_from"  => self.date.try(:year),
+                      "sv#{idx}_mm_end"   => self.end_time.try(:month),
+                      "sv#{idx}_dd_end"   => self.end_time.try(:day),
+                      "sv#{idx}_yy_end"   => self.end_time.try(:year),
 
-                      "mod1"=>"mod1",
-                      "mod1a"=>"mod1a",
-                      "mod1b"=>"mod1b",
-                      "mod1c"=>"mod1c",
+                      "place#{idx}"       => self.place_of_service.try(:code),
+                      "ch#{idx}"          => procedure.charges,
+                      "day#{idx}"         => procedure.unit,
+                      "diag#{idx}"        => procedure.diagnosis_pointer,
+                      # "emg#{idx}"         =>  "emg#{idx}",
+                      "local#{idx}"       => procedure.provider.to_s,
+                      "cpt#{idx}"         => procedure.hcpc.try(:hcpc),
 
-                      "type1"=>"type1",
-                      "cpt6"=>"cpt6",
-                      "pin1"=>"pin1",
-                      "grp1"=>"grp1",
-                      "cpt1"=>"cpt1",
+                      "epsdt#{idx}"       => procedure.epsdt.to_s,
+
+                      # "plan#{idx}"        => "plan#{idx}",
+
+                      "mod#{idx}"         => procedure.modifier,
+
+                      "type#{idx}"        => procedure.emergency.to_s,
+
+
+
                   })
     end
-    # Other Claim ID
+    # Organization
+    organization = @user.organization
+
+    if organization
+      hash.merge!({
+                      "fac_name"=> organization.name,
+                      "fac_street"=> organization.address.address,
+                      "fac_location"=> organization.address.city.to_s,
+                  })
+     hash.merge!({
+                     "doc_name"=> organization.name,
+                     "doc_street"=> organization.address.address,
+                     "doc_location"=> organization.address.city.to_s,
+                     "doc_phone area"=>"",
+                     "doc_phone"=> organization.phone.phone_number,
+                  })
+    end
     hash.merge!({
                     "135"=>"135",
                     "157"=>"157",
@@ -327,22 +325,13 @@ class Appointment < ApplicationRecord
 
                     "tax_id"=>"tax_id",
 
-
-
+                    "grp1"         => "grp1",
+                    "pin1"         => "pin1",
                     "physician_signature"=>"physician_signature",
                     "physician_date"=>"physician_date",
-                    "fac_name"=>"fac_name",
-                    "fac_street"=>"fac_street",
-                    "fac_location"=>"fac_location",
-                    "doc_name"=>"doc_name",
-                    "doc_street"=>"doc_street",
-                    "doc_location"=>"doc_location",
-                    "doc_phone area"=>"doc_phone area",
-                    "doc_phone"=>"doc_phone",
+
                     "pin"=>"pin",
                     "grp"=>"grp",
-
-                    "other_ins_plan_name"=>"other_ins_plan_name",
 
                     "ssn"=>"ssn",
                 })

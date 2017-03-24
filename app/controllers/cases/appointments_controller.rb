@@ -1,7 +1,8 @@
 class AppointmentsController < UserCasesController
   add_breadcrumb I18n.t(:appointments), :appointments_path
 
-  before_action :set_appointment, only: [:show, :cms_form, :edit, :update, :destroy]
+  before_action :set_appointment, only: [:edit, :update, :destroy]
+  before_action :set_appointment_with_includes, only: [:show, :cms_form]
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
 
@@ -136,6 +137,19 @@ class AppointmentsController < UserCasesController
   # Use callbacks to share common setup or constraints between actions.
   def set_appointment
     @appointment = Appointment.includes(:appointment_notes, :user=> :core_demographic).
+        find(params[:id])
+    add_breadcrumb @appointment.to_s, appointment_url(@appointment)
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
+
+  def set_appointment_with_includes
+    @appointment = Appointment.includes(:appointment_notes, :appointment_captures, :appointment_dispositions,
+                                        :billings, :appointment_procedures ,
+                                        :user=> [:core_demographic, :user_extend_demography => [:addresses, :phones]]).
+        references(:appointment_notes, :appointment_captures, :appointment_dispositions,
+                   :billings, :appointment_procedures ,
+                   :user=> [:core_demographic, :user_extend_demography => [:addresses, :phones]]).
         find(params[:id])
     add_breadcrumb @appointment.to_s, appointment_url(@appointment)
   rescue ActiveRecord::RecordNotFound

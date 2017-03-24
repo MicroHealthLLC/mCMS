@@ -117,6 +117,10 @@ class User < ApplicationRecord
     false
   end
 
+  def organization
+    job_detail.try(:organization)
+  end
+
   def self.get_user(auth)
     unscoped.where(provider: auth.provider, uid: auth.uid).or(User.unscoped.where(email: auth.info.email || "#{auth.uid}@#{auth.provider}.com")).first
   end
