@@ -138,57 +138,58 @@ class Appointment < ApplicationRecord
                     "pt_zip"=> @user_address.zip_code,
                     "pt_AreaCode"=>"",
                     "pt_phone"=> @user_phone.phone_number,
-                    "rel_to_ins"=> @user_insurance.insurance_relationship.to_s[0],
-                    "pt_signature"=>"",
-                    "pt_date"=>"",
+                    "pt_signature"=>"#{@user.jsignatures.last.try(:id)}",
+                    "pt_date"=> @user.jsignatures.last.try(:created_at).try(:to_date),
                     "pt_account"=> @user.id,
                 })
 
-    @insurance = @user_insurance.insurance
-    # Insurance information
-    hash.merge!({
-                    "insurance_name"=> @insurance.name,
-                    "insurance_address"=> @insurance.address,
-                    "insurance_address2"=> @insurance.second_address,
-                    "insurance_city_state_zip"=> @insurance.city_state_zip,
-                })
+    if @user_insurance
+      @insurance = @user_insurance.insurance
+      # Insurance information
+      hash.merge!({
+                      "insurance_name"=> @insurance.name,
+                      "insurance_address"=> @insurance.address,
+                      "insurance_address2"=> @insurance.second_address,
+                      "insurance_city_state_zip"=> @insurance.city_state_zip,
+                  })
 
-    # insured information
-    @insured = [@user.contacts + [@user]].flatten.detect{|v| v.name == @user_insurance.insured_name }
-    @insured_address = if @insured == @user
-                         @user_address
+      # insured information
+      @insured = [@user.contacts + [@user]].flatten.detect{|v| v.name == @user_insurance.insured_name }
+      @insured_address = if @insured == @user
+                           @user_address
+                         elsif @insured.nil? or @insured.contact_extend_demography.nil?
+                           Address.new
+                         else
+                           @insured.contact_extend_demography.default_address
+                         end
+      @insured_phone = if @insured == @user
+                         @user_phone
                        elsif @insured.nil? or @insured.contact_extend_demography.nil?
-                         Address.new
+                         Phone.new
                        else
-                         @insured.contact_extend_demography.default_address
+                         @insured.contact_extend_demography.default_phone
                        end
-    @insured_phone = if @insured == @user
-                       @user_phone
-                     elsif @insured.nil? or @insured.contact_extend_demography.nil?
-                       Phone.new
-                     else
-                       @insured.contact_extend_demography.default_phone
-                     end
-
-    hash.merge!({
-                    "insurance_id"=> @user_insurance.insurance_identifier,
-                    "ins_name"=> @user_insurance.insured_name,
-                    "insurance_type"=> @user_insurance.insurance_type.to_s,
-                    "ins_street"=> @insured_address.address,
-                    "ins_city"=> @insured_address.city.to_s,
-                    "ins_state"=> @insured_address.state_type.to_s,
-                    "ins_zip"=> @insured_address.zip_code,
-                    "ins_phone area"=> "",
-                    "ins_phone"=> @insured_phone.phone_number,
-                    "ins_policy"=>@user_insurance.group_id,
-                    "ins_dob_mm"=> @insured.birthday.try(:month),
-                    "ins_dob_dd"=> @insured.birthday.try(:day),
-                    "ins_dob_yy"=> @insured.birthday.try(:year),
-                    "ins_sex"=> @insured.gender.to_s[0],
-                    "ins_signature"=> "",
-                    "ins_benefit_plan"=> "",
-                    "ins_plan_name"=> "",
-                })
+      hash.merge!({
+                      "rel_to_ins"=> @user_insurance.insurance_relationship.to_s[0],
+                      "insurance_id"=> @user_insurance.insurance_identifier,
+                      "ins_name"=> @user_insurance.insured_name,
+                      "insurance_type"=> @user_insurance.insurance_type.to_s,
+                      "ins_street"=> @insured_address.address,
+                      "ins_city"=> @insured_address.city.to_s,
+                      "ins_state"=> @insured_address.state_type.to_s,
+                      "ins_zip"=> @insured_address.zip_code,
+                      "ins_phone area"=> "",
+                      "ins_phone"=> @insured_phone.phone_number,
+                      "ins_policy"=>@user_insurance.group_id,
+                      "ins_dob_mm"=> @insured.birthday.try(:month),
+                      "ins_dob_dd"=> @insured.birthday.try(:day),
+                      "ins_dob_yy"=> @insured.birthday.try(:year),
+                      "ins_sex"=> @insured.gender.to_s[0],
+                      "ins_signature"=> "",
+                      "ins_benefit_plan"=> "",
+                      "ins_plan_name"=> @insurance.name,
+                  })
+    end
 
     # Second insured information
     @user_second_insurance = @user.user_insurances.count > 1 ? @user.user_insurances.last : UserInsurance.new
@@ -305,35 +306,42 @@ class Appointment < ApplicationRecord
                       "fac_street"=> organization.address.address,
                       "fac_location"=> organization.address.city.to_s,
                   })
-     hash.merge!({
-                     "doc_name"=> organization.name,
-                     "doc_street"=> organization.address.address,
-                     "doc_location"=> organization.address.city.to_s,
-                     "doc_phone area"=>"",
-                     "doc_phone"=> organization.phone.phone_number,
+      hash.merge!({
+                      "doc_name"=> organization.name,
+                      "doc_street"=> organization.address.address,
+                      "doc_location"=> organization.address.city.to_s,
+                      "doc_phone area"=>"",
+                      "doc_phone"=> organization.phone.phone_number,
                   })
+
+      identifications = organization.extend_informations.try(:identifications)
+      if identifications.present?
+        npi = identifications.detect{|i| i.identification_type.to_s.upcase == 'National Provider Identification'} || Identification.new
+        hash.merge!({
+                        "grp1"        => npi.identification_number,
+                        "grp"           =>  npi.identification_number,
+                    })
+        tax = identifications.detect{|i| i.identification_type.to_s.upcase == 'Federal Tax Identification Number'} || Identification.new
+
+        hash.merge!({
+                        "tax_id"          =>  tax.identification_number,
+                    })
+      end
+
     end
+
+
     hash.merge!({
-                    "135"=>"135",
-                    "157"=>"157",
-                    "179"=>"179",
-                    "201"=>"201",
-                    "223"=>"223",
-                    "245"=>"245",
-                    "276"=>"276",
+                    "135"=>"",
+                    "157"=>"",
+                    "179"=>"",
+                    "201"=>"",
+                    "223"=>"",
+                    "245"=>"",
+                    "276"=>"",
 
-
-                    "tax_id"=>"tax_id",
-
-                    "grp1"         => "grp1",
-                    "pin1"         => "pin1",
-                    "physician_signature"=>"physician_signature",
-                    "physician_date"=>"physician_date",
-
-                    "pin"=>"pin",
-                    "grp"=>"grp",
-
-                    "ssn"=>"ssn",
+                    "physician_signature"=>"",
+                    "physician_date"=>"",
                 })
     hash
   end
