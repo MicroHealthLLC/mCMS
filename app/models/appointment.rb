@@ -117,5 +117,236 @@ class Appointment < ApplicationRecord
     output.html_safe
   end
 
+  def get_cmf_form_data
+    @user = self.user
+    @user_insurance = @user.user_insurances.first
+    hash = {}
+
+    # User information
+    @user_address = @user.addresses.first || Address.new
+    @user_phone = @user.phone
+
+    hash.merge!({
+                    "pt_name"=> @user.name,
+                    "birth_mm"=> @user.birthday.try(:month),
+                    "birth_dd"=> @user.birthday.try(:day),
+                    "birth_yy"=> @user.birthday.try(:year),
+                    "sex"=> @user.gender.to_s[0],
+                    "pt_street"=> @user_address.address,
+                    "pt_city"=> @user_address.city.to_s,
+                    "pt_state"=> @user_address.state_type.to_s,
+                    "pt_zip"=> @user_address.zip_code,
+                    "pt_AreaCode"=>"",
+                    "pt_phone"=> @user_phone.phone_number,
+                    "rel_to_ins"=> @user_insurance.insurance_relationship.to_s[0],
+                    "pt_signature"=>"",
+                    "pt_date"=>"",
+                    "pt_account"=> @user.id,
+
+                })
+
+    @insurance = @user_insurance.insurance
+    # Insurance information
+    hash.merge!({
+                    "insurance_name"=> @insurance.name,
+                    "insurance_address"=> @insurance.address,
+                    "insurance_address2"=> @insurance.second_address,
+                    "insurance_city_state_zip"=> @insurance.city_state_zip,
+                })
+
+    # insured information
+    @insured = [@user.contacts + [@user]].flatten.detect{|v| v.name == @user_insurance.insured_name }
+    @insured_address = if @insured == @user
+                         @user_address
+                       elsif @insured.nil? or @insured.contact_extend_demography.nil?
+                         Address.new
+                       else
+                         @insured.contact_extend_demography.default_address
+                       end
+    @insured_phone = if @insured == @user
+                       @user_phone
+                     elsif @insured.nil? or @insured.contact_extend_demography.nil?
+                       Phone.new
+                     else
+                       @insured.contact_extend_demography.default_phone
+                     end
+
+    hash.merge!({
+                    "insurance_id"=> @user_insurance.insurance_identifier,
+                    "ins_name"=> @user_insurance.insured_name,
+                    "insurance_type"=> @user_insurance.insurance_type.to_s,
+                    "ins_street"=> @insured_address.address,
+                    "ins_city"=> @insured_address.city.to_s,
+                    "ins_state"=> @insured_address.state_type.to_s,
+                    "ins_zip"=> @insured_address.zip_code,
+                    "ins_phone area"=> "",
+                    "ins_phone"=> @insured_phone.phone_number,
+                    "ins_policy"=>@user_insurance.group_id,
+                    "ins_dob_mm"=> @insured.birthday.try(:month),
+                    "ins_dob_dd"=> @insured.birthday.try(:day),
+                    "ins_dob_yy"=> @insured.birthday.try(:year),
+                    "ins_sex"=> @insured.gender.to_s[0],
+                    "ins_signature"=> "",
+                    "ins_benefit_plan"=> "",
+                    "ins_plan_name"=> "",
+                })
+
+    # Second insured information
+    @user_second_insurance = @user.user_insurances.count > 1 ? @user.user_insurances.last : UserInsurance.new
+
+    hash.merge!({
+                    "other_ins_name"=> @user_second_insurance.insured_name,
+                    "other_ins_policy"=>@user_second_insurance.group_id,
+                })
+
+    # From Deposite
+    @deposites = appointment_dispositions.map{|d| d.related_to.to_s }
+    hash.merge!({
+                    "employment"=> @deposites.include?("Employment") ? 'YES' : 'NO',
+                    "pt_auto_accident"=>@deposites.include?("Auto Accident") ? 'YES' : 'NO',
+                    "accident_place"=> "",
+                    "other_accident"=>@deposites.include?("Other Accident") ? 'YES' : 'NO',
+                })
+
+
+
+
+
+
+    # Date of current Illness
+    hash.merge!({
+                    # "73"=>"73",
+                    "cur_ill_mm"=> self.date.try(:month),
+                    "cur_ill_dd"=> self.date.try(:day),
+                    "cur_ill_yy"=> self.date.try(:year),
+                })
+    # # Other date
+    # hash.merge!({
+    #                 "74"=>"74",
+    #                 "sim_ill_mm"=>"sim_ill_mm",
+    #                 "sim_ill_dd"=>"sim_ill_dd",
+    #                 "sim_ill_yy"=>"sim_ill_yy",
+    #             })
+
+    # # Name of refferring provider
+    # hash.merge!({
+    #                 "85"=>"85",
+    #                 "ref_physician"=>"ref_physician",
+    #                 "id_physician"=>"id_physician",
+    #                 "physician number 17a1"=>"physician number 17a1",
+    #                 "physician number 17a"=>"physician number 17a",
+    #             })
+
+    # # Additional Claim
+    # hash.merge!({
+    #                 "96"=>"96",
+    #             })
+    # Diagnosis of nature Of illness
+    assessments = self.appointment_captures
+
+    # hash.merge!({
+    #                 "99icd"=>"99ic",
+    #             })
+    assessments.each_with_index do |assessment, idx|
+      hash.merge!({
+                      "diagnosis#{idx+1}"=> assessment.icdcm_code.name,
+                  })
+    end
+
+    billing = self.billings.last
+    if billing
+      # Outside lab
+      hash.merge!({
+                      "lab"=> billing.outside_lab.to_s.upcase,
+                      "charge"=>billing.outside_lab_charges,
+                      "assignment"=> billing.accept_assignment.to_s.upcase,
+                  })
+      # Resubmission
+      hash.merge!({
+                      "medicaid_resub"=> billing.resubmission_code,
+                      "original_ref"=> billing.original_reference_number,
+                  })
+      # Prio authorization number
+      hash.merge!({
+                      "prior_auth"=> billing.prior_authorization_number,
+                  })
+
+      #Amount Paid
+      hash.merge!({
+                      "t_charge"=> billing.total_charge,
+                      "amt_paid"=> billing.amount_paid,
+                  })
+      # #
+    end
+
+    #Table
+    procedures = self.appointment_procedures
+    procedures.each_with_index do |procedure, idx|
+      hash.merge!({
+                      "sv1_mm_from"=>"sv1_mm_from",
+                      "sv1_dd_from"=>"sv1_dd_from",
+                      "sv1_yy_from"=>"sv1_yy_from",
+                      "sv1_mm_end"=>"sv1_mm_end",
+                      "sv1_dd_end"=>"sv1_dd_end",
+                      "sv1_yy_end"=>"sv1_yy_end",
+
+                      "place1"=>"place1",
+                      "ch1"=>"ch1",
+                      "day1"=>"day1",
+                      "diag1"=>"diag1",
+                      "emg1"=>"emg1",
+                      "local1"=>"local1",
+                      "local1a"=>"local1a",
+                      "Suppla"=>"Suppla",
+                      "epsdt1"=>"epsdt1",
+                      "Suppl"=>"Suppl",
+                      "plan1"=>"plan1",
+
+                      "mod1"=>"mod1",
+                      "mod1a"=>"mod1a",
+                      "mod1b"=>"mod1b",
+                      "mod1c"=>"mod1c",
+
+                      "type1"=>"type1",
+                      "cpt6"=>"cpt6",
+                      "pin1"=>"pin1",
+                      "grp1"=>"grp1",
+                      "cpt1"=>"cpt1",
+                  })
+    end
+    # Other Claim ID
+    hash.merge!({
+                    "135"=>"135",
+                    "157"=>"157",
+                    "179"=>"179",
+                    "201"=>"201",
+                    "223"=>"223",
+                    "245"=>"245",
+                    "276"=>"276",
+
+
+                    "tax_id"=>"tax_id",
+
+
+
+                    "physician_signature"=>"physician_signature",
+                    "physician_date"=>"physician_date",
+                    "fac_name"=>"fac_name",
+                    "fac_street"=>"fac_street",
+                    "fac_location"=>"fac_location",
+                    "doc_name"=>"doc_name",
+                    "doc_street"=>"doc_street",
+                    "doc_location"=>"doc_location",
+                    "doc_phone area"=>"doc_phone area",
+                    "doc_phone"=>"doc_phone",
+                    "pin"=>"pin",
+                    "grp"=>"grp",
+
+                    "other_ins_plan_name"=>"other_ins_plan_name",
+
+                    "ssn"=>"ssn",
+                })
+    hash
+  end
 
 end

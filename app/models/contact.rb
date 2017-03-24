@@ -3,6 +3,7 @@ class Contact < ApplicationRecord
   belongs_to :user
   belongs_to :contact_status, optional: true
   belongs_to :language_type, optional: true
+  belongs_to :gender_type, foreign_key: :gender_id, optional: true
   has_one :contact_extend_demography
 
   has_many :contact_attachments, foreign_key: :owner_id, dependent: :destroy
@@ -22,6 +23,15 @@ class Contact < ApplicationRecord
   def self.active
     where(status: true)
   end
+
+  def gender_type
+    if gender_id
+      super
+    else
+      GenderType.default
+    end
+  end
+  alias gender gender_type
 
   def self.enumeration_columns
     [
@@ -63,7 +73,7 @@ class Contact < ApplicationRecord
 
   def self.safe_attributes
     [:emergency_contact, :first_name, :middle_name, :last_name, :not_show_in_search, 
-     :note, :contact_type_id, :user_id, :language_type_id,
+     :note, :contact_type_id, :user_id, :language_type_id, :birthday, :gender_id,
      :date_started , :date_ended , :contact_status_id,
      contact_attachments_attributes: [Attachment.safe_attributes]]
   end
@@ -87,6 +97,8 @@ class Contact < ApplicationRecord
     pdf.table([[ "Emergency contact: ", " #{emergency_contact}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Language: ", " #{language_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Birthday: ", " #{birthday}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Gender: ", " #{gender}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
