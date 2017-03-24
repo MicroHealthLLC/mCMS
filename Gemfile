@@ -165,3 +165,5 @@ gem 'textractor'
 gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'roo-xls'
+gem 'pdf-forms'
+

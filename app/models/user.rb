@@ -157,6 +157,11 @@ class User < ApplicationRecord
     Address.where(extend_demography: user_extend_demography.id)
   end
 
+  def phone
+    return Phone.new if user_extend_demography.nil?
+    user_extend_demography.phones.first || Phone.new
+  end
+
   def principal_role
     return 'Admin' if admin?
     role.try(:role_type) || 'No role defined'

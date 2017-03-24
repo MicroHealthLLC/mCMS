@@ -21,6 +21,11 @@ class Address < ApplicationRecord
     end
   end
 
+  def city_state_zip
+    return "#{city}, #{state} #{zip_code}" if city
+    "#{state} #{zip_code}"
+  end
+
   def state_type
     if state_id
       super

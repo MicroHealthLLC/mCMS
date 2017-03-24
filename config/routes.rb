@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :laboratory_examinations
   resources :billings, except: [:new]
   resources :appointments do
+    get 'cms_form', on: :member
     resources :billings, only: [:new]
   end
   resources :appointment_procedures

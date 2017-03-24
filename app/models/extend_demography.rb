@@ -20,6 +20,14 @@ class ExtendDemography < ApplicationRecord
 
   end
 
+  def default_address
+    addresses.first || Address.new
+  end
+
+  def default_phone
+    phones.first || Phone.new
+  end
+
   def has_informations?
     emails.present? or faxes.present? or phones.present? or identifications.present? or social_media.present? or addresses.present?
   end

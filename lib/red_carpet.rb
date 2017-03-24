@@ -518,7 +518,7 @@ RedCarpet::AccessControl.map do |map|
     map.permission :edit_appointments, {:appointments => [:edit, :update]},  :read => true
     map.permission :delete_appointments, {:appointments => [:destroy]},  :read => true
     map.permission :manage_appointments, {:appointments => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
-    map.permission :manage_assessment_and_diposition, {:appointment_captures => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_assessment_and_diposition, {:appointment_captures => [:index, :show, :cms_form, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :surveys do |map|
@@ -637,7 +637,7 @@ RedCarpet::AccessControl.map do |map|
         :cases => [:new_assign, :my, :all_files, :subcases, :watchers, :index, :show, :new, :create, :edit, :update, :destroy],
         :case_supports => [:search, :index, :show, :new, :create, :edit, :update, :destroy],
         :case_watchers => [:index],
-        :appointments => [:my, :index, :show, :new, :create, :edit, :update, :destroy],
+        :appointments => [:my, :index, :show, :cms_form, :new, :create, :edit, :update, :destroy],
         :appointment_captures => [:show, :new, :create, :edit, :update, :destroy],
         :needs => [:links, :add_goal,:index, :show, :new, :create, :edit, :update, :destroy],
         :news => [:index, :show, :new, :create, :edit, :update, :destroy],

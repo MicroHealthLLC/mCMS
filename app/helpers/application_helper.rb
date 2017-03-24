@@ -10,6 +10,13 @@ module ApplicationHelper
     modules.map{|m| module_enabled?(m) }.include?(true) and can?(permissions)
   end
 
+  def checkbox(pdf, flag, x_position = 7, y_position = pdf.cursor - 2)
+    pdf.bounding_box([x_position, y_position], width: 10, height: 12) do
+      pdf.stroke_bounds
+      pdf.text("X", align: :center, valign: :center) if flag
+    end
+  end
+
   def can?(*args)
     args.flatten.each do |action|
       return true if current_user.allowed_to?(action)
