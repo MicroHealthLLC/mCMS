@@ -9,6 +9,7 @@ INSTALLATION:
 - Install JDK v 1.8
 - Install Unzip
 - Install git
+- Install pdftk
 - Git clone this repo into your web directory
 - Setup Database rake db:create rake db:setup rake db:migrate
 - For Omniauth add your keys in config/application.yml and add use URL to CALLBACK_URL
