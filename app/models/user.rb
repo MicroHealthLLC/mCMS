@@ -393,7 +393,7 @@ class User < ApplicationRecord
   def to_pdf_organization(pdf)
     if job_detail
       org = job_detail.organization
-      org.to_pdf_short_desc(pdf)
+      org.to_pdf_short_desc(pdf) if org
     end
   end
 

@@ -181,14 +181,19 @@ class Appointment < ApplicationRecord
                       "ins_phone area"=> "",
                       "ins_phone"=> @insured_phone.phone_number,
                       "ins_policy"=>@user_insurance.group_id,
-                      "ins_dob_mm"=> @insured.birthday.try(:month),
-                      "ins_dob_dd"=> @insured.birthday.try(:day),
-                      "ins_dob_yy"=> @insured.birthday.try(:year),
-                      "ins_sex"=> @insured.gender.to_s[0],
                       "ins_signature"=> "",
                       "ins_benefit_plan"=> "",
                       "ins_plan_name"=> @insurance.name,
                   })
+
+      if @insured
+        hash.merge!({
+                        "ins_dob_mm"=> @insured.birthday.try(:month),
+                        "ins_dob_dd"=> @insured.birthday.try(:day),
+                        "ins_dob_yy"=> @insured.birthday.try(:year),
+                        "ins_sex"=> @insured.gender.to_s[0],
+                    })
+      end
     end
 
     # Second insured information
