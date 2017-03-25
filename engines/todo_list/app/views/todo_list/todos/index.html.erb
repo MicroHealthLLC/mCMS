@@ -27,7 +27,7 @@
   </div>
 </div>
 <script>
-  var thesetodos = <%= @todos.todos.inspect.html_safe %>
+  var thesetodos = <%= @todos.todos.to_s.inspect.html_safe %>
 </script>
 <%= javascript_include_tag "todo_list/application" %>
 <script>

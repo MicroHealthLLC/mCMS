@@ -169,3 +169,4 @@ gem 'pdf-forms'
 
 # Engines
 gem 'todo_list', path: 'engines/todo_list'
+gem 'sticky_notes', path: 'engines/sticky_notes'
