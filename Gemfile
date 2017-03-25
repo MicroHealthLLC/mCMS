@@ -167,3 +167,5 @@ gem 'sunspot_solr'
 gem 'roo-xls'
 gem 'pdf-forms'
 
+# Engines
+gem 'todo_list', path: 'engines/todo_list'

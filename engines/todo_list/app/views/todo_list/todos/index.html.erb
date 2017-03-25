@@ -1,0 +1,55 @@
+<%= stylesheet_link_tag "todo_list/application", media: "all" %>
+<div class="row">
+  <div class="col-xs-12">
+    <div id="btnbar">
+      <!--<button id="reset_todos" class="btn btn-primary pull-right">Reset</button>-->
+      <!--<button id="export_todos" class="btn btn-primary pull-right">Export ToDos</button>-->
+      <!--<button id="import_todos" class="btn btn-primary pull-right">Import ToDos</button>-->
+      <button id="btn_save" class="btn btn-primary pull-right">Save</button>
+
+      <div id="importtodos" hidden>
+        <h4>Upload File</h4>
+        <form id="upload_form" enctype="multipart/form-data" action="" method="post">
+          <input type="file" id="loadjson" name="files[]" multiple/>
+          <textarea hidden id="preview" name="preview" rows="5"></textarea><br>
+          <button id="submit_upload" class="btn btn-primary pull-right">Submit</button>
+          <button id="cancel_upload" class="btn btn-primary pull-right">Cancel</button>
+        </form>
+      </div>
+    </div>
+
+    <div id="lobilists">
+      <div id="todo-lists-with-datepicker"></div>
+      <br>
+    </div>
+
+    <a id="downloadAnchorElem" style="display:none"></a>
+  </div>
+</div>
+<script>
+  var thesetodos = <%= @todos.todos.inspect.html_safe %>
+</script>
+<%= javascript_include_tag "todo_list/application" %>
+<script>
+  $(document).ready(function(){
+    setInterval(function(){saveToDos()}, 15000);
+
+    $('#btn_save').on('click', function(){
+      saveToDos();
+      alert('Saved')
+    })
+
+
+  })
+  function saveToDos() {
+    "use strict";
+    var thesetodos = gatherToDos();
+    $.getScript('/todo_list/todos/save.js?todos='+thesetodos, function( data, textStatus, jqxhr ) {
+      console.log( data ); // Data returned
+      console.log( textStatus ); // Success
+      console.log( jqxhr.status ); // 200
+      console.log( "Load was performed." );
+    });
+    localStorage.setItem("thesetodos", thesetodos);
+  }
+</script>

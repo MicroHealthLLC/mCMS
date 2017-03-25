@@ -156,7 +156,6 @@ Rails.application.routes.draw do
   resources :news
   match '/wiki_pages/new_page_title', via: [:get, :post]
   wiki_root '/wiki'
-  mount Thredded::Engine => '/forum'
   resources :checklist_notes, except: [:index], controller: :notes
   resources :survey_notes, except: [:index], controller: :notes
   resources :case_notes, except: [:index], controller: :notes
@@ -325,4 +324,9 @@ Rails.application.routes.draw do
       post 'set_theme'
     end
   end
+
+
+  # Engines
+  mount Thredded::Engine => '/forum'
+  mount TodoList::Engine => "/todo_list"
 end

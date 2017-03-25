@@ -5,6 +5,12 @@
         </li>
     <% end %>
 
+    <% if module_enabled? 'todos' %>
+        <li class="<%= menu_active?('todo_list/todos') %>">
+          <a href="<%= '/todo_list' %>" title="<%= 'My To Do List' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'My To Do List' %></span></a>
+        </li>
+    <% end %>
+
     <% if module_enabled? 'wiki' %>
         <li class="<%= menu_active?('wiki') %>">
           <a href="<%= '/wiki/all' %>" title="<%= t(:wiki) %>"><i class="fa fa-lg fa-fw fa-file-text"></i><span class="menu-item-parent"><%= t(:wiki) %></span></a>

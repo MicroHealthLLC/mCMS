@@ -1,0 +1,58 @@
+body {
+  background-color: #f8f8f8;
+}
+
+.container {
+  width: 96%;
+  height: 580px;
+  margin-top: 20px;
+  background-color: #ccc;
+}
+
+#btnbar {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 80px;
+}
+
+#btnbar button {
+  margin-left: 10px;
+}
+
+#importtodos {
+  position: fixed;
+  top: 80px;
+  right: 30px;
+  z-index: 100;
+  border: 1px solid #999;
+  background-color: white;
+  width: 426px;
+  height: 180px;
+  margin: 10px auto;
+  padding: 20px;
+}
+h4 {
+  font: bold 16px Helvetica, Arial, sans-serif;
+  color: #333;
+  margin-bottom: 20px;
+}
+#preview {
+  margin-top: 10px;
+  width: 100%;
+  height: 150px;
+  max-height: 150px;
+  resize: none;
+}
+
+#cancel_upload {
+  float: right;
+  margin: 20px 0px 20px auto;
+}
+#submit_upload {
+  float: right;
+  margin: 20px 0px 20px 10px;
+}
+
+.lobilists.single-line {
+  height: 500px;
+}
