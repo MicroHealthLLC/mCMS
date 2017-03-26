@@ -1,50 +1,64 @@
 <% if User.current.allowed_to?(:manage_roles) %>
-    <% if module_enabled? 'rordit/links' %>
-        <li class="<%= menu_active?('rordit/links') %>">
-          <a href="<%= '/rordit' %>" title="<%= 'Link Share' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'Link Share' %></span></a>
-        </li>
-    <% end %>
+    <li>
+      <a href="#" id="ul_case"><i class="fa fa-lg fa-fw fa-square"></i> <span class="menu-item-parent">Collaborate</span></a>
+      <ul id="case_menu">
+        <% if module_enabled? 'rordit/links' %>
+            <li class="<%= menu_active?('rordit/links') %>">
+              <a href="<%= '/rordit' %>" title="<%= 'Link Share' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'Link Share' %></span></a>
+            </li>
+        <% end %>
 
-    <% if module_enabled? 'sticky' %>
-        <li class="<%= menu_active?('sticky') %>">
-          <a href="<%= '/sticky' %>" title="<%= 'My checklists' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'My checklists' %></span></a>
-        </li>
-    <% end %>
+        <% if module_enabled? 'wiki' %>
+            <li class="<%= menu_active?('wiki') %>">
+              <a href="<%= '/wiki/all' %>" title="<%= t(:wiki) %>"><i class="fa fa-lg fa-fw fa-file-text"></i><span class="menu-item-parent"><%= t(:wiki) %></span></a>
+            </li>
+        <% end %>
 
-     <% if module_enabled? 'sticky_notes' %>
-        <li class="<%= menu_active?('sticky_notes/sticky_notes') %>">
-          <a href="<%= '/sticky_notes' %>" title="<%= t(:sticky) %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= t(:sticky) %></span></a>
-        </li>
-    <% end %>
+        <% if current_user == User.current  and module_enabled? 'forum' %>
+            <li class="<%= menu_active?('forum') %>">
+              <a href="<%= '/forum' %>" title="<%= t(:forum) %>"><i class="fa fa-lg fa-fw fa-forumbee"></i><span class="menu-item-parent"><%= t(:forum) %></span></a>
+            </li>
+        <% end %>
 
-    <% if module_enabled? 'todos' %>
-        <li class="<%= menu_active?('todo_list/todos') %>">
-          <a href="<%= '/todo_list' %>" title="<%= 'My To Do List' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'My To Do List' %></span></a>
-        </li>
-    <% end %>
+        <% if module_enabled?('news') %>
+            <li class="<%= menu_active?('news') %>">
+              <a href="/news" title="<%= 'news' %>"><i class="fa fa-lg fa-fw fa-newspaper-o"></i><span class="menu-item-parent"><%= 'news' %></span></a>
+            </li>
+        <% end %>
 
-    <% if module_enabled? 'wiki' %>
-        <li class="<%= menu_active?('wiki') %>">
-          <a href="<%= '/wiki/all' %>" title="<%= t(:wiki) %>"><i class="fa fa-lg fa-fw fa-file-text"></i><span class="menu-item-parent"><%= t(:wiki) %></span></a>
+        <li class="<%= menu_active?('document_managers') %>">
+          <a href="/document_managers" title="<%= t 'document_managers' %>"><i class="fa fa-lg fa-fw fa-folder-open"></i><span class="menu-item-parent"><%= t 'document_managers' %></span></a>
         </li>
-    <% end %>
 
-    <% if current_user == User.current  and module_enabled? 'forum' %>
-        <li class="<%= menu_active?('forum') %>">
-          <a href="<%= '/forum' %>" title="<%= t(:forum) %>"><i class="fa fa-lg fa-fw fa-forumbee"></i><span class="menu-item-parent"><%= t(:forum) %></span></a>
-        </li>
-    <% end %>
-
-    <% if module_enabled?('news') %>
-        <li class="<%= menu_active?('news') %>">
-          <a href="/news" title="<%= 'news' %>"><i class="fa fa-lg fa-fw fa-newspaper-o"></i><span class="menu-item-parent"><%= 'news' %></span></a>
-        </li>
-    <% end %>
-
-    <li class="<%= menu_active?('document_managers') %>">
-      <a href="/document_managers" title="<%= t 'document_managers' %>"><i class="fa fa-lg fa-fw fa-folder-open"></i><span class="menu-item-parent"><%= t 'document_managers' %></span></a>
+        <% if module_enabled?( 'new_conference') && can?(:manage_roles, :conference)%>
+            <li>
+              <a href="/conference/new_conference" <%= "target=_blank" if Setting['open_new_tab_url'] == 'true' %>><i class="fa fa-lg fa-fw fa-video-camera"></i><span class="menu-item-parent">New conference</span></a>
+            </li>
+        <% end %>
+      </ul>
     </li>
+    <li>
+      <a href="#" id="ul_profile"><i class="fa fa-lg fa-fw fa-square"></i> <span class="menu-item-parent">Personal Organizer</span></a>
+      <ul id="profile_menu">
+        <% if module_enabled? 'sticky' %>
+            <li class="<%= menu_active?('sticky') %>">
+              <a href="<%= '/sticky' %>" title="<%= 'My checklists' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'My checklists' %></span></a>
+            </li>
+        <% end %>
 
+        <% if module_enabled? 'sticky_notes' %>
+            <li class="<%= menu_active?('sticky_notes/sticky_notes') %>">
+              <a href="<%= '/sticky_notes' %>" title="<%= t(:sticky) %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= t(:sticky) %></span></a>
+            </li>
+        <% end %>
+
+        <% if module_enabled? 'todos' %>
+            <li class="<%= menu_active?('todo_list/todos') %>">
+              <a href="<%= '/todo_list' %>" title="<%= 'My To Do List' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'My To Do List' %></span></a>
+            </li>
+        <% end %>
+      </ul>
+    </li>
     <li class="<%= menu_active?('billings') %>">
       <a href="<%= "/billings" %>" title="Billing & Collections"><i class="fa fa-lg fa-fw fa-money"></i> <span class="menu-item-parent">Billing & Collections</span></a>
     </li>
@@ -64,10 +78,10 @@
           <a href="<%= '/sticky' %>" title="Client Sticky Notes "><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent">Client Sticky Notes</span></a>
         </li>
     <% end %>
+    <% if module_enabled?( 'new_conference') && can?(:manage_roles, :conference)%>
+        <li>
+          <a href="/conference/new_conference" <%= "target=_blank" if Setting['open_new_tab_url'] == 'true' %>><i class="fa fa-lg fa-fw fa-video-camera"></i><span class="menu-item-parent">New conference</span></a>
+        </li>
+    <% end %>
 <% end %>
 
-<% if module_enabled?( 'new_conference') && can?(:manage_roles, :conference)%>
-    <li>
-      <a href="/conference/new_conference" <%= "target=_blank" if Setting['open_new_tab_url'] == 'true' %>><i class="fa fa-lg fa-fw fa-video-camera"></i><span class="menu-item-parent">New conference</span></a>
-    </li>
-<% end %>
