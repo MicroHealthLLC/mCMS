@@ -1,7 +1,7 @@
 <% if User.current.allowed_to?(:manage_roles) %>
     <% if module_enabled? 'rordit/links' %>
         <li class="<%= menu_active?('rordit/links') %>">
-          <a href="<%= '/rordit' %>" title="<%= 'My Rordit' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'My Rordit' %></span></a>
+          <a href="<%= '/rordit' %>" title="<%= 'Link Share' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'Link Share' %></span></a>
         </li>
     <% end %>
 

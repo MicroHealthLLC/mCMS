@@ -138,13 +138,13 @@ RedCarpet::AccessControl.map do |map|
   map.project_module :rordit do |map|
     map.permission :view_rordit, {"rordit/links" => [:index, :show, :get_search_results, :get_link,
                                                      :get_popular_links, :get_newest_links]},  :read => true
-    map.permission :create_rordit, {"rordit/links" => [:new, :create]},  :read => true
-    map.permission :create_comment_rordit, {"rordit/comments" => [:new, :create]},  :read => true
-    map.permission :give_point_rordit, {"rordit/points" => [:give_point_to_link, :give_point_to_comment]},  :read => true
-    map.permission :manage_rordit, { "rordit/comments" => [:new, :create],
-                                     "rordit/points" => [:give_point_to_link, :give_point_to_comment],
-                                    "rordit/links" => [:index, :show, :get_search_results, :get_link,
-                                                       :get_popular_links, :get_newest_links, :new, :create]},  :read => true
+    map.permission :create_link_share, {"rordit/links" => [:new, :create]},  :read => true
+    map.permission :create_comment_link_share, {"rordit/comments" => [:new, :create]},  :read => true
+    map.permission :give_point_link_share, {"rordit/points" => [:give_point_to_link, :give_point_to_comment]},  :read => true
+    map.permission :manage_link_share, { "rordit/comments" => [:new, :create],
+                                         "rordit/points" => [:give_point_to_link, :give_point_to_comment],
+                                         "rordit/links" => [:index, :show, :get_search_results, :get_link,
+                                                            :get_popular_links, :get_newest_links, :new, :create]},  :read => true
   end
 
 

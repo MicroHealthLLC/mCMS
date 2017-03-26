@@ -19,7 +19,7 @@
     -moz-border-radius: 0px;
     -webkit-border-radius: 0px;
     border-radius: 0px;
-    margin: 10px 5px;   
+    margin: 10px 5px;
     background-color: #efefef;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -34,7 +34,7 @@
     -webkit-border-radius: 0px;
     border-radius: 0px;
     list-style: none;
-    -webkit-box-shadow: none; 
+    -webkit-box-shadow: none;
     box-shadow: none;
     margin: 5px;
     cursor: move;
@@ -99,10 +99,10 @@
     background: transparent;
     background-image: none;
     -webkit-box-shadow: none;
-    box-shadow: none;    
+    box-shadow: none;
 }
 
-.default { 
+.default {
     -webkit-box-shadow: none;
     box-shadow: none;
 }
