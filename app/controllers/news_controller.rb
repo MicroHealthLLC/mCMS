@@ -1,4 +1,4 @@
-class NewsController < ApplicationController
+class NewsController < ProtectForgeryApplication
 
   before_action  :authenticate_user!
   before_action :set_news, only: [:show, :edit, :update, :destroy]

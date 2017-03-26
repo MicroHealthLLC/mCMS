@@ -1,0 +1,92 @@
+<%= stylesheet_link_tag 'rordit/application', media: "all" %>
+<%= javascript_include_tag 'rordit/application', 'data-turbolinks-track' => true %>
+<%= render partial: 'rordit/shared/header' %>
+<div id="vue-app" class="row">
+  <div class="col-xs-12">
+
+    <script>
+      var currentUrl  = window.location.href.split("/");
+      var currentLinkId = currentUrl[currentUrl.length - 1];
+
+      var myMixin = {
+        created: function(){
+          this.getLink(currentLinkId);
+          this.getComments(currentLinkId);
+        },
+        data: {
+          link: {},
+          comments: [],
+          new_comment: ""
+        },
+        methods: {
+          getLink: function (link_id) {
+            this.$http.get('/rordit/get-link/' + link_id).then(function (response) {
+              this.link = response["body"];
+              document.title = this.link["title"] + " " + document.title
+            })
+          },
+          getComments: function (link_id) {
+            this.$http.get('/rordit/get-comments/' + link_id).then(function (response) {
+              this.comments = response["body"]["comments"];
+            })
+          },
+          givePoint: function (id, type, index) {
+            this.$http.get('/rordit/' + type + '/' + id + '/give-point').then(function(response){
+              if(type == 'link'){
+                this.link["points_count"] = response["body"]["totalPoint"];
+              }else{
+                this.comments[index]["points_count"] = response["body"]["totalPoint"];
+              }
+            }, function (response) {
+              if(response["status"] == 401){
+                window.location = "/login";
+              }else{
+                this.showModal(response["body"]["message"]);
+              }
+
+            });
+          },
+          newComment: function () {
+            if(this.new_comment.length == 0 ){
+              this.showModal("You can't send empty comment.");
+            }else {
+              this.$http.post('/rordit/link/' + this.link["id"] + '/new-comment', {
+                comment: this.new_comment,
+                link_id: this.link["id"]
+              }).then(function () {
+                this.new_comment = "";
+                this.getComments(this.link["id"]);
+              }, function (response) {
+                if (response["status"] == 401) {
+                  window.location = "/login";
+                }else{
+                  this.showModal(response["body"]["message"]);
+                }
+              });
+            }
+          }
+        }
+      };
+    </script>
+    <modal v-if="showingModal" @close="showingModal = false">
+      <p slot="body" v-cloak>{{ modalMessage }}</p>
+    </modal>
+    <div class="item-detail">
+      <div class="item-left">
+        <div class="point">
+          <a class="" v-on:click="givePoint(link.id, 'link')"><%= image_tag('up.png') %></a>
+          <span v-cloak>{{ link.points_count }} p</span>
+        </div>
+      </div>
+      <div class="item-right">
+        <span class="url-base" v-cloak>{{ link.hostname }}</span>
+        <h1><a :href="link.url" v-cloak>{{ link.title }}</a></h1>
+        <div class="link-info">
+          <span class="author" v-cloak>{{ link.username }}</span> • <span class="time" v-cloak>{{ link.time_ago }} ago</span> •
+          <a :href=" '/link/' + link.id" class="comment-count" v-cloak>{{ link.comments_count }} Comments</a>
+        </div>
+      </div>
+    </div>
+    <%= render "rordit/comments/comments" %>
+  </div>
+</div>

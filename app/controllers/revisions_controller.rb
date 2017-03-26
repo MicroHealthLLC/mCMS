@@ -1,4 +1,4 @@
-class RevisionsController < ApplicationController
+class RevisionsController < ProtectForgeryApplication
   before_action  :authenticate_user!
 
   def download

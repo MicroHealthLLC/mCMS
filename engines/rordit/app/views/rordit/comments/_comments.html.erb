@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="post-comment">
+      <form action="" @submit.prevent="newComment" accept-charset="UTF-8" method="post">
+        <textarea v-model="new_comment" rows="8"></textarea>
+        <button class="btn btn-danger" type="submit">Post Comment</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <ul class="comments">
+      <li style="list-style: none;" class="comment" v-for="(comment, index) in comments">
+        <div class="comment-left">
+          <div class="mini-point">
+            <a @click="givePoint(comment.id, 'comment', index)"><%= image_tag('up.png') %></a>
+            <span v-cloak>{{ comment.points_count }} p</span>
+          </div>
+        </div>
+        <div class="comment-right">
+          <div class="comment-info">
+            <span class="commenter" v-cloak>{{ comment.username }}</span> <span class="time" v-cloak>{{ comment.time_ago }} ago</span>
+          </div>
+          <p class="comment-text" v-cloak>{{ comment.comment }}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

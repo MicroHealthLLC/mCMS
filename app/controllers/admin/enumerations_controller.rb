@@ -1,5 +1,5 @@
 
-class EnumerationsController < ApplicationController
+class EnumerationsController < ProtectForgeryApplication
   before_action  :authenticate_user!
 
   before_filter :require_admin

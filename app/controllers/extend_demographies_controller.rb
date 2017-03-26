@@ -1,4 +1,4 @@
-class ExtendDemographiesController < ApplicationController
+class ExtendDemographiesController < ProtectForgeryApplication
   before_action  :authenticate_user!
   before_action :set_extend_demography, only: [:update]
 

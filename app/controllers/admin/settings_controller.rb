@@ -1,4 +1,4 @@
-class SettingsController < ApplicationController
+class SettingsController < ProtectForgeryApplication
   before_action  :authenticate_user!
 
   before_filter :require_admin

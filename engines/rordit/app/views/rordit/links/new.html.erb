@@ -1,0 +1,88 @@
+<%= render partial: 'rordit/shared/header' %>
+<%= stylesheet_link_tag 'rordit/application', media: "all" %>
+<%= javascript_include_tag 'rordit/application', 'data-turbolinks-track' => true %>
+<div id="vue-app">
+  <modal v-if="showingModal" @close="showingModal = false">
+    <p slot="body" v-cloak>{{ modalMessage }}</p>
+  </modal>
+<%#= javascript_include_tag "share_link" %>
+  <script>
+    var linkRe = /^(https?|ftp):\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?(((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?)(:\d*)?)(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)?(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/
+
+    var myMixin = {
+      data: {
+        url: "",
+        title: ""
+      },
+      methods: {
+        checkEmpty: function () {
+          return this.url.length > 0 && this.title.length > 0;
+        },
+        submitLink: function () {
+          if(this.checkEmpty()){
+            this.$http.post('/rordit/link/create', {
+              url: this.url,
+              title: this.title
+            }).then(function (response) {
+              window.location = response["body"]["message"];
+            }, function (response) {
+              this.showModal(response["body"]["message"]);
+            });
+          }else{
+            this.showModal("Title or URL can not be empty.");
+          }
+
+        }
+      },
+      computed: {
+        validateURL: function () {
+          return {
+            warning: !linkRe.test(this.url.toLowerCase()) && this.url.length > 0
+          }
+        },
+        validateTitle: function () {
+          return {
+            warning: this.title.length > 0 && this.title.length < 5
+          }
+        },
+        validateShareLink: function () {
+          return {
+            disabled: this.validateURL["warning"] || this.validateTitle["warning"]
+            || this.url.length == 0 || this.title.length == 0
+          }
+        }
+      }
+    };
+  </script>
+  <div class="section-form">
+    <h1>Share Link</h1>
+    <form action="" v-on:submit.prevent="submitLink()" accept-charset="UTF-8" method="post">
+      <table class="form-table">
+        <tr>
+          <td><span>Link:</span></td>
+          <td><input type="text" v-model="url" :class="validateURL" placeholder="http://"></td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td class="warning-td">
+            <span :class="validateURL" :class="validateURL" class="warning-span">Please enter valid URL.</span>
+          </td>
+        </tr>
+        <tr>
+          <td><span>Title:</span></td>
+          <td><input type="text" v-model="title" :class="validateTitle"></td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td class="warning-td">
+            <span :class="validateTitle" class="warning-span">Minimum length is 5</span>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td><button type="submit" :class="validateShareLink">Share</button></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+</div>

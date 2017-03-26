@@ -1,4 +1,4 @@
-class NoteTemplatesController < ApplicationController
+class NoteTemplatesController < ProtectForgeryApplication
   before_action :set_note_template, only: [:show, :edit, :update, :destroy]
   before_action :require_admin
 

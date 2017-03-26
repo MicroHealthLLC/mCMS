@@ -22,7 +22,7 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_languages, {:languages => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
-   map.project_module :resumes do |map|
+  map.project_module :resumes do |map|
     map.permission :view_resumes, {:resumes => [:index]},  :read => true
     map.permission :show_resumes, {:resumes => [:show]},  :read => true
     map.permission :create_resumes, {:resumes => [:new, :create]},  :read => true
@@ -133,6 +133,18 @@ RedCarpet::AccessControl.map do |map|
     map.permission :edit_other_skills, {:other_skills => [:edit, :update]},  :read => true
     map.permission :delete_other_skills, {:other_skills => [:destroy]},  :read => true
     map.permission :manage_other_skills, {:other_skills => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
+  map.project_module :rordit do |map|
+    map.permission :view_rordit, {"rordit/links" => [:index, :show, :get_search_results, :get_link,
+                                                     :get_popular_links, :get_newest_links]},  :read => true
+    map.permission :create_rordit, {"rordit/links" => [:new, :create]},  :read => true
+    map.permission :create_comment_rordit, {"rordit/comments" => [:new, :create]},  :read => true
+    map.permission :give_point_rordit, {"rordit/points" => [:give_point_to_link, :give_point_to_comment]},  :read => true
+    map.permission :manage_rordit, { "rordit/comments" => [:new, :create],
+                                     "rordit/points" => [:give_point_to_link, :give_point_to_comment],
+                                    "rordit/links" => [:index, :show, :get_search_results, :get_link,
+                                                       :get_popular_links, :get_newest_links, :new, :create]},  :read => true
   end
 
 
@@ -431,7 +443,7 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_enrollments, {:enrollments => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
-   map.project_module :radiologic_examinations do |map|
+  map.project_module :radiologic_examinations do |map|
     map.permission :view_radiologic_examinations, {:radiologic_examinations => [:index]},  :read => true
     map.permission :show_radiologic_examinations, {:radiologic_examinations => [:show]},  :read => true
     map.permission :create_radiologic_examinations, {:radiologic_examinations => [ :new, :create]},  :read => true
@@ -648,7 +660,10 @@ RedCarpet::AccessControl.map do |map|
         :checklist_cases => [:index, :show, :new, :create, :edit, :update, :destroy],
         :sticky => [:index, :save],
         :user_cases => [:add_appointment_link, :unlink_appointment, :set_appointment_store_id],
-        :wikis => [:new, :index, :show, :create, :edit, :update, :history, :compare, :add_attachment, :destroy]
+        :wikis => [:new, :index, :show, :create, :edit, :update, :history, :compare, :add_attachment, :destroy],
+        "rordit/links" => [:index, :show, :get_search_results, :get_link, :get_popular_links, :get_newest_links, :new, :create],
+        "rordit/comments" => [:new, :create],
+        "rordit/points" => [:give_point_to_link, :give_point_to_comment]
 
     },  :read => true
   end

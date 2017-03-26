@@ -1,4 +1,4 @@
-class SurveysController < ApplicationController
+class SurveysController < ProtectForgeryApplication
   before_action  :authenticate_user!
   before_filter :load_survey, :only => [:show, :edit, :update, :new_note, :destroy]
   before_action :require_admin, only: [:edit, :new, :create, :destroy, :update]

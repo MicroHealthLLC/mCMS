@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+class HomeController < ProtectForgeryApplication
   def index
     session[:appointment_store_id] = nil if User.current_user.can?(:manage_roles)
     if session[:employee_id]

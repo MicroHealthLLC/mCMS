@@ -1,4 +1,4 @@
-class ReferralResultsController < ApplicationController
+class ReferralResultsController < ProtectForgeryApplication
   add_breadcrumb I18n.t(:home), :root_path
   before_action  :authenticate_user!
   before_action :authorize

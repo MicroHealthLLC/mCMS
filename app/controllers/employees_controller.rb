@@ -1,4 +1,4 @@
-class EmployeesController < ApplicationController
+class EmployeesController < ProtectForgeryApplication
   before_action  :authenticate_user!
   before_action  :set_employee, :only => [:show, :destroy, :log_in, :update]
   before_action  :authorize

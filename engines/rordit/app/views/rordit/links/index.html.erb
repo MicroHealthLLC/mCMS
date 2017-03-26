@@ -1,0 +1,37 @@
+<%= stylesheet_link_tag 'rordit/application', media: "all" %>
+<%= javascript_include_tag 'rordit/application', 'data-turbolinks-track' => true %>
+
+<% content_for :title, "Homepage" %>
+<%= render partial: 'rordit/shared/header' %>
+<div id="vue-app">
+  <modal v-if="showingModal" @close="showingModal = false">
+    <p slot="body" v-cloak>{{ modalMessage }}</p>
+  </modal>
+  <div class="search">
+    <form action="" @submit.prevent="getSearchResults()" accept-charset="UTF-8" method="post">
+      <input placeholder="Search" onclick="this.placeholder=''" v-model="searchParam">
+    </form>
+  </div>
+  <div class="filter"><a @click="getPopularLinks()" :class="{ selected: this.pageType['popular'] }">Most Popular</a> - <a @click="getNewestLinks()" :class="{ selected: this.pageType['newest'] }">Newest</a></div>
+  <div class="row">
+    <div class="col-xs-12 btn-edition" v-for="(link, index) in links" class="link">
+      <div class="item-left">
+        <div class="point" id="point">
+          <a class="" @click="givePointToLink(link.id, index)"><%= image_tag('up.png') %></a>
+          <span v-cloak>{{ link.points_count }} p</span>
+        </div>
+      </div>
+      <div class="item-right">
+        <div class="url-base" v-cloak>{{ link.hostname }}</div>
+        <h1><a :href="link.url" target="_blank" v-cloak>{{ link.title }}</a></h1>
+        <div class="link-info">
+          <span class="author" v-cloak>{{ link.username }}</span> • <span class="time" v-cloak>{{ link.time_ago }} ago</span> • <a :href=" '/rordit/link/' + link.id" class="comment-count" v-cloak>{{ link.comments_count }} Comments</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-nav">
+    <a @click="nextPage()" class="next" :class="{ disabled: !next }">Next</a>
+    <a @click="previousPage()" class="previous" :class="{ disabled: !previous }">Previous</a>
+  </div>
+</div>

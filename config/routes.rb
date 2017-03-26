@@ -330,4 +330,5 @@ Rails.application.routes.draw do
   mount Thredded::Engine => '/forum'
   mount TodoList::Engine => "/todo_list"
   mount StickyNotes::Engine => "/sticky_notes"
+  mount Rordit::Engine => "/rordit"
 end

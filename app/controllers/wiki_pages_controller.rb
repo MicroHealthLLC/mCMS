@@ -1,4 +1,4 @@
-class WikiPagesController < ApplicationController
+class WikiPagesController < ProtectForgeryApplication
   acts_as_wiki_pages_controller
 
   def new_page_title

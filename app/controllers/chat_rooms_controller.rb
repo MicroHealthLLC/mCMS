@@ -1,4 +1,4 @@
-class ChatRoomsController < ApplicationController
+class ChatRoomsController < ProtectForgeryApplication
   before_action  :authenticate_user!
   before_action  :set_chat_room, only: [:show]
   before_action :authorize, only: [:show]

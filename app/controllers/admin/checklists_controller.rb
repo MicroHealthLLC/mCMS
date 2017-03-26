@@ -1,4 +1,4 @@
-class ChecklistsController < ApplicationController
+class ChecklistsController < ProtectForgeryApplication
   before_action  :authenticate_user!
   before_action :set_checklist_template, only: [:show, :edit, :update, :destroy]
 

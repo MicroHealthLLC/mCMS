@@ -1,4 +1,4 @@
-class CoreDemographicsController < ApplicationController
+class CoreDemographicsController < ProtectForgeryApplication
   before_action  :authenticate_user!
   before_action :set_core_demographic, only: [:update, :show]
 

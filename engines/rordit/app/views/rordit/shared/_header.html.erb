@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="header-right">
+      <% unless params[:action] == 'index' %>
+          <a href="/rordit" class="btn btn-primary">List Page</a>
+      <% end %>
+      <% if params[:action] != 'new' and can?(:manage_roles, :manage_rordit, :create_rordit) %>
+          <a href="/rordit/share-link" class="btn btn-success">Share Link</a>
+      <% end %>
+    </div>
+  </div>
+</div>

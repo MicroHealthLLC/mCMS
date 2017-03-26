@@ -1,4 +1,4 @@
-class JobDetailsController < ApplicationController
+class JobDetailsController < ProtectForgeryApplication
   before_action  :authenticate_user!
   before_action :set_job_detail, only: [:update]
   before_action :authorize

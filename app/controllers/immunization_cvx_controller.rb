@@ -1,4 +1,4 @@
-class ImmunizationCvxController < ApplicationController
+class ImmunizationCvxController < ProtectForgeryApplication
   def index
     q = params[:term]
     search = q.to_s.split(' ')

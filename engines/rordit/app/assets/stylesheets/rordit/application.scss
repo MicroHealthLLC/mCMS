@@ -1,0 +1,133 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+*/
+
+$red: #E3472F;
+$light-grey: #FAFAFA;
+$dark-grey: #CACACA;
+$very-light-grey: #BFC2C1;
+
+
+.header-left {
+  float: left;
+  height: 90px;
+  margin-top: 5px;
+
+  img {
+    margin-bottom: -10px;
+    cursor: pointer;
+    float: left;
+  }
+}
+
+.slogan {
+  border-left: 1px solid $very-light-grey;
+  color: #D5CECE;
+  font-size: 0.875em;
+  margin-left: 15px;
+  padding: 20px 0 20px 10px;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.header-right {
+  float: right;
+  padding-top: 10px;
+}
+
+.red-button {
+  background-color: $red;
+  border-radius: 4px;
+  border-width: 0;
+  font-size: 0.938em;
+  color: #FFF;
+  cursor: pointer;
+  float: left;
+  padding: 10px;
+}
+
+.white-button {
+  border: 1px solid $very-light-grey;
+  background-color: #FFF;
+  border-radius: 4px;
+  margin-left: 5px;
+  cursor: pointer;
+  font-size: 0.938em;
+  float: right;
+  color: #727272;
+  padding: 10px;
+}
+
+footer {
+  float: left;
+  width: 100%;
+  font-size: 0.750em;
+  color: #D5CECE;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 3px;
+
+  a {
+    color: #D5CECE;
+    text-decoration: underline;
+  }
+}
+
+
+@media screen and (max-width: 830px) {
+  .link {
+    margin-bottom: 35px;
+  }
+  .item-right {
+    padding-top: 1px;
+  }
+  .point {
+    height: 95px;
+  }
+
+  .point span {
+    padding-top: 15px;
+  }
+  .point img {
+    margin-bottom: 5px;
+    margin-top: 15px;
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .link {
+    margin-bottom: 65px;
+  }
+
+  .slogan {
+    font-size: 0.775em;
+  }
+
+  .point {
+    height: 120px;
+  }
+
+  .point span {
+    padding-top: 25px;
+  }
+
+  .point img {
+    margin-top: 25px;
+  }
+}
+
+[v-cloak] {
+  display: none;
+}

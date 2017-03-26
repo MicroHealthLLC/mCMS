@@ -1,4 +1,4 @@
-class InsurancesController < ApplicationController
+class InsurancesController < ProtectForgeryApplication
   before_action  :authenticate_user!
   before_action :set_insurance, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user

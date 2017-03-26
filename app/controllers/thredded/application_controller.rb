@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module Thredded
-  class ApplicationController < ::ApplicationController
+  class ApplicationController < ::ProtectForgeryApplication
     layout 'base'
     include ::Thredded::UrlsHelper
     include Pundit

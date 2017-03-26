@@ -1,4 +1,4 @@
-class OrganizationsController < ApplicationController
+class OrganizationsController < ProtectForgeryApplication
   before_action  :authenticate_user!
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user

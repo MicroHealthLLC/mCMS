@@ -1,4 +1,4 @@
-class CategoriesController < ApplicationController
+class CategoriesController < ProtectForgeryApplication
   add_breadcrumb I18n.t('home'), :root_path
   add_breadcrumb I18n.t('categories'), :categories_path
 

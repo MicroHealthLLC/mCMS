@@ -1,4 +1,4 @@
-class IdcdataController < ApplicationController
+class IdcdataController < ProtectForgeryApplication
   include Snomed
   before_action  :authenticate_user!
   def index

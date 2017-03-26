@@ -1,4 +1,4 @@
-class HcpcController < ApplicationController
+class HcpcController < ProtectForgeryApplication
   def index
     q = params[:term]
     search = q.to_s.split(' ')

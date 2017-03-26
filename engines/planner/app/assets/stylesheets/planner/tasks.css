@@ -1,0 +1,146 @@
+#kanban {
+    margin-top: 10px;
+}
+
+#menu {
+    margin-left: 10px;
+}
+
+.columnHeader {
+    margin-top: -5px;
+    margin-bottom: 0;
+    padding: 10px 0 10px 5px;
+    background-color: #efefef;
+    color: #000;
+}
+
+.column {
+    border: none;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    margin: 10px 5px;   
+    background-color: #efefef;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    padding-top: 5px;
+}
+
+.card {
+    padding: 10px 10px 2px 5px;
+    font-weight: 200;
+    border: none;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    list-style: none;
+    -webkit-box-shadow: none; 
+    box-shadow: none;
+    margin: 5px;
+    cursor: move;
+}
+
+#columns {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+#columns a { color: #000; }
+
+.columnname a, .card a { color: #000; }
+.columnname a:hover, .card a:hover { text-decoration: underline; color: #000; cursor: pointer;}
+
+.cardInputs{width:100%;color:#555}
+
+.cardinfo {
+    margin-top: 20px;
+    text-align: left;
+}
+
+#newCardTitle, #newCardDetails, #cardTitle, #details {
+    width: 100%;
+}
+
+.notetext {
+    font-size: 80%;
+    text-align: left;
+}
+
+#nolimit {
+    padding-right: 30px;
+    font-size: 80%;
+    text-align: right;
+}
+
+
+.deletebtn, .addbtn {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    background-image: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.deletebtn {
+    margin-right: 5px;
+}
+
+.addcardbtn {
+    width: 100%;
+    height: 50px;
+    padding: 5px;
+    color: #333;
+    border: 0;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    text-align: right;
+    background: transparent;
+    background-image: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;    
+}
+
+.default { 
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+#archiveinfo {
+    width: 100%;
+    min-width: 480px;
+}
+
+#btntaskstatuses, #btntaskcategories, #btntasktypes {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    float: right;
+}
+.footerback {
+    margin-top: 15px;
+    padding: 5px 15px;
+    height: 54px;
+    background-color: #999;
+}
+#totop {
+    background-image: none;
+    background-color: #aaa;
+    width: 100%;
+    margin-top:15px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    border-radius: 0px;
+    border: none;
+    text-align: right;
+    padding-right: 15px;
+    text-shadow: none;
+}
+
+
+
+@media all and (max-width: 767px) {
+    #kanban {
+        margin-top: 64px;
+    }
+}

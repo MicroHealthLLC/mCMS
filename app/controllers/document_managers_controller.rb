@@ -1,4 +1,4 @@
-class DocumentManagersController < ApplicationController
+class DocumentManagersController < ProtectForgeryApplication
 
   before_action  :authenticate_user!
   before_filter :permitted_categories

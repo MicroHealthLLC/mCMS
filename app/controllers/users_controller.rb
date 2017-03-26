@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class UsersController < ProtectForgeryApplication
   before_action  :authenticate_user!
   before_action :find_user, except: [:restore, :index, :new, :create, :recently_connected]
 

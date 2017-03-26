@@ -1,4 +1,4 @@
-class UserHistoryController < ApplicationController
+class UserHistoryController < ProtectForgeryApplication
   include ApplicationHelper
   add_breadcrumb I18n.t(:home), :root_path
   before_action  :authenticate_user!

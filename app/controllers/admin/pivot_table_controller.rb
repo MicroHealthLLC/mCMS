@@ -1,4 +1,4 @@
-class PivotTableController < ApplicationController
+class PivotTableController < ProtectForgeryApplication
   before_action  :authenticate_user!
 
   before_filter :require_admin

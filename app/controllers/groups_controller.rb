@@ -1,4 +1,4 @@
-class GroupsController < ApplicationController
+class GroupsController < ProtectForgeryApplication
   add_breadcrumb I18n.t('home'), :root_path
   add_breadcrumb I18n.t('groups'), :groups_path
   before_action  :authenticate_user!
