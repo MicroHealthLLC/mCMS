@@ -12,6 +12,7 @@ module MHRM
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
+    config.i18n.load_path += Dir[Rails.root.join('engine', '**/config/locales', '**/*.{rb,yml}').to_s]
     config.autoload_paths += Dir[Rails.root.join('lib')]
     config.autoload_paths += Dir[Rails.root.join('lib/prawn/*.rb')]
     config.autoload_paths += Dir[Rails.root.join('app', 'models', '{*/}')]

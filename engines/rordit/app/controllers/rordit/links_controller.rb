@@ -29,15 +29,18 @@ module Rordit
     end
 
     def get_search_results
-      search = link_params[:search].split(' ')
+      search = link_params[:search].to_s.strip.split(' ')
       cond_url = []
       cond_title = []
       search.each do |s|
         cond_title<< "url LIKE '%#{s}%'"
         cond_url<< "title LIKE '%#{s}%'"
       end
-      result = Link.where("(#{cond_title.join(' OR ')}) OR (#{cond_url.join(' OR ')})")
-      paged_links = result.paginate(page: link_params[:page].to_i + 1, per_page: PER_PAGE)
+      result = Link
+      result = if search.present?
+                 result.where("(#{cond_title.join(' OR ')}) OR (#{cond_url.join(' OR ')})")
+               end
+       paged_links = result.paginate(page: link_params[:page].to_i + 1, per_page: PER_PAGE)
       page_count = pages_count(result.count)
       render json: { links: paged_links.as_json, page_count: page_count }
     end

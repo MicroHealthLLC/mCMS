@@ -59,9 +59,11 @@
         <% end %>
       </ul>
     </li>
-    <li class="<%= menu_active?('billings') %>">
-      <a href="<%= "/billings" %>" title="Billing & Collections"><i class="fa fa-lg fa-fw fa-money"></i> <span class="menu-item-parent">Billing & Collections</span></a>
-    </li>
+    <% if module_enabled? 'billings' %>
+        <li class="<%= menu_active?('billings') %>">
+          <a href="<%= "/billings" %>" title="Billing & Collections"><i class="fa fa-lg fa-fw fa-money"></i> <span class="menu-item-parent">Billing & Collections</span></a>
+        </li>
+    <% end %>
 <% else %>
     <% if module_enabled?('all_files')  && can?(:manage_roles, :manage_documents) %>
         <li class="<%= menu_active?('documents', 'all_files') %>">
