@@ -9,7 +9,7 @@ class Group < ApplicationRecord
   end
 
   def leaders
-    leader_members.to_a.map! {|member| member.user}
+    leader_members.to_a.map!{|member| member.user}.compact
   end
 
   def leader_members
@@ -17,7 +17,7 @@ class Group < ApplicationRecord
   end
 
   def members
-    regular_members.to_a.map! {|member| member.user}
+    regular_members.to_a.map!{|member| member.user}.compact
   end
 
   def regular_members
