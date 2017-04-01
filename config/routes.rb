@@ -66,12 +66,6 @@ Rails.application.routes.draw do
   resources :legals
   resources :financials
   resources :transportations
-  resources :mtf_hospitals
-  resources :incident_histories
-  resources :deployment_histories
-  resources :units
-  resources :awards
-  resources :service_histories
   resources :housings
   resources :health_care_facilities
   resources :admissions
