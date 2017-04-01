@@ -80,6 +80,15 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_affiliations, {:affiliations => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
+  map.project_module :military_histories do |map|
+    map.permission :view_military_histories, {:military_histories => [:index]},  :read => true
+    map.permission :show_military_histories, {:military_histories => [:show]},  :read => true
+    map.permission :create_military_histories, {:military_histories => [:new, :create]},  :read => true
+    map.permission :edit_military_histories, {:military_histories => [:edit, :update]},  :read => true
+    map.permission :delete_military_histories, {:military_histories => [:destroy]},  :read => true
+    map.permission :manage_military_histories, {:military_histories => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
   map.project_module :positions do |map|
     map.permission :view_positions, {:positions => [:index]},  :read => true
     map.permission :show_positions, {:positions => [:show]},  :read => true
@@ -204,23 +213,7 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_legals, {:legals => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
-  map.project_module :admissions do |map|
-    map.permission :view_admissions, {:admissions => [:index]},  :read => true
-    map.permission :show_admissions, {:admissions => [:show]},  :read => true
-    map.permission :create_admissions, {:admissions => [:new, :create]},  :read => true
-    map.permission :edit_admissions, {:admissions => [ :edit, :update]},  :read => true
-    map.permission :delete_admissions, {:admissions => [:destroy]},  :read => true
-    map.permission :manage_admissions, {:admissions => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
-  end
 
-  map.project_module :health_care_facilities do |map|
-    map.permission :view_health_care_facilities, {:health_care_facilities => [:index]},  :read => true
-    map.permission :show_health_care_facilities, {:health_care_facilities => [:show]},  :read => true
-    map.permission :create_health_care_facilities, {:health_care_facilities => [:new, :create]},  :read => true
-    map.permission :edit_health_care_facilities, {:health_care_facilities => [ :edit, :update]},  :read => true
-    map.permission :delete_health_care_facilities, {:health_care_facilities => [:destroy]},  :read => true
-    map.permission :manage_health_care_facilities, {:health_care_facilities => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
-  end
 
   map.project_module :housings do |map|
     map.permission :view_housings, {:housings => [:index]},  :read => true
@@ -232,6 +225,7 @@ RedCarpet::AccessControl.map do |map|
   end
 
   # MILITARY HISTORY
+
   map.project_module :service_histories do |map|
     map.permission :view_service_histories, {:service_histories => [:index]},  :read => true
     map.permission :show_service_histories, {:service_histories => [:show]},  :read => true
@@ -286,84 +280,24 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_mtf_hospitals, {:mtf_hospitals => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
-  map.project_module :other_histories do |map|
-    map.permission :view_other_histories, {:other_histories => [:index]},  :read => true
-    map.permission :show_other_histories, {:other_histories => [:show]},  :read => true
-    map.permission :create_other_histories, {:other_histories => [:new, :create]},  :read => true
-    map.permission :edit_other_histories, {:other_histories => [ :edit, :update]},  :read => true
-    map.permission :delete_other_histories, {:other_histories => [:destroy]},  :read => true
-    map.permission :manage_other_histories, {:other_histories => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
-  end
-  map.project_module :behavioral_risks do |map|
-    map.permission :view_behavioral_risks, {:behavioral_risks => [:index]},  :read => true
-    map.permission :show_behavioral_risks, {:behavioral_risks => [:show]},  :read => true
-    map.permission :create_behavioral_risks, {:behavioral_risks => [:new, :create]},  :read => true
-    map.permission :edit_behavioral_risks, {:behavioral_risks => [ :edit, :update]},  :read => true
-    map.permission :delete_behavioral_risks, {:behavioral_risks => [:destroy]},  :read => true
-    map.permission :manage_behavioral_risks, {:behavioral_risks => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  # Medical HISTORY
+
+  map.project_module :admissions do |map|
+    map.permission :view_admissions, {:admissions => [:index]},  :read => true
+    map.permission :show_admissions, {:admissions => [:show]},  :read => true
+    map.permission :create_admissions, {:admissions => [:new, :create]},  :read => true
+    map.permission :edit_admissions, {:admissions => [ :edit, :update]},  :read => true
+    map.permission :delete_admissions, {:admissions => [:destroy]},  :read => true
+    map.permission :manage_admissions, {:admissions => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
-  map.project_module :environment_risks do |map|
-    map.permission :view_environment_risks, {:environment_risks => [:index]},  :read => true
-    map.permission :show_environment_risks, {:environment_risks => [:show]},  :read => true
-    map.permission :create_environment_risks, {:environment_risks => [:new, :create]},  :read => true
-    map.permission :edit_environment_risks, {:environment_risks => [ :edit, :update]},  :read => true
-    map.permission :delete_environment_risks, {:environment_risks => [:destroy]},  :read => true
-    map.permission :manage_environment_risks, {:environment_risks => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
-  end
-
-  map.project_module :medications do |map|
-    map.permission :view_medications, {:medications => [:index]},  :read => true
-    map.permission :show_medications, {:medications => [:show]},  :read => true
-    map.permission :create_medications, {:medications => [:new, :create]},  :read => true
-    map.permission :edit_medications, {:medications => [ :edit, :update]},  :read => true
-    map.permission :delete_medications, {:medications => [:destroy]},  :read => true
-    map.permission :manage_medications, {:medications => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
-  end
-
-  map.project_module :medicals do |map|
-    map.permission :view_medicals, {:medicals => [:index]},  :read => true
-    map.permission :show_medicals, {:medicals => [:show]},  :read => true
-    map.permission :create_medicals, {:medicals => [:new, :create]},  :read => true
-    map.permission :edit_medicals, {:medicals => [ :edit, :update]},  :read => true
-    map.permission :delete_medicals, {:medicals => [:destroy]},  :read => true
-    map.permission :manage_medicals, {:medicals => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
-  end
-
-  map.project_module :family_histories do |map|
-    map.permission :view_family_histories, {:family_histories => [:index]},  :read => true
-    map.permission :show_family_histories, {:family_histories => [:show]},  :read => true
-    map.permission :create_family_histories, {:family_histories => [:new, :create]},  :read => true
-    map.permission :edit_family_histories, {:family_histories => [ :edit, :update]},  :read => true
-    map.permission :delete_family_histories, {:family_histories => [:destroy]},  :read => true
-    map.permission :manage_family_histories, {:family_histories => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
-  end
-
-  map.project_module :immunizations do |map|
-    map.permission :view_immunizations, {:immunizations => [:index]},  :read => true
-    map.permission :show_immunizations, {:immunizations => [:show]},  :read => true
-    map.permission :create_immunizations, {:immunizations => [:new, :create]},  :read => true
-    map.permission :edit_immunizations, {:immunizations => [ :edit, :update]},  :read => true
-    map.permission :delete_immunizations, {:immunizations => [:destroy]},  :read => true
-    map.permission :manage_immunizations, {:immunizations => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
-  end
-
-  map.project_module :socioeconomics do |map|
-    map.permission :view_socioeconomics, {:socioeconomics => [:index]},  :read => true
-    map.permission :show_socioeconomics, {:socioeconomics => [:show]},  :read => true
-    map.permission :create_socioeconomics, {:socioeconomics => [:new, :create]},  :read => true
-    map.permission :edit_socioeconomics, {:socioeconomics => [ :edit, :update]},  :read => true
-    map.permission :delete_socioeconomics, {:socioeconomics => [:destroy]},  :read => true
-    map.permission :manage_socioeconomics, {:socioeconomics => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
-  end
-
-  map.project_module :surgicals do |map|
-    map.permission :view_surgicals, {:surgicals => [:index]},  :read => true
-    map.permission :show_surgicals, {:surgicals => [:show]},  :read => true
-    map.permission :create_surgicals, {:surgicals => [:new, :create]},  :read => true
-    map.permission :edit_surgicals, {:surgicals => [ :edit, :update]},  :read => true
-    map.permission :delete_surgicals, {:surgicals => [:destroy]},  :read => true
-    map.permission :manage_surgicals, {:surgicals => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  map.project_module :health_care_facilities do |map|
+    map.permission :view_health_care_facilities, {:health_care_facilities => [:index]},  :read => true
+    map.permission :show_health_care_facilities, {:health_care_facilities => [:show]},  :read => true
+    map.permission :create_health_care_facilities, {:health_care_facilities => [:new, :create]},  :read => true
+    map.permission :edit_health_care_facilities, {:health_care_facilities => [ :edit, :update]},  :read => true
+    map.permission :delete_health_care_facilities, {:health_care_facilities => [:destroy]},  :read => true
+    map.permission :manage_health_care_facilities, {:health_care_facilities => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :problem_lists do |map|
@@ -375,6 +309,54 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_problem_lists, {:problem_lists => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
+  map.project_module :surgicals do |map|
+    map.permission :view_surgicals, {:surgicals => [:index]},  :read => true
+    map.permission :show_surgicals, {:surgicals => [:show]},  :read => true
+    map.permission :create_surgicals, {:surgicals => [:new, :create]},  :read => true
+    map.permission :edit_surgicals, {:surgicals => [ :edit, :update]},  :read => true
+    map.permission :delete_surgicals, {:surgicals => [:destroy]},  :read => true
+    map.permission :manage_surgicals, {:surgicals => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+  map.project_module :medicals do |map|
+    map.permission :view_medicals, {:medicals => [:index]},  :read => true
+    map.permission :show_medicals, {:medicals => [:show]},  :read => true
+    map.permission :create_medicals, {:medicals => [:new, :create]},  :read => true
+    map.permission :edit_medicals, {:medicals => [ :edit, :update]},  :read => true
+    map.permission :delete_medicals, {:medicals => [:destroy]},  :read => true
+    map.permission :manage_medicals, {:medicals => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+  map.project_module :medications do |map|
+    map.permission :view_medications, {:medications => [:index]},  :read => true
+    map.permission :show_medications, {:medications => [:show]},  :read => true
+    map.permission :create_medications, {:medications => [:new, :create]},  :read => true
+    map.permission :edit_medications, {:medications => [ :edit, :update]},  :read => true
+    map.permission :delete_medications, {:medications => [:destroy]},  :read => true
+    map.permission :manage_medications, {:medications => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+  map.project_module :behavioral_risks do |map|
+    map.permission :view_behavioral_risks, {:behavioral_risks => [:index]},  :read => true
+    map.permission :show_behavioral_risks, {:behavioral_risks => [:show]},  :read => true
+    map.permission :create_behavioral_risks, {:behavioral_risks => [:new, :create]},  :read => true
+    map.permission :edit_behavioral_risks, {:behavioral_risks => [ :edit, :update]},  :read => true
+    map.permission :delete_behavioral_risks, {:behavioral_risks => [:destroy]},  :read => true
+    map.permission :manage_behavioral_risks, {:behavioral_risks => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+  map.project_module :family_histories do |map|
+    map.permission :view_family_histories, {:family_histories => [:index]},  :read => true
+    map.permission :show_family_histories, {:family_histories => [:show]},  :read => true
+    map.permission :create_family_histories, {:family_histories => [:new, :create]},  :read => true
+    map.permission :edit_family_histories, {:family_histories => [ :edit, :update]},  :read => true
+    map.permission :delete_family_histories, {:family_histories => [:destroy]},  :read => true
+    map.permission :manage_family_histories, {:family_histories => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+  map.project_module :immunizations do |map|
+    map.permission :view_immunizations, {:immunizations => [:index]},  :read => true
+    map.permission :show_immunizations, {:immunizations => [:show]},  :read => true
+    map.permission :create_immunizations, {:immunizations => [:new, :create]},  :read => true
+    map.permission :edit_immunizations, {:immunizations => [ :edit, :update]},  :read => true
+    map.permission :delete_immunizations, {:immunizations => [:destroy]},  :read => true
+    map.permission :manage_immunizations, {:immunizations => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
   map.project_module :allergies do |map|
     map.permission :view_allergies, {:allergies => [:index]},  :read => true
     map.permission :show_allergies, {:allergies => [:show]},  :read => true
@@ -383,10 +365,51 @@ RedCarpet::AccessControl.map do |map|
     map.permission :delete_allergies, {:allergies => [:destroy]},  :read => true
     map.permission :manage_allergies, {:allergies => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
+  map.project_module :radiologic_examinations do |map|
+    map.permission :view_radiologic_examinations, {:radiologic_examinations => [:index]},  :read => true
+    map.permission :show_radiologic_examinations, {:radiologic_examinations => [:show]},  :read => true
+    map.permission :create_radiologic_examinations, {:radiologic_examinations => [ :new, :create]},  :read => true
+    map.permission :edit_radiologic_examinations, {:radiologic_examinations => [:edit, :update]},  :read => true
+    map.permission :delete_radiologic_examinations, {:radiologic_examinations => [:destroy]},  :read => true
+    map.permission :manage_radiologic_examinations, {:radiologic_examinations => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
 
-
-
-
+  map.project_module :laboratory_examinations do |map|
+    map.permission :view_laboratory_examinations, {:laboratory_examinations => [:index]},  :read => true
+    map.permission :show_laboratory_examinations, {:laboratory_examinations => [:show]},  :read => true
+    map.permission :create_laboratory_examinations, {:laboratory_examinations => [ :new, :create]},  :read => true
+    map.permission :edit_laboratory_examinations, {:laboratory_examinations => [:edit, :update]},  :read => true
+    map.permission :delete_laboratory_examinations, {:laboratory_examinations => [:destroy]},  :read => true
+    map.permission :manage_laboratory_examinations, {:laboratory_examinations => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+  
+  #SocioEconomic
+  
+  map.project_module :other_histories do |map|
+    map.permission :view_other_histories, {:other_histories => [:index]},  :read => true
+    map.permission :show_other_histories, {:other_histories => [:show]},  :read => true
+    map.permission :create_other_histories, {:other_histories => [:new, :create]},  :read => true
+    map.permission :edit_other_histories, {:other_histories => [ :edit, :update]},  :read => true
+    map.permission :delete_other_histories, {:other_histories => [:destroy]},  :read => true
+    map.permission :manage_other_histories, {:other_histories => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+  map.project_module :environment_risks do |map|
+    map.permission :view_environment_risks, {:environment_risks => [:index]},  :read => true
+    map.permission :show_environment_risks, {:environment_risks => [:show]},  :read => true
+    map.permission :create_environment_risks, {:environment_risks => [:new, :create]},  :read => true
+    map.permission :edit_environment_risks, {:environment_risks => [ :edit, :update]},  :read => true
+    map.permission :delete_environment_risks, {:environment_risks => [:destroy]},  :read => true
+    map.permission :manage_environment_risks, {:environment_risks => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+  
+  map.project_module :socioeconomics do |map|
+    map.permission :view_socioeconomics, {:socioeconomics => [:index]},  :read => true
+    map.permission :show_socioeconomics, {:socioeconomics => [:show]},  :read => true
+    map.permission :create_socioeconomics, {:socioeconomics => [:new, :create]},  :read => true
+    map.permission :edit_socioeconomics, {:socioeconomics => [ :edit, :update]},  :read => true
+    map.permission :delete_socioeconomics, {:socioeconomics => [:destroy]},  :read => true
+    map.permission :manage_socioeconomics, {:socioeconomics => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
 
   # case user
   map.project_module :document do |map|
@@ -442,25 +465,7 @@ RedCarpet::AccessControl.map do |map|
     map.permission :delete_enrollments, {:enrollments => [:destroy]},  :read => true
     map.permission :manage_enrollments, {:enrollments => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
-
-  map.project_module :radiologic_examinations do |map|
-    map.permission :view_radiologic_examinations, {:radiologic_examinations => [:index]},  :read => true
-    map.permission :show_radiologic_examinations, {:radiologic_examinations => [:show]},  :read => true
-    map.permission :create_radiologic_examinations, {:radiologic_examinations => [ :new, :create]},  :read => true
-    map.permission :edit_radiologic_examinations, {:radiologic_examinations => [:edit, :update]},  :read => true
-    map.permission :delete_radiologic_examinations, {:radiologic_examinations => [:destroy]},  :read => true
-    map.permission :manage_radiologic_examinations, {:radiologic_examinations => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
-  end
-
-  map.project_module :laboratory_examinations do |map|
-    map.permission :view_laboratory_examinations, {:laboratory_examinations => [:index]},  :read => true
-    map.permission :show_laboratory_examinations, {:laboratory_examinations => [:show]},  :read => true
-    map.permission :create_laboratory_examinations, {:laboratory_examinations => [ :new, :create]},  :read => true
-    map.permission :edit_laboratory_examinations, {:laboratory_examinations => [:edit, :update]},  :read => true
-    map.permission :delete_laboratory_examinations, {:laboratory_examinations => [:destroy]},  :read => true
-    map.permission :manage_laboratory_examinations, {:laboratory_examinations => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
-  end
-
+  
   map.project_module :related_clients do |map|
     map.permission :view_related_clients, {:related_clients => [:index]},  :read => true
     map.permission :show_related_clients, {:related_clients => [:show]},  :read => true

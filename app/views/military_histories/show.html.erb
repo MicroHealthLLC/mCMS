@@ -1,0 +1,38 @@
+<%= render partial: 'action_menu' %>
+
+<div class="row">
+  <div class="col-xs-12">
+
+    <p>
+      <strong>Text:</strong>
+      <%= @military_history.text %>
+    </p>
+
+    <p>
+      <strong>Service type:</strong>
+      <%= @military_history.service_type %>
+    </p>
+
+    <p>
+      <strong>Service status:</strong>
+      <%= @military_history.service_status %>
+    </p>
+
+    <p>
+      <strong>Date started:</strong>
+      <%= format_date @military_history.date_started %>
+    </p>
+
+    <p>
+      <strong>Date ended:</strong>
+      <%= format_date @military_history.date_ended %>
+    </p>
+
+    <p>
+      <strong>Note:</strong>
+      <%= @military_history.note.html_safe %>
+    </p>
+  </div>
+</div>
+
+

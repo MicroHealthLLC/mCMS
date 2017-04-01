@@ -1,0 +1,9 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to( 'Delete', military_history_path(@military_history), class: 'btn btn-danger pull-right',
+               :method => :delete,
+               :data => {:confirm => t(:text_are_you_sure)}) if @military_history.can?(:manage_roles, :manages_military_histories, :delete_military_histories)
+  %>
+  <%= link_to( 'Edit', edit_military_history_path(@military_history), class: 'btn btn-success pull-right') if @military_history.can?(:manage_roles, :manages_military_histories, :edit_military_histories) %>
+  <%= link_to t('button_cancel'), military_histories_path, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_print'), military_history_path(@military_history, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+</div>

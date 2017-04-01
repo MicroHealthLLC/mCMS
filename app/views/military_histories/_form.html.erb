@@ -1,0 +1,64 @@
+<fieldset>
+  <legend></legend>
+  <%= form_for(military_history, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+      <% if military_history.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(military_history.errors.count, "error") %> prohibited this military history from being saved:</h2>
+
+            <ul>
+              <% military_history.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <%= f.hidden_field :user_id %>
+      <div class="form-group">
+        <%= f.label :text , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :text , class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label t(:service_type), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :service_type_id, options_for_select(ServiceType.active.pluck(:name, :id), selected: f.object.service_type.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label t(:service_status), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :service_status_id, options_for_select(ServiceStatus.active.pluck(:name, :id), selected: f.object.service_status.try(:id)) , {} ,{class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :date_started , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_started , class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :date_ended , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_ended , class: 'form-control date_picker' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:note) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_area :note , class: 'form-control ck-editor' %>
+        </div>
+      </div>
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= link_to t('button_cancel'), military_histories_path, class: 'btn btn-warning pull-right' %>
+          <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+  <% end %>
+</fieldset>
+

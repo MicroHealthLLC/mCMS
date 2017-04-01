@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :military_histories
   get 'occupation', to: 'idcdata#occupation'
   resources :resumes
   resources :related_clients

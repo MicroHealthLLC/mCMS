@@ -439,8 +439,12 @@ en:
   service_histories: Service Histories
   new_service_history: New Service History
   edit_service_history: Edit Service History
-  service_type: Service History Type
-  service_status: Service History Status
+  military_history: Military History
+  military_histories: Military Histories
+  new_military_history: New Military History
+  edit_military_history: Edit Military History
+  service_type: Service Type
+  service_status: Service Status
   rank: Rank
   component: Component
   discharge_type: Discharge Type

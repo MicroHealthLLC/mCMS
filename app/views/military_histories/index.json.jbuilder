@@ -1,0 +1,1 @@
+json.array! @military_histories, partial: 'military_histories/military_history', as: :military_history

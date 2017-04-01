@@ -55,6 +55,11 @@
               <a href="/resumes" title="<%= t(:resumes) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:resumes) %></span></a>
             </li>
         <% end %>
+       <% if module_enabled?( 'military_histories') && can?(:manage_roles, :view_military_histories, :manage_military_histories) %>
+            <li class="<%= menu_active?('resumes') %>">
+              <a href="/military_histories" title="<%= t(:military_histories) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:military_histories) %></span></a>
+            </li>
+        <% end %>
       </ul>
     </li>
 <% end %>

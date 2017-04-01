@@ -1,0 +1,2 @@
+json.extract! military_history, :id, :user_id, :text, :service_type_id, :service_status_id, :date_started, :date_ended, :note, :updated_by_id, :created_by_id, :created_at, :updated_at
+json.url military_history_url(military_history, format: :json)

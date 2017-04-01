@@ -1,0 +1,28 @@
+<table class="table table-responsive" id="military_table">
+    <thead>
+    <tr>
+      <th>Text</th>
+      <th>Service type</th>
+      <th>Service status</th>
+      <th>Date started</th>
+      <th>Date ended</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @military_histories.each do |military_history| %>
+        <tr>
+          <td><%= link_to military_history.text, military_history %></td>
+          <td><%= military_history.service_type %></td>
+          <td><%= military_history.service_status %></td>
+          <td><%= military_history.date_started %></td>
+          <td><%= military_history.date_ended %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+<script>
+  $(document).ready(function(){
+    initDataTable('military_table')
+  })
+</script>

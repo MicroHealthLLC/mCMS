@@ -1,5 +1,5 @@
 class ServiceStatus < Enumeration
-  has_many :service_histories
+  has_many :military_histories
 
   OptionName = :enumeration_service_status
 
@@ -8,7 +8,7 @@ class ServiceStatus < Enumeration
   end
 
   def objects
-    ServiceHistory.where(:service_status_id => self.id)
+    MilitaryHistory.where(:service_status_id => self.id)
   end
 
   def objects_count
