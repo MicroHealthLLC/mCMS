@@ -1,2 +1,0 @@
-json.extract! service_history, :id, :user_id, :rank_id, :service_type_id, :service_status_id, :component_id, :discharge_type_id, :date_entered, :end_active_obliged_service, :demobilization, :separation, :temporary_disability_retirement_list, :created_at, :updated_at
-json.url service_history_url(service_history, format: :json)

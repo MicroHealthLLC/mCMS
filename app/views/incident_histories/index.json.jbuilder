@@ -1,1 +1,0 @@
-json.array! @incident_histories, partial: 'incident_histories/incident_history', as: :incident_history

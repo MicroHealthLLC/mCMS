@@ -224,61 +224,7 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_housings, {:housings => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
-  # MILITARY HISTORY
 
-  map.project_module :service_histories do |map|
-    map.permission :view_service_histories, {:service_histories => [:index]},  :read => true
-    map.permission :show_service_histories, {:service_histories => [:show]},  :read => true
-    map.permission :create_service_histories, {:service_histories => [:new, :create]},  :read => true
-    map.permission :edit_service_histories, {:service_histories => [ :edit, :update]},  :read => true
-    map.permission :delete_service_histories, {:service_histories => [:destroy]},  :read => true
-    map.permission :manage_service_histories, {:service_histories => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
-  end
-
-  map.project_module :units do |map|
-    map.permission :view_units, {:units => [:index]},  :read => true
-    map.permission :show_units, {:units => [:show]},  :read => true
-    map.permission :create_units, {:units => [:new, :create]},  :read => true
-    map.permission :edit_units, {:units => [ :edit, :update]},  :read => true
-    map.permission :delete_units, {:units => [:destroy]},  :read => true
-    map.permission :manage_units, {:units => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
-  end
-
-  map.project_module :awards do |map|
-    map.permission :view_awards, {:awards => [:index]},  :read => true
-    map.permission :show_awards, {:awards => [:show]},  :read => true
-    map.permission :create_awards, {:awards => [:new, :create]},  :read => true
-    map.permission :edit_awards, {:awards => [ :edit, :update]},  :read => true
-    map.permission :delete_awards, {:awards => [:destroy]},  :read => true
-    map.permission :manage_awards, {:awards => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
-  end
-
-  map.project_module :deployment_histories do |map|
-    map.permission :view_deployment_histories, {:deployment_histories => [:index]},  :read => true
-    map.permission :show_deployment_histories, {:deployment_histories => [:show]},  :read => true
-    map.permission :create_deployment_histories, {:deployment_histories => [:new, :create]},  :read => true
-    map.permission :edit_deployment_histories, {:deployment_histories => [ :edit, :update]},  :read => true
-    map.permission :delete_deployment_histories, {:deployment_histories => [:destroy]},  :read => true
-    map.permission :manage_deployment_histories, {:deployment_histories => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
-  end
-
-  map.project_module :incident_histories do |map|
-    map.permission :view_incident_histories, {:incident_histories => [:index]},  :read => true
-    map.permission :show_incident_histories, {:incident_histories => [:show]},  :read => true
-    map.permission :create_incident_histories, {:incident_histories => [:new, :create]},  :read => true
-    map.permission :edit_incident_histories, {:incident_histories => [ :edit, :update]},  :read => true
-    map.permission :delete_incident_histories, {:incident_histories => [:destroy]},  :read => true
-    map.permission :manage_incident_histories, {:incident_histories => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
-  end
-
-  map.project_module :mtf_hospitals do |map|
-    map.permission :view_mtf_hospitals, {:mtf_hospitals => [:index]},  :read => true
-    map.permission :show_mtf_hospitals, {:mtf_hospitals => [:show]},  :read => true
-    map.permission :create_mtf_hospitals, {:mtf_hospitals => [:new, :create]},  :read => true
-    map.permission :edit_mtf_hospitals, {:mtf_hospitals => [ :edit, :update]},  :read => true
-    map.permission :delete_mtf_hospitals, {:mtf_hospitals => [:destroy]},  :read => true
-    map.permission :manage_mtf_hospitals, {:mtf_hospitals => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
-  end
 
   # Medical HISTORY
 

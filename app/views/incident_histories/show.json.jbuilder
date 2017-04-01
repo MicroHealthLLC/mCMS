@@ -1,1 +1,0 @@
-json.partial! "incident_histories/incident_history", incident_history: @incident_history

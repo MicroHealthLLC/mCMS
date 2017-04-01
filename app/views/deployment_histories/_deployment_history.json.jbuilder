@@ -1,2 +1,0 @@
-json.extract! deployment_history, :id, :user_id, :deployment_operation_id, :location, :city, :state_id, :country_id, :date_start, :date_end, :note, :created_at, :updated_at
-json.url deployment_history_url(deployment_history, format: :json)
