@@ -1,5 +1,6 @@
 class RevisionsController < ProtectForgeryApplication
   before_action  :authenticate_user!
+  before_action  :authorize
 
   def download
     # Get the request document revision

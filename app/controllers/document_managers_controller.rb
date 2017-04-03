@@ -1,6 +1,7 @@
 class DocumentManagersController < ProtectForgeryApplication
 
   before_action  :authenticate_user!
+  before_action  :authorize
   before_filter :permitted_categories
 
   # Selection of categories the current user can view in the tree navigation

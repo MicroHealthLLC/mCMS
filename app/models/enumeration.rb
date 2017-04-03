@@ -252,6 +252,3 @@ require_dependency 'transportation_accessibility'
 require_dependency 'transportation_mean'
 require_dependency 'transportation_status'
 require_dependency 'transportation_type'
-
-
-

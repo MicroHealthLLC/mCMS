@@ -1,4 +1,6 @@
 class StickyController < UserProfilesController
+  before_action  :authenticate_user!
+  before_action  :authorize
 
   def index
     respond_to do |format|

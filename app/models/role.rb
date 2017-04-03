@@ -3,6 +3,9 @@ class Role < ApplicationRecord
   has_many :job_details
   has_many :users
 
+  validates_presence_of :name
+  validates_uniqueness_of :name
+
   class PermissionsAttributeCoder
     def self.load(str)
       str.to_s.scan(/:([a-z0-9_]+)/).flatten.map(&:to_sym)
