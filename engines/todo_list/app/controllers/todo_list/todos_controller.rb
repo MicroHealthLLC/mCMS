@@ -1,6 +1,7 @@
 module TodoList
   class TodosController < ApplicationController
     before_action  :authenticate_user!
+    before_action  :authorize
 
     # GET /todos
     def index

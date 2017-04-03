@@ -3,6 +3,7 @@
 module StickyNotes
   class StickyNotesController < ApplicationController
     before_action  :authenticate_user!
+    before_action :authorize
 
     def index
       respond_to do |format|
