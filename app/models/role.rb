@@ -3,6 +3,9 @@ class Role < ApplicationRecord
   has_many :job_details
   has_many :users
 
+  before_save do
+    self.name = role_type
+  end
   validates_presence_of :name
   validates_uniqueness_of :name
 
