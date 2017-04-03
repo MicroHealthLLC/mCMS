@@ -17,6 +17,11 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_todo_list, {'todo_list/todos' => [:index, :save]},  :read => true
   end
 
+  map.project_module :chat_room do |map|
+    map.permission :make_chat, {:chat_rooms => [:create_or_find, :show]},  :read => true
+    map.permission :view_conference, {:chat_rooms => [:conference]},  :read => true
+  end
+
   map.project_module :document_managers do |map|
     map.permission :manage_document_managers, {:document_managers => [:index, :show, :search, :destroy, :create, :update, :download],
                                                :revisions=>[:download, :create]},  :read => true

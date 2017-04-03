@@ -9,10 +9,6 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_organizations, {:job_details => [:create, :update], :organizations => [:new, :create, :edit, :update, :destroy]},  :read => true
   end
 
-  map.project_module :chat_room do |map|
-    map.permission :make_chat, {:chat_rooms => [:create_or_find, :show]},  :read => true
-    map.permission :view_conference, {:chat_rooms => [:conference]},  :read => true
-  end
 
   map.project_module :employee do |map|
     map.permission :manage_roles, {
