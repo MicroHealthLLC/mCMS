@@ -21,7 +21,7 @@ class Goal < ApplicationRecord
   validates_presence_of :name
   def self.safe_attributes
     [
-        :priority_type_id, :user_id, :goal_status_id, :name, :assigned_to_id,
+        :priority_type_id, :user_id, :goal_status_id, :name, :assigned_to_id, :percent_done,
         :description, :date_completed, :date_due, :date_start,  :case_id,
         need_goals_attributes: [NeedGoal.safe_attributes]
     ]
@@ -70,6 +70,7 @@ class Goal < ApplicationRecord
     pdf.table([[ "Name ", " #{name}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Description ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Goal status ", " #{goal_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Percent Done ", " #{percent_done} %"]], :column_widths => [ 150, 373])
     pdf.table([[ "Priority ", " #{priority_type}"]], :column_widths => [ 150, 373])
 
     pdf.table([[ "Date start ", " #{date_start}"]], :column_widths => [ 150, 373])

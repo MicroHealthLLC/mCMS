@@ -20,6 +20,10 @@
       <strong><%= t('goal_status') %>:</strong>
       <%= @goal.goal_status %>
     </p>
+     <p>
+      <strong> Percent Done:</strong>
+      <%= @goal.percent_done|| 0 %> %
+    </p>
     <p>
       <strong><%= t('assigned_to') %>:</strong>
       <%= @goal.assigned_to %>

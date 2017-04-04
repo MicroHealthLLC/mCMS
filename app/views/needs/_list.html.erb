@@ -11,6 +11,7 @@
     <% end %>
     <th><%= t('priority') %></th>
     <th><%= t('need_status') %></th>
+    <th> Percent Done</th>
     <th><%= t('date_due') %></th>
     <th><%= t('date_completed') %></th>
     <th><%= t('date_identified') %></th>
@@ -33,6 +34,7 @@
             <% end %>
             <td><%= need.priority_type %></td>
             <td><%= need.need_status %></td>
+            <td><%= need.percent_done || 0 %>%</td>
             <td><%= need.date_due %></td>
             <td><%= format_date need.date_completed %></td>
             <td><%= format_date need.date_identified %></td>
