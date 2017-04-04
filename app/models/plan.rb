@@ -15,6 +15,17 @@ class Plan < ApplicationRecord
   has_many :tasks, through: :plan_tasks
   has_many :appointment_links, as: :linkable
 
+  after_save :update_percent_done
+
+  def update_percent_done
+    if percent_done_changed?
+      goals.each do |goal|
+        goal.percent_done =( goal.plans.average(:percent_done).to_i / 10).ceil * 10
+        goal.save
+      end
+    end
+  end
+
   def self.safe_attributes
     [
         :priority_type_id, :user_id, :plan_status_id, :name, :assigned_to_id, :percent_done,

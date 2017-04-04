@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170401084844) do
+ActiveRecord::Schema.define(version: 20170404103957) do
 
   create_table "addresses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=latin1" do |t|
     t.integer  "address_type_id"
@@ -755,6 +755,7 @@ ActiveRecord::Schema.define(version: 20170401084844) do
     t.integer  "assigned_to_id"
     t.integer  "updated_by_id"
     t.integer  "created_by_id"
+    t.integer  "percent_done"
     t.index ["assigned_to_id"], name: "index_goals_on_assigned_to_id", using: :btree
   end
 
@@ -1217,6 +1218,7 @@ ActiveRecord::Schema.define(version: 20170401084844) do
     t.integer  "assigned_to_id"
     t.integer  "updated_by_id"
     t.integer  "created_by_id"
+    t.integer  "percent_done"
     t.index ["assigned_to_id"], name: "index_needs_on_assigned_to_id", using: :btree
   end
 
@@ -1359,6 +1361,7 @@ ActiveRecord::Schema.define(version: 20170401084844) do
     t.integer  "assigned_to_id"
     t.integer  "updated_by_id"
     t.integer  "created_by_id"
+    t.integer  "percent_done"
     t.index ["assigned_to_id"], name: "index_plans_on_assigned_to_id", using: :btree
   end
 

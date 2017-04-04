@@ -18,6 +18,17 @@ class Goal < ApplicationRecord
 
   has_many :goal_notes, foreign_key: :owner_id, dependent: :destroy
 
+  after_save :update_percent_done
+
+  def update_percent_done
+    if percent_done_changed?
+      needs.each do |need|
+        need.percent_done = (need.goals.average(:percent_done).to_i / 10).ceil * 10
+        need.save
+      end
+    end
+  end
+
   validates_presence_of :name
   def self.safe_attributes
     [
