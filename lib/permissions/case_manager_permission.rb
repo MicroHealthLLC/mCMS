@@ -11,6 +11,8 @@ RedCarpet::AccessControl.map do |map|
 
 
   map.project_module :employee do |map|
+    map.permission :view_collaborate, {},  :read => true
+    map.permission :view_personal_organizer, {},  :read => true
     map.permission :manage_roles, {
         :employees => [:index],
         :educations => [:index, :show, :new, :create, :edit, :update, :destroy],

@@ -1,9 +1,9 @@
-<% modules = ['rordit', 'link_share',
+<% modules = ['rordit', 'link_share',  'collaborate',
               'wikis', 'forum', 'document_managers',
               'news', 'conference'
 ]
 %>
-<% if can_view_submenu?(modules) %>
+<% if can_view_submenu?(modules)  and User.current.can?(:view_collaborate) %>
     <li>
       <a href="#" id="ul_case"><i class="fa fa-lg fa-fw fa-square"></i> <span class="menu-item-parent">Collaborate</span></a>
       <ul id="case_menu">
@@ -46,10 +46,11 @@
     </li>
 <% end %>
 <% modules = ['sticky', 'sticky_notes',
+              'personal_organizer',
               'todo_list']
 %>
 
-<% if can_view_submenu?(modules) %>
+<% if can_view_submenu?(modules) and User.current.can?(:view_personal_organizer) %>
     <li>
       <a href="#" id="ul_profile"><i class="fa fa-lg fa-fw fa-square"></i> <span class="menu-item-parent">Personal Organizer</span></a>
       <ul id="profile_menu">
