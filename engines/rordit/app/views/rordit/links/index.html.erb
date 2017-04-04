@@ -17,7 +17,9 @@
     <div class="col-xs-12 btn-edition" v-for="(link, index) in links" class="link">
       <div class="item-left">
         <div class="point" id="point">
-          <a class="" @click="givePointToLink(link.id, index)"><%= image_tag('up.png') %></a>
+          <% if User.current.can?(:manage_roles, :manage_share_link, :give_point_link_share) %>
+              <a class="" @click="givePointToLink(link.id, index)"><%= image_tag('up.png') %></a>
+          <% end %>
           <span v-cloak>{{ link.points_count }} p</span>
         </div>
       </div>

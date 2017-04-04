@@ -74,7 +74,9 @@
     <div class="item-detail">
       <div class="item-left">
         <div class="point">
-          <a class="" v-on:click="givePoint(link.id, 'link')"><%= image_tag('up.png') %></a>
+          <% if User.current.can?(:manage_roles, :manage_share_link, :give_point_link_share) %>
+              <a class="" v-on:click="givePoint(link.id, 'link')"><%= image_tag('up.png') %></a>
+          <% end %>
           <span v-cloak>{{ link.points_count }} p</span>
         </div>
       </div>
@@ -87,6 +89,8 @@
         </div>
       </div>
     </div>
-    <%= render "rordit/comments/comments" %>
+    <% if User.current.can?(:manage_roles, :manage_share_link, :create_comment_link_share) %>
+        <%= render "rordit/comments/comments" %>
+    <% end %>
   </div>
 </div>
