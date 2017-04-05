@@ -3,7 +3,7 @@
   <% if org %>
       <%= render_extend_demography_information(org.organization_extend_demography) %>
       <% org.grouped_by_role.each do |role, users| %>
-          <h4> <%= role %> </h4>
+          <h4> <%#= role %> </h4>
           <ul>
             <% users.each do |user| %>
                 <li> <%= user %> </li>
