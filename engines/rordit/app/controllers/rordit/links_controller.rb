@@ -14,7 +14,25 @@ module Rordit
     def new
     end
 
+    def edit
+      @link = Link.find(params[:id])
+    end
+
+    def update
+      link = Link.find(params[:id])
+      params = {title: link_params[:title], url: link_params[:url], user_id: User.current.id,
+                      username: User.current.name,
+                hostname: URI.parse(link_params[:url]).hostname.sub(/^www\./, '')}
+      if link.update(params)
+        Rails.cache.delete("links_count")
+        render json: { message: links_path(link.id) }, status: 200
+      else
+        render json: { message: model_errors_json(link) }, status: 422
+      end
+    end
+
     def show
+      @link = Link.find(params[:id])
     end
 
     def create
@@ -58,6 +76,12 @@ module Rordit
     def get_link
       @link = Link.find_by(id: link_params[:id])
       render json: @link.as_json
+    end
+
+    def destroy
+      @link = Link.find_by(id: link_params[:id])
+      @link.destroy if @link
+      redirect_to '/rordit'
     end
 
     private

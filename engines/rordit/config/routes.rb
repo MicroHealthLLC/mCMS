@@ -4,9 +4,12 @@ Rordit::Engine.routes.draw do
   # Link
   get '/link/:id', to: 'links#show', as: 'links'
   get '/share-link', to: 'links#new'
+  get '/edit-link/:id', to: 'links#edit', as: 'edit_link'
   post '/share-link', to: 'links#create'
+  post '/update-link/:id', to: 'links#update', as: 'update_link'
   post '/link/create', to: 'links#create'
   get '/', to: 'links#index', as: 'index'
+  delete '/link/:id', to: 'links#destroy', as: 'delete_link'
   root to: 'links#index'
   # Comment
   post '/link/:link_id/new-comment', to: 'comments#new', as: 'new_comment'

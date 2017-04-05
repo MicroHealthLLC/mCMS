@@ -3,7 +3,7 @@
               'news', 'conference'
 ]
 %>
-<% if can_view_submenu?(modules)  and User.current.can?(:view_collaborate) %>
+<% if can_view_submenu?(modules)  and User.current_user.can?(:view_collaborate) %>
     <li>
       <a href="#" id="ul_case"><i class="fa fa-lg fa-fw fa-square"></i> <span class="menu-item-parent">Collaborate</span></a>
       <ul id="case_menu">
@@ -50,7 +50,7 @@
               'todo_list']
 %>
 
-<% if can_view_submenu?(modules) and User.current.can?(:view_personal_organizer) %>
+<% if can_view_submenu?(modules) and User.current_user.can?(:view_personal_organizer) %>
     <li>
       <a href="#" id="ul_profile"><i class="fa fa-lg fa-fw fa-square"></i> <span class="menu-item-parent">Personal Organizer</span></a>
       <ul id="profile_menu">
