@@ -71,6 +71,7 @@ class Devise::RegistrationsController < DeviseController
       bypass_sign_in resource, scope: resource_name
       respond_with resource, location: after_update_path_for(resource)
     else
+      flash[:error] = resource.errors.full_messages.join('<br/>')
       clean_up_passwords resource
       respond_with resource
     end

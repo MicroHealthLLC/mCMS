@@ -43,7 +43,7 @@ class EmployeesController < ProtectForgeryApplication
     if @employee.update(params.require(:user).permit(User.safe_attributes))
       flash[:notice] = I18n.t('notice_successful_update')
     else
-      flash[:error] = I18n.t('error_update')
+      flash[:error] =  @employee.errors.full_messages.join('<br/>')
     end
     redirect_to employee_path(@employee)
   end

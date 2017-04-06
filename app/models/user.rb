@@ -6,8 +6,9 @@ class User < ApplicationRecord
 
   # ldap_authenticatable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable,
-         :validatable, :lockable, :omniauthable
+         :recoverable, :rememberable, :trackable, :lockable, :omniauthable,
+         :password_expirable, :password_archivable,
+         :session_limitable, :expirable, :secure_validatable
 
   # HAS ONE
   has_one :core_demographic

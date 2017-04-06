@@ -75,7 +75,7 @@ class UsersController < ProtectForgeryApplication
       if @user.update(password: params[:user][:password])
         flash[:notice] = I18n.t('devise.passwords.updated_not_active')
       else
-        flash[:notice] = I18n.t('error_update')
+        flash[:error] = @user.errors.full_messages.join('<br/>')
       end
 
     else

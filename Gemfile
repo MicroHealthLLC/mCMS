@@ -166,7 +166,8 @@ gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'roo-xls'
 gem 'pdf-forms'
-
+gem 'devise_security_extension', github: 'rubyroidlabs/devise_security_extension'
+gem 'rails_email_validator'
 # Engines
 gem 'todo_list', path: 'engines/todo_list'
 gem 'sticky_notes', path: 'engines/sticky_notes'
