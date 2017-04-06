@@ -19,7 +19,7 @@ class AppointmentsController < UserCasesController
                   when 'closed' then scope.closed
                   when 'flagged' then scope.flagged
                   else
-                    scope.opened
+                    scope.all_data
                 end
         @appointments = scope.include_enumerations.
             includes(:user=> :core_demographic).
@@ -32,6 +32,15 @@ class AppointmentsController < UserCasesController
         render json: AppointmentDatatable.new(view_context, options)
       }
     end
+  end
+
+  def calendar
+    date = params[:start_date] ? Date.strptime(params[:start_date]) : Date.today
+    @meetings = Appointment.all_data.my_appointments.
+        where('( date >= :start_date AND date <= :end_date) OR ( date <= :end_date AND end_time >= :start_date)',
+              start_date: date.beginning_of_month,
+              end_date: date.end_of_month
+        )
   end
 
   def my

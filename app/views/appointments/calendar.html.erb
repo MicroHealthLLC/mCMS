@@ -1,0 +1,90 @@
+<%= month_calendar events: @meetings do |date, meetings| %>
+    <%= date %>
+
+    <% meetings.each_with_index do |meeting, idx| %>
+        <% html =  "
+           <p>
+           <strong>Description:</strong>
+       #{meeting.description.html_safe }
+        </p>
+
+        <p>
+          <strong>Appointment type:</strong>
+          #{ meeting.appointment_type }
+        </p>
+
+        <p>
+          <strong>Start Time:</strong>
+          #{ meeting.start_time_to_time }
+        </p>
+
+        <p>
+          <strong>End Time:</strong>
+          #{ meeting.end_time_to_time }
+        </p>
+
+        <p>
+          <strong>Appointment status:</strong>
+           #{meeting.appointment_status }
+        </p>
+
+        <p>
+          <strong>Place Of Service:</strong>
+          #{ meeting.place_of_service}
+        </p>
+        <p>
+          <strong>With who:</strong>
+          #{ meeting.with_who }
+        </p>
+        
+        "
+        %>
+        <div id="<%= idx %>" class="meetings" data-toggle="popover" title=" <i style='cursor: pointer;' class='fa fa-times pull-right' data-toggle='clickover' onclick='ClosePop();'></i> <a href='<%= appointment_path(meeting)%>'> <%= meeting.name %></a> "
+             data-content="<%= html.html_safe %>" >
+          <%= meeting.name %>
+        </div>
+    <% end %>
+<% end %>
+<script>
+  ClosePop = function () {
+    $('.meetings').popover('hide');
+  }
+
+  $(document).ready(function(){
+
+    $('.meetings').popover({
+      html: true,
+      container: 'body',
+      trigger: 'manual',
+      placement: function (context, source) {
+        var position = $(source).position();
+
+        if (position.left > 515) {
+          return "left";
+        }
+
+        if (position.left < 515) {
+          return "right";
+        }
+
+        if (position.top < 110){
+          return "bottom";
+        }
+
+        return "top";
+      }
+    }).on('click', function(e) {
+      $('.meetings').not(this).popover('hide');
+      that = $(this)
+
+      that.popover('show');
+
+      // handle clicking on the popover itself
+      $('.popover').off('click').on('click', function(e) {
+        e.stopPropagation(); // prevent event for bubbling up => will not get caught with document.onclick
+      });
+
+      e.stopPropagation();
+    });
+  })
+</script>

@@ -107,14 +107,14 @@ RedCarpet::AccessControl.map do |map|
   end
 
   map.project_module :appointments do |map|
-    map.permission :view_appointments, {:appointments => [:index]},  :read => true
+    map.permission :view_appointments, {:appointments => [:calendar, :index]},  :read => true
     map.permission :show_appointments, {:appointments => [:show]},  :read => true
     map.permission :my_appointments, {:appointments => [:my]},  :read => true
     map.permission :create_appointments, {:appointments => [:new, :create]},  :read => true
     map.permission :edit_appointments, {:appointments => [:edit, :update]},  :read => true
     map.permission :delete_appointments, {:appointments => [:destroy]},  :read => true
     map.permission :manage_appointments, {:appointments => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
-    map.permission :manage_assessment_and_diposition, {:appointment_captures => [:index, :show, :cms_form, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_assessment_and_diposition, {:appointment_captures => [:calendar, :index, :show, :cms_form, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :surveys do |map|

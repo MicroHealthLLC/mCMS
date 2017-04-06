@@ -1,4 +1,5 @@
 <%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
+<%= link_to 'Calendar', calendar_appointments_path, class: 'pull-right btn btn-success' if can?(:manage_roles, :manages_appointments, :view_appointments) %>
 <section id="widget-grid" class="appointments_section">
   <%= render partial: 'state_button_filter'%>
   <% if can?(:create_appointments, :manage_roles, :manage_appointments) %>

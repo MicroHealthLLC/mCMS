@@ -27,6 +27,7 @@
   *= require clockpicker
   *= require toastr
   *= require bootstrap-datetimepicker.min
+  *= require simple_calendar
   *= require style.css
   *= require easy-autocomplete.min
  */

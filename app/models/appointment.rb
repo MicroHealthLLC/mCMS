@@ -71,6 +71,10 @@ class Appointment < ApplicationRecord
     date.to_s
   end
 
+  def  start_time
+    date
+  end
+
   def start_time_to_time
     date.strftime("#{Setting['format_date']} %I:%M %p") if date
   end
@@ -90,6 +94,10 @@ class Appointment < ApplicationRecord
       self.with_who_id = user_or_contact.try(:id)
       self.with_who_type = user_or_contact.class
     end
+  end
+
+  def name
+    title
   end
 
 
