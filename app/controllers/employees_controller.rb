@@ -22,6 +22,7 @@ class EmployeesController < ProtectForgeryApplication
     r = Role.where(role_type_id: RoleType.default.try(:id)).first
     @user = User.new(state: true, role_id: r.try(:id))
     @user.core_demographic = CoreDemographic.new
+    @user.job_detail = JobDetail.new
   end
 
   def create

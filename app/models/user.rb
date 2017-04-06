@@ -19,6 +19,7 @@ class User < ApplicationRecord
 
   has_one :user_extend_demography
   has_one :job_detail
+  accepts_nested_attributes_for :job_detail
   belongs_to :role, optional: true
 
   # HAS MANY FOR PROFILE
@@ -327,14 +328,15 @@ class User < ApplicationRecord
 
   def self.safe_attributes_with_password
     [:login, :state, :email,
-     :password, :password_confirmation,
+     :password, :password_confirmation, job_detail_attributes: [JobDetail.safe_attributes],
      core_demographic_attributes: [CoreDemographic.safe_attributes]]
   end
 
   def self.admin_safe_attributes
     [:login, :state, :email, :role_id,
      :password, :password_confirmation,
-     :admin, core_demographic_attributes: [CoreDemographic.safe_attributes]]
+     :admin, job_detail_attributes: [JobDetail.safe_attributes],
+     core_demographic_attributes: [CoreDemographic.safe_attributes]]
   end
 
   def active_for_authentication?
