@@ -14,7 +14,7 @@ class WikiPagesController < ProtectForgeryApplication
   end
 
   def all
-    @pages = WikiPage.where(sub_page_id: nil).paginate(page: params[:page], per_page: 15) # Loading and paginating all pages
+    @pages = WikiPage.where(sub_page_id: [nil, 0]).paginate(page: params[:page], per_page: 15) # Loading and paginating all pages
 
     render_template 'all'
   end
