@@ -25,8 +25,18 @@ class DocumentManager < ApplicationRecord
   end
 
   def self.latest_docs
-    latest = Revision.all.order("updated_at desc").to_a.reject { |rev| rev.document_manager.is_private == true }
-    latest = latest[0..7]
+    categories = Category.includes(:group=>[:memberships]).
+        references(:group=>[:memberships]).
+        where(is_private: true).where(memberships: {user_id: User.current})
+    Revision.includes(:document_manager=>[:category]).
+        references(:document_manager=>[:category]).
+        where(document_managers: {is_private: false}).
+        where(categories: {is_private: false}).
+        or( Revision.includes(:document_manager=>[:category]).
+            references(:document_manager=>[:category]).
+            where(document_managers: {is_private: false}).
+            where(categories: {id: categories.pluck(:id)})).
+        order('revisions.updated_at DESC').limit(7)
   end
 
 end
