@@ -6,5 +6,6 @@
   <%= link_to 'Edit', edit_need_path(@need), class: 'btn btn-success pull-right' if @need.can?(:edit_needs, :manage_needs, :manage_roles) %>
   <%= link_to t('button_cancel'), need_back_url(@need), class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), need_path(@need, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+  <%= link_to t('button_history_changes'), "/histories/#{@need.class}/#{@need.id}", class: 'btn btn-primary pull-right' %>
   <%= link_to 'Manage Goals', links_need_path(@need), class: 'btn btn-primary pull-right' if @need.can?(:manage_needs, :manage_roles) %>
 </div>

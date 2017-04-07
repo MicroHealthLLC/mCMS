@@ -6,4 +6,5 @@
   <%= link_to 'Edit', edit_laboratory_examination_path(@laboratory_examination), class: 'btn btn-success pull-right'   if @laboratory_examination.can?(:edit_laboratory_examinations, :manage_laboratory_examinations, :manage_roles)%>
   <%= link_to t('button_cancel'), laboratory_examinations_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), laboratory_examination_path(@laboratory_examination, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+  <%= link_to t('button_history_changes'), "/histories/#{@laboratory_examination.class}/#{@laboratory_examination.id}", class: 'btn btn-primary pull-right' %>
 </div>

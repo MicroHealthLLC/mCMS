@@ -1,4 +1,5 @@
 class OtherHistory < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :user
   belongs_to :icdcm_code, :foreign_key => 'icdcm_code_id', class_name: 'Icd10datum'
   belongs_to :other_history_type, optional: true

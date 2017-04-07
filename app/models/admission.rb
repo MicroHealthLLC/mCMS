@@ -1,4 +1,5 @@
 class Admission < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :user
   belongs_to :admission_status, :optional=> true
   belongs_to :admission_type, optional: true

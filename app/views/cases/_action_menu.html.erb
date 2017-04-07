@@ -6,5 +6,6 @@
   <%= link_to(t('button_edit'), edit_case_path(@case), class: 'btn btn-success pull-right') if @case.can?(:edit_cases, :manage_roles, :manage_cases) %>
   <%= link_to(t('button_cancel'), case_back_url(@case), class: 'btn btn-warning pull-right') %>
   <%= link_to(t('button_print'), case_path(@case, format: 'pdf'), class: 'btn btn-primary pull-right') %>
+  <%= link_to t('button_history_changes'), "/histories/#{@case.class}/#{@case.id}", class: 'btn btn-primary pull-right' %>
   <%= link_to 'Unlink', delete_sub_case_relation_case_path(@case), class: 'btn btn-primary pull-right' if @case.subcase_id and @case.can?(:edit_cases, :manage_roles, :manage_cases)%>
 </div>

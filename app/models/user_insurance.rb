@@ -1,4 +1,5 @@
 class UserInsurance < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :user
   belongs_to :insurance
   belongs_to :insurance_type, optional: true
@@ -17,6 +18,8 @@ class UserInsurance < ApplicationRecord
     ]
   end
 
+  def group; group_id; end
+
   def insurance_type
     if insurance_type_id
       super
@@ -32,7 +35,8 @@ class UserInsurance < ApplicationRecord
     else
       InsuranceStatus.default
     end
-  end
+   end
+  alias status insurance_status
 
    def insurance_relationship
     if insurance_relationship_id

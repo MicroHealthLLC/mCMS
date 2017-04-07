@@ -6,4 +6,5 @@
  <%= link_to 'Edit', edit_socioeconomic_path(@socioeconomic), class: 'btn btn-success pull-right' if @socioeconomic.can?(:edit_socioeconomics, :manage_socioeconomics, :manage_roles) %>
   <%= link_to t('button_cancel'), socioeconomics_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), socioeconomic_path(@socioeconomic, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+  <%= link_to t('button_history_changes'), "/histories/#{@socioeconomic.class}/#{@socioeconomic.id}", class: 'btn btn-primary pull-right' %>
 </div>

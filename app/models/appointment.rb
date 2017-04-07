@@ -1,4 +1,5 @@
 class Appointment < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id, :with_who_type]
   belongs_to :user
   belongs_to :appointment_type, optional: true
   belongs_to :appointment_status, optional: true

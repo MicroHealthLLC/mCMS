@@ -6,4 +6,5 @@
   <%= link_to( 'Edit', edit_billing_path(@billing), class: 'btn btn-success pull-right') if @billing.can?(:manage_roles, :manages_billings, :edit_billings) %>
   <%= link_to t('button_cancel'), @appointment, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), billing_path(@billing, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+  <%= link_to t('button_history_changes'), "/histories/#{@billing.class}/#{@billing.id}", class: 'btn btn-primary pull-right' %>
 </div>

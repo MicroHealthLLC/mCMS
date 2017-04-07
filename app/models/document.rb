@@ -1,4 +1,5 @@
 class Document < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :document_type
   belongs_to :user
   belongs_to :case, optional: true, foreign_key: :related_to_id

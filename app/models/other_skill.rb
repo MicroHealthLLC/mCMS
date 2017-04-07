@@ -1,4 +1,5 @@
 class OtherSkill < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :user
   belongs_to :other_skill_status, foreign_key: :status_id
   belongs_to :other_skill_type, foreign_key: :skill_type_id
@@ -48,6 +49,7 @@ class OtherSkill < ApplicationRecord
       OtherSkillStatus.default
     end
   end
+  alias status skill_status
 
    def skill_type
     if skill_type_id

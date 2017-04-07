@@ -1,4 +1,5 @@
 class HealthCareFacility < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :user
 
   belongs_to :health_care_facility_status, :optional=> true

@@ -1,4 +1,5 @@
 class AppointmentDisposition < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :disposition, optional: true
   belongs_to :disposition_related_to, optional: true, foreign_key: :related_to_id
   belongs_to :user

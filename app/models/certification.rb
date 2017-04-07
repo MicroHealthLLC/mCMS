@@ -1,4 +1,5 @@
 class Certification < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :certification_type
   belongs_to :certification_status, :foreign_key => :status_id
   belongs_to :user
@@ -32,7 +33,8 @@ class Certification < ApplicationRecord
     else
       CertificationStatus.default
     end
-  end
+   end
+  alias status certification_status
 
   def to_s
     name

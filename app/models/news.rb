@@ -1,4 +1,5 @@
 class News < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :user
   has_many :post_notes, foreign_key: :owner_id, dependent: :destroy
 

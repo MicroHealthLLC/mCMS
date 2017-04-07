@@ -1,4 +1,5 @@
 class Affiliation < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   has_many :users
   belongs_to :user
   belongs_to :affiliation_type
@@ -30,6 +31,7 @@ class Affiliation < ApplicationRecord
       AffiliationStatus.default
     end
   end
+  alias status affiliation_status
 
    def affiliation_type
     if affiliation_type_id

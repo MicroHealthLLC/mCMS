@@ -1,4 +1,5 @@
 class Housing < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :user
   belongs_to :housing_status, :optional=> true
   belongs_to :housing_type, :optional=> true

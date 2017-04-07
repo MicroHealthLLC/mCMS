@@ -1,4 +1,5 @@
 class Enrollment < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :user
   belongs_to :case
   belongs_to :enrollment_type, optional: true

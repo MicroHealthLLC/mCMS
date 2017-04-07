@@ -6,4 +6,5 @@
   <%= link_to( 'Edit', edit_behavioral_risk_path(@behavioral_risk), class: 'btn btn-success pull-right') if @behavioral_risk.can?(:manage_roles, :manages_behavioral_risks, :edit_behavioral_risks) %>
   <%= link_to t('button_cancel'), behavioral_risks_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), behavioral_risk_path(@behavioral_risk, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+  <%= link_to t('button_history_changes'), "/histories/#{@behavioral_risk.class}/#{@behavioral_risk.id}", class: 'btn btn-primary pull-right' %>
 </div>

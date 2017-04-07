@@ -1,4 +1,5 @@
 class Note < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :user
   scope :not_private, -> {where(is_private: false)}
   default_scope -> {where(is_private: false).or(where(private_author_id: User.current.id)).includes(:user) }

@@ -1,4 +1,5 @@
 class Contact < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :contact_type
   belongs_to :user
   belongs_to :contact_status, optional: true

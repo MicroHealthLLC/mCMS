@@ -1,0 +1,32 @@
+<table class="table table-responsive" id="histories_table">
+  <thead>
+  <tr>
+    <th>History </th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @audits.each do |audit| %>
+      <% if audit.audited_changes.values.first.is_a?(Array) %>
+          <tr>
+            <td>
+              <%= audit.user.name %>: At <%= format_date_time  audit.created_at %>
+              <ul>
+                <% audit.audited_changes.each do |key, value|
+                  next unless value.is_a? Array
+                %>
+                    <li><%= key.to_s.humanize %> : <em><%= @object.humanize_value @object,key, value[0] %></em>
+                    </li>
+                <% end %>
+              </ul>
+            </td>
+          </tr>
+      <% end %>
+  <% end %>
+  </tbody>
+</table>
+<script>
+  $(document).ready(function(){
+    initDataTable('histories_table')
+  })
+</script>

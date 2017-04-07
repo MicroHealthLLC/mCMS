@@ -1,4 +1,5 @@
 class AppointmentProcedure < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :procedure, optional: true
   belongs_to :user
   belongs_to :provider, class_name: 'User'

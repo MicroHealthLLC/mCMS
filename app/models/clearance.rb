@@ -1,4 +1,5 @@
 class Clearance < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :clearence_type
   belongs_to :clearence_status, foreign_key: :status_id
   belongs_to :user
@@ -24,6 +25,7 @@ class Clearance < ApplicationRecord
       ClearenceStatus.default
     end
   end
+  alias status clearence_status
 
   def clearence_type
     if clearence_type_id

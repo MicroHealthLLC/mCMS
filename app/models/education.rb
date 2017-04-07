@@ -1,4 +1,5 @@
 class Education < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :user
   belongs_to :education_type
   belongs_to :education_status, :foreign_key => :status_id
@@ -37,6 +38,7 @@ class Education < ApplicationRecord
       EducationStatus.default
     end
   end
+  alias status education_status
 
   def self.safe_attributes
     [:user_id, :education_type_id, :date_recieved,

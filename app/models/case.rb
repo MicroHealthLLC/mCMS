@@ -1,4 +1,5 @@
 class Case < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :assigned_to, class_name: 'User', optional: true
   belongs_to :user, optional: true
   belongs_to :private_author, class_name: 'User', foreign_key: :private_author_id, optional: true

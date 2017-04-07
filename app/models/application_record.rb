@@ -36,9 +36,15 @@ class ApplicationRecord < ActiveRecord::Base
     self.try(:user) == User.current
   end
 
-  # def empty?
-  #   new_record? ? false : true
-  # end
+  def humanize_value object, key, value
+     if ['note', 'description'].include?(key)
+        value.html_safe
+     elsif key[-3..-1] == '_id'
+       object.send(key[0..-4])
+     else
+       value
+    end
+  end
 
   # example:  Case.include_enumerations.join_enumeration(types)
   def self.join_enumeration(types, status, type = ' OR ')

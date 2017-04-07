@@ -6,6 +6,7 @@
   <%= link_to 'Edit', edit_user_insurance_path(@user_insurance), class: 'btn btn-success pull-right' if @user_insurance.can?(:manage_roles, :edit_insurance, :manage_insurance) %>
   <%= link_to t('button_cancel'), user_insurances_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), user_insurance_path(@user_insurance, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+  <%= link_to t('button_history_changes'), "/histories/#{@user_insurance.class}/#{@user_insurance.id}", class: 'btn btn-primary pull-right' %>
 </div>
 <div class="row" >
   <div class="col-xs-12" >

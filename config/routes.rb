@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get '/histories/:type/:id', to: 'histories#show'
   resources :military_histories
   get 'occupation', to: 'idcdata#occupation'
   resources :resumes

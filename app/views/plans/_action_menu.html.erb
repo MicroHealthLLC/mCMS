@@ -6,6 +6,7 @@
   <%= link_to 'Edit', edit_plan_path(@plan), class: 'btn btn-success pull-right' if can?(:edit_plans, :manage_plans, :manage_roles) %>
   <%= link_to t('button_cancel'), plan_back_url(@plan), class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), plan_path(@plan, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+  <%= link_to t('button_history_changes'), "/histories/#{@plan.class}/#{@plan.id}", class: 'btn btn-primary pull-right' %>
   <%= link_to 'Manage Actions', links_plan_path(@plan), class: 'btn btn-primary pull-right' if can?(:edit_plans, :manage_plans, :manage_roles)  %>
   <%= link_to 'Link to goals', link_goal_plan_path(@plan), class: 'btn btn-primary pull-right' if can?(:edit_plans, :manage_plans, :manage_roles)  %>
 </div>

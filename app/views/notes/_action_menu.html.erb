@@ -6,4 +6,5 @@
   <%= link_to 'Edit', edit_note_path(@note), class: 'btn btn-success pull-right'  if @note.can?(:delete_notes, :manage_notes, :manage_roles) %>
   <%= link_to t('button_cancel'), @note.object, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), note_path(@note, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+  <%= link_to t('button_history_changes'), "/histories/#{@note.class}/#{@note.id}", class: 'btn btn-primary pull-right' %>
 </div>

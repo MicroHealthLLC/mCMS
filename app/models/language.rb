@@ -1,4 +1,5 @@
 class Language < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :user
   belongs_to :language_type
   belongs_to :language_status, foreign_key: :status_id
@@ -30,7 +31,8 @@ class Language < ApplicationRecord
     else
       LanguageStatus.default
     end
-  end
+ end
+  alias status language_status
 
   def proficiency_type
     if proficiency_id
@@ -39,6 +41,7 @@ class Language < ApplicationRecord
       ProficiencyType.default
     end
   end
+  alias proficiency proficiency_type
 
   def visible?
     User.current.permitted_users.include? user

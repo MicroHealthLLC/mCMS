@@ -6,4 +6,5 @@
  <%= link_to 'Edit', edit_surgical_path(@surgical), class: 'btn btn-success pull-right' if @surgical.can?(:edit_surgicals, :manage_surgicals, :manage_roles) %>
   <%= link_to t('button_cancel'), surgicals_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), surgical_path(@surgical, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+  <%= link_to t('button_history_changes'), "/histories/#{@surgical.class}/#{@surgical.id}", class: 'btn btn-primary pull-right' %>
 </div>

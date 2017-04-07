@@ -6,4 +6,5 @@
   <%= link_to 'Edit', edit_affiliation_path(@affiliation), class: 'btn btn-success pull-right' if @affiliation.can?(:manage_roles, :manages_affiliations, :edit_affiliations) %>
   <%= link_to t('button_cancel'), affiliations_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), affiliation_path(@affiliation, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+  <%= link_to t('button_history_changes'), "/histories/#{@affiliation.class}/#{@affiliation.id}", class: 'btn btn-primary pull-right' %>
 </div>

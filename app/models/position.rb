@@ -1,4 +1,5 @@
 class Position < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :user
   # belongs_to :organization
   belongs_to :pay_rate_type, optional: true, foreign_key: :pay_rate_id
@@ -41,7 +42,8 @@ class Position < ApplicationRecord
     else
       PositionStatus.default
     end
-  end
+ end
+  alias status position_status
 
   def employment_type
     if employment_type_id

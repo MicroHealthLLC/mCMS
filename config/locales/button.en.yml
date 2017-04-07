@@ -3,6 +3,7 @@ en:
   button_cancel: Cancel
   button_print: Print
   button_remove: Remove
+  button_history_changes: History changes
   button_create: Create
   button_edit: Edit
   notice_not_authorized: Not authorized

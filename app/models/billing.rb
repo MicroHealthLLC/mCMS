@@ -1,4 +1,5 @@
 class Billing < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :user
   belongs_to :appointment
   belongs_to :outside_lab, optional: true

@@ -1,4 +1,5 @@
 class RadiologicExamination < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :user
 
   belongs_to :radiologic_result_status, optional: true

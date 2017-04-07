@@ -167,7 +167,7 @@ gem 'sunspot_solr'
 gem 'roo-xls'
 gem 'pdf-forms'
 gem 'devise_security_extension', github: 'rubyroidlabs/devise_security_extension'
-# gem "audited", "~> 4.4"
+gem "audited", "~> 4.4"
 gem 'rails_email_validator'
 gem "simple_calendar", "~> 2.0"
 

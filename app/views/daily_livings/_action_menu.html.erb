@@ -6,4 +6,5 @@
   <%= link_to( 'Edit', edit_daily_living_path(@daily_living), class: 'btn btn-success pull-right') if @daily_living.can?(:manage_roles, :manages_daily_livings, :edit_daily_livings) %>
   <%= link_to t('button_cancel'), daily_livings_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), daily_living_path(@daily_living, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+  <%= link_to t('button_history_changes'), "/histories/#{@daily_living.class}/#{@daily_living.id}", class: 'btn btn-primary pull-right' %>
 </div>

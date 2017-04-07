@@ -1,4 +1,5 @@
 class WikiPage < ActiveRecord::Base
+  audited except: [:created_by_id, :updated_by_id]
   has_many :wiki_page_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :wiki_page_attachments, reject_if: :all_blank, allow_destroy: true
 

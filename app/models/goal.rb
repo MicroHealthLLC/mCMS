@@ -1,4 +1,5 @@
 class Goal < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :user
   belongs_to :case, optional: true
   belongs_to :assigned_to, optional: true, class_name: 'User'

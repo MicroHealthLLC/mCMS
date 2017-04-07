@@ -1,4 +1,5 @@
 class Medication < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :user
   belongs_to :medication_status, optional: true
 

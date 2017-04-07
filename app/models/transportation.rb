@@ -1,4 +1,5 @@
 class Transportation < ApplicationRecord
+  audited except: [:created_by_id, :updated_by_id]
   belongs_to :user
   belongs_to :transportation_type, optional: true
   belongs_to :transportation_status, optional: true
