@@ -1,5 +1,5 @@
 <%= month_calendar events: @meetings do |date, meetings| %>
-    <%= date %>
+    <b><%= date.day %></b>
 
     <% meetings.each_with_index do |meeting, idx| %>
         <% html =  "
