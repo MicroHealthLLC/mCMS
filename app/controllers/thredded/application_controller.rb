@@ -44,10 +44,6 @@ module Thredded
       send(Thredded.current_user_method) || NullUser.new
     end
 
-    def signed_in?
-      !thredded_current_user.thredded_anonymous?
-    end
-
     if Rails::VERSION::MAJOR < 5
       # redirect_back polyfill
       def redirect_back(fallback_location:, **args)
