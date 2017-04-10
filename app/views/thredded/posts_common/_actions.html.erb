@@ -1,11 +1,11 @@
 <% if post.can_update? %>
-  <%= link_to t('thredded.posts.edit'), post.edit_path, class: 'post--edit' %>
+  <%= link_to t('thredded.posts.edit'), post.edit_path, class: 'btn btn-success' %>
 <% end %>
 
 <% if post.can_destroy? %>
   <%= link_to t('thredded.posts.delete'), post.destroy_path,
               method: :delete,
-              class:  'post--delete',
+              class:  'btn btn-danger',
               data:   { confirm: I18n.t('thredded.posts.delete_confirm') }
   %>
 <% end %>

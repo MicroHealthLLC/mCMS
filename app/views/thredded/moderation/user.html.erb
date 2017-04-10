@@ -8,7 +8,7 @@
 <%= thredded_page do %>
   <%= view_hooks.moderation_user_page.user_title.render self, user: user do %>
     <h1 class="moderation--user--title">
-      <%= image_tag Thredded.avatar_url.call(user), class: 'user--avatar' %><%= user.thredded_display_name %>
+      <%= image_tag Thredded.avatar_url.call(user), class: 'img-circle', width: '60px' %><%= user.thredded_display_name %>
     </h1>
   <% end %>
   <%= view_hooks.moderation_user_page.user_info.render self, user: user do %>
@@ -30,12 +30,12 @@
     <div class="user--moderation-actions">
       <% unless user_detail.approved? %>
         <%= button_to t('thredded.moderation.approve_btn'), moderate_user_path,
-                      class:  'button',
+                      class:  'btn btn-info',
                       params: { id: user.to_model.id, moderation_state: 'approved' } %>
       <% end %>
       <% unless user_detail.blocked? %>
         <%= button_to t('thredded.moderation.block_btn'), moderate_user_path,
-                      class:  'button',
+                      class:  'btn btn-warning',
                       params: { id: user.to_model.id, moderation_state: 'blocked' } %>
       <% end %>
     </div>

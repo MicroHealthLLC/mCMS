@@ -3,8 +3,8 @@
 <% topic = post.to_model.postable %>
 <% post_user_link ||= user_link(post.user) %>
 <header>
-  <%= image_tag post.avatar_url, class: 'post--avatar' if post.user %>
-  <h2 class="post--user-and-topic">
+  <%= image_tag post.avatar_url, class: 'img-circle', width: '50px' if post.user %>
+  <h2 class="" style="display: inline-block;">
     <%=
       topic_link = link_to(topic.title, post.permalink_path)
       if topic.first_post == post.to_model
@@ -14,5 +14,5 @@
       end
     %>
   </h2>
-  <p class="post--created-at"><%= time_ago post.created_at %></p>
+  <em><%= time_ago post.created_at %></em>
 </header>
