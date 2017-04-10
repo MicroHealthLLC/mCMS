@@ -1,10 +1,8 @@
-<div class="form-group">
-  <%= form.label :content, content_label, class: 'col-md-2 control-label' %>
-  <div class="col-md-9">
-    <%= view_hooks.post_form.content_text_area.render self, form: form, content_label: content_label do %>
-        <%= render 'thredded/posts_common/form/before_content', form: form %>
-        <%= form.text_area :content, {rows: 5, required: true, class: 'ck-editor' } %>
-        <%= render 'thredded/posts_common/form/after_content', form: form %>
-    <% end %>
-  </div>
-</div>
+<li style="list-style: none;">
+  <%= form.label :content, content_label %>
+  <%= view_hooks.post_form.content_text_area.render self, form: form, content_label: content_label do %>
+      <%= render 'thredded/posts_common/form/before_content', form: form %>
+      <%= form.text_area :content, {rows: 5, required: true, class: 'ck-editor'} %>
+      <%= render 'thredded/posts_common/form/after_content', form: form %>
+  <% end %>
+</li>
