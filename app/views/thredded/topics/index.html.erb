@@ -3,9 +3,9 @@
 <% content_for :thredded_breadcrumbs, render('thredded/shared/breadcrumbs') %>
 
 <%= thredded_page do %>
-  <div class="svg-definitions ">
-    <%#= inline_svg 'thredded/follow.svg', id: 'thredded-follow-icon', title: nil %>
-    <%#= inline_svg 'thredded/unfollow.svg', id: 'thredded-unfollow-icon' %>
+  <div class="thredded--svg-definitions ">
+    <%= inline_svg 'thredded/follow.svg', id: 'thredded-follow-icon', title: nil %>
+    <%= inline_svg 'thredded/unfollow.svg', id: 'thredded-unfollow-icon' %>
   </div>
 
   <%= content_tag :section, class: 'main-section topics', 'data-thredded-topics' => true do %>
@@ -21,9 +21,9 @@
     <%= paginate @topics %>
   </footer>
 
-  <div class="messageboards--actions">
+  <div class="col-xs-12" align="center">
     <% if policy(messageboard).update? %>
-      <a class="button" href="<%= edit_messageboard_path(messageboard) %>">
+      <a class="btn btn-primary" href="<%= edit_messageboard_path(messageboard) %>">
         <%= t('thredded.nav.edit_messageboard') %>
       </a>
     <% end %>

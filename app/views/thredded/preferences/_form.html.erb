@@ -3,7 +3,7 @@
         method: :patch,
         url:    (preferences.messageboard ? messageboard_preferences_path(preferences.messageboard) : global_preferences_path),
         html:   {
-            class:                                'form notification-preferences-form',
+            class:                                'form-horizontal notification-preferences-form',
             'data-thredded-user-preferences-form' => true
         }) do |f| %>
 

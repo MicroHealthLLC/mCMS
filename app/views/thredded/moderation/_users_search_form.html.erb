@@ -1,13 +1,19 @@
 <%= form_tag users_moderation_path,
              method: 'get',
-             class: 'form navigation--search',
+             class: 'form-horizontal navigation--search',
              'data-thredded-turboform' => true do %>
-  <%= label_tag :q, t('thredded.moderation.search_users.form_label') %>
-  <%= text_field_tag :q, @query,
-                     type:        'search',
-                     required:    true,
-                     # If there are no results the user will likely want to change the query, so auto-focus.
-                     autofocus:   @query.presence && !@users.presence,
-                     placeholder: t('thredded.moderation.search_users.form_placeholder') %>
-  <button type="submit"><%= t 'thredded.search.form.btn_submit' %></button>
+    <button type="submit" class="btn btn-primary pull-right col-xs-2"><%= t 'thredded.search.form.btn_submit' %></button>
+
+    <div class="form-group">
+      <%= label_tag :q, t('thredded.moderation.search_users.form_label'), class: 'col-md-2 control-label' %>
+      <div class="col-xs-7">
+        <%= text_field_tag :q, @query,
+                           type:        'search',
+                           required:    true,
+                           class: 'form-control',
+                           # If there are no results the user will likely want to change the query, so auto-focus.
+                           autofocus:   @query.presence && !@users.presence,
+                           placeholder: t('thredded.moderation.search_users.form_placeholder') %>
+      </div>
+    </div>
 <% end %>

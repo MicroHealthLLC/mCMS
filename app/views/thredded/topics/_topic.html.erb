@@ -1,37 +1,45 @@
 <%= content_tag :article, id:    dom_id(topic),
-                class: ['topics--topic', topic_css_classes(topic)],
+                class: ['thredded--topics--topic', topic_css_classes(topic)],
                 data: {topic: topic.id, messageboard: topic.messageboard_id} do %>
 
+    <div class="thredded--topics--follow-info" title="<%= topic_follow_reason_text topic.follow_reason %>">
+      <svg class="thredded--topics--follow-icon" viewBox="0 0 116 121" role="img">
+        <% if topic.followed? %>
+            <use xlink:href="#thredded-follow-icon"/>
+        <% else %>
+            <use xlink:href="#thredded-unfollow-icon"/>
+        <% end %>
+      </svg>
+    </div>
 
-
-    <h1 class="topics--title">
+    <h1 class="thredded--topics--title" style="font-size: 16px;">
       <%= link_to topic.title, topic.path %>
     </h1>
     <div class="btn btn-success btn-circle"><%= topic.posts_count %></div>
 
     <% if topic.categories.any? %>
-        <ul class="topics--categories">
+        <ul class="thredded--topics--categories">
           <%= render topic.categories %>
         </ul>
     <% end %>
 
-    <cite class="topics--updated-by">
+    <cite class="thredded--topics--updated-by" style="font-size: 1rem;">
       <%= time_ago topic.last_post_at %>
       <%= user_link topic.last_user %>
     </cite>
 
-    <cite class="topics--started-by">
+    <cite class="thredded--topics--started-by">
       <%= time_ago topic.created_at %>
       <%= user_link topic.user %>
     </cite>
 
     <% if topic.blocked? && topic.can_moderate? %>
-        <span class="alert alert-danger">
+        <span class="thredded--topics--moderation-state thredded--alert thredded--alert-danger">
       <%= render 'thredded/shared/content_moderation_blocked_state', moderation_record: topic.last_moderation_record %>
     </span>
     <% end %>
     <% if topic.can_destroy? %>
-        <span class="">
+        <span class="thredded--topic-delete--wrapper">
           <%= button_to t('thredded.topics.delete_topic'), topic.destroy_path, method: :delete,
                         form_class: 'topic-delete-form col-xs-3 col-md-2 pull-right',
                         class: 'btn btn-danger ',
