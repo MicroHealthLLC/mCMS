@@ -1,22 +1,27 @@
 <% if policy(messageboard).read? %>
-  <%= link_to messageboard_topics_path(messageboard), class: 'messageboard' do %>
-    <header>
-      <h2 style="display: inline-block"><%= messageboard.name %></h2>
-      <em style="color: darkslategray;">
-        <%= t 'thredded.messageboard.topics_and_posts_counts',
-              topics_count: number_to_human(messageboard.topics_count).downcase,
-              posts_count:  number_to_human(messageboard.posts_count).downcase %>
-      </em>
-    </header>
-
-    <p class="col-xs-12" style="color: black;"><%= messageboard.description %></p>
-
-    <% if messageboard.last_topic %>
-      <p class="col-xs-12" style="color: darkslategray;">
-        <%= t 'thredded.messageboard.last_updated_by_html',
-              time_ago: time_ago(messageboard.last_topic.last_post_at),
-              user:     messageboard.last_user.thredded_display_name %>
-      </p>
-    <% end %>
-  <% end %>
+    <tr>
+      <td class="text-center" style="width: 40px;"><i class="fa fa-globe fa-2x text-muted"></i></td>
+      <td>
+        <h4>
+          <%= link_to messageboard_topics_path(messageboard), class: 'messageboard' do %>
+              <%= messageboard.name %>
+          <% end %>
+          <small><%= messageboard.description %></small>
+        </h4>
+      </td>
+      <td class="text-center hidden-xs hidden-sm">
+        <a href="javascript:void(0);"><%= messageboard.topics_count %></a>
+      </td>
+      <td class="text-center hidden-xs hidden-sm">
+        <a href="javascript:void(0);"><%= messageboard.posts_count %></a>
+      </td>
+      <td class="hidden-xs hidden-sm">
+        <% if messageboard.last_topic %>
+            by
+            <a href="javascript:void(0);"><%= messageboard.last_user.thredded_display_name %></a>
+            <br>
+            <small><i><%= time_ago(messageboard.last_topic.last_post_at) %></i></small>
+        <% end %>
+      </td>
+    </tr>
 <% end %>

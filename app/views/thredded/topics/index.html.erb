@@ -10,22 +10,47 @@
           </a>
       <% end %>
     </div>
-  <div class="thredded--svg-definitions ">
-    <%= inline_svg 'thredded/follow.svg', id: 'thredded-follow-icon', title: nil %>
-    <%= inline_svg 'thredded/unfollow.svg', id: 'thredded-unfollow-icon' %>
-  </div>
+    <div class="thredded--svg-definitions ">
+      <%= inline_svg 'thredded/follow.svg', id: 'thredded-follow-icon', title: nil %>
+      <%= inline_svg 'thredded/unfollow.svg', id: 'thredded-unfollow-icon' %>
+    </div>
 
-  <%= content_tag :section, class: 'thredded--main-section thredded--topics', 'data-thredded-topics' => true do %>
-    <%= render 'thredded/topics/form',
-               messageboard: messageboard,
-               topic:        @new_topic,
-               css_class:    'thredded--is-compact',
-               placeholder:  t('thredded.topics.form.title_placeholder_start') if @new_topic %>
-    <%= render @topics %>
-  <% end %>
+    <%= content_tag :section, class: 'thredded--main-section thredded--topics', 'data-thredded-topics' => true do %>
+        <%= render 'thredded/topics/form',
+                   messageboard: messageboard,
+                   topic:        @new_topic,
+                   css_class:    'thredded--is-compact',
+                   placeholder:  t('thredded.topics.form.title_placeholder_start') if @new_topic %>
 
-  <footer>
-    <%= paginate @topics %>
-  </footer>
+    <% end %>
+
+
+      <div class="row">
+
+        <div class="col-sm-12">
+
+          <div class="well">
+
+            <table class="table table-striped table-forum">
+              <thead>
+              <tr>
+                <th colspan="2"><a href="forum.html"> <%= messageboard.group.try(:name) %> </a> > <%= messageboard.name %></th>
+                <th class="text-center hidden-xs hidden-sm" style="width: 100px;">Posts</th>
+                <th class="text-center hidden-xs hidden-sm" style="width: 100px;">Categories</th>
+                <th class="hidden-xs hidden-sm" style="width: 200px;">Last Post</th>
+              </tr>
+              </thead>
+              <tbody>
+              <%= render @topics %>
+
+              </tbody>
+              <footer>
+                <%= paginate @topics %>
+              </footer>
+            </table>
+          </div>
+        </div>
+      </div>
+
 
 <% end %>
