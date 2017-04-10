@@ -1,15 +1,16 @@
 <%= form_for (post.private_topic_post? ? [topic, post] : [messageboard, topic, post]), as: :post,
              html: {
-                 class: 'thredded--form thredded--post-form',
+                 class: 'form-horizontal',
                  'data-thredded-post-form' => true,
                  'data-autocomplete-url' => autocomplete_users_path,
                  'data-autocomplete-min-length' => Thredded.autocomplete_min_length,
              } do |form| %>
-  <ul class="thredded--form-list">
+
     <%= render 'thredded/posts_common/form/content_field', form: form, content_label: content_label %>
 
-    <li>
-      <%= form.submit button_text, class: 'thredded--form--submit' %>
-    </li>
-  </ul>
+    <div class="form-group margin-top-10" >
+      <div class="col-xs-12">
+        <%= form.submit button_text, class: 'btn btn-primary' %>
+      </div>
+    </div>
 <% end %>

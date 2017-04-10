@@ -1,10 +1,10 @@
 <% content_for :thredded_page_title, t('thredded.nav.private_topics') %>
-<% content_for :thredded_page_id, 'thredded--private-topics-index' %>
+<% content_for :thredded_page_id, 'private-topics-index' %>
 <% content_for :thredded_breadcrumbs, render('thredded/private_topics/breadcrumbs') %>
 
 <%= thredded_page do %>
   <%= content_tag :section,
-    class: 'thredded--main-section thredded--private-topics',
+    class: 'main-section private-topics',
     'data-thredded-topics' => true do %>
 
     <% if @private_topics.empty? -%>
@@ -13,14 +13,14 @@
       <%= render 'thredded/private_topics/form',
         messageboard:  messageboard,
         private_topic: @new_private_topic,
-        css_class:     'thredded--is-compact',
+        css_class:     'is-compact',
         placeholder:   t('thredded.private_topics.form.title_placeholder_start') %>
 
       <%= render @private_topics %>
 
       <%= link_to t('thredded.nav.mark_all_read'),
         mark_all_private_topics_read_path,
-        class: 'thredded--button thredded--button-light thredded--button-wide',
+        class: 'button button-light button-wide',
         method: :put -%>
     <% end -%>
   <% end %>

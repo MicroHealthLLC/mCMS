@@ -12,6 +12,8 @@ user_default_state:
   default: 'false'
 remember_for:
   default: 2
+expire_after:
+  default: 180
 timeout_in:
   default: 15
 maximum_attempts:

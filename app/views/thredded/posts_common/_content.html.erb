@@ -1,4 +1,4 @@
-<div class="thredded--post--content">
+<div class="post--content">
   <% cache [post, 'content'], expires_in: 1.week do %>
     <%= post.filtered_content(self) %>
   <% end %>

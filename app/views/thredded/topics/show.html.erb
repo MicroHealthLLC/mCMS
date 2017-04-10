@@ -1,20 +1,20 @@
 <% topic = @posts.topic %>
 <% content_for :thredded_page_title, topic.title %>
-<% content_for :thredded_page_id, 'thredded--topic-show' %>
+<% content_for :thredded_page_id, 'topic-show' %>
 <% content_for :thredded_breadcrumbs, render('thredded/shared/breadcrumbs') %>
 
 <%= thredded_page do %>
     <%= content_tag :section,
                     id: dom_id(topic),
-                    class: ['thredded--main-section', 'thredded--topic', *topic_css_classes(topic)] do %>
+                    class: ['main-section', 'topic', *topic_css_classes(topic)] do %>
         <%= render 'thredded/topics/header', topic: topic %>
         <%  @posts.to_ary.each do |post| %>
             <%= render partial: 'thredded/posts/post', locals: {post: post } %>
         <% end %>
 
         <% if policy(@new_post).create? %>
-            <div class="thredded--post-form--wrapper">
-              <h3 class="thredded--post-form--title">Add a post</h3>
+            <div class="post-form--wrapper">
+              <h3 class="post-form--title">Add a post</h3>
               <%= render 'thredded/posts/form',
                          topic:       topic,
                          post:        @new_post,
@@ -22,10 +22,10 @@
             </div>
         <% end %>
         <% if topic.can_destroy? %>
-            <div class="thredded--topic-delete--wrapper pull-right">
+            <div class="topic-delete--wrapper pull-right">
               <%= button_to t('thredded.topics.delete_topic'), topic.destroy_path, method: :delete,
-                            form_class: 'thredded--topic-delete-form',
-                            class: 'thredded--button btn-danger',
+                            form_class: 'topic-delete-form',
+                            class: 'button btn-danger',
                             'data-confirm' => t('thredded.topics.delete_confirm') %>
             </div>
         <% end %>

@@ -1,5 +1,5 @@
 <% if Thredded.show_topic_followers %>
-  <div class="thredded--topic-followers">
+  <div class="topic-followers">
     <% if topic.followers.present? %>
       <%= t('thredded.topics.followed_by')%>
       <% topic.followers.each do |user| %>

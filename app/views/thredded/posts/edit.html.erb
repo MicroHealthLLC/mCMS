@@ -1,13 +1,13 @@
 <% content_for :thredded_page_title, 'Edit Post' %>
-<% content_for :thredded_page_id, 'thredded--edit-post' %>
+<% content_for :thredded_page_id, 'edit-post' %>
 <% content_for :thredded_breadcrumbs do %>
-  <ul class="thredded--navigation-breadcrumbs">
+  <ul class="navigation-breadcrumbs">
     <li><%= link_to t('thredded.nav.edit_post'), edit_post_path(@post) %></li>
   </ul>
 <% end %>
 
 <%= thredded_page do %>
-  <section class="thredded--main-section">
+  <section class="main-section">
     <%= render 'thredded/posts/form',
                messageboard: messageboard,
                topic:        topic,

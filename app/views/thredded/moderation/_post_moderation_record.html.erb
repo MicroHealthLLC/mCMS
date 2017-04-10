@@ -9,9 +9,9 @@
       time_ago:  time_ago(record.created_at)
   }
 %>
-<article class="thredded--post-moderation-record thredded--post-moderation-record-<%= record.moderation_state %>">
-  <header class="thredded--post-moderation-record--header">
-    <p class="thredded--post-moderation-record--moderation-state-notice">
+<article class="post-moderation-record post-moderation-record-<%= record.moderation_state %>">
+  <header class="post-moderation-record--header">
+    <p class="post-moderation-record--moderation-state-notice">
       <% if record.approved? %>
         <%= t('thredded.moderation.post_approved_html', moderation_state_notice_args) %>
       <% elsif record.blocked? %>
@@ -19,13 +19,13 @@
       <% end %>
     </p>
     <% if post && post.content != record.post_content %>
-      <p class="thredded--post-moderation-record--content-changed-notice">
+      <p class="post-moderation-record--content-changed-notice">
         <%= t('thredded.moderation.posts_content_changed_since_moderation_html', post_url: post_permalink_path(post)) %>
       </p>
     <% end %>
     <%= content_tag :em, t('thredded.moderation.post_deleted_notice') unless post %>
   </header>
-  <article class="thredded--post">
+  <article class="post">
     <% post_user_link = capture do %>
       <% if record.post_user %>
         <%= link_to record.post_user.thredded_display_name, user_moderation_path(record.post_user.id) %>
@@ -36,9 +36,9 @@
     <% if post %>
       <%= render 'thredded/posts_common/header_with_user_and_topic', post: post_view, post_user_link: post_user_link %>
     <% else %>
-      <header><h2 class="thredded--post--user"><%= post_user_link %></h2></header>
+      <header><h2 class="post--user"><%= post_user_link %></h2></header>
     <% end %>
-    <div class="thredded--post--content">
+    <div class="post--content">
       <%= Thredded::ContentFormatter.new(self).format_content(record.post_content) %>
     </div>
   </article>

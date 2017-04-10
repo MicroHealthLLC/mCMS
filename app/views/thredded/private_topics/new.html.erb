@@ -1,9 +1,9 @@
 <% content_for :thredded_page_title, 'Create a New Private Topic' %>
-<% content_for :thredded_page_id, 'thredded--new-private-topic' %>
+<% content_for :thredded_page_id, 'new-private-topic' %>
 <% content_for :thredded_breadcrumbs, render('thredded/private_topics/breadcrumbs') %>
 
 <%= thredded_page do %>
-  <section class="thredded--main-section">
+  <section class="main-section">
     <%= render 'thredded/private_topics/form',
                messageboard:  messageboard,
                private_topic: @private_topic,

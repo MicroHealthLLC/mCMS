@@ -1,11 +1,11 @@
 <% content_for :thredded_page_title, t('thredded.nav.moderation') %>
-<% content_for :thredded_page_id, 'thredded--pending-moderation' %>
+<% content_for :thredded_page_id, 'pending-moderation' %>
 <%= render 'nav' %>
 
 <%= thredded_page do %>
-    <%= content_tag :section, class: 'thredded--main-section' do %>
+    <%= content_tag :section, class: 'main-section' do %>
         <% if @last_moderated_record %>
-            <div class="thredded--moderated-notice">
+            <div class="moderated-notice">
               <%= render 'post_moderation_record', post_moderation_record: @last_moderated_record %>
             </div>
         <% end %>
@@ -15,8 +15,8 @@
             <% end %>
             <%= paginate @posts %>
         <% else %>
-            <div class="thredded--empty">
-              <h3 class="thredded--empty--title"><%= t 'thredded.moderation.pending.empty.title' %></h3>
+            <div class="empty">
+              <h3 class="empty--title"><%= t 'thredded.moderation.pending.empty.title' %></h3>
               <p><%= t 'thredded.moderation.pending.empty.content' %></p>
             </div>
         <% end %>

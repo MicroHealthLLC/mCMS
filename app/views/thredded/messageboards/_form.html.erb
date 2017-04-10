@@ -1,19 +1,28 @@
-<%= form_for messageboard, html: { class: 'thredded--form' } do |f| %>
-  <ul class="thredded--form-list">
-    <li>
-      <%= f.label :name %>
-      <%= f.text_field :name, required: true %>
-    </li>
-    <li>
-      <%= f.label :description %>
-      <%= f.text_field :description %>
-    </li>
-    <li>
-      <%= f.label :messageboard_group_id %>
-      <%= f.collection_select :messageboard_group_id, Thredded::MessageboardGroup.all, :id, :name,
-                              include_blank: t('thredded.messageboard.form.no_group') %>
-    </li>
-    <li><%= f.submit @messageboard.persisted? ? t('thredded.messageboard.update') : t('thredded.messageboard.create'),
-                     class: 'thredded--form--submit' %></li>
-  </ul>
+<%= form_for messageboard, html: { class: 'form-horizontal' } do |f| %>
+    <div class="form-group">
+      <%= f.label :name, class: 'col-md-2 control-label' %>
+      <div class="col-md-9">
+        <%= f.text_field :name, required: true, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :description, class: 'col-md-2 control-label' %>
+      <div class="col-md-9">
+        <%= f.text_field :description, class: 'form-control' %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :messageboard_group_id, class: 'col-md-2 control-label' %>
+      <div class="col-md-9">
+        <%= f.collection_select :messageboard_group_id, Thredded::MessageboardGroup.all, :id, :name,
+                                include_blank: t('thredded.messageboard.form.no_group') %>
+      </div>
+    </div>
+
+    <div class="form-group margin-top-10" >
+      <div class="col-xs-12">
+        <%= f.submit @messageboard.persisted? ? t('thredded.messageboard.update') : t('thredded.messageboard.create'),
+                     class: 'btn btn-primary' %>
+      </div>
+    </div>
 <% end %>

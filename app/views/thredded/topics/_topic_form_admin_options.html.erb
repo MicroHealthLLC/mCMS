@@ -1,6 +1,6 @@
 <% topic = form.object.respond_to?(:topic) ? form.object.topic : form.object %>
 <% if policy(topic).moderate? %>
-  <li class="thredded--form-list--admin-options">
+  <div class="form-group">
     <%= form.label :locked do %>
       <%= form.check_box :locked %> Locked
     <% end %>
@@ -8,5 +8,5 @@
     <%= form.label :sticky do %>
       <%= form.check_box :sticky %> Sticky
     <% end %>
-  </li>
+  </div>
 <% end %>

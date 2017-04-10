@@ -1,15 +1,15 @@
 <% content_for :thredded_page_title, t('thredded.nav.moderation') %>
-<% content_for :thredded_page_id, 'thredded--moderation-users' %>
+<% content_for :thredded_page_id, 'moderation-users' %>
 <%= render 'nav' %>
 
 <%= thredded_page do %>
   <% if @users.present? %>
     <% if @query.present? %>
-      <p class="thredded--alert thredded--alert-success">
+      <p class="alert alert-success">
         <%= t 'thredded.moderation.search_users.results_message', query: "'#{@query}'" %>
       </p>
     <% end %>
-    <table class="thredded--moderation--users-table thredded--table">
+    <table class="moderation--users-table table">
       <thead>
       <tr>
         <th>User</th>
@@ -20,7 +20,7 @@
       <% @users.each do |user| %>
         <tr>
           <td>
-            <%= link_to user.thredded_display_name, user_moderation_path(user.id), class: 'thredded--link' %>
+            <%= link_to user.thredded_display_name, user_moderation_path(user.id), class: 'link' %>
           </td>
           <td>
             <%= render 'user_moderation_state', user: user %>
@@ -31,7 +31,7 @@
     </table>
     <%= paginate @users %>
   <% else %>
-    <p class="thredded--alert thredded--alert-danger">
+    <p class="alert alert-danger">
       <%= t 'thredded.moderation.search_users.no_results_message', query: "'#{@query}'" %>
     </p>
   <% end %>
