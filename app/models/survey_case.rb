@@ -11,4 +11,8 @@ class SurveyCase < ApplicationRecord
   def self.for_survey(survey)
     where(survey_id: survey.id)
   end
+
+  def self.safe_attributes
+    [:assigned_to_id, :survey_id, :user_id]
+  end
 end

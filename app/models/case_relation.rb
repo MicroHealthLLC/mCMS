@@ -13,4 +13,8 @@ class CaseRelation < ApplicationRecord
   rescue ActiveRecord::RecordNotFound
     nil
   end
+
+  def self.safe_attributes
+    [:case_id, :relation_type, :relation_id]
+  end
 end

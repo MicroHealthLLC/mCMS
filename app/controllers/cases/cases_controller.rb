@@ -117,7 +117,7 @@ class CasesController < UserCasesController
 
   def new_assign
     if request.post?
-      @checklist = ChecklistCase.new(params.require(:checklist_case).permit!)
+      @checklist = ChecklistCase.new(params.require(:checklist_case).permit(ChecklistCase.safe_attributes))
 
       if @checklist.save
         set_link_to_appointment(@checklist)
@@ -133,7 +133,7 @@ class CasesController < UserCasesController
 
   def new_assign_survey
     if request.post?
-      @survey = SurveyCase.new(params.require(:survey_case).permit!)
+      @survey = SurveyCase.new(survey_case_params)
       if @survey.save
         redirect_to new_attempt_path(survey_id: @survey.survey.id, c: params[:controller], case_id: @case.id)
       else
@@ -195,7 +195,7 @@ class CasesController < UserCasesController
 
   def new_relation
     if request.post?
-      @case_relation = CaseRelation.new(params.require(:case_relation).permit!)
+      @case_relation = CaseRelation.new(params.require(:case_relation).permit(CaseRelation.safe_attributes))
       case @case_relation.relation_type
         when 'Survey' then @case_relation.relation_id = params[:survey_id]
         when 'Task' then @case_relation.relation_id = params[:task_id]
@@ -237,6 +237,10 @@ class CasesController < UserCasesController
     add_breadcrumb @case.to_s, case_path(@case)
   rescue ActiveRecord::RecordNotFound
     render_404
+  end
+
+  def survey_case_params
+    params.require(:survey_case).permit(SurveyCase.safe_attibutes)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

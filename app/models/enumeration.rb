@@ -23,6 +23,10 @@ class Enumeration < ActiveRecord::Base
 
   scope :named, lambda {|arg| where("LOWER(#{table_name}.name) = LOWER(?)", arg.to_s.strip)}
 
+  def self.safe_attributes
+    [:name, :position, :is_default, :type, :active, :position_name, :is_flagged, :is_closed]
+  end
+
   def self.default
     # Creates a fake default scope so Enumeration.default will check
     # it's type.  STI subclasses will automatically add their own

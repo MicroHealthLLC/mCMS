@@ -25,6 +25,10 @@ class ChecklistCase < ApplicationRecord
     end
   end
 
+  def self.safe_attributes
+    [:assigned_to_id, :checklist_template_id, :checklist_status_type_id]
+  end
+
   def to_s
     self.checklist_template
   end

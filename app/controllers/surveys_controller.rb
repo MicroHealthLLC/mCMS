@@ -15,7 +15,7 @@ class SurveysController < ProtectForgeryApplication
 
   def new_assign
     if request.post?
-      @survey = SurveyUser.new(params.require(:survey_user).permit!)
+      @survey = SurveyUser.new(params.require(:survey_user).permit(SurveyUser.safe_attributes))
 
       if @survey.save
         redirect_to surveys_path

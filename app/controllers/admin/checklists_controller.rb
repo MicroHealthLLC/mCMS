@@ -1,5 +1,5 @@
 class ChecklistsController < ProtectForgeryApplication
-  before_action  :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_checklist_template, only: [:show, :edit, :update, :destroy]
 
   before_action :require_admin
@@ -11,21 +11,19 @@ class ChecklistsController < ProtectForgeryApplication
 
   def new_assign
     if request.post?
-      @checklist = ChecklistUser.new(params.require(:checklist_user).permit!)
-
+      @checklist = ChecklistUser.new(params.require(:checklist_user).permit(ChecklistUser.safe_attributes))
       if @checklist.save
         redirect_to checklist_templates_path
       else
-        @checklists = ChecklistTemplate.order('title ASC') - ChecklistTemplate.where(id: ChecklistUser.where(assigned_to_id: User.current.id).pluck(:checklist_template_id))
+        @checklists = ChecklistTemplate.order('title ASC') - used_checklist_templates
       end
     else
-      @checklists = ChecklistTemplate.order('title ASC') - ChecklistTemplate.where(id: ChecklistUser.where(assigned_to_id: User.current.id).pluck(:checklist_template_id))
+      @checklists = ChecklistTemplate.order('title ASC') - used_checklist_templates
       @checklist = ChecklistUser.new(assigned_to_id: User.current.id)
     end
   end
 
   def show
-
   end
 
   def new
@@ -71,6 +69,12 @@ class ChecklistsController < ProtectForgeryApplication
   end
 
   private
+
+  def used_checklist_templates
+    ChecklistTemplate.where(id: ChecklistUser.
+        where(assigned_to_id: User.current.id).
+        pluck(:checklist_template_id))
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_checklist_template

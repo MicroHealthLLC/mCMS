@@ -28,7 +28,7 @@ class EnumerationsController < ProtectForgeryApplication
   end
 
   def update
-    if @enumeration.update_attributes(params.require(:enumeration).permit!)
+    if @enumeration.update_attributes(params.require(:enumeration).permit(Enumeration.safe_attributes))
       respond_to do |format|
         format.html {
           flash[:notice] = I18n.t "notice_successful_update"
@@ -75,7 +75,7 @@ class EnumerationsController < ProtectForgeryApplication
   def build_new_enumeration
     class_name = params[:enumeration] && params[:enumeration][:type] || params[:type]
 
-    @enumeration = Enumeration.new_subclass_instance(class_name, params[:action]=='new' ? params[:enumeration] : params.require(:enumeration).permit!)
+    @enumeration = Enumeration.new_subclass_instance(class_name, params[:action]=='new' ? params[:enumeration] : params.require(:enumeration).permit(Enumeration.safe_attributes))
     if @enumeration.nil?
       render_404
     end
