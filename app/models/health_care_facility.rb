@@ -61,4 +61,21 @@ class HealthCareFacility < ApplicationRecord
     pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
 
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Health Care Facility ##{id} </h2><br/>"
+    output<<"<b>Name : </b> #{name}<br/>"
+    output<<"<b>Health Care Facility Type : </b> #{health_care_facility_type}<br/>"
+    output<<"<b>Health Care Facility Status : </b> #{health_care_facility_status}<br/>"
+    output<<"<b>Health Care Facility Contact : </b> #{health_care_facility_contact}<br/>"
+    output<<"<b>Date started : </b> #{date_started}<br/>"
+    output<<"<b>Date end : </b> #{date_end}<br/>"
+    output<<"<b>Description: </b> #{description} <br/>"
+    output.html_safe
+  end
+
 end

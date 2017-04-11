@@ -56,4 +56,21 @@ class OtherHistory < ApplicationRecord
     pdf.table([[ "Date resolved: ", " #{date_resolved}"]], :column_widths => [ 150, 373])
     pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
+
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Other History ##{id} </h2><br/>"
+    output<<"<b>Name: </b> #{name}<br/>"
+    output<<"<b>Icdcm Code : </b> #{icdcm_code}<br/>"
+    output<<"<b>Other History Type : </b> #{other_history_type}<br/>"
+    output<<"<b>Other History Status : </b> #{other_history_status}<br/>"
+    output<<"<b>Date Identified: </b> #{date_identified}<br/>"
+    output<<"<b>Date resolved: </b> #{date_resolved}<br/>"
+    output<<"<b>Description: </b> #{description} <br/>"
+    output.html_safe
+  end
 end

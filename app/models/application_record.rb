@@ -1,7 +1,6 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
-
   belongs_to :updated_by, optional: true, class_name: 'User'
   belongs_to :created_by, optional: true, class_name: 'User'
 
@@ -11,6 +10,21 @@ class ApplicationRecord < ActiveRecord::Base
 
   before_create do
     self.created_by_id = User.current_user.id if self.class.column_names.include?('created_by_id')
+  end
+
+  after_create do
+    UserMailer.send_notification(self).deliver_later if can_send_email?
+  end
+
+  after_update do
+    if can_send_email?
+      last_audit = Array.wrap(self.try(:audits)).last
+      if last_audit
+        UserMailer.send_update_notification(self, last_audit).deliver_later
+      else
+        UserMailer.send_notification(self).deliver_later
+      end
+    end
   end
 
   scope :visible, -> { where(user_id: User.current.id) }
@@ -37,12 +51,12 @@ class ApplicationRecord < ActiveRecord::Base
   end
 
   def humanize_value object, key, value
-     if ['note', 'description'].include?(key)
-        value.html_safe
-     elsif key[-3..-1] == '_id'
-       object.send(key[0..-4])
-     else
-       value
+    if ['note', 'description'].include?(key)
+      value.html_safe
+    elsif key[-3..-1] == '_id'
+      object.send(key[0..-4])
+    else
+      value
     end
   end
 
@@ -91,5 +105,9 @@ class ApplicationRecord < ActiveRecord::Base
 
   def self.closed_or_flagged
     join_enumeration(enumeration_columns, { is_closed: true, is_flagged: true})
+  end
+
+  def can_send_email?
+    false
   end
 end

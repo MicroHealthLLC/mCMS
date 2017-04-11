@@ -91,4 +91,23 @@ class JobApplication < ApplicationRecord
     pdf.table([[ "Selection Status: ", " #{selection_status}"]], :column_widths => [ 150, 373])
   end
 
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Job Application ##{id} </h2><br/>"
+    output<<"<b>Employer : </b> #{employer}<br/>"
+    output<<"<b>Position Applied : </b> #{position_applied}<br/>"
+    output<<"<b>Projected salary : </b> #{projected_salary}<br/>"
+    output<<"<b>Application Type : </b> #{application_type}<br/>"
+    output<<"<b>Application Status: </b> #{application_status}<br/>"
+    output<<"<b>Interview Date: </b> #{interview_date}<br/>"
+    output<<"<b>Interview Type </b> #{interview_type}<br/>"
+    output<<"<b>Interview Status </b> #{interview_status}<br/>"
+    output<<"<b>Description: </b> #{description} <br/>"
+    output.html_safe
+  end
+
 end

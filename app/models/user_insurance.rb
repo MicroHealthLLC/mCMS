@@ -73,4 +73,26 @@ class UserInsurance < ApplicationRecord
     pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Insurance ##{id} </h2>"
+    output<<"<b>Insurance name: </b> #{insurance}<br/>"
+    output<<"<b>Status: </b> #{insurance_status}<br/>"
+    output<<"<b>Insurance Relationship: </b> #{insurance_relationship}<br/>"
+    output<<"<b>Insured Name: </b> #{insured_name}<br/>"
+    output<<"<b>Insurance type: </b> #{insurance_type}<br/>"
+    output<<"<b>Insurance ID: </b> #{insurance_identifier}<br/>"
+    output<<"<b>Issue Date: </b> #{issue_date}<br/>"
+    output<<"<b>Expiration Date: </b> #{expiration_date}<br/>"
+    output<<"<b>Group ID: </b> #{group_id}<br/>"
+
+    output<<"<b>Note: </b> #{note}<br/>"
+
+    output.html_safe
+  end
+
 end

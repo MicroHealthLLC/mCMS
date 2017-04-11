@@ -1,0 +1,19 @@
+<%= email_template do %>
+    <h1>Hello, <%= @user.name %></h1>
+    <p>
+      <%= @audit.user.try :name %>: at <%= format_date_time  @audit.created_at %>
+    <ul>
+      <% @audit.audited_changes.each do |key, value|
+        next unless value.is_a? Array
+      %>
+          <li><%= key.to_s.humanize %> : <em><%= @object.humanize_value @object, key, value[0] %></em>
+          </li>
+      <% end %>
+    </ul>
+    </p>
+    <hr/>
+    <p>
+      <%= @object.for_mail %>
+    </p>
+    <p>Thanks and have a great day!</p>
+<% end  %>

@@ -55,4 +55,21 @@ class Admission < ApplicationRecord
     pdf.table([[ "Date discharged: ", " #{date_discharged}"]], :column_widths => [ 150, 373])
     pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
+
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Admission ##{id} </h2>"
+    output<<"<b>Name: </b> #{care_family_name} <br/>"
+    output<<"<b>Admission Type: : </b> #{admission_type}<br/>"
+    output<<"<b>Admission Status: </b> #{admission_status}<br/>"
+    output<<"<b>Date Admitted: </b> #{date_admitted}<br/>"
+    output<<"<b>Date discharged: </b> #{date_discharged}<br/>"
+    output<<"<b>Description: </b> #{description} <br/>"
+    output.html_safe
+  end
+
 end

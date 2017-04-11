@@ -58,4 +58,20 @@ class Medical < ApplicationRecord
     pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
 
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Medical ##{id} </h2><br/>"
+    output<<"<b>Name : </b> #{name}<br/>"
+    output<<"<b>Snomed : </b> #{snomed}<br/>"
+    output<<"<b>Medical facility: </b> #{medical_facility}<br/>"
+    output<<"<b>Medical History Type: </b> #{medical_history_type}<br/>"
+    output<<"<b>Medical History Status: </b> #{medical_history_status}<br/>"
+    output<<"<b>Date of diagnosis: </b> #{date_of_diagnosis}<br/>"
+    output<<"<b>Description: </b> #{description} <br/>"
+    output.html_safe
+  end
 end

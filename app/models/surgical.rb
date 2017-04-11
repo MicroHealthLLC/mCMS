@@ -41,7 +41,7 @@ class Surgical < ApplicationRecord
   def to_pdf(pdf, show_user = true)
     pdf.font_size(25){  pdf.table([[ "Surgery ##{id}"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf) if show_user
-    pdf.table([[" Surgical "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
+    pdf.table([[" Surgery "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
     pdf.table([[ "HCPCS: ", " #{hcpc}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Medical facility: ", " #{medical_facility}"]], :column_widths => [ 150, 373])
@@ -57,4 +57,23 @@ class Surgical < ApplicationRecord
      :description,
      surgical_attachments_attributes: [Attachment.safe_attributes]]
   end
+
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Surgery ##{id} </h2>"
+    output<<"<b>Name: </b> #{name}<br/>"
+    output<<"<b>HCPCS: </b> #{hcpc}<br/>"
+    output<<"<b>Medical facility: </b> #{medical_facility}<br/>"
+    output<<"<b>Surgery Type: </b> #{surgery_type}<br/>"
+    output<<"<b>Surgery Status: </b> #{surgery_status}<br/>"
+
+    output<<"<b>Description: </b> #{description}<br/>"
+
+    output.html_safe
+  end
+
 end

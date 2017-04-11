@@ -60,4 +60,22 @@ class WorkerCompensation < ApplicationRecord
     pdf.table([[ "Date Of Compensation End: ", " #{date_of_compensation_end}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
+
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2> Worker Compensation ##{id} </h2>"
+    output<<"<b>Injury: </b> #{injury.to_s}<br/>"
+    output<<"<b>Compensation Type: </b> #{compensation_type}<br/>"
+    output<<"<b>Compensation Status: </b> #{compensation_status}<br/>"
+    output<<"<b>Date  Of Compensation start: </b> #{date_of_compensation_start}<br/>"
+    output<<"<b>Date Of Compensation End: </b> #{date_of_compensation_end}<br/>"
+
+    output<<"<b>Description: </b> #{description}<br/>"
+
+    output.html_safe
+  end
 end

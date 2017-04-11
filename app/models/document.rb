@@ -16,18 +16,12 @@ class Document < ApplicationRecord
 
   default_scope -> {where(is_private: false).or(where(private_author_id: User.current.id)) }
 
-
-  after_save :send_notification
   def self.for_profile
     where(related_to_id: nil)
   end
 
    def self.for_cases
     where.not(related_to_id: nil)
-  end
-
-  def send_notification
-    UserMailer.document_notification(self).deliver_later
   end
 
   before_create :check_private_author
@@ -74,6 +68,10 @@ class Document < ApplicationRecord
     output<< "<b>Description: </b> #{description}<br/>"
     output<< "<b>Document type: </b> #{document_type}<br/>"
     output.html_safe
+  end
+
+  def can_send_email?
+    true
   end
 
   def to_s

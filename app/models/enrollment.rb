@@ -54,4 +54,19 @@ class Enrollment < ApplicationRecord
     pdf.table([[ "Date end: ", " #{date_end}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
+
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Enrollment ##{id} </h2><br/>"
+    output<<"<b>Enrollment Type : </b> #{enrollment_type}<br/>"
+    output<<"<b>Enrollment Status : </b> #{enrollment_status}<br/>"
+    output<<"<b>Date start : </b> #{date_start}<br/>"
+    output<<"<b>Date end : </b> #{date_end}<br/>"
+    output<<"<b>Description: </b> #{description} <br/>"
+    output.html_safe
+  end
 end

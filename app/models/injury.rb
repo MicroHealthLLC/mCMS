@@ -62,4 +62,24 @@ class Injury < ApplicationRecord
     pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
 
+
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Injury ##{id} </h2><br/>"
+    output<<"<b>Name : </b> #{injury_name}<br/>"
+    output<<"<b>Injury Cause name : </b> #{injury_cause_name}<br/>"
+    output<<"<b>Injury Type : </b> #{injury_type}<br/>"
+    output<<"<b>Injury Status : </b> #{injury_status}<br/>"
+    output<<"<b>Injury Cause : </b> #{snomed_event}<br/>"
+    output<<"<b>date of injury: </b> #{date_of_injury}<br/>"
+    output<<"<b>date of resolved: </b> #{date_resolved}<br/>"
+    output<<"<b>Description: </b> #{description} <br/>"
+    output.html_safe
+  end
+
+
 end

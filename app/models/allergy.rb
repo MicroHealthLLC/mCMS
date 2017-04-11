@@ -49,4 +49,19 @@ class Allergy < ApplicationRecord
     pdf.table([[ "Allergy date: ", " #{allergy_date}"]], :column_widths => [ 150, 373])
     pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
+
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Allergy ##{id} </h2>"
+    output<<"<b>Allergy Type: : </b> #{snomed}<br/>"
+    output<<"<b>Allergy Status: </b> #{allergy_status}<br/>"
+    output<<"<b>Allergy date: </b> #{allergy_date}<br/>"
+    output<<"<b>Description: </b> #{description} <br/>"
+    output.html_safe
+  end
+
 end

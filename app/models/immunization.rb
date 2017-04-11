@@ -47,4 +47,25 @@ class Immunization < ApplicationRecord
     pdf.table([[ "Immunization Status: ", " #{immunization_status}"]], :column_widths => [ 150, 373])
     pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
+
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Immunization ##{id} </h2>"
+    output<<"<b>Immunization: </b> #{snomed}<br/>"
+    output<<"<b>Next Date due: </b> #{next_date_due}<br/>"
+    output<<"<b>Date immunized:</b> #{date_immunized}<br/>"
+    output<<"<b>Manufacturer: </b> #{manufacturer}<br/>"
+    output<<"<b>Lot Number: </b> #{lot_number}<br/>"
+    output<<"<b>Expiration date:: </b> #{expiration_date}<br/>"
+    output<<"<b>Immunization Status:: </b> #{immunization_status}<br/>"
+
+
+    output<<"<b>Description: </b> #{description}<br/>"
+
+    output.html_safe
+  end
 end

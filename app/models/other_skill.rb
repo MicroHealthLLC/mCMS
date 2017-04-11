@@ -20,11 +20,6 @@ class OtherSkill < ApplicationRecord
     end
   end
 
-  after_save :send_notification
-  def send_notification
-    UserMailer.skill_notification(self).deliver_later
-  end
-
   def visible?
     User.current == user or User.current.allowed_to?(:edit_other_skills) or User.current.allowed_to?(:manage_other_skills)
   end
@@ -73,6 +68,10 @@ class OtherSkill < ApplicationRecord
     pdf.table([[ "Date received: ", " #{date_received}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Date expired: ", " #{date_expired}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
+  end
+
+  def can_send_email?
+    true
   end
 
   def for_mail

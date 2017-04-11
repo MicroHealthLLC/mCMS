@@ -46,4 +46,19 @@ class ClientJournal < ApplicationRecord
     pdf.table([[ "date: ", " #{date}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
+
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Client Journal  ##{id} </h2><br/>"
+    output<<"<b>Title : </b> #{title}<br/>"
+    output<<"<b>Client journal Type: </b> #{client_journal_type}<br/>"
+    output<<"<b>Date: </b> #{date}<br/>"
+    output<<"<b>Note: </b> #{note} <br/>"
+    output.html_safe
+  end
+
 end

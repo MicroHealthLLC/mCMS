@@ -120,9 +120,17 @@ class Appointment < ApplicationRecord
 
   end
 
+  def can_send_email?
+    true
+  end
+
   def for_mail
     output = ""
-    output<< "<h2>Appoitment ##{id} </h2>"
+    output<< "<h2>Appointment ##{id} </h2>"
+    output<<"<b>Appointment Type: </b> #{appointment_type}<br/>"
+    output<<"<b>Appointment Status: </b> #{appointment_status}<br/>"
+    output<<"<b>Date: </b> #{date.strftime("#{Setting['format_date']} %I:%M %p") if date}<br/>"
+    output<<"<b>Description: </b> #{description} <br/>"
     output.html_safe
   end
 

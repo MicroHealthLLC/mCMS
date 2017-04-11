@@ -56,5 +56,22 @@ class BehavioralRisk < ApplicationRecord
     pdf.table([[ "Behavioral Risk date ended: ", " #{date_ended}"]], :column_widths => [ 150, 373])
     pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
+
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Behavioral Risk ##{id} </h2><br/>"
+    output<<"<b>Name : </b> #{name}<br/>"
+    output<<"<b>Snomed : </b> #{snomed}<br/>"
+    output<<"<b>Behavioral Risk Type : </b> #{behavioral_risk_type}<br/>"
+    output<<"<b>Behavioral Risk Status : </b> #{behavioral_risk_status}<br/>"
+    output<<"<b>Behavioral Risk date started: </b> #{date_started}<br/>"
+    output<<"<b>Behavioral Risk date ended: </b> #{date_ended}<br/>"
+    output<<"<b>Description: </b> #{description} <br/>"
+    output.html_safe
+  end
   
 end

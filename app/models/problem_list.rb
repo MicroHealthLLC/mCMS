@@ -56,5 +56,25 @@ class ProblemList < ApplicationRecord
 
     pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
+
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Problem List ##{id} </h2>"
+    output<<"<b>Name: </b> #{name}<br/>"
+    output<<"<b>#{I18n.t('icdcm_code')}: </b> #{icdcm_code}<br/>"
+    output<<"<b>Problem List Type: </b> #{problem_type}<br/>"
+    output<<"<b>Problem List Status: </b> #{problem_status}<br/>"
+    output<<"<b>Date resolved: </b> #{date_resolved}<br/>"
+    output<<"<b>Date onset: </b> #{date_onset}<br/>"
+
+    output<<"<b>Description: </b> #{description}<br/>"
+
+    output.html_safe
+  end
+
   
 end

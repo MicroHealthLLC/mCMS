@@ -12,10 +12,6 @@ class Contact < ApplicationRecord
 
   scope :not_show_in_search, ->{ where(not_show_in_search: false)}
 
-  after_save :send_notification
-  def send_notification
-    UserMailer.contact_notification(self).deliver_later unless self.not_show_in_search
-  end
 
   def self.visible
     super.active
@@ -103,12 +99,18 @@ class Contact < ApplicationRecord
     pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
+  def can_send_email?
+    true
+  end
+
   def for_mail
     output = ""
     output<< "<h2>Contact ##{id} </h2>"
     output<< "<b>Emergency contact: </b> #{emergency_contact}<br/>"
     output<< "<b>Language: </b> #{language_type}<br/>"
     output<< "<b>Name: </b> #{name}<br/>"
+    output<< "<b>Birthday: </b> #{birthday}<br/>"
+    output<< "<b>Gender: </b> #{gender}<br/>"
     output<< "<b>Note: </b> #{note}<br/>"
     output.html_safe
   end

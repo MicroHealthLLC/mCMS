@@ -53,4 +53,22 @@ class FamilyHistory < ApplicationRecord
     pdf.table([[ "date identified: ", " #{date_identified}"]], :column_widths => [ 150, 373])
     pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
+
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Familty History ##{id} </h2><br/>"
+    output<<"<b>Name : </b> #{name}<br/>"
+    output<<"<b>Snomed : </b> #{snomed}<br/>"
+    output<<"<b>Family History Type : </b> #{family_type}<br/>"
+    output<<"<b>Family History Status : </b> #{family_status}<br/>"
+    output<<"<b>Date identified : </b> #{date_identified}<br/>"
+    output<<"<b>Description: </b> #{description} <br/>"
+    output.html_safe
+  end
+
+
 end

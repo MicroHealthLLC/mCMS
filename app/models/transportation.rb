@@ -77,5 +77,26 @@ class Transportation < ApplicationRecord
     pdf.table([[ "End date: ", " #{date_end}"]], :column_widths => [ 150, 373])
     pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
+
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Transportation ##{id} </h2>"
+    output<<"<b>Title: </b> #{title}<br/>"
+    output<<"<b>Transportation Mean: </b> #{transportation_mean}<br/>"
+    output<<"<b>Transportation Type: </b> #{transportation_type}<br/>"
+    output<<"<b>Transportation Status: </b> #{transportation_status}<br/>"
+    output<<"<b>Transportation accessibility: </b> #{transportation_accessibility}<br/>"
+    output<<"<b>Estimated monthly cost: </b> #{estimated_monthly_cost}<br/>"
+    output<<"<b>Start date: </b> #{date_start}<br/>"
+    output<<"<b>End date: </b> #{date_end}<br/>"
+
+    output<<"<b>Description: </b> #{description}<br/>"
+
+    output.html_safe
+  end
   
 end

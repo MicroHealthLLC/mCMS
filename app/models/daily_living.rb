@@ -52,7 +52,21 @@ class DailyLiving < ApplicationRecord
     pdf.table([[ "Description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Type: ", " #{daily_living_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Status: ", " #{daily_living_status}"]], :column_widths => [ 150, 373])
-
   end
+
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Daily Living ##{id} </h2><br/>"
+    output<<"<b>Title : </b> #{title}<br/>"
+    output<<"<b>Type : </b> #{daily_living_type}<br/>"
+    output<<"<b>Status : </b> #{daily_living_status}<br/>"
+    output<<"<b>Description: </b> #{description} <br/>"
+    output.html_safe
+  end
+
 
 end

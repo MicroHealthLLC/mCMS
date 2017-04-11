@@ -6,10 +6,7 @@ class Clearance < ApplicationRecord
 
   has_many :clearance_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :clearance_attachments, reject_if: :all_blank, allow_destroy: true
-  after_save :send_notification
-  def send_notification
-    UserMailer.clearance_notification(self).deliver_later
-  end
+
 
   def self.enumeration_columns
     [
@@ -53,6 +50,10 @@ class Clearance < ApplicationRecord
     pdf.table([[ "Date received: ", " #{date_received}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Date expired: ", " #{date_expired}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
+  end
+
+  def can_send_email?
+    true
   end
 
   def for_mail

@@ -154,4 +154,25 @@ class Case < ApplicationRecord
     pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Case ##{id} </h2><br/>"
+    output<<"<b>Title : </b> #{title}<br/>"
+    output<<"<b>Case Type : </b> #{case_type}<br/>"
+    output<<"<b>Case Status : </b> #{case_status_type}<br/>"
+    output<<"<b>Case Category : </b> #{case_category_type}<br/>"
+    output<<"<b>Case Source : </b> #{case_source}<br/>"
+    output<<"<b>Priority : </b> #{priority_type}<br/>"
+    output<<"<b>date start : </b> #{date_start}<br/>"
+    output<<"<b>date due : </b> #{date_due}<br/>"
+    output<<"<b>date Completed : </b> #{date_completed}<br/>"
+    output<<"<b>Note: </b> #{note} <br/>"
+    output.html_safe
+  end
+
+
 end

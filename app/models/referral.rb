@@ -75,5 +75,24 @@ class Referral < ApplicationRecord
     pdf.table([[ "Referred To: ", " #{referred_to.to_s}"]], :column_widths => [ 150, 373])
     pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(referral_reason)}"]], :column_widths => [ 150, 373])
   end
+
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Referral ##{id} </h2>"
+    output<<"<b>Title: </b> #{title}<br/>"
+    output<<"<b>Referral Type: </b> #{referral_type}<br/>"
+    output<<"<b>Referral Status: </b> #{referral_status}<br/>"
+    output<<"<b>Referral date: </b> #{referral_date}<br/>"
+    output<<"<b>Referral Appointment: </b> #{referral_appointment}<br/>"
+    output<<"<b>Referred By: </b> #{referred_by}<br/>"
+    output<<"<b>Referred To: </b> #{referred_to}<br/>"
+    output<<"<b>Description: </b> #{description}<br/>"
+
+    output.html_safe
+  end
   
 end

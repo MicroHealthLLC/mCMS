@@ -45,4 +45,21 @@ class RadiologicExamination < ApplicationRecord
     pdf.table([[ "Radiologic Result Status: ", " #{radiologic_result_status}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Description: ", " #{ActionView::Base.full_sanitizer.sanitize(result)}"]], :column_widths => [ 150, 373])
   end
+
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Radiologic Examination ##{id} </h2>"
+    output<<"<b>Name: </b> #{snomed}<br/>"
+    output<<"<b>Facility: </b> #{facility}<br/>"
+    output<<"<b>Date: </b> #{date}<br/>"
+    output<<"<b>Radiologic Result Status: </b> #{radiologic_result_status}<br/>"
+
+    output<<"<b>Description: </b> #{result}<br/>"
+
+    output.html_safe
+  end
 end

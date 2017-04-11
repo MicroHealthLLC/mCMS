@@ -55,4 +55,21 @@ class EnvironmentRisk < ApplicationRecord
     pdf.table([[ "date ended: ", " #{date_ended}"]], :column_widths => [ 150, 373])
     pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
+
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Environment Risk ##{id} </h2><br/>"
+    output<<"<b>Snomed : </b> #{snomed}<br/>"
+    output<<"<b>Environment Risk Type : </b> #{environment_type}<br/>"
+    output<<"<b>Environment Risk Status : </b> #{environment_status}<br/>"
+    output<<"<b>Date started : </b> #{date_started}<br/>"
+    output<<"<b>Date ended : </b> #{date_ended}<br/>"
+    output<<"<b>Description: </b> #{description} <br/>"
+    output.html_safe
+  end
+
 end

@@ -66,6 +66,10 @@ class Language < ApplicationRecord
     pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
+  def can_send_email?
+    true
+  end
+
   def for_mail
     output = ""
     output<< "<h2>Language ##{id} </h2>"

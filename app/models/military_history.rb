@@ -44,4 +44,21 @@ class MilitaryHistory < ApplicationRecord
     pdf.table([[ "Date ended: ", " #{date_ended}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
+
+
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Military History ##{id} </h2><br/>"
+    output<<"<b>Title: </b> #{text}<br/>"
+    output<<"<b>Service Type : </b> #{service_type}<br/>"
+    output<<"<b>Service Status : </b> #{service_status}<br/>"
+    output<<"<b>Date started: </b> #{date_started}<br/>"
+    output<<"<b>Date ended: </b> #{date_ended}<br/>"
+    output<<"<b>Note: </b> #{note} <br/>"
+    output.html_safe
+  end
 end

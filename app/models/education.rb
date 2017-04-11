@@ -7,11 +7,6 @@ class Education < ApplicationRecord
   has_many :education_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :education_attachments, reject_if: :all_blank, allow_destroy: true
 
-  after_save :send_notification
-  def send_notification
-    UserMailer.education_notification(self).deliver_later
-  end
-
   def visible?
     User.current == user or User.current.allowed_to?(:edit_educations) or User.current.allowed_to?(:manage_educations)
   end
@@ -71,6 +66,10 @@ class Education < ApplicationRecord
     output<<"<b>Note: </b> #{note}<br/>"
 
     output.html_safe
+  end
+
+  def can_send_email?
+    true
   end
 
 end

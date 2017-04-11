@@ -90,4 +90,22 @@ class Goal < ApplicationRecord
     pdf.table([[ "Date completed ", " #{date_completed}"]], :column_widths => [ 150, 373])
   end
 
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Goal ##{id} </h2><br/>"
+    output<<"<b>Name : </b> #{name}<br/>"
+    output<<"<b>Goal Status : </b> #{goal_status}<br/>"
+    output<<"<b>Percent Done: </b> #{percent_done}%<br/>"
+    output<<"<b>Priority: </b> #{priority_type}<br/>"
+    output<<"<b>Date start : </b> #{date_start}<br/>"
+    output<<"<b>Date due : </b> #{date_due}<br/>"
+    output<<"<b>Date completed : </b> #{date_completed}<br/>"
+    output<<"<b>Description: </b> #{description} <br/>"
+    output.html_safe
+  end
+
 end

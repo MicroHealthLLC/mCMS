@@ -76,4 +76,21 @@ class Need < ApplicationRecord
     pdf.table([[ "Date completed: ", " #{date_identified}"]], :column_widths => [ 150, 373])
   end
 
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Need ##{id} </h2><br/>"
+    output<<"<b>Need: </b> #{need_enum}<br/>"
+    output<<"<b>Need Status : </b> #{need_status}<br/>"
+    output<<"<b>Percent Done : </b> #{percent_done} %<br/>"
+    output<<"<b>Priority : </b> #{priority_type} <br/>"
+    output<<"<b>Date due: </b> #{date_due}<br/>"
+    output<<"<b>Date completed: </b> #{date_completed}<br/>"
+    output<<"<b>Date identified: </b> #{date_identified}<br/>"
+    output<<"<b>Description: </b> #{description} <br/>"
+    output.html_safe
+  end
 end

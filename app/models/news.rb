@@ -8,12 +8,6 @@ class News < ApplicationRecord
 
   validates_presence_of :user_id, :title, :summary, :description
 
-
-  after_save :send_notification
-  def send_notification
-    UserMailer.new_notification(self).deliver_later
-  end
-
   def visible?
     true
   end
@@ -27,6 +21,10 @@ class News < ApplicationRecord
         :user_id, :title, :summary, :description,
         post_attachments_attributes: [Attachment.safe_attributes]
     ]
+  end
+
+  def can_send_email?
+    false
   end
 
   def for_mail

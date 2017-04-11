@@ -27,8 +27,6 @@ class Task < ApplicationRecord
 
   validates_presence_of :title
 
-  after_save :send_notification
-
   before_destroy do
     self.sub_tasks.update_all(sub_task_id: nil)
   end
@@ -38,9 +36,6 @@ class Task < ApplicationRecord
         references(:case, :task_type, :task_status_type)
   end
 
-  def send_notification
-    UserMailer.task_notification(self).deliver_later
-  end
 
   def self.enumeration_columns
     [
@@ -124,9 +119,13 @@ class Task < ApplicationRecord
     end
   end
 
+  def can_send_email?
+    true
+  end
+
   def for_mail
     output = ""
-    output<< "<h2>Task ##{id} </h2>"
+    output<< "<h2>Action ##{id} </h2><br/>"
     output<<"<b>Title: </b> #{title}"
     output<<"<b>Description: </b> #{description} <br/>"
     output<<"<b>Task type: </b> #{task_type}<br/>"

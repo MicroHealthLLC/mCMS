@@ -50,5 +50,25 @@ class Medication < ApplicationRecord
 
     pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(medication_description)}"]], :column_widths => [ 150, 373])
   end
+
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Medication ##{id} </h2><br/>"
+    output<<"<b>Medication : </b> #{medication_synonym}<br/>"
+    output<<"<b>Medication  TTY: </b> #{medication_tty}<br/>"
+    output<<"<b>Direction : </b> #{description}<br/>"
+    output<<"<b>count : </b> #{dose}<br/>"
+    output<<"<b>Date Prescribed: </b> #{date_prescribed}<br/>"
+    output<<"<b>Date Expired: </b> #{date_expired}<br/>"
+    output<<"<b>Total Refill: </b> #{total_refills}<br/>"
+    output<<"<b>Refill Left: </b> #{refills_left}<br/>"
+    output<<"<b>Medication Status: </b> #{medication_status}<br/>"
+    output<<"<b>Description: </b> #{medication_description} <br/>"
+    output.html_safe
+  end
   
 end

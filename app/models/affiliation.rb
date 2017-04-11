@@ -11,11 +11,6 @@ class Affiliation < ApplicationRecord
   accepts_nested_attributes_for :affiliation_attachments, reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :name
-  after_save :send_notification
-
-  def send_notification
-    UserMailer.affiliation_notification(self).deliver_later
-  end
 
   def self.enumeration_columns
     [
@@ -67,6 +62,10 @@ class Affiliation < ApplicationRecord
     pdf.table([[ "Date Start: ", " #{date_start}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Date End: ", " #{date_end}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
+  end
+
+  def can_send_email?
+    true
   end
 
   def for_mail

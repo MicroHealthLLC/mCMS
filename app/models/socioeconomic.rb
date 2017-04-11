@@ -56,4 +56,23 @@ class Socioeconomic < ApplicationRecord
 
     pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
+
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Socioeconomic ##{id} </h2>"
+    output<<"<b>Name: </b> #{name}<br/>"
+    output<<"<b>Snomed code: </b> #{snomed}<br/>"
+    output<<"<b>Status: </b> #{socioeconomic_status}<br/>"
+    output<<"<b>Type: </b> #{socioeconomic_type}<br/>"
+    output<<"<b>Date identified: </b> #{date_identified}<br/>"
+    output<<"<b>Date resolved: </b> #{date_resolved}<br/>"
+    output<<"<b>Description: </b> #{description}<br/>"
+
+    output.html_safe
+  end
+
 end

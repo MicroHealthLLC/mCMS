@@ -53,5 +53,22 @@ class Legal < ApplicationRecord
     pdf.table([[ "date end: ", " #{date_end}"]], :column_widths => [ 150, 373])
     pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
+
+  def can_send_email?
+    true
+  end
+
+  def for_mail
+    output = ""
+    output<< "<h2>Legal ##{id} </h2><br/>"
+    output<<"<b>Title : </b> #{title}<br/>"
+    output<<"<b>Legal Status: </b> #{legal_history_status}<br/>"
+    output<<"<b>Legal Type: </b> #{legal_history_type}<br/>"
+    output<<"<b>date start: </b> #{date_start}<br/>"
+    output<<"<b>date end: </b> #{date_end}<br/>"
+    output<<"<b>Description: </b> #{description} <br/>"
+    output.html_safe
+  end
+
   
 end

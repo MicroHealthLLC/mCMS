@@ -14,12 +14,6 @@ class Position < ApplicationRecord
 
   validates_presence_of :user_id, :title
 
-  after_save :send_notification
-
-  def send_notification
-    UserMailer.position_notification(self).deliver_later
-  end
-
   def self.enumeration_columns
     [
         ["#{PayRateType}", 'pay_rate_id'],
@@ -95,6 +89,10 @@ class Position < ApplicationRecord
     pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
+  def can_send_email?
+    true
+  end
+
   def for_mail
     output = ""
     output<< "<h2>Position ##{id} </h2>"
@@ -103,12 +101,10 @@ class Position < ApplicationRecord
     output<<"<b>Position Status: </b> #{position_status}<br/>"
     output<<"<b>Location: </b> #{location_type}<br/>"
     output<<"<b>Special requirement: </b> #{special_requirement}<br/>"
-    output<<"<b>#{I18n.t('estimated_monthly_amount')}: </b> #{estimated_monthly_amount}<br/>"
     output<<"<b>Date start: </b> #{date_start}<br/>"
     output<<"<b>Date end: </b> #{date_end}<br/>"
-    # output<<"<b>Pay: </b> #{salary}<br/>"
-    # output<<"<b>Pay rate: </b> #{pay_rate_type}<br/>"
     output<<"<b>Employment type: </b> #{employment_type}<br/>"
+    output<<"<b>Occupation: </b> #{occupation}<br/>"
     output<<"<b>Note: </b> #{note}<br/>"
 
     output.html_safe
