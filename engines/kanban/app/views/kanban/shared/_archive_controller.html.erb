@@ -1,0 +1,34 @@
+<div ng-controller="ArchiveController">
+  <mpk-modal title="Cards Archive" visible="showArchive" modal-style="width: 90%;">
+    <form class="form-horizontal" role="form">
+      <div class="form-group has-success">
+        <div class="col-md-offset-9 col-md-3">
+          <input type="text" name="filterByName" placeholder="Filter by card name ..." ng-model="model.filterByName" class="form-control" />
+        </div>
+      </div>
+    </form>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th></th>
+        <th style="width: 25%">Archived on</th>
+        <th style="width: 33%">Card title</th>
+        <th style="width: 40%">Description</th>
+      </tr>
+      </thead>
+      <tr ng-repeat="archivedCard in model.archived | archiveByCardName:model.filterByName">
+        <td><input type="checkbox" name="selectedCards[]" value="archivedCard.card.name" ng-model="archivedCard.selected" /></td>
+        <td>{{formatDate(archivedCard.archivedOn)}}</td>
+        <td>{{archivedCard.card.name}}</td>
+        <td>{{archivedCard.card.details}}</td>
+      </tr>
+      <tbody>
+      </tbody>
+    </table>
+    <div class="modal-footer">
+      <button class="btn btn-warning pull-left" ng-click="unarchiveSelected()">Un-archive selected</button>
+      <button class="btn btn-danger pull-left" ng-click="deleteSelected()">Delete selected</button>
+      <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+    </div>
+  </mpk-modal>
+</div>

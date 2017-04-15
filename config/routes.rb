@@ -328,4 +328,5 @@ Rails.application.routes.draw do
   mount TodoList::Engine => "/todo_list"
   mount StickyNotes::Engine => "/sticky_notes"
   mount Rordit::Engine => "/rordit"
+  mount Kanban::Engine => "/kanban"
 end

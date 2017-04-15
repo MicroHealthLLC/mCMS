@@ -9,4 +9,9 @@ Rails.application.config.assets.version = '1.0'
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
-Rails.application.config.assets.precompile += %w( smart_admin/* chat.js sticky.css signature.js lightbox2.css lightbox2.js )
+Rails.application.config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+Rails.application.config.assets.precompile += %w( .svg .eot .woff .ttf)
+#CSS
+Rails.application.config.assets.precompile += %w(kanban/themes/default-bright.css sticky.css)
+#JS
+Rails.application.config.assets.precompile += %w(smart_admin/* chat.js signature.js lightbox2.css lightbox2.js )

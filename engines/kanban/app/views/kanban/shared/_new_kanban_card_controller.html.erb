@@ -1,0 +1,30 @@
+<div ng-controller="NewKanbanCardController">
+  <mpk-modal title="New card for column '{{kanbanColumnName}}'" visible="showNewCard">
+    <form class="noMargin" name="newCardForm" ng-submit="addNewCard(newCard)">
+      <div class="form-group">
+        <label class="control-label" for="newCardTitle">Kanban card title</label>
+        <div>
+          <input type="text" id="newCardTitle" placeholder="Title on a card" ng-model="newCard.title" required focus-me class="cardInputs form-control" name="cardTitle"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="newCardDetails">More details <small>(optional)</small></label>
+        <div>
+                <textarea id="newCardDetails" ng-model="newCard.details" class="cardInputs form-control" rows="7">
+                </textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Card color</label>
+      </div>
+      <div class="form-group">
+        <color-selector options="colorOptions" ng-model="newCard.cardColor" prefix="newCardColor" class="colorSelector" show-hex-code="true"/>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Add</button>
+      </div>
+    </form>
+  </mpk-modal>
+</div>

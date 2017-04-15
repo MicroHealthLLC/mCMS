@@ -44,6 +44,8 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'bullet'
+  gem 'rubocop', '~> 0.48.1', require: false
+  gem 'brakeman', :require => false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -175,3 +177,4 @@ gem "simple_calendar", "~> 2.0"
 gem 'todo_list', path: 'engines/todo_list'
 gem 'sticky_notes', path: 'engines/sticky_notes'
 gem 'rordit', path: 'engines/rordit'
+gem 'kanban', path: 'engines/kanban'

@@ -1,0 +1,24 @@
+
+<!-- TODO SCITCH THEME -->
+<div ng-controller="SwitchThemeController">
+  <mpk-modal title="Choose Kanban Theme" visible="showSwitchTheme">
+    <form ng-submit="switchTheme()" name="selectTheme" class="noMargin">
+      <div class="form-group">
+        <label class="control-label" for="kanbanTheme">Themes to choose from</label>
+      </div>
+      <div class="row">
+        <div class="col-md-5">
+          <select class="form-control" name="selectedToOpen" ng-model="model.selectedTheme" required ng-options="t.css as t.name for t in model.themes" id="kanbanTheme">
+          </select>
+        </div>
+        <div class="col-md-5">
+          <img src="img/themes/{{model.selectedTheme}}.jpg" width="250" class="thumbnail" style="border: 1px solid black"/>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary" type="submit">Switch</button>
+      </div>
+    </form>
+  </mpk-modal>
+</div>

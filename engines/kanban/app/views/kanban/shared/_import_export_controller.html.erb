@@ -1,0 +1,44 @@
+<div ng-controller="ExportController">
+  <mpk-modal visible="showExportModal" title="Export Kanban">
+    <form name="exportKanban" class="noMargin">
+      <div class="form-group">
+        <label class="control-label" for="kanbanToExport">To export:</label>
+        <div>
+          <select id="kanbanToExport" ng-model="model.selectedKanban" class="form-control"
+                  ng-options="name for name in model.allKanbanNames" ng-disabled="model.exportAll">
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" ng-model="model.exportAll"> Export all Kanbans
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary" type="submit" ng-click="doExport()">Export</button>
+      </div>
+    </form>
+  </mpk-modal>
+</div>
+
+<div ng-controller="ImportController">
+  <mpk-modal visible="showImportModal" title="Import Kanban from file">
+    <form name="importKanban" class="noMargin">
+      <div class="form-group">
+        <label class="control-label" for="kanbanToExport">Select file:</label>
+        <input type="file" id="kanbanFile" name="kanbanFile" read-file ng-model="model.file" ng-change="model.fileSelected=true"/>
+      </div>
+      <div class="alert alert-warning">If you import Kanban with the name that already exists, all the content of existing Kanban will be lost.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+        <button class="btn btn-primary" type="submit" ng-click="import()" ng-disabled="model.file==''">Import</button>
+      </div>
+    </form>
+  </mpk-modal>
+</div>
