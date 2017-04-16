@@ -13,8 +13,14 @@ module Kanban
           color: self.color,
           startdate: self.start_date,
           duedate: self.due_date,
-          archived_on: self.archived_on,
           completedate: self.date_completed
+      }
+    end
+
+    def archived_to_json
+      {
+          "card"=> to_json,
+          'archivedOn' => self.archived_on
       }
     end
   end

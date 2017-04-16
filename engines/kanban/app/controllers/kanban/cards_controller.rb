@@ -35,21 +35,21 @@ module Kanban
     def archive
       @card.is_archived = true
       @card.archived_on = Time.now
-      # if @card.save
+      if @card.save
         render json: {success: true }
-      # else
-      #   render json: {success: false, errors: @card.errors.full_messages.join('<br/>')}
-      # end
+      else
+        render json: {success: false, errors: @card.errors.full_messages.join('<br/>')}
+      end
     end
 
     def unarchive
       @card.is_archived = false
       @card.archived_on = nil
-      # if @card.save
+      if @card.save
         render json: {success: true }
-      # else
-      #   render json: {success: false, errors: @card.errors.full_messages.join('<br/>')}
-      # end
+      else
+        render json: {success: false, errors: @card.errors.full_messages.join('<br/>')}
+      end
     end
 
     def destroy

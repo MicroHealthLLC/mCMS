@@ -28,7 +28,7 @@ module Kanban
               name: self.name,
               "numberOfColumns"=> self.columns.count,
               columns: columns.map(&:to_json),
-              archived: self.cards_archived.map(&:to_json),
+              archived: self.cards_archived.map(&:archived_to_json),
               settings: {}
           }
       }

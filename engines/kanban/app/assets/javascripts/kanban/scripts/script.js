@@ -97,16 +97,16 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
             return angular.toJson(a, !1)
         },
         save: function() {
-            //var a = this.prepareSerializedKanbans();
+            var a = this.prepareSerializedKanbans();
             ////$.ajax({url: '/service/save.json', data: {data: a}})
             //return localStorage.setItem("myPersonalKanban", a), this.kanbansByName
+        },
+        resave: function(){
+
         },
         load: function() {
             var a = angular.fromJson(localStorage.getItem("myPersonalKanban"));
             return null === a ? null : (this.kanbansByName = a.kanbans, this.lastUsed = a.lastUsed, this.theme = a.theme, this.lastUpdated = a.lastUpdated, this.kanbansByName)
-        },
-        reload: function(){
-
         },
         getLastUsed: function() {
             return this.lastUsed ? this.kanbansByName[this.lastUsed] : this.kanbansByName[Object.keys(this.kanbansByName)[0]]
@@ -118,7 +118,7 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
             return this.theme
         },
         setTheme: function(a) {
-            return this.theme = a, this.save(), this.theme
+            return this.theme = a, this.theme
         },
         upload: function() {
             return a.uploadKanban(this.prepareSerializedKanbans())
@@ -142,7 +142,7 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
                 }
             }
             var f = angular.fromJson(c);
-            return this.kanbansByName = f.kanbans, this.lastUsed = f.lastUsed, this.theme = f.theme, this.lastUpdated = d, this.save(), {
+            return this.kanbansByName = f.kanbans, this.lastUsed = f.lastUsed, this.theme = f.theme, this.lastUpdated = d,{
                 success: !0
             }
         },
@@ -176,27 +176,6 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
             })
         },
         removeCardFromColumn: function(a, b, c) {
-            that = this
-            //$.ajax({
-            //    url: '/kanban/cards/unarchive.json',
-            //    type: 'POST',
-            //    data: {card_id: c.id},
-            //    async: false,
-            //    success: function(json){
-            //        if(json['success']){
-                        function c(a) {
-                            return a.columns[a.columns.length - 1]
-                        }
-                        this.removeFromArchive(a, b);
-                        c(a).cards.push(b.card)
-            //        }
-            //        else
-            //            alert(json['errors'])
-            //    },
-            //    error: function (xhr, ajaxOptions, thrownError) {
-            //        alert(xhr.status);
-            //    }
-            //})
             angular.forEach(a.columns, function(a) {
                 a.name === b.name && a.cards.splice(a.cards.indexOf(c), 1)
             })
@@ -210,27 +189,27 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
                 project_id: a.id,
                 card_id:  c.id
             }
-            //$.ajax({
-            //    url: '/kanban/cards/archive.json',
-            //    type: 'POST',
-            //    data: data,
-            //    async: false,
-            //    success: function(json){
-            //        if(json['success']){
+            $.ajax({
+                url: '/kanban/cards/archive.json',
+                type: 'POST',
+                data: data,
+                async: false,
+                success: function(json){
+                    if(json['success']){
                         void 0 == a.archived && (a.archived = []);
                         a.archived.push({
                             card: c,
                             archivedOn: new Date
                         });
-                        this.removeCardFromColumn(a, b, c)
-                    //}
-                    //else
-                    //    alert(json['errors'])
-                //},
-                //error: function (xhr, ajaxOptions, thrownError) {
-                //    alert(xhr.status);
-                //}
-            //})
+                        that.removeCardFromColumn(a, b, c)
+                    }
+                    else
+                        alert(json['errors'])
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                }
+            })
         },
         unarchiveCard: function(a, b) {
             data = {
@@ -238,26 +217,26 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
                 project_id: a.id,
                 card_id:  b.card.id
             }
-            //$.ajax({
-            //    url: '/kanban/cards/unarchive.json',
-            //    type: 'POST',
-            //    data: data,
-            //    async: false,
-            //    success: function(json){
-            //        if(json['success']){
+            $.ajax({
+                url: '/kanban/cards/unarchive.json',
+                type: 'POST',
+                data: data,
+                async: false,
+                success: function(json){
+                    if(json['success']){
                         function c(a) {
                             return a.columns[a.columns.length - 1]
                         }
-                        this.removeFromArchive(a, b);
+                        that.removeFromArchive(a, b);
                         c(a).cards.push(b.card)
-                    //}
-                    //else
-                    //    alert(json['errors'])
-                //},
-                //error: function (xhr, ajaxOptions, thrownError) {
-                //    alert(xhr.status);
-                //}
-            //})
+                    }
+                    else
+                        alert(json['errors'])
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                }
+            })
         },
         removeFromArchive: function(a, b) {
             a.archived.splice(a.archived.indexOf(b), 1)
@@ -332,13 +311,13 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
                         c.setLastUsed(b.length > 0 ? b[0] : void 0), a.kanban = void 0, a.allKanbans = Object.keys(c.all()), a.allKanbans.length > 0 && a.switchToKanban(a.allKanbans[0]), a.switchToList = a.allKanbans.slice(0), a.switchToList.splice(0, 0, "Switch to ...")
                     }
                     else
-                       alert(json['errors'])
-                   },
+                        alert(json['errors'])
+                },
                 error: function (xhr, ajaxOptions, thrownError) {
                     alert(xhr.status);
                 }
             })
-           }
+        }
         return !1
     }, a.kanbanMenu.openSwitchTheme = function() {
         a.$broadcast("OpenSwitchTheme", c.getTheme())
