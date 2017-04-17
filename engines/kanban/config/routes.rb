@@ -6,6 +6,7 @@ Kanban::Engine.routes.draw do
   put 'cards/update'
 
   post 'cards/archive'
+  post 'cards/change_column'
 
   post 'cards/unarchive'
 

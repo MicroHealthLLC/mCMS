@@ -32,6 +32,15 @@ module Kanban
       end
     end
 
+    def change_column
+      @card.column_id = params[:column_id]
+      if @card.save
+        render json: {success: true }
+      else
+        render json: {success: false, errors: @card.errors.full_messages.join('<br/>')}
+      end
+    end
+
     def archive
       @card.is_archived = true
       @card.archived_on = Time.now

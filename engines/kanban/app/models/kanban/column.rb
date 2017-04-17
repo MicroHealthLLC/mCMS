@@ -33,7 +33,7 @@ module Kanban
       {
           id: self.id,
           name: self.name,
-          setting: settings,
+          settings: settings || {},
           cards: self.cards_active.map(&:to_json)
       }
     end

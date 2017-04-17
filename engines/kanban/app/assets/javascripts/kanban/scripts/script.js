@@ -76,7 +76,7 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
         theme: "default-bright",
         lastUpdated: 0,
         add: function(a) {
-            return this.kanbansByName[a.name] = a, this.save(), a
+            return this.kanbansByName[a.name] = a, a
         },
         all: function() {
             return this.kanbansByName
@@ -97,12 +97,6 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
             return angular.toJson(a, !1)
         },
         save: function() {
-            var a = this.prepareSerializedKanbans();
-            ////$.ajax({url: '/service/save.json', data: {data: a}})
-            //return localStorage.setItem("myPersonalKanban", a), this.kanbansByName
-        },
-        resave: function(){
-
         },
         load: function() {
             var a = angular.fromJson(localStorage.getItem("myPersonalKanban"));
@@ -132,31 +126,9 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
         download: function() {
             return a.downloadKanban()
         },
-        saveDownloadedKanban: function(c, d) {
-            if ("string" == typeof c) try {
-                c = b.decrypt(c, a.settings.encryptionKey)
-            } catch (e) {
-                return console.debug(e), {
-                    success: !1,
-                    message: "Looks like Kanban saved in the cloud was persisted with different encryption key. You'll need to use old key to download your Kanban. Set it up in the Cloud Setup menu."
-                }
-            }
-            var f = angular.fromJson(c);
-            return this.kanbansByName = f.kanbans, this.lastUsed = f.lastUsed, this.theme = f.theme, this.lastUpdated = d,{
-                success: !0
-            }
-        },
         renameLastUsedTo: function(a) {
             var b = this.getLastUsed();
             return delete this.kanbansByName[b.name], b.name = a, this.kanbansByName[a] = b, this.lastUsed = a, !0
-        },
-        "import": function(a) {
-            var b = this;
-            angular.forEach(Object.keys(a), function(c) {
-                b.kanbansByName[c] = a[c]
-            });
-            var c = Object.keys(a);
-            this.setLastUsed(a[c[0]]), this.save()
         }
     }
 }]), angular.module("mpk").factory("kanbanManipulator", function() {
@@ -323,32 +295,6 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
         a.$broadcast("OpenSwitchTheme", c.getTheme())
     }, a.kanbanMenu.openArchive = function(b) {
         a.$broadcast("OpenArchive", b)
-    }, a.kanbanMenu.openExport = function(b, c) {
-        a.$broadcast("OpenExport", b, c)
-    }, a.kanbanMenu.openImport = function() {
-        a.$broadcast("OpenImport")
-    }, a.cloudMenu.openCloudSetup = function() {
-        a.$broadcast("OpenCloudSetup")
-    }, a.cloudMenu.upload = function() {
-        if (!g.isConfigurationValid()) return a.openCloudSetup(!0);
-        var b = c.upload();
-        return a.errorMessage = "", a.showError = !1, a.infoMessage = "Uploading Kanban ...", a.showInfo = !0, a.showSpinner = !0, b.then(function(b) {
-            b.data.success ? (c.setLastUpdated(b.data.lastUpdated).save(), a.infoMessage = "", a.showInfo = !1, a.showSpinner = !1) : (i(b.data.error), console.error(b))
-        }, function() {
-            a.infoMessage = "", a.showInfo = !0, a.showSpinner = !1, a.showError = !0, a.errorMessage = "There was a problem uploading your Kanban."
-        }), !1
-    }, a.cloudMenu.download = function() {
-        if (!g.isConfigurationValid()) return a.openCloudSetup(!0);
-        a.infoMessage = "Downloading your Kanban ...", a.showSpinner = !0, a.showError = !1, a.errorMessage = "";
-        var d = c.download();
-        return d.success(function(a) {
-            if (a.success) {
-                var d = c.saveDownloadedKanban(a.kanban, a.lastUpdated);
-                d.success ? (void 0 == c.getLastUsed() && (c.setLastUsed(j(c)[0]), c.save()), b.location.reload()) : i(d.message)
-            } else i(a.error)
-        }).error(function() {
-            a.infoMessage = "", a.showInfo = !0, a.showError = !0, a.showSpinner = !1, a.errorMessage = "Problem Downloading your Kanban. Check Internet connectivity and try again."
-        }), !1
     }, a.editingKanbanName = function() {
         a.editingName = !0
     }, a.editingName = !1, a.rename = function() {
@@ -362,7 +308,7 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
             type: 'POST',
             async: false,
             success: function (json) {
-                c.renameLastUsedTo(a.newName), c.save(), a.allKanbans = Object.keys(c.all()), a.editingName = !1, a.switchToKanban(a.newName)
+                c.renameLastUsedTo(a.newName), a.allKanbans = Object.keys(c.all()), a.editingName = !1, a.switchToKanban(a.newName)
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert(xhr.status);
@@ -371,7 +317,7 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
     }, a.openKanbanShortcut = function() {
         a.$broadcast("TriggerOpen")
     }, a.switchToKanban = function(b) {
-        "Switch to ..." != b && (a.kanban = c.get(b), c.setLastUsed(b), a.newName = b, f.path("/kanban/" + b), c.save(), a.switchTo = "Switch to ...")
+        "Switch to ..." != b && (a.kanban = c.get(b), c.setLastUsed(b), a.newName = b, f.path("/kanban/" + b), a.switchTo = "Switch to ...")
     }, a.openHelpShortcut = function() {
         a.$broadcast("TriggerHelp")
     }, a.spinConfig = {
@@ -389,9 +335,10 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
             localStorage.setItem("myPersonalKanban", angular.toJson(json['data'], !1))
             var k = new Kanban("Kanban name", 0),
                 l = c.load();
-            l && (void 0 != e.kanbanName && c.get(e.kanbanName) ? k = c.get(e.kanbanName) : void 0 != c.getLastUsed() && (k = c.getLastUsed(), f.path("/kanban/" + k.name))), a.kanban = k, a.allKanbans = Object.keys(c.all()), a.selectedToOpen = a.newName = k.name, a.switchToList = a.allKanbans.slice(0), a.switchToList.splice(0, 0, "Switch to ..."), a.switchTo = "Switch to ...", a.$watch("kanban", function() {
-                c.save()
-            }, !0), a.columnHeight = angular.element(b).height() - 110, a.columnWidth = h(a.kanban.columns.length), a.triggerOpen = function() {
+            l && (void 0 != e.kanbanName && c.get(e.kanbanName) ? k = c.get(e.kanbanName) : void 0 != c.getLastUsed() && (k = c.getLastUsed(), f.path("/kanban/" + k.name))), a.kanban = k, a.allKanbans = Object.keys(c.all()), a.selectedToOpen = a.newName = k.name, a.switchToList = a.allKanbans.slice(0), a.switchToList.splice(0, 0, "Switch to ..."), a.switchTo = "Switch to ...",
+                a.$watch("kanban", function() {
+                    c.save()
+                }, !0), a.columnHeight = angular.element(b).height() - 110, a.columnWidth = h(a.kanban.columns.length), a.triggerOpen = function() {
                 a.$broadcast("TriggerOpenKanban")
             }, void 0 != c.getTheme() && "" != c.getTheme() && d.setCurrentTheme(c.getTheme())
         },
@@ -680,16 +627,6 @@ angular.module("mpk").controller("NewKanbanCardController", NewKanbanCardControl
         b.addColumnNextToColumn(a.kanban, d, e,n ), a.$emit("ColumnsChanged"), a.$broadcast("CloseColumnSettings")
     })
 }]);
-var SwitchThemeController = ["$scope", "themesProvider", "kanbanRepository", function(a, b, c) {
-    a.model = {}, a.model.themes = b.getThemes();
-    var d = c.getTheme();
-    (void 0 == d || "" == d) && (d = b.defaultTheme), a.model.selectedTheme = d, a.switchTheme = function() {
-        b.setCurrentTheme(a.model.selectedTheme), c.setTheme(a.model.selectedTheme)
-    }, a.$on("OpenSwitchTheme", function() {
-        a.showSwitchTheme = !0
-    })
-}];
-angular.module("mpk").controller("SwitchThemeController", SwitchThemeController);
 angular.module("mpk").controller("ExportController", ["$scope", "kanbanRepository", "fileService", function(a, b, c) {
     a.model = {
         exportAll: !1,
@@ -848,9 +785,34 @@ angular.module("mpk").controller("ExportController", ["$scope", "kanbanRepositor
                     g.$modelValue.splice(b.item.sortable.dropindex, 0, b.item.sortable.moved)
                 })
             }, k.stop = function(a, b) {
+                if(b.item.sortable.received)
+                {
+                    card_id = b.item.sortable.moved.id;
+                    column_id = null;
+                    cls = d.$parent.kanban.columns
+                    for(i= 0; i< cls.length; i++)
+                    {
+                        for(j =0; j< cls[i].cards.length; j++)
+                        {
+                            if(cls[i].cards[j].id == card_id)
+                            {
+                                column_id = cls[i].id
+                            }
+                        }
+                    }
+                    data ={
+                        card_id: b.item.sortable.moved.id,
+                        card_name: b.item.sortable.moved.name,
+                        column_id: column_id
+                    }
+                    $.ajax({url: '/kanban/cards/change_column.json',
+                        data: data,
+                        type: 'POST'
+                    })
+                }
                 !b.item.sortable.received && "dropindex" in b.item.sortable && !b.item.sortable.isCanceled() ? d.$apply(function() {
                     g.$modelValue.splice(b.item.sortable.dropindex, 0, g.$modelValue.splice(b.item.sortable.index, 1)[0])
-                }) : "dropindex" in b.item.sortable && !b.item.sortable.isCanceled() || "clone" === e.sortable("option", "helper") || i.detach().appendTo(e)
+                }) :   "dropindex" in b.item.sortable && !b.item.sortable.isCanceled() || "clone" === e.sortable("option", "helper") || i.detach().appendTo(e)
             }, k.receive = function(a, b) {
                 b.item.sortable.received = !0
             }, k.remove = function(a, b) {
