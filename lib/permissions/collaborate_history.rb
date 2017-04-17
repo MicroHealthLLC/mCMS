@@ -13,6 +13,11 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_sticky_notes, {'sticky_notes/sticky_notes' => [:index, :save]},  :read => true
   end
 
+   map.project_module :kanban do |map|
+    map.permission :view_kanban, {'kanban/projects' => [:index]},  :read => true
+    map.permission :manage_kanban, {'kanban/projects' => [:index, :manage_users]},  :read => true
+  end
+
   map.project_module :my_todo_list do |map|
     map.permission :manage_todo_list, {'todo_list/todos' => [:index, :save]},  :read => true
   end

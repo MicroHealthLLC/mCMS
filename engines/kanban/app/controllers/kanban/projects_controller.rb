@@ -7,13 +7,7 @@ module Kanban
     before_action :find_project, only: [:update, :destroy]
     def index
       respond_to do |format|
-        format.html{
-          @projects = if User.current.admin?
-                        Kanban::Project.pluck(:name, :id)
-                      else
-                        User.current.projects.pluck(:name,  :id)
-                      end
-        }
+        format.html{}
         format.json do
           if params[:project_name]
             project = Kanban::Project.find_by(name: params[:project_name])
@@ -24,13 +18,21 @@ module Kanban
               end
             end
            end
-          @project = Kanban::Project.find_by(id: User.current.last_project_used_id)
-          json = if @project
-                   @project.for_local_storage
-                 else
-                   last_project = User.current.projects.last
-                   last_project ? last_project.for_local_storage : Kanban::Project.default_local_storage
-                 end
+          @project = Kanban::Project.find_by(id: User.current.last_project_used_id) || User.current.projects.last
+          unless @project
+            if User.current.can?(:manage_roles)
+              @project = Kanban::Project.last
+            end
+          end
+          json =  @project ? @project.for_local_storage : Kanban::Project.default_local_storage
+          projects =  if User.current.can?(:manage_roles)
+                        Kanban::Project.where.not(name: @project.try(:name) )
+                      else
+                        User.current.projects.where.not(name: @project.try(:name))
+                      end
+          projects.each do |p|
+            json['kanbans'].merge!(p.name => {})
+          end
           render json: {success: true, data: json}
         end
       end

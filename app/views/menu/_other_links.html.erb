@@ -45,7 +45,7 @@
       </ul>
     </li>
 <% end %>
-<% modules = ['sticky', 'sticky_notes',
+<% modules = ['sticky', 'sticky_notes', 'kanban/projects',
               'personal_organizer',
               'todo_list']
 %>
@@ -57,6 +57,12 @@
         <% if module_enabled?('sticky') and can?(:manage_roles, :manage_sticky) %>
             <li class="<%= menu_active?('sticky') %>">
               <a href="<%= '/sticky' %>" title="<%= 'My checklists' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'My checklists' %></span></a>
+            </li>
+        <% end %>
+
+        <% if module_enabled?('kanban/projects') && can?(:view_kanban, :manage_kanban, :manage_roles)%>
+            <li class="<%= menu_active?('kanban/projects') %>">
+              <a href="<%= '/kanban' %>" title="<%= 'Kanban' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'Kanban' %></span></a>
             </li>
         <% end %>
 
