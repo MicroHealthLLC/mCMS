@@ -60,7 +60,7 @@
             </li>
         <% end %>
 
-        <% if module_enabled?('kanban/projects') && can?(:view_kanban, :manage_kanban, :manage_roles)%>
+        <% if module_enabled?('kanban/projects') && can?(:view_kanban, :manage_kanban_projects, :manage_roles)%>
             <li class="<%= menu_active?('kanban/projects') %>">
               <a href="<%= '/kanban' %>" title="<%= 'Kanban' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'Kanban' %></span></a>
             </li>

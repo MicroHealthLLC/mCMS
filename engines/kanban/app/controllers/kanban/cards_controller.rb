@@ -3,6 +3,7 @@
 module Kanban
   class CardsController < ApplicationController
     before_action  :authenticate_user!
+    before_action  :authorize
     before_filter :find_project, only: :create
     before_filter :find_column, only: :create
 

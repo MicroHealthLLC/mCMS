@@ -14,8 +14,16 @@ RedCarpet::AccessControl.map do |map|
   end
 
    map.project_module :kanban do |map|
-    map.permission :view_kanban, {'kanban/projects' => [:index]},  :read => true
-    map.permission :manage_kanban, {'kanban/projects' => [:index, :manage_users]},  :read => true
+    map.permission :view_kanban, {
+        'kanban/projects' => [:index, :create, :update, :destroy],
+        'kanban/columns' => [:index, :create, :update, :destroy],
+        'kanban/cards' => [:index, :create, :update, :destroy, :change_column, :archive, :unarchive ]
+    },  :read => true
+    map.permission :manage_kanban_projects, {
+        'kanban/projects' => [:index, :create, :update, :destroy, :manage_users],
+        'kanban/columns' => [:index, :create, :update, :destroy],
+        'kanban/cards' => [:index, :create, :update, :destroy, :change_column, :archive, :unarchive ]
+    },  :read => true
   end
 
   map.project_module :my_todo_list do |map|

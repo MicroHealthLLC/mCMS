@@ -85,6 +85,9 @@ RedCarpet::AccessControl.map do |map|
         "rordit/points" => [:give_point_to_link, :give_point_to_comment],
         'sticky_notes/sticky_notes' => [:index, :save],
         'todo_list/todos' => [:index, :save],
+        'kanban/projects' => [:index, :create, :update, :destroy, :manage_users],
+        'kanban/columns' => [:index, :create, :update, :destroy],
+        'kanban/cards' => [:index, :create, :update, :destroy, :change_column, :archive, :unarchive ],
         :document_managers => [:index, :show, :search, :destroy, :create, :update, :download],
         :revisions=>[:download, :create]
 

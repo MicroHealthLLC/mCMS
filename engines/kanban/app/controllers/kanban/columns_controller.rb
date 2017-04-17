@@ -3,6 +3,7 @@
 module Kanban
   class ColumnsController < ApplicationController
     before_action  :authenticate_user!
+    before_action  :authorize
     before_filter :find_project
     before_filter :find_column, only: [:create, :update, :destroy]
     def index

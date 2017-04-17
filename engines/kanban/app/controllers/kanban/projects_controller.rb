@@ -3,6 +3,7 @@
 module Kanban
   class ProjectsController < ApplicationController
     before_action  :authenticate_user!
+    before_action  :authorize
 
     before_action :find_project, only: [:update, :destroy]
     def index
