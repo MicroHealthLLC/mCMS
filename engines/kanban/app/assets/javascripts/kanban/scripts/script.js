@@ -184,6 +184,7 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
             })
         },
         unarchiveCard: function(a, b) {
+            that = this;
             data = {
                 project: a.name,
                 project_id: a.id,
@@ -201,6 +202,30 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
                         }
                         that.removeFromArchive(a, b);
                         c(a).cards.push(b.card)
+                    }
+                    else
+                        alert(json['errors'])
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    alert(xhr.status);
+                }
+            })
+        },
+         removeArchivedCard: function(a, b) {
+            that = this;
+            data = {
+                project: a.name,
+                project_id: a.id,
+                card_id:  b.card.id
+            }
+            $.ajax({
+                url: '/kanban/cards/destroy.json',
+                type: 'DELETE',
+                data: data,
+                async: false,
+                success: function(json){
+                    if(json['success']){
+                        that.removeFromArchive(a, b);
                     }
                     else
                         alert(json['errors'])
@@ -359,13 +384,14 @@ var NewKanbanController = ["$scope", "kanbanRepository", "kanbanManipulator", fu
             url: '/kanban/projects/create.json',
             data : d,
             type: 'POST',
+            async: false,
             success: function(json)
             {
                 if(json['success'])
                 {
                     for (var f = 1; f < parseInt(a.model.numberOfColumns) + 1; f++) c.addColumn(d, "Column " + f);
                     b.add(d);
-                    a.kanbanName = ""
+                    a.kanbanName = "";
                     a.numberOfColumns = 3;
                     b.setLastUsed(d.name);
                     a.$emit("NewKanbanAdded");
@@ -699,14 +725,13 @@ angular.module("mpk").controller("ExportController", ["$scope", "kanbanRepositor
         var a = new Date(Date.parse(a));
         return a.toUTCString()
     }, a.unarchiveSelected = function() {
-        // TODO CODE FOR INARCHIVE
         angular.forEach(a.model.archived, function(c) {
             c.selected && (a.model.archived.splice(a.model.archived.indexOf(c), 1), b.unarchiveCard(a.model.kanban, c.original))
         })
     }, a.deleteSelected = function() {
         // TODO FOR DELETE ARCHIVE CARD
         angular.forEach(a.model.archived, function(c) {
-            c.selected && (a.model.archived.splice(a.model.archived.indexOf(c), 1), b.removeFromArchive(a.model.kanban, c.original))
+            c.selected && (a.model.archived.splice(a.model.archived.indexOf(c), 1), b.removeArchivedCard(a.model.kanban, c.original))
         })
     }
 }]), angular.module("mpk").directive("colorSelector", function() {

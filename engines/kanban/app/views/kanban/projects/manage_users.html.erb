@@ -1,0 +1,13 @@
+<h1>Manage User for <%= @project.name %></h1>
+<%= form_tag  do %>
+    <div class="row">
+      <% User.all.each do |user| %>
+          <div class="col-xs-12 col-sm-6 col-md-3">
+            <%= check_box_tag 'user[]', user.id, user.projects.include?(@project) %> <%=  user %>
+          </div>
+        <% end %>
+    </div>
+
+
+    <%= submit_tag :save , class: 'btn btn-primary' %>
+<% end %>

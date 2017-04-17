@@ -31,9 +31,9 @@
         </div>
         <div class="col-md-9">
           <div id="quickSwitch" class="pull-right form-group">
-            <select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-              <% @projects.each do |p| %>
-                  <option value="/kanban#/kanban/<%= p %>" <%= "selected" if true %> >
+            <select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value); window.location.reload();">
+              <% @projects.each do |p, i| %>
+                  <option value="/kanban#/kanban/<%= p %>" <%= "selected" if User.current.last_project_used_id == i %> >
                     <%= p %>
                   </option>
               <% end %>
@@ -49,6 +49,11 @@
                     <li><a class="mpkNew" title="New Kanban board" ng-click="kanbanMenu.openNewKanban()"><i class="glyphicon glyphicon-briefcase"></i> New</a>
                     </li>
                     <li><a title="Downloadelete Kanban from local storage" ng-click="kanbanMenu.delete()"><i class="glyphicon glyphicon-remove-sign"></i> Delete</a></li>
+                    <% if User.current.last_project_used_id %>
+                        <li role="presentation" class="divider"></li>
+                        <li> <a href="/kanban/projects/manage_users"> Manage Users</a></li>
+                        <li role="presentation" class="divider"></li>
+                    <% end %>
                 <% end %>
                 <li><a title="Open archive" ng-click="kanbanMenu.openArchive(kanban)"><i class="glyphicon glyphicon-folder-open"></i> Archives</a></li>
               </ul>

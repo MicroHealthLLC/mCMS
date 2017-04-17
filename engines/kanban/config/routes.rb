@@ -21,6 +21,7 @@ Kanban::Engine.routes.draw do
   delete 'columns/destroy'
 
   get 'projects/index'
+  match 'projects/manage_users', via: [:get, :post]
 
   post 'projects/create'
 
