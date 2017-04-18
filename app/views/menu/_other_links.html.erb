@@ -1,5 +1,5 @@
 <% modules = ['rordit', 'link_share',  'collaborate',
-              'wikis', 'forum', 'document_managers',
+              'wikis', 'forum', 'document_managers','kanban/projects',
               'news', 'conference'
 ]
 %>
@@ -10,6 +10,12 @@
         <% if module_enabled?('rordit/links') && can?(:view_rordit, :manage_roles, :manage_link_share)%>
             <li class="<%= menu_active?('rordit/links') %>">
               <a href="<%= '/rordit' %>" title="<%= 'Link Share' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'Link Share' %></span></a>
+            </li>
+        <% end %>
+
+        <% if module_enabled?('kanban/projects') && can?(:view_kanban, :manage_kanban_projects, :manage_roles)%>
+            <li class="<%= menu_active?('kanban/projects') %>">
+              <a href="<%= '/kanban' %>" title="<%= 'Planner' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'Planner' %></span></a>
             </li>
         <% end %>
 
@@ -45,7 +51,7 @@
       </ul>
     </li>
 <% end %>
-<% modules = ['sticky', 'sticky_notes', 'kanban/projects',
+<% modules = ['sticky', 'sticky_notes',
               'personal_organizer',
               'todo_list']
 %>
@@ -57,12 +63,6 @@
         <% if module_enabled?('sticky') and can?(:manage_roles, :manage_sticky) %>
             <li class="<%= menu_active?('sticky') %>">
               <a href="<%= '/sticky' %>" title="<%= 'My checklists' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'My checklists' %></span></a>
-            </li>
-        <% end %>
-
-        <% if module_enabled?('kanban/projects') && can?(:view_kanban, :manage_kanban_projects, :manage_roles)%>
-            <li class="<%= menu_active?('kanban/projects') %>">
-              <a href="<%= '/kanban' %>" title="<%= 'Kanban' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'Kanban' %></span></a>
             </li>
         <% end %>
 
