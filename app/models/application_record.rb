@@ -13,11 +13,11 @@ class ApplicationRecord < ActiveRecord::Base
   end
 
   after_create do
-    UserMailer.send_notification(self).deliver_later if can_send_email?
+    UserMailer.send_notification(self).deliver_later if can_send_email? && email_notification_enabled?('creatye')
   end
 
   after_update do
-    if can_send_email?
+    if can_send_email? && email_notification_enabled?('update')
       last_audit = Array.wrap(self.try(:audits)).last
       if last_audit
         UserMailer.send_update_notification(self, last_audit).deliver_later
@@ -25,6 +25,11 @@ class ApplicationRecord < ActiveRecord::Base
         UserMailer.send_notification(self).deliver_later
       end
     end
+  end
+
+  def email_notification_enabled?(type)
+    notif = EmailNotification.find_by(email_type: type, name: "#{self.class}") || EmailNotification.new(status: false)
+    notif.enabled?
   end
 
   scope :visible, -> { where(user_id: User.current.id) }

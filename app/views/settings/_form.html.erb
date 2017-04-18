@@ -3,7 +3,8 @@
     <li><a id="link-tabs-general" href="#tabs-home" >Home page</a></li>
     <li><a id="link-tabs-modules" href="#tabs-module">Module page</a></li>
     <li><a id="link-tabs-modules" href="#tabs-theme">Themes</a></li>
-    <li><a id="link-tabs-modules" href="#tabs-user">Authentification</a></li>
+    <li><a id="link-tabs-modules" href="#tabs-authentification">Authentification</a></li>
+    <li><a id="link-tabs-modules" href="#tabs-notification">Notifications</a></li>
   </ul>
   <div id='tabs-home' >
     <%= render partial: 'general_setting' %>
@@ -25,7 +26,6 @@
       <% end %>
     </div>
   </div>
-
   <div id='tabs-theme' >
     <div class="row">
       <div class="col-xs-12">
@@ -33,10 +33,17 @@
       </div>
     </div>
   </div>
-  <div id='tabs-user' >
+  <div id='tabs-authentification' >
     <div class="row">
       <div class="col-xs-12">
         <%= render partial: 'cms_user' %>
+      </div>
+    </div>
+  </div>
+  <div id='tabs-notification' >
+    <div class="row">
+      <div class="col-xs-12">
+        <%= render partial: 'cms_email' %>
       </div>
     </div>
   </div>

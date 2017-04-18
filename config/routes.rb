@@ -317,6 +317,7 @@ Rails.application.routes.draw do
   resources :settings, only: [:index, :create] do
     collection do
       post 'set_user_auth'
+      post 'set_notification'
       post 'set_modules'
       post 'set_theme'
     end

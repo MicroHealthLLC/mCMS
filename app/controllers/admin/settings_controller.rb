@@ -22,6 +22,12 @@ class SettingsController < ProtectForgeryApplication
     redirect_to settings_path
   end
 
+  def set_notification
+    EmailNotification.where.not(id: params[:notifications]).update_all(status: false)
+    EmailNotification.where(id: params[:notifications]).update_all(status: true)
+    redirect_to settings_path
+  end
+
   def set_user_auth
     Setting['user_default_state'] = params['user_default_state']
     Setting['remember_for'] = params['remember_for']
