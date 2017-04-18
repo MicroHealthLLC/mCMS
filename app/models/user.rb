@@ -46,6 +46,8 @@ class User < ApplicationRecord
   has_many :needs, dependent: :destroy
   has_many :goals, dependent: :destroy
   has_many :plans, dependent: :destroy
+  has_many :project_users, class_name: 'Kanban::ProjectUser'
+  has_many :projects, through: :project_users, class_name: 'Kanban::Project'
 
   has_many :tasks, dependent: :destroy
   has_many :assigned_tasks, class_name: 'Task', foreign_key: :assigned_to_id
