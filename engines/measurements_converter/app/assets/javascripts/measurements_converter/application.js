@@ -11,4 +11,3 @@
 // about supported directives.
 //
 //= require ./angular-1.6.3.min
-//= require ./converter
