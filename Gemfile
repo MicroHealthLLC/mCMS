@@ -175,6 +175,8 @@ gem "simple_calendar", "~> 2.0"
 
 # Engines
 gem 'todo_list', path: 'engines/todo_list'
+gem 'calculator', path: 'engines/calculator'
+gem 'measurements_converter', path: 'engines/measurements_converter'
 gem 'sticky_notes', path: 'engines/sticky_notes'
 gem 'rordit', path: 'engines/rordit'
 gem 'kanban', path: 'engines/kanban'

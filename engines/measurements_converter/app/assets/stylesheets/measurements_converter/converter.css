@@ -1,0 +1,70 @@
+.containerMain {
+    width: 80%;
+    margin: 0 10% 0 10%;
+    height: 100%;
+}
+.containerMain h1 {
+    text-align: center;
+    width: 100%;
+    margin: 30px 0% 2% 0%;
+    font-size: 1.3em;
+}
+.containerMain ul {
+    margin: 1% 0 0 0;
+    padding: 0;
+    background-color: #555383;
+    background-color: #666494;
+}
+.containerMain ul li {
+    display: inline-block;
+    width: 24.5%;
+    text-align: center;
+    font-size: 1.1em;
+}
+.containerMain ul li:hover {
+    background-color: #6665a5;
+}
+
+.containerMain ul li a {
+    text-decoration: none;
+    color: #eee;
+    padding: 7% 0;
+    text-align: center;
+}
+
+form, fieldset {
+    border: none;
+}
+
+#innerContainer p {
+    width: 60%;
+    margin: 2% 20% 1% 20%;
+    text-align: center;
+}
+
+#results {
+    background-color: #aaaaee;
+    background-color: #9997c7;
+    padding: 3% 0;
+}
+
+#results form fieldset label {
+    width: 24%;
+    text-align: right;
+    margin: 3px 1% 3px 10%;
+    display: inline-block;
+}
+#results form fieldset input {
+    width: 40%;
+    padding: 5px;
+    margin: 3px 10% 3px 0;
+    display: inline-block;
+}
+#results form fieldset input:hover {
+    background-color: #eee;
+}
+
+
+.active1, .active2, .active3, .active4 {
+    background-color: #333272;
+}

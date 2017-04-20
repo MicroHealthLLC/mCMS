@@ -77,6 +77,16 @@
               <a href="<%= '/todo_list' %>" title="<%= 'My To Do List' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'My To Do List' %></span></a>
             </li>
         <% end %>
+        <% if module_enabled?('calculator') %>
+            <li class="<%= menu_active?('calculator/calculator') %>">
+              <a href="<%= '/calculator' %>" title="<%= 'Calculator' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'Calculator' %></span></a>
+            </li>
+        <% end %>
+        <% if module_enabled?('measurements_converter') %>
+            <li class="<%= menu_active?('measurements_converter/converter') %>">
+              <a href="<%= '/measurements_converter' %>" title="<%= 'Measurements Converter' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'Converter' %></span></a>
+            </li>
+        <% end %>
       </ul>
     </li>
 <% end %>

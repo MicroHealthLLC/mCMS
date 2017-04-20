@@ -326,6 +326,8 @@ Rails.application.routes.draw do
 
   # Engines
   mount Thredded::Engine => '/forum'
+  mount MeasurementsConverter::Engine => '/measurements_converter'
+  mount Calculator::Engine => '/calculator'
   mount TodoList::Engine => "/todo_list"
   mount StickyNotes::Engine => "/sticky_notes"
   mount Rordit::Engine => "/rordit"

@@ -1,0 +1,91 @@
+<%= stylesheet_link_tag 'measurements_converter/application' %>
+<div id="ng-app" ng-app="Converter" class="containerMain" ng-controller="mCtrl as type">
+  <div id="innerContainer" ng-controller="PanelCtrl as panel">
+    <h1>Measurement Converter</h1>
+    <ul>
+      <li class="{{panel.one}}"><a href="#" ng-click="panel.selectTab(0)">{{type.measurement[0].name}}</a></li>
+      <li class="{{panel.two}}"><a href="#"  ng-click="panel.selectTab(1)">{{type.measurement[1].name}}</a></li>
+      <li class="{{panel.three}}"><a href="#"  ng-click="panel.selectTab(2)">{{type.measurement[2].name}}</a></li>
+      <li class="{{panel.four}}"><a href="#"  ng-click="panel.selectTab(3)">{{type.measurement[3].name}}</a></li>
+    </ul>
+    <div id="results" ng-show="panel.isSelected(0)">
+      <form ng-controller="converterTemp as Temp">
+        <fieldset>
+          <label>{{type.measurement[0].in[0]}}</label>
+          <input type="text" ng-model="Cels" ng-keyup="Temp.Convert('Cels',Cels)">
+          <label>{{type.measurement[0].in[1]}}</label>
+          <input type="text" ng-model="Fahr"  ng-keyup="Temp.Convert('Fahr',Fahr)">
+          <label>{{type.measurement[0].in[2]}}</label>
+          <input type="text" ng-model="Kelv"  ng-keyup="Temp.Convert('Kelv',Kelv)">
+        </fieldset>
+      </form>
+    </div>
+    <div id="results" ng-show="panel.isSelected(1)">
+      <form ng-controller="converterLength as Length">
+        <fieldset>
+          <label>{{type.measurement[1].in[0]}}</label>
+          <input type="text" ng-model="Kilom" ng-keyup="Length.Convert('Kilom',Kilom)">
+          <label>{{type.measurement[1].in[1]}}</label>
+          <input type="text" ng-model="Meter" ng-keyup="Length.Convert('Meter',Meter)">
+          <label>{{type.measurement[1].in[2]}}</label>
+          <input type="text" ng-model="Centi" ng-keyup="Length.Convert('Centi',Centi)">
+          <label>{{type.measurement[1].in[3]}}</label>
+          <input type="text" ng-model="Milli" ng-keyup="Length.Convert('Milli',Milli)">
+          <label>{{type.measurement[1].in[4]}}</label>
+          <input type="text" ng-model="Mile" ng-keyup="Length.Convert('Mile',Mile)">
+          <label>{{type.measurement[1].in[5]}}</label>
+          <input type="text" ng-model="Yard" ng-keyup="Length.Convert('Yard',Yard)">
+          <label>{{type.measurement[1].in[6]}}</label>
+          <input type="text" ng-model="Foot" ng-keyup="Length.Convert('Foot',Foot)">
+          <label>{{type.measurement[1].in[7]}}</label>
+          <input type="text" ng-model="Inch" ng-keyup="Length.Convert('Inch',Inch)">
+          <label>{{type.measurement[1].in[8]}}</label>
+          <input type="text" ng-model="Naut" ng-keyup="Length.Convert('Naut',Naut)">
+        </fieldset>
+      </form>
+    </div>
+    <div id="results" ng-show="panel.isSelected(2)">
+      <form ng-controller="converterSpeed as Speed">
+        <fieldset>
+          <label>{{type.measurement[2].in[0]}}</label>
+          <input type="text"  ng-model="MilesH" ng-keyup="Speed.Convert('MilesH',MilesH)">
+          <label>{{type.measurement[2].in[1]}}</label>
+          <input type="text"  ng-model="FeetS" ng-keyup="Speed.Convert('FeetS',FeetS)">
+          <label>{{type.measurement[2].in[2]}}</label>
+          <input type="text"  ng-model="MetersS" ng-keyup="Speed.Convert('MetersS',MetersS)">
+          <label>{{type.measurement[2].in[3]}}</label>
+          <input type="text"  ng-model="Kmh" ng-keyup="Speed.Convert('Kmh',Kmh)">
+          <label>{{type.measurement[2].in[4]}}</label>
+          <input type="text"  ng-model="Knot" ng-keyup="Speed.Convert('Knot',Knot)">
+        </fieldset>
+      </form>
+    </div>
+    <div id="results" ng-show="panel.isSelected(3)">
+      <form ng-controller="converterMass as Mass">
+        <fieldset>
+          <label>{{type.measurement[3].in[0]}}</label>
+          <input type="text" ng-model="MetricT" ng-keyup="Mass.Convert('MetricT',MetricT)">
+          <label>{{type.measurement[3].in[1]}}</label>
+          <input type="text" ng-model="Kilog" ng-keyup="Mass.Convert('Kilog',Kilog)">
+          <label>{{type.measurement[3].in[2]}}</label>
+          <input type="text" ng-model="Gram" ng-keyup="Mass.Convert('Gram',Gram)">
+          <label>{{type.measurement[3].in[3]}}</label>
+          <input type="text" ng-model="Millig" ng-keyup="Mass.Convert('Millig',Millig)">
+          <label>{{type.measurement[3].in[4]}}</label>
+          <input type="text" ng-model="mcG" ng-keyup="Mass.Convert('mcG',mcG)">
+          <label>{{type.measurement[3].in[5]}}</label>
+          <input type="text" ng-model="LongT" ng-keyup="Mass.Convert('LongT',LongT)">
+          <label>{{type.measurement[3].in[6]}}</label>
+          <input type="text" ng-model="ShortT" ng-keyup="Mass.Convert('ShortT',ShortT)">
+          <label>{{type.measurement[3].in[7]}}</label>
+          <input type="text" ng-model="Stone" ng-keyup="Mass.Convert('Stone',Stone)">
+          <label>{{type.measurement[3].in[8]}}</label>
+          <input type="text" ng-model="Pound" ng-keyup="Mass.Convert('Pound',Pound)">
+          <label>{{type.measurement[3].in[9]}}</label>
+          <input type="text" ng-model="Ounce" ng-keyup="Mass.Convert('Ounce',Ounce)">
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
+<%= javascript_include_tag 'measurements_converter/application' %>
