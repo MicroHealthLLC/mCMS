@@ -24,10 +24,15 @@ RedCarpet::AccessControl.map do |map|
         'kanban/columns' => [:index, :create, :update, :destroy],
         'kanban/cards' => [:index, :create, :update, :destroy, :change_column, :archive, :unarchive ]
     },  :read => true
-  end
+   end
+
 
   map.project_module :my_todo_list do |map|
     map.permission :manage_todo_list, {'todo_list/todos' => [:index, :save]},  :read => true
+  end
+
+ map.project_module :events do |map|
+    map.permission :manage_events, {'event_calendar/events' => [:index, :new, :edit, :create, :update, :destroy]},  :read => true
   end
 
   map.project_module :chat_room do |map|

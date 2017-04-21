@@ -1,0 +1,25 @@
+<%= render partial: 'action_menu' %>
+
+<div class="row">
+  <div class="col-xs-12">
+    <p>
+      <strong>Title:</strong>
+      <%= @event.name %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @event.description.html_safe %>
+    </p>
+
+    <p>
+      <strong>Start time:</strong>
+      <%= format_date_time @event.start_time %>
+    </p>
+
+    <p>
+      <strong>End time:</strong>
+      <%= format_date_time @event.end_time %>
+    </p>
+  </div>
+</div>

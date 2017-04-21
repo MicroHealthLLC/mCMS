@@ -343,4 +343,5 @@ Rails.application.routes.draw do
   mount StickyNotes::Engine => "/sticky_notes"
   mount Rordit::Engine => "/rordit"
   mount Kanban::Engine => "/kanban"
+  mount EventCalendar::Engine => "/event_calendar"
 end

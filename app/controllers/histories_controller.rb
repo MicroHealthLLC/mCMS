@@ -1,7 +1,8 @@
 class HistoriesController < ApplicationController
   before_action  :authenticate_user!
+  before_action  :safe_type_param
   def show
-    @object = safe_type_param.constantize.find(params[:id])
+    @object = @type.constantize.find(params[:id])
     @audits = @object.audits.order('id DESC')
   end
 
@@ -9,7 +10,7 @@ class HistoriesController < ApplicationController
 
   def safe_type_param
     all_classes = ApplicationRecord.subclasses.map(&:to_s)
-    type = all_classes.detect{|klass| klass == params[:type] }
-    render_404 if type.nil?
+    @type = all_classes.detect{|klass| klass == params[:type] }
+    render_404 if @type.nil?
   end
 end
