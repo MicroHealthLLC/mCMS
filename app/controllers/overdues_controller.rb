@@ -5,15 +5,7 @@ class OverduesController < ProtectForgeryApplication
   end
 
   def case_overdue
-    scope = Case
-    scope = case params[:status_type]
-              when 'all' then scope.all_data
-              when 'opened' then scope.opened
-              when 'closed' then scope.closed
-              when 'flagged' then scope.flagged
-              else
-                scope.opened
-            end
+    scope = Case.all_data
     scope = scope.include_enumerations
     scope = if User.current.can?(:manage_roles)
               scope.where(assigned_to_id: User.current)
