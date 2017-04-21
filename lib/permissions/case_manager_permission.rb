@@ -88,7 +88,7 @@ RedCarpet::AccessControl.map do |map|
         'kanban/projects' => [:index, :create, :update, :destroy, :manage_users],
         'kanban/columns' => [:index, :create, :update, :destroy],
         'kanban/cards' => [:index, :create, :update, :destroy, :change_column, :archive, :unarchive ],
-        'event_calendar/events' => [:index, :new, :edit, :create, :update, :destroy],
+        'event_calendar/events' => [:index, :new, :show, :edit, :create, :update, :destroy],
         :document_managers => [:index, :show, :search, :destroy, :create, :update, :download],
         :revisions=>[:download, :create]
 

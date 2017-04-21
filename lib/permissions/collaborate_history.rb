@@ -32,7 +32,7 @@ RedCarpet::AccessControl.map do |map|
   end
 
  map.project_module :events do |map|
-    map.permission :manage_events, {'event_calendar/events' => [:index, :new, :edit, :create, :update, :destroy]},  :read => true
+    map.permission :manage_events, {'event_calendar/events' => [:index, :show,  :new, :edit, :create, :update, :destroy]},  :read => true
   end
 
   map.project_module :chat_room do |map|
