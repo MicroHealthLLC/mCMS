@@ -1,0 +1,17 @@
+<h2>Overdue</h2>
+<div id="case_overdue"></div>
+<div id="need_overdue"></div>
+<div id="goal_overdue"></div>
+<div id="plan_overdue"></div>
+<div id="action_overdue"></div>
+<div id="appointment_overdue"></div>
+<script>
+  $(document).ready(function(){
+    $.getScript('/overdues/case_overdue.js');
+    $.getScript('/overdues/need_overdue.js');
+    $.getScript('/overdues/plan_overdue.js');
+    $.getScript('/overdues/goal_overdue.js');
+    $.getScript('/overdues/action_overdue.js');
+    $.getScript('/overdues/appointment_overdue.js');
+  })
+</script>

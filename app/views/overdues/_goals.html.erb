@@ -1,0 +1,14 @@
+<% if module_enabled?('goals') %>
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= render partial: 'goals/list',
+                   layout: 'shared/smart_widget_wrapper',
+                   locals: {
+                       show_case_column: false,
+                       goals: @goals,
+                       wid_id: 'goals',
+                       wid_title: 'goals'
+                   } %>
+      </article>
+    </div>
+<% end %>

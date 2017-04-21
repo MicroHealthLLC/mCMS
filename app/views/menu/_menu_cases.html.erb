@@ -125,6 +125,12 @@
                 </li>
             <% end %>
 
+
+            <li class="<%= menu_active?('overdue') %>">
+              <a href="/overdues" title="<%= 'Overdue' %>"><i class="fa fa-lg fa-fw fa-circle"></i><span class="menu-item-parent"><%= 'Overdue' %></span></a>
+            </li>
+
+
             <% if module_enabled?( 'my_appointments') %>
                 <li class="<%= menu_active?('appointments') %>">
                   <a href="/appointments" title="<%= t(:my_appointments) %>"><i class="fa fa-lg fa-fw fa-calendar"></i> <span class="menu-item-parent"><%= t(:my_appointments) %></span></a>

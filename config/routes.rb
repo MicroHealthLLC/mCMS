@@ -323,6 +323,17 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :overdues, only: :index do
+    collection do
+      get 'case_overdue'
+      get 'appointment_overdue'
+      get 'need_overdue'
+      get 'plan_overdue'
+      get 'goal_overdue'
+      get 'action_overdue'
+    end
+  end
+
 
   # Engines
   mount Thredded::Engine => '/forum'

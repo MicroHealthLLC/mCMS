@@ -1,0 +1,14 @@
+<% if module_enabled?('plans') %>
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= render partial: 'plans/list',
+                   layout: 'shared/smart_widget_wrapper',
+                   locals: {
+                       show_case_column: false,
+                       plans: @plans,
+                       wid_id: 'plans',
+                       wid_title: 'plans'
+                   } %>
+      </article>
+    </div>
+<% end %>

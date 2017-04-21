@@ -1,0 +1,14 @@
+<% if module_enabled?('appointments') %>
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= render partial: 'appointments/list',
+                   layout: 'shared/smart_widget_wrapper',
+                   locals: {
+                       show_case_column: false,
+                       appointments: @appointments,
+                       wid_id: 'appointments',
+                       wid_title: 'appointments'
+                   } %>
+      </article>
+    </div>
+<% end %>
