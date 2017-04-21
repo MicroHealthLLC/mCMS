@@ -13,6 +13,12 @@
             </li>
         <% end %>
 
+         <% if module_enabled?('events') && can?(:view_events, :manage_roles, :manage_events)%>
+            <li class="<%= menu_active?('event_calendar/events') %>">
+              <a href="<%= '/event_calendar' %>" title="<%= 'Events' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'Events' %></span></a>
+            </li>
+        <% end %>
+
         <% if module_enabled?('kanban/projects') && can?(:view_kanban, :manage_kanban_projects, :manage_roles)%>
             <li class="<%= menu_active?('kanban/projects') %>">
               <a href="<%= '/kanban' %>" title="<%= 'Planner' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'Planner' %></span></a>
