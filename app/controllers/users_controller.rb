@@ -1,8 +1,8 @@
 class UsersController < ProtectForgeryApplication
   before_action  :authenticate_user!
-  before_action :find_user, except: [:restore, :index, :new, :create, :recently_connected]
+  before_action :find_user, except: [:restore, :index, :active, :recently_connected]
 
-  before_filter :require_admin, only: [:destroy]
+  before_filter :require_admin, only: [:destroy, :active]
   def index
     respond_to do |format|
       format.html{}
@@ -22,6 +22,19 @@ class UsersController < ProtectForgeryApplication
             where.not(id: current_user.id )
       }
     end
+  end
+
+  def active
+    if request.post?
+      user = User.find params[:user_id]
+      user.last_seen_at = 1.year.ago
+      user.save
+    end
+    @users = User.recently_active.
+        includes(:core_demographic).
+        references(:core_demographic)
+  rescue ActiveRecord::RecordNotFound
+    render_404
   end
 
   def restore

@@ -32,7 +32,8 @@ class ApplicationController < ActionController::Base
         User.current = current_user
         @user = User.current
       end
-      current_user.update(last_seen_at:  Time.now ) if request.get?
+      current_user.last_seen_at =  Time.now
+      current_user.save(validate: false)
     end
   rescue ActiveRecord::RecordNotFound
     render_404

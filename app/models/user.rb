@@ -5,7 +5,7 @@ class User < ApplicationRecord
   acts_as_paranoid
 
   # ldap_authenticatable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable, :timeoutable,
          :recoverable, :rememberable, :trackable, :lockable, :omniauthable,
          :password_expirable, :password_archivable,
          :session_limitable, :expirable, :secure_validatable
@@ -74,6 +74,14 @@ class User < ApplicationRecord
     return false
   end
 
+  def timeout_in
+    if last_seen_at < 10.months.ago
+      1.second
+    else
+      super
+    end
+  end
+
   def writable_categories
     categories = []
     Category.all.each do |category|
@@ -140,7 +148,7 @@ class User < ApplicationRecord
       user.login = auth.info.email || "#{auth.uid}@#{auth.provider}.com"
       user.password = Devise.friendly_token[0,20]
       user.ldap_authenticatable= '',
-      user.state = Setting['user_default_state']
+          user.state = Setting['user_default_state']
     end
   end
 
@@ -207,12 +215,12 @@ class User < ApplicationRecord
   end
 
   def has_unread_message(receiver)
-  chat_room = ChatRoom.where(user_id: self.id).where(receiver_id: receiver.id).or(ChatRoom.where(user_id: receiver.id).where(receiver_id: self.id)).first
-  unless chat_room.message_seen?
-    if chat_room.messages.last.user_id != self.id
-      chat_room.messages.last.body
+    chat_room = ChatRoom.where(user_id: self.id).where(receiver_id: receiver.id).or(ChatRoom.where(user_id: receiver.id).where(receiver_id: self.id)).first
+    unless chat_room.message_seen?
+      if chat_room.messages.last.user_id != self.id
+        chat_room.messages.last.body
+      end
     end
-  end
   end
 
   def self.current=(user)
@@ -383,7 +391,7 @@ class User < ApplicationRecord
     pdf.table([[ "Active: ", " #{active?}"]], :column_widths => [ 150, 373])
 
     pdf.move_down 10
-     pdf.table([["Profile Information"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
+    pdf.table([["Profile Information"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
 
     pdf.table([[ "Name: ", " #{profile_name}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Gender: ", " #{gender}"]], :column_widths => [ 150, 373])
