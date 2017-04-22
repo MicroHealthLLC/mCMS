@@ -284,6 +284,8 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :show, :destroy] do
     collection do
       match 'recently_connected', via: [:post, :get]
+      match 'active', via: [:post, :get]
+      match 'audit', via: [ :get]
     end
     member do
       get 'restore'

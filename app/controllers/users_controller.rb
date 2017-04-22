@@ -1,6 +1,6 @@
 class UsersController < ProtectForgeryApplication
   before_action  :authenticate_user!
-  before_action :find_user, except: [:restore, :index, :active, :recently_connected]
+  before_action :find_user, except: [:restore, :index, :active, :audit, :recently_connected]
 
   before_filter :require_admin, only: [:destroy, :active]
   def index
@@ -35,6 +35,11 @@ class UsersController < ProtectForgeryApplication
         references(:core_demographic)
   rescue ActiveRecord::RecordNotFound
     render_404
+  end
+
+  def audit
+    @users = User.includes(:core_demographic).
+        references(:core_demographic)
   end
 
   def restore
