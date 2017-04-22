@@ -14,7 +14,12 @@
             <% @timeline.each do |object| %>
                 <li>
                   <div class="smart-timeline-icon">
-                    <%= image_tag (object.user ? object.user.profile_image : 'male.png' ), width: '32', height: '32', alt: 'user' %>
+                    <% if object.try(:updated_by) %>
+                        <%= image_tag (object.updated_by.profile_image ), width: '32', height: '32', alt: 'user' %>
+                    <% else %>
+                        <%= image_tag (object.user.profile_image), width: '32', height: '32', alt: 'user' %>
+                    <% end %>
+
                   </div>
                   <div class="smart-timeline-time">
                     <small><%=time_ago_in_words object.updated_at %></small>
