@@ -63,6 +63,10 @@ class Note < ApplicationRecord
     pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
+  def to_s
+    "#{self.class} ##{id}"
+  end
+
 end
 
 require_dependency 'task_note'

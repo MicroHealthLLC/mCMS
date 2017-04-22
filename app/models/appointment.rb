@@ -55,6 +55,15 @@ class Appointment < ApplicationRecord
     end
   end
 
+  def little_description
+    output = '<p>Appointment</p>'
+    output<< "<p> #{appointment_type} </p>"
+    output<< "<p> From: #{start_time_to_time} </p>"
+    output<< "<p> To: #{end_time_to_time} </p>"
+
+    output.html_safe
+  end
+
   def self.my_appointments
     my_appointment_created.or(Appointment.my_appointment_for_me)
   end

@@ -90,6 +90,15 @@ class Goal < ApplicationRecord
     pdf.table([[ "Date completed ", " #{date_completed}"]], :column_widths => [ 150, 373])
   end
 
+  def little_description
+    output = 'Goal'
+    output<< "<p>Status #{goal_status} </p>"
+    output<< "<p> Priority: #{priority_type} </p>"
+    output<< "<p> Percent Done: #{percent_done} % </p>"
+
+    output.html_safe
+  end
+
   def can_send_email?
     true
   end

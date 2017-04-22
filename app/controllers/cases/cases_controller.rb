@@ -2,7 +2,10 @@ class CasesController < UserCasesController
   add_breadcrumb I18n.t(:cases), :cases_path
 
 
-  before_action :set_case, only: [:new_assign_survey, :watchers, :new_assign, :show, :edit, :update, :destroy, :new_relation, :delete_sub_case_relation]
+  before_action :set_case, only: [:new_assign_survey, :watchers,
+                                  :new_assign, :show, :edit, :update,
+                                  :destroy, :new_relation, :delete_sub_case_relation,
+                                  :timeline]
 
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
@@ -84,6 +87,28 @@ class CasesController < UserCasesController
     @watchers     = @case.watchers.includes(:user=> :core_demographic)
 
     @case_supports = @case.case_supports.active
+  end
+
+
+  def timeline
+    @timeline = []
+    @timeline << @case.sub_cases
+    @timeline << @case.relations
+
+    @timeline << @case.tasks
+    @timeline << @case.documents
+    @timeline << @case.case_notes
+    @timeline << @case.appointments
+    @timeline << @case.needs
+    @timeline << @case.plans
+    @timeline << @case.goals
+    @timeline << @case.jsignatures
+    @timeline << @case.enrollments
+    @timeline << @case.referrals
+    @timeline << @case.teleconsults
+    @timeline << @case.case_supports.active
+    @timeline.flatten!.compact!
+    @timeline.sort_by!{|a| Time.now - a.updated_at }
   end
 
   def watchers

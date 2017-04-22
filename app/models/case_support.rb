@@ -84,6 +84,16 @@ class CaseSupport < ApplicationRecord
     pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
+  def little_description
+    output = 'Case support'
+    output<< "<p> Type:  #{case_support_type} </p>"
+    output<< "<p> Status: #{support_status} </p>"
+    output<< "<p> Date started #{date_started} </p>"
+
+    output.html_safe
+  end
+
+
   def can_send_email?
     true
   end

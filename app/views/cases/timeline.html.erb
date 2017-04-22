@@ -1,0 +1,51 @@
+<!-- MAIN CONTENT -->
+<div id="content">
+  <!-- end row -->
+
+  <!-- row -->
+  <div class="row">
+
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+      <div class="well well-sm">
+        <!-- Timeline Content -->
+        <div class="smart-timeline">
+          <ul class="smart-timeline-list">
+            <% @timeline.each do |object| %>
+                <li>
+                  <div class="smart-timeline-icon">
+                    <%= image_tag (object.user ? object.user.profile_image : 'male.png' ), width: '32', height: '32', alt: 'user' %>
+                  </div>
+                  <div class="smart-timeline-time">
+                    <small><%=time_ago_in_words object.updated_at %></small>
+                  </div>
+                  <div class="smart-timeline-content">
+                    <p>
+                      <%= link_to object do %>
+                          <strong><%= object.to_s %></strong>
+                      <% end %>
+                    </p>
+                    <p>
+                      <%= object.little_description %>
+                    </p>
+                  </div>
+                </li>
+            <% end %>
+
+            <!--<li class="text-center">-->
+              <!--<a href="javascript:void(0)" class="btn btn-sm btn-default"><i class="fa fa-arrow-down text-muted"></i> LOAD MORE</a>-->
+            <!--</li>-->
+          </ul>
+        </div>
+        <!-- END Timeline Content -->
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- end row -->
+
+</div>
+<!-- END MAIN CONTENT -->

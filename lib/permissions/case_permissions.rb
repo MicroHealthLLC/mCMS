@@ -89,7 +89,7 @@ RedCarpet::AccessControl.map do |map|
     map.permission :create_cases, {:cases => [:new, :create]},  :read => true
     map.permission :edit_cases, {:cases => [:edit, :update]},  :read => true
     map.permission :delete_cases, {:cases => [:destroy]},  :read => true
-    map.permission :manage_cases, {:cases => [:subcases, :all_files, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_cases, {:cases => [:timeline, :subcases, :all_files, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :case_watchers do |map|

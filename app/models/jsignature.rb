@@ -12,6 +12,15 @@ class Jsignature < ApplicationRecord
     [:user_id, :person_name, :signature_owner_type, :signature_owner_id, :signature]
   end
 
+  def little_description
+    output = ''
+    output<< "<p> Person name: #{person_name} </p>"
+    output<< "<p> Signature: #{ActionController::Base.helpers.image_tag(signature.html_safe, size: '200x150')} </p>"
+
+    output.html_safe
+  end
+
+
   def to_pdf(pdf, name = 'Signature')
     path = "public/signature"
     unless File.directory?(path)

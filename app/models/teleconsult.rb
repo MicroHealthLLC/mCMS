@@ -68,6 +68,15 @@ class Teleconsult < ApplicationRecord
     pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
 
+  def little_description
+    output = 'Teleconsult'
+    output<< "<p> Type: #{contact_type} </p>"
+    output<< "<p>Status:  #{consult_status}</p>"
+    output<< "<p> Date & Time: #{date} #{time}</p>"
+    output.html_safe
+  end
+
+
   def can_send_email?
     true
   end

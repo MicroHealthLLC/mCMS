@@ -76,6 +76,15 @@ class Referral < ApplicationRecord
     pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(referral_reason)}"]], :column_widths => [ 150, 373])
   end
 
+  def little_description
+    output = 'Referral'
+    output<< "<p> Type: #{referral_type} </p>"
+    output<< "<p> Status:#{referral_status} </p>"
+    output<< "<p> date: #{referral_date} </p>"
+
+    output.html_safe
+  end
+
   def can_send_email?
     true
   end

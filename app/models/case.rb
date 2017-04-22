@@ -52,6 +52,15 @@ class Case < ApplicationRecord
         references(:case_type, :case_status_type, :case_category_type, :priority_type, :case_source)
   end
 
+  def little_description
+    output = 'Case'
+    output<< "<p> #{case_type} </p>"
+    output<< "<p> #{date_start} </p>"
+    output<< "<p> #{date_due} </p>"
+
+    output.html_safe
+  end
+
 
   def priority_type
     if priority_id

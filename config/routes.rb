@@ -178,6 +178,7 @@ Rails.application.routes.draw do
       get 'all_files'
     end
     member do
+      match 'timeline', via: [:post, :get]
       match 'watchers', via: [:post, :get]
       get 'delete_sub_case_relation'
       get 'delete_relation'

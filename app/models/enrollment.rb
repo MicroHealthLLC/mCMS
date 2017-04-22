@@ -69,4 +69,14 @@ class Enrollment < ApplicationRecord
     output<<"<b>Description: </b> #{description} <br/>"
     output.html_safe
   end
+
+  def little_description
+    output = 'Enrollment'
+    output<< "<p> Enrollment Type: #{enrollment_type} </p>"
+    output<< "<p> Enrollment Status: #{enrollment_status} </p>"
+    output<< "<p>  Date start: : #{date_start} </p>"
+
+    output.html_safe
+  end
+
 end

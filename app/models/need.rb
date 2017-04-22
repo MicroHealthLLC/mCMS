@@ -73,8 +73,18 @@ class Need < ApplicationRecord
 
     pdf.table([[ "Date due: ", " #{date_due}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Date completed: ", " #{date_completed}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Date completed: ", " #{date_identified}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date identified: ", " #{date_identified}"]], :column_widths => [ 150, 373])
   end
+
+  def little_description
+    output = 'Need'
+    output<< "<p> Status: #{need_status} </p>"
+    output<< "<p> Priority: #{priority_type} </p>"
+    output<< "<p> Percent Done: #{percent_done} %</p>"
+
+    output.html_safe
+  end
+
 
   def can_send_email?
     true

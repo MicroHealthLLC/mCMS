@@ -32,6 +32,16 @@ class ApplicationRecord < ActiveRecord::Base
     notif.enabled?
   end
 
+  def little_description
+    output = ''
+    output<< "<p> #{} </p>"
+    output<< "<p> #{} </p>"
+    output<< "<p> #{} </p>"
+
+    output.html_safe
+  end
+
+
   scope :visible, -> { where(user_id: User.current.id) }
 
   def self.for_status(status)

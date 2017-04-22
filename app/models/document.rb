@@ -52,6 +52,14 @@ class Document < ApplicationRecord
      :is_private, document_attachments_attributes: [Attachment.safe_attributes]]
   end
 
+  def little_description
+    output = ''
+    output<< "<p> #{document_type} </p>"
+
+    output.html_safe
+  end
+
+
   def to_pdf(pdf, show_user = true)
     pdf.font_size(25){  pdf.table([[ "Document ##{id}"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf) if show_user
