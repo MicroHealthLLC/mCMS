@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'occupation', to: 'idcdata#occupation'
   resources :resumes
   resources :related_clients
+  resources :case_organizations, except: [:index]
   resources :radiologic_examinations
   resources :laboratory_examinations
   resources :billings, except: [:new]
@@ -289,6 +290,7 @@ Rails.application.routes.draw do
       match 'audit', via: [ :get]
     end
     member do
+      get 'require_change_password'
       get 'restore'
       get 'lock'
       get 'unlock'
