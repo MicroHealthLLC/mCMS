@@ -1,0 +1,20 @@
+<%= render partial: 'action_menu' %>
+
+<div class="row">
+  <div class="col-xs-12">
+    <p>
+      <strong>Title:</strong>
+      <%= @link.title %>
+    </p>
+
+    <p>
+      <strong>Url:</strong>
+      <%= link_to @link.url %>
+    </p>
+
+    <p>
+      <strong>Hostname:</strong>
+      <%= @link.hostname %>
+    </p>
+  </div>
+</div>

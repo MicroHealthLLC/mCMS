@@ -1,0 +1,25 @@
+<table class="table table-responsive" id="link_table">
+  <thead>
+  <tr>
+    <th>Title</th>
+
+    <th>Url</th>
+    <th>Created at</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @links.each do |link| %>
+      <tr>
+        <td><%= link_to link.title, link %></td>
+        <td><%= link.url %></td>
+        <td><%= format_date_time link.created_at %></td>
+        </tr>
+  <% end %>
+  </tbody>
+</table>
+<script>
+  $(document).ready(function(){
+    initDataTable('link_table')
+  })
+</script>

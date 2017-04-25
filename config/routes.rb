@@ -349,4 +349,5 @@ Rails.application.routes.draw do
   mount Rordit::Engine => "/rordit"
   mount Kanban::Engine => "/kanban"
   mount EventCalendar::Engine => "/event_calendar"
+  mount Links::Engine => "/links"
 end

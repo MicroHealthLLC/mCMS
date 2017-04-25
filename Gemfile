@@ -174,6 +174,7 @@ gem 'rails_email_validator'
 gem "simple_calendar", "~> 2.0"
 
 # Engines
+gem 'links', path: 'engines/links'
 gem 'todo_list', path: 'engines/todo_list'
 gem 'calculator', path: 'engines/calculator'
 gem 'measurements_converter', path: 'engines/measurements_converter'
