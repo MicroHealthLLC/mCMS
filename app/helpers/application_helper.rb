@@ -73,7 +73,7 @@ module ApplicationHelper
   end
 
   def change_password_user_link(user, options={})
-    link_to "<i class='fa'>Change Password</i>".html_safe, require_change_password_user_path(user)
+    link_to "<i class='fa'>Require Change Password</i>".html_safe, require_change_password_user_path(user)
   end
 
   def format_date datetime

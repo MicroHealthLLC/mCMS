@@ -18,6 +18,7 @@ en:
 
  # INSURANCE
   insurance: Insurance
+  my_insurance: My Insurance
   insurance_type: Insurance Type
   insurance_status: Insurance Status
   insurance_plural: Insurances
@@ -73,6 +74,7 @@ en:
 
   related_client: Related Client
   related_clients: Related Clients
+  my_related_clients: My Related Clients
   related_client_type: Related Client Type
   related_client_status: Related Client Status
   new_related_client: New Related Client
@@ -143,6 +145,7 @@ en:
 
  # DOCUMENTS
   client_documents: Client Documents
+  my_client_documents: My Client Documents
   documents: Documents
   document: Document
   document_type: Document Type
@@ -265,6 +268,7 @@ en:
  # OTHER
 
   languages: Languages
+  my_languages: My Languages
   other_skill: Skill
   other_skills: Skills
   label_default: Default
@@ -296,6 +300,7 @@ en:
   new_affiliation: New Affiliation
   affiliation_status: Affiliation Status
   affiliations: Affiliations
+  my_affiliations: My Affiliations
   affiliation_type: Affiliation type
   #ORGANIZATION
   new_organization: New Organization
@@ -324,6 +329,7 @@ en:
   new_checklist: 'New checklist'
 
   contacts: Contacts
+  my_contacts: My Contacts
   description: Description
   priority: Priority
   priority_type: Priority Type

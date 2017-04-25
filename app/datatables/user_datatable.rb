@@ -40,12 +40,12 @@ class UserDatatable < AjaxDatatablesRails::Base
           user.id ,
           user.login,
           user.email,
+
           user.first_name,
-          user.middle_name,
           user.last_name,
+
           user.birthday,
           user.role.to_s,
-          user.gender.to_s,
           user.state,
 
           user.deleted? ? '<i class="fa fa-eye-slash" aria-hidden="true" ></i>' : @view.show_link(user, 'data-turbolinks'=> false) ,
