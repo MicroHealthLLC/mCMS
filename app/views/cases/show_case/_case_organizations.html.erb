@@ -1,0 +1,15 @@
+<% if module_enabled?('case_organizations') %>
+    <%= link_to(t('new_organization'), new_case_organization_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_case_organizations, :manage_roles, :manage_case_organizations) %>
+
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= render partial: 'case_organizations/list',
+                   layout: 'shared/smart_widget_wrapper',
+                   locals: {
+                       case_organizations: @case_organizations,
+                       wid_id: 'case_organizations',
+                       wid_title: 'Organizations'
+                   } %>
+      </article>
+    </div>
+<% end %>

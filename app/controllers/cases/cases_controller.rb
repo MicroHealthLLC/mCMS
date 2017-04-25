@@ -84,6 +84,7 @@ class CasesController < UserCasesController
     @enrollments  = @case.enrollments
     @referrals    = @case.referrals
     @teleconsults = @case.teleconsults
+    @case_organizations  = @case.case_organizations
     @watchers     = @case.watchers.includes(:user=> :core_demographic)
 
     @case_supports = @case.case_supports.active

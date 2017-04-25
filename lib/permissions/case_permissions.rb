@@ -106,6 +106,15 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_case_supports, {:case_supports => [:remove, :index, :show, :search, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
+  map.project_module :case_organizations do |map|
+    map.permission :view_case_organizations, {:case_organizations => [:index]},  :read => true
+    map.permission :show_case_organizations, {:case_organizations => [:show]},  :read => true
+    map.permission :create_case_organizations, {:case_organizations => [:new, :create]},  :read => true
+    map.permission :edit_case_organizations, {:case_organizations => [:edit, :update]},  :read => true
+    map.permission :delete_case_organizations, {:case_organizations => [:destroy]},  :read => true
+    map.permission :manage_case_organizations, {:case_organizations => [:show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
   map.project_module :appointments do |map|
     map.permission :view_appointments, {:appointments => [:calendar, :index]},  :read => true
     map.permission :show_appointments, {:appointments => [:show]},  :read => true

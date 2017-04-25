@@ -209,6 +209,12 @@ en:
   edit_need: Edit Need
   need_status: Need Status
 
+  # Case organization
+  case_organozation: Case Organization
+  new_case_organozation: New Case Organization
+  edit_case_organozation: Edit Case Organization
+  case_organozations: Case Organizations
+
  # GOALS
   goal: Goal
   goals: Goals

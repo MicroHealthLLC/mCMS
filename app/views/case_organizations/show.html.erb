@@ -1,0 +1,20 @@
+
+<%= render partial: 'action_menu' %>
+<div class="row">
+  <div class="col-xs-12">
+    <p>
+      <strong><%= t('case') %>:</strong>
+      <%= link_to_case @case_organization.case %>
+    </p>
+
+    <p>
+      <strong><%= t('organization') %>:</strong>
+      <%= @case_organization.organization %>
+    </p>
+
+    <p>
+      <strong>Association:</strong>
+      <%= @case_organization.association_type %>
+    </p>
+  </div>
+</div>

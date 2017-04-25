@@ -1,0 +1,46 @@
+<%= form_for(case_organization, html: { class: 'form-horizontal' }) do |f| %>
+    <% if case_organization.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(case_organization.errors.count, "error") %> prohibited this case_organization from being saved:</h2>
+
+          <ul>
+            <% case_organization.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <fieldset>
+      <legend></legend>
+
+      <%= f.hidden_field :case_id %>
+
+      <div class="form-group">
+        <%= f.label t(:case), class: 'col-md-2 control-label' %>
+        <div class="col-md-9" style="padding-top: 7px">
+          <%= link_to f.object.case, f.object.case if f.object.case %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t(:organization) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :organization_id, options_for_select(Organization.pluck(:name, :id), selected: f.object.organization.try(:id)), {} , {class: 'form-control'} %>
+        </div>
+      </div>
+
+       <div class="form-group">
+        <%= f.label :association_id , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :association_id, options_for_select(AssociationType.active.pluck(:name, :id), selected: f.object.association_type.try(:id)), {} , {class: 'form-control'} %>
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= link_to t('button_cancel'), case_url(f.object.case), class: 'btn btn-warning pull-right' %>
+          <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+<% end %>
+</fieldset>

@@ -29,6 +29,8 @@ class Case < ApplicationRecord
   has_many :enrollments, dependent: :destroy
   has_many :case_supports, dependent: :destroy
   has_many :teleconsults, dependent: :destroy
+  has_many :case_organizations, dependent: :destroy
+  has_many :organizations, through: :case_organizations
 
   has_many :watchers, class_name: 'CaseWatcher', dependent: :destroy
 
