@@ -13,6 +13,10 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_sticky_notes, {'sticky_notes/sticky_notes' => [:index, :save]},  :read => true
   end
 
+   map.project_module :my_links do |map|
+    map.permission :manage_links, {'links/links' => [:index, :new, :show, :edit, :create, :update, :destroy]},  :read => true
+  end
+
    map.project_module :kanban do |map|
     map.permission :view_kanban, {
         'kanban/projects' => [:index, :create, :update, :destroy],
