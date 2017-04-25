@@ -135,6 +135,13 @@ class UsersController < ProtectForgeryApplication
     redirect_to :back
   end
 
+  def require_change_password
+    @user.password_changed_at = 181.days.ago
+    @user.save(validate: false)
+    flash[:notice] = 'User require changing password next login'
+    redirect_to :back
+  end
+
   private
 
   def find_user

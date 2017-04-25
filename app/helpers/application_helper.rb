@@ -72,6 +72,10 @@ module ApplicationHelper
     link_to "<i class='fa fa-lg fa-unlock'></i>".html_safe, unlock_user_path(user)
   end
 
+  def change_password_user_link(user, options={})
+    link_to "<i class='fa'>Change Password</i>".html_safe, require_change_password_user_path(user)
+  end
+
   def format_date datetime
     datetime.to_date.strftime(Setting['format_date']) if datetime.present?
   end

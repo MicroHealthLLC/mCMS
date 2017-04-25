@@ -11,9 +11,13 @@
     <p><small><%= @survey.description.html_safe %></small></p>
   </h2>
   <% if @attempts.any? %>
-      <% @attempts.each_with_index do |attempt, index| %>
-          <%= render partial: 'show', locals: {attempt: attempt, index: index} %>
-          <hr/>
-      <% end %>
+      <div class="row">
+        <% @attempts.each_with_index do |attempt, index| %>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+              <%= render partial: 'show', locals: {attempt: attempt, index: index} %>
+            </div>
+
+        <% end %>
+      </div>
   <% end %>
 </div>

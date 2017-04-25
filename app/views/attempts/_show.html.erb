@@ -1,32 +1,38 @@
-<%= render partial: 'attempt_action_menu', locals:{attempt: attempt} %>
-<% if @case %>
-    <p>
-      <label><%= t('case') %>:</label>
-      <%= link_to_case @case %>
-    </p>
-<% end %>
-<h3><%= "ATTEMPT #{defined?(index) ? "##{index + 1}" : nil}" %> <em><%= format_date(attempt.answers.first.created_at) if attempt.answers.first %></em></h3>
-<% survey = attempt.survey %>
-<p><b>Survey:</b> <%= link_to survey, survey %></p>
-<p><b>Survey Status:</b> <%= survey.active? ? 'Active' : (survey.finished? ? 'Finished' : 'Not active') %></p>
+<div class="row">
+  <div class="col-xs-12">
 
-<ol class="questions">
-  <% attempt.answers.each do |answer| %>
-      <li>
-        <p class="question"> <%= answer.question.text %>  </p>
-        <ul class="options">
-          <% answer.question.options.each do |option| %>
-              <li class="radio">
-                <label>
-                  <%= radio_button_tag '', '', the_chosen_one?(answer, option), disabled: true %>
-                </label>
-                <% color = get_color_of_option(answer, option) %>
-                <span class="<%= color %> <%= correct_answer?(answer, option) %>"> <%= option.text %> <%= get_weight(option) %> </span>
+    <%= render partial: 'attempt_action_menu', locals:{attempt: attempt} %>
+    <% if @case %>
+        <p>
+          <label><%= t('case') %>:</label>
+          <%= link_to_case @case %>
+        </p>
+    <% end %>
+    <h3><%= "ATTEMPT #{defined?(index) ? "##{index + 1}" : nil}" %> <em><%= format_date(attempt.answers.first.created_at) if attempt.answers.first %></em></h3>
+    <% survey = attempt.survey %>
+    <p><b>Survey:</b> <%= link_to survey, survey %></p>
+    <p><b>Survey Status:</b> <%= survey.active? ? 'Active' : (survey.finished? ? 'Finished' : 'Not active') %></p>
 
-                <p class="answers-number"> <%= number_of_people_who_also_answered(option.id) %> </p>
-              </li>
-          <% end %>
-        </ul>
-      </li>
-  <% end %>
-</ol>
+    <ol class="questions">
+      <% attempt.answers.each do |answer| %>
+          <li>
+            <p class="question"> <%= answer.question.text %>  </p>
+            <ul class="options">
+              <% answer.question.options.each do |option| %>
+                  <li class="radio">
+                    <label>
+                      <%= radio_button_tag '', '', the_chosen_one?(answer, option), disabled: true %>
+                    </label>
+                    <% color = get_color_of_option(answer, option) %>
+                    <span class="<%= color %> <%= correct_answer?(answer, option) %>"> <%= option.text %> <%= get_weight(option) %> </span>
+
+                    <p class="answers-number"> <%= number_of_people_who_also_answered(option.id) %> </p>
+                  </li>
+              <% end %>
+            </ul>
+          </li>
+      <% end %>
+    </ol>
+
+  </div>
+</div>

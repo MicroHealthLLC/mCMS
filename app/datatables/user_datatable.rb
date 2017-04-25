@@ -50,7 +50,8 @@ class UserDatatable < AjaxDatatablesRails::Base
 
           user.deleted? ? '<i class="fa fa-eye-slash" aria-hidden="true" ></i>' : @view.show_link(user, 'data-turbolinks'=> false) ,
           user.deleted? ?   @view.restore_user_link(user, 'data-turbolinks'=> false) :  @view.delete_link(user, 'data-turbolinks'=> false),
-          user.locked_at? ?   @view.unlock_user_link(user, 'data-turbolinks'=> false) :  @view.lock_user_link(user, 'data-turbolinks'=> false)
+          user.locked_at? ?   @view.unlock_user_link(user, 'data-turbolinks'=> false) :  @view.lock_user_link(user, 'data-turbolinks'=> false),
+          @view.change_password_user_link(user, 'data-turbolinks'=> false)
       ]
     end
   end
