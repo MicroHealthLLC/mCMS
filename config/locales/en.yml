@@ -147,6 +147,7 @@ en:
   client_documents: Client Documents
   my_client_documents: My Client Documents
   documents: Documents
+  my_documents: My Documents
   document: Document
   document_type: Document Type
   new_document: 'New Document'

@@ -49,12 +49,6 @@
     <li>
       <a href="#" id="ul_profile"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Profile</span></a>
       <ul id="profile_menu">
-        <% if module_enabled?( 'profile_record') %>
-            <li class="<%= menu_active?('profile_record') %> ">
-              <a href= "/profile_record" title="My Profile record"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">My Profile record</span></a>
-            </li>
-        <% end %>
-
         <li class="<%= menu_active?('devise/registrations') %>">
           <a href= "/users/edit" title="<%= t('profile.my_profile') %>"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent"><%= t('profile.my_profile') %></span></a>
         </li>
@@ -82,7 +76,7 @@
         <% end %>
         <% if module_enabled?( 'documents')  %>
             <li class="<%= menu_active?('client_documents') %>">
-              <a href="/client_documents" title="<%= t(:my_client_documents) %>"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent"><%= t(:my_client_documents) %></span></a>
+              <a href="/client_documents" title="<%= t(:my_documents) %>"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent"><%= t(:my_documents) %></span></a>
             </li>
         <% end %>
         <% if module_enabled?( 'related_clients')  %>
