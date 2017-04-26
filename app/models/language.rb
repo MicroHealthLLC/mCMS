@@ -8,11 +8,6 @@ class Language < ApplicationRecord
   has_many :language_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :language_attachments, reject_if: :all_blank, allow_destroy: true
 
-  after_save :send_notification
-  def send_notification
-    UserMailer.language_notification(self).deliver_later
-  end
-
   def self.enumeration_columns
     [
         ["#{LanguageType}", 'language_type_id'],

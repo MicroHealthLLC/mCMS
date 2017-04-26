@@ -17,7 +17,7 @@
           <%= link_to t(:categories), '/categories' %>
         </li>
 
-       <li class="<%= menu_active?('groups') %>">
+        <li class="<%= menu_active?('groups') %>">
           <%= link_to t(:groups), '/groups' %>
         </li>
 
@@ -41,7 +41,10 @@
       <a href="/pivot_table/index" title="<%= 'Pivot table' %>"><span class="menu-item-parent"><%= 'Pivot table' %></span></a>
     </li>
     <li>
-      <%= link_to "Setting", '/settings' %>
+      <%= link_to "Setting", '/settings', target: "_blank" %>
+    </li>
+    <li>
+      <%= link_to "Notifications", '/sidekiq' %>
     </li>
     <% if module_enabled? 'surveys' %>
         <li class="<%= menu_active?('surveys') %>">
