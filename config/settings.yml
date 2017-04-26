@@ -8,6 +8,10 @@ open_new_tab_url:
   default: 'true'
 use_iframe:
   default: 'true'
+whitelist_ip:
+  default: '*.*.*.*'
+blacklist_ip:
+  default: ''
 user_default_state:
   default: 'false'
 remember_for:
