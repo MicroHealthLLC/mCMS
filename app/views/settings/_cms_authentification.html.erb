@@ -1,4 +1,5 @@
-<%= form_tag(set_user_auth_settings_path, method: 'post',  class: 'form-horizontal' ) do |f| %>
+<%= form_tag(set_user_auth_settings_path, method: 'post', id: 'save_details_form',  class: 'form-horizontal' ) do |f| %>
+
     <div class="form-group">
       <%= label_tag "default_auth_user", "Default User Status: ", class: 'col-md-2 control-label' %>
       <div class="col-md-9">
@@ -43,9 +44,56 @@
     </div>
 
 
+    <div class="form-group">
+      <%= label_tag "whitelist_ip", "Whitelist ip: ", class: 'col-md-2 control-label' %>
+      <div class="col-md-9">
+        <%= text_field_tag :whitelist_ip, Setting['whitelist_ip'],  {class: 'form-control tags'} %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag "blacklist_ip", "Blacklist ip: ", class: 'col-md-2 control-label' %>
+      <div class="col-md-9">
+        <%= text_field_tag :blacklist_ip, Setting['blacklist_ip'],  {class: 'form-control tags'} %>
+      </div>
+    </div>
+
+
     <div class="form-group margin-top-10" >
       <div class="col-xs-12">
-        <%= submit_tag t('button_save'), class: 'btn btn-primary pull-right' %>
+        <%= submit_tag t('button_save'), class: 'btn btn-primary pull-right', id: 'btn_save_details_form' %>
       </div>
     </div>
 <% end %>
+<%= javascript_include_tag 'jquery.tagsinput' %>
+<%= stylesheet_link_tag 'jquery.tagsinput' %>
+<script>
+  $(document).ready(function(){
+    $('.tags').tagsInput({defaultText: 'Ip'});
+    $('#btn_save_details_form').click(function(e){
+      e.preventDefault();
+      if(ip_valid( $('#whitelist_ip').val().trim() ) && ip_valid( $('#blacklist_ip').val().trim()))
+        $('#save_details_form').submit();
+      else
+        alert("whitelist or blacklist ip not valid")
+    })
+  });
+
+  ip_valid = function(val){
+    t = val.split(',');
+    all_match = true
+    for(i=0; i< t.length; i++ )
+    {
+      v = t[i].trim()
+      if(v.length > 0)
+      {
+        m = v.match(/^(\*|\d{1,3})\.(\*|\d{1,3})\.(\*|\d{1,3})\.(\*|\d{1,3})$/);
+        if(m == null) {
+          all_match = false;
+          break;
+        }
+      }
+    }
+    return all_match
+  }
+</script>

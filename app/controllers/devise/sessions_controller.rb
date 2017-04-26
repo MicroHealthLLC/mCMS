@@ -4,6 +4,8 @@ class Devise::SessionsController < DeviseController
   prepend_before_action :verify_signed_out_user, only: :destroy
   prepend_before_action only: [:create, :destroy] { request.env["devise.skip_timeout"] = true }
   prepend_before_action :check_captcha, only: [:create] if ENV['RECAPTCHA_PUBLIC_KEY'].present?
+  prepend_before_action :check_whitelists, only: [:create]
+  prepend_before_action :check_blacklists, only: [:create]
   # GET /resource/sign_in
   def new
     self.resource = resource_class.new(sign_in_params)
@@ -57,6 +59,38 @@ class Devise::SessionsController < DeviseController
       self.resource = resource_class.new devise_parameter_sanitizer.sanitize(:sign_in)
       respond_with_navigational(resource) { render :new }
     end
+  end
+
+  def check_whitelists
+    unless regexp_match?(Setting['whitelist_ip'], request.remote_ip)
+      self.resource = resource_class.new devise_parameter_sanitizer.sanitize(:sign_in)
+      respond_with_navigational(resource) { render :new }
+    end
+  end
+
+  def check_blacklists
+    if regexp_match?(Setting['blacklist_ip'], request.remote_ip, false)
+      self.resource = resource_class.new devise_parameter_sanitizer.sanitize(:sign_in)
+      respond_with_navigational(resource) { render :new }
+    end
+  end
+
+  def regexp_match?(list, remote_ip, b = true)
+    return b if list.strip.blank?
+    list.split(',').each do |str|
+      ip = Regexp.new "#{str.strip}".gsub('*', '[0-9]{1,3}')
+      return true if remote_ip =~ ip
+    end
+    false
+  end
+
+  def check_whitelist_ip(remote_ip = '')
+    return true if whitelist_ip.blank?
+    whitelist_ip.split(',').each do |str|
+      ip = Regexp.new str.strip
+      return true if remote_ip =~ ip
+    end
+    false
   end
 
   # Check if there is no signed in user before doing the sign out.

@@ -12,6 +12,6 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 Rails.application.config.assets.precompile += %w( .svg .eot .woff .ttf)
 #CSS
-Rails.application.config.assets.precompile += %w(kanban/themes/default-bright.css sticky.css)
+Rails.application.config.assets.precompile += %w(kanban/themes/default-bright.css sticky.css /home/bilel/Desktop/redmine_projects/redmine-3.3.0 jquery.tagsinput.css)
 #JS
-Rails.application.config.assets.precompile += %w(smart_admin/* chat.js signature.js lightbox2.css lightbox2.js )
+Rails.application.config.assets.precompile += %w(smart_admin/* chat.js signature.js lightbox2.css lightbox2.js jquery.tagsinput.js)

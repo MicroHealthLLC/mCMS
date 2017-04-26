@@ -29,6 +29,8 @@ class SettingsController < ProtectForgeryApplication
   end
 
   def set_user_auth
+    Setting['whitelist_ip'] = params['whitelist_ip']
+    Setting['blacklist_ip'] = params['blacklist_ip']
     Setting['user_default_state'] = params['user_default_state']
     Setting['remember_for'] = params['remember_for']
     Setting['timeout_in'] = params['timeout_in']
