@@ -64,6 +64,8 @@ class User < ApplicationRecord
 
   STATUS = [['Active', true],['Inactive', false]]
 
+  default_scope  -> {includes(:core_demographic).references(:core_demographic)}
+
   def member_of(group_id)
     # check if user is a member of specific group
     memberships.each do |membership|

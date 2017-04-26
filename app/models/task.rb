@@ -126,7 +126,7 @@ class Task < ApplicationRecord
   def for_mail
     output = ""
     output<< "<h2>Action ##{id} </h2><br/>"
-    output<<"<b>Title: </b> #{title}"
+    output<<"<b>Title: </b> #{title}<br/>"
     output<<"<b>Description: </b> #{description} <br/>"
     output<<"<b>Task type: </b> #{task_type}<br/>"
     output<<"<b>Status: </b> #{task_status_type}<br/>"

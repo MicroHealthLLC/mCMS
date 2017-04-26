@@ -46,6 +46,7 @@ group :development do
   gem 'bullet'
   gem 'rubocop', '~> 0.48.1', require: false
   gem 'brakeman', :require => false
+  gem 'rack-mini-profiler'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -172,6 +173,10 @@ gem 'devise_security_extension', github: 'rubyroidlabs/devise_security_extension
 gem "audited", "~> 4.4"
 gem 'rails_email_validator'
 gem "simple_calendar", "~> 2.0"
+gem 'sidekiq'
+gem 'newrelic_rpm'
+
+
 
 # Engines
 gem 'links', path: 'engines/links'

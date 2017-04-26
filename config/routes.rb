@@ -340,6 +340,11 @@ Rails.application.routes.draw do
   end
 
 
+  authenticate :user, lambda { |u| u.admin? } do
+    require 'sidekiq/web'
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   # Engines
   mount Thredded::Engine => '/forum'
   mount MeasurementsConverter::Engine => '/measurements_converter'

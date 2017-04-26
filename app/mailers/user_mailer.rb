@@ -1,4 +1,5 @@
 class UserMailer < ApplicationMailer
+
   helper MailerHelper
   def welcome_email(user, password= nil)
     @user = user
@@ -17,14 +18,14 @@ class UserMailer < ApplicationMailer
     mail(to: @user.email, subject: "New ##{@object.id}")
   end
 
-  def send_notification(object)
-    @user   = object.user
+  def send_notification(object, user = object.user)
+    @user   = user
     @object = object
     mail(to: @user.email, subject: "#{@object.to_s}")
   end
 
-  def send_update_notification(object, audit)
-    @user   = object.user
+  def send_update_notification(object, audit, user = object.user)
+    @user   = user
     @object = object
     @audit = audit
     mail(to: @user.email, subject: "#{@object.to_s}")
