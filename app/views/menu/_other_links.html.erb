@@ -66,6 +66,7 @@
     <li>
       <a href="#" id="ul_profile"><i class="fa fa-lg fa-fw fa-square"></i> <span class="menu-item-parent">Personal Organizer</span></a>
       <ul id="profile_menu">
+        <%= render partial: 'menu/links' %>
         <% if module_enabled?('sticky') and can?(:manage_roles, :manage_sticky) %>
             <li class="<%= menu_active?('sticky') %>">
               <a href="<%= '/sticky' %>" title="<%= 'My checklists' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'My checklists' %></span></a>

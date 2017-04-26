@@ -69,11 +69,6 @@
               <a href="/affiliations" title="<%= t(:my_affiliations) %>"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent"><%= t(:my_affiliations) %></span></a>
             </li>
         <% end %>
-        <% if module_enabled?( 'insurances')  %>
-            <li class="<%= menu_active?('user_insurances') %>">
-              <a href="/user_insurances" title="<%= t(:my_insurance) %>"><i class="fa fa-lg fa-fw fa-shield"></i> <span class="menu-item-parent"><%= t(:my_insurance) %></span></a>
-            </li>
-        <% end %>
         <% if module_enabled?( 'documents')  %>
             <li class="<%= menu_active?('client_documents') %>">
               <a href="/client_documents" title="<%= t(:my_documents) %>"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent"><%= t(:my_documents) %></span></a>
