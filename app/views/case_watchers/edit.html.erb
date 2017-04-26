@@ -1,6 +1,6 @@
 <fieldset>
   <legend></legend>
-  <%= simple_form_for(@case_watcher, url: watchers_case_path(@case),  html: { method: :post, class: 'form-horizontal' }) do |f| %>
+  <%= simple_form_for(@case_watcher, html: { class: 'form-horizontal' }) do |f| %>
       <div class="form-group">
         <%= f.label :user, class: 'col-md-2 control-label' %>
         <div class="col-md-9">

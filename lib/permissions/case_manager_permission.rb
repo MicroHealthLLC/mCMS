@@ -67,7 +67,7 @@ RedCarpet::AccessControl.map do |map|
         :tasks => [:link_plan, :add_plan, :index, :my, :show, :new, :create, :edit, :update, :destroy],
         :cases => [:timeline, :new_assign, :my, :all_files, :subcases, :watchers, :index, :show, :new, :create, :edit, :update, :destroy],
         :case_supports => [:search, :index, :show, :new, :create, :edit, :update, :destroy],
-        :case_watchers => [:index],
+        :case_watchers => [:index, :show, :edit, :update, :destroy],
         :appointments => [:calendar, :my, :index, :show, :cms_form, :new, :create, :edit, :update, :destroy],
         :appointment_captures => [:show, :new, :create, :edit, :update, :destroy],
         :needs => [:links, :add_goal,:index, :show, :new, :create, :edit, :update, :destroy],

@@ -127,7 +127,7 @@ Rails.application.routes.draw do
     end
     resources :case_support_extend_demographies, only: [:create, :update], controller: :extend_demographies
   end
-  resources :case_watchers, only: [:index]
+  resources :case_watchers, except: [:new, :create]
   resources :plans do
     match 'links', via: [:get, :post], on: :member
     match 'add_action', via: [:get], on: :member

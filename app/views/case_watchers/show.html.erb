@@ -1,0 +1,22 @@
+<%= render partial: 'action_menu' %>
+<section id="widget-grid" class="checklists_account">
+  <div class="row">
+    <div class="col-xs-12">
+
+      <p>
+        <strong>Case:</strong>
+        <%= @case_watcher.case %>
+      </p>
+
+      <p>
+        <strong>User:</strong>
+        <%= @case_watcher.user %>
+      </p>
+
+      <p>
+        <strong>Reason:</strong>
+        <%= @case_watcher.reason.to_s.html_safe %>
+      </p>
+    </div>
+  </div>
+</section>

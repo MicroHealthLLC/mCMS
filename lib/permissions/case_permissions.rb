@@ -93,7 +93,7 @@ RedCarpet::AccessControl.map do |map|
   end
 
   map.project_module :case_watchers do |map|
-    map.permission :manage_watchers, {:case_watchers => [:index], :cases=> [:watchers]},  :read => true
+    map.permission :manage_watchers, {:case_watchers =>  [:index, :show, :edit, :update, :destroy], :cases=> [:watchers]},  :read => true
   end
 
   map.project_module :case_supports do |map|

@@ -113,22 +113,20 @@ class CasesController < UserCasesController
   end
 
   def watchers
-    @watchers = @case.watchers.pluck :user_id
     if request.post?
-      if params[:case_watcher]
-        w = User.where(id: params[:case_watcher].map(&:to_i)).pluck :id
-        w.each do |watcher|
-          next if @watchers.include?(watcher)
-          CaseWatcher.create(user_id: watcher, case_id: @case.id)
-        end
+      @case_watcher = CaseWatcher.new(case_id: @case.id)
+      @case_watcher.attributes = params.require(:case_watcher).permit(:user_id, :reason)
+      if @case_watcher.save
+        redirect_to case_url(@case)
+      else
+        @watchers = @case.watchers.pluck :user_id
+        @users = User.power_user.includes(:core_demographic).references(:core_demographic).where.not(id: @watchers)
       end
-      deleted_watcher = @watchers - w
-      @case.watchers.where(user_id: deleted_watcher).delete_all
-      redirect_to case_url(@case)
     else
-      @users = User.power_user.includes(:core_demographic)
+      @watchers = @case.watchers.pluck :user_id
+      @case_watcher = CaseWatcher.new(case_id: @case.id)
+      @users = User.power_user.includes(:core_demographic).references(:core_demographic).where.not(id: @watchers)
     end
-
   end
 
   # GET /cases/new
