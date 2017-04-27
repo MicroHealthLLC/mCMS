@@ -77,11 +77,7 @@ class User < ApplicationRecord
   end
 
   def timeout_in
-    if last_seen_at < 10.months.ago
-      1.second
-    else
-      super
-    end
+    super
   end
 
   def writable_categories
