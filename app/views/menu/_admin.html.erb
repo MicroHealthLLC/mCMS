@@ -41,10 +41,7 @@
       <a href="/pivot_table/index" title="<%= 'Pivot table' %>"><span class="menu-item-parent"><%= 'Pivot table' %></span></a>
     </li>
     <li>
-      <%= link_to "Setting", '/settings', target: "_blank" %>
-    </li>
-    <li>
-      <  <a href="/sidekiq" target="_blank"><span class="menu-item-parent">Notifications</span></a>
+      <%= link_to "Setting", '/settings' %>
     </li>
     <% if module_enabled? 'surveys' %>
         <li class="<%= menu_active?('surveys') %>">
