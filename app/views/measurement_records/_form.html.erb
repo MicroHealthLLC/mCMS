@@ -13,6 +13,8 @@
           </div>
       <% end %>
       <%= f.hidden_field :user_id %>
+      <%= f.hidden_field :case_id %>
+      <%= f.hidden_field :plan_id %>
 
       <div class="form-group">
         <%= f.label :measurement , class: 'col-md-2 control-label' %>
@@ -22,7 +24,7 @@
             $(document).ready(function(){
               $('#measurement_record_measurement').on('change', function(){
                 val = $(this).val();
-                $.getScript("<%= measurement_records_path(format: :js ) %>?measurement="+val)
+                $.getScript("<%= measurement_records_path(format: :js) %>?case_id=<%=f.object.case_id%>&plan_id=<%=f.object.plan_id%>&measurement="+val)
               })
             })
           </script>
@@ -37,13 +39,13 @@
                 $(document).ready(function(){
                   $('#measurement_record_component_id').on('change', function(){
                     val = $(this).val();
-                    $.getScript("<%= measurement_records_path(format: :js ) %>?measurement=<%= f.object.measurement %>&component_id="+val)
+                    $.getScript("<%= measurement_records_path(format: :js,  case_id: f.object.case_id, plan_id: f.object.plan_id, measurement: f.object.measurement) %>&component_id="+val)
                   })
                 })
               </script>
             </div>
           </div>
-          <% if @component %>
+          <% if @component = f.object.component %>
               <div class="form-group">
                 <%= f.label :measured_by , class: 'col-md-2 control-label' %>
                 <div class="col-md-9">
@@ -54,7 +56,7 @@
               <div class="form-group">
                 <%= f.label :date_time , class: 'col-md-2 control-label' %>
                 <div class="col-md-9">
-                  <%= f.text_field :date_time , class: 'form-control datetimepicker' %>
+                  <%= f.text_field :date_time , class: 'form-control datetimepicker', require: true %>
                 </div>
               </div>
 

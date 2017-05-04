@@ -21,7 +21,7 @@
   <tbody>
   <% @measurement_records.each do |measurement_record| %>
       <tr>
-        <td><%= measurement_record.measurement %></td>
+        <td><%= link_to measurement_record.measurement, measurement_record %></td>
         <td><%= measurement_record.component %></td>
         <td><%= measurement_record.measured_by %></td>
         <td><%= format_date_time  measurement_record.date_time %></td>

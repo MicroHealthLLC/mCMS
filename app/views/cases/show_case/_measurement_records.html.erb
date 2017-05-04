@@ -1,0 +1,16 @@
+<% if module_enabled?('measurement_records') %>
+    <%= link_to('New measurement', new_measurement_record_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_measurement_records, :manage_roles, :manage_measurement_records) %>
+
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= render partial: 'measurement_records/list',
+                   layout: 'shared/smart_widget_wrapper',
+                   locals: {
+                       show_case_column: false,
+                       measurement_records: @measurement_records,
+                       wid_id: 'measurement_records',
+                       wid_title: 'measurements'
+                   } %>
+      </article>
+    </div>
+<% end %>

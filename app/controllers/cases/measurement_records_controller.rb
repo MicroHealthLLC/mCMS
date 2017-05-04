@@ -14,9 +14,8 @@ class MeasurementRecordsController < ApplicationController
         @measurement_records = MeasurementRecord.visible
       }
       format.js{
-        @measurement_record = MeasurementRecord.new(user_id: User.current.id,
-                                                    measurement: params[:measurement],
-                                                    component_id: params[:component_id])
+        @measurement_record = MeasurementRecord.new(measurement_params)
+        @measurement_record.user_id = User.current.id
         if @component = @measurement_record.component
           @measurement_record.measured_by = @measurement_record.component.measured_by
         end
@@ -31,7 +30,8 @@ class MeasurementRecordsController < ApplicationController
 
   # GET /measurement_records/new
   def new
-    @measurement_record = MeasurementRecord.new(user_id: User.current.id)
+    @measurement_record = MeasurementRecord.new(measurement_params)
+    @measurement_record.user_id = User.current.id
   end
 
   # GET /measurement_records/1/edit
@@ -91,5 +91,9 @@ class MeasurementRecordsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def measurement_record_params
     params.require(:measurement_record).permit(MeasurementRecord.safe_attributes)
+  end
+
+  def measurement_params
+    params.permit(MeasurementRecord.safe_attributes)
   end
 end

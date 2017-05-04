@@ -26,6 +26,7 @@ class PlansController < UserCasesController
   def show
     set_client_profile(@plan)
     @tasks = @plan.tasks
+    @measurement_records = @plan.measurement_records
   end
 
   def links

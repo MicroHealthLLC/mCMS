@@ -2,6 +2,20 @@
 <div class="row">
   <div class="col-xs-12">
 
+    <% if @measurement_record.case %>
+       <p>
+         <strong>Case</strong>
+         <%= link_to_case @measurement_record.case   %>
+       </p>
+    <% end %>
+
+    <% if @measurement_record.plan %>
+       <p>
+         <strong>Plan</strong>
+         <%= link_to @measurement_record.plan, measurement_record.plan   %>
+       </p>
+    <% end %>
+
     <p>
       <strong>Measurement:</strong>
       <%= @measurement_record.measurement %>

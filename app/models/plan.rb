@@ -13,6 +13,7 @@ class Plan < ApplicationRecord
   accepts_nested_attributes_for :goal_plans, reject_if: :all_blank, allow_destroy: true
 
   has_many :plan_tasks, dependent: :destroy
+  has_many :measurement_records, dependent: :destroy
   has_many :tasks, through: :plan_tasks
   has_many :appointment_links, as: :linkable
 
