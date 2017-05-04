@@ -75,6 +75,7 @@ RedCarpet::AccessControl.map do |map|
         :referrals => [:links, :add_referral, :find_organization, :index, :show, :new, :create, :edit, :update, :destroy],
         :notes => [:index, :show, :new, :create, :edit, :update, :destroy, :get_template_note],
         :plans => [:link_goal, :add_goal,:links, :add_action, :index, :show, :new, :create, :edit, :update, :destroy],
+        :measurement_records => [:index, :show, :new, :create, :edit, :update, :destroy],
         :goals => [:link_need, :add_need, :links, :add_plan, :index, :show, :new, :create, :edit, :update, :destroy],
         :checklist_cases => [:index, :show, :new, :create, :edit, :update, :destroy],
         :case_organizations => [:show, :new, :create, :edit, :update, :destroy],

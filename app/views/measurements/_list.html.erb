@@ -1,0 +1,47 @@
+<table class="table table-responsive table-bordered" id="measurement_table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Component</th>
+    <th>Order</th>
+    <th>Lower age</th>
+    <th>Upper age</th>
+    <th>Lower height</th>
+    <th>Upper height</th>
+    <th>Lower weight</th>
+    <th>Upper weight</th>
+    <th>Gender</th>
+    <th>Measured by</th>
+    <th>Lower measure</th>
+    <th>Higher measure</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @measurements.each do |measurement| %>
+      <tr>
+        <td><%= measurement.name %></td>
+        <td><%= measurement.component %></td>
+        <td><%= measurement.order %></td>
+        <td><%= measurement.lower_age %></td>
+        <td><%= measurement.upper_age %></td>
+        <td><%= measurement.lower_height %></td>
+        <td><%= measurement.upper_height %></td>
+        <td><%= measurement.lower_weight %></td>
+        <td><%= measurement.upper_weight %></td>
+        <td><%= measurement.gender %></td>
+        <td><%= measurement.measured_by %></td>
+        <td><%= measurement.lower_measure %></td>
+        <td><%= measurement.higher_measure %></td>
+       </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+    initDataTable('measurement_table')
+  } );
+</script>
+
+

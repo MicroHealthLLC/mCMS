@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :measurement_records
+  resources :measurements
   get '/histories/:type/:id', to: 'histories#show'
   resources :military_histories
   get 'occupation', to: 'idcdata#occupation'

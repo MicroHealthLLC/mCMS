@@ -1,0 +1,5 @@
+$('#all_attributes').html('<%= escape_javascript(render :partial => 'form', locals: {measurement: @measurement_record}) %>');
+$('.datetimepicker').datetimepicker({
+  format: 'YYYY-MM-DD LT'
+});
+

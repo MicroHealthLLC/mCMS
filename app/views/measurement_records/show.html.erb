@@ -1,0 +1,70 @@
+<%= render partial: 'action_menu' %>
+<div class="row">
+  <div class="col-xs-12">
+
+    <p>
+      <strong>Measurement:</strong>
+      <%= @measurement_record.measurement %>
+    </p>
+
+    <p>
+      <strong>Component:</strong>
+      <%= @measurement_record.component.try(:component) %>
+    </p>
+
+    <p>
+      <strong>Measured by:</strong>
+      <%= @measurement_record.measured_by %>
+    </p>
+
+    <p>
+      <strong>Date time:</strong>
+      <%= format_date_time @measurement_record.date_time %>
+    </p>
+
+    <p>
+      <strong>Recorded by:</strong>
+      <%= @measurement_record.recorded_by %>
+    </p>
+
+    <p>
+      <strong>Device:</strong>
+      <%= @measurement_record.device_id %>
+    </p>
+
+    <p>
+      <strong>Age:</strong>
+      <%= @measurement_record.age %>
+    </p>
+
+    <p>
+      <strong>Height:</strong>
+      <%= @measurement_record.height %>
+    </p>
+
+    <p>
+      <strong>Weight:</strong>
+      <%= @measurement_record.weight %>
+    </p>
+
+    <p>
+      <strong>Gender:</strong>
+      <%= @measurement_record.gender %>
+    </p>
+
+    <p>
+      <strong>Measure:</strong>
+      <%= @measurement_record.measure %>
+    </p>
+
+    <p>
+      <strong>Flag:</strong>
+      <%= @measurement_record.flag %>
+    </p>
+
+    <p>
+      <strong>Measurement status:</strong>
+      <%= @measurement_record.measurement_status %>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,106 @@
+<fieldset>
+  <legend></legend>
+  <%= form_for(measurement, html: { class: 'form-horizontal' }) do |f| %>
+      <% if measurement.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(measurement.errors.count, "error") %> </h2>
+
+            <ul>
+              <% measurement.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.label :name , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :name , class: 'form-control', require: true %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :component , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :component , class: 'form-control' , require: true%>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :order , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :order , class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :lower_age , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.number_field :lower_age , class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :upper_age , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.number_field :upper_age , class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :lower_height , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.number_field :lower_height , class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :upper_height , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.number_field :upper_height , class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :lower_weight , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.number_field :lower_weight , class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :upper_weight , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.number_field :upper_weight , class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :gender , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :gender , class: 'form-control' %>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :measured_by , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :measured_by , class: 'form-control', require: true %>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :lower_measure , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.number_field :lower_measure , class: 'form-control' %>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :higher_measure , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.number_field :higher_measure , class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= link_to t('button_cancel'), measurements_path, class: 'btn btn-warning pull-right' %>
+          <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+
+  <% end %>
+</fieldset>

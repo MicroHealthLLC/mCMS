@@ -163,6 +163,15 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_plans, {:plans => [:link_goal, :add_goal, :links, :add_action, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
+  map.project_module :measurement_records do |map|
+    map.permission :view_measurement_records, {:measurement_records => [:index]},  :read => true
+    map.permission :show_measurement_records, {:measurement_records => [:show]},  :read => true
+    map.permission :create_measurement_records, {:measurement_records => [:new, :create]},  :read => true
+    map.permission :edit_measurement_records, {:measurement_records => [:edit, :update]},  :read => true
+    map.permission :delete_measurement_records, {:measurement_records => [:destroy]},  :read => true
+    map.permission :manage_measurement_records, {:measurement_records => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
   map.project_module :checklists do |map|
     map.permission :view_checklists, {:checklist_cases => [:index, :show]},  :read => true
     map.permission :create_checklists, {:checklist_cases => [:new, :create], :cases=> [:new_assign]},  :read => true

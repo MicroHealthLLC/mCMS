@@ -1,0 +1,28 @@
+<section id="widget-grid" class="show_customer_measurement">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     measurement: @measurement_record,
+                     wid_id: 'measurement',
+                     wid_title: 'New measurement'
+                 } %>
+    </article>
+  </div>
+</section>
+
+<script>
+  function replaceIssueFormWith(html){
+    var replacement = $(html);
+    $('#all_attributes input, #all_attributes textarea, #all_attributes select').each(function(){
+      var object_id = $(this).attr('id');
+      if (object_id && $(this).data('valuebeforeupdate')!=$(this).val()) {
+        replacement.find('#'+object_id).val($(this).val());
+      }
+    });
+    $('#all_attributes').empty();
+    $('#all_attributes').prepend(replacement);
+  }
+
+</script>

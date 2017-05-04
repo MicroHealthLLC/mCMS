@@ -1,0 +1,2 @@
+json.extract! measurement_record, :id, :measurement_id, :component_id, :measured_by, :date_time, :recorded_by, :user_id, :device_id, :age, :height, :weight, :gender, :measure, :flag, :measurement_status_id, :created_at, :updated_at
+json.url measurement_record_url(measurement_record, format: :json)

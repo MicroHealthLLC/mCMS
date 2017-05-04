@@ -1,0 +1,2 @@
+module MeasurementRecordsHelper
+end

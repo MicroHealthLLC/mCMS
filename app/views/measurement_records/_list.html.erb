@@ -1,0 +1,47 @@
+<table class="table table-responsive table-bordered" id="measurement_table">
+  <thead>
+  <tr>
+    <th>Measurement</th>
+    <th>Component</th>
+    <th>Measured by</th>
+    <th>Date time</th>
+    <th>Recorded by</th>
+    <th>Device</th>
+    <th>Age</th>
+    <th>Height</th>
+    <th>Weight</th>
+    <th>Gender</th>
+    <th>Measure</th>
+    <th>Flag</th>
+    <th>Measurement status</th>
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @measurement_records.each do |measurement_record| %>
+      <tr>
+        <td><%= measurement_record.measurement %></td>
+        <td><%= measurement_record.component %></td>
+        <td><%= measurement_record.measured_by %></td>
+        <td><%= format_date_time  measurement_record.date_time %></td>
+        <td><%= measurement_record.recorded_by %></td>
+        <td><%= measurement_record.device_id %></td>
+        <td><%= measurement_record.age %></td>
+        <td><%= measurement_record.height %></td>
+        <td><%= measurement_record.weight %></td>
+        <td><%= measurement_record.gender %></td>
+        <td><%= measurement_record.measure %></td>
+        <td><%= measurement_record.flag %></td>
+        <td><%= measurement_record.measurement_status %></td>
+        </tr>
+  <% end %>
+  </tbody>
+</table>
+<script>
+  $(document).ready(function(){
+    initDataTable('measurement_table')
+  } );
+</script>
+
+

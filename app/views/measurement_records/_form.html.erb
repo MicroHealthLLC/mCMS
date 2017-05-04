@@ -1,0 +1,140 @@
+<fieldset id="all_attributes">
+  <legend></legend>
+  <%= form_for(measurement, html: { class: 'form-horizontal' }) do |f| %>
+      <% if measurement.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(measurement.errors.count, "error") %> </h2>
+
+            <ul>
+              <% measurement.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <%= f.hidden_field :user_id %>
+
+      <div class="form-group">
+        <%= f.label :measurement , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :measurement, options_for_select(Measurement.pluck(:name).uniq.insert(0, ''), selected: f.object.measurement), {},{ class: 'form-control'} %>
+          <script>
+            $(document).ready(function(){
+              $('#measurement_record_measurement').on('change', function(){
+                val = $(this).val();
+                $.getScript("<%= measurement_records_path(format: :js ) %>?measurement="+val)
+              })
+            })
+          </script>
+        </div>
+      </div>
+      <% if f.object.measurement %>
+          <div class="form-group">
+            <%= f.label :component_id , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :component_id, options_for_select(Measurement.where(name: f.object.measurement).pluck(:component, :id).insert(0, ''), selected: f.object.component_id), {},{ class: 'form-control'} %>
+              <script>
+                $(document).ready(function(){
+                  $('#measurement_record_component_id').on('change', function(){
+                    val = $(this).val();
+                    $.getScript("<%= measurement_records_path(format: :js ) %>?measurement=<%= f.object.measurement %>&component_id="+val)
+                  })
+                })
+              </script>
+            </div>
+          </div>
+          <% if @component %>
+              <div class="form-group">
+                <%= f.label :measured_by , class: 'col-md-2 control-label' %>
+                <div class="col-md-9">
+                  <%= f.text_field :measured_by , class: 'form-control' %>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :date_time , class: 'col-md-2 control-label' %>
+                <div class="col-md-9">
+                  <%= f.text_field :date_time , class: 'form-control datetimepicker' %>
+                </div>
+              </div>
+
+
+              <div class="form-group" >
+                <%= f.label :recorded_by , class: 'col-md-2 control-label' %>
+                <div class="col-md-9">
+                  <%= f.select :recorded_by_id, options_for_select(User.power_user.map{|u| [u.name, u.id]}, selected: f.object.recorded_by_id), {},{ class: 'form-control'} %>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :device_id , class: 'col-md-2 control-label' %>
+                <div class="col-md-9">
+                  <%= f.text_field :device_id , class: 'form-control' %>
+                </div>
+              </div>
+
+              <div class="form-group" <%= 'hidden' if f.object.can_hide?('age') %> >
+                <%= f.label "age (#{@component.lower_age}- #{@component.upper_age}): " , class: 'col-md-2 control-label' %>
+                <div class="col-md-9">
+                  <%= f.number_field :age , class: 'form-control' %>
+                </div>
+              </div>
+
+              <div class="form-group" <%= 'hidden' if f.object.can_hide?('height') %>>
+                <%= f.label "Height (#{@component.lower_height}- #{@component.upper_height}): " , class: 'col-md-2 control-label' %>
+                <div class="col-md-9">
+                  <%= f.number_field :height , class: 'form-control' %>
+                </div>
+              </div>
+
+              <div class="form-group" <%= 'hidden' if f.object.can_hide?('weight') %>>
+                <%= f.label "Weight (#{@component.lower_weight}- #{@component.upper_weight}): " , class: 'col-md-2 control-label' %>
+                <div class="col-md-9">
+                  <%= f.number_field :weight , class: 'form-control' %>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :gender , class: 'col-md-2 control-label' %>
+                <div class="col-md-9">
+                  <%= f.text_field :gender , class: 'form-control' %>
+                </div>
+              </div>
+
+
+              <div class="form-group" <%= 'hidden' if f.object.can_hide?('measure') %>>
+                <%= f.label "Measure (#{@component.lower_measure}- #{@component.higher_measure}): " , class: 'col-md-2 control-label' %>
+                <div class="col-md-9">
+                  <%= f.number_field :measure , class: 'form-control' %>
+                </div>
+              </div>
+
+
+              <div class="form-group">
+                <%= f.label :flag , class: 'col-md-2 control-label' %>
+                <div class="col-md-9">
+                  <%= f.select :flag, options_for_select( ['', 'Low', 'Normal', 'Hight'], selected: f.object.flag), {},{ class: 'form-control'} %>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <%= f.label :measurement_status , class: 'col-md-2 control-label' %>
+                <div class="col-md-9">
+                  <%= f.select :measurement_status_id, options_for_select(MeasurementStatus.active.pluck(:name, :id), selected: f.object.measurement_status.try(:id)), {},{ class: 'form-control'} %>
+                </div>
+              </div>
+
+              <div class="form-group" >
+                <div class="col-md-11">
+                  <%= link_to t('button_cancel'), measurements_path, class: 'btn btn-warning pull-right' %>
+                  <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
+                </div>
+              </div>
+
+          <% end %>
+      <% end %>
+
+  <% end %>
+</fieldset>
+
+

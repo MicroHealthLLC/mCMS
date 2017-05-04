@@ -1,0 +1,2 @@
+json.extract! measurement, :id, :name, :component, :order, :lower_age, :upper_age, :lower_height, :upper_height, :lower_weight, :upper_weight, :gender, :measured_by, :lower_measure, :higher_measure, :created_at, :updated_at
+json.url measurement_url(measurement, format: :json)
