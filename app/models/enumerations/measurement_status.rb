@@ -1,7 +1,7 @@
 class MeasurementStatus < Enumeration
   has_many :measurement_records
 
-  OptionName = :enumeration_easurement_status
+  OptionName = :enumeration_measurement_status
 
   def option_name
     OptionName
