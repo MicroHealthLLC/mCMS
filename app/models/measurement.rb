@@ -35,6 +35,10 @@ class Measurement < ApplicationRecord
       errors.add(:lower_weight, 'must be lower than upper weight')
     end
 
+     if lower_age.to_i > upper_age.to_i
+      errors.add(:lower_age, 'must be lower than upper age')
+    end
+
     if lower_measure.to_i > higher_measure.to_i
       errors.add(:lower_measure, 'must be lower than upper measure')
     end
