@@ -1,5 +1,10 @@
-$('#all_attributes').html('<%= escape_javascript(render :partial => 'form', locals: {measurement: @measurement_record}) %>');
+$('#all_attributes').html('<%= escape_javascript(render :partial => 'form_new', locals: {measurement: @measurement_record}) %>');
 $('.datetimepicker').datetimepicker({
   format: 'YYYY-MM-DD LT'
 });
+//$( "select" ).select2({
+//  theme: "bootstrap"
+//});
+
+
 

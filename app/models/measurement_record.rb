@@ -3,6 +3,7 @@ class MeasurementRecord < ApplicationRecord
   belongs_to :component, class_name: 'Measurement'
   belongs_to :case, optional: true
   belongs_to :plan, optional: true
+  belongs_to :gender_type, optional: true, foreign_key: :gender_id
   belongs_to :recorded_by, optional: true, class_name: 'User'
   belongs_to :measurement_status, optional: true
   validates_presence_of :user_id, :measurement,
@@ -20,8 +21,23 @@ class MeasurementRecord < ApplicationRecord
     end
   end
 
+  def gender
+    gender_type || GenderType.default
+  end
+
   def measurement_status
     super || MedicationStatus.default
+  end
+
+  def measurement_parents
+    @measurements ||= begin
+      scope = MeasurementName.find_by(name: self.measurement).measurements
+      scope = scope.from_age(self.age)
+      scope = scope.from_height(self.height)
+      scope = scope.from_weight(self.weight)
+      scope = scope.from_gender(self.gender.try(:id))
+      scope
+    end
   end
 
   def to_s
@@ -30,7 +46,25 @@ class MeasurementRecord < ApplicationRecord
 
   def self.safe_attributes
     [:measurement, :component_id, :measured_by, :date_time,
-     :recorded_by_id, :user_id, :device_id, :age, :height,
+     :recorded_by_id, :user_id, :device_id, :age, :height, :gender_id,
      :weight, :gender, :measure, :flag, :measurement_status_id, :case_id, :plan_id]
   end
+
+  def to_pdf(pdf, show_user = true)
+    pdf.font_size(25){  pdf.table([[ "Measurement ##{id}"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})}
+    user.to_pdf_brief_info(pdf) if show_user
+    pdf.table([["Measurment "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
+    pdf.table([[ "Name: ", " #{measurement}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "component: ", " #{component.component}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "measured by: ", " #{measured_by}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date & time: ", " #{date_time}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "recorded by: ", " #{recorded_by}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Age: ", " #{age}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Height: ", " #{height}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Weight: ", " #{weight}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Measure: ", " #{measure}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Flag: ", " #{flag}"]], :column_widths => [ 150, 373])
+
+  end
+
 end

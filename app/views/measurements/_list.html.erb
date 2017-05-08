@@ -20,7 +20,7 @@
   <tbody>
   <% @measurements.each do |measurement| %>
       <tr>
-        <td><%= measurement.name %></td>
+        <td><%= link_to measurement.measurement_name, measurement %></td>
         <td><%= measurement.component %></td>
         <td><%= measurement.order %></td>
         <td><%= measurement.lower_age %></td>

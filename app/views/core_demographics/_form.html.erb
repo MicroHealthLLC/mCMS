@@ -35,7 +35,7 @@
           </div>
         </div>
 
-         <div class="form-group">
+        <div class="form-group">
           <%= f.label t('profile.first_name'), class: 'col-md-2 control-label' %>
           <div class="col-md-8">
             <%= f.text_field :first_name, placeholder: 'First name', class: 'form-control' %>
@@ -65,7 +65,7 @@
         <div class="form-group">
           <label class="col-md-2 control-label"><%= t('profile.birthday') %></label>
           <div class="col-md-8">
-             <%= f.text_field :birth_date, class: 'form-control birthday', data: {dateformat: "yy-mm-dd"} %>
+            <%= f.text_field :birth_date, class: 'form-control birthday', data: {dateformat: "yy-mm-dd"} %>
             <script>
               $(function(){
                 $('.birthday').datepicker({
@@ -110,6 +110,20 @@
           <label class="col-md-2 control-label"><%= t('profile.citizenship') %></label>
           <div class="col-md-8">
             <%= f.select :citizenship_type_id, options_for_select(CitizenshipType.active.pluck(:name, :id), selected: f.object.citizenship_type.try(:id)) , {},{class: 'form-control'} %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-2 control-label">Height</label>
+          <div class="col-md-8">
+            <%= f.number_field :height, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="col-md-2 control-label">Weight</label>
+          <div class="col-md-8">
+            <%= f.number_field :weight, class: 'form-control' %>
           </div>
         </div>
 

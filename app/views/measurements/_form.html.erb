@@ -16,9 +16,10 @@
       <div class="form-group">
         <%= f.label :name , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.text_field :name , class: 'form-control', require: true %>
+          <%= f.select :measurement_name_id, options_for_select(MeasurementName.active.pluck(:name, :id), selected: f.object.measurement_name.try(:id)) ,{}, {class: 'form-control'}%>
         </div>
       </div>
+
       <div class="form-group">
         <%= f.label :component , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
@@ -70,14 +71,14 @@
       <div class="form-group">
         <%= f.label :gender , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.text_field :gender , class: 'form-control' %>
+          <%= f.select :gender_id, options_for_select(GenderType.active.pluck(:name, :id)), {} , {class: 'form-control'} %>
         </div>
       </div>
       
       <div class="form-group">
         <%= f.label :measured_by , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.text_field :measured_by , class: 'form-control', require: true %>
+          <%= f.select :measured_by_id, options_for_select(MeasuredBy.active.pluck(:name, :id)), {} , {class: 'form-control'} %>
         </div>
       </div>
       

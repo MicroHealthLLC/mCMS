@@ -1,4 +1,4 @@
-class MeasurementRecordsController < ApplicationController
+class MeasurementRecordsController < UserCasesController
   add_breadcrumb I18n.t('home'), :root_path
   add_breadcrumb 'Measurements', :measurement_records_path
   before_action :authenticate_user!
@@ -16,10 +16,13 @@ class MeasurementRecordsController < ApplicationController
       format.js{
         @measurement_record = MeasurementRecord.new(measurement_params)
         @measurement_record.user_id = User.current.id
-        if @component = @measurement_record.component
-          @measurement_record.measured_by = @measurement_record.component.measured_by
-        end
+        @measurement_record.age = User.current.age
+        @measurement_record.height = User.current.height
+        @measurement_record.weight = User.current.weight
+        @measurement_record.gender_id = User.current.gender.try(:id)
       }
+
+      format.pdf{@measurement_records = MeasurementRecord.visible}
     end
   end
 
@@ -41,16 +44,24 @@ class MeasurementRecordsController < ApplicationController
   # POST /measurement_records
   # POST /measurement_records.json
   def create
-    @measurement_record = MeasurementRecord.new(measurement_record_params)
-
+    measurement_count = params['measurement_count'].to_i
+    measure_params = measurement_record_params
+    (0..measurement_count).each do |i|
+      measure_params.merge!( {
+                                 component_id: params["component_id_#{i}"],
+                                 measure: params["measure_#{i}"],
+                                 recorded_by_id: params["recorded_by_id_#{i}"],
+                                 date_time: params["date_time_#{i}"],
+                                 measurement_status_id: params["measurement_status_id_#{i}"],
+                                 measured_by: params["measured_by_#{i}"],
+                                 flag: params["flag_#{i}"]
+                             })
+      @measurement_record = MeasurementRecord.new(measure_params).save
+    end
     respond_to do |format|
-      if @measurement_record.save
-        format.html { redirect_to @measurement_record, notice: 'Measurement record was successfully created.' }
-        format.json { render :show, status: :created, location: @measurement_record }
-      else
-        format.html { render :new }
-        format.json { render json: @measurement_record.errors, status: :unprocessable_entity }
-      end
+      format.html { redirect_to measurement_records_path, notice: 'Measurement record was successfully created.' }
+      format.json { render :show, status: :created, location: @measurement_record }
+
     end
   end
 

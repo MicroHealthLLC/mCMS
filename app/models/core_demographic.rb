@@ -27,6 +27,12 @@ class CoreDemographic < ApplicationRecord
     end
   end
 
+  def age
+    dob = birthday.to_date rescue Date.today
+    now = Time.now.utc.to_date
+    now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+  end
+
 
   def gender_type
     if gender_id
@@ -57,12 +63,16 @@ class CoreDemographic < ApplicationRecord
         :user_id, :first_name, :last_name, :middle_name,
         :gender_id, :title, :marital_status_id,
         :birth_date, :religion_id,
-        :note, :ethnicity_id, :citizenship_type_id
+        :note, :ethnicity_id, :citizenship_type_id, :height, :weight
     ]
   end
 
   def gender
-    gender_type
+    gender_type || GenderType.default
+  end
+
+  def birthday
+    birth_date
   end
 
   def to_pdf(pdf, show_user = true)
@@ -70,7 +80,7 @@ class CoreDemographic < ApplicationRecord
     pdf.table([[ "Middle name: ", " #{middle_name}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Last name: ", " #{last_name}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Gender: ", " #{gender_type}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Birthday: ", " #{birth_date}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Birthday: ", " #{birthday}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Religion: ", " #{religion_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Marital Status: ", " #{marital_status}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Tile: ", " #{title}"]], :column_widths => [ 150, 373])

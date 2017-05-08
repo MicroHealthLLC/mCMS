@@ -311,6 +311,9 @@ class User < ApplicationRecord
   def citizenship; profile.citizenship_type;  end
   def gender;      profile.gender;      end
   def active?;     self.state ? 'Active' : 'Non active';         end
+  def height;      profile.height;         end
+  def weight;      profile.weight;         end
+  def age;      profile.age;         end
 
   def profile_name
     "#{first_name} #{middle_name} #{last_name}".gsub('  ', ' ')

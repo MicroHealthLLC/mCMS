@@ -1,0 +1,103 @@
+
+<fieldset id="all_attributes">
+  <legend>New Measurement</legend>
+  <%= form_for(measurement, html: { class: 'form-horizontal' }) do |f| %>
+      <% if measurement.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(measurement.errors.count, "error") %> </h2>
+
+            <ul>
+              <% measurement.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+      <% end %>
+      <%= f.hidden_field :user_id %>
+      <%= f.hidden_field :case_id %>
+      <%= f.hidden_field :plan_id %>
+      <%= f.hidden_field :gender_id %>
+      <%= f.hidden_field :age %>
+      <%= f.hidden_field :height %>
+      <%= f.hidden_field :weight %>
+
+      <div class="form-group">
+        <%= f.label :measurement , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :measurement, options_for_select(Measurement.all.map(&:to_s).uniq.insert(0, ''), selected: f.object.measurement), {},{ class: 'form-control'} %>
+          <script>
+            $(document).ready(function(){
+              $('#measurement_record_measurement').on('change', function(){
+                val = $(this).val();
+                $.getScript("<%= measurement_records_path(format: :js) %>?case_id=<%=f.object.case_id%>&plan_id=<%=f.object.plan_id%>&measurement="+val)
+              })
+            })
+          </script>
+        </div>
+      </div>
+      <% if f.object.measurement %>
+          <table class="table table-responsive">
+            <thead>
+            <th>Component</th>
+            <th>Measure</th>
+            <th>Recorded by</th>
+            <th>Date & Time</th>
+            <th>Flag</th>
+            <th>Status</th>
+            </thead>
+            <tbody>
+            <%= hidden_field_tag "measurement_count", f.object.measurement_parents.count %>
+            <% f.object.measurement_parents.each_with_index do |measurement, index| %>
+                <tr>
+                  <td><%= hidden_field_tag "component_id_#{index}", measurement.id %>
+                    <%= measurement.component %></td>
+                  <td><%= text_field_tag "measure_#{index}", '', class: 'form-control' %>
+                    <%= hidden_field_tag "measured_by_#{index}", measurement.measured_by.try(:name) %>
+                    <%= measurement.measured_by.try(:name) %>
+                    <%= hidden_field_tag "min_measure", measurement.lower_measure, class: 'min_measure' %>
+                    <%= hidden_field_tag "max_measure", measurement.higher_measure, class: 'max_measure' %>
+                    <script>
+
+                        $('#measure_<%= index %>').on('change', function(){
+                          val = $(this).val()
+                          if(val.length > 0)
+                          {
+                            val = parseFloat(val);
+                            min_measure = parseFloat($(this).parent('td').children('.min_measure').val())
+                            max_measure = parseFloat($(this).parent('td').children('.max_measure').val())
+                            if(max_measure < val)
+                              $('#flag_<%= index %> option[value="Hight"]').prop('selected', true);
+                            else if(val< min_measure)
+                              $('#flag_<%= index %> option[value="Low"]').prop('selected', true);
+                            else
+                              $('#flag_<%= index %> option[value="Normal"]').prop('selected', true);
+                          }
+                          else
+                            $('#flag_<%= index %> option[value=""]').prop('selected', true);
+//                         alert( $(this).val())
+                        })
+                    </script>
+                  </td>
+
+                  <td><%= select_tag "recorded_by_id_#{index}",  options_for_select(User.power_user.map{|u| [u.name, u.id]}, selected: User.current_user.id), {class: 'form-control'}%></td>
+                  <td><%= text_field_tag "date_time_#{index}", Time.now ,class: 'form-control datetimepicker' %></td>
+                  <td class="flag_measure"><%= select_tag "flag_#{index}",options_for_select( ['', 'Low', 'Normal', 'Hight']),  class: 'form-control' %></td>
+                  <td><%= select_tag "measurement_status_id_#{index}", options_for_select(MeasurementStatus.active.pluck(:name, :id), selected: f.object.measurement_status.try(:id)),{ class: 'form-control'} %></td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+
+          <div class="form-group" >
+            <div class="col-md-11">
+              <%= link_to t('button_cancel'), measurements_path, class: 'btn btn-warning pull-right' %>
+              <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
+            </div>
+          </div>
+
+      <% end %>
+
+  <% end %>
+</fieldset>
+
+
