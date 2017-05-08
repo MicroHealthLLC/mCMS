@@ -3,15 +3,10 @@
   <tr>
     <th>Measurement</th>
     <th>Component</th>
+    <th>Measure</th>
     <th>Measured by</th>
     <th>Date time</th>
     <th>Recorded by</th>
-    <th>Device</th>
-    <th>Age</th>
-    <th>Height</th>
-    <th>Weight</th>
-    <th>Gender</th>
-    <th>Measure</th>
     <th>Flag</th>
     <th>Measurement status</th>
 
@@ -23,15 +18,10 @@
       <tr>
         <td><%= link_to measurement_record.measurement, measurement_record %></td>
         <td><%= measurement_record.component %></td>
+        <td><%= measurement_record.measure %></td>
         <td><%= measurement_record.measured_by %></td>
         <td><%= format_date_time  measurement_record.date_time %></td>
         <td><%= measurement_record.recorded_by %></td>
-        <td><%= measurement_record.device_id %></td>
-        <td><%= measurement_record.age %></td>
-        <td><%= measurement_record.height %></td>
-        <td><%= measurement_record.weight %></td>
-        <td><%= measurement_record.gender %></td>
-        <td><%= measurement_record.measure %></td>
         <td><%= measurement_record.flag %></td>
         <td><%= measurement_record.measurement_status %></td>
         </tr>

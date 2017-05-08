@@ -35,7 +35,6 @@ class MeasurementRecord < ApplicationRecord
       scope = scope.from_age(self.age)
       scope = scope.from_height(self.height)
       scope = scope.from_weight(self.weight)
-      scope = scope.from_gender(self.gender.try(:id))
       scope
     end
   end

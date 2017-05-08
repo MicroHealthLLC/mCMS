@@ -43,7 +43,7 @@ class Measurement < ApplicationRecord
   def self.from_age(age)
     scope = where(nil)
     if age.to_i > 0
-      scope = scope.where("(upper_age = :age_zero AND lower_age = :age_zero) OR upper_age >= :age AND lower_age <= :age", age: age.to_i, age_zero: 0)
+      scope = scope.where("((upper_age = :age_zero AND lower_age = :age_zero) OR (upper_age >= :age AND lower_age <= :age))", age: age.to_i, age_zero: 0)
     end
     scope
   end
@@ -51,7 +51,7 @@ class Measurement < ApplicationRecord
  def self.from_height(height)
     scope = where(nil)
     if height.to_i > 0
-      scope = scope.where("(upper_height = :height_zero AND lower_height = :height_zero) OR upper_height >= :height AND lower_height <= :height", height: height.to_i, height_zero: 0)
+      scope = scope.where("((upper_height = :height_zero AND lower_height = :height_zero) OR (upper_height >= :height AND lower_height <= :height))", height: height.to_i, height_zero: 0)
     end
     scope
   end
@@ -59,7 +59,7 @@ class Measurement < ApplicationRecord
  def self.from_weight(weight)
     scope = where(nil)
     if weight.to_i > 0
-      scope = scope.where("(upper_weight = :weight_zero AND lower_weight = :weight_zero) OR upper_weight >= :weight AND lower_weight <= :weight", weight: weight.to_i, weight_zero: 0)
+      scope = scope.where("((upper_weight = :weight_zero AND lower_weight = :weight_zero) OR (upper_weight >= :weight AND lower_weight <= :weight))", weight: weight.to_i, weight_zero: 0)
     end
     scope
   end
