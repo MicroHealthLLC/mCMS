@@ -7,7 +7,6 @@
         <th>Case</th>
     <% end %>
     <th>Transport type</th>
-    <th>Description</th>
     <th>Transport location</th>
     <th>Transport status</th>
     <th>Date time</th>
@@ -22,8 +21,7 @@
             <td><%= link_to_case transport.case %></td>
         <% end %>
         <td><%= transport.transport_type %></td>
-        <td><%= transport.description %></td>
-        <td><%= transport.transport_location %></td>
+       <td><%= transport.transport_location %></td>
         <td><%= transport.transport_status %></td>
         <td><%= format_date_time transport.date_time %></td>
       </tr>
