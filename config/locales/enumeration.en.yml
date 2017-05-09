@@ -150,6 +150,6 @@ en:
   enumeration_measured_by: Measured by
   enumeration_measurement_name: Measurement
   enumeration_measurement_status: Measurement Status
-  enumeration_transport_status: Transport Type
-  enumeration_transport_type: Transport Status
+  enumeration_transport_status: Transport status
+  enumeration_transport_type: Transport Type
   enumeration_transport_location: Transport Location
