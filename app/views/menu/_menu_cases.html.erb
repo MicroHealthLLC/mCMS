@@ -90,6 +90,12 @@
                 </li>
             <% end %>
 
+            <% if module_enabled?( 'transports')  && can?(:manage_roles, :view_transports, :manage_transports) %>
+                <li class="<%= menu_active?('transports') %>">
+                  <a href="/transports" title="<%= t(:transports) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:transports) %></span></a>
+                </li>
+            <% end %>
+
             <% if module_enabled?( 'appointments')  && can?(:manage_roles, :view_appointments, :manage_appointments) %>
                 <li class="<%= menu_active?('appointments') %>">
                   <a href="/appointments" title="<%= t(:appointments) %>"><i class="fa fa-lg fa-fw fa-calendar"></i> <span class="menu-item-parent"><%= t(:appointments) %></span></a>

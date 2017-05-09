@@ -9,6 +9,15 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_documents, {:documents => [:all_files, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
+  map.project_module :transports do |map|
+    map.permission :view_transports,   {:transports => [:index]},  :read => true
+    map.permission :show_transports,   {:transports => [:show]},  :read => true
+    map.permission :create_transports, {:transports => [:new, :create]},  :read => true
+    map.permission :edit_transports,   {:transports => [ :edit, :update]},  :read => true
+    map.permission :delete_transports, {:transports => [ :destroy]},  :read => true
+    map.permission :manage_transports, {:transports => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
   map.project_module :client_journal do |map|
     map.permission :view_client_journals,   {:client_journals => [:index, :show]},  :read => true
     map.permission :show_client_journals,   {:client_journals => [:show]},  :read => true

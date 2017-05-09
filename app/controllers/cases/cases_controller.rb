@@ -84,6 +84,7 @@ class CasesController < UserCasesController
     @enrollments  = @case.enrollments
     @referrals    = @case.referrals
     @teleconsults = @case.teleconsults
+    @transports   = @case.transports
     @measurement_records = @case.measurement_records
     @case_organizations  = @case.case_organizations
     @watchers     = @case.watchers.includes(:user=> :core_demographic)
@@ -108,6 +109,7 @@ class CasesController < UserCasesController
     @timeline << @case.enrollments
     @timeline << @case.referrals
     @timeline << @case.teleconsults
+    @timeline << @case.transports
     @timeline << @case.case_supports.active
     @timeline.flatten!.compact!
     @timeline.sort_by!{|a| Time.now - a.updated_at }

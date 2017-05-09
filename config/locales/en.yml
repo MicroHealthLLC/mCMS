@@ -471,6 +471,14 @@ en:
   transportation_mean: Transportation Mean
   transportation_accessibility: Transportation Accessibility
 
+  transport: transport
+  new_transport: New transport
+  edit_transport: Edit transport
+  transports: transport
+  transport_type: transport Type
+  transport_status: transport Status
+  transport_location: transport Location
+
   financial: Financial
   new_financial: New Financial
   edit_financial: Edit Financial

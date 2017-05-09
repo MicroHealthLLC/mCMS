@@ -1,0 +1,17 @@
+
+<% if module_enabled?('transports') %>
+    <%= link_to(t('new_transport'), new_transport_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_transports, :manage_roles, :manage_transports) %>
+
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= render partial: 'transports/list',
+                   layout: 'shared/smart_widget_wrapper',
+                   locals: {
+                       show_case_column: false,
+                       transports: @transports,
+                       wid_id: 'transports',
+                       wid_title: 'transports'
+                   } %>
+      </article>
+    </div>
+<% end %>

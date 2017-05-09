@@ -1,0 +1,38 @@
+<% show_case = defined?(show_case_column) ? show_case_column : true %>
+<table class="table table-responsive" id="transports_table">
+  <thead>
+  <tr>
+    <th>Reason</th>
+    <% if show_case %>
+        <th>Case</th>
+    <% end %>
+    <th>Transport type</th>
+    <th>Description</th>
+    <th>Transport location</th>
+    <th>Transport status</th>
+    <th>Date time</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @transports.each do |transport| %>
+      <tr>
+        <td><%= link_to transport.reason, transport %></td>
+        <% if show_case %>
+            <td><%= link_to_case transport.case %></td>
+        <% end %>
+        <td><%= transport.transport_type %></td>
+        <td><%= transport.description %></td>
+        <td><%= transport.transport_location %></td>
+        <td><%= transport.transport_status %></td>
+        <td><%= format_date_time transport.date_time %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+    initDataTable('transports_table')
+  })
+</script>

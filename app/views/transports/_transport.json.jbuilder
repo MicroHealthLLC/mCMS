@@ -1,0 +1,2 @@
+json.extract! transport, :id, :user_id, :reason, :transport_type_id, :description, :transport_location_id, :transport_status, :date_time, :created_at, :updated_at
+json.url transport_url(transport, format: :json)
