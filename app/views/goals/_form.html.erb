@@ -45,6 +45,13 @@
           <%= f.select :goal_status_id, options_for_select(GoalStatus.active.pluck(:name, :id), selected: f.object.goal_status.try(:id)), {} , {class: 'form-control'} %>
         </div>
       </div>
+
+       <div class="form-group">
+        <%= f.label t(:goal_type) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.select :goal_type_id, options_for_select(GoalType.active.pluck(:name, :id), selected: f.object.goal_type.try(:id)), {} , {class: 'form-control'} %>
+        </div>
+      </div>
       <div class="form-group">
         <%= f.label :percent_done , class: 'col-md-2 control-label' %>
         <div class="col-md-9">

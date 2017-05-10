@@ -223,6 +223,7 @@ en:
   new_goal: New goal
   edit_goal: Edit goal
   goal_status: Goal Status
+  goal_type: Goal Type
 
 # PLANS
   plan: Plan
@@ -231,6 +232,7 @@ en:
   new_plan: New plan
   edit_plan: Edit plan
   plan_status: Plan Status
+  plan_type: Plan Type
 
  # CASES
   case: Case

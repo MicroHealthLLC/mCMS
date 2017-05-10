@@ -10,7 +10,8 @@
         <th>Case</th>
     <% end %>
     <th>Priority type</th>
-    <th>Goal status</th>
+    <th>Goal Status</th>
+    <th>Goal Type</th>
     <th>Percent Done</th>
     <th>Date start</th>
     <th>Date due</th>
@@ -34,6 +35,7 @@
             <% end %>
             <td><%= goal.priority_type %></td>
             <td><%= goal.goal_status %></td>
+            <td><%= goal.goal_type %></td>
             <td><%= goal.percent_done || 0 %> %</td>
             <td><%= format_date goal.date_start %></td>
             <td><%= format_date goal.date_due %></td>

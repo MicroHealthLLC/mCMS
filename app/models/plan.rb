@@ -5,6 +5,7 @@ class Plan < ApplicationRecord
   belongs_to :assigned_to, optional: true, class_name: 'User'
   belongs_to :priority_type, optional: true
   belongs_to :plan_status, optional: true
+  belongs_to :plan_type, optional: true
   validates_presence_of :name
   has_many :plan_notes, foreign_key: :owner_id, dependent: :destroy
 
@@ -31,7 +32,7 @@ class Plan < ApplicationRecord
   def self.safe_attributes
     [
         :priority_type_id, :user_id, :plan_status_id, :name, :assigned_to_id, :percent_done,
-        :description, :date_completed, :date_due, :date_start,  :case_id,
+        :description, :date_completed, :date_due, :date_start,  :case_id, :plan_type_id,
         goal_plans_attributes: [GoalPlan.safe_attributes]
     ]
   end
@@ -47,7 +48,8 @@ class Plan < ApplicationRecord
   def self.enumeration_columns
     [
         ["#{PriorityType}", 'priority_type_id'],
-        ["#{PlanStatus}", 'plan_status_id']
+        ["#{PlanStatus}", 'plan_status_id'],
+        ["#{PlanType}", 'plan_type_id']
     ]
   end
 
@@ -67,6 +69,14 @@ class Plan < ApplicationRecord
     end
   end
 
+  def plan_type
+    if plan_type_id
+      super
+    else
+      PlanType.default
+    end
+  end
+
   def to_s
     name
   end
@@ -79,6 +89,7 @@ class Plan < ApplicationRecord
     pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Plan status: ", " #{plan_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Plan type: ", " #{plan_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Percent Done ", " #{percent_done} %"]], :column_widths => [ 150, 373])
     pdf.table([[ "Priority: ", " #{priority_type}"]], :column_widths => [ 150, 373])
 
@@ -90,6 +101,7 @@ class Plan < ApplicationRecord
   def little_description
     output = 'Plan'
     output<< "<p> Status #{plan_status} </p>"
+    output<< "<p> Type #{plan_type} </p>"
     output<< "<p> Priority:  #{priority_type} </p>"
     output<< "<p> Percent done: #{percent_done}% </p>"
 
@@ -105,7 +117,8 @@ class Plan < ApplicationRecord
     output = ""
     output<< "<h2>Plan ##{id} </h2><br/>"
     output<<"<b>Name: </b> #{name}<br/>"
-    output<<"<b>Plan status : </b> #{plan_status}<br/>"
+    output<<"<b>Plan Status : </b> #{plan_status}<br/>"
+    output<<"<b>Plan Type : </b> #{plan_type}<br/>"
     output<<"<b>Percent Done : </b> #{percent_done} %<br/>"
     output<<"<b>Priority : </b> #{priority_type}<br/>"
     output<<"<b>Date start: </b> #{date_start}<br/>"

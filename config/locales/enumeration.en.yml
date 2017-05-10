@@ -153,3 +153,5 @@ en:
   enumeration_transport_status: Transport status
   enumeration_transport_type: Transport Type
   enumeration_transport_location: Transport Location
+  enumeration_goal_type: Goal Type
+  enumeration_plan_type: Plan Type

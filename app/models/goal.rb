@@ -5,6 +5,7 @@ class Goal < ApplicationRecord
   belongs_to :assigned_to, optional: true, class_name: 'User'
   belongs_to :priority_type, optional: true
   belongs_to :goal_status, optional: true
+  belongs_to :goal_type, optional: true
 
   has_many :need_goals, dependent: :destroy
   has_many :needs, through: :need_goals
@@ -34,7 +35,7 @@ class Goal < ApplicationRecord
   def self.safe_attributes
     [
         :priority_type_id, :user_id, :goal_status_id, :name, :assigned_to_id, :percent_done,
-        :description, :date_completed, :date_due, :date_start,  :case_id,
+        :description, :date_completed, :date_due, :date_start,  :case_id, :goal_type_id,
         need_goals_attributes: [NeedGoal.safe_attributes]
     ]
   end
@@ -50,7 +51,8 @@ class Goal < ApplicationRecord
   def self.enumeration_columns
     [
         ["#{PriorityType}", 'priority_type_id'],
-        ["#{GoalStatus}", 'goal_status_id']
+        ["#{GoalStatus}", 'goal_status_id'],
+        ["#{GoalType}", 'goal_type_id']
     ]
   end
 
@@ -70,6 +72,14 @@ class Goal < ApplicationRecord
     end
   end
 
+ def goal_type
+    if goal_type_id
+      super
+    else
+      GoalType.default
+    end
+  end
+
   def to_s
     name
   end
@@ -82,6 +92,7 @@ class Goal < ApplicationRecord
     pdf.table([[ "Name ", " #{name}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Description ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Goal status ", " #{goal_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Goal Type ", " #{goal_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Percent Done ", " #{percent_done} %"]], :column_widths => [ 150, 373])
     pdf.table([[ "Priority ", " #{priority_type}"]], :column_widths => [ 150, 373])
 
@@ -93,6 +104,7 @@ class Goal < ApplicationRecord
   def little_description
     output = 'Goal'
     output<< "<p>Status #{goal_status} </p>"
+    output<< "<p>Type #{goal_type} </p>"
     output<< "<p> Priority: #{priority_type} </p>"
     output<< "<p> Percent Done: #{percent_done} % </p>"
 
@@ -108,6 +120,7 @@ class Goal < ApplicationRecord
     output<< "<h2>Goal ##{id} </h2><br/>"
     output<<"<b>Name : </b> #{name}<br/>"
     output<<"<b>Goal Status : </b> #{goal_status}<br/>"
+    output<<"<b>Goal Type : </b> #{goal_type}<br/>"
     output<<"<b>Percent Done: </b> #{percent_done}%<br/>"
     output<<"<b>Priority: </b> #{priority_type}<br/>"
     output<<"<b>Date start : </b> #{date_start}<br/>"
