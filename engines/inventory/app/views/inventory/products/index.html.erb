@@ -1,3 +1,5 @@
+<%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
+
 <%= link_to 'New product', inventory.new_product_path, class: 'btn btn-primary pull-right btn-edition' %>
 <section id="widget-grid" class="show_customer_account">
   <div class="row">

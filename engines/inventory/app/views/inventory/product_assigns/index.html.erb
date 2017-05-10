@@ -1,3 +1,5 @@
+<%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
+
 <%= link_to 'Assign new product', inventory.new_product_assign_path(user_id: User.current.id), class: 'btn btn-primary pull-right btn-edition' if can?(:manage_roles) %>
 <section id="widget-grid" class="show_customer_account">
   <div class="row">
