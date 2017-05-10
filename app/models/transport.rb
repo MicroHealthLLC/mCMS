@@ -40,7 +40,7 @@ class Transport < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:user_id, :reason, :transport_type_id, :description, :case_id,
+    [:user_id, :reason, :transport_type_id, :description, :case_id, :location, :location_lat, :location_long,
      :transport_location_id, :transport_status, :date_time]
   end
 
