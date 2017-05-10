@@ -109,6 +109,11 @@
           <a href="/all_files" title="<%= t(:all_files) %>"><i class="fa fa-lg fa-fw fa-files-o"></i> <span class="menu-item-parent"><%= t(:all_files) %></span></a>
         </li>
     <% end %>
+    <% if module_enabled?('inventory/product_assigns')  && can?(:manage_roles, :view_product_assigns) %>
+        <li class="<%= menu_active?('inventory/product_assigns') %>">
+          <a href="/inventory/product_assigns" title="<%= 'Products' %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= 'Product assignments' %></span></a>
+        </li>
+    <% end %>
     <% if module_enabled?('client_journals')  && can?(:manage_roles, :view_client_journals, :manage_client_journals)%>
         <li class="<%= menu_active?('client_journals') %>">
           <a href="/client_journals" title="<%= t(:client_journals) %>"><i class="fa fa-lg fa-fw fa-address-book-o"></i> <span class="menu-item-parent"><%= t(:client_journals) %></span></a>
