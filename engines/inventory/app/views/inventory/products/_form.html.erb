@@ -70,11 +70,12 @@
       </div>
 
       <div class="form-group">
-        <%= f.label :product_location , class: 'col-md-2 control-label' %>
+        <%= f.label :product_location, class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.text_field :product_location , class: 'form-control' %>
+          <%= f.select :product_location_id, options_for_select(Inventory::ProductLocation.active.pluck(:name, :id), selected: f.object.product_location.try(:id)), {},{ class: 'form-control'} %>
         </div>
       </div>
+
 
       <div class="form-group">
         <%= f.label :product_status, class: 'col-md-2 control-label' %>

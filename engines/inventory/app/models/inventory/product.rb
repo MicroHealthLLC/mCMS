@@ -3,6 +3,7 @@ module Inventory
     belongs_to :product_category, optional: true
     belongs_to :product_type, optional: true
     belongs_to :product_status, optional: true
+    belongs_to :product_location, optional: true
 
     has_many :product_assigns
 
@@ -16,6 +17,10 @@ module Inventory
       super || ProductType.default
     end
 
+     def product_location
+      super || ProductLocation.default
+    end
+
     def product_status
       super || ProductStatus.default
     end
@@ -26,7 +31,7 @@ module Inventory
 
     def self.safe_attributes
       [:name, :description, :product_category_id, :product_type_id,
-       :manufacturer, :model, :serial, :unit_cost, :product_location, :product_status_id]
+       :manufacturer, :model, :serial, :unit_cost, :product_location_id, :product_status_id]
     end
 
     def to_pdf(pdf, show_user = true)

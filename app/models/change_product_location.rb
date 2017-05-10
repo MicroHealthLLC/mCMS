@@ -1,0 +1,2 @@
+class ChangeProductLocation < ApplicationRecord
+end
