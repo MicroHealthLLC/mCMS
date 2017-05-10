@@ -1,0 +1,28 @@
+<table class="table table-responsive table-bordered" id="products_table">
+  <thead>
+  <tr>
+    <th>Product</th>
+    <th>User</th>
+    <th>Date</th>
+    <th>Assignment status</th>
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @product_assigns.each do |product_assign| %>
+      <tr>
+        <td><%= link_to product_assign.product, product_assign %></td>
+        <td><%= product_assign.user %></td>
+        <td><%= product_assign.date %></td>
+        <td><%= format_date product_assign.assignment_status %></td>
+       </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+    initDataTable('products_table')
+  } );
+</script>

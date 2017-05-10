@@ -92,6 +92,7 @@ RedCarpet::AccessControl.map do |map|
         'kanban/columns' => [:index, :create, :update, :destroy],
         'kanban/cards' => [:index, :create, :update, :destroy, :change_column, :archive, :unarchive ],
         'event_calendar/events' => [:index, :new, :show, :edit, :create, :update, :destroy],
+        'inventory/product_assigns' => [:index, :new, :show, :edit, :create, :update, :destroy],
         'links/links' => [:index, :new, :show, :edit, :create, :update, :destroy],
         :document_managers => [:index, :show, :search, :destroy, :create, :update, :download],
         :revisions=>[:download, :create]

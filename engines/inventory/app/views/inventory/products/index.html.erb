@@ -1,0 +1,14 @@
+<%= link_to 'New product', inventory.new_product_path, class: 'btn btn-primary pull-right btn-edition' %>
+<section id="widget-grid" class="show_customer_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     products: @products ,
+                     wid_id: 'product ',
+                     wid_title: t('products')
+                 } %>
+    </article>
+  </div>
+</section>

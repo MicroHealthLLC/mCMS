@@ -1,0 +1,39 @@
+
+<table class="table table-responsive table-bordered" id="products_table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Product category</th>
+    <th>Product type</th>
+    <th>Manufacturer</th>
+    <th>Model</th>
+    <th>Serial</th>
+    <th>Uni cost</th>
+    <th>Product status</th>
+    <th>Product status</th>
+
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @products.each do |product| %>
+      <tr>
+        <td><%= link_to product.name, product %></td>
+        <td><%= product.product_category %></td>
+        <td><%= product.product_type %></td>
+        <td><%= product.manufacturer %></td>
+        <td><%= product.model %></td>
+        <td><%= product.serial %></td>
+        <td><%= product.unit_cost %></td>
+        <td><%= product.product_status %></td>
+        <td><%= product.product_status %></td>
+        </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+    initDataTable('products_table')
+  } );
+</script>

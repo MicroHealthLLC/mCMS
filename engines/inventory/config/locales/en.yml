@@ -1,0 +1,10 @@
+en:
+  enumeration_assignment_status: Assignment Status
+  enumeration_product_category: Product Category
+  enumeration_product_status: Product Status
+  enumeration_product_type: Product Type
+  product: Product
+  new_product: New Product
+  edit_product: Edit Product
+  products: Products
+  product_assigns: Product Assign

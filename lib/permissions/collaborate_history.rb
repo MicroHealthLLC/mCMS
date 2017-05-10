@@ -13,11 +13,15 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_sticky_notes, {'sticky_notes/sticky_notes' => [:index, :save]},  :read => true
   end
 
-   map.project_module :my_links do |map|
+  map.project_module :my_links do |map|
     map.permission :manage_links, {'links/links' => [:index, :new, :show, :edit, :create, :update, :destroy]},  :read => true
   end
 
-   map.project_module :kanban do |map|
+   map.project_module :product_assigns do |map|
+    map.permission :view_product_assigns, {'inventory/product_assigns' => [:index, :show]},  :read => true
+  end
+
+  map.project_module :kanban do |map|
     map.permission :view_kanban, {
         'kanban/projects' => [:index, :create, :update, :destroy],
         'kanban/columns' => [:index, :create, :update, :destroy],
@@ -28,14 +32,14 @@ RedCarpet::AccessControl.map do |map|
         'kanban/columns' => [:index, :create, :update, :destroy],
         'kanban/cards' => [:index, :create, :update, :destroy, :change_column, :archive, :unarchive ]
     },  :read => true
-   end
+  end
 
 
   map.project_module :my_todo_list do |map|
     map.permission :manage_todo_list, {'todo_list/todos' => [:index, :save]},  :read => true
   end
 
- map.project_module :events do |map|
+  map.project_module :events do |map|
     map.permission :manage_events, {'event_calendar/events' => [:index, :show,  :new, :edit, :create, :update, :destroy]},  :read => true
   end
 

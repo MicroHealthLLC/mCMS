@@ -1,0 +1,14 @@
+<%= link_to 'Assign new product', inventory.new_product_assign_path(user_id: User.current.id), class: 'btn btn-primary pull-right btn-edition' if can?(:manage_roles) %>
+<section id="widget-grid" class="show_customer_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     product_assigns: @product_assigns ,
+                     wid_id: 'product ',
+                     wid_title: t('product_assigns')
+                 } %>
+    </article>
+  </div>
+</section>
