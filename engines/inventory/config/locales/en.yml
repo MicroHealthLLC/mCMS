@@ -7,4 +7,7 @@ en:
   new_product: New Product
   edit_product: Edit Product
   products: Products
-  product_assigns: Product Assign
+  product_assigns: Product Assigns
+  product_assign: Product Assign
+  new_product_assign: New Product Assign
+  edit_product_assign: Edit Product Assign
