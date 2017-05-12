@@ -106,7 +106,6 @@ class JobApplication < ApplicationRecord
     output<<"<b>Interview Date: </b> #{interview_date}<br/>"
     output<<"<b>Interview Type </b> #{interview_type}<br/>"
     output<<"<b>Interview Status </b> #{interview_status}<br/>"
-    output<<"<b>Description: </b> #{description} <br/>"
     output.html_safe
   end
 

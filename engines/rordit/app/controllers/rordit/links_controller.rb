@@ -21,8 +21,8 @@ module Rordit
     def update
       link = Link.find(params[:id])
       params = {title: link_params[:title], url: link_params[:url], user_id: User.current.id,
-                      username: User.current.name,
-                hostname: URI.parse(link_params[:url]).hostname.sub(/^www\./, '')}
+                username: User.current.name,
+                hostname: URI.parse(link_params[:url]).hostname.to_s.sub(/^www\./, '')}
       if link.update(params)
         Rails.cache.delete("links_count")
         render json: { message: links_path(link.id) }, status: 200
@@ -54,11 +54,11 @@ module Rordit
         cond_title<< "url LIKE '%#{s}%'"
         cond_url<< "title LIKE '%#{s}%'"
       end
-      result = Link
+      result = Link.where(nil)
       result = if search.present?
                  result.where("(#{cond_title.join(' OR ')}) OR (#{cond_url.join(' OR ')})")
                end
-       paged_links = result.paginate(page: link_params[:page].to_i + 1, per_page: PER_PAGE)
+      paged_links = result.paginate(page: link_params[:page].to_i + 1, per_page: PER_PAGE)
       page_count = pages_count(result.count)
       render json: { links: paged_links.as_json, page_count: page_count }
     end

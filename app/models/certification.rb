@@ -62,7 +62,7 @@ class Certification < ApplicationRecord
     output = ""
     output<< "<h2>Certification ##{id} </h2>"
     output<< "<b>Certification type: </b> #{certification_type}<br/>"
-    output<< "<b>Certification Status:  </b> #{certification_sttaus}<br/>"
+    output<< "<b>Certification Status:  </b> #{certification_status}<br/>"
     output<< "<b>Date received: </b> #{date_received}<br/>"
     output<< "<b>Date expired: </b> #{date_expired}<br/>"
     output<< "<b>Note: </b> #{note}<br/>"
