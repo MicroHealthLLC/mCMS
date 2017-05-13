@@ -118,7 +118,7 @@
         </article>
       </div>
   <% end %>
-  <% if @job_applications %>
+  <% if @resumes %>
       <%= link_to(t('new_resume'), new_resume_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_resumes, :manage_roles, :manage_resumes) %>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

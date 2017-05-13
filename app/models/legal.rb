@@ -38,7 +38,7 @@ class Legal < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:user_id, :title, :legal_history_id, :legal_history_status_id, :description, :date_start,
+    [:user_id, :title, :legal_history_type_id, :legal_history_status_id, :description, :date_start,
      :date_end, legal_attachments_attributes: [Attachment.safe_attributes]]
   end
 

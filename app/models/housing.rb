@@ -78,7 +78,7 @@ class Housing < ApplicationRecord
   def for_mail
     output = ""
     output<< "<h2>Housing ##{id} </h2><br/>"
-    output<<"<b>Title : </b> #{name}<br/>"
+    output<<"<b>Title : </b> #{title}<br/>"
     output<<"<b>Housing Type : </b> #{housing_type}<br/>"
     output<<"<b>Housing Status : </b> #{housing_status}<br/>"
     output<<"<b>Primary Address : </b> #{primary_address}<br/>"
