@@ -1,59 +1,69 @@
-<div class="nested-fields row">
-  <fieldset>
+<div class="nested-fields">
+  <div class="row">
+    <div class="col-xs-12 col-md-12">
+      <fieldset>
 
-    <div class="col-md-12">
-      <%= link_to_remove_association "remove", f, class: 'btn btn-warning pull-right' %>
+        <div class="col-md-12">
+          <%= link_to_remove_association "remove", f, class: 'btn btn-warning pull-right' %>
 
-      <div class="form-group col-md-12">
-        <%= f.label :address_type , class: 'col-md-2 control-label' %>
-        <div class="col-md-8">
-          <%= f.select :address_type_id, options_for_select( AddressType.active.pluck(:name, :id), selected: f.object.address_type.try(:id) ), {}, {class: 'form-control'} %>
+          <div class="form-group col-md-12">
+            <%= f.label :address_type , class: 'col-md-2 control-label' %>
+            <div class="col-md-8">
+              <%= f.select :address_type_id, options_for_select( AddressType.active.pluck(:name, :id), selected: f.object.address_type.try(:id) ), {}, {class: 'form-control'} %>
+            </div>
+          </div>
+
+          <div class="form-group col-md-12">
+            <%= f.label :address , class: 'col-md-2 control-label' %>
+            <div class="col-md-8">
+              <%= f.text_field :address , class: 'form-control address' %>
+            </div>
+          </div>
+
+          <div class="form-group col-md-12">
+            <label class='col-md-2 control-label'></label>
+            <div class="col-md-8">
+              <%= f.text_field :second_address , class: 'form-control' %>
+            </div>
+          </div>
+
+          <div class="form-group col-md-12">
+            <%= f.label :city , class: 'col-md-2 control-label' %>
+            <div class="col-md-8">
+              <%= f.text_field :city, class: 'form-control' %>
+            </div>
+          </div>
+
+          <div class="form-group col-md-12">
+            <%= f.label :zip_code , class: 'col-md-2 control-label' %>
+            <div class="col-md-8">
+              <%= f.text_field :zip_code , class: 'form-control' %>
+            </div>
+          </div>
+
+          <div class="form-group col-md-12">
+            <%= f.label :state , class: 'col-md-2 control-label' %>
+            <div class="col-md-8">
+              <%= f.select :state_id, options_for_select(StateType.active.pluck(:name, :id) , selected: f.object.state_type.try(:id) ),{} ,{class: 'form-control'} %>
+            </div>
+          </div>
+
+          <div class="form-group col-md-12">
+            <%= f.label :country, class: 'col-md-2 control-label' %>
+            <div class="col-md-8">
+              <%= f.select :country_id, options_for_select(CountryType.active.pluck(:name, :id), selected: f.object.country_type.try(:id) )  ,{} ,{class: 'form-control'} %>
+            </div>
+          </div>
+
         </div>
-      </div>
 
-      <div class="form-group col-md-12">
-        <%= f.label :address , class: 'col-md-2 control-label' %>
-        <div class="col-md-8">
-          <%= f.text_field :address , class: 'form-control' %>
-        </div>
-      </div>
-
-      <div class="form-group col-md-12">
-        <label class='col-md-2 control-label'></label>
-        <div class="col-md-8">
-          <%= f.text_field :second_address , class: 'form-control' %>
-        </div>
-      </div>
-
-      <div class="form-group col-md-12">
-        <%= f.label :city , class: 'col-md-2 control-label' %>
-        <div class="col-md-8">
-          <%= f.text_field :city, class: 'form-control' %>
-        </div>
-      </div>
-
-      <div class="form-group col-md-12">
-        <%= f.label :zip_code , class: 'col-md-2 control-label' %>
-        <div class="col-md-8">
-          <%= f.text_field :zip_code , class: 'form-control' %>
-        </div>
-      </div>
-
-      <div class="form-group col-md-12">
-        <%= f.label :state , class: 'col-md-2 control-label' %>
-        <div class="col-md-8">
-          <%= f.select :state_id, options_for_select(StateType.active.pluck(:name, :id) , selected: f.object.state_type.try(:id) ),{} ,{class: 'form-control'} %>
-        </div>
-      </div>
-
-      <div class="form-group col-md-12">
-        <%= f.label :country, class: 'col-md-2 control-label' %>
-        <div class="col-md-8">
-          <%= f.select :country_id, options_for_select(CountryType.active.pluck(:name, :id), selected: f.object.country_type.try(:id) )  ,{} ,{class: 'form-control'} %>
-        </div>
-      </div>
-
+      </fieldset>
     </div>
 
-  </fieldset>
+      <%= render partial: 'map_address', locals: {
+          location: "#{f.object_name.gsub(/[\[\]]+/, '_').chop}_address",
+          object: f.object
+      } %>
+
+  </div>
 </div>

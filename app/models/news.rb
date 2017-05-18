@@ -38,4 +38,12 @@ class News < ApplicationRecord
     output.html_safe
   end
 
+  def to_pdf(pdf)
+    pdf.font_size(25){  pdf.table([[ "News ##{id}"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})}
+    pdf.table([[ "Title: ", " #{title}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Summary: ", " #{summary}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
+
+  end
+
 end

@@ -1,4 +1,5 @@
 <!-- Widget ID (each widget will need unique ID)-->
+
 <div class="jarviswidget jarviswidget-color-white" id="wid-id-0" data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-fullscreenbutton="false">
   <!-- widget options:
   usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
@@ -45,7 +46,7 @@
 
 <!-- PAGE RELATED PLUGIN(S)
 <script src="..."></script>-->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgNAFiZb48uAk4jb4U0gRSeuHQS9EuCyk&libraries=places&callback=initMap"
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= Setting['google_map_key']%>&libraries=places&callback=initMap"
         async defer></script>
 <script type="text/javascript">
   function initMap() {
@@ -53,9 +54,9 @@
       center: {lat: 38.9071923, lng: -77.0368707},
       zoom: 13
     });
-    var input = document.getElementById('transport_location');
-    var input_lat = document.getElementById('transport_location_lat');
-    var input_long = document.getElementById('transport_location_long');
+    var input = document.getElementById('<%= location %>');
+    var input_lat = document.getElementById('<%= location_lat %>');
+    var input_long = document.getElementById('<%= location_long %>');
 
     var autocomplete = new google.maps.places.Autocomplete(input);
     autocomplete.bindTo('bounds', map);
@@ -65,8 +66,8 @@
       map: map,
       anchorPoint: new google.maps.Point(0, -29)
     });
-    <% if @transport.location_lat and @transport.location_long %>
-      latlong = new google.maps.LatLng(<%= @transport.location_lat %>, <%= @transport.location_long %>);
+    <% if object.location_lat and object.location_long %>
+      latlong = new google.maps.LatLng(<%= object.location_lat %>, <%= object.location_long %>);
       marker.setPosition(latlong);
     <% end %>
     autocomplete.addListener('place_changed', function() {

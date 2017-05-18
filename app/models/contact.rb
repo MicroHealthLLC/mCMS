@@ -3,7 +3,6 @@ class Contact < ApplicationRecord
   belongs_to :contact_type
   belongs_to :user
   belongs_to :contact_status, optional: true
-  belongs_to :language_type, optional: true
   belongs_to :gender_type, foreign_key: :gender_id, optional: true
   has_one :contact_extend_demography
 
@@ -32,18 +31,9 @@ class Contact < ApplicationRecord
 
   def self.enumeration_columns
     [
-        ["#{LanguageType}", 'language_type_id'],
         ["#{ContactStatus}", 'contact_status_id'],
         ["#{ContactType}", 'contact_type_id']
     ]
-  end
-
-  def language_type
-    if language_type_id
-      super
-    else
-      LanguageType.default
-    end
   end
 
   def removed?
@@ -70,7 +60,7 @@ class Contact < ApplicationRecord
 
   def self.safe_attributes
     [:emergency_contact, :first_name, :middle_name, :last_name, :not_show_in_search, 
-     :note, :contact_type_id, :user_id, :language_type_id, :birthday, :gender_id,
+     :note, :contact_type_id, :user_id, :language, :birthday, :gender_id,
      :date_started , :date_ended , :contact_status_id,
      contact_attachments_attributes: [Attachment.safe_attributes]]
   end
@@ -92,7 +82,7 @@ class Contact < ApplicationRecord
     user.to_pdf_brief_info(pdf) if show_user
     pdf.table([["Contact"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Emergency contact: ", " #{emergency_contact}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Language: ", " #{language_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Language: ", " #{language}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Birthday: ", " #{birthday}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Gender: ", " #{gender}"]], :column_widths => [ 150, 373])
@@ -107,7 +97,7 @@ class Contact < ApplicationRecord
     output = ""
     output<< "<h2>Contact ##{id} </h2>"
     output<< "<b>Emergency contact: </b> #{emergency_contact}<br/>"
-    output<< "<b>Language: </b> #{language_type}<br/>"
+    output<< "<b>Language: </b> #{language}<br/>"
     output<< "<b>Name: </b> #{name}<br/>"
     output<< "<b>Birthday: </b> #{birthday}<br/>"
     output<< "<b>Gender: </b> #{gender}<br/>"

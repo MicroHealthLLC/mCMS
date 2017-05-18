@@ -32,6 +32,13 @@
       <strong>Note:</strong>
       <%= @military_history.note.html_safe %>
     </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @military_history.military_history_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
   </div>
 </div>
 

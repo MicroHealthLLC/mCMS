@@ -1,4 +1,4 @@
-class MilitaryHistoriesController < ApplicationController
+class MilitaryHistoriesController < UserHistoryController
   add_breadcrumb I18n.t(:military_histories), :military_histories_path
   before_action :set_military_history, only: [:show, :edit, :update, :destroy]
 

@@ -1,0 +1,21 @@
+<!-- Widget ID (each widget will need unique ID)-->
+<% map_canvas_id = defined?(map_id) ? map_id : '0' %>
+
+<!-- PAGE RELATED PLUGIN(S)
+<script src="..."></script>-->
+<% if map_canvas_id == '0' %>
+    <script src="https://maps.googleapis.com/maps/api/js?key=<%= Setting['google_map_key']%>&libraries=places&callback=initMap"
+            async defer></script>
+<% end %>
+
+<script type="text/javascript">
+  function initMap() {
+
+    var input = document.getElementsByClassName('address')
+
+    for (i = 0; i < input.length; i++) {
+      autocomplete = new google.maps.places.Autocomplete(input[i], {});
+    }
+
+  }
+</script>

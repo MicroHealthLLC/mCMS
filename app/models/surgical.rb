@@ -53,7 +53,7 @@ class Surgical < ApplicationRecord
   
   def self.safe_attributes
     [:name, :icdcm_code_id, :user_id, :medical_facility,
-     :surgery_status_id, :surgery_type_id, :hcpc_id,
+     :surgery_status_id, :surgery_type_id, :hcpc_id, :location_lat, :location_long,
      :description,
      surgical_attachments_attributes: [Attachment.safe_attributes]]
   end

@@ -1,4 +1,6 @@
-<fieldset>
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <fieldset>
   <legend></legend>
   <%= form_for(surgical, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
       <% if surgical.errors.any? %>
@@ -46,6 +48,8 @@
         <%= f.label :medical_facility , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.text_field :medical_facility, class: 'form-control' %>
+          <%= f.hidden_field :location_lat, class: 'form-control' %>
+          <%= f.hidden_field :location_long, class: 'form-control' %>
         </div>
       </div>
 
@@ -97,3 +101,14 @@
       </div>
   <% end %>
 </fieldset>
+</div>
+<div class="col-xs-12 col-md-6">
+  <%= render partial: 'map', locals: {
+      location: 'surgical_medical_facility',
+      location_lat: 'surgical_location_lat',
+      location_long: 'surgical_location_long',
+      object: surgical
+
+  } %>
+</div>
+</div>

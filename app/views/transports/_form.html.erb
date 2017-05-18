@@ -92,5 +92,11 @@
   </fieldset>
 </div>
 <div class="col-xs-12 col-md-6">
-<%= render partial: 'map' %></div>
+<%= render partial: 'map', locals: {
+    location: 'transport_location',
+    location_lat: 'transport_location_lat',
+    location_long: 'transport_location_long',
+    object: transport
+
+} %></div>
 </div>

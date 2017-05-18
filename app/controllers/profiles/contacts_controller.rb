@@ -17,8 +17,10 @@ class ContactsController < UserProfilesController
                   else
                     scope.opened
                 end
+    @contacts = scope
     respond_to do |format|
-      format.html{@contacts = scope}
+      format.html{}
+      format.pdf{}
     end
   end
 
