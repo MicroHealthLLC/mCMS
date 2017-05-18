@@ -14,12 +14,12 @@ class ApplicationRecord < ActiveRecord::Base
 
   after_create do
     if can_send_email? && email_notification_enabled?('create')
-      UserMailer.send_notification(self).deliver_now
+      UserMailer.send_notification(self).deliver_later
       c = self.try(:case)
       if c
         c.watchers.each do |watch|
           next if watch.user.nil?
-          UserMailer.send_notification(self, watch.user).deliver_now
+          UserMailer.send_notification(self, watch.user).deliver_later
         end
       end
     end
@@ -32,9 +32,9 @@ class ApplicationRecord < ActiveRecord::Base
     if can_send_email? && email_notification_enabled?('update')
       last_audit = Array.wrap(self.try(:audits)).last
       if last_audit
-        UserMailer.send_update_notification(self, last_audit).deliver_now
+        UserMailer.send_update_notification(self, last_audit).deliver_later
       else
-        UserMailer.send_notification(self).deliver_now
+        UserMailer.send_notification(self).deliver_later
       end
     end
   end

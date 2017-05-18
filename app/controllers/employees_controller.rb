@@ -34,7 +34,7 @@ class EmployeesController < ProtectForgeryApplication
 
     if @user.save
       UserMailer.welcome_email(@user, params[:user][:password]).deliver_later unless @user.anonyme_user?
-      redirect_to users_url
+      redirect_to log_in_employee_path(@user)
     else
       render 'new'
     end
