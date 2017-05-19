@@ -84,6 +84,10 @@
                 </li>
             <% end %>
 
+            <li class="<%= menu_active?('organizations')   %>">
+              <a href="/organizations" title="<%= t(:organizations) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:organizations) %></span></a>
+            </li>
+
             <% if module_enabled?( 'checklists')  && can?(:manage_roles, :view_checklists, :manage_checklists) %>
                 <li class="<%= menu_active?('checklists') %>">
                   <a href="/checklist_cases" title="<%= t(:checklists) %>"><i class="fa fa-lg fa-fw fa-check"></i> <span class="menu-item-parent"><%= t(:checklists) %></span></a>
@@ -102,7 +106,7 @@
                 </li>
             <% end %>
 
-             <% if module_enabled?( 'measurement_records')  && can?(:manage_roles, :view_measurement_records, :manage_measurement_records) %>
+            <% if module_enabled?( 'measurement_records')  && can?(:manage_roles, :view_measurement_records, :manage_measurement_records) %>
                 <li class="<%= menu_active?('measurement_records') %>">
                   <a href="/measurement_records" title="Measurements"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent">Measurements</span></a>
                 </li>

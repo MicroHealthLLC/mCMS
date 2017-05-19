@@ -41,7 +41,7 @@ class HealthCareFacility < ApplicationRecord
     [
         :user_id, :name, :health_care_facility_type_id,
         :health_care_facility_status_id,
-        :health_care_facility_contact, :date_started,
+        :health_care_facility_contact, :date_started, :location_lat, :location_long,
         :date_end, :description,
         :health_care_facility_attachments_attributes=> [Attachment.safe_attributes]
     ]

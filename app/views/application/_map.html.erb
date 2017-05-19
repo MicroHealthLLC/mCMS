@@ -51,7 +51,12 @@
 <script type="text/javascript">
   function initMap() {
     var map = new google.maps.Map(document.getElementById('map_canvas'), {
+      <% if object.location_lat and object.location_long %>
+      center: {lat: <%= object.location_lat %>, lng: <%=  object.location_long %>},
+      <% else %>
       center: {lat: 38.9071923, lng: -77.0368707},
+
+      <% end %>
       zoom: 13
     });
     var input = document.getElementById('<%= location %>');

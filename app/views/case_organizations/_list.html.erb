@@ -1,6 +1,7 @@
 <table class="table table-responsive table-bordered" id="case_organizations_table">
   <thead>
   <tr>
+    <th>Case</th>
     <th>Organization</th>
     <th>Association</th>
   </tr>
@@ -9,7 +10,8 @@
   <tbody>
     <% @case_organizations.each do |c_o| %>
           <tr>
-            <td><%= link_to c_o.organization, c_o %></td>
+            <td><%= link_to_case c_o.case%></td>
+            <td><%= link_to c_o.organization, c_o.organization %></td>
             <td><%= c_o.association_type %></td>
           </tr>
       <% end %>

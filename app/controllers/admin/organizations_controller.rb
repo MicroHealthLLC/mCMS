@@ -2,12 +2,19 @@ class OrganizationsController < ProtectForgeryApplication
   before_action  :authenticate_user!
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
-  before_action :require_admin
+  before_action :require_admin, except: [:index, :show]
 
   # GET /organizations
   # GET /organizations.json
   def index
-    @organizations = Organization.all
+    if User.current.admin?
+      @organizations = Organization.all
+    else
+      @cases = Case.visible
+      @case_organizations = CaseOrganization.where(case_id: @cases.pluck(:id)).
+          includes(:organization).references(:organization)
+      render 'case_organizations/index'
+    end
   end
 
   # GET /organizations/1
