@@ -6,5 +6,5 @@
   <%= link_to( 'Edit', edit_job_application_path(@job_application), class: 'btn btn-success pull-right') if @job_application.can?(:manage_roles, :manages_job_applications, :edit_job_applications) %>
   <%= link_to t('button_cancel'), job_applications_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), job_application_path(@job_application, format: 'pdf'), class: 'btn btn-primary pull-right' %>
-  <%= link_to t('button_history_changes'), "/histories/#{@job_appilication.class}/#{@job_appilication.id}", class: 'btn btn-primary pull-right' %>
+  <%= link_to t('button_history_changes'), "/histories/#{@job_application.class}/#{@job_application.id}", class: 'btn btn-primary pull-right' %>
 </div>
