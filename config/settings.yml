@@ -26,6 +26,8 @@ unlock_in:
   default: 60
 format_date:
   default: "%d/%m/%Y"
+google_map_key:
+  default: "AIzaSyBgNAFiZb48uAk4jb4U0gRSeuHQS9EuCyk"
 email_header:
   default: ""
 email_footer:
