@@ -21,34 +21,6 @@
           </div>
 
           <div class="form-group col-md-12">
-            <label class='col-md-2 control-label'></label>
-            <div class="col-md-8">
-              <%= f.text_field :second_address , class: 'form-control' %>
-            </div>
-          </div>
-
-          <div class="form-group col-md-12">
-            <%= f.label :city , class: 'col-md-2 control-label' %>
-            <div class="col-md-8">
-              <%= f.text_field :city, class: 'form-control' %>
-            </div>
-          </div>
-
-          <div class="form-group col-md-12">
-            <%= f.label :zip_code , class: 'col-md-2 control-label' %>
-            <div class="col-md-8">
-              <%= f.text_field :zip_code , class: 'form-control' %>
-            </div>
-          </div>
-
-          <div class="form-group col-md-12">
-            <%= f.label :state , class: 'col-md-2 control-label' %>
-            <div class="col-md-8">
-              <%= f.select :state_id, options_for_select(StateType.active.pluck(:name, :id) , selected: f.object.state_type.try(:id) ),{} ,{class: 'form-control'} %>
-            </div>
-          </div>
-
-          <div class="form-group col-md-12">
             <%= f.label :country, class: 'col-md-2 control-label' %>
             <div class="col-md-8">
               <%= f.select :country_id, options_for_select(CountryType.active.pluck(:name, :id), selected: f.object.country_type.try(:id) )  ,{} ,{class: 'form-control'} %>

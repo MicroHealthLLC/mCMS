@@ -1,81 +1,97 @@
 
-<fieldset>
-  <legend></legend>
-  <%= form_for(admission, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
-      <% if admission.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(admission.errors.count, "error") %> prohibited this admission from being saved:</h2>
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <fieldset>
+      <legend></legend>
+      <%= form_for(admission, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+          <% if admission.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(admission.errors.count, "error") %> prohibited this admission from being saved:</h2>
 
-            <ul>
-              <% admission.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-              <% end %>
-            </ul>
+                <ul>
+                  <% admission.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
+
+          <%= f.hidden_field :user_id %>
+
+
+          <div class="form-group">
+            <%= f.label :care_facility_name, class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :care_family_name , class: 'form-control' %>
+              <%= f.hidden_field :location_lat, class: 'form-control' %>
+              <%= f.hidden_field :location_long, class: 'form-control' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label t(:admission_type), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :admission_type_id, options_for_select(AdmissionType.active.pluck(:name, :id), selected: f.object.admission_type.try(:id)) , {} ,{class: 'form-control'} %>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <%= f.label t(:admission_status), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :admission_status_id, options_for_select(AdmissionStatus.active.pluck(:name, :id), selected: f.object.admission_status.try(:id)) , {} ,{class: 'form-control'} %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :date_admitted , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :date_admitted , class: 'form-control date_picker' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :date_discharged , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :date_discharged , class: 'form-control date_picker' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label t(:description) , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_area :description , class: 'form-control ck-editor' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-12">
+              <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+            </div>
+            <%= f.simple_fields_for :admission_attachments do |attachment| %>
+                <%= render 'attachments/attachment_show', :f => attachment %>
+            <% end %>
+            <div id="attachment_fields" class="col-md-2 margin-top-10 " style="padding-right: 2px;" >
+              <%= link_to_add_association 'add file', f, :admission_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+            </div>
+          </div>
+
+          <div class="form-group" >
+            <div class="col-md-11">
+              <%= link_to t('button_cancel'), admissions_path, class: 'btn btn-warning pull-right' %>
+              <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
+            </div>
           </div>
       <% end %>
+    </fieldset>
 
-      <%= f.hidden_field :user_id %>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <%= render partial: 'map', locals: {
+        location: 'admission_care_family_name',
+        location_lat: 'admission_location_lat',
+        location_long: 'admission_location_long',
+        object: admission
 
-
-      <div class="form-group">
-        <%= f.label :care_facility_name, class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :care_family_name , class: 'form-control' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:admission_type), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :admission_type_id, options_for_select(AdmissionType.active.pluck(:name, :id), selected: f.object.admission_type.try(:id)) , {} ,{class: 'form-control'} %>
-        </div>
-      </div>
-
-
-      <div class="form-group">
-        <%= f.label t(:admission_status), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :admission_status_id, options_for_select(AdmissionStatus.active.pluck(:name, :id), selected: f.object.admission_status.try(:id)) , {} ,{class: 'form-control'} %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :date_admitted , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :date_admitted , class: 'form-control date_picker' %>
-        </div>
-      </div>
-      <div class="form-group">
-        <%= f.label :date_discharged , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :date_discharged , class: 'form-control date_picker' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:description) , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_area :description , class: 'form-control ck-editor' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="col-md-12">
-          <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
-        </div>
-        <%= f.simple_fields_for :admission_attachments do |attachment| %>
-            <%= render 'attachments/attachment_show', :f => attachment %>
-        <% end %>
-        <div id="attachment_fields" class="col-md-2 margin-top-10 " style="padding-right: 2px;" >
-          <%= link_to_add_association 'add file', f, :admission_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
-        </div>
-      </div>
-
-      <div class="form-group" >
-        <div class="col-md-11">
-          <%= link_to t('button_cancel'), admissions_path, class: 'btn btn-warning pull-right' %>
-          <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
-        </div>
-      </div>
-  <% end %>
-</fieldset>
+    } %>
+  </div>
+</div>

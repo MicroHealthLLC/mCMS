@@ -37,7 +37,7 @@ class Certification < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:name, :certification_type_id, :user_id, :date_received, :note, :date_expired, :status_id,
+    [:name, :certification_type_id, :user_id, :date_received, :note, :date_expired, :status_id, :certifying_organization, :location_lat, :location_long,
      certification_attachments_attributes: [Attachment.safe_attributes]]
   end
 
@@ -46,6 +46,7 @@ class Certification < ApplicationRecord
     user.to_pdf_brief_info(pdf) if show_user
     pdf.table([["Certification "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Certifying Organization: ", " #{certifying_organization}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Certification type: ", " #{certification_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Certification Status: ", " #{certification_status}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Date received: ", " #{date_received}"]], :column_widths => [ 150, 373])
@@ -62,6 +63,7 @@ class Certification < ApplicationRecord
     output = ""
     output<< "<h2>Certification ##{id} </h2>"
     output<< "<b>Certification type: </b> #{certification_type}<br/>"
+    output<< "<b>Certifying Organization: </b> #{certifying_organization}<br/>"
     output<< "<b>Certification Status:  </b> #{certification_status}<br/>"
     output<< "<b>Date received: </b> #{date_received}<br/>"
     output<< "<b>Date expired: </b> #{date_expired}<br/>"

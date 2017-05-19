@@ -1,99 +1,117 @@
-<fieldset>
-  <legend></legend>
-  <%= form_for(medical, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
-      <% if medical.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(medical.errors.count, "error") %> prohibited this medical from being saved:</h2>
 
-            <ul>
-              <% medical.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-              <% end %>
-            </ul>
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+
+    <fieldset>
+      <legend></legend>
+      <%= form_for(medical, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+          <% if medical.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(medical.errors.count, "error") %> prohibited this medical from being saved:</h2>
+
+                <ul>
+                  <% medical.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
+
+          <%= f.hidden_field :user_id %>
+          <div class="form-group">
+            <%= f.label :name , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :name, class: 'form-control' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :snomed, class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= text_field_tag :snomed, f.object.snomed,  class: 'form-control' %>
+              <%= f.hidden_field :snomed %>
+              <script>
+                $(document).ready(function(){
+                  $('#snomed').autocomplete({
+                    source: "/snomed.json?default=disorder",
+                    minLength: 2,
+                    select: function( event, ui ) {
+                      $('#medical_snomed').val(ui.item.id)
+                    }
+                  })
+                })
+              </script>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <%= f.label :medical_facility , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :medical_facility, class: 'form-control' %>
+              <%= f.hidden_field :location_lat, class: 'form-control' %>
+              <%= f.hidden_field :location_long, class: 'form-control' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :date_of_diagnosis , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :date_of_diagnosis, class: 'form-control date_picker' %>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <%= f.label t(:medical_history_type), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :medical_history_type_id, options_for_select(MedicalHistoryType.active.pluck(:name, :id), selected: f.object.medical_history_type.try(:id)) , {} ,{class: 'form-control'} %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label t(:medical_history_status), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :medical_history_status_id, options_for_select(MedicalHistoryStatus.active.pluck(:name, :id), selected: f.object.medical_history_status.try(:id)) , {} ,{class: 'form-control'} %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label t(:description) , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_area :description , class: 'form-control ck-editor' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-12">
+              <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+            </div>
+            <%= f.simple_fields_for :medical_attachments do |attachment| %>
+                <%= render 'attachments/attachment_show', :f => attachment %>
+            <% end %>
+            <div id="attachment_fields" class="col-md-2 margin-top-10 " style="padding-right: 2px;" >
+              <%= link_to_add_association 'add file', f, :medical_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+            </div>
+          </div>
+
+          <div class="form-group" >
+            <div class="col-md-11">
+              <%= link_to t('button_cancel'), medicals_path, class: 'btn btn-warning pull-right' %>
+              <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
+            </div>
           </div>
       <% end %>
+    </fieldset>
 
-      <%= f.hidden_field :user_id %>
-      <div class="form-group">
-        <%= f.label :name , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :name, class: 'form-control' %>
-        </div>
-      </div>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <%= render partial: 'map', locals: {
+        location: 'medical_medical_facility',
+        location_lat: 'medical_location_lat',
+        location_long: 'medical_location_long',
+        object: medical
 
-      <div class="form-group">
-        <%= f.label :snomed, class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= text_field_tag :snomed, f.object.snomed,  class: 'form-control' %>
-          <%= f.hidden_field :snomed %>
-          <script>
-            $(document).ready(function(){
-              $('#snomed').autocomplete({
-                source: "/snomed.json?default=disorder",
-                minLength: 2,
-                select: function( event, ui ) {
-                  $('#medical_snomed').val(ui.item.id)
-                }
-              })
-            })
-          </script>
-        </div>
-      </div>
-
-
-      <div class="form-group">
-        <%= f.label :medical_facility , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :medical_facility, class: 'form-control' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :date_of_diagnosis , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :date_of_diagnosis, class: 'form-control date_picker' %>
-        </div>
-      </div>
-
-
-      <div class="form-group">
-        <%= f.label t(:medical_history_type), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :medical_history_type_id, options_for_select(MedicalHistoryType.active.pluck(:name, :id), selected: f.object.medical_history_type.try(:id)) , {} ,{class: 'form-control'} %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:medical_history_status), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :medical_history_status_id, options_for_select(MedicalHistoryStatus.active.pluck(:name, :id), selected: f.object.medical_history_status.try(:id)) , {} ,{class: 'form-control'} %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:description) , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_area :description , class: 'form-control ck-editor' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="col-md-12">
-          <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
-        </div>
-        <%= f.simple_fields_for :medical_attachments do |attachment| %>
-            <%= render 'attachments/attachment_show', :f => attachment %>
-        <% end %>
-        <div id="attachment_fields" class="col-md-2 margin-top-10 " style="padding-right: 2px;" >
-          <%= link_to_add_association 'add file', f, :medical_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
-        </div>
-      </div>
-
-      <div class="form-group" >
-        <div class="col-md-11">
-          <%= link_to t('button_cancel'), medicals_path, class: 'btn btn-warning pull-right' %>
-          <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
-        </div>
-      </div>
-  <% end %>
-</fieldset>
+    } %>
+  </div>
+</div>

@@ -38,7 +38,7 @@ class Medical < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:name, :user_id, :icdcm_code_id, :medical_facility, :date_of_diagnosis,
+    [:name, :user_id, :icdcm_code_id, :medical_facility, :date_of_diagnosis, :location_lat, :location_long,
      :medical_history_status_id, :medical_history_type_id, :description, :snomed,
      medical_attachments_attributes: [Attachment.safe_attributes]
     ]

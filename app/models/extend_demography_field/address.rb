@@ -48,9 +48,9 @@ class Address < ApplicationRecord
   def full_address
     output = ""
     output<< "#{address}, " if address.present?
-    output<< "#{second_address}, " if second_address.present?
-    output<< "#{city}, " if city.present?
-    output<< "#{zip_code}" if zip_code.present?
+    # output<< "#{second_address}, " if second_address.present?
+    # output<< "#{city}, " if city.present?
+    # output<< "#{zip_code}" if zip_code.present?
     output
   end
 
@@ -61,8 +61,8 @@ class Address < ApplicationRecord
   def to_html
     output = "<div class='col-xs-12'>"
     output<< "<div class='col-xs-2'>#{address_type} </div>"
-    output<< "<div class='col-xs-8'>#{full_address} </div>"
-    output<< "<div class='col-xs-2'>#{state_type}  #{country_type} </div>"
+    # output<< "<div class='col-xs-8'>#{full_address} </div>"
+    # output<< "<div class='col-xs-2'>#{state_type}  #{country_type} </div>"
     output<< "</div>"
     output.html_safe
   end

@@ -36,7 +36,7 @@ class Education < ApplicationRecord
   alias status education_status
 
   def self.safe_attributes
-    [:user_id, :education_type_id, :date_recieved,
+    [:user_id, :education_type_id, :date_recieved, :institution, :location_lat, :location_long,
      :date_expired, :note, :status_id,
      education_attachments_attributes: [Attachment.safe_attributes]]
   end
@@ -49,6 +49,7 @@ class Education < ApplicationRecord
     pdf.font_size(25){  pdf.table([[ "Education ##{id}"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf) if show_user
     pdf.table([[" Education "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
+    pdf.table([[ "Institution: ", " #{institution}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Education Type: ", " #{education_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Education Status: ", " #{education_status}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Date received: ", " #{date_recieved}"]], :column_widths => [ 150, 373])
@@ -60,6 +61,7 @@ class Education < ApplicationRecord
     output = ""
     output<< "<h2>Education ##{id} </h2>"
     output<<"<b>Education Type: </b> #{education_type}<br/>"
+    output<<"<b>Institution: </b> #{institution}<br/>"
     output<<"<b>Education Status: </b> #{education_status}<br/>"
     output<<"<b>Date received: </b> #{date_recieved}<br/>"
     output<<"<b>Date expired: </b> #{date_expired}<br/>"

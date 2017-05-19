@@ -39,7 +39,7 @@ class Admission < ApplicationRecord
   def self.safe_attributes
     [
         :user_id, :care_family_name, :date_admitted, :date_discharged,
-        :admission_status_id, :admission_type_id, :description,
+        :admission_status_id, :admission_type_id, :description, :location_lat, :location_long,
         admission_attachments_attributes: [Attachment.safe_attributes]
     ]
   end
