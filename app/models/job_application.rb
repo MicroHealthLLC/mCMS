@@ -69,7 +69,7 @@ class JobApplication < ApplicationRecord
 
   def self.safe_attributes
     [
-        :user_id, :employer, :position_applied, :projected_salary,
+        :user_id, :employer, :position_applied, :projected_salary, :location_lat, :location_long,
         :application_type_id, :application_date, :application_status_id, :interview_type_id,
         :interview_date, :interview_status_id, :selection_status_id,
         job_application_attachments_attributes: [Attachment.safe_attributes]

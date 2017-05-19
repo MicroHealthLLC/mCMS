@@ -1,102 +1,118 @@
-<fieldset>
-  <legend></legend>
-  <%= form_for(job_application, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
-      <% if job_application.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(job_application.errors.count, "error") %> prohibited this Injury from being saved:</h2>
 
-            <ul>
-              <% job_application.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-              <% end %>
-            </ul>
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <fieldset>
+      <legend></legend>
+      <%= form_for(job_application, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+          <% if job_application.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(job_application.errors.count, "error") %> prohibited this Injury from being saved:</h2>
+
+                <ul>
+                  <% job_application.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
+
+          <%= f.hidden_field :user_id %>
+
+          <div class="form-group">
+            <%= f.label :employer , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :employer, class: 'form-control' %>
+              <%= f.hidden_field :location_lat, class: 'form-control' %>
+              <%= f.hidden_field :location_long, class: 'form-control' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :position_applied , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :position_applied, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :projected_salary , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :projected_salary, class: 'form-control' %>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <%= f.label t(:application_type), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :application_type_id, options_for_select(ApplicationType.active.pluck(:name, :id), selected: f.object.application_type.try(:id)) , {} ,{class: 'form-control'} %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :application_date , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :application_date, class: 'form-control date_picker' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label t(:application_status), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :application_status_id, options_for_select(ApplicationStatus.active.pluck(:name, :id), selected: f.object.application_status.try(:id)) , {} ,{class: 'form-control'} %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label t(:interview_type), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :interview_type_id, options_for_select(InterviewType.active.pluck(:name, :id), selected: f.object.interview_type.try(:id)) , {} ,{class: 'form-control'} %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :interview_date , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :interview_date, class: 'form-control date_picker' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label t(:interview_status), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :interview_status_id, options_for_select(InterviewStatus.active.pluck(:name, :id), selected: f.object.interview_status.try(:id)) , {} ,{class: 'form-control'} %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label t(:selection_status), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :selection_status_id, options_for_select(SelectionStatus.active.pluck(:name, :id), selected: f.object.selection_status.try(:id)) , {} ,{class: 'form-control'} %>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-12">
+              <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+            </div>
+            <%= f.simple_fields_for :job_application_attachments do |attachment| %>
+                <%= render 'attachments/attachment_show', :f => attachment %>
+            <% end %>
+            <div id="attachment_fields" class="col-md-2 margin-top-10 " style="padding-right: 2px;" >
+              <%= link_to_add_association 'add file', f, :job_application_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+            </div>
+          </div>
+
+          <div class="form-group" >
+            <div class="col-md-11">
+              <%= link_to t('button_cancel'), injuries_path, class: 'btn btn-warning pull-right' %>
+              <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
+            </div>
           </div>
       <% end %>
+    </fieldset>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <%= render partial: 'map', locals: {
+        location: 'job_application_employer',
+        location_lat: 'job_application_location_lat',
+        location_long: 'job_application_location_long',
+        object: job_application
 
-      <%= f.hidden_field :user_id %>
-
-      <div class="form-group">
-        <%= f.label :employer , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :employer, class: 'form-control' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :position_applied , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :position_applied, class: 'form-control' %>
-        </div>
-      </div>
-      <div class="form-group">
-        <%= f.label :projected_salary , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :projected_salary, class: 'form-control' %>
-        </div>
-      </div>
-
-
-      <div class="form-group">
-        <%= f.label t(:application_type), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :application_type_id, options_for_select(ApplicationType.active.pluck(:name, :id), selected: f.object.application_type.try(:id)) , {} ,{class: 'form-control'} %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :application_date , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :application_date, class: 'form-control date_picker' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:application_status), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :application_status_id, options_for_select(ApplicationStatus.active.pluck(:name, :id), selected: f.object.application_status.try(:id)) , {} ,{class: 'form-control'} %>
-        </div>
-      </div>
-      <div class="form-group">
-        <%= f.label t(:interview_type), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :interview_type_id, options_for_select(InterviewType.active.pluck(:name, :id), selected: f.object.interview_type.try(:id)) , {} ,{class: 'form-control'} %>
-        </div>
-      </div>
-      <div class="form-group">
-        <%= f.label :interview_date , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :interview_date, class: 'form-control date_picker' %>
-        </div>
-      </div>
-      <div class="form-group">
-        <%= f.label t(:interview_status), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :interview_status_id, options_for_select(InterviewStatus.active.pluck(:name, :id), selected: f.object.interview_status.try(:id)) , {} ,{class: 'form-control'} %>
-        </div>
-      </div>
-      <div class="form-group">
-        <%= f.label t(:selection_status), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :selection_status_id, options_for_select(SelectionStatus.active.pluck(:name, :id), selected: f.object.selection_status.try(:id)) , {} ,{class: 'form-control'} %>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-md-12">
-          <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
-        </div>
-        <%= f.simple_fields_for :job_application_attachments do |attachment| %>
-            <%= render 'attachments/attachment_show', :f => attachment %>
-        <% end %>
-        <div id="attachment_fields" class="col-md-2 margin-top-10 " style="padding-right: 2px;" >
-          <%= link_to_add_association 'add file', f, :job_application_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
-        </div>
-      </div>
-
-      <div class="form-group" >
-        <div class="col-md-11">
-          <%= link_to t('button_cancel'), injuries_path, class: 'btn btn-warning pull-right' %>
-          <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
-        </div>
-      </div>
-  <% end %>
-</fieldset>
+    } %>
+  </div>
+</div>
