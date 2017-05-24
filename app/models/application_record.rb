@@ -13,49 +13,14 @@ class ApplicationRecord < ActiveRecord::Base
   end
 
   after_create do
-    if can_send_email? && email_notification_enabled?('create')
-      UserMailer.send_notification(self).deliver_later
-      c = self.try(:case)
-      if c
-        c.watchers.each do |watch|
-          next if watch.user.nil?
-          UserMailer.send_notification(self, watch.user).deliver_later
-        end
-      end
-    end
+    EmailWorker.perform_in(1.second, self.class.to_s, self.id)
   end
 
-  after_update :send_email
-  after_update :send_email_to_watcher
-
-  def send_email
-    if can_send_email? && email_notification_enabled?('update')
-      last_audit = Array.wrap(self.try(:audits)).last
-      if last_audit
-        UserMailer.send_update_notification(self, last_audit).deliver_later
-      else
-        UserMailer.send_notification(self).deliver_later
-      end
-    end
+  after_update do
+    EmailUpdateWorker.perform_in(1.second, self.class.to_s, self.id)
+    EmailWatcherWorker.perform_in(1.seconds, self.class.to_s, self.id)
   end
 
-  def send_email_to_watcher
-    if can_send_email? && email_notification_enabled?('update')
-      c = self.try(:case)
-      if c
-        last_audit = Array.wrap(self.try(:audits)).last
-        c.watchers.each do |watch|
-          next if watch.user.nil?
-          if last_audit
-            UserMailer.send_update_notification(self, last_audit, watch.user).deliver_later
-          else
-            UserMailer.send_notification(self, watch.user).deliver_later
-          end
-        end
-      end
-
-    end
-  end
 
   def email_notification_enabled?(type)
     notif = EmailNotification.find_by(email_type: type, name: "#{self.class}") || EmailNotification.new(status: false)
