@@ -312,6 +312,7 @@ Rails.application.routes.draw do
   resources :employees, path: :persons, except: [:edit] do
     member do
       get 'log_in'
+      post 'send_sms'
     end
     get 'home/index', as: 'home'
   end
@@ -343,6 +344,11 @@ Rails.application.routes.draw do
   end
 
   # Engines
+  require 'sidekiq/web'
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   mount Thredded::Engine => '/forum'
   mount MeasurementsConverter::Engine => '/measurements_converter'
   mount Calculator::Engine => '/calculator'

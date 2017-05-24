@@ -176,6 +176,10 @@ class User < ApplicationRecord
     user_extend_demography.phones.first || Phone.new
   end
 
+  def phone_number
+    phone.phone_number
+  end
+
   def principal_role
     return 'Admin' if admin?
     role.try(:role_type) || 'No role defined'
@@ -425,6 +429,22 @@ class User < ApplicationRecord
 
   def pivot_table
     {}
+  end
+
+  def all_phone_number
+    phones = []
+    if user_extend_demography
+       user_extend_demography.phones.each do |p|
+         phones<< ["#{username} < #{p.phone_number} >", "#{p.phone_number}"]
+      end
+    end
+    if contacts.present?
+      contacts.each do |contact|
+        next if contact.phone.blank? and contact.phone.phone_number.blank?
+        phones<< ["#{contact.name} < #{contact.phone.phone_number} >", "#{contact.phone.phone_number}"]
+      end
+    end
+    phones
   end
 
   def self.recently_active

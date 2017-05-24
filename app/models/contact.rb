@@ -49,7 +49,7 @@ class Contact < ApplicationRecord
   end
 
 
- def contact_status
+  def contact_status
     if contact_status_id
       super
     else
@@ -57,9 +57,16 @@ class Contact < ApplicationRecord
     end
   end
 
+  def phone
+    return Phone.new if contact_extend_demography.nil?
+    phones = contact_extend_demography.phones.select{|p| p.phone_number.present?}
+    phones.first || Phone.new
+  end
+
+
 
   def self.safe_attributes
-    [:emergency_contact, :first_name, :middle_name, :last_name, :not_show_in_search, 
+    [:emergency_contact, :first_name, :middle_name, :last_name, :not_show_in_search,
      :note, :contact_type_id, :user_id, :language, :birthday, :gender_id,
      :date_started , :date_ended , :contact_status_id,
      contact_attachments_attributes: [Attachment.safe_attributes]]

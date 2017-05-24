@@ -14,7 +14,7 @@ RedCarpet::AccessControl.map do |map|
     map.permission :view_collaborate, {},  :read => true
     map.permission :view_personal_organizer, {},  :read => true
     map.permission :manage_roles, {
-        :employees => [:index],
+        :employees => [:index, :send_sms],
         :educations => [:index, :show, :new, :create, :edit, :update, :destroy],
         :transports => [:index, :show, :new, :create, :edit, :update, :destroy],
         :languages => [:index, :show, :new, :create, :edit, :update, :destroy],
