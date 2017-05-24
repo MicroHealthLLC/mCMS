@@ -9,7 +9,7 @@ class AddUpdatedByToModels < ActiveRecord::Migration[5.0]
     add_column :appointment_links , :updated_by_id, :integer
     add_column :appointment_procedures , :updated_by_id, :integer
     add_column :attachments , :updated_by_id, :integer
-    add_column :awards , :updated_by_id, :integer
+    # add_column :awards , :updated_by_id, :integer
     add_column :behavioral_risks , :updated_by_id, :integer
     add_column :cases , :updated_by_id, :integer
     add_column :case_relations , :updated_by_id, :integer
@@ -30,7 +30,7 @@ class AddUpdatedByToModels < ActiveRecord::Migration[5.0]
     add_column :core_demographics , :updated_by_id, :integer
     add_column :daily_livings , :updated_by_id, :integer
     add_column :departments , :updated_by_id, :integer
-    add_column :deployment_histories , :updated_by_id, :integer
+    # add_column :deployment_histories , :updated_by_id, :integer
     add_column :dms_documemnts , :updated_by_id, :integer
     add_column :documents , :updated_by_id, :integer
     add_column :document_managers , :updated_by_id, :integer
@@ -46,7 +46,7 @@ class AddUpdatedByToModels < ActiveRecord::Migration[5.0]
     add_column :health_care_facilities , :updated_by_id, :integer
     add_column :housings , :updated_by_id, :integer
     add_column :immunizations , :updated_by_id, :integer
-    add_column :incident_histories , :updated_by_id, :integer
+    # add_column :incident_histories , :updated_by_id, :integer
     add_column :injuries , :updated_by_id, :integer
     add_column :job_applications , :updated_by_id, :integer
     add_column :job_details , :updated_by_id, :integer
@@ -57,7 +57,7 @@ class AddUpdatedByToModels < ActiveRecord::Migration[5.0]
     add_column :medications , :updated_by_id, :integer
     add_column :memberships , :updated_by_id, :integer
     add_column :messages , :updated_by_id, :integer
-    add_column :mtf_hospitals , :updated_by_id, :integer
+    # add_column :mtf_hospitals , :updated_by_id, :integer
     add_column :needs , :updated_by_id, :integer
     add_column :need_goals , :updated_by_id, :integer
     add_column :news , :updated_by_id, :integer
@@ -75,7 +75,7 @@ class AddUpdatedByToModels < ActiveRecord::Migration[5.0]
     add_column :referral_relations , :updated_by_id, :integer
     add_column :referral_results , :updated_by_id, :integer
     add_column :roles , :updated_by_id, :integer
-    add_column :service_histories , :updated_by_id, :integer
+    # add_column :service_histories , :updated_by_id, :integer
     add_column :socioeconomics , :updated_by_id, :integer
     add_column :surgicals , :updated_by_id, :integer
     add_column :survey_cases , :updated_by_id, :integer
@@ -84,7 +84,7 @@ class AddUpdatedByToModels < ActiveRecord::Migration[5.0]
     add_column :task_boards , :updated_by_id, :integer
     add_column :teleconsults , :updated_by_id, :integer
     add_column :transportations , :updated_by_id, :integer
-    add_column :units , :updated_by_id, :integer
+    # add_column :units , :updated_by_id, :integer
     add_column :user_insurances , :updated_by_id, :integer
     add_column :wiki_pages , :updated_by_id, :integer
 
