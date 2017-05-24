@@ -1,4 +1,4 @@
-namespace :icddata do
+namespace :setup do
   task make: :environment do
 
     puts 'Add modules'
