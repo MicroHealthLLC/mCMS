@@ -17,8 +17,10 @@ class ApplicationRecord < ActiveRecord::Base
   end
 
   after_update do
-    EmailUpdateWorker.perform_in(1.second, self.class.to_s, self.id)
-    EmailWatcherWorker.perform_in(1.seconds, self.class.to_s, self.id)
+    if self.class.to_s != 'User'
+      EmailUpdateWorker.perform_in(1.second, self.class.to_s, self.id)
+      EmailWatcherWorker.perform_in(1.seconds, self.class.to_s, self.id)
+    end
   end
 
 
