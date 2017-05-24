@@ -17,11 +17,7 @@ INSTALLATION:
 - ADD YOUR URL TO config/environments/production.rb for ActionCable URL
 - Configure your email smtp
 - Run Bundle Install from the directory you did a git clone
-- import the ICD10 data rails icddata:import_data RAILS_ENV=production
-- import the BLS occupation codes rails import_data:occupation
+- import the ICD10, BLS, Immunization codes, place of service codes and HCPCS rails setup:make
 - rails enumeration:print_subclasses
-- import hcpcs codes rails import_data:hcpc
-- import immunization codes rails import_data:immunization
-- import place of service codes rails import_data:place_of_service
 - start search services rake sunspot:solr:start RAILS_ENV=production
 - start your app rails s -e production -b localhost -d
