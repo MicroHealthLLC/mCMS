@@ -34,3 +34,4 @@
 //= require cable
 //= require turbolinks
 //= require settings
+//= require devise_authy.js

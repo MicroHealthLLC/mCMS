@@ -5,7 +5,7 @@ class User < ApplicationRecord
   acts_as_paranoid
 
   # ldap_authenticatable
-  devise :database_authenticatable, :registerable, :timeoutable,
+  devise :authy_authenticatable, :database_authenticatable, :registerable, :timeoutable,
          :recoverable, :rememberable, :trackable, :lockable, :omniauthable,
          :password_expirable, :password_archivable,
          :session_limitable, :secure_validatable

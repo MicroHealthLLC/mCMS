@@ -69,6 +69,8 @@ group :test do
 end
 
 gem 'devise'
+gem 'devise-authy'
+gem 'devise_security_extension', github: 'rubyroidlabs/devise_security_extension'
 gem "omniauth-office365", github: 'jcarbo/omniauth-office365'
 #omniauth authentification
 gem "devise_ldap_authenticatable"
@@ -169,7 +171,6 @@ gem 'sunspot_rails'
 gem 'sunspot_solr'
 gem 'roo-xls'
 gem 'pdf-forms'
-gem 'devise_security_extension', github: 'rubyroidlabs/devise_security_extension'
 gem "audited", "~> 4.4"
 gem 'rails_email_validator'
 gem "simple_calendar", "~> 2.0"

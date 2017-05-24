@@ -30,4 +30,5 @@
   *= require simple_calendar
   *= require style.css
   *= require easy-autocomplete.min
+  *= require devise_authy
  */
