@@ -21,6 +21,11 @@
   <% if module_enabled?('chat_room') and can?(:manage_roles, :make_chat) %>
       <%= render partial: 'menu/smart_chat' %>
   <% end %>
+  <% if User.current_user.can?(:manage_roles, :send_sms) %>
+      <li class="<%= menu_active?('employees') %>">
+        <a href="<%= "/sms/show" %>" title="Send SMS"><i class="fa fa-lg fa-fw fa-envelope"></i> <span class="menu-item-parent">Send SMS</span></a>
+      </li>
+  <% end %>
 
   <% if User.current.admin? %>
       <%= render partial: 'menu/admin' %>

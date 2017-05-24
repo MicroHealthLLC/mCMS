@@ -141,4 +141,8 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_other_skills, {:other_skills => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
+ map.project_module :sms do |map|
+    map.permission :send_sms, {:sms => [:show, :send_sms]},  :read => true
+  end
+
 end

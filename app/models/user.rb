@@ -440,7 +440,7 @@ class User < ApplicationRecord
     end
     if contacts.present?
       contacts.each do |contact|
-        next if contact.phone.blank? and contact.phone.phone_number.blank?
+        next if contact.phone.blank? or contact.phone.phone_number.blank?
         phones<< ["#{contact.name} < #{contact.phone.phone_number} >", "#{contact.phone.phone_number}"]
       end
     end

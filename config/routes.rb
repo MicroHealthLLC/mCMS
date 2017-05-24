@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'sms/show', :as=> :show_sms
+  post 'sms/send_sms', :as=> :send_sms
+
   resources :transports
   resources :measurement_records
   resources :measurements
@@ -312,7 +315,6 @@ Rails.application.routes.draw do
   resources :employees, path: :persons, except: [:edit] do
     member do
       get 'log_in'
-      post 'send_sms'
     end
     get 'home/index', as: 'home'
   end
