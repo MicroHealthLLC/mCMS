@@ -5,6 +5,15 @@ class CaseOrganizationsController < UserCasesController
   before_action :authorize_delete, only: [:destroy]
 
 
+   def index
+     @case_organizations = CaseOrganization.where(case_id: @cases_for_btn.pluck(:id)).
+         includes(:organization).references(:organization)
+     respond_to do |format|
+       format.html{}
+       format.pdf{}
+     end
+   end
+
   # GET /case_organizations/1
   # GET /case_organizations/1.json
   def show

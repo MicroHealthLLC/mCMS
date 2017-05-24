@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'occupation', to: 'idcdata#occupation'
   resources :resumes
   resources :related_clients
-  resources :case_organizations, except: [:index]
+  resources :case_organizations
   resources :radiologic_examinations
   resources :laboratory_examinations
   resources :billings, except: [:new]

@@ -85,7 +85,7 @@
             <% end %>
 
             <li class="<%= menu_active?('organizations')   %>">
-              <a href="/organizations" title="<%= t(:organizations) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:organizations) %></span></a>
+              <a href="/case_organizations" title="<%= t(:organizations) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:organizations) %></span></a>
             </li>
 
             <% if module_enabled?( 'checklists')  && can?(:manage_roles, :view_checklists, :manage_checklists) %>
