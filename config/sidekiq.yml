@@ -1,6 +1,6 @@
 ---
 :concurrency: 5
-:pidfile: tmp/pids/sidekiq.pid
+:pidfile: ./tmp/pids/sidekiq.pid
 staging:
   :concurrency: 10
 production:
@@ -8,4 +8,5 @@ production:
 :queues:
   - default
   - mailers
+  - textris
   - [myqueue, 2]
