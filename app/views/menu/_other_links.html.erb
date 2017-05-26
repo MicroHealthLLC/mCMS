@@ -13,6 +13,12 @@
             </li>
         <% end %>
 
+         <% if module_enabled?('lms/pages') %>
+            <li class="<%= menu_active?('lms/pages') %>">
+              <a href="<%= '/lms' %>" title="<%= 'LMS' %>"><i class="fa fa-lg fa-fw fa-circle"></i><span class="menu-item-parent"><%= 'LMS' %></span></a>
+            </li>
+        <% end %>
+
          <% if module_enabled?('events') && can?(:view_events, :manage_roles, :manage_events)%>
             <li class="<%= menu_active?('event_calendar/events') %>">
               <a href="<%= '/event_calendar' %>" title="<%= 'Events' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'Events' %></span></a>
