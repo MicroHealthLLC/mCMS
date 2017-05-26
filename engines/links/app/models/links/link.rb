@@ -3,7 +3,7 @@ module Links
     belongs_to :user
     validates_presence_of :url, :user_id, :title
     before_save do
-      self.hostname = URI.parse(url).hostname.sub(/^www\./, '')
+      self.hostname = URI.parse(url).hostname.to_s.sub(/^www\./, '')
     end
   end
 end
