@@ -1,6 +1,6 @@
 class CreateEnrollments < ActiveRecord::Migration[5.0]
   def change
-    create_table :enrollments do |t|
+    create_table :lms_enrollments do |t|
       t.integer :user_id
       t.string :name
       t.integer :enrollment_type_id

@@ -361,4 +361,5 @@ Rails.application.routes.draw do
   mount EventCalendar::Engine => "/event_calendar"
   mount Links::Engine => "/links"
   mount Inventory::Engine => "/inventory"
+  mount Lms::Engine => "/lms"
 end

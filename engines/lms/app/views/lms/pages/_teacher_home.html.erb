@@ -1,0 +1,32 @@
+<div class="page-header center">
+  <h1>Teacher Dashboard</h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Course code</th>
+    <th>Edit course</th>
+    <th>Tools</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @courses.each do |c| %>
+      <tr>
+        <td><%= c.name %></td>
+        <td><%= c.description.html_safe %></td>
+        <td><%= c.course_code %></td>
+        <td>
+          <ul>
+            <li> <%= link_to 'Show', c %> </li>
+            <li> <%= link_to 'Edit', lms.edit_course_path(c) %> </li>
+            <li> <%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %> </li>
+          </ul>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

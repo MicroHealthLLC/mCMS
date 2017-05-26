@@ -1,0 +1,24 @@
+
+<table class="table table-responsive" id="courses_table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Course code</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @courses.each do |course| %>
+      <tr>
+        <td><%= link_to course.name, course %></td>
+        <td><%= course.course_code %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+    initDataTable('allergy_table')
+  })
+</script>

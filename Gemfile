@@ -191,5 +191,6 @@ gem 'rordit', path: 'engines/rordit'
 gem 'kanban', path: 'engines/kanban'
 gem 'event_calendar', path: 'engines/event_calendar'
 gem 'inventory', path: 'engines/inventory'
+gem 'lms', path: 'engines/lms'
 
 # gem 'community_engine', '~> 3.2.0'

@@ -46,9 +46,6 @@ class User < ApplicationRecord
   has_many :needs, dependent: :destroy
   has_many :goals, dependent: :destroy
   has_many :plans, dependent: :destroy
-  has_many :project_users, class_name: 'Kanban::ProjectUser'
-  has_many :projects, through: :project_users, class_name: 'Kanban::Project'
-
   has_many :tasks, dependent: :destroy
   has_many :assigned_tasks, class_name: 'Task', foreign_key: :assigned_to_id
   has_many :checklist_answers, dependent: :destroy
@@ -62,6 +59,27 @@ class User < ApplicationRecord
   has_many :memberships, dependent: :destroy
   has_many :groups, through: :memberships
 
+  # Engine Kanban
+  has_many :project_users, class_name: 'Kanban::ProjectUser'
+  has_many :projects, through: :project_users, class_name: 'Kanban::Project'
+
+  #Engines LMS
+  has_many :course_links, class_name: 'Lms::CourseLink', foreign_key: :teacher_id
+  has_many :assignments, class_name: 'Lms::Assignment', foreign_key: :teacher_id
+  has_many :courses, class_name: 'Lms::Course', foreign_key: :teacher_id
+  #Student relations
+  has_many :student_assignments, class_name: 'Lms::Assignment', foreign_key: :assignment_id
+  has_many :enrollments, class_name: 'Lms::Enrollment', dependent: :destroy, foreign_key: :student_id
+  has_many :student_courses, through: :enrollments, source: :course, foreign_key: :course_id, class_name: 'Lms::Course'
+
+  def is_student?
+    !is_teacher?
+  end
+
+  def is_teacher?
+    can?(:manage_roles)
+  end
+
   STATUS = [['Active', true],['Inactive', false]]
 
   default_scope  -> {includes(:core_demographic).references(:core_demographic)}
@@ -73,7 +91,7 @@ class User < ApplicationRecord
         return true
       end
     end
-    return false
+    false
   end
 
   def timeout_in

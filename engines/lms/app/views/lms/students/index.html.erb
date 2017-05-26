@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col-md-3">
+    <div class="well">
+      <h4>Upcoming Assignments:</h4>
+      <hr>
+
+      <p><a href="?time=overdue"><span class="badge">
+        <% if @overdue_assignments %>
+          <%= @overdue_assignments.count %>
+        <% else %>
+          0
+        <% end %></span> Overdue</a></p>
+
+      <p><a href="?time=today"><span class="badge">
+        <% if @today_assignments %>
+          <%= @today_assignments.count %>
+        <% else %>
+          0
+        <% end %></span> Today</a></p>
+
+      <p><a href="?time=tomorrow"><span class="badge">
+        <% if @tomorrow_assignments %>
+          <%= @tomorrow_assignments.count %>
+        <% else %>
+          0
+        <% end %></span> Tomorrow</a></p>
+
+      <p><a href="?time=week"><span class="badge">
+        <% if @week_assignments %>
+          <%= @week_assignments.count %>
+        <% else %>
+          0
+        <% end %></span> This week</a></p>
+
+      <p><a href="?time=next_2_weeks"><span class="badge">
+        <% if @next_2_weeks_assignments %>
+          <%= @next_2_weeks_assignments.count %>
+        <% else %>
+          0
+        <% end %></span> Next 2 Weeks</a></p>
+
+      <p><a href="?time=all"><span class="badge">
+        <% if @all_assignments %>
+          <%= @all_assignments.count %>
+        <% else %>
+          0
+        <% end %></span> All Assignments</a></p>
+    </div>
+
+    <div class="well">
+      <h4>My Courses:</h4>
+      <hr>
+      <% @courses.each do |course| %>
+      <p>
+        <%= link_to "#{course.name}", course %>
+        <a href="?course_id=<%= course.id%>"><span class="glyphicon glyphicon-book"></span></a>
+        <%= link_to leave_course_student_path(@student, course), method: :delete, data: { confirm: 'Are you sure you want to leave this course?' } do %>
+          <span class="glyphicon glyphicon-trash"></span>
+        <% end %>
+      </p>
+      <% end %>
+      <%= render "students/add_course" %>
+    </div>
+  </div>
+
+  <div class="col-md-9">
+
+    <% if params[:time] or params[:course_id] %>
+      <%= render "students/time" %>
+    <% else %>
+      <%= render "students/default" %>
+    <% end %>
+
+  </div>
+</div>

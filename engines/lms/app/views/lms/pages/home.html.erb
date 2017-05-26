@@ -1,0 +1,5 @@
+<% if User.current.is_student? %>
+		<%= render partial: 'student_home' %>
+<% else %>
+		<%= render partial: 'teacher_home' %>
+<% end %>
