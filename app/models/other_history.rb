@@ -49,7 +49,7 @@ class OtherHistory < ApplicationRecord
     user.to_pdf_brief_info(pdf) if show_user
     pdf.table([[" Other History "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Icdcm Code: ", " #{icdcm_code}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Snomed: ", " #{icdcm_code}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Other History Type: ", " #{other_history_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Other History Status: ", " #{other_history_status}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Date Identified: ", " #{date_identified}"]], :column_widths => [ 150, 373])
@@ -65,7 +65,7 @@ class OtherHistory < ApplicationRecord
     output = ""
     output<< "<h2>Other History ##{id} </h2><br/>"
     output<<"<b>Name: </b> #{name}<br/>"
-    output<<"<b>Icdcm Code : </b> #{icdcm_code}<br/>"
+    output<<"<b>Snomed : </b> #{icdcm_code}<br/>"
     output<<"<b>Other History Type : </b> #{other_history_type}<br/>"
     output<<"<b>Other History Status : </b> #{other_history_status}<br/>"
     output<<"<b>Date Identified: </b> #{date_identified}<br/>"
