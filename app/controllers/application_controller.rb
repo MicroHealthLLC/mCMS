@@ -14,6 +14,11 @@ class ApplicationController < ActionController::Base
     @enabled_modules =  EnabledModule.active.pluck(:name).to_set
   end
 
+  rescue_from ActiveRecord::ValueTooLong do |exception|
+    flash[:error] = exception.message
+    redirect_to :back
+  end
+
   def set_user
     if user_signed_in?
       User.current_user = current_user
