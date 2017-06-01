@@ -21,5 +21,5 @@ INSTALLATION:
 - rails enumeration:print_subclasses
 - start search services rake sunspot:solr:start RAILS_ENV=production
 - start your app rails s -e production -b localhost -d
-- start sidekiq  nohup sidekiq -C config/sidekiq.yml RAILS_ENV=production &
+- start sidekiq bundle exec sidekiq -d -L log/sidekiq.log -C config/sidekiq.yml -e production
 
