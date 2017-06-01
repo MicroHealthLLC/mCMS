@@ -99,7 +99,7 @@ class Referral < ApplicationRecord
     output<<"<b>Referral Appointment: </b> #{referral_appointment}<br/>"
     output<<"<b>Referred By: </b> #{referred_by}<br/>"
     output<<"<b>Referred To: </b> #{referred_to}<br/>"
-    output<<"<b>Description: </b> #{description}<br/>"
+    output<<"<b>Description: </b> #{referral_reason}<br/>"
 
     output.html_safe
   end
