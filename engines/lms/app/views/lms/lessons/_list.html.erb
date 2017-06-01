@@ -1,0 +1,24 @@
+
+<table class="table table-responsive" id="lessons_table">
+  <thead>
+  <tr>
+    <th>Course</th>
+    <th>Title</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @lessons.each do |lesson| %>
+      <tr>
+        <td><%= link_to lesson.course, lms.course_path(@course) %></td>
+        <td><%= link_to lesson.title, lms.course_lesson_path(@course, lesson)  %></td>
+       </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+    initDataTable('lessons_table')
+  })
+</script>

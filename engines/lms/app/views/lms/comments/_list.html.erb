@@ -1,0 +1,14 @@
+<%= form_for [@course, @lesson, comment], html: { class: 'form-horizontal' } do |f| %>
+    <div class="col-md-12">
+      <%= f.text_area :content, class: "form-control" %>
+    </div>
+
+    <div class="col-md-12">
+      <%= f.submit :save, class: 'btn btn-primary pull-right' %>
+    </div>
+
+<% end %>
+<hr/>
+<section id="comment_section">
+  <%= render partial: 'lms/comments/comment', collection: comments %>
+</section>

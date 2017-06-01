@@ -5,6 +5,9 @@ Lms::Engine.routes.draw do
 
   resources :courses do
     resources :assignments
+    resources :lessons do
+      resources :comments, only: [:create, :destroy]
+    end
   end
 
   post "/students/:id/add_course" => "student_addons#add_course", as: :add_course_student

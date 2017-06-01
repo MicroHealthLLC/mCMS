@@ -77,7 +77,7 @@ class User < ApplicationRecord
   end
 
   def is_teacher?
-    can?(:manage_roles)
+    can?(:manage_roles, :manage_courses)
   end
 
   STATUS = [['Active', true],['Inactive', false]]

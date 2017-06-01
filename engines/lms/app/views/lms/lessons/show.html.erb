@@ -1,0 +1,44 @@
+<%= render partial: 'action_menu' %>
+<div class="row">
+  <div class="col-xs-12">
+    <p>
+      <strong>Course:</strong>
+      <%= link_to  @lesson.course.to_s, lms.course_path(@course) %>
+    </p>
+
+    <p>
+      <strong>Title:</strong>
+      <%= @lesson.title %>
+    </p>
+
+    <p>
+      <strong>Content:</strong>
+      <%= @lesson.content.html_safe %>
+    </p>
+    <p class="col-md-6">
+      <strong>Files:</strong>
+
+    <p>
+      <% @lesson.lesson_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
+</div>
+
+
+<section id="widget-grid" class="show_customer_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'lms/comments/list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     comment: Lms::Comment.new(user_id: User.current, lesson_id: @lesson.id),
+                     comments: @comments,
+                     wid_id: 'comments',
+                     wid_title: 'Comments'
+                 } %>
+    </article>
+  </div>
+</section>
+

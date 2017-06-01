@@ -13,6 +13,13 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_sticky_notes, {'sticky_notes/sticky_notes' => [:index, :save]},  :read => true
   end
 
+  map.project_module :lms do |map|
+    map.permission :manage_courses, {'lms/courses' => [:index, :new, :show, :edit, :create, :update, :destroy],
+                                     'lms/assignments' => [:index, :new, :show, :edit, :create, :update, :destroy]
+
+    },  :read => true
+  end
+
   map.project_module :my_links do |map|
     map.permission :manage_links, {'links/links' => [:index, :new, :show, :edit, :create, :update, :destroy]},  :read => true
   end

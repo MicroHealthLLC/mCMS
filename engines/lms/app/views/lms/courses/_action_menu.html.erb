@@ -6,6 +6,7 @@
   <%= link_to( 'Edit', lms.edit_course_path(@course), class: 'btn btn-success pull-right') if @course.can?(:manage_roles, :manages_courses, :edit_courses) %>
   <%= link_to( 'Add Assignment', lms.new_course_assignment_path(@course), class: 'btn btn-success pull-right') if @course.can?(:manage_roles, :manages_courses, :edit_courses) %>
   <%= link_to t('button_cancel'), lms.courses_path, class: 'btn btn-warning pull-right' %>
+  <%= link_to 'Lessons', lms.course_lessons_path(@course), class: 'btn btn-info pull-right' %>
   <%#= link_to t('button_print'), lms.course_path(@course, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <a data-toggle="modal" data-target=".add-link-modal" class='btn btn-primary pull-right' >Create a Link</a>
 </div>
