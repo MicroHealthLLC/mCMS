@@ -12,6 +12,6 @@
 user = User.new(email: 'admin@example.net',
                 admin: true,
                 state: true,
-                password: 'admin', login: 'admin' )
+                password: 'Admin@2017', login: 'admin' )
 
 user.save
