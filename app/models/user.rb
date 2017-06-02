@@ -328,8 +328,8 @@ class User < ApplicationRecord
   def user_title;  profile.title;   end
   def full_name;   name;   end
   def birthday;    profile.birth_date;  end
-  def religion;    profile.religion_type;  end
-  def ethnicity;   profile.ethnicity_type;  end
+  def religion;    profile.religion;  end
+  def ethnicity;   profile.ethnicity;  end
   def citizenship; profile.citizenship_type;  end
   def gender;      profile.gender;      end
   def active?;     self.state ? 'Active' : 'Non active';         end

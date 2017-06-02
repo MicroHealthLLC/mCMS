@@ -1,16 +1,21 @@
 class CoreDemographic < ApplicationRecord
   belongs_to :user
+  # TODO remove those on next release
   belongs_to :religion_type, foreign_key: :religion_id, optional: true
+  belongs_to :ethnicity_type, foreign_key: :ethnicity_id, optional: true
+
+
   belongs_to :gender_type, foreign_key: :gender_id, optional: true
   belongs_to :citizenship_type, optional: true
   belongs_to :marital_status, optional: true
-  belongs_to :ethnicity_type, foreign_key: :ethnicity_id, optional: true
+
 
   after_save do
-    user.touch
+    user.touch if user
   end
   # validates_presence_of :user
 
+  # TODO remove this on next release
   def religion_type
     if religion_id
       super
@@ -50,6 +55,7 @@ class CoreDemographic < ApplicationRecord
     end
   end
 
+  # TODO remove this on next release
   def ethnicity_type
     if ethnicity_id
       super
@@ -62,8 +68,8 @@ class CoreDemographic < ApplicationRecord
     [
         :user_id, :first_name, :last_name, :middle_name,
         :gender_id, :title, :marital_status_id,
-        :birth_date, :religion_id,
-        :note, :ethnicity_id, :citizenship_type_id, :height, :weight
+        :birth_date, :religion,
+        :note, :ethnicity, :citizenship_type_id, :height, :weight
     ]
   end
 
@@ -81,10 +87,10 @@ class CoreDemographic < ApplicationRecord
     pdf.table([[ "Last name: ", " #{last_name}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Gender: ", " #{gender_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Birthday: ", " #{birthday}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Religion: ", " #{religion_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Religion: ", " #{religion}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Marital Status: ", " #{marital_status}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Tile: ", " #{title}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Ethnicity: ", " #{ethnicity_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Ethnicity: ", " #{ethnicity}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Citizenship: ", " #{citizenship_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
