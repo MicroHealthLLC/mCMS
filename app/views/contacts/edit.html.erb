@@ -18,5 +18,14 @@
                      extend_demography: @contact.extend_informations
                  } %>
     </article>
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'extend_demographies/contact_form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'extend_demography_id',
+                     wid_title: 'more information to Contact',
+                     extend_demography: @contact.extend_informations
+                 } %>
+    </article>
   </div>
 </section>

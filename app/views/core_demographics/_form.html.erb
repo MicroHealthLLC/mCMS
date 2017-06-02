@@ -83,7 +83,7 @@
         <div class="form-group">
           <label class="col-md-2 control-label"><%= t('profile.religion') %></label>
           <div class="col-md-8">
-            <%= text_field_tag :snomed, f.object.snomed,  class: 'form-control' %>
+            <%= text_field_tag :snomed, f.object.religion,  class: 'form-control' %>
             <%= f.hidden_field :religion %>
             <script>
               $(document).ready(function(){
@@ -109,7 +109,7 @@
         <div class="form-group">
           <label class="col-md-2 control-label"><%= t('profile.ethnicity') %></label>
           <div class="col-md-8">
-            <%= text_field_tag :snomed_ethnicity, f.object.snomed,  class: 'form-control' %>
+            <%= text_field_tag :snomed_ethnicity, f.object.ethnicity,  class: 'form-control' %>
             <%= f.hidden_field :ethnicity %>
             <script>
               $(document).ready(function(){
