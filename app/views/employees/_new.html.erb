@@ -47,7 +47,7 @@
           <div class="form-group">
             <label class="col-md-2 control-label"><%= t('profile.gender') %></label>
             <div class="col-md-8">
-              <%= text_field_tag :snomed_gender, f.object.gender,  class: 'form-control' %>
+              <%= text_field_tag :snomed_gender, f.object.gender,  class: 'form-control', placeholder: 'Type to Search' %>
               <%= f.hidden_field :gender %>
               <script>
                 $(document).ready(function(){
@@ -83,7 +83,19 @@
           <div class="form-group">
             <label class="col-md-2 control-label"><%= t('profile.religion') %></label>
             <div class="col-md-8">
-              <%= form.select :religion_id, options_for_select(ReligionType.active.pluck(:name, :id), selected:  form.object.religion_type.try(:id)) , {},{class: 'form-control'} %>
+              <%= text_field_tag :snomed, f.object.religion,  class: 'form-control', placeholder: 'Type to Search' %>
+              <%= f.hidden_field :religion %>
+              <script>
+                $(document).ready(function(){
+                  $('#snomed').autocomplete({
+                    source: "/snomed.json?default=religion",
+                    minLength: 2,
+                    select: function( event, ui ) {
+                      $('#core_demographic_religion').val(ui.item.id)
+                    }
+                  })
+                })
+              </script>
             </div>
           </div>
           <div class="form-group">
@@ -96,7 +108,19 @@
           <div class="form-group">
             <label class="col-md-2 control-label"><%= t('profile.ethnicity') %></label>
             <div class="col-md-8">
-              <%= form.select :ethnicity_id, options_for_select(EthnicityType.active.pluck(:name, :id), selected: form.object.ethnicity_type.try(:id)) , {},{class: 'form-control'} %>
+              <%= text_field_tag :snomed_ethnicity, f.object.ethnicity,  class: 'form-control', placeholder: 'Type to Search' %>
+              <%= f.hidden_field :ethnicity %>
+              <script>
+                $(document).ready(function(){
+                  $('#snomed_ethnicity').autocomplete({
+                    source: "/snomed.json?default=ethnic",
+                    minLength: 2,
+                    select: function( event, ui ) {
+                      $('#core_demographic_ethnicity').val(ui.item.id)
+                    }
+                  })
+                })
+              </script>
             </div>
           </div>
 

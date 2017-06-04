@@ -19,7 +19,7 @@
       <div class="form-group">
         <%= f.label t(:icdcm_code), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= text_field_tag :icdcm_code, f.object.icdcm_code,  class: 'form-control' %>
+          <%= text_field_tag :icdcm_code, f.object.icdcm_code,  class: 'form-control', placeholder: 'Type to Search' %>
           <%= f.hidden_field :icdcm_code_id %>
           <script>
               $(document).ready(function(){

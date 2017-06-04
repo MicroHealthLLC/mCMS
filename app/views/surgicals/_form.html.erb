@@ -27,7 +27,7 @@
       <div class="form-group">
         <%= f.label t(:hcpc), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= text_field_tag :hcpc, f.object.hcpc,  class: 'form-control' %>
+          <%= text_field_tag :hcpc, f.object.hcpc,  class: 'form-control' , placeholder: 'Type to Search'%>
           <%= f.hidden_field :hcpc_id %>
           <script>
               $(document).ready(function(){

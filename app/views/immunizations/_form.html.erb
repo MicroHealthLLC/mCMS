@@ -18,7 +18,7 @@
       <div class="form-group">
         <%= f.label :medication , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.text_field :medication, class: 'form-control' %>
+          <%= f.text_field :medication, class: 'form-control', placeholder: 'Type to Search' %>
           <%= f.hidden_field :snomed %>
           <script>
             $(document).ready(function(){

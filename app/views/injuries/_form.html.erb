@@ -23,7 +23,7 @@
       <div class="form-group">
         <%= f.label :snomed, class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= text_field_tag :snomed_occupation, f.object.snomed_occupation,  class: 'form-control' %>
+          <%= text_field_tag :snomed_occupation, f.object.snomed_occupation,  class: 'form-control', placeholder: 'Type to Search' %>
           <%= f.hidden_field :snomed_occupation %>
           <script>
             $(document).ready(function(){

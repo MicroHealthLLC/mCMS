@@ -71,7 +71,7 @@
       <div class="form-group">
         <%= f.label :gender , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= text_field_tag :snomed_gender, f.object.gender,  class: 'form-control' %>
+          <%= text_field_tag :snomed_gender, f.object.gender,  class: 'form-control', placeholder: 'Type to Search' %>
           <%= f.hidden_field :gender %>
           <script>
             $(document).ready(function(){

@@ -31,7 +31,7 @@
       <div class="form-group">
         <%= f.label t('language'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= text_field_tag :snomed, f.object.language,  class: 'form-control' %>
+          <%= text_field_tag :snomed, f.object.language,  class: 'form-control', placeholder: 'Type to Search' %>
           <%= f.hidden_field :language %>
           <script>
             $(document).ready(function(){
