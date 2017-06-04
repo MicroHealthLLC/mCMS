@@ -43,9 +43,16 @@
       </div>
 
       <div class="form-group">
+        <%= label_tag :note_template_label, 'note template', class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= select_tag :note_template, options_for_select(NoteTemplate.pluck(:title, :id).insert(0, [ ''])), {class: 'control-label' } %>
+        </div>
+      </div>
+
+      <div class="form-group">
         <%= f.label t(:description), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.text_area :description , class: 'form-control ck-editor' %>
+          <%= f.text_area :description , class: 'form-control ck-editor note_text' %>
         </div>
       </div>
 
@@ -108,4 +115,16 @@
       </div>
   <% end %>
 </fieldset>
+<script>
+  $(document).ready(function(){
+    var note_id = $('.note_text').attr('id')
+    $('#note_template').on('change', function(){
 
+      if($(this).val()!= '')
+        $.getScript('/notes/get_template_note.js?note_id='+note_id+'&note_template_id='+$(this).val());
+      else
+        CKEDITOR.instances[note_id].setData('');
+
+    })
+  })
+</script>
