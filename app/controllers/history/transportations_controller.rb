@@ -28,7 +28,8 @@ class TransportationsController < UserHistoryController
 
   # GET /transportations/new
   def new
-    @transportation = Transportation.new(user_id: User.current.id)
+    @transportation = Transportation.new(user_id: User.current.id,
+                                         date_start: Date.today)
   end
 
   # GET /transportations/1/edit

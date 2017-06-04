@@ -29,7 +29,8 @@ class EnvironmentRisksController < UserHistoryController
 
   # GET /environment_risks/new
   def new
-    @environment_risk = EnvironmentRisk.new(user_id: User.current.id)
+    @environment_risk = EnvironmentRisk.new(user_id: User.current.id,
+                                            date_started: Date.today)
   end
 
   # GET /environment_risks/1/edit

@@ -42,7 +42,9 @@ class CaseSupportsController < UserCasesController
 
   # GET /case_supports/new
   def new
-    @case_support = CaseSupport.new(user_id: User.current.id, case_id: params[:case_id])
+    @case_support = CaseSupport.new(user_id: User.current.id,
+                                    date_started: Date.today,
+                                    case_id: params[:case_id])
   end
 
   # GET /case_supports/1/edit

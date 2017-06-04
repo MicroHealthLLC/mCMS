@@ -27,7 +27,8 @@ class MilitaryHistoriesController < UserHistoryController
 
   # GET /military_histories/new
   def new
-    @military_history = MilitaryHistory.new(user_id: User.current.id)
+    @military_history = MilitaryHistory.new(user_id: User.current.id,
+                                            date_started: Date.today)
   end
 
   # GET /military_histories/1/edit

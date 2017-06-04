@@ -29,7 +29,8 @@ class BehavioralRisksController < UserHistoryController
 
   # GET /behavioral_risks/new
   def new
-    @behavioral_risk = BehavioralRisk.new(user_id: User.current.id)
+    @behavioral_risk = BehavioralRisk.new(user_id: User.current.id,
+                                          date_started: Date.today)
   end
 
   # GET /behavioral_risks/1/edit

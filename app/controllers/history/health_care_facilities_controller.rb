@@ -29,7 +29,8 @@ class HealthCareFacilitiesController < UserHistoryController
 
   # GET /health_care_facilities/new
   def new
-    @health_care_facility = HealthCareFacility.new(user_id: User.current.id)
+    @health_care_facility = HealthCareFacility.new(user_id: User.current.id,
+                                                   date_started: Date.today)
   end
 
   # GET /health_care_facilities/1/edit

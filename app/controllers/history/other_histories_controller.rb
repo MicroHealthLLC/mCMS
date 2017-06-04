@@ -28,7 +28,8 @@ class OtherHistoriesController < UserHistoryController
 
   # GET /other_histories/new
   def new
-    @other_history = OtherHistory.new(user_id: User.current.id)
+    @other_history = OtherHistory.new(user_id: User.current.id,
+                                      date_identified: Date.today)
   end
 
   # GET /other_histories/1/edit

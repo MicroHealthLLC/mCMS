@@ -77,6 +77,7 @@ class TasksController < UserCasesController
         @task = Task.new(user_id: User.current.id,
                          assigned_to_id: User.current_user.id,
                          for_individual_id: User.current.id,
+                         date_start: Date.today,
                          related_to_id: params[:case_id],
                          related_to_type: 'Case')
         @task.plan_tasks.build(plan_id: params[:plan_id])

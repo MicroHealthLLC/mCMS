@@ -82,6 +82,7 @@ class GoalsController <  UserCasesController
   def new
     @goal = Goal.new(user_id: User.current.id,
                      assigned_to_id: User.current_user.id,
+                     date_start: Date.today,
                      case_id: params[:case_id])
     if params[:need_id]
       @goal.need_goals.build(need_id: params[:need_id])

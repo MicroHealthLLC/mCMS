@@ -78,6 +78,7 @@ class PlansController < UserCasesController
   def new
     @plan = Plan.new(user_id: User.current.id,
                      assigned_to_id: User.current_user.id,
+                     date_start: Date.today,
                      case_id: params[:case_id])
     if params[:goal_id]
       @plan.goal_plans.build(goal_id: params[:goal_id])

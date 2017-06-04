@@ -28,7 +28,8 @@ class SocioeconomicsController < UserHistoryController
 
   # GET /socioeconomics/new
   def new
-    @socioeconomic = Socioeconomic.new(user_id: User.current.id)
+    @socioeconomic = Socioeconomic.new(date_identified: Date.today,
+                                       user_id: User.current.id)
   end
 
   # GET /socioeconomics/1/edit

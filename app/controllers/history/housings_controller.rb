@@ -29,7 +29,8 @@ class HousingsController < UserHistoryController
 
   # GET /housings/new
   def new
-    @housing = Housing.new(user_id: User.current.id)
+    @housing = Housing.new(user_id: User.current.id,
+                           date_start: Date.today)
   end
 
   # GET /housings/1/edit

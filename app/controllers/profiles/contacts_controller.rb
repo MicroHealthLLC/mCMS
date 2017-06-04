@@ -47,7 +47,8 @@ class ContactsController < UserProfilesController
 
   # GET /contacts/new
   def new
-    @contact = Contact.new(user_id: User.current.id)
+    @contact = Contact.new(user_id: User.current.id,
+                           date_started: Date.today)
   end
 
   # GET /contacts/1/edit

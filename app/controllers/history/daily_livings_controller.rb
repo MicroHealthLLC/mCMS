@@ -28,7 +28,8 @@ class DailyLivingsController < UserHistoryController
 
   # GET /daily_livings/new
   def new
-    @daily_living = DailyLiving.new(user_id: User.current.id)
+    @daily_living = DailyLiving.new(user_id: User.current.id,
+                                    date_start: Date.today)
   end
 
   # GET /daily_livings/1/edit

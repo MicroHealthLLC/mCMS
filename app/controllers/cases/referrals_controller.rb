@@ -55,6 +55,7 @@ class ReferralsController < UserCasesController
   def new
     @referral = Referral.new(user_id: User.current.id,
                              referred_to_id: User.current_user.id,
+                             referral_date: Date.today ,
                              case_id: params[:case_id])
   end
 

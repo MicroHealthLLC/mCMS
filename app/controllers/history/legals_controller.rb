@@ -28,7 +28,8 @@ class LegalsController < UserHistoryController
 
   # GET /legals/new
   def new
-    @legal = Legal.new(user_id: User.current.id)
+    @legal = Legal.new(user_id: User.current.id,
+                       date_start: Date.today)
   end
 
   # GET /legals/1/edit

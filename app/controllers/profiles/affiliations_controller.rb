@@ -29,7 +29,8 @@ class AffiliationsController < UserProfilesController
 
   # GET /affiliations/new
   def new
-    @affiliation = Affiliation.new user_id: User.current.id
+    @affiliation = Affiliation.new user_id: User.current.id,
+                                   date_start: Date.today
   end
 
   # GET /affiliations/1/edit

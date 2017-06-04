@@ -28,7 +28,8 @@ class FinancialsController < UserHistoryController
 
   # GET /financials/new
   def new
-    @financial = Financial.new(user_id: User.current.id)
+    @financial = Financial.new(user_id: User.current.id,
+                               date_start: Date.today)
   end
 
   # GET /financials/1/edit

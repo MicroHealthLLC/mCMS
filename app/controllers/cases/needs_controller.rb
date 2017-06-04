@@ -64,6 +64,7 @@ class NeedsController < UserCasesController
   def new
     @need = Need.new(user_id: User.current.id,
                      assigned_to_id: User.current_user.id,
+                     date_identified: Date.today,
                      case_id: params[:case_id])
   end
 
