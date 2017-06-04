@@ -17,16 +17,21 @@
       <%= f.hidden_field :user_id %>
 
       <div class="form-group">
-        <%= f.label t(:housing_type), class: 'col-md-2 control-label' %>
+        <%= f.label 'Snomed ct search', class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :housing_type_id, options_for_select(HousingType.active.pluck(:name, :id), selected: f.object.housing_type.try(:id)) , {} ,{class: 'form-control'} %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:cohabitation_type), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :cohabitation_type_id, options_for_select(CohabitationType.active.pluck(:name, :id), selected: f.object.cohabitation_type.try(:id)) , {} ,{class: 'form-control'} %>
+          <%= text_field_tag :snomed, f.object.snomed,  class: 'form-control' %>
+          <%= f.hidden_field :snomed %>
+          <script>
+            $(document).ready(function(){
+              $('#snomed').autocomplete({
+                source: "/snomed.json?default=self-care",
+                minLength: 2,
+                select: function( event, ui ) {
+                  $('#housing_snomed').val(ui.item.id)
+                }
+              })
+            })
+          </script>
         </div>
       </div>
 

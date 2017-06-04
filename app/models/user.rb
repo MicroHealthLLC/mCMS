@@ -130,8 +130,8 @@ class User < ApplicationRecord
 
 
   def self.include_enumerations
-    includes(:role, :core_demographic=> :gender_type).
-        references(:role, :core_demographic=> :gender_type)
+    includes(:role, :core_demographic).
+        references(:role, :core_demographic)
   end
 
   def check_status

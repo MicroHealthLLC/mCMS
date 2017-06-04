@@ -36,6 +36,10 @@
     </p>
 
     <p>
+      <strong><%= t('date_identified') %>:</strong>
+      <%= format_date @need.date_identified %>
+    </p>
+    <p>
       <strong><%= t('date_due') %>:</strong>
       <%= @need.date_due %>
     </p>
@@ -45,10 +49,7 @@
       <%= format_date @need.date_completed %>
     </p>
 
-    <p>
-      <strong><%= t('date_identified') %>:</strong>
-      <%= format_date @need.date_identified %>
-    </p>
+
 
   </div>
 </div>

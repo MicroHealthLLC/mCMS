@@ -22,16 +22,16 @@ module PivotTableHelper
   end
 
   def render_user
-   CoreDemographic.includes(:user, :gender_type, :religion_type, :ethnicity_type, :citizenship_type).
-       references(:user, :gender_type, :religion_type, :ethnicity_type, :citizenship_type).map do |object|
+   CoreDemographic.includes(:user, :citizenship_type).
+       references(:user, :citizenship_type).map do |object|
      {
          user: object.user,
          first_name: object.first_name,
          last_name: object.last_name,
-         ethnicity: object.ethnicity_type,
+         ethnicity: object.ethnicity,
          citizenship: object.citizenship_type,
-         gender: object.gender_type,
-         religion: object.religion_type,
+         gender: object.gender,
+         religion: object.religion,
 
 
      }

@@ -11,11 +11,20 @@
     </article>
 
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <%= render partial: 'extend_demographies/form',
+      <%= render partial: 'extend_demographies/form2',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
                      wid_id: 'extend_demography',
-                     wid_title: 'Case support informations',
+                     wid_title: 'Contact Information',
+                     extend_demography: @case_support.extend_informations
+                 } %>
+    </article>
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'extend_demographies/identification_form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'extend_demography_id',
+                     wid_title: 'Identification',
                      extend_demography: @case_support.extend_informations
                  } %>
     </article>

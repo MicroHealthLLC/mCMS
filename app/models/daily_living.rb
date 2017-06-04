@@ -11,8 +11,7 @@ class DailyLiving < ApplicationRecord
 
   def self.enumeration_columns
     [
-        ["#{DailyLivingStatus}", 'daily_living_status_id'],
-        ["#{DailyLivingType}", 'daily_living_type_id']
+        ["#{DailyLivingStatus}", 'daily_living_status_id']
     ]
   end
 
@@ -33,11 +32,11 @@ class DailyLiving < ApplicationRecord
   end
 
   def to_s
-    title
+    snomed
   end
 
   def self.safe_attributes
-    [:title, :user_id, :daily_living_type_id,
+    [:title, :user_id, :daily_living_type_id, :snomed,
      :daily_living_status_id, :description,
      :date_start, :date_end,
      daily_living_attachments_attributes: [Attachment.safe_attributes]
@@ -48,9 +47,8 @@ class DailyLiving < ApplicationRecord
     pdf.font_size(25){  pdf.table([[ "Daily living ##{id}"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf) if show_user
     pdf.table([[" Daily Living "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
-    pdf.table([[ "Title: ", " #{title}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Snomed: ", " #{snomed}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Type: ", " #{daily_living_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Status: ", " #{daily_living_status}"]], :column_widths => [ 150, 373])
   end
 
@@ -61,8 +59,7 @@ class DailyLiving < ApplicationRecord
   def for_mail
     output = ""
     output<< "<h2>Daily Living ##{id} </h2><br/>"
-    output<<"<b>Title : </b> #{title}<br/>"
-    output<<"<b>Type : </b> #{daily_living_type}<br/>"
+    output<<"<b>Snomed : </b> #{snomed}<br/>"
     output<<"<b>Status : </b> #{daily_living_status}<br/>"
     output<<"<b>Description: </b> #{description} <br/>"
     output.html_safe

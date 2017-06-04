@@ -66,6 +66,14 @@
           <%= f.text_area :description , class: 'form-control ck-editor' %>
         </div>
       </div>
+
+      <div class="form-group">
+        <%= f.label t(:date_identified) , class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :date_identified , class: 'form-control date_picker' %>
+        </div>
+      </div>
+
       <div class="form-group">
         <%= f.label t('date_due') , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
@@ -77,13 +85,6 @@
         <%= f.label t(:date_completed) , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
           <%= f.text_field :date_completed , class: 'form-control date_picker' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:date_identified) , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :date_identified , class: 'form-control date_picker' %>
         </div>
       </div>
 

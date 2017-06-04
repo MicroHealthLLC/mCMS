@@ -82,7 +82,7 @@ class Measurement < ApplicationRecord
      :lower_height, :upper_height,
      :measurement_name_id,
      :lower_weight, :upper_weight,
-     :gender_id, :measured_by_id,
+     :gender, :measured_by_id,
      :lower_measure, :higher_measure]
   end
 

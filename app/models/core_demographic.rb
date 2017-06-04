@@ -67,7 +67,7 @@ class CoreDemographic < ApplicationRecord
   def self.safe_attributes
     [
         :user_id, :first_name, :last_name, :middle_name,
-        :gender_id, :title, :marital_status_id,
+        :gender, :title, :marital_status_id,
         :birth_date, :religion,
         :note, :ethnicity, :citizenship_type_id, :height, :weight
     ]
@@ -85,7 +85,7 @@ class CoreDemographic < ApplicationRecord
     pdf.table([[ "First name: ", " #{first_name}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Middle name: ", " #{middle_name}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Last name: ", " #{last_name}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Gender: ", " #{gender_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Gender: ", " #{gender}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Birthday: ", " #{birthday}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Religion: ", " #{religion}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Marital Status: ", " #{marital_status}"]], :column_widths => [ 150, 373])

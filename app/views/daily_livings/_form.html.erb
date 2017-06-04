@@ -17,9 +17,21 @@
       <%= f.hidden_field :user_id %>
 
       <div class="form-group">
-        <%= f.label t(:daily_living_type), class: 'col-md-2 control-label' %>
+        <%= f.label 'Snomed ct search', class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :daily_living_type_id, options_for_select(DailyLivingType.active.pluck(:name, :id), selected: f.object.daily_living_type.try(:id)) , {} ,{class: 'form-control'} %>
+          <%= text_field_tag :snomed, f.object.snomed,  class: 'form-control' %>
+          <%= f.hidden_field :snomed %>
+          <script>
+            $(document).ready(function(){
+              $('#snomed').autocomplete({
+                source: "/snomed.json?default=housing finding",
+                minLength: 2,
+                select: function( event, ui ) {
+                  $('#daily_living_snomed').val(ui.item.id)
+                }
+              })
+            })
+          </script>
         </div>
       </div>
 

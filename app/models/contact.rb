@@ -67,7 +67,7 @@ class Contact < ApplicationRecord
 
   def self.safe_attributes
     [:emergency_contact, :first_name, :middle_name, :last_name, :not_show_in_search,
-     :note, :contact_type_id, :user_id, :language, :birthday, :gender_id,
+     :note, :contact_type_id, :user_id, :language, :birthday, :gender,
      :date_started , :date_ended , :contact_status_id,
      contact_attachments_attributes: [Attachment.safe_attributes]]
   end

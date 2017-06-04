@@ -71,16 +71,28 @@
 
       <div class="form-group">
         <label class="col-md-2 control-label"><%= t('profile.gender') %></label>
-        <div class="col-md-8">
-          <%= f.select :gender_id, options_for_select(GenderType.active.pluck(:name, :id), selected: f.object.gender_type.try(:id)), {},{class: 'form-control'} %>
+        <div class="col-md-9">
+          <%= text_field_tag :snomed_gender, f.object.gender,  class: 'form-control' %>
+          <%= f.hidden_field :gender %>
+          <script>
+            $(document).ready(function(){
+              $('#snomed_gender').autocomplete({
+                source: "/snomed.json?default=gender finding",
+                minLength: 2,
+                select: function( event, ui ) {
+                  $('#contact_gender').val(ui.item.id)
+                }
+              })
+            })
+          </script>
         </div>
       </div>
       <div class="form-group">
         <label class="col-md-2 control-label"><%= t('profile.birthday') %></label>
-        <div class="col-md-8">
+        <div class="col-md-9">
           <%= f.text_field :birthday, class: 'form-control birthday', data: {dateformat: "yy-mm-dd"} %>
           <script>
-              $(function(){
+            $(document).ready(function(){
                   $('.birthday').datepicker({
                       dateFormat: 'yy-mm-dd',
                       "prevText":'<i class="fa fa-chevron-left"></i>',
@@ -141,6 +153,3 @@
       </div>
   <% end %>
 </fieldset>
-<script>
-  $('.date_picker').datepicker({ dateFormat: 'dd-mm-yy' });
-</script>
