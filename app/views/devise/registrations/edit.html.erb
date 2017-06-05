@@ -32,27 +32,19 @@
                      wid_title: 'More information',
                      extend_demography: User.current.extend_informations
                  } %>
-       <%= render partial: 'extend_demographies/identification_form',
-                   layout: 'shared/smart_widget_wrapper',
-                   locals: {
-                       wid_id: 'extend_demography_id',
-                       wid_title: 'Identification',
-                       extend_demography: User.current.extend_informations
-                   } %>
+      <%= render partial: 'extend_demographies/identification_form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'extend_demography_id',
+                     wid_title: 'Identification',
+                     extend_demography: User.current.extend_informations
+                 } %>
       <%= render partial: 'edit_password',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
                      wid_id: 'password',
                      wid_title: 'Change password'
                  } %>
-      <%= render partial: 'job_details/info',
-                 layout: 'shared/smart_widget_wrapper',
-                 locals: {
-                     wid_id: 'job_detail_info',
-                     wid_title: "Role Info: #{ User.current.principal_role}",
-                     job_detail: User.current.job_detail
-                 } %>
-
       <% if can?(:manage_roles, :manage_user_job_details, :manage_organizations) %>
           <%= render partial: 'job_details/form',
                      layout: 'shared/smart_widget_wrapper',
