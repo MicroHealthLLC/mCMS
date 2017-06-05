@@ -64,7 +64,7 @@
             <script>
               $(document).ready(function(){
                 $('#snomed_gender').autocomplete({
-                  source: "/snomed.json?default=gender finding",
+                  source: "/snomed.json?default=gender",
                   minLength: 2,
                   select: function( event, ui ) {
                     $('#core_demographic_gender').val(ui.item.id)

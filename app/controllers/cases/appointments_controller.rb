@@ -91,7 +91,7 @@ class AppointmentsController < UserCasesController
   # GET /appointments/new
   def new
     @appointment = Appointment.new(user_id: User.current.id,
-                                   date: Date.today,
+                                   date: Time.now,
                                    with_who_id: User.current_user.id,
                                    related_to_id: params[:case_id])
   end

@@ -24,7 +24,7 @@
           <script>
             $(document).ready(function(){
               $('#snomed').autocomplete({
-                source: "/snomed.json?default=housing finding",
+                source: "/snomed.json?default=housing",
                 minLength: 2,
                 select: function( event, ui ) {
                   $('#housing_snomed').val(ui.item.id)
