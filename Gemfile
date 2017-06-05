@@ -127,6 +127,8 @@ gem "jSignature", "~> 0.0.6"
 gem 'faraday'
 gem 'httparty'
 
+gem 'exception_notification'
+
 #installing adapter gems based on database.yml
 require 'erb'
 require 'yaml'

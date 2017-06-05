@@ -23,5 +23,11 @@ module MHRM
     config.autoload_paths += Dir[Rails.root.join('app', 'controllers/cases')]
     config.autoload_paths += Dir[Rails.root.join('app', 'controllers/profiles')]
     config.autoload_paths += Dir[Rails.root.join('app', 'controllers/history')]
+
+    # Exception Notifier Gem
+    Rails.application.config.middleware.use ExceptionNotification::Rack,
+                                            :email => {
+                                                :exception_recipients => %w{bilel.kedidi@gmail.com}
+                                            }
   end
 end
