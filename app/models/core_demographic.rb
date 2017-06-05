@@ -73,10 +73,6 @@ class CoreDemographic < ApplicationRecord
     ]
   end
 
-  def gender
-    gender_type || GenderType.default
-  end
-
   def birthday
     birth_date
   end
