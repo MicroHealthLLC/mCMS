@@ -30,7 +30,8 @@ class ClientJournalsController < UserCasesController
 
   # GET /client_journals/new
   def new
-    @client_journal = ClientJournal.new(user_id: User.current.id)
+    @client_journal = ClientJournal.new(user_id: User.current.id,
+                                        date: Date.today)
   end
 
   # GET /client_journals/1/edit

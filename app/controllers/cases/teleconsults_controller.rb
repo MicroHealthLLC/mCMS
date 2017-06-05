@@ -29,6 +29,7 @@ class TeleconsultsController  < UserCasesController
   # GET /teleconsults/new
   def new
     @teleconsult = Teleconsult.new(user_id: User.current.id,
+                                   date: Date.today,
                                    case_id: params[:case_id])
   end
 

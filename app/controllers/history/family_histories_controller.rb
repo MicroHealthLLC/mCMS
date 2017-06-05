@@ -28,7 +28,8 @@ class FamilyHistoriesController < UserHistoryController
 
   # GET /family_histories/new
   def new
-    @family_history = FamilyHistory.new(user_id: User.current.id)
+    @family_history = FamilyHistory.new(user_id: User.current.id,
+                                        :date_identified => Date.today)
   end
 
   # GET /family_histories/1/edit
