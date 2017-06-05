@@ -134,8 +134,10 @@ class CasesController < UserCasesController
 
   # GET /cases/new
   def new
-    @case = Case.new(assigned_to_id: User.current.id, date_start: Date.today,
-                     subcase_id: params[:subcase_id], user_id: User.current.id)
+    @case = Case.new(assigned_to_id: User.current_user.id,
+                     date_start: Date.today,
+                     subcase_id: params[:subcase_id],
+                     user_id: User.current.id)
   end
 
   # GET /cases/1/edit

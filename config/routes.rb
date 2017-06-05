@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'exception_notifier/show'
+
   get 'sms/show', :as=> :show_sms
   post 'sms/send_sms', :as=> :send_sms
 
@@ -348,6 +350,7 @@ Rails.application.routes.draw do
   # Engines
   require 'sidekiq/web'
   authenticate :user, lambda { |u| u.admin? } do
+    resources :exception_notifier, only: [:index, :show]
     mount Sidekiq::Web => '/sidekiq'
   end
 

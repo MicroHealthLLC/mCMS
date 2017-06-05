@@ -19,6 +19,11 @@ class ApplicationController < ActionController::Base
     redirect_to :back
   end
 
+  rescue_from StandardError  do |exception|
+    ExceptionNotifier.create(exception)
+    raise
+  end
+
   def set_user
     if user_signed_in?
       User.current_user = current_user

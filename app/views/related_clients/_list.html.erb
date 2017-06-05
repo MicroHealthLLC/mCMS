@@ -13,7 +13,7 @@
   <% related_clients.each do |related_client| %>
       <tr>
         <td><%= link_to related_client.related_client, related_client %></td>
-        <td><%= related_client.relationship %></td>
+        <td><%= related_client.snomed %></td>
         <td><%= format_date related_client.date_start %></td>
         <td><%= format_date related_client.date_end %></td>
       </tr>
