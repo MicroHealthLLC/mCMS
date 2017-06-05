@@ -84,6 +84,7 @@ class TasksController < UserCasesController
       end
     else
       @task = Task.new(user_id: User.current.id,
+                       date_start: Date.today,
                        assigned_to_id: User.current_user.id,
                        for_individual_id: User.current.id,
                        sub_task_id: params[:sub_task_id],
