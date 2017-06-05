@@ -7,7 +7,7 @@ class EmployeeDatatable < AjaxDatatablesRails::Base
       CoreDemographic.first_name
       CoreDemographic.middle_name
       CoreDemographic.last_name
-      Enumeration.name
+      CoreDemographic.gender
       CoreDemographic.birth_date
       User.state
     }

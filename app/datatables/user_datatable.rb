@@ -11,7 +11,6 @@ class UserDatatable < AjaxDatatablesRails::Base
       CoreDemographic.last_name
       CoreDemographic.birth_date
       Role.name
-      Enumeration.name
       User.state
     }
   end
@@ -27,7 +26,6 @@ class UserDatatable < AjaxDatatablesRails::Base
       CoreDemographic.last_name
       CoreDemographic.birth_date
       Role.name
-      Enumeration.name
       User.state
     }
   end

@@ -10,7 +10,7 @@
       <% if audit.audited_changes.values.first.is_a?(Array) %>
           <tr>
             <td>
-              <%= audit.user.name %>: At <%= format_date_time  audit.created_at %>
+              <%= audit.user.try(:name)  %>: At <%= format_date_time  audit.created_at %>
               <ul>
                 <% audit.audited_changes.each do |key, value|
                   next unless value.is_a? Array
