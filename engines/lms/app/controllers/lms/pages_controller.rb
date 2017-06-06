@@ -16,6 +16,7 @@ module Lms
     def set_student_variable
       @student = User.current
       @courses = User.current.student_courses
+      @available_courses = Lms::Course.where.not(id: @courses.pluck(:id))
 
       ## Per Time Period:
       if params[:time] == "overdue"

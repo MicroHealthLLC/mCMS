@@ -10,7 +10,7 @@ Lms::Engine.routes.draw do
     end
   end
 
-  post "/students/:id/add_course" => "student_addons#add_course", as: :add_course_student
+  get "/students/:id/add_course" => "student_addons#add_course", as: :add_course_student
   delete "/students/:id/leave_course/:course_id" => "student_addons#leave_course", as: :leave_course_student
 
   patch "/student_assignments/:id/complete" => "student_addons#complete_assignment", as: :complete_student_assignment

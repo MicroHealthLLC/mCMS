@@ -6,7 +6,7 @@ module Lms
     # POST /students/1/add_course
     def add_course
       @student = Student.find(params[:id])
-      course_code = params[:course][:course_code]
+      course_code = params[:course_code]
       course = Course.where(course_code: course_code).first
       if course.nil?
         flash[:alert] = "No courses were found with the specified course code."
