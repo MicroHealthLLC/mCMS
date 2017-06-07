@@ -26,8 +26,9 @@ class CoreDemographicsController < ProtectForgeryApplication
   # PATCH/PUT /core_demographics/1
   # PATCH/PUT /core_demographics/1.json
   def update
+    @user = @core_demographic.user
     respond_to do |format|
-      if @core_demographic.update(core_demographic_params)
+      if @user.update(core_demographic_update_params)
         format.html { redirect_to :back, notice: I18n.t(:notice_successful_update) }
       else
         format.html { render 'edit' }
@@ -36,15 +37,19 @@ class CoreDemographicsController < ProtectForgeryApplication
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_core_demographic
-      @core_demographic = CoreDemographic.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      render_404
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_core_demographic
+    @core_demographic = CoreDemographic.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def core_demographic_params
-      params.require(:core_demographic).permit(CoreDemographic.safe_attributes)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def core_demographic_params
+    params.require(:core_demographic).permit(CoreDemographic.safe_attributes)
+  end
+
+  def core_demographic_update_params
+    params.require(:user).permit(User.safe_attributes_with_password_with_core_demographic_without_state)
+  end
 end

@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   before_action :set_user
   before_action :set_enabled_modules
   before_action :module_visible
+
+  around_action :user_time_zone, :if => :current_user
   layout 'base'
 
   include DmsfHelper
@@ -92,4 +94,10 @@ class ApplicationController < ActionController::Base
   def require_admin
     render_404 unless User.current.admin?
   end
+
+  private
+
+   def user_time_zone(&block)
+     Time.use_zone(User.current.time_zone, &block)
+   end
 end

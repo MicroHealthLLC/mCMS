@@ -127,6 +127,7 @@ class User < ApplicationRecord
 
   validates_uniqueness_of :login, :email
   validates_presence_of :login, :email
+  # validates_inclusion_of :time_zone, in: ActiveSupport::TimeZone.zones_map(&:name)
 
 
   def self.include_enumerations
@@ -351,22 +352,22 @@ class User < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:login, :state, :email, :role_id]
+    [:login, :state, :email, :role_id, :time_zone]
   end
 
   def self.safe_attributes_with_password_with_core_demographic_without_state
-    [:login, :email, :password, :password_confirmation,
-     core_demographic_attributes: [CoreDemographic.safe_attributes]]
+    [:login, :email, :password, :password_confirmation, :time_zone,
+     core_demographic_attributes: [[:id] + CoreDemographic.safe_attributes]]
   end
 
   def self.safe_attributes_with_password
-    [:login, :state, :email,
+    [:login, :state, :email, :time_zone,
      :password, :password_confirmation, job_detail_attributes: [JobDetail.safe_attributes],
      core_demographic_attributes: [CoreDemographic.safe_attributes]]
   end
 
   def self.admin_safe_attributes
-    [:login, :state, :email, :role_id,
+    [:login, :state, :email, :role_id, :time_zone,
      :password, :password_confirmation,
      :admin, job_detail_attributes: [JobDetail.safe_attributes],
      core_demographic_attributes: [CoreDemographic.safe_attributes]]
