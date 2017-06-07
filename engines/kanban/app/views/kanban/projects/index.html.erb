@@ -22,9 +22,7 @@
       <% if User.current.can?(:manage_kanban_projects, :manage_roles) %>
           <a class="mpkNew btn btn-primary pull-right" title="New Kanban board" ng-click="kanbanMenu.openNewKanban()"><i class="glyphicon glyphicon-briefcase"></i> New</a>
           <a class='btn btn-danger pull-right' title="Delete Kanban" ng-click="kanbanMenu.delete()"><i class="glyphicon glyphicon-remove-sign"></i> Delete</a></li>
-          <% if User.current.last_project_used_id %>
-              <a class='btn btn-primary pull-right' href="/kanban/projects/manage_users"> Manage Users</a>
-          <% end %>
+          <a class='btn btn-primary pull-right' href="/kanban/projects/manage_users"> Manage Users</a>
       <% end %>
       <a class='btn btn-info pull-right' title="Open archive" ng-click="kanbanMenu.openArchive(kanban)"><i class="glyphicon glyphicon-folder-open"></i> Archives</a></li>
     </div>

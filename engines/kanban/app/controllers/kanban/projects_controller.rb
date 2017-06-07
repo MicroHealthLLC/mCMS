@@ -42,6 +42,11 @@ module Kanban
 
     def manage_users
       @project = Kanban::Project.find_by(id: User.current.last_project_used_id)
+      unless @project
+        flash[:errors] = 'No project selected'
+        redirect_to '/kanban'
+        return
+      end
       if request.post?
         @project.project_users.where.not(user_id: params[:users]).delete_all
         params[:user].each do |user_id|
