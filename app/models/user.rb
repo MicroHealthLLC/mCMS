@@ -466,6 +466,11 @@ class User < ApplicationRecord
     phones
   end
 
+  def all_organizations
+    case_organizations = Organization.where id: CaseOrganization.where(case_id: cases.pluck(:id)).pluck(:organization_id)
+    [case_organizations + organizations].flatten.uniq
+  end
+
   def self.recently_active
     where('last_seen_at > ?', 5.minutes.ago)
   end
