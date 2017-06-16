@@ -11,7 +11,7 @@ class CoreDemographic < ApplicationRecord
   belongs_to :citizenship_type, optional: true
   belongs_to :marital_status, optional: true
 
-  validates_presence_of :user_id
+  # validates_presence_of :user_id
 
 
   after_save do
