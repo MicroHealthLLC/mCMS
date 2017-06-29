@@ -5,7 +5,7 @@ class GoalNeedWorker
   def perform(id)
     goal = Goal.find(id)
     goal.needs.each do |need|
-      need.percent_done = (need.goals.average(:percent_done).to_i / 10).ceil * 10
+      need.percent_done = need.goals.average(:percent_done).to_i
       need.save
     end
   end

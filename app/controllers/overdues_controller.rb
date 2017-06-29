@@ -5,21 +5,32 @@ class OverduesController < ProtectForgeryApplication
   end
 
   def case_overdue
-    scope = Case.all_data
+    scope = Case
     scope = scope.include_enumerations
     scope = if User.current.can?(:manage_roles)
               scope.where(assigned_to_id: User.current)
             else
               scope.visible
             end
-    scope = scope.where('date_due <= ?', Date.today)
+    scope = case params[:type]
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.all_data.where('date_due <= ?', Date.today)
+            end
     @cases = scope
   end
 
   def appointment_overdue
     scope = Appointment
-    scope = scope.all_data
-    scope = scope.where('end_time <= ?', Date.today)
+    scope = case params[:type]
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.all_data.where('end_time <= ?', Date.today)
+            end
     @appointments = scope.include_enumerations.
         includes(:user=> :core_demographic).
         references(:user=> :core_demographic).
@@ -28,8 +39,13 @@ class OverduesController < ProtectForgeryApplication
 
   def need_overdue
     scope =  User.current.can?(:manage_roles) ? Need.where(assigned_to_id: User.current.id) : Need.visible
-    scope =  scope.all_data
-    scope = scope.where('date_due <= ?', Date.today)
+    scope = case params[:type]
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.all_data.where('date_due <= ?', Date.today)
+            end
     @needs = scope
   end
 
@@ -42,15 +58,25 @@ class OverduesController < ProtectForgeryApplication
 
   def plan_overdue
     scope = User.current.can?(:manage_roles) ? Plan.where(assigned_to_id: User.current.id) : Plan.visible
-    scope =  scope.all_data
-    scope = scope.where('date_due <= ?', Date.today)
+    scope = case params[:type]
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.all_data.where('date_due <= ?', Date.today)
+            end
     @plans = scope
   end
 
   def action_overdue
     scope = Task.root
-    scope = scope.opened
-    scope = scope.where('tasks.date_due <= ?', Date.today)
+    scope = case params[:type]
+              when 'opened' then scope.opened
+              when 'closed' then scope.closed
+              when 'flagged' then scope.flagged
+              else
+                scope.all_data.where('tasks.date_due <= ?', Date.today)
+            end
     scope = scope.include_enumerations.
         where('tasks.assigned_to_id = :user OR tasks.for_individual_id = :user', user:  User.current.id)
     @tasks = scope

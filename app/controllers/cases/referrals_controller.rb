@@ -67,14 +67,6 @@ class ReferralsController < UserCasesController
 # POST /referrals.json
   def create
     @referral = Referral.new(referral_params)
-    org_id = if organization = Organization.where(name: params[:client_organization]).first
-               ClientOrganization.where(organization_id: organization.id).first_or_create
-               organization.id
-             else
-               ClientOrganization.where(name: params[:client_organization]).first_or_create.id
-             end
-
-    @referral.referred_to_id = org_id
     respond_to do |format|
       if @referral.save
         set_link_to_appointment(@referral)
@@ -90,14 +82,6 @@ class ReferralsController < UserCasesController
 # PATCH/PUT /referrals/1
 # PATCH/PUT /referrals/1.json
   def update
-    org_id = if organization = Organization.where(name: params[:client_organization]).first
-               ClientOrganization.where(organization_id: organization.id).first_or_create.id
-             else
-               ClientOrganization.where(name: params[:client_organization]).first_or_create.id
-             end
-
-    @referral.referred_to_id = org_id
-
     respond_to do |format|
       if @referral.update(referral_params)
         format.html { redirect_to @referral, notice: 'Referral was successfully updated.' }

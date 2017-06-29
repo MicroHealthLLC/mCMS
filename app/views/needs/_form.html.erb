@@ -47,7 +47,7 @@
       <div class="form-group">
         <%= f.label :percent_done , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :percent_done, options_for_select((0..100).step(10).to_a.map{|v| ["#{v}%", v]}, selected: f.object.percent_done), {} , {class: 'form-control'} %>
+          <%= f.select :percent_done, options_for_select((0..100).step(1).to_a.map{|v| ["#{v}%", v]}, selected: f.object.percent_done), {} , {class: 'form-control'} %>
         </div>
       </div>
 

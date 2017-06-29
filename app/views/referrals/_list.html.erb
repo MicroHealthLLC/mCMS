@@ -30,7 +30,7 @@
         <td><%= referral.referral_appointment %></td>
         <td><%= referral.referral_status %></td>
         <td><%= referral.referred_by %></td>
-        <td><%= referral.referred_to %></td>
+        <td><%= referral.referred_to_address %></td>
         <% if @appointment %>
             <td><%= link_to "<i class='fa fa-unlink fa-lg'></i>".html_safe, unlink_appointment_path(appointment_id: @appointment.id, type: 'Referral', id: referral.id ) %></td>
         <% end %>

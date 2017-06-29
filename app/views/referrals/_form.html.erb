@@ -61,15 +61,11 @@
      <div class="form-group">
         <%= f.label :referred_to, class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= text_field_tag :client_organization, f.object.referred_to.to_s,  class: 'form-control' %>
-          <script>
-            $(document).ready(function(){
-              $('#client_organization').autocomplete({
-                source: "/referrals/find_organization.json",
-                minLength: 2
-              })
-            })
-          </script>
+          <%= f.text_field :referred_to_address,  class: 'form-control address' %>
+          <%= render partial: 'map_address', locals: {
+              location: "#{f.object_name.gsub(/[\[\]]+/, '_').chop}_address",
+              object: f.object
+          } %>
         </div>
       </div>
       

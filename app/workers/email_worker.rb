@@ -4,7 +4,7 @@ class EmailWorker
   def perform(object_type, object_id)
     object = object_type.constantize.find_by_id(object_id)
 
-    if object and object.can_send_email? and object.email_notification_enabled?('create')
+    if object and object.respond_to?(:can_send_email?) and object.can_send_email? and object.email_notification_enabled?('create')
       UserMailer.send_notification(object).deliver_now
       c = self.try(:case)
       if c
