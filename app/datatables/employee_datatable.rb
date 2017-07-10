@@ -10,6 +10,7 @@ class EmployeeDatatable < AjaxDatatablesRails::Base
       CoreDemographic.gender
       CoreDemographic.birth_date
       User.state
+      Organization.name
     }
   end
 
@@ -23,6 +24,7 @@ class EmployeeDatatable < AjaxDatatablesRails::Base
       CoreDemographic.gender
       CoreDemographic.birth_date
       User.state
+      Organization.name
     }
   end
 
@@ -34,10 +36,13 @@ class EmployeeDatatable < AjaxDatatablesRails::Base
           @view.link_to( user.id,  @view.employee_path(user), 'data-turbolinks'=> false) ,
           @view.link_to( user.first_name.to_s,  @view.log_in_employee_path(user), 'data-turbolinks'=> false) ,
           user.middle_name ,
+
           user.last_name,
           user.gender.to_s,
           user.email ,
+
           user.birthday ,
+          user.organization.to_s,
           user.state,
           @view.link_to('<i class="fa fa-download" ></i>'.html_safe,  @view.all_informations_path(format: 'pdf'))
 
@@ -46,7 +51,10 @@ class EmployeeDatatable < AjaxDatatablesRails::Base
   end
 
   def get_raw_records
-    scope = User.employees.include_enumerations
+    scope = User.employees.include_enumerations.
+        includes(:job_detail=> [:organization]).
+        references(:job_detail=> [:organization])
+
     case @options[:status_type]
       when 'active' then scope.where(state: true)
       when 'inactive' then scope.where(state: false)
