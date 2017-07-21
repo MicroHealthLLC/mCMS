@@ -155,3 +155,4 @@ en:
   enumeration_transport_location: Transport Location
   enumeration_goal_type: Goal Type
   enumeration_plan_type: Plan Type
+  enumeration_association: Association
