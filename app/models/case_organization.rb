@@ -5,7 +5,7 @@ class CaseOrganization < ApplicationRecord
   # belongs_to :association
 
   def association_type
-    @association ||= (AssociationType.find_by(association_id) || AssociationType.default)
+    @association ||= (AssociationType.find_by(id: association_id) || AssociationType.default)
   end
 
   def self.safe_attributes
