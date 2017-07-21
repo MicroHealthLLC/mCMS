@@ -64,7 +64,7 @@
     </li>
 <% end %>
 <% modules = ['sticky', 'sticky_notes',
-              'personal_organizer',
+              'personal_organizer', 'mind_map',
               'todo_list']
 %>
 
@@ -76,6 +76,12 @@
         <% if module_enabled?('sticky') and can?(:manage_roles, :manage_sticky) %>
             <li class="<%= menu_active?('sticky') %>">
               <a href="<%= '/sticky' %>" title="<%= 'My checklists' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'My checklists' %></span></a>
+            </li>
+        <% end %>
+
+        <% if module_enabled?('mind_map') and can?(:manage_roles, :manage_mind_map) %>
+            <li class="<%= menu_active?('mind_map') %>">
+              <a href="<%= '/mindmap' %>" title="<%= 'Mind map' %>"><i class="fa fa-lg fa-fw fa-navicon"></i><span class="menu-item-parent"><%= 'Mind map' %></span></a>
             </li>
         <% end %>
 
