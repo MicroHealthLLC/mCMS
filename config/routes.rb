@@ -365,4 +365,6 @@ Rails.application.routes.draw do
   mount Links::Engine => "/links"
   mount Inventory::Engine => "/inventory"
   mount Lms::Engine => "/lms"
+  mount Mindmap::Engine => "/mindmap"
+  # mount CommunityEngine::Engine => "/community_engine"
 end

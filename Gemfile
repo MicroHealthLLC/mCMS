@@ -185,6 +185,7 @@ gem 'textris'
 
 # Engines
 gem 'links', path: 'engines/links'
+# gem 'community_engine', path: 'engines/communityengine'
 gem 'todo_list', path: 'engines/todo_list'
 gem 'calculator', path: 'engines/calculator'
 gem 'measurements_converter', path: 'engines/measurements_converter'
@@ -194,5 +195,4 @@ gem 'kanban', path: 'engines/kanban'
 gem 'event_calendar', path: 'engines/event_calendar'
 gem 'inventory', path: 'engines/inventory'
 gem 'lms', path: 'engines/lms'
-
-# gem 'community_engine', '~> 3.2.0'
+gem 'mindmap', path: 'engines/mindmap'
