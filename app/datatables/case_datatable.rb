@@ -85,7 +85,14 @@ class CaseDatatable < AjaxDatatablesRails::Base
             else
               scope.visible
             end
-    scope
+    if  User.current_user.admin? or User.current.organization == User.current_user.organization
+      scope
+    else
+      org = User.current_user.organization
+      co = CaseOrganization.where(organization_id: org.try(:id)).where(case_id: User.current.cases.pluck(:id)).pluck(:case_id)
+      scope.where(id: co)
+    end
+
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

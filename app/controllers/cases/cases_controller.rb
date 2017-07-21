@@ -9,6 +9,7 @@ class CasesController < UserCasesController
 
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
+  before_action :authorize_view, only: [:show, :edit]
 
   # GET /cases
   # GET /cases.json
@@ -287,6 +288,16 @@ class CasesController < UserCasesController
 
   def back_url
     @case.redirection
+  end
+
+  def authorize_view
+    unless User.current_user.admin? or  User.current.organization == User.current_user.organization
+      org = User.current_user.organization
+      co = CaseOrganization.where(organization_id: org.try(:id)).where(case_id: User.current.cases.pluck(:id)).pluck(:case_id)
+      unless @case.id.in?(co)
+        render_403
+      end
+    end
   end
 
 end
