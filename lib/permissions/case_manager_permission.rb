@@ -95,7 +95,7 @@ RedCarpet::AccessControl.map do |map|
         'event_calendar/events' => [:index, :new, :show, :edit, :create, :update, :destroy],
         'inventory/product_assigns' => [:index, :new, :show, :edit, :create, :update, :destroy],
         'links/links' => [:index, :new, :show, :edit, :create, :update, :destroy],
-        :document_managers => [:index, :show, :search, :destroy, :create, :update, :download],
+        :document_managers => [:new_folder, :index, :show, :search, :destroy, :create, :update, :download],
         :revisions=>[:download, :create]
 
     },  :read => true
