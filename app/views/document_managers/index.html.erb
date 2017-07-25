@@ -1,5 +1,5 @@
 <div class="row" >
-  <div class="col-xs-12 col-sm-8 col-md-6" style="display:inline-block">
+  <div class="col-xs-12 col-sm-6 col-md-6" style="display:inline-block">
     <%= form_tag search_document_managers_path, method: :post do %>
         <div class="input-group">
           <%= search_field_tag :query, nil, style: "width: 400px; margin-left: 25px",
@@ -10,8 +10,11 @@
         </div>
     <% end %>
   </div>
-  <div class="col-xs-12 col-sm-4 col-md-6" style="display:inline-block">
+  <div class="col-xs-12 col-sm-3 col-md-3" style="display:inline-block">
     <%= render partial: "document_managers/upload" %>
+  </div>
+  <div class="col-xs-12 col-sm-3 col-md-3" style="display:inline-block">
+    <%= render partial: "document_managers/new_folder" %>
   </div>
 </div>
 
@@ -20,9 +23,20 @@
     <h3> Featured Categories </h3>
     <%= render partial: "categories/featured_categories", locals: {featured: @featured} %>
 <% end %>
+<hr />
+
+<h3>Folders</h3>
+<% if @current_folder.parent %>
+    <p> <%= image_tag "icons/icon_folder_50.png" %><%= link_to "..".html_safe, document_managers_path(document_folder_id: @current_folder.parent.id) %></p>
+<% elsif params[:document_folder_id]%>
+    <p> <%= image_tag "icons/icon_folder_50.png" %><%= link_to "..".html_safe, document_managers_path %></p>
+<% end %>
+<% @sub_folders.each do |folder| %>
+    <p> <%= image_tag "icons/icon_folder_50.png" %><%= link_to "#{folder.name}".html_safe, document_managers_path(document_folder_id: folder.id) %></p>
+<% end %>
+
 <% if !@latest_docs.nil? and @latest_docs.length > 0 %>
-    <hr />
-    <h3> Recent Documents </h3>
+    <h3>Documents</h3>
     <%= render partial: "categories/latest_documents", locals: {latest_docs: @latest_docs} %>
 <% end %>
 

@@ -2,10 +2,11 @@ class DocumentManagersController < ProtectForgeryApplication
 
   before_action  :authenticate_user!
   before_action  :authorize
-  before_filter :permitted_categories
+  before_filter :permitted_categories, except: [:new_folder]
 
   # Selection of categories the current user can view in the tree navigation
   def permitted_categories
+    @current_folder = DocumentFolder.new
     @permitted_categories = upload_permitted_categories
   end
 
@@ -16,7 +17,17 @@ class DocumentManagersController < ProtectForgeryApplication
     # Get featured categories and recently uploaded documents
     #  making sure to hide private docs and categories
     @featured = Category.featured
-    @latest_docs = DocumentManager.latest_docs
+    @current_folder = params[:document_folder_id] ? DocumentFolder.find( params[:document_folder_id] ): DocumentFolder.new
+    @latest_docs = DocumentManager.latest_docs @current_folder.id
+    @sub_folders = DocumentFolder.where(parent_id: @current_folder.id)
+  end
+
+  def new_folder
+    @folder = DocumentFolder.new(params.require(:document_folder).permit(:parent_id, :name))
+    unless @folder.save
+      flash[:error] = @folder.errors.full_messages.join('<br/>')
+    end
+    redirect_to document_managers_path
   end
 
   def show 
@@ -116,7 +127,7 @@ class DocumentManagersController < ProtectForgeryApplication
     end
 
     if !category.nil?
-      redirect_to document_managers_path
+      redirect_to @document.folder ? document_managers_path(document_folder_id: @document.folder_id ) : document_managers_path
     else
       redirect_to root_path
     end
@@ -148,7 +159,7 @@ class DocumentManagersController < ProtectForgeryApplication
 
   private
     def document_params
-      params.require(:document).permit(:title, :description, 
+      params.require(:document).permit(:title, :description, :folder_id,
         :category_id, :is_writable, :is_private)
     end
 

@@ -1,6 +1,7 @@
 class DocumentManager < ApplicationRecord
   belongs_to :user
   belongs_to :category
+  belongs_to :folder, :class_name => 'DocumentFolder'
   has_many :revisions, dependent: :destroy
   has_many :dms_documemnts, dependent: :destroy
 
@@ -24,7 +25,7 @@ class DocumentManager < ApplicationRecord
     revisions.sum(:download_count)
   end
 
-  def self.latest_docs
+  def self.latest_docs(folder_id)
     categories = Category.includes(:group=>[:memberships]).
         references(:group=>[:memberships]).
         where(is_private: true).where(memberships: {user_id: User.current})
@@ -34,9 +35,9 @@ class DocumentManager < ApplicationRecord
         where(categories: {is_private: false}).
         or( Revision.includes(:document_manager=>[:category]).
             references(:document_manager=>[:category]).
-            where(document_managers: {is_private: false}).
+            where(document_managers: {is_private: false, folder_id: folder_id}).
             where(categories: {id: categories.pluck(:id)})).
-        order('revisions.updated_at DESC').limit(7)
+        order('revisions.updated_at DESC')
   end
 
 end

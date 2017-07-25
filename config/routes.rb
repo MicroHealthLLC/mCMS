@@ -103,6 +103,7 @@ Rails.application.routes.draw do
       get :download
     end
     collection do
+      post 'new_folder'
       get :search
       post :search
     end

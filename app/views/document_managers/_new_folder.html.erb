@@ -1,0 +1,43 @@
+<!-- Document upload button -->
+<div class="upload_button_container">
+  <a class="upload_button" href="" data-toggle="modal" data-target="#documentFolderModal">
+    <span class="upload_button_text">
+      <button class="btn btn-primary pull-right"><i class="fa fa-folder-o fa-fw"></i>New Folder</button>
+    </span>
+  </a>
+  <hr />
+</div>
+
+<!-- Document upload modal -->
+<div class="modal fade" id="documentFolderModal" tabindex="-1" role="dialog" aria-labelledby="documentModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="documentModal">Folder form</h4>
+      </div>
+      <!-- Check if a user is logged in -->
+      <!-- Check if user has permissions to upload -->
+      <% if User.current.can?(:manage_roles) %>
+          <%= form_for DocumentFolder.new(parent_id: @current_folder.id), html: {class: 'form-horizontal'}, url: new_folder_document_managers_path, method: :post do |f| %>
+              <div class="modal-body">
+                <div class="form-group">
+                  <%= f.label :name %>
+                  <%= f.text_field :name, :class => "form-control" %>
+                </div>
+                <%= f.hidden_field :parent_id %>
+                <br />
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <%= f.submit "Submit Folder", :class => "btn btn-primary" %>
+              </div>
+          <% end %>
+      <% else %>
+          <div class="panel-heading">
+            Sorry, you do not have permission to create folder.
+          </div>
+      <% end %>
+    </div>
+  </div>
+</div>

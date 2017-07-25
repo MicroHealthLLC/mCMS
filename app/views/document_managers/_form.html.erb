@@ -1,5 +1,14 @@
 <div class="modal-body">
   <div class="form-group">
+    <%= f.label :folder %>
+    <% if @document %>
+        <%= f.select :folder_id, options_for_select(DocumentFolder.pluck(:name, :id), selected: @document.folder_id) %>
+    <% else %>
+        <%= f.hidden_field :folder_id, value: @current_folder.id %>
+    <% end %>
+    </div>
+  <div class="form-group">
+
     <%= f.label :title %>
     <%= f.text_field :title, :class => "form-control" %>
   </div>
