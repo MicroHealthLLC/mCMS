@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
  <%= stylesheet_link_tag 'rss_feed/application' %>
 </head>
-<body onunload="saveFeeds()">
+<body onunload="">
 
 <div id="container">
   <div id="topbar">
@@ -30,6 +30,7 @@
       <div id="feed_control_div">
         <p><span id="list_name"><span id="mh">MH</span><span id="rss">RSS</span>Reader</span></p>
         <div id="topbtns">
+          <button type="button" id="saveform_btn">Save</button>
           <button type="button" id="showform_btn">Add Feed</button>
           <button type="button" id="instructions_btn">Instructions</button>
         </div>
@@ -86,9 +87,9 @@
 </div>
 <script>
   <% if @rss.rss_feed %>
-  localStorage.setItem("theserssfeeds", <%= @rss.rss_feed.to_s.inspect.html_safe %>);
+    localStorage.setItem("theserssfeeds", <%= @rss.rss_feed.to_s.inspect.html_safe %>);
   <% else %>
-  localStorage.removeItem("theserssfeeds");
+    localStorage.setItem("theserssfeeds", '[]');
   <% end %>
 </script>
 <%= javascript_include_tag 'rss_feed/application' %>

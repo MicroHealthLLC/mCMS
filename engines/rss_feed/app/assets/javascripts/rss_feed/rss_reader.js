@@ -372,10 +372,12 @@ var theserssfeeds;
 function saveFeeds() {
     "use strict";
     theserssfeeds = JSON.stringify(rssReaderFeeds);
-	$.ajax({ url: '/rss/rss/save.js?content='+theserssfeeds })
-    //localStorage.setItem("theserssfeeds", theserssfeeds);
+	$.ajax({ url: '/rss/rss/save.js?content='+theserssfeeds})
+	alert('Saved')
 }
-
+$('#saveform_btn').click(function(){
+	saveFeeds()
+})
 $(document).ready(function () {
 	"use strict";
 	$( "#searchfromdate" ).datepicker("setDate", null);

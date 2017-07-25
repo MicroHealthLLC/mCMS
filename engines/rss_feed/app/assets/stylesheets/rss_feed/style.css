@@ -13,10 +13,10 @@ h4 {font-size: 1.2em; font-weight: bold; margin-top: 0;}
 #main {width: 90%; margin: 0 auto; padding: 10px 10px 30px 10px;}
 #feed_control_div {width: 90%; margin: 0 auto; padding: 15px 10px 15px 10px;}
 #feeds_form_div {margin: 40px 0 0px 0; padding: 10px; background-color:#BFCCEE; background-color:#CCD7F2; display: none;}
-#instructions_btn, #showform_btn, #submit_feed, #reset_btn, #add_btn, #clear_feeds, #all_feeds, #update_feeds {width: 8em; background-color:#246; background-color:#1D336F; color: white; float:right; border: none; margin: -5px 0 20px 0; padding: 6px;}
+#instructions_btn, #showform_btn, #saveform_btn, #submit_feed, #reset_btn, #add_btn, #clear_feeds, #all_feeds, #update_feeds {width: 8em; background-color:#246; background-color:#1D336F; color: white; float:right; border: none; margin: -5px 0 20px 0; padding: 6px;}
 #topbtns {margin: -40px 0 10px 10px; width:85%; float:right;}
 #instructions_btn {width: 8em; float:right;}
-#showform_btn, #all_feeds, #clear_feeds {width: 8em; margin-left: 10px;}
+#showform_btn, #saveform_btn, #all_feeds, #clear_feeds {width: 8em; margin-left: 10px;}
 #submit_feed {margin: 10px 0 20px 0;}
 #update_feeds {margin: 0 0 20px 0;}
 #reset_btn, #add_btn {margin: 10px 10px 20px 0;}
