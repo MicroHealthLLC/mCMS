@@ -22,6 +22,21 @@ class SettingsController < ProtectForgeryApplication
     redirect_to settings_path
   end
 
+  def set_key_providers
+    ['OFFICE365', 'GOOGLE', 'FACEBOOK', 'GITHUB', 'TWITTER'].each do |provider|
+      Setting["#{provider}_SECRET"] = params["#{provider.downcase}"]['secret']
+      Setting["#{provider}_KEY"] = params["#{provider.downcase}"]['key']
+    end
+    Devise.setup do |config|
+      config.omniauth :github, Setting['GITHUB_KEY'], Setting['GITHUB_SECRET'], scope: 'user:email'
+      config.omniauth :office365, Setting['OFFICE365_KEY'], Setting['OFFICE365_SECRET'], :scope => 'openid profile email https://outlook.office.com/mail.read'
+      config.omniauth :facebook, Setting['FACEBOOK_KEY'], Setting['FACEBOOK_SECRET']
+      config.omniauth :twitter, Setting['TWITTER_KEY'], Setting['TWITTER_SECRET'], scope: 'user:email'
+      config.omniauth :google_oauth2, Setting['GOOGLE_KEY'],  Setting['GOOGLE_SECRET']
+    end
+    redirect_to settings_path
+  end
+
   def set_notification
     EmailNotification.where.not(id: params[:notifications]).update_all(status: false)
     EmailNotification.where(id: params[:notifications]).update_all(status: true)

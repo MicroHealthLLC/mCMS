@@ -5,6 +5,7 @@
     <li><a id="link-tabs-modules" href="#tabs-theme">Themes</a></li>
     <li><a id="link-tabs-modules" href="#tabs-authentification">Authentification</a></li>
     <li><a id="link-tabs-modules" href="#tabs-notification">Notifications</a></li>
+    <li><a id="link-tabs-modules" href="#tabs-keys">Keys</a></li>
   </ul>
   <div id='tabs-home' >
     <%= render partial: 'general_setting' %>
@@ -47,14 +48,21 @@
       </div>
     </div>
   </div>
+  <div id='tabs-keys' >
+    <div class="row">
+      <div class="col-xs-12">
+        <%= render partial: 'keys' %>
+      </div>
+    </div>
+  </div>
 
 
 
 
 
 </div>
-  <script>
-    $( function() {
-      $tabs = $( "#tabs" ).tabs();
-    } );
-  </script>
+<script>
+  $( function() {
+    $tabs = $( "#tabs" ).tabs();
+  } );
+</script>

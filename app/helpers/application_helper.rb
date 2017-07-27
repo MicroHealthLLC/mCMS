@@ -306,7 +306,7 @@ module ApplicationHelper
   end
 
   def can_connect_with?(type)
-    ENV["#{type}_KEY".upcase].present?
+    Setting["#{type}_KEY".upcase].present?
   end
 
   def display_note(note)

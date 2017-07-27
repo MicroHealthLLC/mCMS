@@ -334,6 +334,7 @@ Rails.application.routes.draw do
       post 'set_notification'
       post 'set_modules'
       post 'set_theme'
+      post 'set_key_providers'
     end
   end
 
