@@ -283,46 +283,8 @@ function resize_jsmind(){
 function change_container(widthsize){
     "use strict";
     var c = document.getElementById('jsmind_container');
-    if (widthsize === 'xxlarge2') {
-        c.style.width = '2200px';
-        c.style.height = '1340px';
-    } else if (widthsize === 'xxlarge1') {
-        c.style.width = '1900px';
-        c.style.height = '1000px';
-    } else if (widthsize === 'xlarge3') {
-        c.style.width = '1660px';
-        c.style.height = '940px';
-    } else if (widthsize === 'xlarge2') {
-        c.style.width = '1580px';
-        c.style.height = '900px';
-    } else if (widthsize === 'xlarge1') {
-        c.style.width = '1490px';
-        c.style.height = '900px';
-    } else if (widthsize === 'large2') {
-        c.style.width = '1390px';
-        c.style.height = '900px';
-    } else if (widthsize === 'large1') {
-        c.style.width = '1290px';
-        c.style.height = '800px';
-    } else if (widthsize === 'medium2') {
-        c.style.width = '1190px';
-        c.style.height = '740px';
-    } else if (widthsize === 'small2') {
-        c.style.width = '930px';
-        c.style.height = '600px';
-    } else if (widthsize === 'small1') {
-        c.style.width = '760px';
-        c.style.height = '900px';
-    } else if (widthsize === 'xsmall2') {
-        c.style.width = '630px';
-        c.style.height = '900px';
-    } else if (widthsize === 'xsmall1') {
-        c.style.width = '600px';
-        c.style.height = '300px';
-    } else  { //medium1
-        c.style.width = '990px';
-        c.style.height = '700px';
-    }
+        c.style.width = '100%';
+        c.style.height = '100%';
     resize_jsmind();
 }
 
