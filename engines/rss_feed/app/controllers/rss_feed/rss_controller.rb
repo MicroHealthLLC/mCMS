@@ -2,6 +2,7 @@ require_dependency "rss_feed/application_controller"
 
 module RssFeed
   class RssController < ApplicationController
+    include RssFeed::RssHelper
     before_action  :authenticate_user!
     def index
       @rss = RssFeed::RssUserFeed.where(user_id: User.current.id).first_or_initialize

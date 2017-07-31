@@ -1,0 +1,95 @@
+<%= stylesheet_link_tag 'rss_feed/application' %>
+<div class="row">
+  <div class="col-xs-12">
+    <div id="topbar" class="row">
+      <button id="openSliderbtn" title="Open RSS Feeds Listing and Instructions Panel"><img src="/rss_feed/glyphicons-115-list.png"></button>
+      <div id="searchfeed_div">
+        <div id="searchdates">
+          <input type="text" id="searchfromdate" name="searchfromdate" placeholder="Search from date" />
+          <input type="text" id="searchtodate" name="searchtodate" placeholder="Search to date" />
+        </div>
+        <div id="searchword">
+          <input type="search" id="searchinput" name="searchinput" placeholder="Search word(s)" />
+          <button id="searchbtn" title="Search Feeds"><img src="/rss_feed/glyphicons-28-search.png"></button>
+          <button id="resetsearch" title="Reset Search"><img src="/rss_feed/glyphicons-82-refresh.png"></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="feedslistingdiv">
+      <div id="controller" class="slide slide-up">
+        <div id="feed_control_div">
+          <p><span id="list_name"><span id="mh">MH</span><span id="rss">RSS</span>Reader</span></p>
+          <div id="topbtns">
+            <button type="button" id="saveform_btn">Save</button>
+            <button type="button" id="showform_btn">Add Feed</button>
+            <button type="button" id="instructions_btn">Instructions</button>
+          </div>
+          <div id="instructions_div">
+            <button id="closeinstr_btn" title="Close Instructions Panel"><img src="/rss_feed/glyphicons-370-collapse-top.png"></button>
+            <h4>Feeds Control</h4>
+            <p>Click &ldquo;Add Feed&rdquo; to display the Feed Form. Input a name and url for the feed, then click &ldquo;Save&rdquo;. The new RSS feed will be added to the feeds listing and the feeds content display will automatically update.</p>
+            <p>Checked feeds will be included in the feeds content display. Select feeds individually, click &ldquo;Check All&rdquo;, or click &ldquo;Uncheck All&rdquo;; then click &ldquo;Update&rdquo;.</p>
+            <p>Click &ldquo;E&rdquo; to edit a feed. The Feed Form will display with the corresponding info filled in. Clicking &ldquo;Save&rdquo; will update the feeds listing and the feeds content display.</p>
+            <p>Click &ldquo;X&rdquo; to delete a feed from the feeds listing and the feeds content display.</p>
+          </div>
+
+          <div id="feeds_form_div">
+            <form id="feeds_form">
+              <button id="closeform_btn" title="Close Feeds Form Panel"><i class="fa fa-check-square-o"></i></button>
+              <h4>Feed Form</h4>
+              <div hidden>
+                <label for="feed_id" class="formlabel">ID:</label>
+                <input type="text" id="feed_id" name="feed_id" />
+              </div>
+              <label for="feed_name" class="formlabel">Name:</label>
+              <input type="text" id="feed_name" name="feed_name" />
+              <label for="feed_site" class="formlabel">URL:</label>
+              <input type="text" id="feed_site" name="feed_site" />
+              <br><br>
+              <div hidden>
+                <label for="feed_include" class="formlabel">Include:
+                  <input type="checkbox" id="feed_include" name="feed_include" checked />
+                </label>
+              </div>
+              <button type="submit" id="submit_feed">Save</button>
+              <button type="reset" id="reset_btn">Reset</button>
+              <br><br>
+            </form>
+          </div>
+
+          <br>
+
+          <button type="button" id="update_feeds">Update</button>
+          <button type="button" id="clear_feeds">Uncheck All</button>
+          <button type="button" id="all_feeds">Check All</button>
+          <br><br>
+          <div id="feedslisting"></div>
+          <button id="top_feeds" title="To Top of Feeds Listing"><img src="/rss_feed/glyphicons-214-arrow-up.png"></button>
+          <button id="closeSliderbtn" title="Close RSS Feeds Listing and Instructions Panel"><img src="/rss_feed/glyphicons-370-collapse-top.png"></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="main">
+      <div id="rss-feeds"></div>
+      <a href="#container"><button id="to_top" title="To Top of Page"><img src="/rss_feed/glyphicons-214-arrow-up.png"></button></a>
+    </div>
+  </div>
+</div>
+<script>
+  <% if @rss.rss_feed %>
+  localStorage.setItem("theserssfeeds", <%= @rss.rss_feed.to_s.inspect.html_safe %>);
+  <% else %>
+  localStorage.setItem("theserssfeeds", '[]');
+  <% end %>
+</script>
+<%= javascript_include_tag 'rss_feed/application' %>
+<script>
+  $( "#searchfromdate, #searchtodate" ).datepicker({inline: false});
+  var today = new Date();
+  var thisdate = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
+  $( "#searchfromdate, #searchtodate" ).datepicker({maxDate: today});
+  $( "#searchtodate" ).datepicker("setDate", thisdate);
+  $( "#searchfromdate, #searchtodate" ).datepicker("option", "maxDate", thisdate);
+</script>

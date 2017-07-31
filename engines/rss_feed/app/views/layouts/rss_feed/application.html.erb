@@ -1,106 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-us" class="<%= Setting.theme_style %>">
 <head>
-  <title>RSS Reader</title>
   <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
- <%= stylesheet_link_tag 'rss_feed/application' %>
+  <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+
+  <title> <%= Setting['application_name'] %> </title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <!-- Basic Styles -->
+  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'thredded', 'data-turbolinks-track'=> 'reload' %>
+  <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track'=> 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track'=> 'reload' %>
+
+  <meta name="turbolinks-cache-control" content="no-cache">
+  <style>
+    .smart-style-5
+    {
+      background: url(/assets/glass.jpg) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
+  </style>
+
+  <!-- We recommend you use "your_style.css" to override SmartAdmin
+       specific styles this will also ensure you retrain your customization with each SmartAdmin update.
+  <link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
+
+  <!-- FAVICONS -->
+  <%= favicon_link_tag 'favicon.ico' %>
+
+
+  <!-- Specifying a Webpage Icon for Web Clip
+
+  <!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+
 </head>
-<body onunload="">
 
-<div id="container">
-  <div id="topbar">
-    <button id="openSliderbtn" title="Open RSS Feeds Listing and Instructions Panel"><img src="/rss_feed/glyphicons-115-list.png"></button>
-    <div id="searchfeed_div">
-      <div id="searchdates">
-        <input type="text" id="searchfromdate" name="searchfromdate" placeholder="Search from date" />
-        <input type="text" id="searchtodate" name="searchtodate" placeholder="Search to date" />
+
+
+<!-- #BODY -->
+<!-- Possible Classes
+
+  * 'smart-style-{SKIN#}'
+  * 'smart-rtl'         - Switch theme mode to RTL
+  * 'menu-on-top'       - Switch to top navigation (no DOM change required)
+  * 'no-menu'			  - Hides the menu completely
+  * 'hidden-menu'       - Hides the main menu but still accessable by hovering over left edge
+  * 'fixed-header'      - Fixes the header
+  * 'fixed-navigation'  - Fixes the main menu
+  * 'fixed-ribbon'      - Fixes breadcrumb
+  * 'fixed-page-footer' - Fixes footer
+  * 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
+-->
+
+<body class="<%= Setting.theme.values.join(' ') %>" data-user-id="<%= user_signed_in? ? current_user.id : ''  %>">
+
+<!-- HEADER -->
+<%= render partial: 'shared/header' %>
+<!-- END HEADER -->
+
+<!-- Left panel : Navigation area -->
+<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+<%= render partial: 'menu/base_menu' %>
+<!-- END NAVIGATION -->
+
+<!-- MAIN PANEL -->
+<div id="main" role="main">
+  <!-- END RIBBON -->
+
+  <div id="content">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="no-padding">
+          <%= render_flash_messages %>
+          <% if breadcrumbs.present? %>
+              <ol class="breadcrumb">
+                <%= render_breadcrumbs :tag => :li, :separator => "" %>
+              </ol>
+          <% end %>
+          <%= yield %>
+        </div>
+        <div>
+        </div>
       </div>
-      <div id="searchword">
-        <input type="search" id="searchinput" name="searchinput" placeholder="Search word(s)" />
-        <button id="searchbtn" title="Search Feeds"><img src="/rss_feed/glyphicons-28-search.png"></button>
-        <button id="resetsearch" title="Reset Search"><img src="/rss_feed/glyphicons-82-refresh.png"></button>
-      </div>
+
     </div>
-  </div>
-
-  <div id="feedslistingdiv">
-    <div id="controller" class="slide slide-up">
-      <div id="feed_control_div">
-        <p><span id="list_name"><span id="mh">MH</span><span id="rss">RSS</span>Reader</span></p>
-        <div id="topbtns">
-          <button type="button" id="saveform_btn">Save</button>
-          <button type="button" id="showform_btn">Add Feed</button>
-          <button type="button" id="instructions_btn">Instructions</button>
-        </div>
-        <div id="instructions_div">
-          <button id="closeinstr_btn" title="Close Instructions Panel"><img src="/rss_feed/glyphicons-370-collapse-top.png"></button>
-          <h4>Feeds Control</h4>
-          <p>Click &ldquo;Add Feed&rdquo; to display the Feed Form. Input a name and url for the feed, then click &ldquo;Save&rdquo;. The new RSS feed will be added to the feeds listing and the feeds content display will automatically update.</p>
-          <p>Checked feeds will be included in the feeds content display. Select feeds individually, click &ldquo;Check All&rdquo;, or click &ldquo;Uncheck All&rdquo;; then click &ldquo;Update&rdquo;.</p>
-          <p>Click &ldquo;E&rdquo; to edit a feed. The Feed Form will display with the corresponding info filled in. Clicking &ldquo;Save&rdquo; will update the feeds listing and the feeds content display.</p>
-          <p>Click &ldquo;X&rdquo; to delete a feed from the feeds listing and the feeds content display.</p>
-        </div>
-
-        <div id="feeds_form_div">
-          <form id="feeds_form">
-            <button id="closeform_btn" title="Close Feeds Form Panel"><i class="fa fa-check-square-o"></i></button>
-            <h4>Feed Form</h4>
-              <div hidden>
-                <label for="feed_id" class="formlabel">ID:</label>
-                <input type="text" id="feed_id" name="feed_id" />
-              </div>
-              <label for="feed_name" class="formlabel">Name:</label>
-              <input type="text" id="feed_name" name="feed_name" />
-              <label for="feed_site" class="formlabel">URL:</label>
-              <input type="text" id="feed_site" name="feed_site" />
-              <br><br>
-              <div hidden>
-                <label for="feed_include" class="formlabel">Include:
-                  <input type="checkbox" id="feed_include" name="feed_include" checked />
-                </label>
-              </div>
-              <button type="submit" id="submit_feed">Save</button>
-              <button type="reset" id="reset_btn">Reset</button>
-              <br><br>
-          </form>
-        </div>
-
-        <br>
-
-        <button type="button" id="update_feeds">Update</button>
-        <button type="button" id="clear_feeds">Uncheck All</button>
-        <button type="button" id="all_feeds">Check All</button>
-        <br><br>
-        <div id="feedslisting"></div>
-        <button id="top_feeds" title="To Top of Feeds Listing"><img src="/rss_feed/glyphicons-214-arrow-up.png"></button>
-        <button id="closeSliderbtn" title="Close RSS Feeds Listing and Instructions Panel"><img src="/rss_feed/glyphicons-370-collapse-top.png"></button>
-      </div>
-    </div>
-  </div>
-
-  <div id="main">
-    <div id="rss-feeds"></div>
-    <a href="#container"><button id="to_top" title="To Top of Page"><img src="/rss_feed/glyphicons-214-arrow-up.png"></button></a>
   </div>
 </div>
-<script>
-  <% if @rss.rss_feed %>
-    localStorage.setItem("theserssfeeds", <%= @rss.rss_feed.to_s.inspect.html_safe %>);
-  <% else %>
-    localStorage.setItem("theserssfeeds", '[]');
-  <% end %>
-</script>
-<%= javascript_include_tag 'rss_feed/application' %>
-<script>
-  $( "#searchfromdate, #searchtodate" ).datepicker({inline: false});
-  var today = new Date();
-  var thisdate = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
-  $( "#searchfromdate, #searchtodate" ).datepicker({maxDate: today});
-  $( "#searchtodate" ).datepicker("setDate", thisdate);
-  $( "#searchfromdate, #searchtodate" ).datepicker("option", "maxDate", thisdate);
-</script>
+<!-- END MAIN PANEL -->
+<%#= render partial: 'shared/shortcuts' %>
+<!-- PAGE FOOTER -->
+<div class="page-footer">
+  <%= render partial: 'shared/footer' %>
+</div>
+<!-- END PAGE FOOTER -->
 
+<%= javascript_include_tag 'smart_admin/smart_admin' %>
+<script>
+  $(document).ready(function() {
+    toastr.options = {
+      "progressBar": true,
+      "timeOut": "20000"
+    }
+    // DO NOT REMOVE : GLOBAL FUNCTIONS!
+    pageSetUp();
+  });
+</script>
 </body>
+
 </html>

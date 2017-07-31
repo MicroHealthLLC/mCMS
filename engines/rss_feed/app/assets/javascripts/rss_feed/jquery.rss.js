@@ -1,5 +1,4 @@
 (function ($) {
-  'use strict';
 
   var RSS = function (target, url, options, callback) {
     this.target       = target;

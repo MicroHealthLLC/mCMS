@@ -10,4 +10,7 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require_tree .
+//= require ./jquery.rss
+//= require ./jquery-ui.min
+//= require ./moment.min
+//= require ./rss_reader
