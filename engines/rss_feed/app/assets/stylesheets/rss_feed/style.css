@@ -44,8 +44,8 @@ h4 {font-size: 1.2em; font-weight: bold; margin-top: 0;}
 #searchdates {float:right; margin-right: 410px;}
 #searchfromdate, #searchtodate {width: 100px; height:24px;}
 #searchtodate {margin-left:10px;}
-#searchword {float:right; margin-top:-30px;}
-#searchinput {width: 320px; height:30px;}
+#searchword {}
+#searchinput { height:30px;}
 #searchbtn img {width:18px; height:18px;}
 #resetsearch img {width:18px; height:18px;}
 button{border: none; box-shadow: none; background:transparent;}
@@ -90,16 +90,16 @@ button{border: none; box-shadow: none; background:transparent;}
 
 @media all and (min-width:1020px) {
     #searchdates {margin-right: 490px;}
-    #searchinput {width: 400px;}
+  
 }
 
 @media all and (min-width:920px) and (max-width:1019px) {
     #searchdates {margin-right: 490px;}
-    #searchinput {width: 400px;}
+  
 }
 @media all and (min-width:769px) and (max-width:919px) {
     #searchdates {margin-right: 360px;}
-    #searchinput {width: 270px;}
+
 }
 
 @media all and (min-width:769px) {
@@ -109,23 +109,23 @@ button{border: none; box-shadow: none; background:transparent;}
 @media all and (max-width:768px) {
     #topbar {height: 90px;}
     #searchdates {float:right; margin-right: 72px;}
-    #searchword {margin-top:20px;}
+    #searchword {}
 }
 
 @media all and (min-width:640px) and (max-width:768px) {
-    #searchinput {width: 400px;}
+    #searchinput {}
 }
 
 @media all and (min-width:520px) and (max-width:639px) {
-    #searchinput {width: 320px;}
+    #searchinput {}
 }
 
 @media all and (min-width:480px) and (max-width:519px) {
-    #searchinput {width: 270px;}
+    #searchinput {}
 }
 
 @media all and (max-width:479px) {
-    #searchinput {width: 240px;}
+    #searchinput {}
 }
 
 @media all and (max-width:480px) {
