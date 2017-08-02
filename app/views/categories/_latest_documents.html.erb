@@ -1,5 +1,7 @@
 <% @latest_docs.each do |rev| %>
-  <% if !rev.document_manager.current_revision.nil? %>
-    <%= render partial: "document_managers/document_list_item", locals: {doc: rev.document} %>
-  <% end %>
+    <% if !rev.document_manager.current_revision.nil? %>
+        <div class="row-eq-height col-xs-6 col-sm-4 col-md-2 col-lg-2">
+          <%= render partial: "document_managers/document_list_item", locals: {doc: rev.document} %>
+        </div>
+    <% end %>
 <% end %>

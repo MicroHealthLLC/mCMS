@@ -1,3 +1,8 @@
+<% if @current_folder.parent %>
+    <p> <%= link_to "<<Bback".html_safe, document_managers_path(document_folder_id: @current_folder.parent.id) %></p>
+<% elsif params[:document_folder_id]%>
+    <p> <%= link_to "<< Back".html_safe, document_managers_path %></p>
+<% end %>
 <div class="row" >
   <div class="col-xs-12 col-sm-6 col-md-6" style="display:inline-block">
     <%= form_tag search_document_managers_path, method: :post do %>
@@ -26,17 +31,56 @@
 <hr />
 
 <h3>Folders</h3>
-<% if @current_folder.parent %>
-    <p> <%= image_tag "icons/icon_folder_50.png" %><%= link_to "..".html_safe, document_managers_path(document_folder_id: @current_folder.parent.id) %></p>
-<% elsif params[:document_folder_id]%>
-    <p> <%= image_tag "icons/icon_folder_50.png" %><%= link_to "..".html_safe, document_managers_path %></p>
-<% end %>
-<% @sub_folders.each do |folder| %>
-    <p> <%= image_tag "icons/icon_folder_50.png" %><%= link_to "#{folder.name}".html_safe, document_managers_path(document_folder_id: folder.id) %></p>
-<% end %>
 
-<% if !@latest_docs.nil? and @latest_docs.length > 0 %>
-    <h3>Documents</h3>
-    <%= render partial: "categories/latest_documents", locals: {latest_docs: @latest_docs} %>
-<% end %>
+<style>
+  .folders .row-eq-height {
+
+    display: grid;
+    vertical-align: middle;
+    text-align: center;
+    align-content: center;
+    margin: 10px
+  }
+
+
+  .folders [class*="col-"] {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #eee;
+    background-color: rgba(86, 61, 124, .15);
+    border: 1px solid #ddd;
+    border: 1px solid rgba(86, 61, 124, .2);
+  }
+
+  .box {
+  }
+</style>
+<div class="row folders">
+  <% @sub_folders.each do |folder| %>
+      <div class="row-eq-height col-xs-6 col-sm-4 col-md-2 col-lg-2 box">
+        <div class="">
+          <p>
+            <%= link_to document_managers_path(document_folder_id: folder.id) do %>
+                <%= image_tag "icons/icon_folder_50.png" %>
+              <p>
+                <%= "#{folder.name}".html_safe %>
+              </p>
+
+
+          <% end %>
+          </p>
+        </div>
+      </div>
+  <% end %>
+
+  <% if !@latest_docs.nil? and @latest_docs.length > 0 %>
+      <%= render partial: "categories/latest_documents", locals: {latest_docs: @latest_docs} %>
+  <% end %>
+</div>
+<script>
+  $(function(){
+    $('.row-eq-height').css('width', parseFloat($('.row-eq-height').css('width') -20 ) + 'px' )
+    $('.row-eq-height').css('height', $('.row-eq-height').css('width') )
+  })
+</script>
 
