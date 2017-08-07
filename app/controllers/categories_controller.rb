@@ -21,7 +21,6 @@ class CategoriesController < ProtectForgeryApplication
     # Get featured categories and recently uploaded documents
     #  making sure to hide private docs and categories
     @featured = Category.featured
-    @latest_docs = DocumentManager.latest_docs
   end
 
   # GET /categories/:id
