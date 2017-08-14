@@ -1,5 +1,6 @@
 class CaseOrganization < ApplicationRecord
   belongs_to :organization
+  belongs_to :user
   belongs_to :case
 
   # belongs_to :association

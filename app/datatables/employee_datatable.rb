@@ -62,6 +62,20 @@ class EmployeeDatatable < AjaxDatatablesRails::Base
       else
         scope.where(state: true)
     end
+
+    if User.current.admin?
+      scope
+    else
+      org = User.current.organization
+      co = CaseOrganization.where(organization_id: org.try(:id)).
+          where(case_id: User.current.cases.pluck(:id)).pluck(:case_id) + [org.try(:id)]
+
+
+      scope = scope.includes(:case_organizations).
+          references(:case_organizations)
+
+      scope.where(case_organizations: {organization_id: co })
+    end
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

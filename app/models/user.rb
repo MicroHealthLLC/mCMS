@@ -40,6 +40,7 @@ class User < ApplicationRecord
   has_many :related_clients, dependent: :destroy
   has_many :appointments, dependent: :destroy
   has_many :organizations, dependent: :destroy
+  has_many :case_organizations, dependent: :destroy
   has_many :departments, dependent: :destroy
   has_many :cases, dependent: :destroy
   has_many :case_supports, dependent: :destroy

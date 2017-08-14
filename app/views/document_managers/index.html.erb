@@ -24,12 +24,6 @@
 </div>
 
 
-<% if !@featured.nil? and @featured.length > 0 %>
-    <h3> Featured Categories </h3>
-    <%= render partial: "categories/featured_categories", locals: {featured: @featured} %>
-<% end %>
-<hr />
-
 <h3>Folders</h3>
 
 <style>
