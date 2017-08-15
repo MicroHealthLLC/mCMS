@@ -64,7 +64,7 @@ define("webodf/editor/FullWindowZoomHelper", [], function () {
             toolbarStyle.top = 0;
             toolbarStyle.left = 0;
             toolbarStyle.right = 0;
-            toolbarStyle.position = "absolute";
+            toolbarStyle.position = "relative";
             toolbarStyle.zIndex = 5;
             toolbarStyle.boxShadow = "0 1px 5px rgba(0, 0, 0, 0.25)";
 
