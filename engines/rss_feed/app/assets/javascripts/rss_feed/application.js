@@ -14,3 +14,15 @@
 //= require ./jquery-ui.min
 //= require ./moment.min
 //= require ./rss_reader
+
+function changeheight(i) {
+    var readmore = $(i);
+    if (readmore.text() == 'Read more') {
+        readmore.text("Read less");
+    } else {
+        readmore.text("Read more");
+    }
+
+    readmore.parent().prev().toggleClass("heightAuto");
+};
+

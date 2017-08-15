@@ -1,81 +1,94 @@
 var rssReaderFeeds = [];
 
 function findFeeds(datefrom, dateto, searchinfo) {
+    try{
 
-    var thesefeeds = document.getElementsByTagName("li");
-    if (thesefeeds.length > 0) {
-        var j, title, thesetitles = document.querySelectorAll(".title");
-        var feeddate, from_date, to_date, thesedates = document.querySelectorAll(".date");
-        var rssall, theserssall = document.querySelectorAll(".rssall");
-        var datefilter, wordfilter, includefeed;
-        if ((datefrom !== null) || (dateto !== thisdate)) {
-            datefilter = true;
-        } else {
-            datefilter = false;
-        }
-        if (searchinfo !== null) {
-            wordfilter = true;
-        } else {
-            wordfilter = false;
-        }
-        for (j = 0; j < thesefeeds.length; j+=1) {
-            includefeed = true;
-            if (datefilter === true) {
-                feeddate = new Date(thesedates[j].innerHTML);
-                feeddate.setHours(0,0,0,0);
-                from_date = new Date(datefrom);
-                to_date = new Date(dateto);
-                if ((feeddate < from_date) || (feeddate > to_date)) {
-                    includefeed = false;
-                }
+
+        var thesefeeds = document.getElementsByTagName("li");
+        if (thesefeeds.length > 0) {
+            var j, title, thesetitles = document.querySelectorAll(".title");
+            var feeddate, from_date, to_date, thesedates = document.querySelectorAll(".date");
+            var rssall, theserssall = document.querySelectorAll(".rssall");
+            var datefilter, wordfilter, includefeed;
+            if ((datefrom !== null) || (dateto !== thisdate)) {
+                datefilter = true;
+            } else {
+                datefilter = false;
             }
-            if (includefeed === true) {
-                if (wordfilter === true) {
-                    title = thesetitles[j].innerHTML.toLowerCase();
-                    rssall = theserssall[j].innerHTML.toLowerCase();
-                    if ((title.indexOf(searchinfo) > -1) || (rssall.indexOf(searchinfo) > -1)) {
+            if (searchinfo !== null) {
+                wordfilter = true;
+            } else {
+                wordfilter = false;
+            }
+            for (j = 0; j < thesefeeds.length; j+=1) {
+                includefeed = true;
+                if (datefilter === true) {
+                    feeddate = new Date(thesedates[j].innerHTML);
+                    feeddate.setHours(0,0,0,0);
+                    from_date = new Date(datefrom);
+                    to_date = new Date(dateto);
+                    if ((feeddate < from_date) || (feeddate > to_date)) {
+                        includefeed = false;
+                    }
+                }
+                if (includefeed === true) {
+                    if (wordfilter === true) {
+                        title = thesetitles[j].innerHTML.toLowerCase();
+                        rssall = theserssall[j].innerHTML.toLowerCase();
+                        if ((title.indexOf(searchinfo) > -1) || (rssall.indexOf(searchinfo) > -1)) {
+                            $(thesefeeds[j]).addClass("lishow");
+                            $(thesefeeds[j]).removeClass("lihide");
+                        } else {
+                            $(thesefeeds[j]).addClass("lihide");
+                            $(thesefeeds[j]).removeClass("lishow");
+                        }
+                    } else {
                         $(thesefeeds[j]).addClass("lishow");
                         $(thesefeeds[j]).removeClass("lihide");
-                    } else {
-                        $(thesefeeds[j]).addClass("lihide");
-                        $(thesefeeds[j]).removeClass("lishow");
                     }
                 } else {
-                    $(thesefeeds[j]).addClass("lishow");
-                    $(thesefeeds[j]).removeClass("lihide");
+                    $(thesefeeds[j]).addClass("lihide");
+                    $(thesefeeds[j]).removeClass("lishow");
                 }
-            } else {
-                $(thesefeeds[j]).addClass("lihide");
-                $(thesefeeds[j]).removeClass("lishow");
             }
         }
+    }
+    catch(err){
+
     }
 }
 
 
 function showFeed(datefrom, dateto, searchinfo) {
-    try {
 
+    var i, thissite, thisname;
 
-        var i, thissite, thisname;
-
-        for (i = 0; i < rssReaderFeeds.length; i += 1) {
-            if (rssReaderFeeds[i].included === true) {
-                thisname = rssReaderFeeds[i].name;
-                thissite = rssReaderFeeds[i].site;
-                //    $("#rss-feeds").rss(thissite,{limit: null, ssl: false, entryTemplate: '<li class="lishow"><a href="{url}" target="_blank"><span class="title">{title}</span></a><br/><span class="rss_small">' + thisname + '<br/><span class="date">{date}</span></span><br/><button type="button" class="morebtn">&plus;</button><span class="rssshort">{shortBody}</span><br/><span class="rssall">{bodyPlain}</span><br /></li>', dateFormat: 'MMMM D, YYYY, h:mm:ss A'})
-                $("#rss-feeds").rss(thissite, {
-                    limit: null,
-                    ssl: false,
-                    entryTemplate: '<li class="lishow"><a href="{url}" target="_blank"><span class="title">{title}</span></a><br/><span class="rss_small">' + thisname + '<br/><span class="date">{date}</span></span><br/><span class="rssall">{bodyPlain}</span><br /></li>',
-                    dateFormat: 'MMMM D, YYYY, h:mm:ss A'
-                })
-            }
+    for (i = 0; i < rssReaderFeeds.length; i += 1) {
+        if (rssReaderFeeds[i].included === true) {
+            thisname = rssReaderFeeds[i].name;
+            thissite = rssReaderFeeds[i].site;
+            //    $("#rss-feeds").rss(thissite,{limit: null, ssl: false, entryTemplate: '<li class="lishow"><a href="{url}" target="_blank"><span class="title">{title}</span></a><br/><span class="rss_small">' + thisname + '<br/><span class="date">{date}</span></span><br/><button type="button" class="morebtn">&plus;</button><span class="rssshort">{shortBody}</span><br/><span class="rssall">{bodyPlain}</span><br /></li>', dateFormat: 'MMMM D, YYYY, h:mm:ss A'})
+            $("#rss-feeds").rss(thissite, {
+                limit: null,
+                ssl: false,
+                entryTemplate: '<li class="lishow">' +
+                '<a href="{url}" target="_blank">' +
+                '<span class="title">{title}</span></a><br/><span class="rss_small">' + thisname + '<br/>' +
+                '<span class="date">{date}</span></span><br/><span class="rssall">{bodyPlain}</span>' +
+                '</div>  <div class="link"> <a class="read_more" href="#" onclick="changeheight(this); return false;" >Read more</a> </div>' +
+                '<br /></li>',
+                dateFormat: 'MMMM D, YYYY, h:mm:ss A'
+            })
         }
-        findFeeds(datefrom, dateto, searchinfo);
     }
-    catch(e){
-        
+    findFeeds(datefrom, dateto, searchinfo);
+
+
+    read_mores = document.querySelectorAll('.read_more')
+    for(k= 0; k < read_mores.length; k++){
+        rm = $(read_mores[k])
+        rm.attr('id', "read_more_"+k )
+        rm.attr('href', "javascript:changeheight("+k+")" )
     }
 
 }

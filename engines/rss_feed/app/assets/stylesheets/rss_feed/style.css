@@ -137,3 +137,11 @@ button{border: none; box-shadow: none; background:transparent;}
 @media all and (max-width:470px) {
     #topbar {height: 120px;}
 }
+
+.rssall {
+    overflow:hidden;
+    max-height:18px;
+}
+.heightAuto {
+    max-height:5000px;
+}
