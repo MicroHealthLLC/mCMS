@@ -1,0 +1,12 @@
+<%= link_to(t('new_radiologic_examination'), new_radiologic_examination_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_radiologic_examinations, :manage_roles, :manage_radiologic_examinations) %>
+
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render partial: 'radiologic_examinations/list',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                   wid_id: 'radiologic_examination',
+                   wid_title: t('radiologic_examinations')
+               } %>
+  </article>
+</div>

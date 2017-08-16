@@ -1,0 +1,11 @@
+<%= link_to(t('new_transportation'), new_transportation_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_transportations, :manage_roles, :manage_transportations) %>
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render partial: 'transportations/list',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                   wid_id: 'transportation',
+                   wid_title: t('transportations')
+               } %>
+  </article>
+</div>

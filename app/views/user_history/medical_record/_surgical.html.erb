@@ -1,0 +1,12 @@
+<%= link_to(t('new_surgical'), new_surgical_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_surgicals, :manage_surgicals, :manage_roles) %>
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render partial: 'surgicals/list',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                   surgicals: @surgicals,
+                   wid_id: 'surgicals',
+                   wid_title: t('surgicals')
+               } %>
+  </article>
+</div>

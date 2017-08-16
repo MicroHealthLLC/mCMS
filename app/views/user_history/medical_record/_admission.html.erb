@@ -1,0 +1,12 @@
+<%= link_to('New Admission', new_admission_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_admissions, :manage_admissions, :manage_roles) %>
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render partial: 'admissions/list',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                   admissions: @admissions,
+                   wid_id: 'admissions',
+                   wid_title: t('admissions')
+               } %>
+  </article>
+</div>

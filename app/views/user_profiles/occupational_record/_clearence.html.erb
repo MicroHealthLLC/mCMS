@@ -1,0 +1,13 @@
+<%= link_to( 'New clearance', new_clearance_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_clearances)%>
+
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render partial: 'clearances/list',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                   clearances: @clearances,
+                   wid_id: 'clearances',
+                   wid_title: t('clearances')
+               } %>
+    </article>
+  </div>

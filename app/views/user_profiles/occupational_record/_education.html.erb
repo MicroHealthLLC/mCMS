@@ -1,0 +1,13 @@
+<%= link_to( t('new_education'), new_education_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_educations, :manage_roles, :manage_educations) %>
+
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render partial: 'educations/list',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                   educations: @educations,
+                   wid_id: 'educations',
+                   wid_title: t('educations')
+               } %>
+  </article>
+</div>

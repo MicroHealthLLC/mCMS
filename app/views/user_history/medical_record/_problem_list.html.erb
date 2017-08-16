@@ -1,0 +1,12 @@
+<%= link_to(t('new_problem_list'), new_problem_list_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_problem_lists, :manage_problem_lists, :manage_roles) %>
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render partial: 'problem_lists/list',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                   problem_lists: @problem_lists,
+                   wid_id: 'problem_lists',
+                   wid_title: t('problem_lists')
+               } %>
+  </article>
+</div>

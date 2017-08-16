@@ -1,0 +1,11 @@
+<%= link_to(t('new_family_history'), new_family_history_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_family_histories, :manage_roles, :manage_family_histories) %>
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render partial: 'family_histories/list',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                   wid_id: 'family_history',
+                   wid_title: t('family_histories')
+               } %>
+  </article>
+</div>

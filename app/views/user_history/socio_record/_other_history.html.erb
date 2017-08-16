@@ -1,0 +1,11 @@
+<%= link_to(t('new_other_history'), new_other_history_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_other_histories, :manage_roles, :manage_other_histories) %>
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render partial: 'other_histories/list',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                   wid_id: 'other_history',
+                   wid_title: t('other_histories')
+               } %>
+  </article>
+</div>

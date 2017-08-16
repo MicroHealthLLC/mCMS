@@ -1,0 +1,13 @@
+<%= link_to( 'New skill', new_other_skill_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_other_skills)%>
+
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render partial: 'other_skills/list',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                   other_skills: @other_skills,
+                   wid_id: 'other_skills',
+                   wid_title: t('other_skills')
+               } %>
+  </article>
+</div>

@@ -1,0 +1,12 @@
+<%= link_to('New Health Care Facility', new_health_care_facility_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_health_care_facilitiess, :manage_roles, :manage_health_care_facilitiess) %>
+
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render partial: 'health_care_facilities/list',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                   wid_id: 'health_care_facilities',
+                   wid_title: t('health_care_facilities')
+               } %>
+  </article>
+</div>

@@ -1,0 +1,12 @@
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render partial: 'extend_demographies/form2',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                   wid_id: 'extend_demography',
+                   wid_title: 'Contact information',
+                   extend_demography: User.current.extend_informations
+               } %>
+  </article>
+</div>
+
