@@ -4,7 +4,12 @@ module EventCalendar
     validates_presence_of :name, :start_time, :end_time
 
     def self.safe_attributes
-      [:name, :description, :start_time, :end_time]
+      [:name, :description, :start_time, :end_time, :color]
+    end
+
+    def color
+      super if super
+      'bg-color-blue txt-color-white'
     end
 
     def guess_path

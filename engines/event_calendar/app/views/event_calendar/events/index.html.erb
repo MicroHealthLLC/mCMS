@@ -1,75 +1,148 @@
-<div class="btn-edition">
-  <%= link_to 'New Event', new_event_path, class: 'btn btn-primary pull-right' %>
+<%= javascript_include_tag 'event_calendar/application' %>
+<div class="btn-edition" style="margin-bottom: 10px">
+  <%= link_to 'New Event', new_event_path, class: 'btn btn-primary pull-right btn-edition' %>
 </div>
-<%= month_calendar events: @events do |date, meetings| %>
-    <b><%= date.day %></b>
+<div class="col-sm-12 col-md-12 col-lg-12">
 
-    <% meetings.each_with_index do |meeting, idx| %>
-        <% html =  "
-           <p>
-           <strong>Description:</strong>
-       #{meeting.description.html_safe }
-        </p>
+  <!-- new widget -->
+  <div class="jarviswidget jarviswidget-color-blueDark">
 
+    <!-- widget options:
+    usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
 
-        <p>
-          <strong>Start Time:</strong>
-          #{ format_date_time meeting.start_time  }
-        </p>
+    data-widget-colorbutton="false"
+    data-widget-editbutton="false"
+    data-widget-togglebutton="false"
+    data-widget-deletebutton="false"
+    data-widget-fullscreenbutton="false"
+    data-widget-custombutton="false"
+    data-widget-collapsed="true"
+    data-widget-sortable="false"
 
-        <p>
-          <strong>End Time:</strong>
-          #{ format_date_time meeting.end_time }
-        </p>
-
-        "
-        %>
-        <div id="<%= idx %>" class="meetings" data-toggle="popover" title=" <i style='cursor: pointer;' class='fa fa-times pull-right' data-toggle='clickover' onclick='ClosePop();'></i> <a href='<%= event_calendar.event_path(meeting)%>'> <%= meeting.name %></a> "
-             data-content="<%= html.html_safe %>" >
-          <%= meeting.name %>
+    -->
+    <header>
+      <span class="widget-icon"> <i class="fa fa-calendar"></i> </span>
+      <h2> My Events </h2>
+      <div class="widget-toolbar">
+        <!-- add: non-hidden - to disable auto hide -->
+        <div class="btn-group">
+          <button class="btn dropdown-toggle btn-xs btn-default" data-toggle="dropdown">
+            Showing <i class="fa fa-caret-down"></i>
+          </button>
+          <ul class="dropdown-menu js-status-update pull-right">
+            <li>
+              <a href="javascript:void(0);" id="mt">Month</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);" id="ag">Agenda</a>
+            </li>
+            <li>
+              <a href="javascript:void(0);" id="td">Today</a>
+            </li>
+          </ul>
         </div>
-    <% end %>
-<% end %>
+      </div>
+    </header>
+
+    <!-- widget div-->
+    <div>
+
+      <div class="widget-body no-padding">
+        <!-- content goes here -->
+        <div class="widget-body-toolbar">
+
+          <div id="calendar-buttons">
+
+            <div class="btn-group">
+              <a href="<%= event_calendar.events_path(:start_date=> @date.beginning_of_month.prev_month ) %>" class="btn btn-default btn-xs" id="btn-prev"><i class="fa fa-chevron-left"></i></a>
+              <a href="<%= event_calendar.events_path(:start_date=> @date.beginning_of_month.next_month ) %>" class="btn btn-default btn-xs" id="btn-next"><i class="fa fa-chevron-right"></i></a>
+            </div>
+          </div>
+        </div>
+        <div id="calendar"></div>
+
+        <!-- end content -->
+      </div>
+
+    </div>
+    <!-- end widget div -->
+  </div>
+  <!-- end widget -->
+
+</div>
 <script>
-  ClosePop = function () {
-    $('.meetings').popover('hide');
-  }
+  $(document).ready(function() {
+    var date = new Date("<%= @date.to_s %>");
 
-  $(document).ready(function(){
-
-    $('.meetings').popover({
-      html: true,
-      container: 'body',
-      trigger: 'manual',
-      placement: function (context, source) {
-        var position = $(source).position();
-
-        if (position.left > 515) {
-          return "left";
+    var hdr = {
+      left: 'title',
+      center: 'month,agendaWeek,agendaDay',
+      right: 'prev,today,next'
+    };
+    $('#calendar').fullCalendar({
+      defaultDate: moment('<%= @date.to_s %>'),
+      header: hdr,
+      editable: false,
+      droppable: false, // this allows things to be dropped onto the calendar !!!
+      select: function (start, end, allDay) {
+        var title = prompt('Event Title:');
+        if (title) {
+          calendar.fullCalendar('renderEvent', {
+                title: title,
+                start: start,
+                end: end,
+                allDay: allDay
+              }, true // make the event "stick"
+          );
         }
+        calendar.fullCalendar('unselect');
+      },
+      events: [
+        <% @events.each do |event| %>
+        {
+          id: '<%= event.id %>',
+          title: '<%= event.name %>',
+          start: new Date(<%= event.start_time.year %>, <%= event.start_time.month - 1 %>, <%= event.start_time.day %>, <%= event.start_time.hour %>, <%=event.start_time.min %>),
+          end: new Date(<%= event.end_time.year %>, <%= event.end_time.month - 1  %>, <%= event.end_time.day %>, <%= event.end_time.hour %>, <%= event.end_time.min %>),
+          className: ["event", "<%= event.color %>"],
+          description: '<%= event.description.inspect.html_safe %>',
+          url: '<%= event_calendar.event_path(event) %>',
+          icon: 'fa-check'
+        },
+        <% end %>
+      ],
 
-        if (position.left < 515) {
-          return "right";
+      eventRender: function (event, element, icon) {
+        if (!event.description == "") {
+          element.find('.fc-event-title').append("<br/><span class='ultra-light'>" + event.description +
+              "</span>");
         }
-
-        if (position.top < 110){
-          return "bottom";
+        if (!event.icon == "") {
+          element.find('.fc-event-title').append("<i class='air air-top-right fa " + event.icon +
+              " '></i>");
         }
+      },
 
-        return "top";
+      windowResize: function (event, ui) {
+        $('#calendar').fullCalendar('render');
       }
-    }).on('click', function(e) {
-      $('.meetings').not(this).popover('hide');
-      that = $(this)
-
-      that.popover('show');
-
-      // handle clicking on the popover itself
-      $('.popover').off('click').on('click', function(e) {
-        e.stopPropagation(); // prevent event for bubbling up => will not get caught with document.onclick
-      });
-
-      e.stopPropagation();
     });
-  })
+
+    /* hide default buttons */
+    $('.fc-header-right, .fc-header-center, .fc-today-button, .fc-button-group').hide();
+
+
+
+    $('#mt').click(function () {
+      $('#calendar').fullCalendar('changeView', 'month');
+    });
+
+    $('#ag').click(function () {
+      $('#calendar').fullCalendar('changeView', 'agendaWeek');
+    });
+
+    $('#td').click(function () {
+      $('#calendar').fullCalendar('changeView', 'agendaDay');
+    });
+  });
 </script>
