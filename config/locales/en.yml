@@ -451,11 +451,11 @@ en:
   compensation_type: Worker Comp Type
 
   service_history: Service History
-  service_histories: Service Histories
+  service_histories: Service History
   new_service_history: New Service History
   edit_service_history: Edit Service History
   military_history: Military History
-  military_histories: Military Histories
+  military_histories: Military History
   new_military_history: New Military History
   edit_military_history: Edit Military History
   service_type: Service Type
