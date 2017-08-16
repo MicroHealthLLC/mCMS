@@ -3,8 +3,7 @@ class CasesController < UserCasesController
 
 
   before_action :set_case_with_includes, only: [:show, :timeline]
-  before_action :set_case, only: [:new_assign_survey, :watchers,
-                                  :new_assign, :show, :edit, :update,
+  before_action :set_case, only: [:new_assign_survey, :watchers, :edit, :update,
                                   :destroy, :new_relation, :delete_sub_case_relation]
 
   before_action :authorize_edit, only: [:edit, :update]
@@ -272,9 +271,13 @@ class CasesController < UserCasesController
   def set_case_with_includes
     @case = Case.where(id: params[:id]).
         includes(:sub_cases, :relations, :tasks, :survey_cases,
-                 :needs, :plans,  :goals, :jsignatures).
-        references(:sub_cases, :relations, :tasks, :survey_cases,
-                   :needs, :plans,  :goals, :jsignatures).first
+                 :documents,  :checklists,  :case_notes, :appointments , :needs,
+                 :plans,  :goals, :jsignatures, :enrollments, :referrals, :teleconsults,
+                 :transports, :measurement_records, :case_organizations).
+        references(:sub_cases,  :relations, :tasks, :survey_cases,
+                   :documents,  :checklists,  :case_notes, :appointments , :needs,
+                   :plans,  :goals, :jsignatures, :enrollments, :referrals, :teleconsults,
+                   :transports, :measurement_records, :case_organizations).first
     add_breadcrumb @case.case.to_s, case_path(@case.case) if @case.case
     add_breadcrumb @case.to_s, case_path(@case)
   rescue ActiveRecord::RecordNotFound
