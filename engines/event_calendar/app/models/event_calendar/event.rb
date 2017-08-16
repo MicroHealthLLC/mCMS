@@ -12,7 +12,7 @@ module EventCalendar
     end
 
     def color
-      super if super
+      return super if super
       'bg-color-blue txt-color-white'
     end
 
