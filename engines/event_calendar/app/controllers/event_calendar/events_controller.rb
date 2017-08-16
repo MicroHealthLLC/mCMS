@@ -22,7 +22,7 @@ module EventCalendar
 
     # GET /events/new
     def new
-      @event = Event.new(user_id: User.id)
+      @event = Event.new(user_id: User.current.id)
     end
 
     # GET /events/1/edit
