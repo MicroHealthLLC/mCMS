@@ -9,7 +9,7 @@ module EventCalendar
     # GET /events
     def index
       @date = params[:start_date] ? Date.strptime(params[:start_date]) : Date.today
-      @events = Event.
+      @events = Event.my.
           where('( start_time >= :start_date AND start_time <= :end_date) OR ( start_time <= :end_date AND end_time >= :start_date)',
                 start_date: @date.beginning_of_month,
                 end_date: @date.end_of_month
@@ -22,7 +22,7 @@ module EventCalendar
 
     # GET /events/new
     def new
-      @event = Event.new
+      @event = Event.new(user_id: User.id)
     end
 
     # GET /events/1/edit

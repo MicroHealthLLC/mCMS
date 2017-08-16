@@ -4,7 +4,11 @@ module EventCalendar
     validates_presence_of :name, :start_time, :end_time
 
     def self.safe_attributes
-      [:name, :description, :start_time, :end_time, :color]
+      [:name, :user_id, :description, :start_time, :end_time, :color]
+    end
+
+    def self.my
+      where(user_id: User.current.id)
     end
 
     def color
