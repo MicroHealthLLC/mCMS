@@ -2,8 +2,8 @@ class CasesController < UserCasesController
   add_breadcrumb I18n.t(:cases), :cases_path
 
 
-  before_action :set_case_with_includes, only: [:show, :timeline]
-  before_action :set_case, only: [:new_assign_survey, :watchers, :edit, :update,
+  # before_action :set_case_with_includes, only: []
+  before_action :set_case, only: [:show, :timeline, :new_assign_survey, :watchers, :edit, :update,
                                   :destroy, :new_relation, :delete_sub_case_relation]
 
   before_action :authorize_edit, only: [:edit, :update]
