@@ -1,27 +1,27 @@
 module UserProfilesHelper
   def user_profiles_tab
     tabs = [
-        {:name => 'core_demographic', :partial => 'user_profiles/occupational_record/core_demography', :label => :core_demography},
-        {:name => 'extend_demographic', :partial => 'user_profiles/occupational_record/extend_demography', :label => :extend_demography},
-        {:name => 'related_client', :partial => 'user_profiles/occupational_record/related_client', :label => :related_client}
+        {:name => 'core_demographic', :partial => 'user_profiles/profile_record/core_demography', :label => :core_demography},
+        {:name => 'extend_demographic', :partial => 'user_profiles/profile_record/extend_demography', :label => :extend_demography},
+        {:name => 'related_client', :partial => 'user_profiles/profile_record/related_client', :label => :related_client}
     ]
     if @languages
-      tabs<<  {:name => 'languages', :partial => 'user_profiles/occupational_record/languages', :label => :languages}
+      tabs<<  {:name => 'languages', :partial => 'user_profiles/profile_record/languages', :label => :languages}
     end
     if @contacts
-      tabs<<  {:name => 'contact', :partial => 'user_profiles/occupational_record/contact', :label => :contact}
+      tabs<<  {:name => 'contact', :partial => 'user_profiles/profile_record/contact', :label => :contact}
     end
     if @affiliations
-      tabs<<  {:name => 'affiliation', :partial => 'user_profiles/occupational_record/affiliation', :label => :affiliation}
+      tabs<<  {:name => 'affiliation', :partial => 'user_profiles/profile_record/affiliation', :label => :affiliation}
     end
     if @user_insurances
-      tabs<<  {:name => 'user_insurance', :partial => 'user_profiles/occupational_record/user_insurance', :label => :user_insurance}
+      tabs<<  {:name => 'user_insurance', :partial => 'user_profiles/profile_record/user_insurance', :label => :user_insurance}
     end
     if @documents
-      tabs<<  {:name => 'document', :partial => 'user_profiles/occupational_record/document', :label => :document}
+      tabs<<  {:name => 'document', :partial => 'user_profiles/profile_record/document', :label => :document}
     end
     if @jsignatures
-      tabs<<  {:name => 'signature', :partial => 'user_profiles/occupational_record/signature', :label => :signature}
+      tabs<<  {:name => 'signature', :partial => 'user_profiles/profile_record/signature', :label => :signature}
     end
     tabs
   end
