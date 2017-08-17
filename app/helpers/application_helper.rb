@@ -14,6 +14,25 @@ module ApplicationHelper
     end
   end
 
+  def edit_user_page_tab
+    tabs = [
+        {:name => 'core_demographic', :partial => 'devise/registrations/shared/core_demographic', :label => :core_demography},
+        {:name => 'extend_demographic', :partial => 'devise/registrations/shared/extend_demography', :label => :extend_demography}
+
+    ]
+    tabs << {:name => 'identification', :partial => 'devise/registrations/shared/identification_form', :label => :identification}
+
+    tabs << {:name => 'password', :partial => 'devise/registrations/shared/password', :label => :password}
+    if can?(:manage_roles, :manage_user_job_details, :manage_organizations)
+      tabs << {:name => 'organization', :partial => 'devise/registrations/shared/job_detail', :label => :organization}
+    end
+    tabs << {:name => 'signature', :partial => 'devise/registrations/shared/signature', :label => :signature}
+    if can?(:manage_roles, :view_related_clients, :manage_related_clients)
+      tabs << {:name => 'related_client', :partial => 'devise/registrations/shared/related_client', :label => :related_client}
+    end
+    tabs
+  end
+
   def can_view_submenu?(modules )
     permissions = [:manage_roles]
     modules.each do |m|
