@@ -23,5 +23,6 @@ class UserProfilesController < ProtectForgeryApplication
     @worker_compensations = WorkerCompensation.for_status(params[:status_type]) if module_enabled?( 'worker_compensations')  && can?(:manage_roles, :view_worker_compensations, :manage_worker_compensations)
     @job_applications = JobApplication.for_status(params[:status_type]) if module_enabled?( 'job_applications')  && can?(:manage_roles, :view_job_applications, :manage_job_applications)
     @resumes = Resume.for_status(params[:status_type]) if module_enabled?( 'resumes')  && can?(:manage_roles, :view_resumes, :manage_resumes)
+    @military_histories = MilitaryHistory.for_status(params[:status_type]) if module_enabled?( 'military_histories')  && can?(:manage_roles, :view_military_histories, :manage_military_histories)
   end
 end

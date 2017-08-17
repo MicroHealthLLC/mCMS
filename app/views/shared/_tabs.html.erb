@@ -1,12 +1,12 @@
 <script>
   $( function() {
-    $tabs = $( "#tabs" ).tabs();
+    $tabs = $( "#tabs-shared" ).tabs();
   } );
 </script>
 <section id="widget-grid" class="show_tab">
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div id="tabs">
+      <div id="tabs-shared">
         <ul>
           <% tabs.each do |tab| -%>
               <li><a id="link-tabs-modules" href="<%=  "#tabs-#{tab[:name] }" %>"><%= t(tab[:label]) %></a></li>

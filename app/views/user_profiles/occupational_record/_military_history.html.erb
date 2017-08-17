@@ -1,0 +1,12 @@
+<%= link_to( t('new_military_history'), new_military_history_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_military_histories, :manage_roles, :manage_military_histories) %>
+
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'military_histories/list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'military_history',
+                     wid_title: t('military_histories')
+                 } %>
+    </article>
+  </div>
