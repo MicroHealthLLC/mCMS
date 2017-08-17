@@ -25,24 +25,8 @@ module CasesHelper
       tabs<<  {:name => 'notes', :partial => 'cases/show_case/notes', :label => :notes}
     end
 
-    if @needs
-      tabs<<  {:name => 'needs', :partial => 'cases/show_case/needs', :label => :needs}
-    end
-
-    if @goals
-      tabs<<  {:name => 'goals', :partial => 'cases/show_case/goals', :label => :goals}
-    end
-
-    if @plans
-      tabs<< {:name => 'plans', :partial => 'cases/show_case/plans', :label => :plans}
-    end
-
-    if @tasks
-      tabs<< {:name => 'tasks', :partial => 'cases/show_case/tasks', :label => :tasks}
-    end
-
-    if @jsignatures
-      tabs<<  {:name => 'signatures', :partial => 'cases/show_case/jsignatures', :label => :signatures}
+    if @needs or @plans or goals or @tasks or @jsignatures
+      tabs<< {:name => 'care_plan', :partial => 'cases/show_case/care_plan', :label => :care_plan}
     end
 
     if @documents
@@ -89,6 +73,30 @@ module CasesHelper
       tabs<< {:name => 'watcher', :partial => 'cases/show_case/watcher', :label => :watcher}
     end
 
+    tabs
+  end
+
+  def care_plan_tab
+    tabs = [ ]
+    if @needs
+      tabs<<  {:name => 'needs', :partial => 'cases/show_case/needs', :label => :needs}
+    end
+
+    if @goals
+      tabs<<  {:name => 'goals', :partial => 'cases/show_case/goals', :label => :goals}
+    end
+
+    if @plans
+      tabs<< {:name => 'plans', :partial => 'cases/show_case/plans', :label => :plans}
+    end
+
+    if @tasks
+      tabs<< {:name => 'tasks', :partial => 'cases/show_case/tasks', :label => :tasks}
+    end
+
+    if @jsignatures
+      tabs<<  {:name => 'signatures', :partial => 'cases/show_case/jsignatures', :label => :signatures}
+    end
     tabs
   end
 
