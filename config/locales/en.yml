@@ -16,6 +16,8 @@ en:
   text_enumeration_category_reassign_to: 'Reassign them to this value:'
   actionview_instancetag_blank_option:  Please select
 
+  core_demography: Core Demographies
+  extend_demography: Extended Demographies
  # INSURANCE
   insurance: Insurance
   my_insurance: My Insurance
