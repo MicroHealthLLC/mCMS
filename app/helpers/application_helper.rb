@@ -28,7 +28,7 @@ module ApplicationHelper
     end
     tabs << {:name => 'signature', :partial => 'devise/registrations/shared/signature', :label => :signature}
     if can?(:manage_roles, :view_related_clients, :manage_related_clients)
-      tabs << {:name => 'related_client', :partial => 'devise/registrations/shared/related_client', :label => :related_client}
+      # tabs << {:name => 'related_client', :partial => 'devise/registrations/shared/related_client', :label => :related_client}
     end
     tabs
   end
