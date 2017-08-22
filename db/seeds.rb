@@ -9,7 +9,7 @@
 
 # Create Admin User
 
-user = User.new(email: 'admin@example.net',
+user = User.new(email: 'admin@gmail.com',
                 admin: true,
                 state: true,
                 password: 'Admin@2017', login: 'admin' )
