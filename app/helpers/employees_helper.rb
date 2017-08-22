@@ -1,4 +1,17 @@
 module EmployeesHelper
+
+  def edit_employee_page_tab
+    tabs = [
+        {:name => 'core_demographic', :partial => 'employees/shared/core_demographic', :label => :core_demography},
+        {:name => 'extend_demographic', :partial => 'employees/shared/extend_demography', :label => :extend_demography}
+
+    ]
+    if can?(:manage_roles, :manage_user_job_details, :manage_organizations)
+      tabs << {:name => 'organization', :partial => 'employees/shared/job_detail', :label => :organization}
+    end
+    tabs
+  end
+
   def render_action_link(user)
     output = '<div class="btn-group">
 <button aria-expanded="true" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
@@ -59,7 +72,7 @@ module EmployeesHelper
       output<<'</li>'
     end
 
-   if current_user.allowed_to?(:create_affiliations)
+    if current_user.allowed_to?(:create_affiliations)
       output<< '<li>'
       output<< link_to('New affiliation', new_employee_affiliation_path(user))
       output<<'</li>'
