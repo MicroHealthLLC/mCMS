@@ -13,12 +13,12 @@
           </div>
       <% end %>
   <% else  %>
-      <div class="col-xs-12 hidden-xs col-sm-1 col-md-1">  </div>
-      <div class="col-xs-12 col-sm-6 col-md-6">
+      <div class="col-xs-12 hidden-xs col-sm-1 col-md-1 col-lg-1">  </div>
+      <div class="col-xs-12 col-sm-6 col-md-6 col-lg-8">
         <%= @setting.home_page_content.html_safe if @setting.home_page_content %>
       </div>
-      <div class="col-xs-12 hidden-xs col-sm-1 hidden-sm  col-md-1">  </div>
-      <div class="col-xs-12 col-sm-5 col-md-4">
+      <div class="col-xs-12 hidden-xs col-sm-1 hidden-sm  col-md-1 col-lg-1">  </div>
+      <div class="col-xs-12 col-sm-5 col-md-4 col-lg-2">
         <%= render partial: 'devise/sessions/new_form' %>
       </div>
 

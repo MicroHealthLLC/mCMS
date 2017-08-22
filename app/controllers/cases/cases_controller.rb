@@ -89,7 +89,7 @@ class CasesController < UserCasesController
     @case_organizations  = @case.case_organizations     if module_enabled?('case_organizations') && can?(:manage_roles, :view_case_managements, :manage_case_managements)
     @watchers     = @case.watchers.includes(:user=> :core_demographic) if module_enabled?('enrollments') && can?(:manage_roles, :view_case_watchers, :manage_case_watchers)
 
-    @case_supports = @case.case_supports.active if module_enabled?('case_supports')  && can?(:manage_roles, :view_case_supports, :manage_case_supports)
+    @case_supports = @case.case_supports.active if module_enabled?('case_support')  && can?(:manage_roles, :view_case_supports, :manage_case_supports)
   end
 
 
