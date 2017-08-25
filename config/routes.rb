@@ -45,7 +45,11 @@ Rails.application.routes.draw do
       get 'add_referral'
     end
   end
-  resources :jsignatures
+  resources :jsignatures do
+    member do
+      get 'image'
+    end
+  end
   resources :job_applications
   resources :worker_compensations
   resources :injuries
