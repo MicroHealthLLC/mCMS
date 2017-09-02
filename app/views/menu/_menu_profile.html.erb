@@ -1,6 +1,15 @@
 <% if !User.current.allowed_to?(:manage_roles) %>
-    <li class="<%= menu_active?('devise/registrations') %>">
-      <a href= "/users/edit" title="<%= t('profile.profile') %>"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent"><%= t('profile.profile') %></span></a>
+    <li>
+      <a href="#" id="ul_profile"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Profile</span></a>
+      <ul id="profile_menu">
+        <li class="<%= menu_active?('profile_record') %> ">
+          <a href= "/profile_record" title="Profile record"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Profile record</span></a>
+        </li>
+
+        <li class="<%= menu_active?('devise/registrations') %>">
+          <a href= "/users/edit" title="<%= t('profile.profile') %>"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent"><%= t('profile.profile') %></span></a>
+        </li>
+      </ul>
     </li>
 <% else %>
     <li>
