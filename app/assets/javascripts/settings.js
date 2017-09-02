@@ -55,18 +55,6 @@ function initDataTable(table_id)
                         }
                         return sValue;
                     }
-                },
-                {
-                    "sExtends": "pdf",
-                    "sButtonText": "PDF",
-                    "sCharSet": "utf8",
-                    "bBomInc": true,
-                    "fnCellRender": function ( sValue, iColumn, nTr, iDataIndex ) {
-                        if(sValue.toString().match("href")){
-                            return $(sValue).attr("href");
-                        }
-                        return sValue;
-                    }
                 }
             ]
         },
@@ -146,6 +134,7 @@ var named_function = function(){
     $( "select" ).select2({
         theme: "bootstrap"
     });
+    $( "label select" ).select2("destroy");
     $('.clockpicker').datetimepicker({format: 'LT'});
     $('.datetimepicker').datetimepicker({
         format: 'YYYY-MM-DD LT'

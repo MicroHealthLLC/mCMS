@@ -15,60 +15,6 @@
                   <a href= "/occupational_record" title="Occupational record"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Occupational record</span></a>
                 </li>
             <% end %>
-
-            <% if module_enabled?( 'educations') && can?(:manage_roles, :view_educations, :manage_educations)%>
-                <li class="<%= menu_active?('educations') %>">
-                  <a href="/educations" title="<%= t(:education) %>"><i class="fa fa-lg fa-fw fa-graduation-cap"></i> <span class="menu-item-parent"><%= t(:education) %></span></a>
-                </li>
-            <% end %>
-            <% if module_enabled?( 'other_skills')  && can?(:manage_roles, :view_other_skills, :manage_other_skills) %>
-                <li class="<%= menu_active?('other_skills') %>">
-                  <a href="/other_skills" title="<%= t(:other_skills) %>"><i class="fa fa-lg fa-fw fa-plus"></i> <span class="menu-item-parent"><%= t(:other_skills) %></span></a>
-                </li>
-            <% end %>
-            <% if module_enabled?( 'certifications') && can?(:manage_roles, :view_certifications, :manage_certifications) %>
-                <li class="<%= menu_active?('certifications') %>">
-                  <a href="/certifications" title="<%= t(:certifications) %>"><i class="fa fa-lg fa-fw fa-certificate"></i> <span class="menu-item-parent"><%= t(:certifications) %></span></a>
-                </li>
-            <% end %>
-
-            <% if module_enabled?( 'clearances')  && can?(:manage_roles, :view_clearances, :manage_clearances)%>
-                <li class="<%= menu_active?('clearances') %>">
-                  <a href="/clearances" title="<%= t(:clearances) %>"><i class="fa fa-lg fa-fw fa-eraser"></i> <span class="menu-item-parent"><%= t(:clearances) %></span></a>
-                </li>
-            <% end %>
-            <% if module_enabled?( 'positions') && can?(:manage_roles, :view_positions, :manage_positions) %>
-                <li class="<%= menu_active?('positions') %>">
-                  <a href="/positions" title="<%= t(:positions) %>"><i class="fa fa-lg fa-fw fa-sort"></i> <span class="menu-item-parent"><%= t(:positions) %></span></a>
-                </li>
-            <% end %>
-            <% if module_enabled?( 'injuries') && can?(:manage_roles, :view_injuries, :manage_injuries) %>
-                <li class="<%= menu_active?('injuries') %>">
-                  <a href="/injuries" title="<%= t(:injuries) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:injuries) %></span></a>
-                </li>
-            <% end %>
-
-            <% if module_enabled?( 'worker_compensations') && can?(:manage_roles, :view_worker_compensations, :manage_worker_compensations) %>
-                <li class="<%= menu_active?('worker_compensations') %>">
-                  <a href="/worker_compensations" title="<%= t(:worker_compensations) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:worker_compensations) %></span></a>
-                </li>
-            <% end %>
-            <% if module_enabled?( 'job_applications') && can?(:manage_roles, :view_job_applications, :manage_job_applications) %>
-                <li class="<%= menu_active?('job_applications') %>">
-                  <a href="/job_applications" title="<%= t(:job_applications) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:job_applications) %></span></a>
-                </li>
-            <% end %>
-            <% if module_enabled?( 'resumes') && can?(:manage_roles, :view_resumes, :manage_resumes) %>
-                <li class="<%= menu_active?('resumes') %>">
-                  <a href="/resumes" title="<%= t(:resumes) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:resumes) %></span></a>
-                </li>
-            <% end %>
-
-            <% if module_enabled?( 'military_histories') && can?(:manage_roles, :view_military_histories, :manage_military_histories) %>
-                <li class="<%= menu_active?('resumes') %>">
-                  <a href="/military_histories" title="<%= t(:military_histories) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:military_histories) %></span></a>
-                </li>
-            <% end %>
           </ul>
         </li>
     <% end %>

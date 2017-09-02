@@ -13,47 +13,6 @@
                   <a href= "/socioeconomic_record" title="Socioeconomic record"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Socioecon record</span></a>
                 </li>
             <% end %>
-
-            <% if module_enabled?( 'daily_livings')  && can?(:manage_roles, :view_daily_livings, :manage_daily_livings) %>
-                <li class="<%= menu_active?('daily_livings') %>">
-                  <a href="/daily_livings" title="<%= t(:daily_livings) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:daily_livings) %></span></a>
-                </li>
-            <% end %>
-            <% if module_enabled?( 'socioeconomics')  && can?(:manage_roles, :view_socioeconomics, :manage_socioeconomics) %>
-                <li class="<%= menu_active?('socioeconomics') %>">
-                  <a href="/socioeconomics" title="<%= t(:socioeconomics) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:socioeconomics) %></span></a>
-                </li>
-            <% end %>
-            <% if module_enabled?( 'environment_risks')  && can?(:manage_roles, :view_environment_risks, :manage_environment_risks) %>
-                <li class="<%= menu_active?('environment_risks') %>">
-                  <a href="/environment_risks" title="<%= t(:environment_risks) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:environment_risks) %></span></a>
-                </li>
-            <% end %>
-            <% if module_enabled?( 'housings') && can?(:manage_roles, :view_housings, :manage_housings)%>
-                <li class="<%= menu_active?('housings') %>">
-                  <a href="/housings" title="<%= t(:housing) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:housing) %></span></a>
-                </li>
-            <% end %>
-            <% if module_enabled?( 'financials') && can?(:manage_roles, :view_financials, :manage_financials)%>
-                <li class="<%= menu_active?('financials') %>">
-                  <a href="/financials" title="<%= t(:financial) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:financial) %></span></a>
-                </li>
-            <% end %>
-            <% if module_enabled?( 'legals') && can?(:manage_roles, :view_legals, :manage_legals)%>
-                <li class="<%= menu_active?('legals') %>">
-                  <a href="/legals" title="<%= t(:legal) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:legal) %></span></a>
-                </li>
-            <% end %>
-            <% if module_enabled?( 'transportations') && can?(:manage_roles, :view_transportations, :manage_transportations)%>
-                <li class="<%= menu_active?('transportations') %>">
-                  <a href="/transportations" title="<%= t(:transportation) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:transportation) %></span></a>
-                </li>
-            <% end %>
-            <% if module_enabled?( 'other_histories') && can?(:manage_roles, :view_other_histories, :manage_other_histories)%>
-                <li class="<%= menu_active?('other_histories') %>">
-                  <a href="/other_histories" title="<%= t(:other_history) %>"><i class="fa fa-lg fa-fw fa-circle"></i> <span class="menu-item-parent"><%= t(:other_history) %></span></a>
-                </li>
-            <% end %>
           </ul>
         </li>
     <% end %>

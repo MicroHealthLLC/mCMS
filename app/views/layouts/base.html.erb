@@ -12,10 +12,14 @@
 
   <!-- Basic Styles -->
   <%= csrf_meta_tags %>
-  <%= stylesheet_link_tag 'thredded', 'data-turbolinks-track'=> 'reload' %>
-  <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track'=> 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track'=> 'reload' %>
 
+  <% if params[:controller].include? "thredded" %>
+      <%= stylesheet_link_tag 'thredded', 'data-turbolinks-track'=> 'reload' %>
+  <% end %>
+  <% cache( expire_in: 24.hours) do %>
+      <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track'=> 'reload' %>
+      <%= javascript_include_tag 'application', 'data-turbolinks-track'=> 'reload' %>
+  <% end %>
   <% if params[:action].in?(['all_files', 'show']) %>
       <%= stylesheet_link_tag  'lightbox2', media: 'screen' %>
       <%= javascript_include_tag 'lightbox2', 'data-turbolinks-track'=> 'reload' %>
@@ -23,14 +27,14 @@
 
   <meta name="turbolinks-cache-control" content="no-cache">
   <style>
-      .smart-style-5
-      {
-          background: url(/assets/glass.jpg) no-repeat center center fixed;
-          -webkit-background-size: cover;
-          -moz-background-size: cover;
-          -o-background-size: cover;
-          background-size: cover;
-      }
+    .smart-style-5
+    {
+      background: url(/assets/glass.jpg) no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+    }
   </style>
 
   <!-- We recommend you use "your_style.css" to override SmartAdmin
@@ -108,7 +112,9 @@
   <%= render partial: 'shared/footer' %>
 </div>
 <!-- END PAGE FOOTER -->
-<%= javascript_include_tag 'smart_admin/smart_admin' %>
+<%  cache( expire_in: 24.hours) do %>
+    <%= javascript_include_tag 'smart_admin/smart_admin' %>
+<% end %>
 <script>
     $(document).ready(function() {
       toastr.options = {

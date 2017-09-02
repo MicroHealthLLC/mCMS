@@ -68,7 +68,7 @@ class CasesController < UserCasesController
   # GET /cases/1.json
   def show
     set_client_profile(@case)
-    @cases        = @case.sub_cases
+    @cases        = @case.sub_cases     if module_enabled?('subcases')
     @relations    = @case.relations
 
     @tasks        = @case.tasks         if module_enabled?('tasks') && can?(:manage_roles, :view_tasks, :manage_tasks)
