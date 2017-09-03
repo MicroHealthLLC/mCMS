@@ -45,7 +45,7 @@
        <div class="form-group">
         <%= f.label t(:primary_address), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :primary_address_id, options_for_select(User.current.addresses.map{|a| [a.to_s, a.id]}, selected: f.object.primary_address.try(:id)) , {} ,{class: 'form-control'} %>
+          <%= f.text_field :address, class: 'form-control address'  %>
         </div>
       </div>
 
@@ -96,6 +96,12 @@
           <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
         </div>
       </div>
-  <% end %>
+      <%= render partial: 'map_address', locals: {
+          location: "housing_address",
+          object: f.object
+      } %>
+
+<% end %>
 </fieldset>
+
 
