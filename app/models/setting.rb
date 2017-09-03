@@ -22,9 +22,18 @@ class Setting < ApplicationRecord
   self.cached_settings ||= {}
   # cached_cleared_on = Time.now
 
-  def self.theme
-    JSON.parse(get_theme.value ||  {theme_style: 'smart-style-0' }.to_json )
+  def self.theme(use_admin=true)
+    use_admin ?  admin : client
   end
+
+  def self.admin
+    JSON.parse(admin_theme.value ||  {theme_style: 'smart-style-0' }.to_json )
+  end
+
+   def self.client
+    JSON.parse(client_theme.value ||  {theme_style: 'smart-style-0' }.to_json )
+  end
+
 
   def self.ldap_active?
     false
@@ -32,11 +41,20 @@ class Setting < ApplicationRecord
 
 
   def self.get_theme
+    @theme ||=  User.current.can?(:manage_role) ? admin_theme : client_theme
+    @theme
+  end
+
+  def self.client_theme
+    where(setting_type: 'client_cms_theme').first_or_initialize
+  end
+
+  def self.admin_theme
     where(setting_type: 'cms_theme').first_or_initialize
   end
 
-  def self.theme_style
-    theme['theme_style']
+  def self.theme_style(use_admin = true)
+    theme(use_admin)['theme_style']
   end
 
   # Returns the value of the setting named name
