@@ -12,6 +12,7 @@ INSTALLATION:
 - Install pdftk
 - Git clone this repo into your web directory
 - Setup Database rake db:create rake db:setup rake db:migrate
+  - In case of Error causing duplicate table/column creation, try commenting out the code in the method creating the said duplicate data in that particular migration, db:migrate, uncomment, db:migrate again. rails db:migrate:status to check if the status is up.
 - For Omniauth add your keys in config/application.yml and add use URL to CALLBACK_URL
 - Recaptcha too
 - ADD YOUR URL TO config/environments/production.rb for ActionCable URL
@@ -22,4 +23,3 @@ INSTALLATION:
 - start search services rake sunspot:solr:start RAILS_ENV=production
 - start your app rails s -e production -b localhost -d
 - start sidekiq bundle exec sidekiq -d -L log/sidekiq.log -C config/sidekiq.yml -e production
-
