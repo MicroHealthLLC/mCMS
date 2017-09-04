@@ -11,3 +11,4 @@
 // about supported directives.
 //
 //= require_tree .
+//= require plugin/fullcalendar/jquery.fullcalendar.min

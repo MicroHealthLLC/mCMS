@@ -1,0 +1,11 @@
+<%= link_to(t('new_allergy'), new_allergy_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_allergies, :manage_roles, :manage_allergies) %>
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render partial: 'allergies/list',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                   wid_id: 'allergy',
+                   wid_title: t('allergies')
+               } %>
+  </article>
+</div>

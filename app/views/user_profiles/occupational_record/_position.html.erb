@@ -1,0 +1,13 @@
+<%= link_to('New Position', new_position_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_positions, :manage_positions, :manage_roles) %>
+
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render partial: 'positions/list',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                   positions: @positions,
+                   wid_id: 'positions',
+                   wid_title: t('positions')
+               } %>
+  </article>
+</div>

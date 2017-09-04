@@ -1,0 +1,11 @@
+<%= link_to(t('new_environment_risk'), new_environment_risk_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_environment_risks, :manage_roles, :manage_environment_risks) %>
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render partial: 'environment_risks/list',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                   wid_id: 'environment_risk',
+                   wid_title: t('environment_risks')
+               } %>
+  </article>
+</div>

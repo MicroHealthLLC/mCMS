@@ -43,7 +43,7 @@ class Housing < ApplicationRecord
   def self.safe_attributes
     [:user_id, :title, :snomed,
      :housing_status_id, :description,
-     :primary_address_id, :estimated_monthly_payment,
+     :primary_address_id, :address, :estimated_monthly_payment,
      :date_start, :date_end,
      housing_attachments_attributes: [Attachment.safe_attributes]]
   end
@@ -54,7 +54,7 @@ class Housing < ApplicationRecord
     pdf.table([[" Housing "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Snomed: ", " #{snomed}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Housing Status: ", " #{housing_status}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Primary Address: ", " #{primary_address}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Primary Address: ", " #{address}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Start date: ", " #{date_start}"]], :column_widths => [ 150, 373])
     pdf.table([[ "End date: ", " #{date_end}"]], :column_widths => [ 150, 373])
     pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
@@ -70,7 +70,7 @@ class Housing < ApplicationRecord
     output<< "<h2>Housing ##{id} </h2><br/>"
     output<<"<b>Snomed : </b> #{snomed}<br/>"
     output<<"<b>Housing Status : </b> #{housing_status}<br/>"
-    output<<"<b>Primary Address : </b> #{primary_address}<br/>"
+    output<<"<b>Primary Address : </b> #{address}<br/>"
     output<<"<b>Date start : </b> #{date_start}<br/>"
     output<<"<b>Date end : </b> #{date_end}<br/>"
     output<<"<b>Description: </b> #{description} <br/>"

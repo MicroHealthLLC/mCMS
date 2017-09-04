@@ -36,7 +36,7 @@ class UserDatatable < AjaxDatatablesRails::Base
     records.map do |user|
       [
           user.id ,
-          user.login,
+          link_user(user),
           user.email,
 
           user.first_name,
@@ -46,7 +46,6 @@ class UserDatatable < AjaxDatatablesRails::Base
           user.role.to_s,
           user.state,
 
-          user.deleted? ? '<i class="fa fa-eye-slash" aria-hidden="true" ></i>' : @view.show_link(user, 'data-turbolinks'=> false) ,
           user.deleted? ?   @view.restore_user_link(user, 'data-turbolinks'=> false) :  @view.delete_link(user, 'data-turbolinks'=> false),
           user.locked_at? ?   @view.unlock_user_link(user, 'data-turbolinks'=> false) :  @view.lock_user_link(user, 'data-turbolinks'=> false),
           @view.change_password_user_link(user, 'data-turbolinks'=> false)
@@ -56,6 +55,10 @@ class UserDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records
     User.unscoped.include_enumerations
+  end
+
+  def link_user user
+    user.deleted? ? user.login : @view.link_to(user.login, user, 'data-turbolinks'=> false)
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

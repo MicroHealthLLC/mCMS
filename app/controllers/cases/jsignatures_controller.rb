@@ -1,8 +1,8 @@
 class JsignaturesController < UserCasesController
 
-  before_action :set_jsignature, only: [:show, :edit, :update, :destroy]
+  before_action :set_jsignature, only: [:image, :show, :edit, :update, :destroy]
   before_action :authorize_create, only: [:new, :create]
-  before_action :authorize_view, only: [:index, :show]
+  before_action :authorize_view, only: [:index, :show, :image]
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
 

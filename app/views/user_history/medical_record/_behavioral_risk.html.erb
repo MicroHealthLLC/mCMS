@@ -1,0 +1,11 @@
+<%= link_to(t('new_behavioral_risk'), new_behavioral_risk_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_behavioral_risks, :manage_roles, :manage_behavioral_risks) %>
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render partial: 'behavioral_risks/list',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                   wid_id: 'behavioral_risk',
+                   wid_title: t('behavioral_risks')
+               } %>
+  </article>
+</div>

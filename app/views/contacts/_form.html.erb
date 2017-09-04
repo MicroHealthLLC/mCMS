@@ -14,6 +14,29 @@
       <% end %>
       <%= f.hidden_field :user_id %>
       <%= f.hidden_field :not_show_in_search %>
+
+      <div class="form-group">
+        <%= f.label t('profile.first_name'), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :first_name, placeholder: 'First name', class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t('profile.middle_name'), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :middle_name, placeholder: 'Middle name', class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <%= f.label t('profile.last_name'), class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :last_name, placeholder: 'Last name', class: 'form-control' %>
+        </div>
+      </div>
+
+
       <div class="form-group">
         <%= f.label t('enumeration_contact_type'), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
@@ -44,28 +67,6 @@
               })
             })
           </script>
-        </div>
-      </div>
-
-
-      <div class="form-group">
-        <%= f.label t('profile.first_name'), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :first_name, placeholder: 'First name', class: 'form-control' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t('profile.middle_name'), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :middle_name, placeholder: 'Middle name', class: 'form-control' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t('profile.last_name'), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :last_name, placeholder: 'Last name', class: 'form-control' %>
         </div>
       </div>
 

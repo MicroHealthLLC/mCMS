@@ -25,6 +25,7 @@
 //= require plugin/datatable-responsive/datatables.responsive.min.js
 //= require buttons.colVis.min
 //= require dataTables.buttons.min
+//= require plugin/datatables/buttons.html5.min
 
 //= require ckeditor-jquery
 //= require plugin/select2/select2.min.js

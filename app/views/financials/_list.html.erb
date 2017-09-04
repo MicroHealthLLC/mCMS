@@ -12,7 +12,7 @@
   <tbody>
   <% @financials.each do |financial| %>
       <tr>
-        <td><%= link_to financial.snomed, financial %></td>
+        <td><%= link_to financial.snomed.presence, financial %></td>
         <td><%= financial.financial_status %></td>
         <td><%= format_date financial.date_start %></td>
         <td><%= format_date financial.date_end %></td>

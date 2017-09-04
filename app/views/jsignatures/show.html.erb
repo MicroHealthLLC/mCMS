@@ -17,11 +17,12 @@
       <%= format_date_time @jsignature.created_at %>
     </p>
 
-    <p>
-      <strong><%= @jsignature.signature_owner.class %>:</strong>
-      <%= link_to @jsignature.signature_owner.to_s, @jsignature.signature_owner %>
-    </p>
-
+    <% unless @jsignature.signature_owner.class.is_a? User %>
+        <p>
+          <strong><%= @jsignature.signature_owner.class %>:</strong>
+          <%= link_to @jsignature.signature_owner.to_s, @jsignature.signature_owner %>
+        </p>
+    <% end %>
 
     <p>
       <strong>Signature:</strong>

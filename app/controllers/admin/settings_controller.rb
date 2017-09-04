@@ -5,7 +5,8 @@ class SettingsController < ProtectForgeryApplication
 
   def index
     @setting = Setting.first || Setting.new
-    @theme_setting = Setting.theme
+    @admin_theme_setting = Setting.admin
+    @client_theme_setting = Setting.client
   end
 
   def create
@@ -72,7 +73,7 @@ class SettingsController < ProtectForgeryApplication
   end
 
   def set_theme
-    theme = Setting.get_theme
+    theme = Setting.admin_theme
     hash = {
         theme_style: "#{params[:theme_style] ? params[:theme_style] : 'smart-style-0'}",
         header: "#{params[:header] ? 'fixed-header' : ''}",
@@ -82,8 +83,18 @@ class SettingsController < ProtectForgeryApplication
     }
     theme.value = hash.to_json
     theme.save
-    redirect_to settings_path
 
+    theme = Setting.client_theme
+    hash = {
+        theme_style: "#{params[:client_theme_style] ? params[:client_theme_style] : 'smart-style-0'}",
+        header: "#{params[:header] ? 'fixed-header' : ''}",
+        container: "#{params[:container] ? 'container' : ''}",
+        footer: "#{params[:footer] ? 'fixed-page-footer' : ''}",
+        topmenu: "#{params[:topmenu] ? 'menu-on-top' : '' }"
+    }
+    theme.value = hash.to_json
+    theme.save
+    redirect_to settings_path
   end
 
   private

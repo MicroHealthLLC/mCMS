@@ -1,6 +1,38 @@
 module ApplicationHelper
   include DmsfHelper
 
+  # Renders tabs and their content
+  def render_tabs(tabs, selected=params[:tab], tab_name= "tabs-shared")
+    if tabs.any?
+      unless tabs.detect {|tab| tab[:name] == selected}
+        selected = nil
+      end
+      selected ||= tabs.first[:name]
+      render :partial => 'shared/tabs', :locals => {tab_name: tab_name, :tabs => tabs, :selected_tab => selected}
+    else
+      content_tag 'p', t(:label_no_data), :class => "nodata"
+    end
+  end
+
+  def edit_user_page_tab
+    tabs = [
+        {:name => 'core_demographic', :partial => 'devise/registrations/shared/core_demographic', :label => :core_demography},
+        {:name => 'extend_demographic', :partial => 'devise/registrations/shared/extend_demography', :label => :extend_demography}
+
+    ]
+    tabs << {:name => 'identification', :partial => 'devise/registrations/shared/identification_form', :label => :identification}
+
+    tabs << {:name => 'password', :partial => 'devise/registrations/shared/password', :label => :password}
+    if can?(:manage_roles, :manage_user_job_details, :manage_organizations)
+      tabs << {:name => 'organization', :partial => 'devise/registrations/shared/job_detail', :label => :organization}
+    end
+    tabs << {:name => 'signature', :partial => 'devise/registrations/shared/signature', :label => :signature}
+    if can?(:manage_roles, :view_related_clients, :manage_related_clients)
+      # tabs << {:name => 'related_client', :partial => 'devise/registrations/shared/related_client', :label => :related_client}
+    end
+    tabs
+  end
+
   def can_view_submenu?(modules )
     permissions = [:manage_roles]
     modules.each do |m|

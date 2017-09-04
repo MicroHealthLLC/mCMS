@@ -1,20 +1,24 @@
 <table class="table table-responsive table-bordered" id="case_organizations_table">
   <thead>
   <tr>
-    <th>Case</th>
+    <% if params[:controller] != 'cases' %>
+        <th>Case</th>
+    <% end %>
     <th>Organization</th>
     <th>Association</th>
   </tr>
   </thead>
 
   <tbody>
-    <% @case_organizations.each do |c_o| %>
-          <tr>
+  <% @case_organizations.each do |c_o| %>
+      <tr>
+        <% if params[:controller] != 'cases' %>
             <td><%= link_to_case c_o.case%></td>
-            <td><%= link_to c_o.organization, c_o.organization %></td>
-            <td><%= link_to c_o.association_type, c_o %></td>
-          </tr>
-      <% end %>
+        <% end %>
+        <td><%= link_to c_o.organization, c_o.organization %></td>
+        <td><%= link_to c_o.association_type, c_o %></td>
+      </tr>
+  <% end %>
   </tbody>
 </table>
 <script>

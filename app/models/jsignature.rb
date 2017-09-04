@@ -22,6 +22,15 @@ class Jsignature < ApplicationRecord
 
 
   def to_pdf(pdf, name = 'Signature')
+    pdf.table([[name]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
+    pdf.table([[ "Person Name: ", " #{person_name}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Owner: ", " #{signature_owner_type}"]], :column_widths => [ 150, 373])
+    render_signature(pdf, false )
+    pdf.move_down(10)
+
+  end
+
+  def render_signature(pdf, one_tab = true)
     path = "public/signature"
     unless File.directory?(path)
       FileUtils.mkdir_p(path)
@@ -32,12 +41,10 @@ class Jsignature < ApplicationRecord
       png      = Base64.decode64(data_url['data:image/png;base64,'.length .. -1])
       File.open(image, 'wb') { |f| f.write(png) }
     end
-
-    pdf.table([[name]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
-    pdf.table([[ "Person Name: ", " #{person_name}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "Owner: ", " #{signature_owner_type}"]], :column_widths => [ 150, 373])
-    pdf.table([[ "", {image: "#{Rails.root}/#{image}", :image_height => 150, :image_width => 300}]], :column_widths => [ 150, 373])
-    pdf.move_down(10)
-
+    if one_tab
+      pdf.image("#{Rails.root}/#{image}", :image_height => 150, :image_width => 300)
+    else
+      pdf.table([[ "", {image: "#{Rails.root}/#{image}", :image_height => 150, :image_width => 300}]], :column_widths => [ 150, 373])
+    end
   end
 end

@@ -5,4 +5,5 @@
   %>
   <%= link_to t('button_cancel'), @owner, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), jsignature_path(@jsignature, format: :pdf) , class: 'btn btn-primary pull-right' %>
+  <%= link_to 'Print Signature', image_jsignature_path(@jsignature, format: :pdf) , class: 'btn btn-primary pull-right' %>
 </div>

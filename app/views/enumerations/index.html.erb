@@ -6,83 +6,85 @@
         <% options = Enumeration.get_subclasses.sort{|a,b| a.to_s <=> b.to_s }.map{|e| [e.to_s.gsub(/(?<=[a-z])(?=[A-Z])/, ' '), e.to_s]} %>
         <%= select_tag :type, options_for_select(options)  %>
         <%= submit_tag :import, class: 'btn btn-primary pull-right', id: 'import_spreadsheet_submit' %>
-        <script>
-          $(document).ready(function(){
-            $('#import_spreadsheet_submit').on('click',function(e){
-              e.preventDefault();
-              if($('#file').val()=="")
-                alert("Please select a file");
-              else
-              {
-                file_name = $('#file').val();
-                if(/(\.|\/)(xls|csv|xlsx)$/i.test(file_name))
-                  $('.form_submit').submit();
-                else
-                  alert("File not recognized");
-              }
-            })
-          })
-        </script>
     <% end %>
   </div>
 </div>
-<div id="accordion">
-  <% Enumeration.get_subclasses.sort{|a,b| a.to_s <=> b.to_s }.each do |klass| %>
-      <div>
-        <h3><%= t(klass::OptionName) %></h3>
-        <div class="padding-10">
-          <p><%= link_to I18n.t("enumeration_new_label"), new_enumeration_path(:type => klass.name), class: 'btn btn-default'  %></p>
-          <% enumerations = klass.where(nil) %>
-          <% if enumerations.any? %>
+<script>
+  $( function() {
+    $tabs = $( "#tabs" ).tabs();
+  } );
+</script>
+<section id="widget-grid" class="show_tab">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div id="tabs">
+        <ul id="nav">
+          <% Enumeration.get_subclasses.sort{|a,b| t(a::OptionName) <=> t(b::OptionName) }.each do |klass| %>
+              <li><a id="link-tabs-modules" href="<%=  "#tabs-#{klass.to_s }" %>"><%= t(klass::OptionName) %></a></li>
+          <% end -%>
+        </ul>
+        <% Enumeration.get_subclasses.sort{|a,b| t(a::OptionName) <=> t(b::OptionName) }.each do |klass| %>
+            <div id="<%= "tabs-#{klass.to_s}" %>">
+              <div class="row">
+                <p><%= link_to I18n.t("enumeration_new_label"), new_enumeration_path(:type => klass.name), class: 'btn btn-primary'  %></p>
+                <% enumerations = klass.where(nil) %>
+                <% if enumerations.any? %>
 
-              <table class="table table-responsive table-bordered table-striped enumerations ">
-                <thead>
-                <tr>
-                  <th><%= t :label_name %></th>
-                  <th><%= t :label_default %></th>
-                  <th><%= t :label_active %></th>
-                  <th></th>
-                </tr>
-                </thead>
-                <% enumerations.each do |enumeration| %>
-                    <tr>
-                      <td class="name"><%= link_to enumeration, edit_enumeration_path(enumeration) %></td>
-                      <td class="tick"><%= enumeration.is_default? %></td>
-                      <td class="tick"><%= enumeration.active? %></td>
-                      <td class="buttons">
-                        <%= reorder_handle(enumeration, :url => enumeration_path(enumeration), :param => 'enumeration') %>
-                        <%= delete_link enumeration_path(enumeration) %>
-                      </td>
-                    </tr>
+                    <table class="table table-responsive table-bordered table-striped enumerations ">
+                      <thead>
+                      <tr>
+                        <th><%= t :label_name %></th>
+                        <th><%= t :label_default %></th>
+                        <th><%= t :label_active %></th>
+                        <th></th>
+                      </tr>
+                      </thead>
+                      <% enumerations.each do |enumeration| %>
+                          <tr>
+                            <td class="name"><%= link_to enumeration, edit_enumeration_path(enumeration) %></td>
+                            <td class="tick"><%= enumeration.is_default? %></td>
+                            <td class="tick"><%= enumeration.active? %></td>
+                            <td class="buttons">
+                              <%= reorder_handle(enumeration, :url => enumeration_path(enumeration), :param => 'enumeration') %>
+                              <%= delete_link enumeration_path(enumeration) %>
+                            </td>
+                          </tr>
+                      <% end %>
+                    </table>
+
                 <% end %>
-              </table>
+              </div>
+            </div>
+        <% end %>
 
-          <% end %>
-        </div>
       </div>
-  <% end %>
-</div>
+    </article>
+  </div>
+</section>
+<style>
+  .ui-widget-content a {
+    color: #214e75;
+  }
+  a.btn{
+    color: white
+  }
+</style>
 <script>
   $(document).ready(function(){
-
-    /*
-     * ACCORDION
-     */
-    //jquery accordion
-
-    var accordionIcons = {
-      header: "fa fa-plus",    // custom icon class
-      activeHeader: "fa fa-minus" // custom icon class
-    };
-
-    $("#accordion").accordion({
-      autoHeight : false,
-      heightStyle : "content",
-      collapsible : true,
-      animate : 300,
-      icons: accordionIcons,
-      header : "h3"
+    $('#import_spreadsheet_submit').on('click',function(e){
+      e.preventDefault();
+      if($('#file').val()=="")
+        alert("Please select a file");
+      else
+      {
+        file_name = $('#file').val();
+        if(/(\.|\/)(xls|csv|xlsx)$/i.test(file_name))
+          $('.form_submit').submit();
+        else
+          alert("File not recognized");
+      }
     })
+
 
     $.fn.positionedItems = function(sortableOptions, options){
       var settings = $.extend({

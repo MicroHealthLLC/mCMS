@@ -2,6 +2,8 @@ class EmployeesController < ProtectForgeryApplication
   before_action  :authenticate_user!
   before_action  :set_employee, :only => [:show, :destroy, :log_in, :update]
   before_action  :authorize
+  include UserProfilesHelper
+  include ApplicationHelper
 
   def index
     respond_to do |format|
@@ -15,7 +17,12 @@ class EmployeesController < ProtectForgeryApplication
   end
 
   def show
-
+    @languages = Language.for_status(params[:status_type]) if module_enabled?( 'languages')  && can?(:manage_roles, :view_languages, :manage_languages)
+    @contacts = Contact.for_status(params[:status_type]) if module_enabled?( 'contacts')  && can?(:manage_roles, :view_contacts, :manage_contacts)
+    @affiliations = Affiliation.for_status(params[:status_type]) if module_enabled?( 'affiliations')  && can?(:manage_roles, :view_affiliations, :manage_affiliations)
+    @user_insurances = UserInsurance.for_status(params[:status_type]) if module_enabled?( 'insurances')  && can?(:manage_roles, :view_insurances, :manage_insurances)
+    @documents = Document.for_profile.for_status(params[:status_type]) if module_enabled?( 'documents')  && can?(:manage_roles, :view_documents, :manage_documents)
+    @jsignatures = User.current.jsignatures if module_enabled?( 'jsignatures')
   end
 
   def new
