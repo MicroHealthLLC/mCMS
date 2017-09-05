@@ -32,4 +32,7 @@
   *= require style.css
   *= require easy-autocomplete.min
   *= require devise_authy
+
+  <!-- Application-wide Style -->
+  *= require pageHeader.scss
  */
