@@ -112,7 +112,7 @@ en:
 
  # EMPLOYEE
   employees: Clients
-  new_employee: New Client
+  new_employee: NEW CLIENT
   employment_type: Employment Type
   label_employee: Client
   change_employee_info: Change Information
@@ -172,7 +172,7 @@ en:
   label_note_plural: Notes
   add_note: "Add Note"
   # Jsignature
-  
+
   jsignature: Signature
   jsignatures: Signatures
   new_jsignature: New Signature
@@ -497,7 +497,7 @@ en:
   resumes: Resumes
   resume_type: Resume Type
   resume_status: Resume Status
- 
+
   surgical: Surgery
   new_surgical: New Surgery
   edit_surgical: Edit Surgery

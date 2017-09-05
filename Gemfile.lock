@@ -24,6 +24,93 @@ GIT
     omniauth-office365 (1.0.0)
       omniauth-oauth2 (~> 1.3.1)
 
+GIT
+  remote: git://github.com/rubyroidlabs/devise_security_extension.git
+  revision: 3b586a8ac1e892f8325c1f333ee49629d182c1c3
+  specs:
+    devise_security_extension (0.10.0)
+      devise (>= 3.0.0, < 5.0)
+      railties (>= 3.2.6, < 6.0)
+
+PATH
+  remote: engines/calculator
+  specs:
+    calculator (0.1.0)
+      rails (~> 5.0.0, >= 5.0.0.1)
+
+PATH
+  remote: engines/event_calendar
+  specs:
+    event_calendar (0.1.0)
+      rails (~> 5.0.0, >= 5.0.0.1)
+      simple_calendar (~> 2.0)
+
+PATH
+  remote: engines/inventory
+  specs:
+    inventory (0.1.0)
+      rails (~> 5.0.0, >= 5.0.0.1)
+
+PATH
+  remote: engines/kanban
+  specs:
+    kanban (0.1.0)
+      rails (~> 5.0.0, >= 5.0.0.1)
+
+PATH
+  remote: engines/links
+  specs:
+    links (0.1.0)
+      rails (~> 5.0.0, >= 5.0.0.1)
+
+PATH
+  remote: engines/lms
+  specs:
+    lms (0.1.0)
+      rails (~> 5.0.0, >= 5.0.0.1)
+
+PATH
+  remote: engines/measurements_converter
+  specs:
+    measurements_converter (0.1.0)
+      rails (~> 5.0.0, >= 5.0.0.1)
+
+PATH
+  remote: engines/mindmap
+  specs:
+    mindmap (0.1.0)
+      rails (~> 5.0.0, >= 5.0.0.1)
+
+PATH
+  remote: engines/rordit
+  specs:
+    rordit (0.1.0)
+      rails (~> 5.0.0, >= 5.0.0.1)
+
+PATH
+  remote: engines/rss_feed
+  specs:
+    rss_feed (0.1.0)
+      rails (~> 5.0.0, >= 5.0.0.1)
+
+PATH
+  remote: engines/sticky_notes
+  specs:
+    sticky_notes (0.1.0)
+      rails (~> 5.0.0, >= 5.0.0.1)
+
+PATH
+  remote: engines/text_editor
+  specs:
+    text_editor (0.1.0)
+      rails (~> 5.0.0, >= 5.0.0.1)
+
+PATH
+  remote: engines/todo_list
+  specs:
+    todo_list (0.1.0)
+      rails (~> 5.0.0, >= 5.0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -71,6 +158,11 @@ GEM
     ajax-datatables-rails (0.3.1)
       railties (>= 3.1)
     arel (7.1.4)
+    ast (2.3.0)
+    audited (4.5.0)
+      activerecord (>= 4.0, < 5.2)
+    authy (2.7.1)
+      httpclient (>= 2.5.3.3)
     autoprefixer-rails (6.5.3)
       execjs
     autosize-rails (1.18.17)
@@ -90,6 +182,7 @@ GEM
     bluecloth (2.2.0)
     bootstrap3-datetimepicker-rails (4.17.43)
       momentjs-rails (>= 2.8.1)
+    brakeman (3.7.2)
     breadcrumbs_on_rails (3.0.1)
     builder (3.2.2)
     bullet (5.4.2)
@@ -104,6 +197,7 @@ GEM
       mimemagic (>= 0.3.0)
     ckeditor_rails (4.5.10)
       railties (>= 3.0)
+    cliver (0.3.2)
     cocoon (1.2.9)
     coderay (1.1.1)
     coffee-rails (4.2.1)
@@ -114,6 +208,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.2)
+    connection_pool (2.2.1)
     crass (1.0.2)
     db_text_search (0.2.0)
       activerecord (>= 4.1.15, < 6.0)
@@ -124,12 +219,18 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
+    devise-authy (1.8.1)
+      authy
+      devise (>= 3.0.0)
     devise_ldap_authenticatable (0.8.5)
       devise (>= 3.4.1)
       net-ldap (>= 0.6.0, <= 0.11)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     escape (0.0.4)
+    exception_notification (4.2.2)
+      actionmailer (>= 4.0, < 6)
+      activesupport (>= 4.0, < 6)
     execjs (2.7.0)
     factory_girl (4.7.0)
       activesupport (>= 3.0.0)
@@ -149,6 +250,7 @@ GEM
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     hashie (3.4.6)
+    hirb (0.7.3)
     html-pipeline (2.4.2)
       activesupport (>= 2)
       nokogiri (>= 1.4)
@@ -157,11 +259,15 @@ GEM
     html-pipeline-youtube (0.1.3)
       html-pipeline (~> 2.0)
     htmlentities (4.3.4)
+    httparty (0.15.6)
+      multi_xml (>= 0.5.2)
+    httpclient (2.8.3)
     i18n (0.7.0)
     inline_svg (0.11.0)
       activesupport (>= 4.0)
       loofah (>= 2.0)
       nokogiri (~> 1.6)
+    jSignature (0.0.6)
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -211,6 +317,7 @@ GEM
     multipart-post (2.0.0)
     mysql2 (0.3.21)
     net-ldap (0.11)
+    newrelic_rpm (4.4.0.336)
     nio4r (1.2.1)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
@@ -248,13 +355,20 @@ GEM
     orm_adapter (0.5.0)
     paranoia (2.2.0)
       activerecord (>= 4.0, < 5.1)
+    parser (2.4.0.0)
+      ast (~> 2.2)
     pdf-core (0.6.1)
+    pdf-forms (1.1.1)
+      cliver (~> 0.3.2)
+      safe_shell (>= 1.0.3, < 2.0)
+    phony (2.15.47)
     postmark (1.10.0)
       json
       rake
     postmark-rails (0.15.0)
       actionmailer (>= 3.0.0)
       postmark (~> 1.10.0)
+    powerpack (0.1.1)
     pr_geohash (1.0.0)
     prawn (2.1.0)
       pdf-core (~> 0.6.1)
@@ -270,6 +384,10 @@ GEM
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (2.0.1)
+    rack-mini-profiler (0.10.5)
+      rack (>= 1.2.0)
+    rack-protection (2.0.0)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0.1)
@@ -298,12 +416,16 @@ GEM
       activesupport (>= 3.1)
     rails_autolink (1.1.6)
       rails (> 3.1)
+    rails_email_validator (0.1.4)
+      activemodel (>= 3.0.0)
     railties (5.0.0.1)
       actionpack (= 5.0.0.1)
       activesupport (= 5.0.0.1)
       method_source
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
+    rainbow (2.2.2)
+      rake
     rake (11.3.0)
     rb-fsevent (0.9.8)
     rb-gravatar (1.0.5)
@@ -313,6 +435,8 @@ GEM
       json
     redis (3.3.0)
     ref (2.0.0)
+    render_anywhere (0.0.12)
+      rails (>= 3.0.7)
     request_store (1.3.1)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
@@ -322,6 +446,10 @@ GEM
     roo (2.7.1)
       nokogiri (~> 1)
       rubyzip (~> 1.1, < 2.0.0)
+    roo-xls (1.1.0)
+      nokogiri
+      roo (>= 2.0.0beta1, < 3)
+      spreadsheet (> 0.9.0)
     rsolr (1.1.2)
       builder (>= 2.1.2)
     rspec (3.5.0)
@@ -345,7 +473,16 @@ GEM
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
+    rubocop (0.48.1)
+      parser (>= 2.3.3.1, < 3.0)
+      powerpack (~> 0.1)
+      rainbow (>= 1.99.1, < 3.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (~> 1.0, >= 1.0.1)
+    ruby-ole (1.2.12.1)
+    ruby-progressbar (1.8.1)
     rubyzip (1.2.1)
+    safe_shell (1.1.0)
     sanitize (4.4.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.4.4)
@@ -359,9 +496,18 @@ GEM
       tilt (>= 1.1, < 3)
     select2-rails (3.5.10)
       thor (~> 0.14)
+    sidekiq (4.2.10)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      rack-protection (>= 1.5.0)
+      redis (~> 3.2, >= 3.2.1)
+    simple_calendar (2.2.7)
+      rails (>= 3.0)
     simple_form (3.3.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
+    spreadsheet (1.1.4)
+      ruby-ole (>= 1.0)
     spring (2.0.0)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -388,6 +534,12 @@ GEM
     sunspot_solr (2.2.7)
     textractor (0.2.0)
       escape (>= 0.0.4)
+    textris (0.4.4)
+      actionmailer (>= 4.0)
+      activejob (>= 4.2)
+      activesupport (>= 4.2)
+      phony (~> 2.8)
+      render_anywhere (~> 0.0)
     therubyracer (0.12.2)
       libv8 (~> 3.16.14.0)
       ref
@@ -425,10 +577,15 @@ GEM
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.0)
+    twilio-ruby (4.11.1)
+      builder (>= 2.1.2)
+      jwt (~> 1.0)
+      multi_json (>= 1.3.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (3.0.3)
       execjs (>= 0.3.0, < 3)
+    unicode-display_width (1.3.0)
     uniform_notifier (1.10.0)
     warden (1.2.6)
       rack (>= 1.0)
@@ -450,64 +607,96 @@ PLATFORMS
 DEPENDENCIES
   activerecord-jdbcmysql-adapter
   ajax-datatables-rails
+  audited (~> 4.4)
   awesome_print
   better_errors
   binding_of_caller
   bluecloth
   bootstrap3-datetimepicker-rails (~> 4.17.43)
+  brakeman
   breadcrumbs_on_rails
   bullet
   byebug
+  calculator!
   carrierwave
   ckeditor_rails
   cocoon
   coffee-rails (~> 4.2)
   devise
+  devise-authy
   devise_ldap_authenticatable
+  devise_security_extension!
+  event_calendar!
+  exception_notification
   execjs
   factory_girl_rails
   faker
+  faraday
   figaro
+  hirb
+  httparty
+  inventory!
   irwi!
+  jSignature (~> 0.0.6)
   jbuilder (~> 2.5)
   jquery-datatables-rails
   jquery-fileupload-rails
   jquery-rails
+  kanban!
   letter_opener
+  links!
   listen (~> 3.0.5)
+  lms!
+  measurements_converter!
+  mindmap!
   mini_magick
   momentjs-rails (>= 2.9.0)
   mysql2 (~> 0.3.11)
+  newrelic_rpm
   omniauth-facebook
   omniauth-github
   omniauth-google-oauth2
   omniauth-office365!
   omniauth-twitter
   paranoia (~> 2.2.0.pre)
+  pdf-forms
   postmark-rails
   prawn-rails
   puma (~> 3.0)
+  rack-mini-profiler
   rails (~> 5.0.0, >= 5.0.0.1)
   rails-controller-testing
+  rails_email_validator
   recaptcha
   redis (~> 3.2)
   request_store
   rollbar
   roo
+  roo-xls
+  rordit!
   rspec
   rspec-rails
+  rss_feed!
+  rubocop (~> 0.48.1)
   sass-rails (~> 5.0)
+  sidekiq
+  simple_calendar (~> 2.0)
   simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
+  sticky_notes!
   sunspot_rails
   sunspot_solr
   survey!
+  text_editor!
   textractor
+  textris
   therubyracer
   thredded (~> 0.8.2)
   toastr-rails
+  todo_list!
   turbolinks (~> 5)
+  twilio-ruby (~> 4.11.1)
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console
@@ -515,4 +704,4 @@ DEPENDENCIES
   will_paginate-bootstrap
 
 BUNDLED WITH
-   1.13.6
+   1.15.3
