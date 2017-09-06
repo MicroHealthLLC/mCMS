@@ -56,11 +56,11 @@ class EmployeeDatatable < AjaxDatatablesRails::Base
         references(:job_detail=> [:organization])
 
     case @options[:status_type]
-      when 'active' then scope.where(state: true)
-      when 'inactive' then scope.where(state: false)
+      when 'active' then scope= scope.where(state: true)
+      when 'inactive' then scope = scope.where(state: false)
       when 'all' then scope
       else
-        scope.where(state: true)
+        scope = scope.where(state: true)
     end
 
     if User.current.admin?

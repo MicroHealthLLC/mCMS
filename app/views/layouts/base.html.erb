@@ -16,10 +16,9 @@
   <% if params[:controller].include? "thredded" %>
       <%= stylesheet_link_tag 'thredded', 'data-turbolinks-track'=> 'reload' %>
   <% end %>
-  <% cache( expire_in: 24.hours) do %>
-      <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track'=> 'reload' %>
+     <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track'=> 'reload' %>
       <%= javascript_include_tag 'application', 'data-turbolinks-track'=> 'reload' %>
-  <% end %>
+
   <% if params[:action].in?(['all_files', 'show']) %>
       <%= stylesheet_link_tag  'lightbox2', media: 'screen' %>
       <%= javascript_include_tag 'lightbox2', 'data-turbolinks-track'=> 'reload' %>
@@ -112,9 +111,8 @@
   <%= render partial: 'shared/footer' %>
 </div>
 <!-- END PAGE FOOTER -->
-<%  cache( expire_in: 24.hours) do %>
     <%= javascript_include_tag 'smart_admin/smart_admin' %>
-<% end %>
+
 <script>
     $(document).ready(function() {
       toastr.options = {
