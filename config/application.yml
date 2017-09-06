@@ -23,4 +23,4 @@ GITHUB_SECRET: '8271ba3736027e1e23671d27b2656c9daa4f9868'
 TWITTER_KEY: ''
 TWITTER_SECRET: ''
 
-CALLBACK_URL: "https://cms.microhealthllc.com/"
+CALLBACK_URL: "https://cms.microhealthllc.com"
