@@ -34,5 +34,5 @@
   *= require devise_authy
 
   <!-- Application-wide Style -->
-  *= require pageHeader.scss
+  *= require global.scss
  */
