@@ -23,6 +23,11 @@ module UserProfilesHelper
     if @jsignatures
       tabs<<  {:name => 'signature', :partial => 'user_profiles/profile_record/signature', :label => :signature}
     end
+    tabs << {:name => 'password', :partial => 'devise/registrations/shared/password', :label => :password}
+    if can?(:manage_roles, :manage_user_job_details, :manage_organizations)
+      tabs << {:name => 'organization', :partial => 'devise/registrations/shared/job_detail', :label => :organization}
+    end
+
     tabs
   end
 
