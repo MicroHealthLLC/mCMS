@@ -47,7 +47,7 @@
 
 
 
-<body style="width:100%; height:100%; margin:0px; padding:0px;" onload="setupDocs();" onunload="saveMHTextEditor();"  class="<%= Setting.theme.values.join(' ') %>" data-user-id="<%= user_signed_in? ? current_user.id : ''  %>">
+<body style="width:100%; height:85vh; margin:0px; padding:0px;" onload="setupDocs();" onunload="saveMHTextEditor();"  class="<%= Setting.theme.values.join(' ') %>" data-user-id="<%= user_signed_in? ? current_user.id : ''  %>">
 
 <!-- HEADER -->
 <%= render partial: 'shared/header' %>
