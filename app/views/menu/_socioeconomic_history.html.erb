@@ -4,16 +4,12 @@
                   'financials', 'legals', 'transportations', 'other_histories']
     %>
     <% if can_view_submenu?(modules) %>
-        <li>
-          <a href="#" id="ul_socio_history"><i class="fa fa-lg fa-fw fa-film"></i> <span class="menu-item-parent">Socioeconomic History</span></a>
-          <ul id="socio_history_menu">
 
-            <% if module_enabled?( 'socioeconomic_record') %>
-                <li class="<%= menu_active?('profile_record') %> ">
-                  <a href= "/socioeconomic_record" title="Socioeconomic record"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Socioecon record</span></a>
-                </li>
-            <% end %>
-          </ul>
-        </li>
+        <% if module_enabled?( 'socioeconomic_record') %>
+            <li class="<%= menu_active?('profile_record') %> ">
+              <a href= "/socioeconomic_record" title="Socioeconomic record"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Socioecon record</span></a>
+            </li>
+        <% end %>
+
     <% end %>
 <% end %>

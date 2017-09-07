@@ -8,16 +8,11 @@
     ]
     %>
     <% if can_view_submenu?(modules) %>
-        <li>
-          <a href="#" id="ul_medical_history"><i class="fa fa-lg fa-fw fa-film"></i> <span class="menu-item-parent">Medical History</span></a>
-          <ul id="medical_history_menu">
-
-            <% if module_enabled?( 'medical_record') %>
+          <% if module_enabled?( 'medical_record') %>
                 <li class="<%= menu_active?('profile_record') %> ">
                   <a href= "/medical_record" title="Medical record"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Medical record</span></a>
                 </li>
             <% end %>
-          </ul>
-        </li>
+
     <% end %>
 <% end %>

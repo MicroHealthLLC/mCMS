@@ -7,16 +7,12 @@
 %>
 <% if can_view_submenu?(modules) %>
     <% if !User.current.allowed_to?(:manage_roles) %>
-        <li>
-          <a href="#" id="ul_case"><i class="fa fa-lg fa-fw fa-square"></i> <span class="menu-item-parent">Cases</span></a>
-          <ul id="case_menu">
-            <% if module_enabled?('cases') && can?(:manage_roles, :view_cases, :manage_cases) %>
-                <li class="<%= menu_active?('cases') %>">
-                  <a href="/cases" title="<%= t(:cases) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent">Cases record</span></a>
-                </li>
-            <% end %>
-          </ul>
-        </li>
+        <% if module_enabled?('cases') && can?(:manage_roles, :view_cases, :manage_cases) %>
+            <li class="<%= menu_active?('cases') %>">
+              <a href="/cases" title="<%= t(:cases) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent">Cases record</span></a>
+            </li>
+        <% end %>
+
     <% else %>
         <li>
           <a href="#"><i class="fa fa-flash"></i> My Clients </a>
