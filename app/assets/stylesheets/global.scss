@@ -2,12 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$mh-green: #40ac2b;
 $mh-blue: #3276b1;
+$mh-green: #5492f7;
+// $mh-green: #40ac2b;
+$mh-orange: #80affc;
 
 @media only screen and (min-device-width : 375px) and (max-device-width : 667px) {
   .module-title {
     text-align: center;
+  }
+  button.dropdown-toggle {
+    padding: 8px 13px;
+    font-size: 11px;
+  }
+  .primary-tab, .secondary-tab {
+    margin-left: 0px;
+    padding: 8px 13px;
+    font-size: 11px;
   }
  }
 
@@ -16,14 +27,23 @@ $mh-blue: #3276b1;
   letter-spacing: 2px;
 }
 
-#tabs-section {
+.tabs-section {
   padding-left: 0px;
 }
 
-#main-page-header {
-  background-color: $mh-green;
-  margin: 0px;
+.tabs-section button:first-child {
+  margin-left: 0px;
+}
+
+.primary-tab {
   padding: 10px 15px;
+  background-color: $mh-green;
+  letter-spacing: 2px;
+}
+
+.secondary-tab {
+  padding: 10px 15px;
+  background-color: $mh-orange;
   letter-spacing: 2px;
 }
 

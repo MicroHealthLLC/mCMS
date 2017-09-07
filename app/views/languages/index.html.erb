@@ -1,8 +1,9 @@
-<%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
-<%= link_to('New Language', new_language_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_languages, :manage_roles, :manage_languages) %>
-
 <section id="widget-grid" class="languages_section">
-  <%= render partial: 'state_button_filter'%>
+  <div class="col-xs-12 btn-edition tabs-section">
+    <%= render partial: 'state_button_filter'%>
+    <%= link_to('NEW LANGUAGE', new_language_path, class: 'btn btn-primary primary-tab') if can?(:create_languages, :manage_roles, :manage_languages) %>
+    <%= link_to 'PRINT', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'btn btn-primary secondary-tab'  %>
+  </div>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'list',

@@ -1,9 +1,8 @@
-
 <section id="widget-grid" class="user_account">
   <div class="module-title">
     <h2 class='module-title-text'>SEARCH CLIENT</h2>
   </div>
-  <div class="col-xs-12 btn-edition" id='tabs-section'>
+  <div class="col-xs-12 btn-edition tabs-section">
     <div class="btn-group">
       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">FILTER <span class="caret"></span></button>
       <ul class="dropdown-menu" id="dropdown-links" role="menu">
@@ -14,7 +13,7 @@
         <li><%= link_to 'Inactive', {}.merge(status_type: 'inactive'), class: 'dropdown-item'  %></li>
       </ul>
     </div>
-    <%= link_to t(:new_employee), new_employee_path, class: 'btn btn-primary', id: 'main-page-header' %>
+    <%= link_to t(:new_employee), new_employee_path, class: 'btn btn-primary primary-tab'%>
   </div>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
