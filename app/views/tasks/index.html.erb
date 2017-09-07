@@ -3,7 +3,7 @@
 <%#= link_to('New Task', new_task_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_tasks, :manage_tasks, :manage_roles) and !(User.current.allowed_to?(:manage_roles) and session[:employee_id].nil?) %>
 <section id="widget-grid" class="tasks_section">
   <%= render partial: 'state_button_filter'%>
-  <% if can?(:create_tasks, :manage_roles, :manage_tasks) %>
+  <% if false && can?(:create_tasks, :manage_roles, :manage_tasks) %>
       <div class="btn-group pull-right btn-edition">
         <button class="btn btn-primary">
           Add Action For

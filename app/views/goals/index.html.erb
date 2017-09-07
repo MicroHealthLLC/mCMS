@@ -1,7 +1,7 @@
 <%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
 <section id="widget-grid" class="goals_section">
   <%= render partial: 'state_button_filter'%>
-  <% if can?(:create_goals, :manage_roles, :manage_goals) %>
+  <% if false && can?(:create_goals, :manage_roles, :manage_goals) %>
       <div class="btn-group pull-right btn-edition">
         <button class="btn btn-primary">
           Add Goal For
