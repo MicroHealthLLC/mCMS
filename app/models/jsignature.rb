@@ -2,6 +2,9 @@ class Jsignature < ApplicationRecord
   belongs_to :user
   belongs_to :signature_owner, polymorphic: true
 
+  has_many :signature_attachments, foreign_key: :owner_id, dependent: :destroy
+  accepts_nested_attributes_for :signature_attachments, reject_if: :all_blank, allow_destroy: true
+
   validates_presence_of :user_id, :person_name, :signature
 
   def to_s
@@ -9,7 +12,9 @@ class Jsignature < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:user_id, :person_name, :signature_owner_type, :signature_owner_id, :signature]
+    [:user_id, :person_name, :signature_owner_type,
+     :signature_owner_id,
+     :signature, signature_attachments_attributes: [Attachment.safe_attributes] ]
   end
 
   def little_description

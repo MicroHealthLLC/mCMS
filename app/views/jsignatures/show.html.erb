@@ -29,5 +29,12 @@
       <%= image_tag @jsignature.signature.html_safe, class: 'img-responsive' %>
     </p>
 
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @jsignature.signature_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+
   </div>
 </div>
