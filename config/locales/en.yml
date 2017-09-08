@@ -112,7 +112,7 @@ en:
 
  # EMPLOYEE
   employees: Clients
-  new_employee: NEW CLIENT
+  new_employee: New Client
   employment_type: Employment Type
   label_employee: Client
   change_employee_info: Change Information
