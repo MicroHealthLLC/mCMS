@@ -4,6 +4,8 @@ class Devise::RegistrationsController < DeviseController
   prepend_before_action :set_minimum_password_length, only: [:new, :edit]
   prepend_before_action :check_captcha, only: [:create] if ENV['RECAPTCHA_PUBLIC_KEY'].present? # Change this to be any actions you want to protect.
   # GET /resource/sign_up
+
+  include ApplicationHelper
   def new
     if @enabled_modules.include?('user_subscription')
       build_resource({})
@@ -42,6 +44,31 @@ class Devise::RegistrationsController < DeviseController
   # GET /resource/edit
   def edit
     @core_demographic = User.current.core_demographic || CoreDemographic.new(user_id: User.current.id)
+    if User.current.can?(:manage_roles)
+      if module_enabled?( 'languages')
+        @languages = Language.for_status params[:status_type]
+      end
+
+      if module_enabled?( 'contacts')
+        scope = Contact.visible
+        scope = case params[:status_type]
+                  when 'all' then scope.all_data
+                  when 'opened' then scope.opened
+                  when 'closed' then scope.closed
+                  when 'flagged' then scope.flagged
+                  else
+                    scope.opened
+                end
+        @contacts = scope
+      end
+
+      if module_enabled?( 'documents')
+        @documents = Document.for_profile.for_status params[:status_type]
+      end
+      # if module_enabled?( 'related_clients')
+      #   @related_clients = RelatedClient.visible
+      # end
+    end
     respond_to do |format|
       format.html{
         render :edit

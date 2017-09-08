@@ -9,16 +9,7 @@ class InjuriesController < UserProfilesController
 # GET /injuries
 # GET /injuries.json
   def index
-    scope = Injury.visible
-    scope = case params[:status_type]
-              when 'all' then scope.all_data
-              when 'opened' then scope.opened
-              when 'closed' then scope.closed
-              when 'flagged' then scope.flagged
-              else
-                scope.all_data
-            end
-    @injuries = scope
+    @injuries = Injury.for_status params[:status_type]
   end
 
 # GET /injuries/1

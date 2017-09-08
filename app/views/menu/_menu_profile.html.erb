@@ -1,43 +1,11 @@
 <% if !User.current.allowed_to?(:manage_roles) %>
     <li class="<%= menu_active?('profile_record') %> ">
-      <a href= "/profile_record" title="Profile record"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Profile record</span></a>
+      <a href= "/profile_record" title="Profile record"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Client Profile</span></a>
     </li>
 
 
 <% else %>
-    <li>
-      <a href="#" id="ul_profile"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Profile</span></a>
-      <ul id="profile_menu">
-        <li class="<%= menu_active?('devise/registrations') %>">
-          <a href= "/users/edit" title="<%= t('profile.my_profile') %>"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent"><%= t('profile.my_profile') %></span></a>
-        </li>
-
-        <% if module_enabled?( 'languages')  %>
-            <li class="<%= menu_active?('languages') %>">
-              <a href="/languages" title="<%= t(:my_languages) %>"><i class="fa fa-lg fa-fw fa-language"></i> <span class="menu-item-parent"><%= t(:my_languages) %></span></a>
-            </li>
-        <% end %>
-
-        <% if module_enabled?( 'contacts') %>
-            <li class="<%= menu_active?('contacts') %>">
-              <a href="/contacts" title="<%= t(:my_contacts) %>"><i class="fa fa-lg fa-fw fa-sitemap"></i> <span class="menu-item-parent"><%= t(:my_contacts) %></span></a>
-            </li>
-        <% end %>
-        <% if module_enabled?( 'affiliations')   %>
-            <li class="<%= menu_active?('affiliations') %>">
-              <a href="/affiliations" title="<%= t(:my_affiliations) %>"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent"><%= t(:my_affiliations) %></span></a>
-            </li>
-        <% end %>
-        <% if module_enabled?( 'documents')  %>
-            <li class="<%= menu_active?('client_documents') %>">
-              <a href="/client_documents" title="<%= t(:my_documents) %>"><i class="fa fa-lg fa-fw fa-book"></i> <span class="menu-item-parent"><%= t(:my_documents) %></span></a>
-            </li>
-        <% end %>
-        <% if module_enabled?( 'related_clients')  %>
-            <li class="<%= menu_active?('related_clients') %>">
-              <a href="/related_clients" title="<%= t(:my_related_clients) %>"><i class="fa fa-lg fa-fw fa-users"></i> <span class="menu-item-parent"><%= t(:my_related_clients) %></span></a>
-            </li>
-        <% end %>
-      </ul>
+    <li class="<%= menu_active?('devise/registrations') %>">
+      <a href= "/users/edit" title="<%= t('profile.my_profile') %>"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent"><%= t('profile.my_profile') %></span></a>
     </li>
 <% end %>

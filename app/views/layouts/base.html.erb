@@ -1,60 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us" class="<%= Setting.theme_style(User.current.can?(:manage_role) ) %>">
-<head>
-  <meta charset="utf-8">
-  <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
-
-  <title> <%= Setting['application_name'] %> </title>
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-  <!-- Basic Styles -->
-  <%= csrf_meta_tags %>
-
-  <% if params[:controller].include? "thredded" %>
-      <%= stylesheet_link_tag 'thredded', 'data-turbolinks-track'=> 'reload' %>
-  <% end %>
-     <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track'=> 'reload' %>
-      <%= javascript_include_tag 'application', 'data-turbolinks-track'=> 'reload' %>
-
-  <% if params[:action].in?(['all_files', 'show']) %>
-      <%= stylesheet_link_tag  'lightbox2', media: 'screen' %>
-      <%= javascript_include_tag 'lightbox2', 'data-turbolinks-track'=> 'reload' %>
-  <% end %>
-
-  <meta name="turbolinks-cache-control" content="no-cache">
-  <style>
-    .smart-style-5
-    {
-      background: url(/assets/glass.jpg) no-repeat center center fixed;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
-    }
-  </style>
-
-  <!-- We recommend you use "your_style.css" to override SmartAdmin
-       specific styles this will also ensure you retrain your customization with each SmartAdmin update.
-  <link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
-
-  <!-- FAVICONS -->
-  <%= favicon_link_tag 'favicon.ico' %>
-
-
-  <!-- Specifying a Webpage Icon for Web Clip
-
-  <!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-
-</head>
-
-
-
+<%= render partial: 'shared/head' %>
 <!-- #BODY -->
 <!-- Possible Classes
 
@@ -111,17 +57,17 @@
   <%= render partial: 'shared/footer' %>
 </div>
 <!-- END PAGE FOOTER -->
-    <%= javascript_include_tag 'smart_admin/smart_admin' %>
+<%= javascript_include_tag 'smart_admin/smart_admin' %>
 
 <script>
-    $(document).ready(function() {
-      toastr.options = {
-        "progressBar": true,
-        "timeOut": "20000"
-      }
-        // DO NOT REMOVE : GLOBAL FUNCTIONS!
-        pageSetUp();
-    });
+  $(document).ready(function() {
+    toastr.options = {
+      "progressBar": true,
+      "timeOut": "20000"
+    }
+    // DO NOT REMOVE : GLOBAL FUNCTIONS!
+    pageSetUp();
+  });
 </script>
 
 </body>

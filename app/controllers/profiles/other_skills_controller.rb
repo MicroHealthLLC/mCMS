@@ -9,17 +9,7 @@ class OtherSkillsController < UserProfilesController
   # GET /other_skills
   # GET /other_skills.json
   def index
-    scope = OtherSkill.visible
-    scope = case params[:status_type]
-              when 'all' then scope.all_data
-              when 'opened' then scope.opened
-              when 'closed' then scope.closed
-              when 'flagged' then scope.flagged
-              else
-                scope.all_data
-            end
-
-    @other_skills = scope
+    @other_skills = OtherSkill.for_status params[:status_type]
   end
 
   # GET /other_skills/1

@@ -1,53 +1,7 @@
-<html lang="en-us" class="<%= Setting.theme_style %>">
-<head>
-  <meta charset="utf-8">
-  <!--<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">-->
+<html lang="en-us" class="<%=  Setting.theme_style(User.current.can?(:manage_role) ) %>">
+<%= render partial: 'shared/head' %>
 
-  <title> <%= Setting['application_name'] %> </title>
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-  <!-- Basic Styles -->
-  <%= csrf_meta_tags %>
-  <%= stylesheet_link_tag 'thredded', 'data-turbolinks-track'=> 'reload' %>
-  <%= stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track'=> 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track'=> 'reload' %>
-
-  <meta name="turbolinks-cache-control" content="no-cache">
-  <style>
-    .smart-style-5
-    {
-      background: url(/assets/glass.jpg) no-repeat center center fixed;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
-    }
-  </style>
-
-  <!-- We recommend you use "your_style.css" to override SmartAdmin
-       specific styles this will also ensure you retrain your customization with each SmartAdmin update.
-  <link rel="stylesheet" type="text/css" media="screen" href="css/your_style.css"> -->
-
-  <!-- FAVICONS -->
-  <%= favicon_link_tag 'favicon.ico' %>
-
-
-  <!-- Specifying a Webpage Icon for Web Clip
-
-  <!-- iOS web-app metas : hides Safari UI Components and Changes Status Bar Appearance -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-
-
-</head>
-
-
-
-
-<body style="width:100%; height:100%; margin:0px; padding:0px;" onload="setupDocs();" onunload="saveMHTextEditor();"  class="<%= Setting.theme.values.join(' ') %>" data-user-id="<%= user_signed_in? ? current_user.id : ''  %>">
+<body style="width:100%; height:85vh; margin:0px; padding:0px;" onload="setupDocs();" onunload="saveMHTextEditor();"  class="<%=  Setting.theme(User.current.can?(:manage_role)).values.join(' ') %>" data-user-id="<%= user_signed_in? ? current_user.id : ''  %>">
 
 <!-- HEADER -->
 <%= render partial: 'shared/header' %>

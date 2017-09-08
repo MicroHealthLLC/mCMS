@@ -1,15 +1,16 @@
-<% modules = ['educations', 'other_skills',
-              'certifications', 'clearances', 'positions',
-              'injuries', 'worker_compensations', 'job_applications',
-              'resumes', 'military_histories'
-]
-%>
-<% if can_view_submenu?(modules) %>
+<% unless User.current.allowed_to?(:manage_roles) %>
+    <% modules = ['educations', 'other_skills',
+                  'certifications', 'clearances', 'positions',
+                  'injuries', 'worker_compensations', 'job_applications',
+                  'resumes', 'military_histories'
+    ]
+    %>
+    <% if can_view_submenu?(modules) %>
+        <% if module_enabled?( 'occupational_record') %>
+            <li class="<%= menu_active?('profile_record') %> ">
+              <a href= "/occupational_record" title="Occupational History"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Occupational History</span></a>
+            </li>
+        <% end %>
 
-    <% if module_enabled?( 'occupational_record') %>
-        <li class="<%= menu_active?('profile_record') %> ">
-          <a href= "/occupational_record" title="Occupational record"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Occupational record</span></a>
-        </li>
     <% end %>
-
 <% end %>

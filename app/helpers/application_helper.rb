@@ -27,8 +27,17 @@ module ApplicationHelper
       tabs << {:name => 'organization', :partial => 'devise/registrations/shared/job_detail', :label => :organization}
     end
     tabs << {:name => 'signature', :partial => 'devise/registrations/shared/signature', :label => :signature}
-    if can?(:manage_roles, :view_related_clients, :manage_related_clients)
-      # tabs << {:name => 'related_client', :partial => 'devise/registrations/shared/related_client', :label => :related_client}
+    if @languages
+      tabs<<  {:name => 'languages', :partial => 'user_profiles/profile_record/languages', :label => :languages}
+    end
+    if @contacts
+      tabs<<  {:name => 'contact', :partial => 'user_profiles/profile_record/contact', :label => :contact}
+    end
+    if @documents
+      tabs<<  {:name => 'document', :partial => 'user_profiles/profile_record/document', :label => :document}
+    end
+    if @related_clients
+      tabs << {:name => 'related_client', :partial => 'devise/registrations/shared/related_client', :label => :related_client}
     end
     tabs
   end

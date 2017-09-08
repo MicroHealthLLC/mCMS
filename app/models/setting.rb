@@ -23,7 +23,9 @@ class Setting < ApplicationRecord
   # cached_cleared_on = Time.now
 
   def self.theme(use_admin=true)
-    use_admin ?  admin : client
+    return @theme_style if @theme_style
+    @theme_style = use_admin ?  admin : client
+    @theme_style
   end
 
   def self.admin
@@ -41,6 +43,7 @@ class Setting < ApplicationRecord
 
 
   def self.get_theme
+    return @theme if @theme
     @theme ||=  User.current.can?(:manage_role) ? admin_theme : client_theme
     @theme
   end

@@ -15,7 +15,7 @@
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div id="notification_tabs">
             <ul id="nav">
-              <% tabs.keys.each do |tab| -%>
+              <% tabs.keys.sort.each do |tab| -%>
                   <li><a id="link-tabs-modules" href="<%=  "#tabs-#{tab }" %>"><%= tab %></a></li>
               <% end -%>
             </ul>

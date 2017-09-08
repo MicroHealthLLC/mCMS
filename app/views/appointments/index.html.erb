@@ -4,7 +4,7 @@
     <%= link_to 'CALENDAR', calendar_appointments_path, class: 'btn btn-primary primary-tab' if can?(:manage_roles, :manages_appointments, :view_appointments) %>
     <%= link_to 'PRINT', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'btn btn-primary secondary-tab' %>
   </div>
-  <% if can?(:create_appointments, :manage_roles, :manage_appointments) %>
+  <% if false && can?(:create_appointments, :manage_roles, :manage_appointments) %>
       <div class="btn-group pull-right btn-edition">
         <button class="btn btn-primary">
           Add Appointment For
