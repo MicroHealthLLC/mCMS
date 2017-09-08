@@ -4,23 +4,56 @@
 
 $mh-blue: #3276b1;
 $mh-green: #5492f7;
-// $mh-green: #40ac2b;
 $mh-orange: #80affc;
 
-@media only screen and (min-device-width : 375px) and (max-device-width : 667px) {
-  .module-title {
-    text-align: center;
+/* ----------- iPhone 5 and 5S ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .module-title {
+      text-align: center;
+    }
+    button.dropdown-toggle {
+      padding: .7em;
+      font-size: .7em;
+    }
+    .primary-tab, .secondary-tab {
+      padding: .7em;
+      font-size: .7em;
+    }
+}
+
+/* ----------- iPhone 6 ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .module-title {
+      text-align: center;
+    }
+    button.dropdown-toggle {
+      padding: .8em;
+      font-size: .8em;
+    }
+    .primary-tab, .secondary-tab {
+      padding: .8em;
+      font-size: .8em;
+    }
+}
+
+/* ----------- Laptops ----------- */
+
+@media only screen and (min-width: 768px) {
+  button.dropdown-toggle, .primary-tab, .secondary-tab {
+    padding: 10px 15px;
+    letter-spacing: 2px;
   }
-  button.dropdown-toggle {
-    padding: 8px 13px;
-    font-size: 11px;
-  }
-  .primary-tab, .secondary-tab {
-    margin-left: 0px;
-    padding: 8px 13px;
-    font-size: 11px;
-  }
- }
+}
 
 .module-title-text {
   color: $mh-blue;
@@ -36,20 +69,11 @@ $mh-orange: #80affc;
 }
 
 .primary-tab {
-  padding: 10px 15px;
   background-color: $mh-green;
-  letter-spacing: 2px;
 }
 
 .secondary-tab {
-  padding: 10px 15px;
   background-color: $mh-orange;
-  letter-spacing: 2px;
-}
-
-button.dropdown-toggle {
-  padding: 10px 15px;
-  letter-spacing: 2px;
 }
 
 ul#dropdown-links {
