@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Svg edit</title>
+  <%= stylesheet_link_tag    "svg_edit/application", media: "all" %>
+  <%= javascript_include_tag "svg_edit/application" %>
+  <%= csrf_meta_tags %>
+  <%= render partial: 'svg_style' %>
+</head>
+<body>
+
+<%= yield %>
+
+</body>
+</html>
