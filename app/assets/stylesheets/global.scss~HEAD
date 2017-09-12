@@ -1,0 +1,71 @@
+// Place all the styles related to the overdue controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+hello
+$mh-blue: #3276b1;
+$mh-green: #5492f7;
+// $mh-green: #40ac2b;
+$mh-orange: #80affc;
+
+@media only screen and (min-device-width : 375px) and (max-device-width : 667px) {
+  .module-title {
+    text-align: center;
+  }
+  button.dropdown-toggle {
+    padding: 8px 13px;
+    font-size: 11px;
+  }
+  .primary-tab, .secondary-tab {
+    margin-left: 0px;
+    padding: 8px 13px;
+    font-size: 11px;
+  }
+ }
+
+.module-title-text {
+  color: $mh-blue;
+  letter-spacing: 2px;
+}
+
+.tabs-section {
+  padding-left: 0px;
+}
+
+.tabs-section button:first-child {
+  margin-left: 0px;
+}
+
+.primary-tab {
+  padding: 10px 15px;
+  background-color: $mh-green;
+  letter-spacing: 2px;
+}
+
+.secondary-tab {
+  padding: 10px 15px;
+  background-color: $mh-orange;
+  letter-spacing: 2px;
+}
+
+button.dropdown-toggle {
+  padding: 10px 15px;
+  letter-spacing: 2px;
+}
+
+ul#dropdown-links {
+  background-color: #3276b1;
+}
+
+ul#dropdown-links li {
+  padding: 1px 10px;
+}
+
+ul#dropdown-links a{
+  display: inline-block;
+  color: #f5f5f5;
+}
+
+.dropdown-item-dividier {
+  margin: 5px 11px;
+  border-bottom: 1px solid skyblue;
+}

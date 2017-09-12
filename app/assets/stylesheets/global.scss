@@ -2,28 +2,63 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-$mh-blue: #3276b1;
-$mh-green: #5492f7;
-// $mh-green: #40ac2b;
-$mh-orange: #80affc;
+$mh-blue1: #3276b1;
+$mh-blue2: #80affc;
+$mh-blue3: #5492f7;
+$mh-white: #f5f5f5;
+$mh-black: black;
 
-@media only screen and (min-device-width : 375px) and (max-device-width : 667px) {
-  .module-title {
-    text-align: center;
+/* ----------- iPhone 5 and 5S ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 320px)
+  and (max-device-width: 568px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .module-title {
+      text-align: center;
+    }
+    // button.dropdown-toggle {
+    //   padding: .7em;
+    //   font-size: .7em;
+    // }
+    .filter-tab, .actions-tab {
+      padding: .7em;
+      font-size: .7em;
+    }
+}
+
+/* ----------- iPhone 6 ----------- */
+
+/* Portrait and Landscape */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .module-title {
+      text-align: center;
+    }
+    // button.dropdown-toggle {
+    //   padding: .8em;
+    //   font-size: .8em;
+    // }
+    .filter-tab, .actions-tab {
+      padding: .8em;
+      font-size: .8em;
+    }
+}
+
+/* ----------- Laptops ----------- */
+
+@media only screen and (min-width: 768px) {
+  .filter-tab, .actions-tab {
+    padding: 10px 15px;
+    letter-spacing: 2px;
   }
-  button.dropdown-toggle {
-    padding: 8px 13px;
-    font-size: 11px;
-  }
-  .primary-tab, .secondary-tab {
-    margin-left: 0px;
-    padding: 8px 13px;
-    font-size: 11px;
-  }
- }
+}
 
 .module-title-text {
-  color: $mh-blue;
+  color: $mh-blue1;
   letter-spacing: 2px;
 }
 
@@ -35,34 +70,32 @@ $mh-orange: #80affc;
   margin-left: 0px;
 }
 
-.primary-tab {
-  padding: 10px 15px;
-  background-color: $mh-green;
-  letter-spacing: 2px;
+.filter-tab {
+  background-color: $mh-blue1;
 }
 
-.secondary-tab {
-  padding: 10px 15px;
-  background-color: $mh-orange;
-  letter-spacing: 2px;
+.actions-tab {
+  background-color: $mh-blue2;
 }
 
-button.dropdown-toggle {
-  padding: 10px 15px;
-  letter-spacing: 2px;
+ul.dropdown-links {
+  background-color: $mh-blue3;
 }
 
-ul#dropdown-links {
-  background-color: #3276b1;
-}
-
-ul#dropdown-links li {
+ul.dropdown-links li {
+  display: inline;
   padding: 1px 10px;
 }
 
-ul#dropdown-links a{
+ul.dropdown-links a{
   display: inline-block;
-  color: #f5f5f5;
+  color: $mh-white;
+}
+
+ul.dropdown-links a:hover{
+  color: $mh-black;
+  font-style: italic;
+  background-color: transparent;
 }
 
 .dropdown-item-dividier {
