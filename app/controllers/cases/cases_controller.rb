@@ -33,6 +33,12 @@ class CasesController < UserCasesController
                 end
         @cases = scope
       }
+      format.csv{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        json = CaseDatatable.new(view_context, options).as_json
+        send_data Case.to_csv(json[:data]), filename: "case-#{Date.today}.csv"
+      }
       format.json{
         options = Hash.new
         options[:subcases] = false

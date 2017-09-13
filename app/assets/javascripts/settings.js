@@ -61,9 +61,9 @@ function initDataTable(table_id)
         "bDestroy": true,
         "sDom": "<'dt-toolbar'" +
         "<'col-sm-5 col-xs-8'f>" + //search box
-        "<'col-sm-2 col-sm-offset-2 col-xs-2 'C>"+// drop down size
-        "<'col-sm-2 col-xs-2 'T>"+// drop down size
-        "<'col-sm-1 col-xs-2 'l>>"+// drop down size
+        "<'col-sm-2 col-sm-offset-2 col-xs-2 'C>"+// drop down column hide
+        "<'col-sm-2 col-xs-2 'T>"+// buttons export
+        "<'col-sm-1 col-xs-2 'l>>"+// length
         "t"+ // the table
         "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
         "iDisplayLength": 10

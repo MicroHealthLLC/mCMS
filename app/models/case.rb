@@ -65,6 +65,13 @@ class Case < ApplicationRecord
     output.html_safe
   end
 
+  def self.csv_attributes
+    ['Client', 'Title', 'Priority',
+     'Type', 'Status', 'Category',
+     'Case Source', 'Date start',
+     'Date end']
+  end
+
 
   def priority_type
     if priority_id

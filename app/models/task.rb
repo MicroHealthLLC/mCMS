@@ -36,6 +36,10 @@ class Task < ApplicationRecord
         references(:case, :task_type, :task_status_type)
   end
 
+  def self.csv_attributes
+    ['Client', 'Title', 'Case', 'Type', 'Status', 'Date start', 'Date end']
+  end
+
 
   def self.enumeration_columns
     [

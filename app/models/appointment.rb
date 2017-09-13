@@ -39,6 +39,10 @@ class Appointment < ApplicationRecord
     ]
   end
 
+  def self.csv_attributes
+    %w(client title type status date)
+  end
+
   def to_s
     title
   end

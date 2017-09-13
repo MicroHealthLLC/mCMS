@@ -17,6 +17,10 @@
   </tbody>
 </table>
 <script>
+  function startExport(url, oParam) {
+    url2 = url + $.param(oParam);
+    window.open(url2,'_blank');
+  }
   $(document).ready(function(){
     var table = $('#tasks_table').DataTable({
       "ajax": "<%= tasks_path(format: :json, status_type: params[:status_type]) %>",
@@ -25,6 +29,24 @@
       responsive: true,
       display: [[0, 'asc']],
       "bDestroy": true,
+      "oTableTools": {
+        "sSwfPath": "swf/copy_cvs_xls_pdf.swf",
+        "aButtons": [
+          {
+            "sExtends": "ajax",
+            "sButtonText": "CSV",
+            "sUrl": window.location.href,
+            "fnClick": function (nButton, oConfig) {
+              var oParams = this.s.dt.oApi._fnAjaxParameters(this.s.dt);
+              arr = oConfig.sUrl.split('/');
+              arr.pop();
+              link = arr.join('/');
+              url =  "<%= tasks_path(format: :csv) %>?";
+              startExport(url, oParams);
+            }
+          }
+        ]
+      },
       "columns": [
         <% if User.current.can?(:manage_roles) %>
         { "searchable": true, "orderable": true },
@@ -38,8 +60,9 @@
       ],
       "sDom": "<'dt-toolbar'" +
       "<'col-sm-5 col-xs-8'f>" + //search box
-      "<'col-sm-2 col-sm-offset-4 col-xs-2 'C>"+// drop down size
-      "<'col-sm-1 col-xs-2 'l>>"+// drop down size
+      "<'col-sm-2 col-sm-offset-2 col-xs-2 'C>"+// drop down column hide
+      "<'col-sm-2 col-xs-2 'T>"+// buttons export
+      "<'col-sm-1 col-xs-2 'l>>"+// length
       "t"+ // the table
       "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
       "iDisplayLength": 10

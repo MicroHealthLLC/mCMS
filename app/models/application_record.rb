@@ -54,6 +54,23 @@ class ApplicationRecord < ActiveRecord::Base
     scope
   end
 
+  def self.to_csv(data)
+    attributes =  csv_attributes
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+
+      data.each do |d|
+        csv << d.map{|str| ActionView::Base.full_sanitizer.sanitize(str.to_s)}
+      end
+    end
+  end
+
+  def self.csv_attributes
+     %w()
+  end
+
+
   def can?(*args)
     User.current_user.admin? or User.current_user.can?(:manage_roles) or (owner? and args.map{|action| User.current.allowed_to? action }.include?(true) )
   end

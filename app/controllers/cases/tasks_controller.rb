@@ -12,6 +12,12 @@ class TasksController < UserCasesController
   def index
     respond_to do |format|
       format.html{}
+      format.csv{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        json =  TaskDatatable.new(view_context, options).as_json
+        send_data Task.to_csv(json[:data]), filename: "actions-#{Date.today}.csv"
+      }
       format.pdf{
         scope = Task.root
         scope = case params[:status_type]
