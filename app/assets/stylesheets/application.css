@@ -13,7 +13,6 @@
   *= require bootstrap.min.css
   *= require font-awesome.min.css
   *= require bootstrap-social
-  *= require overdue.scss
 
   <!-- SmartAdmin Styles : Caution! DO NOT change the order -->
   *= require smartadmin-production-plugins.min.css
@@ -32,6 +31,9 @@
   *= require style.css
   *= require easy-autocomplete.min
   *= require devise_authy
+
+  <!-- Scoped Style -->
+  *= require layouts.scss
 
   <!-- Application-wide Style -->
   *= require global.scss
