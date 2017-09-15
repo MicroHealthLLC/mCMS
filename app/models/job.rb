@@ -51,8 +51,12 @@ class Job < ApplicationRecord
   end
 
   def to_pdf(pdf, show_user = true)
-    pdf.table([[" Job Application "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
+    pdf.table([[" Job  "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Title: ", " #{title}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Employer: ", " #{employer}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Application Stage: ", " #{application_stage}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Position Type: ", " #{position_type}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Application Status: ", " #{application_status}"]], :column_widths => [ 150, 373])
   end
 
 end

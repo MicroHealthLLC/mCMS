@@ -40,6 +40,11 @@ class JobApp < ApplicationRecord
     user.to_pdf_brief_info(pdf) if show_user
     pdf.table([[" Job Application "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Title: ", " #{title}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Application state: ", " #{app_state.to_s}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
+    jobs.each do |job|
+      job.to_pdf(pdf)
+    end
   end
 
   def can_send_email?
@@ -50,6 +55,9 @@ class JobApp < ApplicationRecord
     output = ""
     output<< "<h2>Job Application ##{id} </h2><br/>"
     output<<"<b>Title : </b> #{title}<br/>"
+    output<<"<b>Occupation : </b> #{occupation}<br/>"
+    output<<"<b>Application state : </b> #{app_state}<br/>"
+    output<<"<b>Description : </b> #{description.html_safe}<br/>"
     output.html_safe
   end
 
