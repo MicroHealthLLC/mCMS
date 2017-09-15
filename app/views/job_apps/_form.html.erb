@@ -1,0 +1,91 @@
+
+<div class="row">
+  <div class="col-xs-12 col-md-12">
+    <fieldset>
+      <legend></legend>
+      <%= form_for(job_app, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+          <% if job_app.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(job_app.errors.count, "error") %> prohibited this Injury from being saved:</h2>
+
+                <ul>
+                  <% job_app.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
+
+          <%= f.hidden_field :user_id %>
+          <div class="form-group">
+            <%= f.label t(:title), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= text_field_tag :snomed, f.object.title,  class: 'form-control' , placeholder: 'Type to Search' %>
+              <%= f.hidden_field :title %>
+              <script>
+                $(document).ready(function(){
+                  $('#snomed').autocomplete({
+                    source: "/snomed.json?default=occupation",
+                    minLength: 2,
+                    select: function( event, ui ) {
+                      $('#job_app_title').val(ui.item.id)
+                    }
+                  })
+                })
+              </script>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :occupation, class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= text_field_tag :occupation, f.object.occupation,  class: 'form-control' %>
+              <%= f.hidden_field :occupation_id %>
+              <script>
+                $(document).ready(function(){
+                  $('#occupation').autocomplete({
+                    source: "/occupation.json?",
+                    minLength: 2,
+                    select: function( event, ui ) {
+                      $('#job_app_occupation_id').val(ui.item.id)
+                    }
+                  })
+                })
+              </script>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :description, class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_area :description , class: 'form-control ck-editor' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :application_state , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :app_state_id, options_for_select(AppState.active.pluck(:name, :id), f.object.app_state.try(:id) ),{} , {class: 'form-control'} %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-12">
+              <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+            </div>
+            <%= f.simple_fields_for :job_app_attachments do |attachment| %>
+                <%= render 'attachments/attachment_show', :f => attachment %>
+            <% end %>
+            <div id="attachment_fields" class="col-md-2 margin-top-10 " style="padding-right: 2px;" >
+              <%= link_to_add_association 'add file', f, :job_app_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+            </div>
+          </div>
+
+          <div class="form-group" >
+            <div class="col-md-11">
+              <%= link_to t('button_cancel'), job_apps_path, class: 'btn btn-warning pull-right' %>
+              <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
+            </div>
+          </div>
+      <% end %>
+    </fieldset>
+  </div>
+</div>

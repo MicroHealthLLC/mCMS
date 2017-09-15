@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :job_apps do
+    resources :jobs
+  end
   get 'exception_notifier/show'
 
   get 'sms/show', :as=> :show_sms
@@ -178,6 +181,7 @@ Rails.application.routes.draw do
   resources :appointment_notes, except: [:index], controller: :notes
   resources :document_notes, except: [:index], controller: :notes
   resources :referral_notes, except: [:index], controller: :notes
+  resources :job_app_notes, except: [:index], controller: :notes
   resources :client_journal_notes, except: [:index], controller: :notes
   resources :attempt_notes, controller: :notes
   resources :notes do

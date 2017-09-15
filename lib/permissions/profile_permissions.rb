@@ -29,12 +29,12 @@ RedCarpet::AccessControl.map do |map|
   end
 
   map.project_module :job_applications do |map|
-    map.permission :view_job_applications, {:job_applications => [:index]},  :read => true
-    map.permission :show_job_applications, {:job_applications => [:show]},  :read => true
-    map.permission :create_job_applications, {:job_applications => [:new, :create]},  :read => true
-    map.permission :edit_job_applications, {:job_applications => [:edit, :update]},  :read => true
-    map.permission :delete_job_applications, {:job_applications => [:destroy]},  :read => true
-    map.permission :manage_job_applications, {:job_applications => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :view_job_applications, {:job_apps => [:index]},  :read => true
+    map.permission :show_job_applications, {:job_apps => [:show], :jobs => [:index, :show]},  :read => true
+    map.permission :create_job_applications, {:job_apps => [:new, :create], :jobs => [:new, :create]},  :read => true
+    map.permission :edit_job_applications, {:job_apps => [:edit, :update], :jobs => [:edit, :update]},  :read => true
+    map.permission :delete_job_applications, {:job_apps => [:destroy], :jobs => [:destroy]},  :read => true
+    map.permission :manage_job_applications, {:job_apps => [:index, :show, :new, :create, :edit, :update, :destroy], :jobs => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :jsignatures do |map|

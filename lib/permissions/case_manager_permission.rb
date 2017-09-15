@@ -31,6 +31,8 @@ RedCarpet::AccessControl.map do |map|
         :injuries => [:index, :show, :new, :create, :edit, :update, :destroy],
         :worker_compensations => [:index, :show, :new, :create, :edit, :update, :destroy],
         :job_applications => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :job_apps => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :jobs => [:index, :show, :new, :create, :edit, :update, :destroy],
         :positions => [:index, :show, :new, :create, :edit, :update, :destroy],
         :admissions => [:index, :show, :new, :create, :edit, :update, :destroy],
         :housings => [:index, :show, :new, :create, :edit, :update, :destroy],

@@ -1,0 +1,31 @@
+<table class="table table-responsive" id="job_application_table">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Employer</th>
+    <th>Application stage</th>
+    <th>Position type</th>
+    <th>Date</th>
+    <th>Application status</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @jobs.each do |job| %>
+      <tr>
+        <td><%= link_to job.title, job_app_job_path(@job_app, job) %></td>
+        <td><%= job.employer %></td>
+        <td><%= job.application_stage %></td>
+        <td><%= job.position_type %></td>
+        <td><%= job.date %></td>
+        <td><%= job.application_status %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+    initDataTable('job_application_table')
+  })
+</script>

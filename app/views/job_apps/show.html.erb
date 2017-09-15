@@ -1,0 +1,64 @@
+<%= render partial: 'action_menu' %>
+
+<div class="row">
+  <div class="col-xs-12">
+    <p>
+      <strong>Title:</strong>
+      <%= @job_app.title %>
+    </p>
+
+    <p>
+      <strong>Occupation:</strong>
+      <%= @job_app.occupation %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @job_app.description.html_safe %>
+    </p>
+
+    <p>
+      <strong>App state:</strong>
+      <%= @job_app.app_state %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @job_app.job_app_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+
+  </div>
+  
+  
+</div>
+<%= link_to( 'Add job', new_job_app_job_path(@job_app), class: 'btn btn-primary pull-right btn-edition') if can?(:create_job_applications, :manage_roles, :manage_job_applications) %>
+<section id="widget-grid" class="job_applications_section">
+  <%= render partial: 'state_button_filter'%>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'jobs/list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'job_application',
+                     wid_title: t('job_applications')
+                 } %>
+    </article>
+  </div>
+</section>
+
+
+<%= link_to( t('add_note'), new_note_path(type: 'JobAppNote', owner_id: @job_app.id), class: 'btn btn-primary pull-right btn-edition') if can?(:add_notes, :manage_roles) %>
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render partial: 'notes/list',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                   show_case_column: true,
+                   notes:  @job_app.job_app_notes,
+                   wid_id: 'notes',
+                   wid_title: t('notes')
+               } %>
+  </article>
+</div>

@@ -1,0 +1,11 @@
+<%= link_to(t('new_job_application'), new_job_app_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_job_applications, :manage_roles, :manage_job_applications) %>
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render partial: 'job_apps/list',
+               layout: 'shared/smart_widget_wrapper',
+               locals: {
+                   wid_id: 'job_application',
+                   wid_title: t('job_applications')
+               } %>
+  </article>
+</div>

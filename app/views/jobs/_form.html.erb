@@ -1,0 +1,82 @@
+
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <fieldset>
+      <legend></legend>
+      <%= form_for([@job_app, job], html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+          <% if job.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(job.errors.count, "error") %> prohibited this Injury from being saved:</h2>
+
+                <ul>
+                  <% job.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
+
+          <%= f.hidden_field :user_id %>
+          <%= f.hidden_field :job_app_id %>
+
+          <div class="form-group">
+            <%= f.label :title, class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :title , class: 'form-control' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :employer , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :employer, class: 'form-control' %>
+              <%= f.hidden_field :location_lat, class: 'form-control' %>
+              <%= f.hidden_field :location_long, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :application_stage , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :application_stage_id, options_for_select(ApplicationStage.active.pluck(:name, :id), f.object.application_stage.try(:id) ),{} , {class: 'form-control'} %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :position_type , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :position_type_id, options_for_select(PositionType.active.pluck(:name, :id), f.object.position_type.try(:id) ),{} , {class: 'form-control'} %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :date , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :date, class: 'form-control date_picker' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :application_status , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :application_status_id, options_for_select(ApplicationStatus.active.pluck(:name, :id), f.object.application_status.try(:id) ),{} , {class: 'form-control'} %>
+            </div>
+          </div>
+
+          <div class="form-group" >
+            <div class="col-md-11">
+              <%= link_to t('button_cancel'), job_app_path(@job_app), class: 'btn btn-warning pull-right' %>
+              <%= f.submit t(:button_save), class: 'btn btn-primary pull-right' %>
+            </div>
+          </div>
+      <% end %>
+    </fieldset>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <%= render partial: 'map', locals: {
+        location: 'job_employer',
+        location_lat: 'job_location_lat',
+        location_long: 'job_location_long',
+        object: job
+
+    } %>
+  </div>
+</div>

@@ -445,6 +445,16 @@ en:
   selection_status: Selection Status
   interview_type: Job Interview Type
 
+  job_app: Job Application
+  new_job_app: New Job Application
+  edit_job_app: Edit Job Application
+  job_apps: Job Applications
+
+  job: Job Application
+  new_job: New Job Application
+  edit_job: Edit Job Application
+  jobs: Job Applications
+
   worker_compensation: Worker Comp
   new_worker_compensation: New Worker Comp
   edit_worker_compensation: Edit Worker Comp

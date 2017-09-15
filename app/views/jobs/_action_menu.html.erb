@@ -1,0 +1,9 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to( 'Delete', job_app_job_path(@job_app, @job), class: 'btn btn-danger pull-right',
+               :method => :delete,
+               :data => {:confirm => t(:text_are_you_sure)}) if @job.can?(:manage_roles, :manages_job_apps, :delete_job_apps)
+  %>
+  <%= link_to( 'Edit', edit_job_app_job_path(@job_app, @job), class: 'btn btn-success pull-right') if @job.can?(:manage_roles, :manages_job_apps, :edit_job_apps) %>
+  <%= link_to t('button_cancel'), job_app_path(@job_app), class: 'btn btn-warning pull-right' %>
+  <%#= link_to t('button_history_changes'), "/histories/#{@job.class}/#{@job.id}", class: 'btn btn-primary pull-right' %>
+</div>
