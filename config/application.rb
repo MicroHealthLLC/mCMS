@@ -26,6 +26,5 @@ module MHRM
 
     config.time_zone = "Pacific Time (US & Canada)"
     config.active_record.time_zone_aware_types = [:datetime, :time]
-
   end
 end
