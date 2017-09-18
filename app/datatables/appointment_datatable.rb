@@ -56,7 +56,7 @@ class AppointmentDatatable < AjaxDatatablesRails::Base
       records.map do |appointment|
         [
             "<b>#{appointment.user.to_s}<b/>".html_safe,
-            @view.link_to( appointment.title, @view.appointment_path(appointment) ),
+            @view.link_to_edit_if_can( appointment.title, {ctrl: :appointments, object: appointment }),
             appointment.appointment_type.to_s,
             appointment.appointment_status.to_s,
             appointment.start_time_to_time
@@ -65,7 +65,7 @@ class AppointmentDatatable < AjaxDatatablesRails::Base
     else
       records.map do |appointment|
         [
-            @view.link_to( appointment.title, @view.appointment_path(appointment) ),
+            @view.link_to_edit_if_can( appointment.title, {ctrl: :appointments, object: appointment }),
             appointment.appointment_type.to_s,
             appointment.appointment_status.to_s,
             appointment.start_time_to_time

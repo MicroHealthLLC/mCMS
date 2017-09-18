@@ -31,7 +31,7 @@ class TaskDatatable < AjaxDatatablesRails::Base
       records.map do |task|
         [
             "<b>#{task.user.to_s}<b/>".html_safe,
-            @view.link_to( task.title, task) ,
+            @view.link_to_edit_if_can( task.title, {ctrl: :tasks, object: task }) ,
             @view.link_to_case( task.case),
             task.task_type.to_s,
             task.task_status_type.to_s ,
@@ -42,7 +42,7 @@ class TaskDatatable < AjaxDatatablesRails::Base
     else
       records.map do |task|
         [
-            @view.link_to( task.title, task) ,
+            @view.link_to_edit_if_can(task.title, {ctrl: :tasks, object: task }) ,
             @view.link_to_case( task.case),
             task.task_type.to_s,
             task.task_status_type.to_s ,
