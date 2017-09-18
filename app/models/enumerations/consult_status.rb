@@ -1,5 +1,5 @@
 class ConsultStatus < Enumeration
-  has_many :teleconsults
+  has_many :contacts
 
   OptionName = :enumeration_consult_status
 

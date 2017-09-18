@@ -1,6 +1,5 @@
 class ApplicationStatus < Enumeration
-  has_many :job_applications
-
+  has_many :jobs
   OptionName = :enumeration_application_status
 
   def option_name
@@ -8,7 +7,7 @@ class ApplicationStatus < Enumeration
   end
 
   def objects
-    JobApplication.where(:application_status_id => self.id)
+    Job.where(:application_status_id => self.id)
   end
 
   def objects_count
