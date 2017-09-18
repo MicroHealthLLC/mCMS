@@ -1,9 +1,13 @@
 <div class="col-xs-12 btn-edition">
   <%= link_to( 'Delete', laboratory_examination_path(@laboratory_examination), class: 'btn btn-danger pull-right',
-              :method => :delete,
-              :data => {:confirm => t(:text_are_you_sure)})  if @laboratory_examination.can?(:delete_laboratory_examinations, :manage_laboratory_examinations, :manage_roles)
+               :method => :delete,
+               :data => {:confirm => t(:text_are_you_sure)})  if @laboratory_examination.can?(:delete_laboratory_examinations, :manage_laboratory_examinations, :manage_roles)
   %>
-  <%= link_to 'Edit', edit_laboratory_examination_path(@laboratory_examination), class: 'btn btn-success pull-right'   if @laboratory_examination.can?(:edit_laboratory_examinations, :manage_laboratory_examinations, :manage_roles)%>
+  <% if params[:action] == 'show' %>
+      <%= link_to 'Edit', edit_laboratory_examination_path(@laboratory_examination), class: 'btn btn-success pull-right'   if @laboratory_examination.can?(:edit_laboratory_examinations, :manage_laboratory_examinations, :manage_roles)%>
+  <% else %>
+      <%= link_to 'Show', laboratory_examination_path(@laboratory_examination), class: 'btn btn-success pull-right'   if @laboratory_examination.can?(:show_laboratory_examinations, :manage_laboratory_examinations, :manage_roles)%>
+  <% end %>
   <%= link_to t('button_cancel'), laboratory_examinations_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), laboratory_examination_path(@laboratory_examination, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to t('button_history_changes'), "/histories/#{@laboratory_examination.class}/#{@laboratory_examination.id}", class: 'btn btn-primary pull-right' %>

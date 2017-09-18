@@ -13,8 +13,8 @@
   <tbody>
   <% @problem_lists.each do |problem_list| %>
       <tr>
-        <td><%= link_to problem_list.name, problem_list %></td>
-        <td><%= link_to problem_list.snomed, problem_list %></td>
+        <td><%= link_to_edit_if_can problem_list.name, {ctrl: :problem_lists, object: problem_list } %></td>
+        <td><%= link_to_edit_if_can problem_list.snomed, {ctrl: :problem_lists, object: problem_list } %></td>
         <td><%= format_date problem_list.date_onset %></td>
         <td><%= format_date problem_list.date_resolved %></td>
         <td><%= problem_list.problem_status %></td>

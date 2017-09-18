@@ -3,7 +3,11 @@
                :method => :delete,
                :data => {:confirm => t(:text_are_you_sure)}) if @job_app.can?(:manage_roles, :manages_job_apps, :delete_job_apps)
   %>
-  <%= link_to( 'Edit', edit_job_app_path(@job_app), class: 'btn btn-success pull-right') if @job_app.can?(:manage_roles, :manages_job_apps, :edit_job_apps) %>
+  <% if params[:action] == 'show' %>
+      <%= link_to( 'Edit', edit_job_app_path(@job_app), class: 'btn btn-success pull-right') if @job_app.can?(:manage_roles, :manages_job_apps, :edit_job_apps) %>
+  <% else %>
+      <%= link_to( 'Show', job_app_path(@job_app), class: 'btn btn-success pull-right') if @job_app.can?(:manage_roles, :manages_job_apps, :show_job_apps) %>
+  <% end %>
   <%= link_to t('button_cancel'), job_apps_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), job_app_path(@job_app, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to t('button_history_changes'), "/histories/#{@job_app.class}/#{@job_app.id}", class: 'btn btn-primary pull-right' %>

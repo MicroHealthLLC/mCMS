@@ -10,7 +10,7 @@
   <tbody>
   <% @job_apps.each do |job_app| %>
       <tr>
-        <td><%= link_to job_app.title, job_app %></td>
+        <td><%= link_to_edit_if_can job_app.title, {ctrl: :job_apps, object: job_app } %></td>
         <td><%= job_app.occupation %></td>
         <td><%= job_app.app_state %></td>
         </tr>

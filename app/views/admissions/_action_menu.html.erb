@@ -3,7 +3,11 @@
               :method => :delete,
               :data => {:confirm => t(:text_are_you_sure)}) if @admission.can?(:delete_admissions, :manage_admissions, :manage_roles)
   %>
-  <%= link_to 'Edit', edit_admission_path(@admission), class: 'btn btn-success pull-right' if @admission.can?(:edit_admissions, :manage_admissions, :manage_roles) %>
+  <% if params[:action] == 'show' %>
+      <%= link_to 'Edit', edit_admission_path(@admission), class: 'btn btn-success pull-right' if @admission.can?(:edit_admissions, :manage_admissions, :manage_roles) %>
+  <% else %>
+      <%= link_to 'Show', admission_path(@admission), class: 'btn btn-success pull-right' if @admission.can?(:show_admissions, :manage_admissions, :manage_roles) %>
+  <% end %>
   <%= link_to t('button_cancel'), admissions_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), admission_path(@admission, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to t('button_history_changes'), "/histories/#{@admission.class}/#{@admission.id}", class: 'btn btn-primary pull-right' %>

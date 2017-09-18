@@ -15,8 +15,8 @@
   <tbody>
   <% @socioeconomics.each do |socioeconomic| %>
       <tr>
-        <td><%= link_to socioeconomic.name, socioeconomic %></td>
-        <td><%= link_to socioeconomic.snomed, socioeconomic %></td>
+        <td><%= link_to_edit_if_can socioeconomic.name, {ctrl: :socioeconomics, object: socioeconomic } %></td>
+        <td><%= link_to_edit_if_can socioeconomic.snomed, {ctrl: :socioeconomics, object: socioeconomic } %></td>
         <td><%= format_date socioeconomic.date_identified %></td>
         <td><%= format_date socioeconomic.date_resolved %></td>
         <td><%= socioeconomic.socioeconomic_status %></td>

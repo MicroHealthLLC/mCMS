@@ -3,7 +3,11 @@
                :method => :delete,
                :data => {:confirm => t(:text_are_you_sure)}) if @medication.can?(:manage_roles, :manages_medications, :delete_medications)
   %>
-  <%= link_to( 'Edit', edit_medication_path(@medication), class: 'btn btn-success pull-right') if @medication.can?(:manage_roles, :manages_medications, :edit_medications) %>
+  <% if params[:action] == 'show' %>
+      <%= link_to( 'Edit', edit_medication_path(@medication), class: 'btn btn-success pull-right') if @medication.can?(:manage_roles, :manages_medications, :edit_medications) %>
+  <% else %>
+      <%= link_to( 'Show', medication_path(@medication), class: 'btn btn-success pull-right') if @medication.can?(:manage_roles, :manages_medications, :show_medications) %>
+  <% end %>
   <%= link_to t('button_cancel'), medications_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), medication_path(@medication, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to t('button_history_changes'), "/histories/#{@medication.class}/#{@medication.id}", class: 'btn btn-primary pull-right' %>

@@ -12,7 +12,8 @@
   <tbody>
   <% @worker_compensations.each do |worker_compensation| %>
       <tr>
-        <td><%= link_to worker_compensation.injury.to_s, worker_compensation %></td>
+        <td><%= link_to_edit_if_can worker_compensation.injury.to_s, {ctrl: :worker_compensations, object:  worker_compensation } %></td>
+
         <td><%= worker_compensation.compensation_type %></td>
         <td><%= worker_compensation.compensation_status %></td>
         <td><%= format_date worker_compensation.date_of_compensation_start %></td>

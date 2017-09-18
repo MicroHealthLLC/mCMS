@@ -16,7 +16,7 @@
   <tbody>
       <% @positions.each do |position| %>
           <tr>
-            <td><%= link_to position.title, position %></td>
+            <td><%= link_to_edit_if_can position.title, {ctrl: :positions, object: position } %></td>
             <td><%= position.occupation %></td>
             <td><%= position.location_type %></td>
             <td><%= format_date position.date_start %></td>

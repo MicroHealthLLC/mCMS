@@ -12,7 +12,7 @@
 
   <% educations.each do |education| %>
       <tr>
-        <td><%= link_to education.education_type, education_path(education) %></td>
+        <td><%= link_to_edit_if_can  education.education_type, {ctrl: :educations, object:  education } %></td>
         <td><%= education.education_status %></td>
         <td><%= format_date education.date_recieved %></td>
         <td><%= format_date education.date_expired %></td>

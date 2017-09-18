@@ -17,7 +17,8 @@
   <tbody>
   <% tasks.each do |task| %>
       <tr>
-        <td><%= link_to task.title, task %></td>
+        <td><%= link_to_edit_if_can task.title, {ctrl: :tasks, object: task } %></td>
+
         <td><%= link_to_case task.case %></td>
         <td><%= task.task_type %></td>
         <td><%= task.task_status_type %></td>

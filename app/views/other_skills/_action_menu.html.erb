@@ -3,7 +3,11 @@
               :method => :delete,
               :data => {:confirm => t(:text_are_you_sure)})  if @other_skill.can?(:delete_other_skills, :manage_other_skills, :manage_roles)
   %>
-  <%= link_to 'Edit', edit_other_skill_path(@other_skill), class: 'btn btn-success pull-right'  if @other_skill.can?(:delete_other_skills, :manage_other_skills, :manage_roles) %>
+  <% if params[:action] == 'show' %>
+      <%= link_to 'Edit', edit_other_skill_path(@other_skill), class: 'btn btn-success pull-right'  if @other_skill.can?(:edit_other_skills, :manage_other_skills, :manage_roles) %>
+  <% else %>
+      <%= link_to 'Show', other_skill_path(@other_skill), class: 'btn btn-success pull-right'  if @other_skill.can?(:show_other_skills, :manage_other_skills, :manage_roles) %>
+  <% end %>
   <%= link_to t('button_cancel'), other_skills_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), other_skill_path(@other_skill, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to t('button_history_changes'), "/histories/#{@other_skill.class}/#{@other_skill.id}", class: 'btn btn-primary pull-right' %>

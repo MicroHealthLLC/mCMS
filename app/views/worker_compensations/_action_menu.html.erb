@@ -3,7 +3,11 @@
                :method => :delete,
                :data => {:confirm => t(:text_are_you_sure)}) if @worker_compensation.can?(:manage_roles, :manages_worker_compensations, :delete_worker_compensations)
   %>
-  <%= link_to( 'Edit', edit_worker_compensation_path(@worker_compensation), class: 'btn btn-success pull-right') if @worker_compensation.can?(:manage_roles, :manages_worker_compensations, :edit_worker_compensations) %>
+  <% if params[:action] == 'show' %>
+      <%= link_to( 'Edit', edit_worker_compensation_path(@worker_compensation), class: 'btn btn-success pull-right') if @worker_compensation.can?(:manage_roles, :manages_worker_compensations, :edit_worker_compensations) %>
+  <% else %>
+      <%= link_to( 'Show', worker_compensation_path(@worker_compensation), class: 'btn btn-success pull-right') if @worker_compensation.can?(:manage_roles, :manages_worker_compensations, :show_worker_compensations) %>
+  <% end %>
   <%= link_to t('button_cancel'), worker_compensations_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), worker_compensation_path(@worker_compensation, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to t('button_history_changes'), "/histories/#{@worker_compensation.class}/#{@worker_compensation.id}", class: 'btn btn-primary pull-right' %>

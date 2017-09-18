@@ -3,8 +3,12 @@
                :method => :delete,
                :data => {:confirm => t(:text_are_you_sure)}) if can?(:delete_teleconsults, :manage_teleconsults, :manage_roles)
   %>
-  <%= link_to 'Edit', edit_teleconsult_path(@teleconsult), class: 'btn btn-success pull-right' if can?(:edit_teleconsults, :manage_teleconsults, :manage_roles) %>
+  <% if params[:action] == 'show' %>
+      <%= link_to 'Edit', edit_teleconsult_path(@teleconsult), class: 'btn btn-success pull-right' if can?(:edit_teleconsults, :manage_teleconsults, :manage_roles) %>
+      <% else %>
+      <%= link_to 'Show', teleconsult_path(@teleconsult), class: 'btn btn-success pull-right' if can?(:show_teleconsults, :manage_teleconsults, :manage_roles) %>
+  <% end %>
   <%= link_to t('button_cancel'), @teleconsult.case, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), teleconsult_path(@teleconsult, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to t('button_history_changes'), "/histories/#{@teleconsult.class}/#{@teleconsult.id}", class: 'btn btn-primary pull-right' %>
- </div>
+</div>

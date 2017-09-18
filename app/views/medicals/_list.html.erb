@@ -14,8 +14,8 @@
   <tbody>
   <% @medicals.each do |medical| %>
       <tr>
-        <td><%= link_to medical.name, medical %></td>
-        <td><%= link_to medical.snomed, medical %></td>
+        <td><%= link_to_edit_if_can medical.name, {ctrl: :medicals, object: medical } %></td>
+        <td><%= link_to_edit_if_can medical.snomed, {ctrl: :medicals, object: medical } %></td>
         <td><%= medical.medical_facility %></td>
         <td><%= format_date medical.date_of_diagnosis %></td>
         <td><%= medical.medical_history_status %></td>

@@ -3,7 +3,11 @@
                :method => :delete,
                :data => {:confirm => t(:text_are_you_sure)}) if @injury.can?(:manage_roles, :manages_injuries, :delete_injuries)
   %>
-  <%= link_to( 'Edit', edit_injury_path(@injury), class: 'btn btn-success pull-right') if @injury.can?(:manage_roles, :manages_injuries, :edit_injuries) %>
+  <% if params[:action] == 'show' %>
+      <%= link_to( 'Edit', edit_injury_path(@injury), class: 'btn btn-success pull-right') if @injury.can?(:manage_roles, :manages_injuries, :edit_injuries) %>
+  <% else %>
+      <%= link_to( 'Show', injury_path(@injury), class: 'btn btn-success pull-right') if @injury.can?(:manage_roles, :manages_injuries, :show_injuries) %>
+  <% end %>
   <%= link_to t('button_cancel'), injuries_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), injury_path(@injury, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to t('button_history_changes'), "/histories/#{@injury.class}/#{@injury.id}", class: 'btn btn-primary pull-right' %>

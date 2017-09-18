@@ -3,7 +3,11 @@
               :method => :delete,
               :data => {:confirm => t(:text_are_you_sure)}) if @related_client.can?(:delete_related_clients, :manage_related_clients, :manage_roles)
   %>
- <%= link_to 'Edit', edit_related_client_path(@related_client), class: 'btn btn-success pull-right' if @related_client.can?(:edit_related_clients, :manage_related_clients, :manage_roles) %>
+  <% if params[:action] == 'show' %>
+      <%= link_to 'Edit', edit_related_client_path(@related_client), class: 'btn btn-success pull-right' if @related_client.can?(:edit_related_clients, :manage_related_clients, :manage_roles) %>
+  <% else %>
+      <%= link_to 'Show', related_client_path(@related_client), class: 'btn btn-success pull-right' if @related_client.can?(:show_related_clients, :manage_related_clients, :manage_roles) %>
+  <% end %>
   <%= link_to t('button_cancel'), '/users/edit', class: 'btn btn-warning pull-right' %>
   <%#= link_to t('button_print'), related_client_path(@related_client, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 </div>

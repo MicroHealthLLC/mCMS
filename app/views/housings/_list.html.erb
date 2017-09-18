@@ -13,7 +13,7 @@
   <tbody>
   <% @housings.each do |housing| %>
       <tr>
-        <td><%= link_to (housing.snomed || housing.id), housing %></td>
+        <td><%= link_to_edit_if_can (housing.snomed || housing.id), {ctrl: :housings, object: housing } %></td>
         <td><%= housing.housing_status %></td>
         <td><%= housing.address %></td>
         <td><%= housing.estimated_monthly_payment %></td>

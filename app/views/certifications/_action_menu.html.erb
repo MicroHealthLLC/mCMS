@@ -1,0 +1,14 @@
+<div class="col-xs-12 btn-edition">
+  <%= link_to( 'Delete', certification_path(@certification), class: 'btn btn-danger pull-right',
+               :method => :delete,
+               :data => {:confirm => t(:text_are_you_sure)}) if @certification.can?(:manage_roles, :manages_certifications, :delete_certifications)
+  %>
+  <% if params[:action] == 'show' %>
+      <%= link_to 'Edit', edit_certification_path(@certification), class: 'btn btn-success pull-right' if @certification.can?(:manage_roles, :manages_certifications, :edit_certifications) %>
+  <% else %>
+      <%= link_to 'Show', certification_path(@certification), class: 'btn btn-success pull-right' if @certification.can?(:manage_roles, :manages_certifications, :show_certifications) %>
+  <% end %>
+  <%= link_to t('button_cancel'), certifications_path, class: 'btn btn-warning pull-right' %>
+  <%= link_to t('button_print'), certification_path(@certification, format: 'pdf'), class: 'btn btn-primary pull-right' %>
+  <%= link_to t('button_history_changes'), "/histories/#{@certification.class}/#{@certification.id}", class: 'btn btn-primary pull-right' %>
+</div>

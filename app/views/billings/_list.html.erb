@@ -16,7 +16,7 @@
   <tbody>
   <% billings.each do |billing| %>
       <tr>
-        <td><%= link_to billing.bill_type, billing %></td>
+        <td><%= link_to_edit_if_can billing.bill_type, {ctrl: :billings, object: billing } %></td>
         <td><%= billing.bill_status %></td>
         <td><%= format_date billing.bill_date %></td>
         <td><%= billing.bill_amount %></td>

@@ -55,3 +55,6 @@ label, legend, .jarviswidget header h2 strong, a{
 {
     margin-bottom: 10px;
 }
+fieldset{
+    padding-left: 10px;
+}

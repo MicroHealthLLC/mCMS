@@ -3,7 +3,11 @@
               :method => :delete,
               :data => {:confirm => t(:text_are_you_sure)}) if @referral.can?(:delete_referrals, :manage_referrals, :manage_roles)
   %>
- <%= link_to 'Edit', edit_referral_path(@referral), class: 'btn btn-success pull-right' if @referral.can?(:edit_referrals, :manage_referrals, :manage_roles) %>
+  <% if params[:action] == 'show' %>
+      <%= link_to 'Edit', edit_referral_path(@referral), class: 'btn btn-success pull-right' if @referral.can?(:edit_referrals, :manage_referrals, :manage_roles) %>
+  <% else %>
+      <%= link_to 'Show', referral_path(@referral), class: 'btn btn-success pull-right' if @referral.can?(:show_referrals, :manage_referrals, :manage_roles) %>
+  <% end %>
   <%= link_to t('button_cancel'), (@referral.case || referrals_path), class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), referral_path(@referral, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to t('button_history_changes'), "/histories/#{@referral.class}/#{@referral.id}", class: 'btn btn-primary pull-right' %>

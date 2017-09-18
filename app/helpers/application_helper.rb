@@ -121,6 +121,14 @@ module ApplicationHelper
     datetime.to_date.strftime(Setting['format_date']) if datetime.present?
   end
 
+  def link_to_edit_if_can(text, options)
+    if User.current_user.allowed_to?(controller: options[:ctrl], action: :edit)
+      link_to text, {id: options[:object].id, action: 'edit', controller: options[:ctrl]}
+    else
+      link_to text, {id: options[:object].id, action: 'show', controller: options[:ctrl]}
+    end
+  end
+
   def show_link(object, options={})
     link_to "<i class='fa fa-lg fa-eye'></i>".html_safe, object, options
   end

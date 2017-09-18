@@ -13,13 +13,14 @@
   <tbody>
   <% @surgicals.each do |surgical| %>
       <tr>
-        <td><%= link_to surgical.name, surgical %></td>
-        <td><%= link_to surgical.hcpc, surgical %></td>
-       <td><%= surgical.medical_facility %></td>
+        <td><%= link_to_edit_if_can surgical.name, {ctrl: :surgicals, object: surgical } %></td>
+        <td><%= link_to_edit_if_can surgical.hcpc, {ctrl: :surgicals, object: surgical } %></td>
+
+        <td><%= surgical.medical_facility %></td>
         <td><%= surgical.surgery_status %></td>
         <td><%= surgical.surgery_type %></td>
         <td><%= format_date surgical.surgery_date %></td>
-       </tr>
+      </tr>
   <% end %>
   </tbody>
 </table>

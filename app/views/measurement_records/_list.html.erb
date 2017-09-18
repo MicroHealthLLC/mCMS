@@ -16,7 +16,7 @@
   <tbody>
   <% @measurement_records.each do |measurement_record| %>
       <tr>
-        <td><%= link_to measurement_record.measurement, measurement_record %></td>
+        <td><%= link_to_edit_if_can measurement_record.measurement, {ctrl: :measurement_records, object: measurement_record } %></td>
         <td><%= measurement_record.component.component %></td>
         <td><%= measurement_record.measure %></td>
         <td><%= measurement_record.measured_by %></td>

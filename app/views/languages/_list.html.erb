@@ -11,7 +11,7 @@
   <tbody>
   <% @languages.each do |language| %>
       <tr>
-        <td><%= link_to language.language_type, language %></td>
+        <td><%= link_to_edit_if_can language.language_type, {ctrl: :languages, object: language } %></td>
         <td><%= language.language_status %></td>
         <td><%= language.proficiency_type %></td>
         <td><%= format_date language.updated_at %></td>

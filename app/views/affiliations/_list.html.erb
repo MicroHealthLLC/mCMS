@@ -12,7 +12,7 @@
   <tbody>
       <% affiliations.each do |affiliation| %>
           <tr>
-            <td><%= link_to affiliation.name, affiliation %></td>
+            <td><%= link_to_edit_if_can affiliation.name, {ctrl: :affiliations, object: affiliation } %></td>
             <td><%= affiliation.affiliation_type %></td>
             <td><%= affiliation.affiliation_status %></td>
             <td><%= format_date affiliation.date_start %></td>

@@ -11,7 +11,7 @@
   <tbody>
   <% @laboratory_examinations.each do |laboratory_examination| %>
       <tr>
-        <td><%= link_to laboratory_examination.snomed, laboratory_examination %></td>
+        <td><%= link_to_edit_if_can laboratory_examination.snomed, {ctrl: :laboratory_examinations, object: laboratory_examination } %></td>
         <td><%= laboratory_examination.facility %></td>
         <td><%= format_date laboratory_examination.date %></td>
         <td><%= laboratory_examination.laboratory_result_status %></td>

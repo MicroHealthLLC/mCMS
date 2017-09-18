@@ -11,7 +11,8 @@
   <tbody>
   <% @resumes.each do |resume| %>
       <tr>
-        <td><%= link_to resume.title, resume %></td>
+        <td><%= link_to_edit_if_can resume.title, {ctrl: :resumes, object: resume } %></td>
+
         <td><%= format_date resume.date %></td>
         <td><%= resume.resume_type %></td>
         <td><%= resume.resume_status %></td>

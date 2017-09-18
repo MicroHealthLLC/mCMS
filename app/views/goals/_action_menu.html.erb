@@ -3,7 +3,11 @@
                :method => :delete,
                :data => {:confirm => t(:text_are_you_sure)})  if @goal.can?(:delete_goals, :manage_goals, :manage_roles)
   %>
-  <%= link_to 'Edit', edit_goal_path(@goal), class: 'btn btn-success pull-right' if @goal.can?(:edit_goals, :manage_goals, :manage_roles) %>
+  <% if params[:action] == 'show' %>
+      <%= link_to 'Edit', edit_goal_path(@goal), class: 'btn btn-success pull-right' if @goal.can?(:edit_goals, :manage_goals, :manage_roles) %>
+  <% else %>
+      <%= link_to 'Show', goal_path(@goal), class: 'btn btn-success pull-right' if @goal.can?(:show_goals, :manage_goals, :manage_roles) %>
+  <% end %>
   <%= link_to t('button_cancel'), goal_back_url(@goal), class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), goal_path(@goal, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to t('button_history_changes'), "/histories/#{@goal.class}/#{@goal.id}", class: 'btn btn-primary pull-right' %>

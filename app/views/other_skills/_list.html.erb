@@ -12,7 +12,8 @@
   <tbody>
      <% @other_skills.each do |other_skill| %>
           <tr>
-            <td><%= link_to other_skill.name, other_skill_path(other_skill)%></td>
+            <td><%= link_to_edit_if_can other_skill.name, {ctrl: :other_skills, object: other_skill } %></td>
+
             <td><%= other_skill.skill_status %></td>
             <td><%= other_skill.skill_type %></td>
             <td><%= format_date other_skill.date_received %></td>

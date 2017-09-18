@@ -28,7 +28,7 @@
             <% if User.current.can?(:manage_roles) %>
                 <th><%= need.user %></th>
             <% end %>
-            <td><%= link_to need.need_enum, need %></td>
+            <td><%= link_to_edit_if_can need.need_enum, {ctrl: :needs, object: need } %></td>
             <% if show_case %>
                 <td><%= link_to_case need.case %></td>
             <% end %>

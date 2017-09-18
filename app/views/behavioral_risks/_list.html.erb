@@ -15,7 +15,7 @@
   <tbody>
   <% @behavioral_risks.each do |behavioral_risk| %>
       <tr>
-        <td><%= link_to behavioral_risk.name, behavioral_risk%></td>
+        <td><%= link_to_edit_if_can behavioral_risk.name, {ctrl: :behavioral_risks, object: behavioral_risk } %></td>
         <td><%= link_to behavioral_risk.snomed, behavioral_risk%></td>
         <td><%= format_date behavioral_risk.date_started %></td>
         <td><%= format_date  behavioral_risk.date_ended %></td>

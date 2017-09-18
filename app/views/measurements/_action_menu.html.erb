@@ -1,8 +1,12 @@
 <div class="col-xs-12 btn-edition">
   <%= link_to( 'Delete', measurement_path(@measurement), class: 'btn btn-danger pull-right',
-              :method => :delete,
-              :data => {:confirm => t(:text_are_you_sure)})
+               :method => :delete,
+               :data => {:confirm => t(:text_are_you_sure)})
   %>
-  <%= link_to 'Edit', edit_measurement_path(@measurement), class: 'btn btn-success pull-right'%>
+  <% if params[:action] == 'show' %>
+      <%= link_to 'Edit', edit_measurement_path(@measurement), class: 'btn btn-success pull-right'%>
+  <% else %>
+      <%= link_to 'Show', measurement_path(@measurement), class: 'btn btn-success pull-right'%>
+  <% end %>
   <%= link_to t('button_cancel'), measurements_path, class: 'btn btn-warning pull-right' %>
 </div>

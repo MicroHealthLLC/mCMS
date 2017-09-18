@@ -3,7 +3,11 @@
               :method => :delete,
               :data => {:confirm => t(:text_are_you_sure)}) if @resume.can?(:delete_resumes, :manage_resumes, :manage_roles)
   %>
- <%= link_to 'Edit', edit_resume_path(@resume), class: 'btn btn-success pull-right' if @resume.can?(:edit_resumes, :manage_resumes, :manage_roles) %>
+  <% if params[:action] == 'show' %>
+      <%= link_to 'Edit', edit_resume_path(@resume), class: 'btn btn-success pull-right' if @resume.can?(:edit_resumes, :manage_resumes, :manage_roles) %>
+  <% else %>
+      <%= link_to 'Show', resume_path(@resume), class: 'btn btn-success pull-right' if @resume.can?(:show_resumes, :manage_resumes, :manage_roles) %>
+  <% end %>
   <%= link_to t('button_cancel'),  resumes_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), resume_path(@resume, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to t('button_history_changes'), "/histories/#{@resume.class}/#{@resume.id}", class: 'btn btn-primary pull-right' %>

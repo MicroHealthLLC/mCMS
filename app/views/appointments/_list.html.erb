@@ -23,7 +23,7 @@
       <% @appointments.each do |appointment| %>
           <tr>
             <% if User.current.can?(:manage_roles) %> <td><%= appointment.user %></td>    <% end %>
-            <td><%= link_to appointment.title, appointment_path(appointment) %></td>
+            <td><%= link_to_edit_if_can appointment.title, {ctrl: :appointments, object: appointment } %></td>
             <% if show_case %>
                 <td><%= link_to_case appointment.case %></td>
             <% end %>

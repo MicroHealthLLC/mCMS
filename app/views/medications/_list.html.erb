@@ -15,7 +15,8 @@
   <tbody>
   <% @medications.each do |medication| %>
       <tr>
-        <td><%= link_to medication.medication_synonym, medication %></td>
+        <td><%= link_to_edit_if_can medication.medication_synonym, {ctrl: :medications, object: medication } %></td>
+
         <td><%= medication.dose %></td>
         <td><%= medication.description %></td>
         <td><%= format_date medication.date_prescribed %></td>

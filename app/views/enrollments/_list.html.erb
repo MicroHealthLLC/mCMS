@@ -15,8 +15,7 @@
   <tbody>
   <% enrollments.each do |enrollment| %>
       <tr>
-
-        <td><%= link_to enrollment.name, enrollment %></td>
+        <td><%= link_to_edit_if_can enrollment.name, {ctrl: :enrollments, object: enrollment } %></td>
         <td><%= enrollment.enrollment_type %></td>
         <td><%= enrollment.enrollment_status %></td>
         <td><%= format_date enrollment.date_start %></td>

@@ -3,7 +3,11 @@
                :method => :delete,
                :data => {:confirm => t(:text_are_you_sure)}) if @need.can?(:delete_needs, :manage_needs, :manage_roles)
   %>
-  <%= link_to 'Edit', edit_need_path(@need), class: 'btn btn-success pull-right' if @need.can?(:edit_needs, :manage_needs, :manage_roles) %>
+  <% if params[:action] == 'show' %>
+      <%= link_to 'Edit', edit_need_path(@need), class: 'btn btn-success pull-right' if @need.can?(:edit_needs, :manage_needs, :manage_roles) %>
+  <% else %>
+      <%= link_to 'Show', need_path(@need), class: 'btn btn-success pull-right' if @need.can?(:needs, :manage_needs, :manage_roles) %>
+  <% end %>
   <%= link_to t('button_cancel'), need_back_url(@need), class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), need_path(@need, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to t('button_history_changes'), "/histories/#{@need.class}/#{@need.id}", class: 'btn btn-primary pull-right' %>

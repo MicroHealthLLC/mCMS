@@ -3,7 +3,11 @@
                :method => :delete,
                :data => {:confirm => t(:text_are_you_sure)}) if @transportation.can?(:manage_roles, :manages_transportations, :delete_transportations)
   %>
-  <%= link_to( 'Edit', edit_transportation_path(@transportation), class: 'btn btn-success pull-right') if @transportation.can?(:manage_roles, :manages_transportations, :edit_transportations) %>
+  <% if params[:action] == 'show' %>
+      <%= link_to( 'Edit', edit_transportation_path(@transportation), class: 'btn btn-success pull-right') if @transportation.can?(:manage_roles, :manages_transportations, :edit_transportations) %>
+  <% else %>
+      <%= link_to( 'Show', transportation_path(@transportation), class: 'btn btn-success pull-right') if @transportation.can?(:manage_roles, :manages_transportations, :show_transportations) %>
+  <% end %>
   <%= link_to t('button_cancel'), transportations_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), transportation_path(@transportation, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to t('button_history_changes'), "/histories/#{@transportation.class}/#{@transportation.id}", class: 'btn btn-primary pull-right' %>

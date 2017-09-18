@@ -14,7 +14,7 @@
   <tbody>
   <% @health_care_facilities.each do |health_care_facility| %>
       <tr>
-        <td><%= link_to health_care_facility.name, health_care_facility %></td>
+        <td><%= link_to_edit_if_can health_care_facility.name, {ctrl: :health_care_facilities, object: health_care_facility } %></td>
         <td><%= health_care_facility.health_care_facility_type %></td>
         <td><%= health_care_facility.health_care_facility_status %></td>
         <td><%= health_care_facility.health_care_facility_contact %></td>

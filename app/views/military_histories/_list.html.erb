@@ -12,7 +12,7 @@
     <tbody>
     <% @military_histories.each do |military_history| %>
         <tr>
-          <td><%= link_to military_history.text, military_history %></td>
+          <td><%= link_to_edit_if_can military_history.text, {ctrl: :military_histories, object: military_history } %></td>
           <td><%= military_history.service_type %></td>
           <td><%= military_history.service_status %></td>
           <td><%= military_history.date_started %></td>

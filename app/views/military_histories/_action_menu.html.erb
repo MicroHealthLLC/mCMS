@@ -3,7 +3,11 @@
                :method => :delete,
                :data => {:confirm => t(:text_are_you_sure)}) if @military_history.can?(:manage_roles, :manages_military_histories, :delete_military_histories)
   %>
-  <%= link_to( 'Edit', edit_military_history_path(@military_history), class: 'btn btn-success pull-right') if @military_history.can?(:manage_roles, :manages_military_histories, :edit_military_histories) %>
+  <% if params[:action] == 'show' %>
+      <%= link_to( 'Edit', edit_military_history_path(@military_history), class: 'btn btn-success pull-right') if @military_history.can?(:manage_roles, :manages_military_histories, :edit_military_histories) %>
+  <% else %>
+      <%= link_to( 'Show', military_history_path(@military_history), class: 'btn btn-success pull-right') if @military_history.can?(:manage_roles, :manages_military_histories, :show_military_histories) %>
+  <% end %>
   <%= link_to t('button_cancel'), military_histories_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), military_history_path(@military_history, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to t('button_history_changes'), "/histories/#{@military_history.class}/#{@military_history.id}", class: 'btn btn-primary pull-right' %>

@@ -11,7 +11,8 @@
   <tbody>
   <% @radiologic_examinations.each do |radiologic_examination| %>
       <tr>
-        <td><%= link_to radiologic_examination.snomed, radiologic_examination %></td>
+        <td><%= link_to_edit_if_can radiologic_examination.snomed, {ctrl: :radiologic_examinations, object: radiologic_examination } %></td>
+
         <td><%= radiologic_examination.facility %></td>
         <td><%= format_date radiologic_examination.date %></td>
         <td><%= radiologic_examination.radiologic_result_status %></td>

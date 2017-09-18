@@ -17,7 +17,8 @@
   <tbody>
   <% @transports.each do |transport| %>
       <tr>
-        <td><%= link_to transport.reason, transport %></td>
+        <td><%= link_to_edit_if_can transport.reason, {ctrl: :transports, object: transport } %></td>
+
         <% if show_case %>
             <td><%= link_to_case transport.case %></td>
         <% end %>

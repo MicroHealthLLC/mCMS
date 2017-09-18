@@ -3,7 +3,10 @@
                :method => :delete,
                :data => {:confirm => t(:text_are_you_sure)}) if @immunization.can?(:manage_roles, :manages_immunizations, :delete_immunizations)
   %>
-  <%= link_to( 'Edit', edit_immunization_path(@immunization), class: 'btn btn-success pull-right') if @immunization.can?(:manage_roles, :manages_immunizations, :edit_immunizations) %>
+  <% if params[:action] == 'show' %>
+      <%= link_to( 'Edit', edit_immunization_path(@immunization), class: 'btn btn-success pull-right') if @immunization.can?(:manage_roles, :manages_immunizations, :edit_immunizations) %>
+      <%= link_to( 'Show', immunization_path(@immunization), class: 'btn btn-success pull-right') if @immunization.can?(:manage_roles, :manages_immunizations, :show_immunizations) %>
+  <% end %>
   <%= link_to t('button_cancel'), immunizations_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), immunization_path(@immunization, format: 'pdf'), class: 'btn btn-primary pull-right' %>
 </div>

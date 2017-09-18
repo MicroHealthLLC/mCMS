@@ -14,7 +14,8 @@
   <tbody>
   <% @transportations.each do |transportation| %>
       <tr>
-        <td><%= link_to transportation.transportation_mean, transportation %></td>
+        <td><%= link_to_edit_if_can transportation.transportation_mean, {ctrl: :transportations, object: transportation } %></td>
+
         <td><%= transportation.transportation_type %></td>
         <td><%= transportation.transportation_accessibility %></td>
         <td><%= transportation.transportation_status %></td>

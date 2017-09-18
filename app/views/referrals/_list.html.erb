@@ -21,7 +21,7 @@
   <tbody>
   <% referrals.each do |referral| %>
       <tr>
-        <td><%= link_to referral.title, referral %></td>
+        <td><%= link_to_edit_if_can referral.title, {ctrl: :referrals, object: referral } %></td>
         <% if show_case %>
             <td><%= link_to_case referral.case %></td>
         <% end %>

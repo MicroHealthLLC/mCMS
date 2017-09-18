@@ -1,9 +1,13 @@
 <div class="col-xs-12 btn-edition">
   <%= link_to( 'Delete', radiologic_examination_path(@radiologic_examination), class: 'btn btn-danger pull-right',
-              :method => :delete,
-              :data => {:confirm => t(:text_are_you_sure)})  if @radiologic_examination.can?(:delete_radiologic_examinations, :manage_radiologic_examinations, :manage_roles)
+               :method => :delete,
+               :data => {:confirm => t(:text_are_you_sure)})  if @radiologic_examination.can?(:delete_radiologic_examinations, :manage_radiologic_examinations, :manage_roles)
   %>
-  <%= link_to 'Edit', edit_radiologic_examination_path(@radiologic_examination), class: 'btn btn-success pull-right'   if @radiologic_examination.can?(:edit_radiologic_examinations, :manage_radiologic_examinations, :manage_roles)%>
+  <% if params[:action] == 'show' %>
+      <%= link_to 'Edit', edit_radiologic_examination_path(@radiologic_examination), class: 'btn btn-success pull-right'   if @radiologic_examination.can?(:edit_radiologic_examinations, :manage_radiologic_examinations, :manage_roles)%>
+  <% else %>
+      <%= link_to 'Show', radiologic_examination_path(@radiologic_examination), class: 'btn btn-success pull-right'   if @radiologic_examination.can?(:show_radiologic_examinations, :manage_radiologic_examinations, :manage_roles)%>
+  <% end %>
   <%= link_to t('button_cancel'), radiologic_examinations_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), radiologic_examination_path(@radiologic_examination, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to t('button_history_changes'), "/histories/#{@radiologic_examination.class}/#{@radiologic_examination.id}", class: 'btn btn-primary pull-right' %>

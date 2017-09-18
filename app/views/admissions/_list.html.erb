@@ -12,7 +12,7 @@
   <tbody>
   <% @admissions.each do |admission| %>
       <tr>
-        <td><%= link_to admission.care_family_name, admission%></td>
+        <td><%= link_to_edit_if_can admission.care_family_name, {ctrl: :admissions, object: admission } %></td>
         <td><%= format_date admission.date_admitted %></td>
         <td><%= format_date admission.date_discharged %></td>
         <td><%= admission.admission_status %></td>

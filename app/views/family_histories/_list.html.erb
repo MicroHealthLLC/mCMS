@@ -12,8 +12,8 @@
   <tbody>
   <% @family_histories.each do |family_history| %>
       <tr>
-        <td><%= link_to family_history.name, family_history %></td>
-        <td><%= link_to family_history.snomed, family_history %></td>
+        <td><%= link_to_edit_if_can family_history.name, {ctrl: :family_histories, object: family_history } %></td>
+        <td><%= link_to_edit_if_can family_history.snomed, {ctrl: :family_histories, object: family_history } %></td>
         <td><%= format_date family_history.date_identified %></td>
         <td><%= family_history.family_status %></td>
         <td><%= family_history.family_type %></td>

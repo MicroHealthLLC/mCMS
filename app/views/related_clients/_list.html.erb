@@ -12,7 +12,8 @@
   <tbody>
   <% related_clients.each do |related_client| %>
       <tr>
-        <td><%= link_to related_client.related_client, related_client %></td>
+        <td><%= link_to_edit_if_can related_client.related_client, {ctrl: :related_clients, object: related_client } %></td>
+
         <td><%= related_client.snomed %></td>
         <td><%= format_date related_client.date_start %></td>
         <td><%= format_date related_client.date_end %></td>

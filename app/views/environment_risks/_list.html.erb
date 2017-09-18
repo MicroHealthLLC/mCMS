@@ -13,8 +13,8 @@
   <tbody>
   <% @environment_risks.each do |environment_risk| %>
       <tr>
-        <td><%= link_to environment_risk.name, environment_risk %></td>
-        <td><%= link_to environment_risk.snomed, environment_risk %></td>
+        <td><%= link_to_edit_if_can environment_risk.name, {ctrl: :environment_risks, object: environment_risk } %></td>
+        <td><%= link_to_edit_if_can environment_risk.scomed, {ctrl: :environment_risks, object: environment_risk } %></td>
         <td><%= environment_risk.date_started %></td>
         <td><%= environment_risk.date_ended %></td>
         <td><%= environment_risk.environment_status %></td>

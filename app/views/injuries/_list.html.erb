@@ -16,8 +16,7 @@
   <tbody>
   <% @injuries.each do |injury| %>
       <tr>
-       
-        <td><%= link_to injury.injury_name, injury %></td>
+        <td><%= link_to_edit_if_can injury.injury_name, {ctrl: :injuries, object: injury } %></td>
         <td><%= injury.snomed_occupation %></td>
         <td><%= injury.injury_type %></td>
         <td><%= injury.injury_cause_name %></td>

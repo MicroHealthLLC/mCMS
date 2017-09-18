@@ -3,7 +3,11 @@
                :method => :delete,
                :data => {:confirm => t(:text_are_you_sure)}) if @health_care_facility.can?(:manage_roles, :manages_health_care_facilitys, :delete_health_care_facilitys)
   %>
-  <%= link_to( 'Edit', edit_health_care_facility_path(@health_care_facility), class: 'btn btn-success pull-right') if @health_care_facility.can?(:manage_roles, :manages_health_care_facilitys, :edit_health_care_facilitys) %>
+  <% if params[:action] == 'show' %>
+      <%= link_to( 'Edit', edit_health_care_facility_path(@health_care_facility), class: 'btn btn-success pull-right') if @health_care_facility.can?(:manage_roles, :manages_health_care_facilitys, :edit_health_care_facilitys) %>
+  <% else %>
+      <%= link_to( 'Show', health_care_facility_path(@health_care_facility), class: 'btn btn-success pull-right') if @health_care_facility.can?(:manage_roles, :manages_health_care_facilitys, :show_health_care_facilitys) %>
+  <% end %>
   <%= link_to t('button_cancel'), health_care_facilities_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), health_care_facility_path(@health_care_facility, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to t('button_history_changes'), "/histories/#{@health_care_facility.class}/#{@health_care_facility.id}", class: 'btn btn-primary pull-right' %>

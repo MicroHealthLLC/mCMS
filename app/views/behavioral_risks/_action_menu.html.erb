@@ -1,9 +1,14 @@
+<%= render partial: 'action_menu' %>
 <div class="col-xs-12 btn-edition">
   <%= link_to( 'Delete', behavioral_risk_path(@behavioral_risk), class: 'btn btn-danger pull-right',
                :method => :delete,
                :data => {:confirm => t(:text_are_you_sure)}) if @behavioral_risk.can?(:manage_roles, :manages_behavioral_risks, :delete_behavioral_risks)
   %>
-  <%= link_to( 'Edit', edit_behavioral_risk_path(@behavioral_risk), class: 'btn btn-success pull-right') if @behavioral_risk.can?(:manage_roles, :manages_behavioral_risks, :edit_behavioral_risks) %>
+  <% if params[:action] == 'show' %>
+      <%= link_to( 'Edit', edit_behavioral_risk_path(@behavioral_risk), class: 'btn btn-success pull-right') if @behavioral_risk.can?(:manage_roles, :manages_behavioral_risks, :edit_behavioral_risks) %>
+  <% else %>
+      <%= link_to( 'Show', behavioral_risk_path(@behavioral_risk), class: 'btn btn-success pull-right') if @behavioral_risk.can?(:manage_roles, :manages_behavioral_risks, :show_behavioral_risks) %>
+  <% end %>
   <%= link_to t('button_cancel'), behavioral_risks_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), behavioral_risk_path(@behavioral_risk, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to t('button_history_changes'), "/histories/#{@behavioral_risk.class}/#{@behavioral_risk.id}", class: 'btn btn-primary pull-right' %>

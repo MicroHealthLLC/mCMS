@@ -3,7 +3,11 @@
                :method => :delete,
                :data => {:confirm => t(:text_are_you_sure)}) if @family_history.can?(:manage_roles, :manages_family_histories, :delete_family_histories)
   %>
-  <%= link_to( 'Edit', edit_family_history_path(@family_history), class: 'btn btn-success pull-right') if @family_history.can?(:manage_roles, :manages_family_histories, :edit_family_histories) %>
+  <% if params[:action] == 'show' %>
+      <%= link_to( 'Edit', edit_family_history_path(@family_history), class: 'btn btn-success pull-right') if @family_history.can?(:manage_roles, :manages_family_histories, :edit_family_histories) %>
+  <% else %>
+      <%= link_to( 'Show', family_history_path(@family_history), class: 'btn btn-success pull-right') if @family_history.can?(:manage_roles, :manages_family_histories, :show_family_histories) %>
+  <% end %>
   <%= link_to t('button_cancel'), family_histories_path, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), family_history_path(@family_history, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to t('button_history_changes'), "/histories/#{@family_history.class}/#{@family_history.id}", class: 'btn btn-primary pull-right' %>

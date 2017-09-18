@@ -3,7 +3,11 @@
                :method => :delete,
                :data => {:confirm => t(:text_are_you_sure)}) if @billing.can?(:manage_roles, :manages_billings, :delete_billings)
   %>
-  <%= link_to( 'Edit', edit_billing_path(@billing), class: 'btn btn-success pull-right') if @billing.can?(:manage_roles, :manages_billings, :edit_billings) %>
+  <% if params[:action] == 'show' %>
+      <%= link_to( 'Edit', edit_billing_path(@billing), class: 'btn btn-success pull-right') if @billing.can?(:manage_roles, :manages_billings, :edit_billings) %>
+  <% else %>
+      <%= link_to( 'Show', billing_path(@billing), class: 'btn btn-success pull-right') if @billing.can?(:manage_roles, :manages_billings, :show_billings) %>
+  <% end %>
   <%= link_to t('button_cancel'), @appointment, class: 'btn btn-warning pull-right' %>
   <%= link_to t('button_print'), billing_path(@billing, format: 'pdf'), class: 'btn btn-primary pull-right' %>
   <%= link_to t('button_history_changes'), "/histories/#{@billing.class}/#{@billing.id}", class: 'btn btn-primary pull-right' %>

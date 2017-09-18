@@ -13,8 +13,8 @@
   <tbody>
   <% @other_histories.each do |other_history| %>
       <tr>
-        <td><%= link_to other_history.name, other_history %></td>
-        <td><%= link_to other_history.icdcm_code, other_history %></td>
+        <td><%= link_to_edit_if_can other_history.name, {ctrl: :other_histories, object: other_history } %></td>
+        <td><%= other_history.icdcm_code %></td>
         <td><%= format_date other_history.date_identified %></td>
         <td><%= format_date other_history.date_resolved %></td>
         <td><%= other_history.other_history_status %></td>

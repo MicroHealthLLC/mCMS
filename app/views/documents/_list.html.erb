@@ -18,7 +18,7 @@
   <% if documents.any? %>
       <% documents.each do |document| %>
           <tr>
-            <td><%= link_to document.title, document_path(document) %></td>
+            <td><%= link_to_edit_if_can document.title, {ctrl: :documents, object: document } %></td>
             <% if show_case and !params[:controller] == 'client_documents' %>
                 <td><%= link_to_case document.case %></td>
             <% end %>
