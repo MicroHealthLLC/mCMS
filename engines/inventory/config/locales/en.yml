@@ -3,6 +3,7 @@ en:
   enumeration_product_category: Product Category
   enumeration_product_status: Product Status
   enumeration_product_type: Product Type
+  enumeration_product_location: Product Location
   product: Product
   new_product: New Product
   edit_product: Edit Product
