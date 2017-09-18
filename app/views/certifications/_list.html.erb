@@ -12,7 +12,7 @@
   <tbody>
       <% @certifications.each do |certification| %>
           <tr>
-            <td><%= link_to_edit_if_can certification.name, {ctrl: :certification, object: certification } %></td>
+            <td><%= link_to_edit_if_can certification.name, {ctrl: :certifications, object: certification } %></td>
             <td><%=  certification.certification_type %></td>
             <td><%= certification.certification_status %></td>
             <td><%= format_date certification.date_received %></td>

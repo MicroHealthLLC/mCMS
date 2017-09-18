@@ -20,7 +20,7 @@
   <tbody>
   <% @teleconsults.each do |teleconsult| %>
       <tr>
-        <td><%= link_to_edit_if_can teleconsult.contact_method, {ctrl: :admissions, object: admission } %></td>
+        <td><%= link_to_edit_if_can teleconsult.contact_method, {ctrl: :teleconsults, object: teleconsult } %></td>
 
         <% if show_case %>
             <td><%= link_to_case teleconsult.case %></td>
