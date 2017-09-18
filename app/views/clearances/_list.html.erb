@@ -11,7 +11,7 @@
   <tbody>
   <% @clearances.each do |clearance| %>
       <tr>
-        <td><%= link_to_edit_if_can clearance.clearence_type, {ctrl: :clearance.clearences, object: clearance } %></td>
+        <td><%= link_to_edit_if_can clearance.clearence_type, {ctrl: :clearances, object: clearance } %></td>
         <td><%= clearance.clearence_status %></td>
         <td><%= format_date clearance.date_received %></td>
         <td><%= format_date clearance.date_expired %></td>
