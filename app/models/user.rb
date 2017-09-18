@@ -313,7 +313,7 @@ class User < ApplicationRecord
   end
 
   def allowed_actions
-    @actions_allowed ||= permissions.inject([]) { |actions, permission| actions += RedCarpet::AccessControl.allowed_actions(permission) }.flatten
+    @actions_allowed ||= permissions.inject([]) { |actions, permission| actions += RedCarpet::AccessControl.allowed_actions(permission) }.flatten.to_set
   end
 
 
