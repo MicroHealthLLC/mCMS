@@ -9,6 +9,7 @@ class RadiologicExaminationsController < UserHistoryController
   # GET /radiologic_examinations
   # GET /radiologic_examinations.json
   def index
+    redirect_to medical_record_path if request.format.to_sym == :html
     scope = RadiologicExamination.visible
 
     scope = case params[:status_type]

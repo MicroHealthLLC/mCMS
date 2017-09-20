@@ -8,6 +8,7 @@ class TransportationsController < UserHistoryController
   # GET /transportations
   # GET /transportations.json
   def index
+    redirect_to socioeconomic_record_path if request.format.to_sym == :html
     scope = Transportation.visible
     scope = case params[:status_type]
               when 'all' then scope.all_data

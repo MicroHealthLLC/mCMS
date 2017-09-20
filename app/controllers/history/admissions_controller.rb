@@ -9,6 +9,7 @@ class AdmissionsController < UserHistoryController
   # GET /admissions
   # GET /admissions.json
   def index
+    redirect_to medical_record_path if request.format.to_sym == :html
     scope = Admission.visible
     scope = case params[:status_type]
               when 'all' then scope.all_data

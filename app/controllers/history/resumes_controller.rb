@@ -9,6 +9,7 @@ class ResumesController < UserHistoryController
   # GET /resumes
   # GET /resumes.json
   def index
+    redirect_to occupational_record_path if request.format.to_sym == :html
     scope = Resume.visible
     scope = case params[:status_type]
               when 'all' then scope.all_data

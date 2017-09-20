@@ -9,6 +9,7 @@ class OtherHistoriesController < UserHistoryController
   # GET /other_histories
   # GET /other_histories.json
   def index
+    redirect_to socioeconomic_record_path if request.format.to_sym == :html
     scope = OtherHistory.visible
     scope = case params[:status_type]
               when 'all' then scope.all_data

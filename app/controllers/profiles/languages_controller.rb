@@ -10,6 +10,7 @@ class LanguagesController < UserProfilesController
   # GET /languages
   # GET /languages.json
   def index
+    redirect_to  User.current.can?(:manage_roles) ? edit_user_registration_path : profile_record_path
     @languages = Language.for_status params[:status_type]
   end
 

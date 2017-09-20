@@ -9,6 +9,7 @@ class OtherSkillsController < UserProfilesController
   # GET /other_skills
   # GET /other_skills.json
   def index
+    redirect_to occupational_record_path if request.format.to_sym == :html
     @other_skills = OtherSkill.for_status params[:status_type]
   end
 

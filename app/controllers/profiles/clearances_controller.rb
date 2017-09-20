@@ -9,7 +9,7 @@ class ClearancesController < UserProfilesController
   # GET /clearances
   # GET /clearances.json
   def index
-
+    redirect_to occupational_record_path if request.format.to_sym == :html
     @clearances = Clearance.for_status params[:status_type]
   end
 

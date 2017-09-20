@@ -9,7 +9,8 @@ class UserInsurancesController < UserProfilesController
   # GET /user_insurances
   # GET /user_insurances.json
   def index
-    @user_insurances = UserInsurance.for_status(params[:status_type]).paginate(page: params[:page], per_page: 25)
+    redirect_to profile_record_path if request.format.to_sym == :html
+    @user_insurances = UserInsurance.for_status(params[:status_type])
   end
 
   # GET /user_insurances/1

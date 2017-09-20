@@ -9,6 +9,7 @@ class InjuriesController < UserProfilesController
 # GET /injuries
 # GET /injuries.json
   def index
+    redirect_to occupational_record_path if request.format.to_sym == :html
     @injuries = Injury.for_status params[:status_type]
   end
 

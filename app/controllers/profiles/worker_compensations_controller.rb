@@ -11,6 +11,7 @@ class WorkerCompensationsController < UserProfilesController
 # GET /worker_compensations
 # GET /worker_compensations.json
   def index
+    redirect_to occupational_record_path if request.format.to_sym == :html
     @worker_compensations = WorkerCompensation.for_status params[:status_type]
   end
 

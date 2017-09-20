@@ -10,6 +10,7 @@ class CertificationsController < UserProfilesController
   # GET /certifications
   # GET /certifications.json
   def index
+    redirect_to occupational_record_path if request.format.to_sym == :html
     @certifications = Certification.for_status params[:status_type]
   end
 

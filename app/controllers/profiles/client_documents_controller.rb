@@ -8,8 +8,12 @@ class ClientDocumentsController <  UserCasesController
   # GET /documents
   # GET /documents.json
   def index
-    @documents = Document.for_profile.for_status params[:status_type]
-    render 'documents/index'
+    if request.format.to_sym == :html
+      redirect_to  User.current.can?(:manage_roles) ? edit_user_registration_path : profile_record_path
+    else
+      @documents = Document.for_profile.for_status params[:status_type]
+      render 'documents/index'
+    end
   end
 
   def show

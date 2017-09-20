@@ -11,6 +11,7 @@ class JobAppsController < UserProfilesController
 # GET /job_apps
 # GET /job_apps.json
   def index
+    redirect_to occupational_record_path if request.format.to_sym == :html
     @job_apps = JobApp.for_status params[:status_type]
   end
 

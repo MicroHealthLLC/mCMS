@@ -11,6 +11,7 @@ class RelatedClientsController < UserProfilesController
 
 
   def index
+    redirect_to profile_record_path if request.format.to_sym == :html
     @related_clients = RelatedClient.visible
   end
   # GET /related_clients/1

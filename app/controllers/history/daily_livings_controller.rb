@@ -8,6 +8,7 @@ class DailyLivingsController < UserHistoryController
   # GET /daily_livings
   # GET /daily_livings.json
   def index
+    redirect_to socioeconomic_record_path if request.format.to_sym == :html
     scope = DailyLiving.visible
     scope = case params[:status_type]
               when 'all' then scope.all_data

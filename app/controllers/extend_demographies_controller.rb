@@ -48,7 +48,7 @@ class ExtendDemographiesController < ProtectForgeryApplication
              :contact_extend_demography
            elsif params[:insurance_extend_demography]
              :insurance_extend_demography
-            elsif params[:case_support_extend_demography]
+           elsif params[:case_support_extend_demography]
              :case_support_extend_demography
            else
              :organization_extend_demography
@@ -64,15 +64,15 @@ class ExtendDemographiesController < ProtectForgeryApplication
     elsif @extend_demography.organization_id
       organizations_path
     elsif @extend_demography.affiliation_id
-     affiliations_path
+      affiliations_path
     elsif @extend_demography.insurance_id
-     insurances_path
-     elsif @extend_demography.case_support_id
-     case_support_path
+      insurances_path
+    elsif @extend_demography.case_support_id
+      case_support_path
     elsif User.current != current_user
       employee_path(User.current)
     else
-      edit_user_registration_path
+      redirect_to User.current.can?(:manage_roles) ? edit_user_registration_path : profile_record_path
     end
   end
 end

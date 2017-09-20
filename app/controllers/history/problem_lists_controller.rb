@@ -9,6 +9,7 @@ class ProblemListsController < UserHistoryController
   # GET /problem_lists
   # GET /problem_lists.json
   def index
+    redirect_to medical_record_path if request.format.to_sym == :html
     scope = ProblemList.visible
     scope = case params[:status_type]
               when 'all' then scope.all_data

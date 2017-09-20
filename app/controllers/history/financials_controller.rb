@@ -8,6 +8,7 @@ class FinancialsController < UserHistoryController
   # GET /financials
   # GET /financials.json
   def index
+    redirect_to socioeconomic_record_path if request.format.to_sym == :html
     scope = Financial.visible
     scope = case params[:status_type]
               when 'all' then scope.all_data

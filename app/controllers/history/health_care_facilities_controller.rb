@@ -9,6 +9,7 @@ class HealthCareFacilitiesController < UserHistoryController
   # GET /health_care_facilities
   # GET /health_care_facilities.json
   def index
+    redirect_to medical_record_path if request.format.to_sym == :html
     scope = HealthCareFacility.visible
     scope = case params[:status_type]
               when 'all' then scope.all_data

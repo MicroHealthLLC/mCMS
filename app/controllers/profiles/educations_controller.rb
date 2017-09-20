@@ -11,6 +11,7 @@ class EducationsController < UserProfilesController
   # GET /educations
   # GET /educations.json
   def index
+    redirect_to occupational_record_path if request.format.to_sym == :html
     @educations = Education.for_status params[:status_type]
   end
 

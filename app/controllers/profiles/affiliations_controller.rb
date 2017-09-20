@@ -10,6 +10,7 @@ class AffiliationsController < UserProfilesController
   # GET /affiliations
   # GET /affiliations.json
   def index
+    redirect_to profile_record_path if request.format.to_sym == :html
     @affiliations = Affiliation.for_status params[:status_type]
   end
 

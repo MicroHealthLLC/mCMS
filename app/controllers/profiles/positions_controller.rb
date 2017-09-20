@@ -11,6 +11,7 @@ class PositionsController < UserProfilesController
   # GET /positions
   # GET /positions.json
   def index
+    redirect_to occupational_record_path if request.format.to_sym == :html
     @positions = Position.for_status params[:status_type]
   end
 

@@ -8,7 +8,10 @@ class ContactsController < UserProfilesController
   # GET /contacts
   # GET /contacts.json
   def index
-    scope = Contact.visible
+    respond_to do |format|
+      format.html{ redirect_to profile_record_path }
+      format.pdf{
+        scope = Contact.visible
         scope = case params[:status_type]
                   when 'all' then scope.all_data
                   when 'opened' then scope.opened
@@ -17,10 +20,8 @@ class ContactsController < UserProfilesController
                   else
                     scope.opened
                 end
-    @contacts = scope
-    respond_to do |format|
-      format.html{}
-      format.pdf{}
+        @contacts = scope
+      }
     end
   end
 
