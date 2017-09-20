@@ -7,7 +7,7 @@
     %>
     <% if can_view_submenu?(modules) %>
         <% if module_enabled?( 'occupational_record') %>
-            <li class="<%= menu_active?('profile_record') %> ">
+            <li class="<%= 'active' if params[:action] == 'occupational_record'  %> ">
               <a href= "/occupational_record" title="Occupational History"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Occupational History</span></a>
             </li>
         <% end %>

@@ -2,14 +2,14 @@
     <% modules = ['admissions', 'health_care_facilities',
                   'problem_lists', 'surgicals',
                   'medicals', 'behavioral_risks',
-                  'family_histories', 'immunizations', 
-                  'allergies', 'laboratory_examinations', 
+                  'family_histories', 'immunizations',
+                  'allergies', 'laboratory_examinations',
                   'radiologic_examinations'
     ]
     %>
     <% if can_view_submenu?(modules) %>
           <% if module_enabled?( 'medical_record') %>
-                <li class="<%= menu_active?('profile_record') %> ">
+                <li class="<%= 'active' if params[:action] == 'medical_record' %> ">
                   <a href= "/medical_record" title="Health History"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Health History</span></a>
                 </li>
             <% end %>

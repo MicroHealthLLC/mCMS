@@ -29,3 +29,20 @@
 			</span>
 
 </aside>
+
+<script>
+  $(function(){
+    $('.minifyme').on('click', function(e){
+      if($('body').attr('class').indexOf('minified') == -1 )
+      {
+        createCookie('minified', true, 7);
+      }
+      else {
+          eraseCookie('minified');
+      }
+    })
+      if(readCookie('minified')){
+        $('body').addClass('minified')
+      }
+  })
+</script>

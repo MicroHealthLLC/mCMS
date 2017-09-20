@@ -6,7 +6,7 @@
     <% if can_view_submenu?(modules) %>
 
         <% if module_enabled?( 'socioeconomic_record') %>
-            <li class="<%= menu_active?('profile_record') %> ">
+            <li class="<%= 'active' if params[:action] == 'socioeconomic_record' %> ">
               <a href= "/socioeconomic_record" title="Socioeconomic Hx"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Socioeconomic Hx</span></a>
             </li>
         <% end %>

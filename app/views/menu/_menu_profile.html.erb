@@ -1,5 +1,5 @@
 <% if !User.current.allowed_to?(:manage_roles) %>
-    <li class="<%= menu_active?('profile_record') %> ">
+    <li class="<%= 'active' if params[:action] == 'profile_record' %> ">
       <a href= "/profile_record" title="Profile record"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Client Profile</span></a>
     </li>
 
