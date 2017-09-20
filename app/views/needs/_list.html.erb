@@ -22,7 +22,6 @@
   </thead>
 
   <tbody>
-  <% if @needs.any? %>
       <% @needs.each do |need| %>
           <tr>
             <% if User.current.can?(:manage_roles) %>
@@ -43,15 +42,10 @@
             <% end %>
           </tr>
       <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
-      </tr>
-  <% end %>
   </tbody>
 </table>
 <script>
   $(document).ready(function(){
-    <%  if @needs.present? %> initDataTable('needs_table') <% end %>
+  initDataTable('needs_table')
   } );
 </script>
