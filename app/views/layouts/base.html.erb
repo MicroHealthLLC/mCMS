@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us" class="<%= Setting.theme_style(User.current.can?(:manage_role) ) %>">
+<html lang="en-us" class="<%= Setting.theme_style(User.current.can?(:manage_roles) ) %>">
 <%= render partial: 'shared/head' %>
 <!-- #BODY -->
 <!-- Possible Classes
@@ -16,7 +16,7 @@
   * 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
 -->
 
-<body class="<%= Setting.theme(User.current.can?(:manage_role)).values.join(' ') %>" data-user-id="<%= user_signed_in? ? current_user.id : ''  %>">
+<body class="<%= Setting.theme(User.current.can?(:manage_roles)).values.join(' ') %>" data-user-id="<%= user_signed_in? ? current_user.id : ''  %>">
 
 <!-- HEADER -->
 <%= render partial: 'shared/header' %>
