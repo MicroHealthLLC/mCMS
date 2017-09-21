@@ -1,3 +1,4 @@
+
 <script>
   $( function() {
     $tabs = $( "#<%= tab_name %>" ).tabs();
@@ -6,14 +7,16 @@
 <section id="widget-grid" class="show_tab">
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div id="<%= tab_name %>">
-        <ul id="nav">
+      <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="<%= tab_name %>">
+        <ul class="nav-tabs ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
           <% tabs.each do |tab| -%>
-              <li><a id="link-tabs-modules" href="<%=  "#tabs-#{tab[:name] }" %>"><%= t(tab[:label]) %></a></li>
+              <li class="ui-state-default ui-corner-top">
+                <a class="ui-tabs-anchor" id="link-tabs-modules" href="<%=  "#tabs-#{tab[:name] }" %>"><%= t(tab[:label]) %></a>
+              </li>
           <% end -%>
         </ul>
-        <% tabs.each do |tab| -%>
-            <div id="<%= "tabs-#{tab[:name]}" %>">
+        <% tabs.each_with_index do |tab, idx| -%>
+            <div style="display: <%= idx.zero? ? 'block' : 'none' %>" class="nav-tabs-div ui-tabs-panel ui-widget-content ui-corner-bottom" id="<%= "tabs-#{tab[:name]}" %>">
               <%= render partial: tab[:partial], :locals => {:tab => tab} %>
             </div>
         <% end -%>

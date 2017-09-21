@@ -19,18 +19,24 @@
     <%= f.hidden_field :insurance_id %>
     <%= f.hidden_field :type %>
 
-    <div id="tabs" style="overflow: hidden;">
-      <ul>
-        <li><a id="link-tabs-emails" href="#tabs-emails" >Emails</a></li>
-        <li><a id="link-tabs-faxes" href="#tabs-faxes">Faxes</a></li>
-        <li><a id="link-tabs-phones" href="#tabs-phones">Phones</a></li>
+    <div id="tabs" style="overflow: hidden;" class="ui-tabs ui-widget ui-widget-content ui-corner-all" >
+      <ul class="nav-tabs ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+        <li class="ui-state-default ui-corner-top">
+        <a class="ui-tabs-anchor" id="link-tabs-emails" href="#tabs-emails" >Emails</a></li>
+        <li class="ui-state-default ui-corner-top">
+          <a class="ui-tabs-anchor" id="link-tabs-faxes" href="#tabs-faxes">Faxes</a></li>
+        <li class="ui-state-default ui-corner-top">
+          <a class="ui-tabs-anchor" id="link-tabs-phones" href="#tabs-phones">Phones</a></li>
         <% unless extend_demography.object.is_a?(Affiliation) or  extend_demography.object.is_a?(Contact) %>
-            <li><a id="link-tabs-identifications" href="#tabs-identifications">Identifications</a></li>
+            <li class="ui-state-default ui-corner-top">
+              <a class="ui-tabs-anchor" id="link-tabs-identifications" href="#tabs-identifications">Identifications</a></li>
         <% end %>
-        <li><a id="link-tabs-social_media" href="#tabs-social_media">Social media</a></li>
-        <li><a id="link-tabs-addresses" href="#tabs-addresses">Address</a></li>
+        <li class="ui-state-default ui-corner-top">
+          <a class="ui-tabs-anchor" id="link-tabs-social_media" href="#tabs-social_media">Social media</a></li>
+        <li class="ui-state-default ui-corner-top">
+          <a class="ui-tabs-anchor" id="link-tabs-addresses" href="#tabs-addresses">Address</a></li>
       </ul>
-      <div id='tabs-emails' >
+      <div id='tabs-emails' class="nav-tabs-div ui-tabs-panel ui-widget-content ui-corner-bottom" >
         <%= f.simple_fields_for :emails do |mail| %>
             <%= render 'extend_demographies/email_fields', :f => mail %>
         <% end %>
@@ -39,7 +45,7 @@
 
         </div>
       </div>
-      <div id='tabs-faxes' >
+      <div id='tabs-faxes' class="nav-tabs-div ui-tabs-panel ui-widget-content ui-corner-bottom" >
         <%= f.simple_fields_for :faxes do |fax| %>
             <%= render 'extend_demographies/fax_fields', :f => fax %>
         <% end %>
@@ -47,7 +53,7 @@
           <%= link_to_add_association 'add fax number', f, :faxes, class: 'btn btn-success  ', partial: 'extend_demographies/fax_fields' %>
         </div>
       </div>
-      <div id='tabs-phones' >
+      <div id='tabs-phones' class="nav-tabs-div ui-tabs-panel ui-widget-content ui-corner-bottom" >
         <%= f.simple_fields_for :phones do |phone| %>
             <%= render 'extend_demographies/phone_fields', :f => phone %>
         <% end %>
@@ -58,7 +64,7 @@
       </div>
 
       <% unless extend_demography.object.is_a?(Affiliation) or  extend_demography.object.is_a?(Contact)%>
-          <div id='tabs-identifications' >
+          <div id='tabs-identifications' class="nav-tabs-div ui-tabs-panel ui-widget-content ui-corner-bottom" >
             <%= f.simple_fields_for :identifications do |identification| %>
                 <%= render 'extend_demographies/identification_fields', :f => identification %>
             <% end %>
@@ -69,7 +75,7 @@
           </div>
       <% end %>
 
-      <div id='tabs-social_media' >
+      <div id='tabs-social_media' class="nav-tabs-div ui-tabs-panel ui-widget-content ui-corner-bottom"  >
         <%= f.simple_fields_for :social_media do |sm| %>
             <%= render 'extend_demographies/social_media_fields', :f => sm %>
         <% end %>
@@ -79,7 +85,7 @@
         </div>
       </div>
 
-      <div id='tabs-addresses' >
+      <div id='tabs-addresses' class="nav-tabs-div ui-tabs-panel ui-widget-content ui-corner-bottom" >
         <%= f.simple_fields_for :addresses do |address| %>
             <%= render 'extend_demographies/address_fields', :f => address %>
         <% end %>
