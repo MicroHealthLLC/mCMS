@@ -17,7 +17,6 @@
   </thead>
 
   <tbody>
-  <% if case_supports.present? %>
       <% case_supports.each do |case_support| %>
           <tr>
             <td><%= link_to case_support.name, case_support%></td>
@@ -33,15 +32,11 @@
             <% end %>
           </tr>
       <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
-      </tr>
-  <% end %>
+
   </tbody>
 </table>
 <script>
   $(document).ready(function(){
-    <% if @case_supports.present? %>  initDataTable('case_supports_table') <% end %>
+   initDataTable('case_supports_table')
   } );
 </script>

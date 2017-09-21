@@ -91,6 +91,8 @@ class GoalsController <  UserCasesController
 
   # GET /goals/1/edit
   def edit
+    @plans = @goal.plans
+    @tasks = @plans.map(&:tasks).flatten.uniq
   end
 
   # POST /goals
@@ -113,6 +115,8 @@ class GoalsController <  UserCasesController
   # PATCH/PUT /goals/1
   # PATCH/PUT /goals/1.json
   def update
+    @plans = @goal.plans
+    @tasks = @plans.map(&:tasks).flatten.uniq
     respond_to do |format|
       if @goal.update(goal_params)
         format.html { redirect_to @goal, notice: 'Goal was successfully updated.' }

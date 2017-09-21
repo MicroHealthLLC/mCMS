@@ -87,6 +87,8 @@ class PlansController < UserCasesController
 
   # GET /plans/1/edit
   def edit
+    @tasks = @plan.tasks
+    @measurement_records = @plan.measurement_records
   end
 
   # POST /plans
@@ -109,6 +111,8 @@ class PlansController < UserCasesController
   # PATCH/PUT /plans/1
   # PATCH/PUT /plans/1.json
   def update
+    @tasks = @plan.tasks
+    @measurement_records = @plan.measurement_records
     respond_to do |format|
       if @plan.update(plan_params)
         format.html { redirect_to @plan, notice: 'Plan was successfully updated.' }

@@ -12,3 +12,36 @@
     </article>
   </div>
 </section>
+
+
+<% if module_enabled?('goals') %>
+    <%#= link_to(t('new_goal'), new_goal_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_goals, :manage_roles, :manage_goals) %>
+
+    <%= link_to(t('new_goal'), new_goal_path(case_id: @case.id,  need_id: @need.id), class: 'btn btn-primary pull-right btn-edition') if @case && can?(:create_goals, :manage_roles, :manage_goals) %>
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= render partial: 'goals/list',
+                   layout: 'shared/smart_widget_wrapper',
+                   locals: {
+                       goals: @goals,
+                       wid_id: 'goals',
+                       wid_title: 'goals'
+                   } %>
+      </article>
+    </div>
+    <script>
+      $(document).ready(function(){
+         initDataTable('goals_table')
+      } );
+    </script>
+
+
+<% end %>
+
+<span id="plans_tasks">
+ <%= render partial: 'plans_tasks' %>
+</span>
+
+<%= link_to(t('add_note'), new_note_path(type: 'NeedNote', owner_id: @need.id), class: 'btn-edition btn btn-success pull-right') if can?(:add_notes, :manage_roles) %>
+<%= render partial: 'notes/notes', locals: {notes: @need.need_notes} %>
+

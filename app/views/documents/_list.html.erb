@@ -15,7 +15,6 @@
   </thead>
 
   <tbody>
-  <% if documents.any? %>
       <% documents.each do |document| %>
           <tr>
             <td><%= link_to_edit_if_can document.title, {ctrl: :documents, object: document } %></td>
@@ -29,17 +28,13 @@
             <% end %>
           </tr>
       <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="9"><%= t('label_no_data') %></td>
-      </tr>
-  <% end %>
+
   </tbody>
 </table>
 
 <script>
   $(document).ready(function(){
-    <% if documents.present? %>  initDataTable('documents_table') <% end %>
+    initDataTable('documents_table')
   } );
 </script>
 
