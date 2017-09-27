@@ -67,8 +67,8 @@ class EmployeeDatatable < AjaxDatatablesRails::Base
       scope
     else
       org = User.current_user.organization
-      co = CaseOrganization.where(organization_id: org.try(:id)).
-          where(case_id: User.current_user.cases.pluck(:id)).pluck(:case_id) + [org.try(:id)]
+      co = CaseOrganization.where(organization_id: org.try(:id)).or(CaseOrganization.where(case_id: User.current_user.cases.pluck(:id))
+          ).pluck(:organization_id).uniq
 
 
       scope = scope.includes(:case_organizations).
