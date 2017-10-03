@@ -1,0 +1,23 @@
+<table class="table table-bordered table-responsive" id="email_template_table">
+  <thead>
+  <tr>
+    <th>Model</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @email_templates.each do |email_template| %>
+      <tr>
+        <td><%= link_to email_template.model, edit_email_template_path(email_template) %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+    initDataTable('email_template_table')
+  } );
+</script>
+
+

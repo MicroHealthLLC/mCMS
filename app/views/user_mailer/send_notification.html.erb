@@ -1,7 +1,8 @@
 <%= email_template do %>
-    <h1>Hello, <%= @user.name %></h1>
-    <p>
-      <%= @object.for_mail %>
-    </p>
-    <p>Thanks and have a great day!</p>
+    <style>
+      <%= @template.stylesheet.to_s %>
+    </style>
+    <%= @template.header.to_s.html_safe %>
+    <%= @template.body.to_s.html_safe %>
+    <%= @template.footer.to_s.html_safe %>
 <% end  %>

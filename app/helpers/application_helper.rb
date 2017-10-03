@@ -139,7 +139,6 @@ module ApplicationHelper
   end
 
   def render_employee_information
-    output = ""
     output = "<div class='row'>"
     output<< "<div class='col-xs-2 col-sm-2 col-md-2' style='padding:0; top: -4px; margin-left: 5px;' >#{image_tag(User.current.profile_image, size: '35x35', class:'')}</div>"
     output<< "<div class='col-xs-2 col-sm-2 col-md-2' >#{User.current.name}</div>"

@@ -38,6 +38,47 @@ class ApplicationRecord < ActiveRecord::Base
     output.html_safe
   end
 
+  def self.available_variable
+    ['user_name'] + model_variables
+  end
+
+  def self.model_variables
+    self.new.method(:for_mail).source.scan(/#\{\w+\}/).map{|v| v.scan(/\w+/)}.flatten
+  rescue
+    []
+  end
+
+  def self.email_variables
+    available_variable
+  end
+
+  def email_template(user)
+    default_template = EmailTemplate.default(self.for_mail)
+    convert_email(user, EmailTemplate.where(model: self.class.to_s).first || default_template )
+  end
+
+  def convert_email user, template
+    template.header = generate_email(user, template.header)
+    template.body = generate_email(user, template.body)
+    template.footer = generate_email(user, template.footer)
+    template
+  end
+
+  def generate_email user,  template
+    variables = self.class.available_variable - ['user_name']
+    template.gsub!('%{user_name}', user.try(:name))
+    variables.each do |variable|
+      r = self.send(variable) rescue ''
+      result = if r.is_a?(Date) or r.is_a?(DateTime)
+                 r.strftime("#{Setting['format_date']} %I:%M %p")
+               else
+                 r.to_s.html_safe
+               end
+      template.gsub!("%{#{variable}}", result)
+    end
+    template
+  end
+
 
   scope :visible, -> { where(user_id: User.current.id) }
 

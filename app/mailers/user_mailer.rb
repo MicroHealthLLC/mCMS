@@ -21,6 +21,7 @@ class UserMailer < ApplicationMailer
   def send_notification(object, user = object.user)
     @user   = user
     @object = object
+    @template = object.email_template(user)
     mail(to: @user.email, subject: "#{@object.to_s}")
   end
 

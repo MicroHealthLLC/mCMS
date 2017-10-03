@@ -1,0 +1,16 @@
+<%= link_to( 'New Template', new_email_template_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_educations, :manage_roles, :manage_educations) %>
+
+<section id="widget-grid" class="email_template_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     email_templates: @email_templates,
+                     wid_id: 'Templates',
+                     wid_title: 'Email Templates'
+                 } %>
+    </article>
+  </div>
+</section>
+

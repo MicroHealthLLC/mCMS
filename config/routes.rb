@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :email_templates, except: [:show] do
+    collection do
+      get 'load_available_variables'
+    end
+  end
   resources :job_apps do
     resources :jobs
   end
