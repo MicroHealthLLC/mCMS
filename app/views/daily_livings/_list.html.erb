@@ -11,7 +11,7 @@
   <tbody>
   <% @daily_livings.each do |daily_living| %>
       <tr>
-        <td><%= link_to daily_living.snomed, daily_living %></td>
+        <td><%= link_to_edit_if_can daily_living.snomed,{ctrl: :daily_livings, object: daily_living }  %></td>
         <td><%= daily_living.daily_living_status %></td>
         <td><%= format_date daily_living.date_start %></td>
         <td><%= format_date daily_living.date_end %></td>

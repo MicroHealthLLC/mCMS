@@ -1,56 +1,62 @@
-<div class="col-xs-12">
-  <p>
-    <strong><%= t('title') %>:</strong>
-    <%= @case.title %>
-  </p>
 
-  <p>
-    <strong><%= t('priority') %>:</strong>
-    <%= @case.priority_type %>
-  </p>
+    <div class="row">
+      <div class="col-xs-12">
+        <p>
+          <strong><%= t('title') %>:</strong>
+          <%= @case.title %>
+        </p>
 
-  <p>
-    <strong><%= t('assigned_to') %>:</strong>
-    <%= @case.assigned_to %>
-  </p>
+        <p>
+          <strong><%= t('priority') %>:</strong>
+          <%= @case.priority_type %>
+        </p>
 
-  <p>
-    <strong><%= t('status') %>:</strong>
-    <%= @case.case_status_type %>
-  </p>
+        <p>
+          <strong><%= t('assigned_to') %>:</strong>
+          <%= @case.assigned_to %>
+        </p>
 
-    <p>
-    <strong><%= t(:case_type) %>:</strong>
-    <%= @case.case_type %>
-  </p>
+        <p>
+          <strong><%= t('status') %>:</strong>
+          <%= @case.case_status_type %>
+        </p>
 
-  <p>
-    <strong><%= t('category') %>:</strong>
-    <%= @case.case_category_type %>
-  </p>
+        <p>
+          <strong><%= t(:case_type) %>:</strong>
+          <%= @case.case_type %>
+        </p>
 
-   <p>
-    <strong><%= t('enumeration_case_source') %>:</strong>
-    <%= @case.case_source %>
-  </p>
+        <p>
+          <strong><%= t('category') %>:</strong>
+          <%= @case.case_category_type %>
+        </p>
 
-  <p>
-    <strong><%= t('date_start') %>:</strong>
-    <%= format_date @case.date_start %>
-  </p>
+        <p>
+          <strong><%= t('enumeration_case_source') %>:</strong>
+          <%= @case.case_source %>
+        </p>
 
-  <p>
-    <strong><%= t('date_due') %>:</strong>
-    <%= format_date @case.date_due %>
-  </p>
+        <p>
+          <strong><%= t('date_start') %>:</strong>
+          <%= format_date @case.date_start %>
+        </p>
 
-  <p>
-    <strong><%= t('date_completed') %>:</strong>
-    <%= @case.date_completed %>
-  </p>
+        <p>
+          <strong><%= t('date_due') %>:</strong>
+          <%= format_date @case.date_due %>
+        </p>
 
-  <p>
-    <strong><%= t('label_note') %>:</strong>
-    <%= @case.note.to_s.html_safe %>
-  </p>
+        <p>
+          <strong><%= t('date_completed') %>:</strong>
+          <%= @case.date_completed %>
+        </p>
+
+        <p>
+          <strong><%= t('label_note') %>:</strong>
+          <%= @case.note.to_s.html_safe %>
+        </p>
+      </div>
+    </div>
+  </div>
+
 </div>

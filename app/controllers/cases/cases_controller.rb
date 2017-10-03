@@ -119,6 +119,10 @@ class CasesController < UserCasesController
     @timeline << @case.case_supports.active
     @timeline.flatten!.compact!
     @timeline.sort_by!{|a| Time.now - a.updated_at }
+    respond_to do |format|
+      format.html{}
+      format.js{}
+    end
   end
 
   def watchers

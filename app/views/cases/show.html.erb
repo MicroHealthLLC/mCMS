@@ -5,8 +5,8 @@
       <%= render partial: 'show',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                         wid_id: 'info',
-                         wid_title: t('case')
+                     wid_id: 'info',
+                     wid_title: t('case')
                  } %>
     </article>
   </div>
@@ -14,3 +14,49 @@
 
 
 <%= render_tabs case_tabs %>
+<% if @case.can?(:manage_roles, :manage_cases) %>
+    <style>
+      .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 999;
+        top: 0;
+        right: 0;
+        background-color: whitesmoke;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        transition: 0.5s;
+        padding-top: 60px;
+      }
+      .closebtn{
+        margin-left: -18px;
+        font-size: 30px;
+      }
+
+      @media screen and (max-height: 450px) {
+        .sidenav {padding-top: 15px;}
+      }
+    </style>
+
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+        <i class="fa fa-lg fa-arrow-circle-right"></i>
+      </a>
+      <div id="timeline" class="smart-timeline">
+
+      </div>
+    </div>
+    <script>
+      $(function(){
+        $.getScript('<%= timeline_case_path(@case, format: :js) %>')
+      })
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "40%";
+      }
+
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+      }
+    </script>
+<% end %>

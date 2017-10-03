@@ -36,7 +36,7 @@
             <% if defined?(use_belongs_to) %>
                 <td><%= link_to( note.object.to_s, note.object) if note.object %></td>
             <% else %>
-                <td><%= link_to note.user, note %></td>
+                <td><%= link_to_edit_if_can note.user, {ctrl: :notes, object: note }  %></td>
             <% end %>
             <% if show_case %>
                 <td><%= link_to_case note.object.try(:case) %></td>
