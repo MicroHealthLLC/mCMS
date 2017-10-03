@@ -29,6 +29,7 @@ class UserMailer < ApplicationMailer
     @user   = user
     @object = object
     @audit = audit
+    @template = object.email_template(user)
     mail(to: @user.email, subject: "#{@object.to_s}")
   end
 end
