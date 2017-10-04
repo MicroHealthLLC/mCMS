@@ -58,3 +58,9 @@ label, legend, .jarviswidget header h2 strong, a{
 fieldset{
     padding-left: 10px;
 }
+.pagination li {
+    margin-left: 0 !important;
+    margin-right: 0  !important;
+    padding-left: 0  !important;
+    padding-right: 0  !important;
+}

@@ -19,7 +19,7 @@ class DocumentManagersController < ProtectForgeryApplication
     @featured = Category.featured
     @current_folder = params[:document_folder_id] ? DocumentFolder.find( params[:document_folder_id] ): DocumentFolder.new
     @latest_docs = DocumentManager.latest_docs @current_folder.id
-    @sub_folders = DocumentFolder.where(parent_id: @current_folder.id)
+    @sub_folders = DocumentFolder.includes(:files).references(:files).where(parent_id: @current_folder.id)
   end
 
   def new_folder

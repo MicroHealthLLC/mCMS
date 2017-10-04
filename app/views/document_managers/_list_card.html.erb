@@ -1,0 +1,54 @@
+
+<h3>Folders</h3>
+
+<style>
+  .folders .row-eq-height {
+
+    display: grid;
+    vertical-align: middle;
+    text-align: center;
+    align-content: center;
+    margin: 10px
+  }
+
+
+  .folders [class*="col-"] {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #eee;
+    background-color: rgba(86, 61, 124, .15);
+    border: 1px solid #ddd;
+    border: 1px solid rgba(86, 61, 124, .2);
+  }
+
+  .box {
+  }
+</style>
+<div class="row folders">
+  <% @sub_folders.each do |folder| %>
+      <div class="row-eq-height col-xs-6 col-sm-4 col-md-2 col-lg-2 box">
+        <div class="">
+          <p>
+            <%= link_to document_managers_path(document_folder_id: folder.id) do %>
+                <%= image_tag "icons/icon_folder_50.png" %>
+              <p>
+                <%= "#{folder.name}".html_safe %>
+              </p>
+
+
+          <% end %>
+          </p>
+        </div>
+      </div>
+  <% end %>
+
+  <% if !@latest_docs.nil? and @latest_docs.length > 0 %>
+      <%= render partial: "categories/latest_documents", locals: {latest_docs: @latest_docs} %>
+  <% end %>
+</div>
+<script>
+  $(function(){
+    $('.row-eq-height').css('width', parseFloat($('.row-eq-height').css('width') -20 ) + 'px' )
+    $('.row-eq-height').css('height', $('.row-eq-height').css('width') )
+  })
+</script>

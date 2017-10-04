@@ -29,12 +29,12 @@ class DocumentManager < ApplicationRecord
     categories = Category.includes(:group=>[:memberships]).
         references(:group=>[:memberships]).
         where(is_private: true).where(memberships: {user_id: User.current})
-    Revision.includes(:document_manager=>[:category]).
-        references(:document_manager=>[:category]).
-        where(document_managers: {is_private: false}).
+    scope = Revision.includes(:user, :document_manager=>[:category]).
+        references(:user, :document_manager=>[:category])
+
+    scope.where(document_managers: {is_private: false}).
         where(categories: {is_private: false}).
-        or( Revision.includes(:document_manager=>[:category]).
-            references(:document_manager=>[:category]).
+        or( scope.
             where(document_managers: {is_private: false, folder_id: folder_id}).
             where(categories: {id: categories.pluck(:id)})).
         order('revisions.updated_at DESC')

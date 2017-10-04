@@ -1,0 +1,96 @@
+<table class="table table-responsive table-bordered" id="doc_manager_table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th hidden>Name</th>
+    <th>created At</th>
+    <th>Updated At</th>
+    <th>Category</th>
+    <th>Files</th>
+    <th>From</th>
+    <th>Download Count</th>
+    <th>Download last revision</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @sub_folders.each do |folder| %>
+      <tr>
+        <td>
+          <%= link_to document_managers_path(document_folder_id: folder.id) do %>
+              <i class="fa fa-folder"></i> <%= "#{folder.name}".html_safe %>
+          <% end %>
+        </td>
+        <td hidden><%= "#{folder.name}".html_safe %></td>
+        <td><%= format_date(folder.created_at) %></td>
+        <td><%= format_date(folder.updated_at) %></td>
+        <td> - </td>
+        <td><%= folder.files.count %></td>
+        <td> - </td>
+        <td> - </td>
+        <td> - </td>
+      </tr>
+  <% end %>
+  <% @latest_docs.each do |rev| %>
+      <% if doc = rev.document_manager and !doc.current_revision.nil? %>
+          <tr>
+            <td><%= link_to  doc do  %>
+                  <%= image_tag "icons/#{small_document_icon(doc.current_revision.try(:extension_type) || 'icon_other')}", size: "24x24" %>
+                  <%= doc.title %>
+              <% end %>
+            </td>
+            <td hidden><%= doc.title %></td>
+            <td><%= format_date(doc.created_at) %></td>
+            <td><%= format_date(doc.current_revision.created_at) %></td>
+            <td> <%= doc.category.try(:name) %> </td>
+            <td> - </td>
+            <td> <%= doc.current_revision.user.full_name %> </td>
+            <td><%= doc.total_downloads %></td>
+            <td><%= link_to download_document_manager_revision_path(document_manager_id: doc.id, revision_id: doc.current_revision.id, id: doc.current_revision.id), "data-no-turbolink" => true do %>
+                  <i class="fa fa-download"></i>
+              <% end %>
+            </td>
+          </tr>
+
+      <% end %>
+  <% end %>
+
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+    $('#doc_manager_table').DataTable({
+      "sSwfPath": "/swf/copy_csv_xls_pdf.swf",
+      display: [[0, 'desc']],
+      "aoColumnDefs": [
+        { "iDataSort": 1, "aTargets": [ 0 ] }
+      ],
+      "oTableTools": {
+        "aButtons":  [
+          {
+            "sExtends": "csv",
+            "sButtonText": "CSV",
+            "sCharSet": "utf8",
+            "bBomInc": true,
+            "fnCellRender": function ( sValue, iColumn, nTr, iDataIndex ) {
+              if(sValue.toString().match("href")){
+                return $(sValue).attr("href");
+              }
+              return sValue;
+            }
+          }
+        ]
+      },
+      "bDestroy": true,
+      "sDom": "<'dt-toolbar'" +
+      "<'col-sm-5 col-xs-8'f>" + //search box
+      "<'col-sm-2 col-sm-offset-2 col-xs-2 'C>"+// drop down column hide
+      "<'col-sm-2 col-xs-2 'T>"+// buttons export
+      "<'col-sm-1 col-xs-2 'l>>"+// length
+      "t"+ // the table
+      "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
+      "iDisplayLength": 10
+
+    });
+  } );
+</script>
