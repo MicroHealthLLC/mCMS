@@ -384,5 +384,6 @@ Rails.application.routes.draw do
   mount RssFeed::Engine => "/rss"
   mount TextEditor::Engine => "/texteditor"
   mount SvgEdit::Engine => "/svg_edit"
+  mount Mhspreadsheet::Engine => "/mhspreadsheet"
   # mount CommunityEngine::Engine => "/community_engine"
 end

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-us" class="<%=  Setting.theme_style(User.current.can?(:manage_roles) ) %>">
+<%= render partial: 'shared/head' %>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>MH Spreadsheets</title>
+<script type="text/javascript" src="/MH_Spreadsheet/socialcalcconstants.js"></script>
+<script type="text/javascript" src="/MH_Spreadsheet/socialcalc-3.js"></script>
+<script type="text/javascript" src="/MH_Spreadsheet/socialcalctableeditor.js"></script>
+<script type="text/javascript" src="/MH_Spreadsheet/formatnumber2.js"></script>
+<script type="text/javascript" src="/MH_Spreadsheet/formula1.js"></script>
+<script type="text/javascript" src="/MH_Spreadsheet/socialcalcpopup.js"></script>
+<script type="text/javascript" src="/MH_Spreadsheet/socialcalcspreadsheetcontrol.js"></script>
+<script type="text/javascript" src="/MH_Spreadsheet/FileSaver.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/MH_Spreadsheet/socialcalc.css">
+
+
+<!-- #BODY -->
+<!-- Possible Classes
+
+  * 'smart-style-{SKIN#}'
+  * 'smart-rtl'         - Switch theme mode to RTL
+  * 'menu-on-top'       - Switch to top navigation (no DOM change required)
+  * 'no-menu'			  - Hides the menu completely
+  * 'hidden-menu'       - Hides the main menu but still accessable by hovering over left edge
+  * 'fixed-header'      - Fixes the header
+  * 'fixed-navigation'  - Fixes the main menu
+  * 'fixed-ribbon'      - Fixes breadcrumb
+  * 'fixed-page-footer' - Fixes footer
+  * 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
+-->
+
+<body onload="setupDocs();" onresize="doresize();" onunload="saveMHSpreadsheets();"
+      class="<%=  Setting.theme(User.current.can?(:manage_roles)).values.join(' ') %>"
+      data-user-id="<%= user_signed_in? ? current_user.id : ''  %>">
+
+<!-- HEADER -->
+<%= render partial: 'shared/header' %>
+<!-- END HEADER -->
+
+<!-- Left panel : Navigation area -->
+<!-- Note: This width of the aside area can be adjusted through LESS variables -->
+<%= render partial: 'menu/base_menu' %>
+<!-- END NAVIGATION -->
+
+<!-- MAIN PANEL -->
+<div id="main" role="main">
+  <!-- END RIBBON -->
+
+  <div id="content">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="no-padding">
+          <%= render_flash_messages %>
+          <% if breadcrumbs.present? %>
+              <ol class="breadcrumb">
+                <%= render_breadcrumbs :tag => :li, :separator => "" %>
+              </ol>
+          <% end %>
+          <%= yield %>
+        </div>
+        <div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- END MAIN PANEL -->
+<%#= render partial: 'shared/shortcuts' %>
+<!-- PAGE FOOTER -->
+<div class="page-footer">
+  <%= render partial: 'shared/footer' %>
+</div>
+<!-- END PAGE FOOTER -->
+
+<%= javascript_include_tag 'smart_admin/smart_admin' %>
+<script>
+  $(document).ready(function() {
+    toastr.options = {
+      "progressBar": true,
+      "timeOut": "20000"
+    }
+    // DO NOT REMOVE : GLOBAL FUNCTIONS!
+    pageSetUp();
+  });
+</script>
+</body>
+
+</html>
