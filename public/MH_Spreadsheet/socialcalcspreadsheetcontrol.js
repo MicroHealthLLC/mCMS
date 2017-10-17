@@ -245,7 +245,7 @@ SocialCalc.SpreadsheetControl = function() {
 
    this.tabnums.edit = this.tabs.length;
    this.tabs.push({name: "edit", text: "Edit", html:
-      '<div id="%id.edittools" style="padding:0px 0px 0px 0px;">'+
+      '<div id="%id.edittools" style="padding:10px 0px 0px 0px;">'+
 '&nbsp;<img id="%id.button_undo" src="%img.undo.gif" style="vertical-align:bottom;">'+
 ' <img id="%id.button_redo" src="%img.redo.gif" style="vertical-align:bottom;">'+
 ' &nbsp;<img src="%img.divider1.gif" style="vertical-align:bottom;">&nbsp; '+
@@ -989,7 +989,8 @@ spreadsheet.Buttons = {
 
    spreadsheet.formulabarDiv = document.createElement("div");
    spreadsheet.formulabarDiv.style.height = spreadsheet.formulabarheight + "px";
-   spreadsheet.formulabarDiv.innerHTML = '<input type="text" id="maininput" size="60" value="" onfocusin="checkName();">&nbsp;'; //'<textarea rows="4" cols="60" style="z-index:5;background-color:white;position:relative;"></textarea>&nbsp;';
+//   spreadsheet.formulabarDiv.innerHTML = '<input type="text" id="maininput" size="60" value="" onfocusin="checkName();">&nbsp;'; //'<textarea rows="4" cols="60" style="z-index:5;background-color:white;position:relative;"></textarea>&nbsp;';
+   spreadsheet.formulabarDiv.innerHTML = '<input type="text" id="maininput" size="60" value="">&nbsp;'; //'<textarea rows="4" cols="60" style="z-index:5;background-color:white;position:relative;"></textarea>&nbsp;';
    spreadsheet.spreadsheetDiv.appendChild(spreadsheet.formulabarDiv);
    var inputbox = new SocialCalc.InputBox(spreadsheet.formulabarDiv.firstChild, spreadsheet.editor);
 
