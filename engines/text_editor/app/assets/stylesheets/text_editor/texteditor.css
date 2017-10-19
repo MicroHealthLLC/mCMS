@@ -4,11 +4,11 @@ button.iconbtn:hover {background-color:#ddd;}
 button.iconbtn2:hover {background-color:#ddd;}
 
 #docfilename {width: 300px; padding: 6px; border:none; border-bottom: 2px solid #aaa; background-color: transparent; color:#333; font-family:helvetica,arial,sans-serif;font-weight: bold; font-size: 14px;}
-#filename_div {z-index:1500; display:none;margin-top:-57px; margin-left:54px; margin-bottom:3px; background-color:#aaa; width:310px;height:40px;padding:6px 4px 8px 10px;}
+#filename_div {z-index:1500; display:none;margin-top:-50px; margin-left:54px; background-color:#aaa; width:310px;height:40px;padding:6px 4px 8px 10px;}
 #filenameinput {width:200px;height:20px;}
+#fileext {font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight:bold;}
 #submitfilename, #cancelfilename {margin-left:0px; margin-right:0px;}
 #submitfilename img, #cancelfilename img {width:20px; height:20px;}
-
 
 #newmenu {width:100%;margin-top:0px; height:50px;padding:10px 5px 0px 5px;background-color:#f6f6f6;background-color:#D0D0D0;}
 #openSliderbtn {margin-right:20px;}
@@ -21,16 +21,10 @@ button.iconbtn2:hover {background-color:#ddd;}
 #reloadbtn img {width:18px; height:19px;}
 #resetuserbtn img {width:18px;height:18px;}
 
-
-
 #list_name {margin: 10px 0 10px 10px;font-family:verdana,helvetica,sans-serif;font-size:24px;font-weight:bold;color:#DD9036;}
 #mh {color:#1D336F;}
 
-
-
 #list_search {margin-top:0px;padding:10px 10px 20px 10px;width:600px;background-color:white;border:1px solid #666;font-family:helvetica,sans-serif;font-size:14px;}
-
-
 
 #searchfiles {margin: 0 0 10px 0; padding:5px; width:500px; height: 30px; border: 1px solid #666; background:#f4f4f4;}
 
@@ -63,9 +57,6 @@ button.iconbtn2:hover {background-color:#ddd;}
   transform: translateY(-100%);
 }
 
-
-
-
 .flipimg {
     -moz-transform: scaleX(-1);
     -o-transform: scaleX(-1);
@@ -78,7 +69,6 @@ button.iconbtn2:hover {background-color:#ddd;}
 #fileslisting {margin:20px 10px 0px;}
 #fileslisting p {margin-top: 10px;}
 
-
 #deleteallbtn {margin-top:10px; margin-left:8px; font-size:14px; font-family: Helvetica, Arial, sans-serif;}
 #deleteallbtn img {width:20px; height:20px; margin-right:0px;}
 
@@ -86,7 +76,6 @@ button.iconbtn2:hover {background-color:#ddd;}
 .deletefilebtn:hover, .editfilebtn:hover {background-color:#ddd;}
 .deletefilebtn img {width:14px;height:14px;}
 .editfilebtn img {width:18px;height:16px;}
-
 
 .hidden {display:none;}
 
