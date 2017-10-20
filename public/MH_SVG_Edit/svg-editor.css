@@ -19,11 +19,12 @@ html, body, div{
 }
 
 #svg_editor * {
-	transform-origin: 0 0;
-	-moz-transform-origin: 0 0;
-	-o-transform-origin: 0 0;
-	-webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  -moz-transform-origin: 0 0;
+  -o-transform-origin: 0 0;
+  -webkit-transform-origin: 0 0;
 }
+
 
 #svg_editor {
 	font-size: 8pt;
@@ -45,12 +46,13 @@ select {
 }
 
 #svgroot {
-	-moz-user-select: none;
-	-webkit-user-select: none;
-	position: absolute;
-	top: 0;
-	left: 0;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
+
 
 #svgcanvas {
 	line-height: normal;
@@ -81,19 +83,21 @@ select {
 }
 
 #ruler_corner {
-	top: 41px;
-	top: 81px;
-	left: 41px;
-	width: 15px;
-	height: 15px;
+  top: 41px;
+  top: 181px;
+  top: 191px;
+  left: 271px;
+  width: 15px;
+  height: 15px;
 }
-
 
 #ruler_x {
 	height: 15px;
 	top: 41px;
-	top: 81px;
+	top: 181px;
+	top: 191px;
 	left: 56px;
+    left: 286px;
 	right: 30px;
 	border-bottom: 1px solid;
 	border-left: 1px solid #777;
@@ -102,8 +106,10 @@ select {
 #ruler_y {
 	width: 15px;
 	top: 55px;
-	top: 95px;
+	top: 195px;
+	top: 205px;
 	left: 41px;
+    left: 271px;
 	bottom: 56px;
 	border-right: 1px solid;
 	border-top: 1px solid #777;
@@ -166,8 +172,9 @@ select {
 	display: inline-table-cell;
 	position:absolute;
 	top: 40px;
-	top: 120px !important;
+	top: 190px !important;
 	left: 40px;
+    left: 270px;
 	bottom: 40px;
 	right: 14px;
 	background-color: #A0A0A0;
@@ -180,7 +187,7 @@ select {
 	display: inline-block;
 	position:absolute;
 	top: 40px;
-	top: 120px;
+    top: 190px;
 	bottom: 40px;
 	right: 0;
 	width: 2px;
@@ -217,6 +224,7 @@ select {
 	background-color: #D0D0D0;
 	font-weight: bold;
 	left: 0;
+    left: 230;
 	top: 40%;
 	width: 1em;
 	padding: 5px 1px 5px 5px;
@@ -486,10 +494,10 @@ div.palette_item:first-child {
 #tools_top {
 	position: absolute;
 	left: 108px;
-	left: 3px !important;
+    left: 233px !important;
 	right: 2px;
 	top: 2px;
-	top: 52px !important;
+    top: 112px !important;
 	height: 40px;
 	height: 80px;
 	border-bottom: none;
@@ -505,8 +513,9 @@ div.palette_item:first-child {
 	border-right: none;
 	width: 32px;
 	top: 40px;
-	top: 121px !important;
-	left: 1px;
+    top: 191px !important;
+    left: 1px;
+    left: 231px !important;
 	margin-top: -2px;
 	padding-left: 2px;
 	background: #D0D0D0; /* Needed so flyout icons don't appear on the left */
@@ -552,8 +561,9 @@ div.palette_item:first-child {
 #cur_context_panel {
 	position: absolute;
 	top: 57px;
-	top: 97px;
+	top: 207px;
 	left: 56px;
+    left: 286px;
 	line-height: 22px;
 	overflow: auto;
 	padding-left: 5px;
@@ -789,7 +799,10 @@ span.zoom_tool {
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	top: 0; left: 0;
+	top: 0;
+    top: 100;
+	left: 0;
+    left: 230;
 	background: #000;
 	opacity: 0;
 }
@@ -814,6 +827,7 @@ span.zoom_tool {
 
 .tools_flyout {
 	position: absolute;
+	margin-left:230px !important;
 	display: none;
 	cursor: pointer;
 	width: 400px;
@@ -841,8 +855,9 @@ span.zoom_tool {
 #tools_bottom {
 	position: absolute;
 	left: 40px;
+    left: 270px;
 	right: 0;
-	bottom: 0;
+	bottom: 0 !important;
 	height: 40px;
 	overflow: visible;
 }
@@ -906,6 +921,7 @@ span.zoom_tool {
 	position: absolute;
 	right: 0;
 	top: 0;
+    top: 100;
 	bottom: 0;
 	width: 25px;
 	text-align: center;
@@ -955,7 +971,9 @@ span.zoom_tool {
 .color_block {
 	position: absolute;
 	top: 0;
+    top: 100;
 	left: 0;
+    left: 230;
 }
 
 .color_block svg {
@@ -978,7 +996,9 @@ span.zoom_tool {
 
 .color_tool > .color_block {
 	top: 3px;
+	top: 103px;
 	left: 29px;
+	left: 259px;
 }
 
 .color_tool input {
@@ -991,52 +1011,6 @@ span.zoom_tool {
 
 
 
-@media screen and (min-width:1300px) {
-	.expanded #palette_holder {
-		left: 560px;
-		overflow-x: scroll;
-		padding: 0 5px;
-		margin-top: 2px;
-		height: 30px;
-	}
-	#tools_top {
-		height: 71px;
-		height: 80px;
-	}
-	#workarea, #sidepanels {
-		top: 70px;
-		top: 120px !important;
-	}
-	#rulers #ruler_corner,
-	#rulers #ruler_x, #tools_left {
-		top: 71px;
-		top: 121px !important;
-	}
-
-	#rulers #ruler_y {
-		top: 86px;
-		top: 136px;
-	}
-
-	#cur_context_panel {
-		top: 87px;
-		top: 137px;
-	}
-
-	#selected_panel {
-		clear: right;
-	}
-}
-
-@media screen and (max-width:1100px) {
-	#tools_bottom:not(.expanded) #palette_holder {
-		left: 410px;
-		overflow-x: scroll;
-		padding: 0 5px;
-		margin-top: 2px;
-		height: 30px;
-	}
-}
 
 /*–––––––––––––––––––––––––––––––––––––*/
 
@@ -1111,8 +1085,9 @@ ul li.current {
 #svg_source_editor #svg_source_container {
 	position: absolute;
 	top: 30px;
-	top: 70px;
+	top: 130px;
 	left: 30px;
+	left: 260px;
 	right: 30px;
 	bottom: 30px;
 	background-color: #B0B0B0;
@@ -1145,7 +1120,8 @@ ul li.current {
 #svg_prefs #svg_prefs_container {
 	position: absolute;
 	top: 50px;
-	top: 90px;
+	top: 190px;
+	left: 230px;
 	padding: 10px;
 	background-color: #B0B0B0;
 	border: 1px outset #777;
@@ -1494,7 +1470,7 @@ ul li.current {
 
 
 
-@media screen and (max-width:1299px) {
+@media screen and (max-width:1539px) {
 	.expanded #palette_holder {
 		left: 560px;
 		overflow-x: scroll;
@@ -1502,31 +1478,18 @@ ul li.current {
 		margin-top: 2px;
 		height: 30px;
 	}
-	#tools_top {
-		height: 71px;
-		height: 80px;
-	}
-	#workarea, #sidepanels {
-		top: 70px;
-		top: 120px !important;
-	}
-	#rulers #ruler_corner,
-	#rulers #ruler_x, #tools_left {
-		top: 71px;
-		top: 121px !important;
-	}
-
-	#rulers #ruler_y {
-		top: 86px;
-		top: 136px;
-	}
-
-	#cur_context_panel {
-		top: 87px;
-		top: 137px;
-	}
-
 	#selected_panel {
 		clear: right;
 	}
+}
+
+
+@media screen and (max-width:1340px) {
+  #tools_bottom:not(.expanded) #palette_holder {
+    left: 410px;
+    overflow-x: scroll;
+    padding: 0 5px;
+    margin-top: 2px;
+    height: 30px;
+  }
 }
