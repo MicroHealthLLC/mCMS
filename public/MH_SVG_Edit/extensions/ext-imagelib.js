@@ -385,8 +385,8 @@ svgEditor.addExtension("imagelib", function() {'use strict';
 			$('<style>').text('\
 				#imgbrowse_holder {\
 					position: absolute;\
-					top: 0;\
-					left: 0;\
+					top: 100;\
+					left: 230;\
 					width: 100%;\
 					height: 100%;\
 					background-color: rgba(0, 0, 0, .5);\
@@ -395,8 +395,8 @@ svgEditor.addExtension("imagelib", function() {'use strict';
 				\
 				#imgbrowse {\
 					position: absolute;\
-					top: 25px;\
-					left: 25px;\
+					top: 75px;\
+					left: 205px;\
 					right: 25px;\
 					bottom: 25px;\
 					min-width: 300px;\

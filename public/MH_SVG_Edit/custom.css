@@ -1,13 +1,14 @@
+
 button.iconbtn{background:transparent; border:none;}
 button.flrtbtn{float:right;}
 
-#topbar {position: absolute; margin-top:-3px; margin-left: -15px; background:transparent;}
+#topbar {position: absolute; margin-top:60px; margin-left: 225px; background:transparent;}
 #openSliderbtn {margin-top:-5px; margin-left:10px; margin-right: 20px; width:40px; height:40px;}
 #openSliderbtn img {width:23px; height:20px;}
 #save_canvas {margin-top:-3px; margin-left:10px; width:40px; height:40px;}
 #save_canvas img {width:21px; height:20px;}
 #tool_save {margin-top:-3px; margin-left:10px; width:40px; height:40px;}
-#tool_save img {width:21px; height:20px;}
+#tool_save img {width:21px; height:21px;}
 #tool_export {margin-top:-3px; margin-left:10px; width:40px; height:40px;}
 #tool_export img {width:19px; height:20px;}
 #tool_clear {margin-top:-3px; margin-left:50px; width:40px; height:40px;}
@@ -18,8 +19,6 @@ button.flrtbtn{float:right;}
 #tool_prefs_option span img {width:21px; height:20px;}
 #filetitle {margin-top: -5px; padding: 0 3px; width:300px; height: 24px; border: 1px solid #666; background:#f4f4f4;}
 #importsvg {width:18px !important; height:19px !important;}
-
-
 
 #fileslisting {margin-top: 20px;}
 #list_name {margin-left:10px;font-size:24px;font-weight:bold;color:#DD9036;}
@@ -34,15 +33,15 @@ button.flrtbtn{float:right;}
 #searchfiles {margin: 10px 0 10px 10px; padding: 0 5px; width:430px; height: 30px; border: 1px solid #666; background:#f4f4f4;}
 #searchbtn {margin-top:15px; margin-right:10px;}
 #searchbtn img {width:18px; height:18px;}
-#listnote {margin-left: 10px; font-size: 10px; font-style: italic;}
-#closeSliderbtn {margin-top: -20px;}
+#filesessionmsg {margin-top:20px; font-size: 10px; font-weight: bold; display:none;}
+#closeSliderbtn {float:right;}
 
 #svglistingdiv {
   background-color: transparent;
   z-index:-2000;
   position:absolute;
-  margin-top:40px;
-  margin-left:-5px;
+  margin-top:100px;
+  margin-left:225px;
   width: 600px;
   overflow: hidden;
 }
@@ -58,8 +57,6 @@ button.flrtbtn{float:right;}
 .slide-up {
   transform: translateY(-100%);
 }
-
-
 
 #buttonrow {float:left; margin-right:15px;}
 
@@ -83,7 +80,6 @@ button.flrtbtn{float:right;}
 #main_icon:hover {
   background: transparent !important;
 }
-
 
 #main_icon.buttondown {
   background: #eee !important;
@@ -117,4 +113,5 @@ button.flrtbtn{float:right;}
 }
 
 #main_menu ul li {font-family: Helvetica, Arial, sans-serif; font-size: .75em !important;}
+
 

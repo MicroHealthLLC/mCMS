@@ -80,7 +80,7 @@ by creating the following file and adding by calls to svgEditor.setConfig -->
 	    <button id="openSliderbtn" class="iconbtn" title="Open SGV Files Listing/Search Panel"><img src="images/glyphicons-115-list.png"></button>
 	    <input type="text" id="filetitle" placeholder="Image Title" value="" />
 	    <button id="save_canvas" class="iconbtn" title="Save Canvas"><img src="images/glyphicons-415-disk-save.png"></button>
-	    <button id="tool_save" class="iconbtn" title="Save Canvas/Export SVG"><img src="images/glyphicons-420-disk-export.png"></button>
+	    <button id="tool_save" class="iconbtn" title="Download SVG"><img src="images/glyphicons-201-download.png"></button>
 	    <button id="tool_export" class="iconbtn" title="Export non-SVG"><img src="images/glyphicons-360-file-export.png"></button>
 	    <button id="tool_clear" class="iconbtn" title="Clear Canvas"><img src="images/glyphicons-82-refresh.png"></button>
 	    <button id="tool_docprops" class="iconbtn" title="Document Properties"><img src="images/glyphicons-440-wrench.png"></button>
@@ -99,7 +99,7 @@ by creating the following file and adding by calls to svgEditor.setConfig -->
 					<div id="fileinputs">
 						<div></div>
 					</div>
-					Import SVG
+					Upload SVG
 				</li>
 				<li></li>
 			</ul>
@@ -110,16 +110,15 @@ by creating the following file and adding by calls to svgEditor.setConfig -->
 
 <div id="svglistingdiv">
     <div id="list_search" class="slide slide-up">
+        <button id="closeSliderbtn" class="flrtbtn iconbtn" title="Close SVG Listings and Search Panel"><img src="images/glyphicons-370-collapse-top.png"></button>
         <p><span id="list_name"><span id="mh">MH</span> SVG Edit</span></p>
         <input type="text" id="searchfiles" name="searchfiles" />
         <button id="searchbtn" class="flrtbtn iconbtn" title="Search Listing"><img src="images/glyphicons-28-search.png"></button>
         <div id="fileslisting">
         </div>
-        <p id="listnote">NOTE: Download files prior to closing browser window.</p>
-        <button id="closeSliderbtn" class="flrtbtn iconbtn" title="Close SVG Listings and Search Panel"><img src="images/glyphicons-370-collapse-top.png"></button>
+        <p id="filesessionmsg">NOTE: Download files prior to closing browser window.</p>
     </div>
 </div>
-
 
 <div id="svg_editor">
 
@@ -776,7 +775,6 @@ by creating the following file and adding by calls to svgEditor.setConfig -->
 	<li><a href="#merge_down">Merge Down</a></li>
 	<li><a href="#merge_all">Merge All</a></li>
 </ul>
-
 
 <script src="svgedit_script.js"></script>
 
