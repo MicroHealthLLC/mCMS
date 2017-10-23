@@ -492,7 +492,6 @@
 
 
   function saveMHSpreadsheets() {
-    "use strict";
     if (presentsheet_id !== -1) {
       gathersheet();
     }
@@ -503,7 +502,6 @@
 
 
   function setupDocs() {
-    "use strict";
     <% if @sheet.content %>
       localStorage.setItem("thesemh_spreadsheets", <%= @sheet.content.to_s.inspect.html_safe %>);
     <% else %>

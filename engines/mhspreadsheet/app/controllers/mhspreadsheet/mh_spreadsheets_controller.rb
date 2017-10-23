@@ -9,8 +9,8 @@ module Mhspreadsheet
 
     def save
       @sheet = Mhspreadsheet::MhSpreadsheet.where(user_id: User.current.id).first_or_initialize
-      @rss.content = params[:content]
-      @rss.save
+      @sheet.content = params[:content]
+      # @sheet.save
       render json: {success: true}
     end
   end
