@@ -221,7 +221,8 @@ svgEditor.addExtension('storage', function() {
 				$('#dialog_content')[0].style.height = '120px';
 				$('#dialog_container')[0].style.height = '170px';
 				$('#dialog_container')[0].style.width = '800px';
-				$('#dialog_container')[0].style.marginLeft = '-400px';
+			//	$('#dialog_container')[0].style.marginLeft = '-400px';
+				$('#dialog_container')[0].style.marginLeft = '-275px';
 
 				// Open select-with-checkbox dialog
 				$.select(

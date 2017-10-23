@@ -395,8 +395,8 @@ svgEditor.addExtension("imagelib", function() {'use strict';
 				\
 				#imgbrowse {\
 					position: absolute;\
-					top: 75px;\
-					left: 205px;\
+					top: 125px;\
+					left: 255px;\
 					right: 25px;\
 					bottom: 25px;\
 					min-width: 300px;\
