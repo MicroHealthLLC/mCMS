@@ -1,40 +1,62 @@
 
-button.iconbtn{background:transparent; border:none;}
-button.flrtbtn{float:right;}
+button.iconbtn, button.iconbtn2 {border: none; box-shadow: none; background-color:transparent; margin: 5px 5px; padding: 5px;}
+button.iconbtn {margin-right: 15px;}
+button.iconbtn:hover {background-color:#ddd;}
+button.iconbtn2:hover {background-color:#ddd;}
 
 #topbar {position: absolute; margin-top:60px; margin-left: 225px; background:transparent;}
-#openSliderbtn {margin-top:-5px; margin-left:10px; margin-right: 20px; width:40px; height:40px;}
+
+#filetitle {margin-top: -5px; padding: 6px; width: 300px; padding: 6px; border:none; border-bottom: 2px solid #aaa; background-color: transparent; color:#333; font-family:helvetica,arial,sans-serif;font-weight: bold; font-size: 14px;}
+
+#filename_div {z-index:1500; display:none;margin-top:-50px; margin-left:54px; background-color:#aaa; width:310px;height:40px;padding:6px 4px 8px 10px;}
+#filenameinput {width:200px;height:20px;}
+#submitfilename, #cancelfilename {margin-left:0px; margin-right:0px;}
+#submitfilename img, #cancelfilename img {width:20px; height:20px;}
+
+#openSliderbtn {margin-top:-5px; margin-left:10px; margin-right: 20px;}
 #openSliderbtn img {width:23px; height:20px;}
-#save_canvas {margin-top:-3px; margin-left:10px; width:40px; height:40px;}
+#save_canvas {margin-top:-3px; margin-left:10px;}
 #save_canvas img {width:21px; height:20px;}
-#tool_save {margin-top:-3px; margin-left:10px; width:40px; height:40px;}
+#new_file {margin-top:-3px; margin-left:10px;}
+#new_file img {width:19px; height:20px;}
+#duplicate_file {margin-top:-3px; margin-left:10px;}
+#duplicate_file img {width:21px; height:20px;}
+#tool_save {margin-top:-3px; margin-left:10px;}
 #tool_save img {width:21px; height:21px;}
-#tool_export {margin-top:-3px; margin-left:10px; width:40px; height:40px;}
+#tool_export {margin-top:-3px; margin-left:10px;}
 #tool_export img {width:19px; height:20px;}
-#tool_clear {margin-top:-3px; margin-left:50px; width:40px; height:40px;}
+#tool_clear {margin-top:-3px; margin-left:50px;}
 #tool_clear img {width:19px; height:20px;}
-#tool_docprops {margin-top:-3px; margin-left:5px; width:40px; height:40px;}
+#tool_docprops {margin-top:-3px; margin-left:5px;}
 #tool_docprops img {width:20px; height:20px;}
 #tool_prefs_option {margin-top:-3px; margin-left:0px; width:60px; height:40px;}
 #tool_prefs_option span img {width:21px; height:20px;}
-#filetitle {margin-top: -5px; padding: 0 3px; width:300px; height: 24px; border: 1px solid #666; background:#f4f4f4;}
 #importsvg {width:18px !important; height:19px !important;}
 
-#fileslisting {margin-top: 20px;}
-#list_name {margin-left:10px;font-size:24px;font-weight:bold;color:#DD9036;}
-#mh {color:#1D336F;}
-.deletefilebtn {margin-right: 10px; background:transparent; border:none;}
-.deletefilebtn img {width: 15px; height: 14px;}
-.editfilebtn {margin-left: 0px; margin-right: 10px; background:transparent; border:none;}
-.editfilebtn img {width: 17px; height: 15px;}
 
-#list_search {margin-top:-1px;padding:15px 10px 15px 10px;width:500px;background-color:white;border:1px solid #666; font-family: Helvetica, Arial, sans-serif; z-index: -2000;}
-#list_search p {margin-top: 10px;}
-#searchfiles {margin: 10px 0 10px 10px; padding: 0 5px; width:430px; height: 30px; border: 1px solid #666; background:#f4f4f4;}
-#searchbtn {margin-top:15px; margin-right:10px;}
+#list_name {margin: 10px 0 10px 10px;font-family:verdana,helvetica,sans-serif;font-size:24px;font-weight:bold;color:#DD9036;}
+#mh {color:#1D336F;}
+
+#fileslisting {margin:20px 10px 0px;}
+#fileslisting p {margin-top:10px;}
+
+#deleteallbtn {margin-top:10px; margin-left:8px; font-size:14px; font-family: Helvetica, Arial, sans-serif;}
+#deleteallbtn img {width:20px; height:20px; margin-right:0px;}
+
+.deletefilebtn, .editfilebtn {margin-right:20px; background-color:transparent; border:none; padding: 5px 5px 3px 5px;}
+.deletefilebtn:hover, .editfilebtn:hover {background-color:#ddd;}
+.deletefilebtn img {width:14px;height:14px;}
+.editfilebtn img {width:18px;height:16px;}
+
+#list_search {margin-top:0px;padding:10px 10px 20px 10px;width:600px;background-color:white;border:1px solid #666;font-family:helvetica,sans-serif;font-size:14px; z-index: -2000;}
+#searchfiles {margin: 0 0 10px 10px; padding:5px; width:500px; height: 20px; border: 1px solid #666; background-color:#f4f4f4;}
+
+
+
 #searchbtn img {width:18px; height:18px;}
-#filesessionmsg {margin-top:20px; font-size: 10px; font-weight: bold; display:none;}
 #closeSliderbtn {float:right;}
+#deletediv {display:none;}
+#filesessionmsg {margin-top:20px; margin-left:10px; font-size: 10px; font-weight: bold; display:none;}
 
 #svglistingdiv {
   background-color: transparent;
@@ -42,7 +64,7 @@ button.flrtbtn{float:right;}
   position:absolute;
   margin-top:100px;
   margin-left:225px;
-  width: 600px;
+  width: 630px;
   overflow: hidden;
 }
 
@@ -63,8 +85,10 @@ button.flrtbtn{float:right;}
 #main_button2 {
   float:left;
   margin-top:6px;
+  margin-top:3px;
   position: absolute;
   margin-left:560px;
+  margin-left:680px;
 }
 
 #main_icon {
@@ -113,5 +137,4 @@ button.flrtbtn{float:right;}
 }
 
 #main_menu ul li {font-family: Helvetica, Arial, sans-serif; font-size: .75em !important;}
-
 
