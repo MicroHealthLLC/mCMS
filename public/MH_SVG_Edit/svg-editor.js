@@ -25,7 +25,8 @@ TODOS
 
 var presentfile_id = -1;
 var mh_svgedit = [];
-var onlysave = false;
+
+var onlysave = false; //NOTE: Might not need with modifications
 
 
 
@@ -134,10 +135,10 @@ var onlysave = false;
 				no_save_warning: false,
 				// PATH CONFIGURATION
 				// The following path configuration items are disallowed in the URL (as should any future path configurations)
-				imgPath: 'MH_SVG_Edit/images/',
-				langPath: 'MH_SVG_Edit/locale/',
-				extPath: 'MH_SVG_Edit/extensions/',
-				jGraduatePath: 'MH_SVG_Edit/jgraduate/images/',
+				imgPath: 'images/',
+				langPath: 'locale/',
+				extPath: 'extensions/',
+				jGraduatePath: 'jgraduate/images/',
 				// DOCUMENT PROPERTIES
 				// Change the following to a preference (already in the Document Properties dialog)?
 				dimensions: [640, 480],
@@ -1046,7 +1047,25 @@ var onlysave = false;
 			};
 
 
+
+	        var filenamediv = document.getElementById("filename_div");
+	        var filenameinput = document.getElementById("filenameinput");
+	        var nametype = document.getElementById("nametype");
+
+            var filetitle = document.getElementById("filetitle");
+	        filetitle.addEventListener("click", function () {
+	          if (filetitle.value !== "newimage") {
+	            nametype.value = "modifyfunc";
+	            if (filenamediv.style.display !== "block") {
+	               filenamediv.style.display = "block";
+	               filenameinput.value = filetitle.value;
+	            }
+	          }
+	        });
+
+
 	        function update_fileslisting(srchinput) {
+	            "use strict";
 	            var i, fileslist_items = "", this_list = document.getElementById("fileslisting");
 	            this_list.innerHTML = null;
 	            if (srchinput === null) {
@@ -1054,7 +1073,7 @@ var onlysave = false;
 	            }
 	            for (i = mh_svgedit.length - 1; i >= 0; i-=1) {
 	                if ((srchinput === null) || ((mh_svgedit[i].title).indexOf(srchinput) > -1)) {
-	                    fileslist_items = fileslist_items + '<p><button id="deletebtn' + mh_svgedit[i].id + '" class="deletefilebtn" title="Delete ' + mh_svgedit[i].title + '"><img src="/MH_SVG_Edit/images/glyphicons-208-remove.png"></button><button id="editbtn' + mh_svgedit[i].id + '" class="editfilebtn" title="Edit ' + mh_svgedit[i].title + '"><img src="/MH_SVG_Edit/images/glyphicons-151-edit.png"></button>' + mh_svgedit[i].title + '</p>';
+	                    fileslist_items = fileslist_items + '<p><button id="deletebtn' + mh_svgedit[i].id + '" class="deletefilebtn" title="Delete ' + mh_svgedit[i].title + '"><img src="images/glyphicons-208-remove.png"></button><button id="editbtn' + mh_svgedit[i].id + '" class="editfilebtn" title="Edit ' + mh_svgedit[i].title + '"><img src="images/glyphicons-151-edit.png"></button>' + mh_svgedit[i].title + '</p>';
 	                }
 	            }
 	            this_list.innerHTML = fileslist_items;
@@ -1070,6 +1089,15 @@ var onlysave = false;
 	                    deletefile(this.id.slice(9));
 	               });
 	            }
+                var deletediv = document.getElementById("deletediv");
+	            var filesessionmsg = document.getElementById("filesessionmsg");
+	            if (mh_svgedit.length > 0) {
+                    deletediv.style.display = "block";
+	                filesessionmsg.style.display = "block";
+	            } else {
+                    deletediv.style.display = "none";
+	                filesessionmsg.style.display = "none";
+	            }
 	            return;
 	        }
 
@@ -1077,10 +1105,6 @@ var onlysave = false;
 	        function editfile(btnid) {
 	            "use strict";
 		        if (Number(btnid) !== presentfile_id) {
-		            var checkstr = window.confirm('Click "Cancel" if this file needs to be saved first; otherwise, click "OK".');
-		            if (checkstr === false) {
-		                return;
-		            }
 	                var found = false, i = -1;
 	                while ((found === false) && (i < mh_svgedit.length)) {
 	                    i += 1;
@@ -1092,7 +1116,7 @@ var onlysave = false;
 	                    clickClear();
 	                    editor.loadFromString(mh_svgedit[i].content);
 	                    presentfile_id = mh_svgedit[i].id;
-	                    document.getElementById("filetitle").value = mh_svgedit[i].title;               
+	                    filetitle.value = mh_svgedit[i].title;               
 						window.document.title = "MH SVG Edit: " + mh_svgedit[i].title;
 	                } else {
 	                    alert("Error, file not found!");
@@ -1121,7 +1145,7 @@ var onlysave = false;
 	                if (Number(btnid) === presentfile_id) {
 	                    svgCanvas.clear();
 						presentfile_id = -1;
-						document.getElementById("filetitle").value = "";
+						filetitle.value = "newimage";
 						window.document.title = "MH SVG Edit";
 	                }
 	                update_fileslisting(null);
@@ -1130,6 +1154,22 @@ var onlysave = false;
 	            }
 	        }
 
+	        var deleteallbtn = document.getElementById("deleteallbtn");
+	        deleteallbtn.addEventListener("click", function (e) {
+	            "use strict";
+	            e.preventDefault();	   
+		        if (mh_svgedit.length > 0) {
+		            var checkstr = window.confirm("Sure you want to delete all files from the listing?");
+	                if (checkstr === false) {
+	                    return;
+	                }
+		            if (presentfile_id !== -1) {
+	                    clickClear();
+		            }
+	                mh_svgedit.length = 0;
+	                update_fileslisting(null);
+	            }
+	        });
 
 			var searchbtn = document.getElementById("searchbtn");
 			searchbtn.addEventListener("click", function () {
@@ -1149,12 +1189,34 @@ var onlysave = false;
 			});
 
 
+            function saveFile() {
+				var thisfiletitle = filetitle.value;
+	            if (presentfile_id === -1) {
+	                var this_group = {};
+	                if (mh_svgedit.length > 0) {
+	                    var this_id = Number(mh_svgedit[mh_svgedit.length - 1].id) + 1;
+	                } else {
+	                    this_id = 0;
+	                }
+	                this_group.id = this_id;
+	                this_group.title = thisfiletitle;
+	                this_group.content = svgCanvas.getSvgString();
+	                mh_svgedit.push(this_group);
+	                presentfile_id = this_id;
+	            } else {
+	                mh_svgedit[presentfile_id].content = svgCanvas.getSvgString();
+	                mh_svgedit[presentfile_id].title = thisfiletitle;
+	            }
+				window.document.title = "MH SVG Edit: " + thisfiletitle;
+                update_fileslisting(null);
+            }
+
+
 			var saveHandler = function(wind, svg) {
 				editor.showSaveWarning = false;
 
-				if (document.getElementById("filetitle").value.trim() === "") {
-					alert('Give image a title!');
-					return;
+				if (presentfile_id !== -1) {
+					saveFile();
 				}
 
 				// by default, we add the XML prolog back, systems integrating SVG-edit (wikis, CMSs)
@@ -1173,63 +1235,152 @@ var onlysave = false;
 				var win = wind.open('data:image/svg+xml;base64,' + Utils.encode64(svg));
                 */
 
-	            if (presentfile_id === -1) {
-	                var this_group = {};
-	                if (mh_svgedit.length > 0) {
-	                    var this_id = Number(mh_svgedit[mh_svgedit.length - 1].id);
-	                    this_id += 1;
-	                } else {
-	                    this_id = 0;
-	                }
-	                this_group.id = this_id;
-	                this_group.title = document.getElementById("filetitle").value;
-	                this_group.content = svgCanvas.getSvgString();
-	                mh_svgedit.push(this_group);
-	                presentfile_id = this_id;
-	            } else {
-	                mh_svgedit[presentfile_id].content = svgCanvas.getSvgString();
-	            }
-                update_fileslisting(null);
+                var svgname;
+                if (presentfile_id !== -1) {
+                    svgname = mh_svgedit[presentfile_id].title + ".svg";
+                }  else {
+                	svgname = "newimage.svg";
+                }
+                var blob = new Blob([svg], {type: "data:image/svg+xml;base64"});
+                saveAs(blob, svgname);
 
-                if (onlysave === false) {
 
-                    var svgname = mh_svgedit[presentfile_id].title + ".svg";
-                    var blob = new Blob([svg], {type: "data:image/svg+xml;base64"});
-                    saveAs(blob, svgname);
+				// Alert will only appear the first time saved OR the first time the bug is encountered
+				var done = $.pref('save_notice_done');
+				if (done !== 'all') {
+					var note = uiStrings.notification.saveFromBrowser.replace('%s', 'SVG');
 
-					// Alert will only appear the first time saved OR the first time the bug is encountered
-					var done = $.pref('save_notice_done');
-					if (done !== 'all') {
-						var note = uiStrings.notification.saveFromBrowser.replace('%s', 'SVG');
-
-						// Check if FF and has <defs/>
-						if (svgedit.browser.isGecko()) {
-							if (svg.indexOf('<defs') !== -1) {
-								// warning about Mozilla bug #308590 when applicable (seems to be fixed now in Feb 2013)
-								note += '\n\n' + uiStrings.notification.defsFailOnSave;
-								$.pref('save_notice_done', 'all');
-								done = 'all';
-							} else {
-								$.pref('save_notice_done', 'part');
-							}
-						} else {
+					// Check if FF and has <defs/>
+					if (svgedit.browser.isGecko()) {
+						if (svg.indexOf('<defs') !== -1) {
+							// warning about Mozilla bug #308590 when applicable (seems to be fixed now in Feb 2013)
+							note += '\n\n' + uiStrings.notification.defsFailOnSave;
 							$.pref('save_notice_done', 'all');
+							done = 'all';
+						} else {
+							$.pref('save_notice_done', 'part');
 						}
-						if (done !== 'part') {
-							win.alert(note);
-						}
+					} else {
+						$.pref('save_notice_done', 'all');
 					}
-				} else {
-					onlysave = false;
+					if (done !== 'part') {
+						win.alert(note);
+					}
 				}
 			};
 
 
-			var save_canvas = document.getElementById("save_canvas");
-			save_canvas.addEventListener("click", function () {
-			    onlysave = true;
-			    clickSave();
+	        function checkValid() {
+	            var validname = false;
+	            var thisfiletitle = filetitle.value.trim();
+	            filetitle.value = thisfiletitle;
+	            if (thisfiletitle === "") {
+	                alert("Must input file title!");
+	            } else {
+	                if (thisfiletitle.toLowerCase() === "newimage") {
+                        alert('Image file title must not be "newimage"!');
+                    } else {
+	                    validname = true;
+	                }
+	            }
+	            return validname;
+	        }
+
+
+	        function checkName() {
+	            var i = -1, found = false;
+	            while ((found === false) && (i < mh_svgedit.length - 1)) {
+	                i += 1;
+	                if (mh_svgedit[i].title.toLowerCase() === filetitle.value.toLowerCase()) {
+	                    found = true;
+	                }
+	            }
+	            if (found === true) {
+	                return(i);
+	            } else {
+	                return(-1);
+	            }
+	        }
+
+
+			var savefilebtn = document.getElementById("save_canvas");
+			savefilebtn.addEventListener("click", function (e) {
+				e.preventDefault();
+	            var validname = checkValid();
+	            if (validname === true) {
+	                var found = checkName();
+	                if (presentfile_id === -1) {
+	                    if (found > -1) {
+	                        alert("Change the file title, this one already exists!");
+	                        filetitle.value = "newimage";
+	                        return;
+	                    }
+	                } else {
+	                    if ((found !== -1) && (found !== presentfile_id)) {
+	                        alert("That file title already exists for another file!");
+	                        filetitle.value = mh_svgedit[presentfile_id].title;
+	                        return;
+	                    }
+	                }
+			        saveFile();
+			    }
 			});
+
+
+
+	        var cancelfilename = document.getElementById("cancelfilename");
+	        cancelfilename.addEventListener("click", function (e) {
+	          e.preventDefault();
+	          filenameinput.value = "";
+	          nametype.value = "newfunc";
+	          filenamediv.style.display = "none";
+	        });
+
+	        var submitfilename = document.getElementById("submitfilename");
+	        submitfilename.addEventListener("click", function (e) {
+	           e.preventDefault();
+	           var thisfilename = filenameinput.value.trim();
+	           if (thisfilename === "") {
+	              alert("Input file title!");
+	              filenameinput.value = "";
+	           } else if (thisfilename === "newimage") {
+	              alert('File title must not be "newimage"!');    
+	              filenameinput.value = "";
+	           } else {
+	              var j = -1, found = false;
+	              while ((found === false) && (j < mh_svgedit.length - 1)) {
+	                j += 1;
+	                if (thisfilename === mh_svgedit[j].title) {
+	                  found = true;
+	                  alert("File title already exists!");
+	                }
+	              }
+	              if (found === false) {
+	                filetitle.value = thisfilename;
+	                filenameinput.value = "";
+	                filenamediv.style.display = "none";
+	                if (nametype.value === "newfunc") {
+	                  savefilebtn.click();
+	                } else if (nametype.value === "modifyfunc") {
+	                  nametype.value = "newfunc";
+	                  mh_svgedit[presentfile_id].title = filetitle.value;
+	                  savefilebtn.click();
+	                } else if (nametype.value === "copyfunc") {
+	                  nametype.value = "newfunc";
+	                  duplicateFile();
+	                } else {
+	                  alert("Error, illegal submit title type!");
+	                  nametype.value = "newfunc";
+	                }
+	              }
+	           }
+	        });
+
+
+	        function filenameform() {
+	          filenamediv.style.display = "block";
+	          return;
+	        }
 
 
 
@@ -1243,8 +1394,7 @@ var onlysave = false;
                 //NOTE: Original code does not work in most browsers
 			//	exportWindow.location.href = data.datauri;
 			
-				exportWindow.document.write('<!DOCTYPE html><html><head><meta charset="utf-8" /></head><body><a href="' + data.datauri + '"><img id="thisimage" src="/MH_SVG_Edit/' + data.datauri + '" /></a></body></html>');
-
+				exportWindow.document.write('<!DOCTYPE html><html><head><meta charset="utf-8" /></head><body><a href="' + data.datauri + '"><img id="thisimage" src="' + data.datauri + '" /></a></body></html>');
 
 				var done = $.pref('export_notice_done');
 				if (done !== 'all') {
@@ -1262,6 +1412,7 @@ var onlysave = false;
 					exportWindow.alert(note);
 				}
 			};
+
 
 			var operaRepaint = function() {
 				// Repaints canvas in Opera. Needed for stroke-dasharray change as well as fill change
@@ -2762,7 +2913,7 @@ var onlysave = false;
 						}
 
 						if (!svgicons) {
-							icon = $('<img src="/MH_SVG_Edit/' + btn.icon + '">');
+							icon = $('<img src="' + btn.icon + '">');
 						} else {
 							fallback_obj[id] = btn.icon;
 							svgicon = btn.svgicon || btn.id;
@@ -2974,10 +3125,10 @@ var onlysave = false;
 						placement: placement_obj,
 						callback: function (icons) {
 							// Non-ideal hack to make the icon match the current size
-							//if (curPrefs.iconsize && curPrefs.iconsize !== 'm') {
+							//if (curPrefs.iconsize && curPrefs.iconsize !== 'm') {						
 							if ($.pref('iconsize') !== 'm') {
 								prepResize();
-							}
+							}						
 							cb_ready = true; // Ready for callback
 							runCallback();
 						}
@@ -3723,25 +3874,75 @@ var onlysave = false;
 				updateContextPanel();
 			};
 
+
+
+            var newfilebtn = document.getElementById("new_file");
+            newfilebtn.addEventListener("click", function (e) {
+	            e.preventDefault();
+	            if (presentfile_id !== -1) {
+	                clickClear();
+	            }
+	            filenameform();
+            });
+
+
+	        function duplicateFile() {
+	            "use strict";
+	            var this_group = {};
+                var this_id = Number(mh_svgedit[mh_svgedit.length - 1].id) + 1;
+                this_group.id = this_id;
+                this_group.title = filetitle.value;
+                this_group.content = svgCanvas.getSvgString();
+                mh_svgedit.push(this_group);
+                presentfile_id = this_id;
+				window.document.title = "MH SVG Edit: " + filetitle.value;
+	            update_fileslisting(null);
+	        }
+
+            var duplicatebtn = document.getElementById("duplicate_file");
+            duplicatebtn.addEventListener("click", function (e) {
+                e.preventDefault();
+	            if (presentfile_id !== -1) {
+	                nametype.value = "copyfunc";
+	                filenameform();
+	            } else {
+	                alert("May not duplicate unsaved file!");
+	            }
+            });
+
+
 			var clickClear = function() {
 				var dims = curConfig.dimensions;
-				$.confirm(uiStrings.notification.QwantToClear, function(ok) {
-					if (!ok) {return;}
-					setSelectMode();
-					svgCanvas.clear();
-					svgCanvas.setResolution(dims[0], dims[1]);
-					updateCanvas(true);
-					zoomImage();
-					populateLayers();
-					updateContextPanel();
-					prepPaints();
-					svgCanvas.runExtensions('onNewDocument');
-					presentfile_id = -1;
-					window.document.title = "MH SVG Edit";
-					document.getElementById("filetitle").value = "";
-					return;				
-				});
+				if (presentfile_id !== -1) {
+					saveFile();
+				} else {
+				/*					
+					$.confirm(uiStrings.notification.QwantToClear, function(ok) {
+						if (!ok) {
+							return;
+						}
+					});
+                */
+                    var checkstr = window.confirm('Click "Cancel" if this file needs to be saved first; otherwise, click "OK".');
+		            if (checkstr === false) {
+		                return;
+		            }		
+				}
+				setSelectMode();
+				svgCanvas.clear();
+				svgCanvas.setResolution(dims[0], dims[1]);
+				updateCanvas(true);
+				zoomImage();
+				populateLayers();
+				updateContextPanel();
+				prepPaints();
+				svgCanvas.runExtensions('onNewDocument');
+				presentfile_id = -1;
+				window.document.title = "MH SVG Edit";
+				filetitle.value = "newimage";
+				return;
 			};
+
 
 			var clickBold = function() {
 				svgCanvas.setBold( !svgCanvas.getBold() );
@@ -3896,7 +4097,7 @@ var onlysave = false;
 				$('#canvas_width').val(res.w);
 				$('#canvas_height').val(res.h);
 			//	$('#canvas_title').val(svgCanvas.getDocumentTitle());
-				$('#canvas_title').val(document.getElementById("filetitle").value.trim());
+				$('#canvas_title').val(filetitle.value.trim());
 
 				$('#svg_docprops').show();
 			};
@@ -3975,7 +4176,7 @@ var onlysave = false;
 				var newTitle = $('#canvas_title').val().trim();
 				updateTitle(newTitle);
 				svgCanvas.setDocumentTitle(newTitle);
-				document.getElementById("filetitle").value = newTitle;
+				filetitle.value = newTitle;
 
 				// update resolution
 				var width = $('#canvas_width'), w = width.val();
@@ -5168,7 +5369,7 @@ var onlysave = false;
 						if (!ok) {return;}
 						svgCanvas.clear();
 						presentfile_id = -1;
-						document.getElementById("filetitle").value = "";
+						filetitle.value = "newimage";
 						window.document.title = "MH SVG Edit";
 						if (f.files.length === 1) {
 							$.process_cancel(uiStrings.notification.loadingImage);

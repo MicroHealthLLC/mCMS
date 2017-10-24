@@ -1121,7 +1121,7 @@ ul li.current {
 	position: absolute;
 	top: 50px;
 	top: 190px;
-	left: 230px;
+	left: 235px;
 	padding: 10px;
 	background-color: #B0B0B0;
 	border: 1px outset #777;
@@ -1323,11 +1323,10 @@ ul li.current {
 	left: 50%;
 	top: 50%;
 	width: 460px;
-	margin-left: -220px;
 	height: 150px;
 	height: 230px;
 	margin-top: -80px;
-	position: fixed;
+	margin-left: -100px;
 	z-index: 50001;
 	background: #CCC;
 	border: 1px outset #777;
