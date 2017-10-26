@@ -536,6 +536,7 @@ function createEditor() {
                     } else {
                         var checkstr = window.confirm('Click "Cancel" if this file needs to be saved first, otherwise click "OK".');
                         if (checkstr === false) {
+                            filenameform();
                             return;
                         }
                     }
