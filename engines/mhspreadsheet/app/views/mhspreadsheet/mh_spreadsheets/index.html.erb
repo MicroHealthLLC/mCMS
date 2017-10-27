@@ -1,27 +1,40 @@
-<div id="docslistingdiv">
-  <div id="list_search" class="slide slide-up">
-    <p><button id="closeSliderbtn" class="iconbtn2" title="Close Spreadsheet Listings/Search Panel"><img src="/MH_Spreadsheet/images/glyphicons-370-collapse-top.png" class="flipimg"></button> <span id="list_name"><span id="mh">MH</span>Spreadsheet</span></p>
-    <input type="search" id="searchinput" name="searchinput" title="Search Textbox Input" />
-    <button id="searchbtn" class="iconbtn2" title="Search Listing"><img src="/MH_Spreadsheet/images/glyphicons-28-search.png"></button>
-    <label for="searchname"><input type="radio" name="searchwhat" id="searchname" checked /> Sheet Name</label>
-    <label for="searchtext"><input type="radio" name="searchwhat" id="searchtext" /> Sheet Name/Text</label><br><br>
-    <div id="sheetslisting">
-    </div>
-  </div>
-</div>
-
 
 <div id="topbar">
-  <button id="openSliderbtn" class="iconbtn" title="Open Spreadsheet Listings/Search Panel"><img src="/MH_Spreadsheet/images/glyphicons-115-list.png"></button>
+  <button id="openSliderbtn" class="iconbtn" title="Open Listings/Search Panel"><img src="/MH_Spreadsheet/images/glyphicons-115-list.png"></button>
   <input type="text" id="spreadsheetname" value="newfile.html" readonly />
   <button id="savefilebtn" class="iconbtn" title="Save Spreadsheet"><img src="/MH_Spreadsheet/images/glyphicons-415-disk-save.png"></button>
   <button id="newfilebtn" class="iconbtn" title="New Spreadsheet"><img src="/MH_Spreadsheet/images/glyphicons-703-file-plus.png"></button>
-  <button id="saveasbtn" class="iconbtn" title="Save As Spreadsheet"><img src="/MH_Spreadsheet/images/glyphicons-511-duplicate.png"></button>
+  <button id="duplicatebtn" class="iconbtn" title="Duplicate Spreadsheet"><img src="/MH_Spreadsheet/images/glyphicons-511-duplicate.png"></button>
   <button id="downloadbtn" class="iconbtn" title="Download Sheet/Edit/Audit"><img src="/MH_Spreadsheet/images/glyphicons-201-download.png"></button>
   <button id="htmltablebtn" class="iconbtn" title="Download HTML Table"><img src="/MH_Spreadsheet/images/glyphicons-120-table.png"></button>
   <button id="exportbtn" class="iconbtn" title="Export Canonical"><img src="/MH_Spreadsheet/images/glyphicons-360-file-export.png"></button>
   <button id="importbtn" class="iconbtn" title="Import Canonical"><img src="/MH_Spreadsheet/images/glyphicons-359-file-import.png"></button>
   <button id="reloadbtn" class="iconbtn" title="Reset Spreadsheet"><img src="/MH_Spreadsheet/images/glyphicons-82-refresh.png"></button>
+</div>
+
+<div id="docslistingdiv">
+  <div id="list_search" class="slide slide-up">
+    <button id="closeSliderbtn" class="iconbtn2" title="Close Listings/Search Panel"><img src="/MH_Spreadsheet/images/glyphicons-370-collapse-top.png" class="flipimg"></button>
+    <p id="list_name"><span id="mh">MH</span> Spreadsheets</p>
+    <input type="search" id="searchinput" name="searchinput" title="Search Input Textbox" />
+    <button id="searchbtn" class="iconbtn2" title="Submit Search"><img src="/MH_Spreadsheet/images/glyphicons-28-search.png"></button>
+    <label for="searchname"><input type="radio" name="searchwhat" id="searchname" checked /> Sheet Name</label>
+    <label for="searchtext"><input type="radio" name="searchwhat" id="searchtext" /> Sheet Name/Text</label><br>
+    <div id="deletediv">
+      <button id="deleteallbtn" class="iconbtn2" title="Delete All Files"><img src="/MH_Spreadsheet/images/glyphicons-198-remove-circle.png"></button> Delete All Files<br>
+    </div>
+    <div id="sheetslisting">
+    </div>
+    <div id="filesessionmsg">NOTE: Download all files before ending this session!</div>
+  </div>
+</div>
+
+
+<div id="filename_div">
+   <span><input type="text" id="filenameinput" title="Spreadsheet Name Textbox" placeholder="input spreadsheet name"  onfocus="SocialCalc.CmdGotFocus(this);" />.html</span>
+   <input type="text" id="nametype" value="newname" hidden />
+   <button id="submitfilename" class="iconbtn" title="Submit Spreadsheet Name"><img src="/MH_Spreadsheet/images/glyphicons-194-ok-sign.png"></button>
+   <button id="cancelfilename" class="iconbtn" title="Cancel Spreadsheet Name"><img src="/MH_Spreadsheet/images/glyphicons-193-remove-sign.png"></button>
 </div>
 
 
@@ -47,17 +60,11 @@
   <input type="hidden" name="sheetname" value="$sheetname">
 </form>
 
-<div id="inputforms">
-  <div id="filename_div">
-    <span><input type="text" id="filenameinput" title="Spreadsheet Name Textbox" placeholder="input spreadsheet name" />.html</span>
-    <button id="submitfilename" title="Submit Spreadsheet Name" class="smaller">Submit</button>
-    <button id="cancelfilename" title="Cancel Spreadsheet Name" class="smaller">Cancel</button>
-  </div>
-  <div id="canonicalinput">
-    <textarea id="canonicaltext" style="margin-top:10px;width:90%;height:200px;"></textarea><br>
-    <button id="submitcanonical" title="Submit Canonical Text" class="smaller">Submit</button>
-    <button id="cancelcanonical" title="Cancel Canonical Text" class="smaller">Cancel</button>
-  </div>
+
+<div id="canonicalinput">
+  <textarea id="canonicaltext" onfocus="SocialCalc.CmdGotFocus(this);"></textarea><br>
+  <button id="submitcanonical" class="iconbtn2" title="Submit Canonical Text"><img src="/MH_Spreadsheet/images/glyphicons-194-ok-sign.png"></button>
+  <button id="cancelcanonical" class="iconbtn2" title="Cancel Canonical Text"><img src="/MH_Spreadsheet/images/glyphicons-193-remove-sign.png"></button>
 </div>
 
 
@@ -71,7 +78,7 @@
     <input type="button" class="mathbtn" value="Time Encode" onclick="var t=new Date();var i;for(i=0;i<100;i++){spreadsheet.sheet.EncodeCellAttributes(spreadsheet.editor.ecell.coord);}addmsg(((new Date()-t)/1000));" class="smaller"><br>
   </div>
   <textarea id="msgtext" style="margin-top:5px;margin-bottom:5px;width:110px;height:200px;"></textarea><br>
-  <input type="button" style="font-size:x-small;" value="Clear" onclick="addmsg('',true);"><br>
+  <input type="button" style="font-size:x-small;" class="mathbtn" value="Clear" onclick="addmsg('',true);"><br>
 </div>
 
 
@@ -168,377 +175,426 @@
   }
 
 
-  var mh_spreadsheets = [];
+  
+var mh_spreadsheets = [];
 
-  var presentsheet_id = -1;
+var presentsheet_id = -1;
 
-  var copyfile = false;
+var filenamediv = document.getElementById("filename_div");
+var filenameinput = document.getElementById("filenameinput");
+var nametype = document.getElementById("nametype");
+
+var canonicalinput = document.getElementById("canonicalinput");
 
 
-  function update_sheetslisting(srchinput) {
+var spreadsheetname = document.getElementById("spreadsheetname");
+spreadsheetname.addEventListener("click", function () {
+  if (spreadsheetname.value !== "newfile.html") {
+    nametype.value = "modifyname";
+    if (filenamediv.style.display !== "block") {
+       filenamediv.style.display = "block";
+       filenameinput.value = spreadsheetname.value.slice(0,-5);
+    }
+  }
+});
+
+
+var searchinput = document.getElementById("searchinput");
+
+
+
+function update_sheetslisting(srchinput) {
     "use strict";
     var i, fileslist_items = "", this_list = document.getElementById("sheetslisting");
     var searchtext = document.getElementById("searchtext");
     this_list.innerHTML = null;
     if (srchinput === null) {
-      document.getElementById("searchinput").value = "";
+      searchinput.value = "";
     }
     for (i = mh_spreadsheets.length - 1; i >= 0; i-=1) {
       var thisinfo = mh_spreadsheets[i].sheetinfo.toString().toLowerCase();
       if ((srchinput === null) || (mh_spreadsheets[i].sheetname.indexOf(srchinput) > -1) || ((searchtext.checked === true) && (thisinfo.indexOf(srchinput) > -1))) {
-        fileslist_items = fileslist_items + '<p><button id="deletebtn' + mh_spreadsheets[i].id + '" class="deletefilebtn" title="Delete ' + mh_spreadsheets[i].sheetname + '"><img src="/MH_Spreadsheet/images/glyphicons-208-remove.png"></button><button id="editbtn' + mh_spreadsheets[i].id + '" class="editfilebtn" title="Edit ' + mh_spreadsheets[i].sheetname + '"><img src="/MH_Spreadsheet/images/glyphicons-151-edit.png"></button>' + mh_spreadsheets[i].sheetname + '</p>';
+          fileslist_items = fileslist_items + '<p><button id="deletebtn' + mh_spreadsheets[i].id + '" class="deletefilebtn" title="Delete ' + mh_spreadsheets[i].sheetname + '"><img src="/MH_Spreadsheet/images/glyphicons-208-remove.png"></button><button id="editbtn' + mh_spreadsheets[i].id + '" class="editfilebtn" title="Edit ' + mh_spreadsheets[i].sheetname + '"><img src="/MH_Spreadsheet/images/glyphicons-151-edit.png"></button>' + mh_spreadsheets[i].sheetname + '</p>';
       }
     }
     this_list.innerHTML = fileslist_items;
     var j, editbtns = document.querySelectorAll(".editfilebtn");
     for (j = 0; j < editbtns.length; j+=1) {
-      editbtns[j].addEventListener("click", function() {
-        editfile(this.id.slice(7));
-      });
+        editbtns[j].addEventListener("click", function() {
+            editfile(this.id.slice(7));
+       });
     }
     var k, deletebtns = document.querySelectorAll(".deletefilebtn");
     for (k = 0; k < deletebtns.length; k+=1) {
-      deletebtns[k].addEventListener("click", function() {
-        deletefile(this.id.slice(9));
-      });
+        deletebtns[k].addEventListener("click", function() {
+            deletefile(this.id.slice(9));
+       });
+    }           
+    var deletediv = document.getElementById("deletediv");
+    var filesessionmsg = document.getElementById("filesessionmsg");
+    if (mh_spreadsheets.length > 0) {
+        deletediv.style.display = "block";
+        filesessionmsg.style.display = "block";
+    } else {
+        filesessionmsg.style.display = "none";
+        deletediv.style.display = "none";
     }
-  }
+}
 
 
-  function editfile(btnid) {
+function editfile(btnid) {
     "use strict";
     if (Number(btnid) !== presentsheet_id) {
-      doreload();
-      var found = false, i = -1;
-      while ((found === false) && (i < mh_spreadsheets.length)) {
-        i += 1;
-        if (mh_spreadsheets[i].id === Number(btnid)) {
-          found = true;
+        doreload();
+        var found = false, i = -1;
+        while ((found === false) && (i < mh_spreadsheets.length)) {
+          i += 1;
+          if (mh_spreadsheets[i].id === Number(btnid)) {
+              found = true;
+          }
         }
-      }
-      if (found === true) {
-        document.getElementById("spreadsheetname").value = mh_spreadsheets[i].sheetname;
-        presentsheet_id = mh_spreadsheets[i].id;
-        spreadsheet.ParseSheetSave(mh_spreadsheets[i].sheetinfo);
-      } else {
-        alert("Error, sheet not found!");
-      }
+        if (found === true) {
+          spreadsheetname.value = mh_spreadsheets[i].sheetname;
+          presentsheet_id = mh_spreadsheets[i].id;
+          spreadsheet.ParseSheetSave(mh_spreadsheets[i].sheetinfo);
+        } else {
+          alert("Error, sheet not found!");
+        }
     } else {
       alert("This sheet is displayed!");
     }
-  }
+}
 
 
-  function deletefile(btnid) {
+function deletefile(btnid) {
     "use strict";
     if (Number(btnid) !== presentsheet_id) {
       var checkstr = window.confirm('Sure you want to delete this sheet? Click "OK" to proceed, otherwise "Cancel"?');
       if (checkstr === false) {
-        return;
+          return;
       }
       var found = false, i = -1;
       while ((found === false) && (i < mh_spreadsheets.length)) {
-        i += 1;
-        if (mh_spreadsheets[i].id === Number(btnid)) {
-          found = true;
-        }
+          i += 1;
+          if (mh_spreadsheets[i].id === Number(btnid)) {
+              found = true;
+          }
       }
       if (found === true) {
-        mh_spreadsheets.splice(i, 1);
-        update_sheetslisting(null);
+          mh_spreadsheets.splice(i, 1);
+          update_sheetslisting(null);
       } else {
-        alert("Error, sheet not found!");
+          alert("Error, sheet not found!");
       }
     } else {
       alert('Click "Reset Spreadsheet" first!');
     }
-  }
+}
 
-  var searchbtn = document.getElementById("searchbtn");
-  searchbtn.addEventListener("click", function () {
-    var searchinput = document.getElementById("searchinput").value.trim().toLowerCase();
+
+var deleteallbtn = document.getElementById("deleteallbtn");
+deleteallbtn.addEventListener("click", function () {
+    var checkstr = window.confirm('Sure you want to delete ALL sheets? Click "OK" to proceed, otherwise "Cancel"?');
+    if (checkstr === false) {
+        return;
+    }
+    mh_spreadsheets.length = 0;
+    spreadsheetname.value = "newfile.html";
+    nametype = "newname";
+    presentsheet_id = -1;
+    update_sheetslisting(null);
+    doreload();
+});
+
+var searchbtn = document.getElementById("searchbtn");
+searchbtn.addEventListener("click", function () {
+    searchinput.value.trim().toLowerCase();
     if (searchinput !== "") {
-      update_sheetslisting(searchinput);
+        update_sheetslisting(searchinput);
     } else {
-      update_sheetslisting(null);
+        update_sheetslisting(null);  
     }
-  });
+});
 
-  var searchinput = document.getElementById("searchinput");
-  searchinput.addEventListener("change", function () {
+searchinput.addEventListener("change", function () {
     if (searchinput.value === "") {
-      update_sheetslisting(null);
+        update_sheetslisting(null);
     }
-  });
+});
 
 
 
-  var cancelfilename = document.getElementById("cancelfilename");
-  cancelfilename.addEventListener("click", function (e) {
-    e.preventDefault();
-    document.getElementById("filenameinput").value = "";
-    document.getElementById("filename_div").style.display = "none";
-    unfreezesheet();
-    doresize();
-    copyfile = false;
-  });
+var cancelfilename = document.getElementById("cancelfilename");
+cancelfilename.addEventListener("click", function (e) {
+  e.preventDefault();
+  filenameinput.value = "";
+  nametype.value = "newname";
+  filenamediv.style.display = "none";
+  doresize();
+});
 
-  var submitfilename = document.getElementById("submitfilename");
-  submitfilename.addEventListener("click", function (e) {
-    e.preventDefault();
-    var filenameinput = document.getElementById("filenameinput").value.trim();
-    if (filenameinput === "") {
+var submitfilename = document.getElementById("submitfilename");
+submitfilename.addEventListener("click", function (e) {
+   e.preventDefault();
+   var thisfilename = filenameinput.value.trim();
+   if (thisfilename === "") {
       alert("Input file name!");
-    } else if (filenameinput === "newfile") {
-      alert('File name must not be "newfile.html"!');
-    } else {
-      filenameinput = filenameinput + ".html";
+      filenameinput.value = "";
+   } else if (thisfilename === "newfile") {
+      alert('File name must not be "newfile.html"!');    
+      filenameinput.value = "";
+   } else {
+      thisfilename = thisfilename + ".html";
       var j = -1, found = false;
-      while ((j < mh_spreadsheets.length - 1) && (found === false)) {
+      while ((found === false) && (j < mh_spreadsheets.length - 1)) {
         j += 1;
-        if (filenameinput === mh_spreadsheets[j].sheetname) {
+        if (thisfilename === mh_spreadsheets[j].sheetname) {
           found = true;
           alert("File name already exists!");
         }
       }
       if (found === false) {
-        document.getElementById("spreadsheetname").value = filenameinput;
-        document.getElementById("filenameinput").value = "";
-        document.getElementById("filename_div").style.display = "none";
-        unfreezesheet();
+        spreadsheetname.value = thisfilename;
+        filenameinput.value = "";
+        filenamediv.style.display = "none";
         doresize();
-        if (copyfile === false) {
+        if (nametype.value === "newname") {
           dosave();
+        } else if (nametype.value === "modifyname") {
+          nametype.value = "newname";
+          mh_spreadsheets[presentsheet_id].sheetname = spreadsheetname.value;
+        } else if (nametype.value === "copyname") {
+          nametype.value = "newname";
+          duplicatefile();
         } else {
-          saveasfile();
+          alert("Error, illegal submit name type!");
+          nametype.value = "newname";
         }
       }
-    }
-  });
+   }
+});
 
 
 
-  function filenameform() {
-    document.getElementById("filename_div").style.display = "block";
-    document.getElementById("filenameinput").focus();
-    doresize();
-    freezesheet();
-  }
+function filenameform() {
+  filenamediv.style.display = "block";
+  doresize();
+}
 
-  var newfilebtn = document.getElementById("newfilebtn");
-  newfilebtn.addEventListener("click", function(e) {
-    e.preventDefault();
-    if (document.getElementById("spreadsheetname").value !== "newfile.html") {
-      doreload();
-    }
+var newfilebtn = document.getElementById("newfilebtn");
+newfilebtn.addEventListener("click", function(e) {
+  e.preventDefault();
+  if ((presentsheet_id !== -1) || (spreadsheet.sheet.changes.stack.length > 0)) {
+    doreload();
+  } else {
     filenameform();
-  });
-
-
-  function dosave() {
-    if (presentsheet_id === -1) {
-      var this_group = {};
-      if (mh_spreadsheets.length > 0) {
-        this_group.id = Number(mh_spreadsheets[mh_spreadsheets.length - 1].id) + 1;
-      } else {
-        this_group.id = 0;
-      }
-      this_group.sheetname = document.getElementById("spreadsheetname").value;
-      this_group.sheetinfo = "";
-      this_group.sheetaudit = "";
-      mh_spreadsheets.push(this_group);
-      presentsheet_id = this_group.id;
-    } else {
-      mh_spreadsheets[presentsheet_id].sheetinfo = spreadsheet.sheet.CreateSheetSave(null,true);
-    }
-    update_sheetslisting(null);
   }
+});
 
 
-  var savefilebtn = document.getElementById("savefilebtn");
-  savefilebtn.addEventListener("click", function(e) {
-    e.preventDefault();
-    if (document.getElementById("spreadsheetname").value !== "newfile.html") {
-      dosave();
-    }
-  });
-
-
-  function saveasfile() {
-    gathersheet();
+function dosave() {
+  if (presentsheet_id === -1) {
     var this_group = {};
-    var t = new Date();
-    this_group.id = Number(mh_spreadsheets[mh_spreadsheets.length - 1].id) + 1;
-    this_group.sheetname = document.getElementById("spreadsheetname").value;
-    this_group.sheetinfo = mh_spreadsheets[presentsheet_id].sheetinfo;
-    this_group.sheetaudit = "Date: " + t + "\nCopied from: " + mh_spreadsheets[presentsheet_id].sheetname + "\n\n" + spreadsheet.CreateSpreadsheetSave() + "\n\n*******************************************************************************************\n\n\n";
+    if (mh_spreadsheets.length > 0) {
+      this_group.id = Number(mh_spreadsheets[mh_spreadsheets.length - 1].id) + 1;
+    } else {
+      this_group.id = 0;
+    }
+    this_group.sheetname = spreadsheetname.value;
+    this_group.sheetinfo = "";
+    this_group.sheetaudit = "";
     mh_spreadsheets.push(this_group);
     presentsheet_id = this_group.id;
-    copyfile = false;
-    update_sheetslisting(null);
   }
+  mh_spreadsheets[presentsheet_id].sheetinfo = spreadsheet.sheet.CreateSheetSave(null,true);
+  update_sheetslisting(null);
+}
 
-  var saveasbtn = document.getElementById("saveasbtn");
-  saveasbtn.addEventListener("click", function(e) {
-    e.preventDefault();
-    if (presentsheet_id !== -1) {
-      copyfile = true;
-      filenameform();
-    } else {
-      alert("May not duplicate newfile.html!");
+
+var savefilebtn = document.getElementById("savefilebtn");
+savefilebtn.addEventListener("click", function(e) {
+  e.preventDefault();
+  if (spreadsheetname.value !== "newfile.html") {
+   dosave();
+  }
+});
+
+
+function duplicatefile() {
+  gathersheet();
+  var this_group = {};
+  var t = new Date();
+  this_group.id = Number(mh_spreadsheets[mh_spreadsheets.length - 1].id) + 1;
+  this_group.sheetname = spreadsheetname.value;
+  this_group.sheetinfo = mh_spreadsheets[presentsheet_id].sheetinfo;
+  this_group.sheetaudit = "Date: " + t + "\nCopied from: " + mh_spreadsheets[presentsheet_id].sheetname + "\n\n" + spreadsheet.CreateSpreadsheetSave() + "\n\n*******************************************************************************************\n\n\n";
+  mh_spreadsheets.push(this_group);
+  presentsheet_id = this_group.id;
+  update_sheetslisting(null);
+}
+
+var duplicatebtn = document.getElementById("duplicatebtn");
+duplicatebtn.addEventListener("click", function(e) {
+  e.preventDefault();
+  if (presentsheet_id !== -1) {
+    nametype.value = "copyname";
+    filenameform();
+  } else {
+    alert("May not duplicate unsaved file!");
+  }
+});
+
+
+// SheetHTML
+var htmltablebtn = document.getElementById("htmltablebtn");
+htmltablebtn.addEventListener("click", function(e) {
+  e.preventDefault();
+  var sheetname, sheetcontents = [];
+  var sheettable = spreadsheet.CreateSheetHTML();
+  sheetcontents.push(sheettable);
+  if (presentsheet_id !== -1) {
+    mh_spreadsheets[presentsheet_id].sheetinfo = spreadsheet.sheet.CreateSheetSave(null,true);
+    sheetname = mh_spreadsheets[presentsheet_id].sheetname;
+  } else {
+    sheetname = "newfile.html";
+  }
+  var blob = new Blob(sheetcontents, {type: "text/html"});
+  saveAs(blob, sheetname);
+});
+
+
+// Download Canonical and Audit, etc.
+var downloadbtn = document.getElementById("downloadbtn");
+downloadbtn.addEventListener("click", function(e) {
+  e.preventDefault();
+  var sheetname, sheetcontents = [];
+  if (presentsheet_id !== -1) {
+    gathersheet();
+    sheetname = mh_spreadsheets[presentsheet_id].sheetname.slice(0,-5) + "_audit.txt";
+    sheetcontents.push(mh_spreadsheets[presentsheet_id].sheetaudit);
+  } else {
+    var t = new Date();
+    var thisaudit = "Date: " + t + "\n\n" + spreadsheet.CreateSpreadsheetSave();
+    sheetname = "newfile_audit.txt";
+    sheetcontents.push(thisaudit);
+  }
+  var blob = new Blob(sheetcontents, {type: "text/plain"});
+  saveAs(blob, sheetname);
+});
+
+
+// Canonical Save
+var exportbtn = document.getElementById("exportbtn");
+exportbtn.addEventListener("click", function(e) {
+  e.preventDefault();
+  var sheetname, sheetcontents = [];
+  if (presentsheet_id !== -1) {
+    mh_spreadsheets[presentsheet_id].sheetinfo = spreadsheet.sheet.CreateSheetSave(null,true);
+    sheetcontents.push(mh_spreadsheets[presentsheet_id].sheetinfo);
+    sheetname = mh_spreadsheets[presentsheet_id].sheetname.slice(0,-5) + "_canonical.txt";
+  } else {
+    var thiscanonical = spreadsheet.sheet.CreateSheetSave(null,true);
+    sheetname = "newfile_canonical.txt";
+    sheetcontents.push(thiscanonical);
+  }
+  var blob = new Blob(sheetcontents, {type: "text/plain"});
+  saveAs(blob, sheetname);
+});
+
+
+var importbtn = document.getElementById("importbtn");
+importbtn.addEventListener("click", function(e) {
+  e.preventDefault();
+  var checkok = false;
+  if (presentsheet_id !== -1) {
+    if (mh_spreadsheets[presentsheet_id].sheetinfo.toString().indexOf("cell:") > -1) {
+      checkok = true;
     }
-  });
-
-
-  // SheetHTML
-  var htmltablebtn = document.getElementById("htmltablebtn");
-  htmltablebtn.addEventListener("click", function(e) {
-    e.preventDefault();
-    if (presentsheet_id !== -1) {
-      mh_spreadsheets[presentsheet_id].sheetinfo = spreadsheet.sheet.CreateSheetSave(null,true);
-      var sheetcontents = [];
-      var sheettable = spreadsheet.CreateSheetHTML();
-      sheetcontents.push(sheettable);
-      var sheetname = mh_spreadsheets[presentsheet_id].sheetname;
-      var blob = new Blob(sheetcontents, {type: "text/html"});
-      saveAs(blob, sheetname);
-    } else {
-      alert("No File Selected for Download!");
+  } else {
+     if (spreadsheet.sheet.changes.stack.length > 0) {
+      checkok = true;
     }
-  });
-
-
-  // Modified Time Save to Download Canonical and Audit, etc.
-  var downloadbtn = document.getElementById("downloadbtn");
-  downloadbtn.addEventListener("click", function(e) {
-    e.preventDefault();
-    if (presentsheet_id !== -1) {
-      gathersheet();
-      var sheetcontents = [];
-      var sheetname = mh_spreadsheets[presentsheet_id].sheetname.slice(0,-5) + "_audit.txt";
-      sheetcontents.push(mh_spreadsheets[presentsheet_id].sheetaudit);
-      var blob = new Blob(sheetcontents, {type: "text/plain"});
-      saveAs(blob, sheetname);
-    } else {
-      alert("No File Selected for Download!");
+  }
+  if (checkok === true) {
+    var checkstr = window.confirm('This sheet is not empty. Click "OK" to proceed, otherwise "Cancel"?');
+    if (checkstr === false) {
+      return;
     }
-  });
+  }
+  canonicalinput.style.display = "block";
+  canonicaltext.value = "";
+  canonicaltext.focus();
+  doresize();
+});
 
 
-  // Canonical Save
-  var exportbtn = document.getElementById("exportbtn");
-  exportbtn.addEventListener("click", function(e) {
-    e.preventDefault();
-    if (presentsheet_id !== -1) {
-      mh_spreadsheets[presentsheet_id].sheetinfo = spreadsheet.sheet.CreateSheetSave(null,true);
-      var sheetcontents = [];
-      sheetcontents.push(mh_spreadsheets[presentsheet_id].sheetinfo);
-      var sheetname = mh_spreadsheets[presentsheet_id].sheetname.slice(0,-5) + "_canonical.txt";
-      var blob = new Blob(sheetcontents, {type: "text/plain"});
-      saveAs(blob, sheetname);
-    } else {
-      alert('May not export "newfile.html"!');
-    }
-  });
+var cancelcanonicalbtn = document.getElementById("cancelcanonical");
+cancelcanonicalbtn.addEventListener("click", function(e) {
+  e.preventDefault();
+  canonicaltext.value = "";
+  canonicalinput.style.display = "none";
+  doresize();
+});
 
-
-  var importbtn = document.getElementById("importbtn");
-  importbtn.addEventListener("click", function(e) {
-    e.preventDefault();
-    if (presentsheet_id !== -1) {
-      var thisinfo = mh_spreadsheets[presentsheet_id].sheetinfo.toString();
-      if (thisinfo.indexOf("cell:") > -1) {
-        var checkstr = window.confirm('This sheet is not empty. Click "OK" to proceed, otherwise "Cancel"?');
-        if (checkstr === false) {
-          return;
-        }
-      }
-      document.getElementById("canonicalinput").style.display = "block";
-      document.getElementById("canonicaltext").value = "";
-      document.getElementById("canonicaltext").focus();
-      doresize();
-      freezesheet();
-    } else {
-      alert('May not overwrite "newfile.html"!');
-    }
-  });
-
-  var canonicaltext = document.getElementById("canonicaltext");
-  canonicaltext.addEventListener("click", function() {
-    freezesheet();
-  });
-
-  var cancelcanonicalbtn = document.getElementById("cancelcanonical");
-  cancelcanonicalbtn.addEventListener("click", function(e) {
-    e.preventDefault();
-    document.getElementById("canonicaltext").value = "";
-    document.getElementById("canonicalinput").style.display = "none";
+var submitcanonicalbtn = document.getElementById("submitcanonical");
+submitcanonicalbtn.addEventListener("click", function(e) {
+  e.preventDefault();
+  if (canonicaltext.value.trim() === "") {
+    alert("Submit canonical text!");
+  } else {
+    spreadsheet.ParseSheetSave(canonicaltext.value.trim());
+    canonicalinput.style.display = "none";
     doresize();
-  });
-
-  var submitcanonicalbtn = document.getElementById("submitcanonical");
-  submitcanonicalbtn.addEventListener("click", function(e) {
-    e.preventDefault();
-    if (document.getElementById("canonicaltext").value.trim() === "") {
-      alert("Submit canonical text!");
-    } else {
-      unfreezesheet();
-      spreadsheet.ParseSheetSave(document.getElementById("canonicaltext").value.trim());
-      document.getElementById("canonicalinput").style.display = "none";
-      doresize();
-      mh_spreadsheets[presentsheet_id].sheetinfo = spreadsheet.CreateSheetSave();
-    }
-  });
+    mh_spreadsheets[presentsheet_id].sheetinfo = spreadsheet.CreateSheetSave();
+  }
+});
 
 
-  function saveMHSpreadsheets() {
+function saveMHSpreadsheets() {
+    "use strict";
     if (presentsheet_id !== -1) {
       gathersheet();
     }
     var thesemh_spreadsheets = JSON.stringify(mh_spreadsheets);
-    $.ajax({ url: '/mhspreadsheet/mh_spreadsheets/save.js?content='+thesemh_spreadsheets})
     localStorage.setItem("thesemh_spreadsheets", thesemh_spreadsheets);
-  }
+}
 
 
-  function setupDocs() {
-    <% if @sheet.content %>
-      localStorage.setItem("thesemh_spreadsheets", <%= @sheet.content.to_s.inspect.html_safe %>);
-    <% else %>
-      localStorage.setItem("thesemh_spreadsheets", '[]');
-    <% end %>
+function setupDocs() {
+    "use strict";
+    spreadsheetname.value = "newfile.html";
     var thesemh_spreadsheets = localStorage.getItem("thesemh_spreadsheets");
     if ((thesemh_spreadsheets !== null) && (thesemh_spreadsheets !== "") && (thesemh_spreadsheets !== undefined)) {
-      mh_spreadsheets = JSON.parse(thesemh_spreadsheets);
+        mh_spreadsheets = JSON.parse(thesemh_spreadsheets);
     }
-  }
+}
 
 
-  var openSlider = document.getElementById("openSliderbtn"),
-      slide = document.querySelector(".slide"),
-      closeSlider = document.getElementById("closeSliderbtn"),
-      docslistingdiv = document.getElementById("docslistingdiv");
+var openSlider = document.getElementById("openSliderbtn"),
+    slide = document.querySelector(".slide"),
+    closeSlider = document.getElementById("closeSliderbtn"),
+    docslistingdiv = document.getElementById("docslistingdiv");
 
-  openSlider.addEventListener("click", function (e) {
+openSlider.addEventListener("click", function (e) {
     e.preventDefault();
-    document.getElementById("filename_div").style.display = "none";
-    document.getElementById("canonicalinput").style.display = "none";
+    filenamediv.style.display = "none";
+    canonicalinput.style.display = "none";
     doresize();
     docslistingdiv.style.zIndex = 2000;
     slide.classList.remove("slide-up");
     update_sheetslisting(null);
-  });
+});
 
-  closeSlider.addEventListener("click", function (e) {
+closeSlider.addEventListener("click", function (e) {
     e.preventDefault();
     slide.classList.add("slide-up");
     setTimeout(function () {
-      docslistingdiv.style.zIndex = -2000;
+        docslistingdiv.style.zIndex = -2000;
     }, 800);
-  });
+});
 
 
-  function gathersheet() {
+function gathersheet() {
     mh_spreadsheets[presentsheet_id].sheetinfo = spreadsheet.sheet.CreateSheetSave(null,true);
     var justviewed = false;
     var t = new Date();
@@ -556,26 +612,38 @@
       thisaudit = "Date: " + t + "\n\n" + "No updates to spreadsheet, just viewed." + "\n\n\n*******************************************************************************************\n\n\n";
     }
     mh_spreadsheets[presentsheet_id].sheetaudit = mh_spreadsheets[presentsheet_id].sheetaudit + thisaudit;
-    return;
-  }
-
-  var reloadbtn = document.getElementById("reloadbtn");
-  reloadbtn.addEventListener("click", function(e) {
-    e.preventDefault();
-    doreload();
-  });
+    return;  
+}
 
 
-  function doreload() {
-    if (presentsheet_id !== -1) {
-      gathersheet();
+
+function doreload() {
+ if (presentsheet_id !== -1) {
+    gathersheet();
+  } else {
+    if (spreadsheet.sheet.changes.stack.length > 0) {
+      var checkstr = window.confirm('This sheet has not been saved. Click "OK" to proceed, otherwise "Cancel"?');
+      if (checkstr === false) {
+        filenameform();
+        return;
+      }
     }
-    document.getElementById("SocialCalc-edittab").click();
-    spreadsheet.sheet.ResetSheet();
-    presentsheet_id = -1;
-    document.getElementById("spreadsheetname").value = "newfile.html";
-    return;
   }
+  document.getElementById("SocialCalc-edittab").click();
+  spreadsheet.sheet.ResetSheet();
+  presentsheet_id = -1;    
+  spreadsheetname.value = "newfile.html";
+  nametype.value = "newname";
+  return;
+}
+
+
+var reloadbtn = document.getElementById("reloadbtn");
+reloadbtn.addEventListener("click", function(e) {
+   e.preventDefault();
+   doreload();
+});
+
 
 
   function doresize() {
