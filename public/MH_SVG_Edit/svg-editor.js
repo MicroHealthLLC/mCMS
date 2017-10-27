@@ -1073,7 +1073,7 @@ var onlysave = false; //NOTE: Might not need with modifications
 	            }
 	            for (i = mh_svgedit.length - 1; i >= 0; i-=1) {
 	                if ((srchinput === null) || ((mh_svgedit[i].title).indexOf(srchinput) > -1)) {
-	                    fileslist_items = fileslist_items + '<p><button id="deletebtn' + mh_svgedit[i].id + '" class="deletefilebtn" title="Delete ' + mh_svgedit[i].title + '"><img src="images/glyphicons-208-remove.png"></button><button id="editbtn' + mh_svgedit[i].id + '" class="editfilebtn" title="Edit ' + mh_svgedit[i].title + '"><img src="images/glyphicons-151-edit.png"></button>' + mh_svgedit[i].title + '</p>';
+	                    fileslist_items = fileslist_items + '<p><button id="deletebtn' + mh_svgedit[i].id + '" class="deletefilebtn" title="Delete ' + mh_svgedit[i].title + '"><img src="/MH_SVG_Edit/images/glyphicons-208-remove.png"></button><button id="editbtn' + mh_svgedit[i].id + '" class="editfilebtn" title="Edit ' + mh_svgedit[i].title + '"><img src="/MH_SVG_Edit/images/glyphicons-151-edit.png"></button>' + mh_svgedit[i].title + '</p>';
 	                }
 	            }
 	            this_list.innerHTML = fileslist_items;
