@@ -135,10 +135,10 @@ var onlysave = false; //NOTE: Might not need with modifications
 				no_save_warning: false,
 				// PATH CONFIGURATION
 				// The following path configuration items are disallowed in the URL (as should any future path configurations)
-				imgPath: 'images/',
-				langPath: 'locale/',
-				extPath: 'extensions/',
-				jGraduatePath: 'jgraduate/images/',
+				imgPath: 'MH_SVG_Edit/images/',
+				langPath: 'MH_SVG_Edit/locale/',
+				extPath: 'MH_SVG_Edit/extensions/',
+				jGraduatePath: 'MH_SVG_Edit/jgraduate/images/',
 				// DOCUMENT PROPERTIES
 				// Change the following to a preference (already in the Document Properties dialog)?
 				dimensions: [640, 480],
