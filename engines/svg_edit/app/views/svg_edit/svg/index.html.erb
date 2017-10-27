@@ -6,31 +6,39 @@
 
 <div class="row">
   <div class="col-xs-12">
-    <div  id="topbar">
+    <div id="topbar">
       <div id="buttonrow">
-        <button id="openSliderbtn" class="iconbtn" title="Open SGV Files Listing/Search Panel"><img src="/MH_SVG_Edit/images/glyphicons-115-list.png"></button>
-        <input type="text" id="filetitle" placeholder="Image Title" value="" />
-        <button id="save_canvas" class="iconbtn" title="Save Canvas"><img src="/MH_SVG_Edit/images/glyphicons-415-disk-save.png"></button>
-        <button id="tool_save" class="iconbtn" title="Save Canvas/Export SVG"><img src="/MH_SVG_Edit/images/glyphicons-420-disk-export.png"></button>
-        <button id="tool_export" class="iconbtn" title="Export non-SVG"><img src="/MH_SVG_Edit/images/glyphicons-360-file-export.png"></button>
-        <button id="tool_clear" class="iconbtn" title="Clear Canvas"><img src="/MH_SVG_Edit/images/glyphicons-82-refresh.png"></button>
-        <button id="tool_docprops" class="iconbtn" title="Document Properties"><img src="/MH_SVG_Edit/images/glyphicons-440-wrench.png"></button>
-        <button id="tool_prefs_option" class="iconbtn" title="Editor Options"><span><img src="/MH_SVG_Edit/images/glyphicons-4-user.png"></span> <img src="/MH_SVG_Edit/images/glyphicons-518-option-vertical.png"></button>
+          <button id="openSliderbtn" class="iconbtn" title="Open SGV Files Listing/Search Panel"><img src="/MH_SVG_Edit/images/glyphicons-115-list.png"></button>
+          <input type="text" id="filetitle" value="newimage" readonly />
+          <button id="save_canvas" class="iconbtn" title="Save Canvas"><img src="/MH_SVG_Edit/images/glyphicons-415-disk-save.png"></button>
+          <button id="new_file" class="iconbtn" title="New File"><img src="/MH_SVG_Edit/images/glyphicons-703-file-plus.png"></button>
+          <button id="duplicate_file" class="iconbtn" title="Duplicate File"><img src="/MH_SVG_Edit/images/glyphicons-511-duplicate.png"></button>
+          <button id="tool_save" class="iconbtn" title="Download SVG"><img src="/MH_SVG_Edit/images/glyphicons-201-download.png"></button>
+          <button id="tool_export" class="iconbtn" title="Export non-SVG"><img src="/MH_SVG_Edit/images/glyphicons-360-file-export.png"></button>
+          <button id="tool_clear" class="iconbtn" title="Clear Canvas"><img src="/MH_SVG_Edit/images/glyphicons-82-refresh.png"></button>
+          <button id="tool_docprops" class="iconbtn" title="Document Properties"><img src="/MH_SVG_Edit/images/glyphicons-440-wrench.png"></button>
+          <button id="tool_prefs_option" class="iconbtn" title="Editor Options"><span><img src="/MH_SVG_Edit/images/glyphicons-4-user.png"></span> <img src="/MH_SVG_Edit/images/glyphicons-518-option-vertical.png"></button>
+            <div id="filename_div">
+               <input type="text" id="filenameinput" title="File Name Textbox" placeholder="input file title" />
+               <input type="text" id="nametype" value="newfunc" hidden />
+               <button id="submitfilename" class="iconbtn" title="Submit File Name"><img src="/MH_SVG_Edit/images/glyphicons-194-ok-sign.png"></button>
+               <button id="cancelfilename" class="iconbtn" title="Cancel File Name"><img src="/MH_SVG_Edit/images/glyphicons-193-remove-sign.png"></button>
+            </div>
       </div>
       <div id="main_button2">
         <div id="main_icon" title="Import Images">
-          <span title="Import Images"><img id="importsvg" src="/MH_SVG_Edit/images/glyphicons-359-file-import.png"></span>
+              <span title="Import Images"><img id="importsvg" src="/MH_SVG_Edit/images/glyphicons-359-file-import.png"></span>
           <div class="dropdown"></div>
         </div>
 
         <div id="main_menu">
           <!-- File-like buttons: New, Save, Source -->
           <ul>
-            <li id="tool_open" title="Import SVG" style="display:none;">
+            <li id="tool_open" title="Upload SVG" style="display:none;">
               <div id="fileinputs">
                 <div></div>
               </div>
-              Import SVG
+              Upload SVG
             </li>
             <li></li>
           </ul>
@@ -38,19 +46,20 @@
       </div>
     </div>
 
-
     <div id="svglistingdiv">
-      <div id="list_search" class="slide slide-up">
-        <p><span id="list_name"><span id="mh">MH</span> SVG Edit</span></p>
-        <input type="text" id="searchfiles" name="searchfiles" />
-        <button id="searchbtn" class="flrtbtn iconbtn" title="Search Listing"><img src="/MH_SVG_Edit/images/glyphicons-28-search.png"></button>
-        <div id="fileslisting">
+        <div id="list_search" class="slide slide-up">
+            <button id="closeSliderbtn" class="iconbtn2" title="Close SVG Listings and Search Panel"><img src="/MH_SVG_Edit/images/glyphicons-370-collapse-top.png"></button>
+            <p><span id="list_name"><span id="mh">MH</span> SVG Edit</span></p>
+            <input type="text" id="searchfiles" name="searchfiles" />
+            <button id="searchbtn" class="iconbtn2" title="Search Listing"><img src="/MH_SVG_Edit/images/glyphicons-28-search.png"></button>
+          <div id="deletediv">
+            <button id="deleteallbtn" class="iconbtn2" title="Delete All Files"><img src="/MH_SVG_Edit/images/glyphicons-198-remove-circle.png"></button> Delete All Files<br>
+          </div>
+            <div id="fileslisting">
+            </div>
+            <p id="filesessionmsg">NOTE: Download all files before ending this session!</p>
         </div>
-        <p id="listnote">NOTE: Download files prior to closing browser window.</p>
-        <button id="closeSliderbtn" class="flrtbtn iconbtn" title="Close SVG Listings and Search Panel"><img src="/MH_SVG_Edit/images/glyphicons-370-collapse-top.png"></button>
-      </div>
     </div>
-
 
     <div id="svg_editor">
 
