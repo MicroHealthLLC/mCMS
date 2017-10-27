@@ -81,8 +81,6 @@ button.iconbtn2:hover {background-color:#ddd;}
 
 #searchinput {margin: 0 0 10px 10px; padding:5px; width:500px; height: 30px; border: 1px solid #666; background-color:#f4f4f4;}
 
-#searchbtn img {width:18px;height:18px;}
-
 #closeSliderbtn {float:right;}
 #deletediv {display:none;}
 #filesessionmsg {margin-top:20px; margin-left:10px; font-size: 10px; font-weight: bold; display:none;}
@@ -136,3 +134,10 @@ button.iconbtn2:hover {background-color:#ddd;}
 #canonicalinput {display: none; width:100%;}
 #submitcanonical img, #cancelcanonical img {width:20px; height:20px;}
 #canonicaltext {margin-top:10px;width:90%;height:200px;}
+
+
+
+#SocialCalc-sortlist {width: 75%;}
+
+#SocialCalc-majorsort, #SocialCalc-minorsort, #SocialCalc-lastsort {width: 90%;}
+

@@ -666,7 +666,7 @@ SocialCalc.SpreadsheetControl = function() {
    this.tabs.push({name: "sort", text: "Sort", html:
       ' <div id="%id.sorttools" style="display:none;">'+
       '  <table cellspacing="0" cellpadding="0"><tr>'+
-      '   <td style="vertical-align:top;padding-right:4px;width:160px;">'+
+      '   <td style="vertical-align:top;padding-right:4px;width:200px;">'+
       '    <div style="%tbt.">%loc!Set Cells To Sort!</div>'+
       '    <select id="%id.sortlist" size="1" onfocus="%s.CmdGotFocus(this);"><option selected>[select range]</option></select>'+
       '    <input type="button" value="%loc!OK!" onclick="%s.DoCmd(this, \'ok-setsort\');" style="font-size:x-small;">'+
@@ -677,7 +677,7 @@ SocialCalc.SpreadsheetControl = function() {
       '   </td>'+
       '   <td style="vertical-align:top;padding-right:16px;">'+
       '    <table cellspacing="0" cellpadding="0"><tr>'+
-      '     <td style="vertical-align:top;">'+
+      '     <td style="vertical-align:top;width:150px;">'+
       '      <div style="%tbt.">%loc!Major Sort!</div>'+
       '      <select id="%id.majorsort" size="1" onfocus="%s.CmdGotFocus(this);"></select>'+
       '     </td><td>'+
@@ -686,9 +686,9 @@ SocialCalc.SpreadsheetControl = function() {
       '     </td>'+
       '    </tr></table>'+
       '   </td>'+
-      '   <td style="vertical-align:top;padding-right:16px;">'+
+      '   <td style="vertical-align:top;padding-right:16px;width:160px;">'+
       '    <table cellspacing="0" cellpadding="0"><tr>'+
-      '     <td style="vertical-align:top;">'+
+      '     <td style="vertical-align:top;width:100px;">'+
       '      <div style="%tbt.">%loc!Minor Sort!</div>'+
       '      <select id="%id.minorsort" size="1" onfocus="%s.CmdGotFocus(this);"></select>'+
       '     </td><td>'+
@@ -697,9 +697,9 @@ SocialCalc.SpreadsheetControl = function() {
       '     </td>'+
       '    </tr></table>'+
       '   </td>'+
-      '   <td style="vertical-align:top;padding-right:16px;">'+
+      '   <td style="vertical-align:top;padding-right:16px;width:160px;">'+
       '    <table cellspacing="0" cellpadding="0"><tr>'+
-      '     <td style="vertical-align:top;">'+
+      '     <td style="vertical-align:top;width:100px;">'+
       '      <div style="%tbt.">%loc!Last Sort!</div>'+
       '      <select id="%id.lastsort" size="1" onfocus="%s.CmdGotFocus(this);"></select>'+
       '     </td><td>'+
@@ -767,17 +767,17 @@ SocialCalc.SpreadsheetControl = function() {
    this.tabs.push({name: "names", text: "Names", html:
       '<div id="%id.namestools" style="display:none;">'+
       '  <table cellspacing="0" cellpadding="0"><tr>'+
-      '   <td style="vertical-align:top;padding-right:24px;">'+
+      '   <td style="vertical-align:top;padding-right:24px;width:205px;">'+
       '    <div style="%tbt.">%loc!Existing Names!</div>'+
       '    <select id="%id.nameslist" size="1" onchange="%s.SpreadsheetControlNamesChangedName();" onfocus="%s.CmdGotFocus(this);"><option selected>[New]</option></select>'+
       '   </td>'+
       '   <td style="vertical-align:top;padding-right:6px;">'+
       '    <div style="%tbt.">%loc!Name!</div>'+
-      '    <input type="text" id="%id.namesname" style="font-size:x-small;width:75px;" onfocus="%s.CmdGotFocus(this);">'+
+      '    <input type="text" id="%id.namesname" style="font-size:x-small;width:150px;" onfocus="%s.CmdGotFocus(this);">'+
       '   </td>'+
       '   <td style="vertical-align:top;padding-right:6px;">'+
       '    <div style="%tbt.">%loc!Description!</div>'+
-      '    <input type="text" id="%id.namesdesc" style="font-size:x-small;width:150px;" onfocus="%s.CmdGotFocus(this);">'+
+      '    <input type="text" id="%id.namesdesc" style="font-size:x-small;width:220px;" onfocus="%s.CmdGotFocus(this);">'+
       '   </td>'+
       '   <td style="vertical-align:top;padding-right:6px;">'+
       '    <div style="%tbt.">%loc!Value!</div>'+
@@ -909,7 +909,7 @@ SocialCalc.InitializeSpreadsheetControl = function(spreadsheet, node, height, wi
 
    // create the tabbed UI at the top
 
-   html = '<div><div style="'+spreadsheet.toolbarbackground+'padding:12px 10px 10px 4px;height:40px;">';
+   html = '<div><div style="'+spreadsheet.toolbarbackground+'padding:12px 10px 10px 4px;height:70px;">';
 
    for (i=0; i<tabs.length; i++) {
       html += tabs[i].html;
