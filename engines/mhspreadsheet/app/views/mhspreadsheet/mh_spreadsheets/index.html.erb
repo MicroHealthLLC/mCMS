@@ -69,14 +69,12 @@
 
 
 <div id="msg" style="position:absolute;right:15px;margin-top:10px">
-  <div id="rightbtns">
     <input type="button" class="mathbtn" value="Loc Constants" onclick="doLocConstants();" class="smaller"><br>
     <input type="button" class="mathbtn" value="Canonicalize" onclick="var t=new Date();var i;for(i=0;i<1;i++){spreadsheet.sheet.CanonicalizeSheet(true);}addmsg(((new Date()-t)/1000));" class="smaller"><br>
     <input type="button" class="mathbtn" value="Time Canonicalize" onclick="var t=new Date();var i;for(i=0;i<100;i++){spreadsheet.sheet.CanonicalizeSheet(true);}addmsg(((new Date()-t)/1000));" class="smaller"><br>
     <input type="button" class="mathbtn" value="Time Save" onclick="var t=new Date();var i;for(i=0;i<100;i++){spreadsheet.CreateSpreadsheetSave();}addmsg(((new Date()-t)/1000));" class="smaller"><br>
     <input type="button" class="mathbtn" value="Time C-Save" onclick="var t=new Date();var i;for(i=0;i<100;i++){spreadsheet.sheet.CreateSheetSave(null,true);}addmsg(((new Date()-t)/1000));" class="smaller"><br>
     <input type="button" class="mathbtn" value="Time Encode" onclick="var t=new Date();var i;for(i=0;i<100;i++){spreadsheet.sheet.EncodeCellAttributes(spreadsheet.editor.ecell.coord);}addmsg(((new Date()-t)/1000));" class="smaller"><br>
-  </div>
   <textarea id="msgtext" style="margin-top:5px;margin-bottom:5px;width:110px;height:200px;"></textarea><br>
   <input type="button" style="font-size:x-small;" class="mathbtn" value="Clear" onclick="addmsg('',true);"><br>
 </div>
