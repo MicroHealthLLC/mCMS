@@ -667,9 +667,13 @@ SocialCalc.SpreadsheetControl = function() {
       ' <div id="%id.sorttools" style="display:none;">'+
       '  <table cellspacing="0" cellpadding="0"><tr>'+
       '   <td style="vertical-align:top;padding-right:4px;width:200px;">'+
-      '    <div style="%tbt.">%loc!Set Cells To Sort!</div>'+
-      '    <select id="%id.sortlist" size="1" onfocus="%s.CmdGotFocus(this);"><option selected>[select range]</option></select>'+
-      '    <input type="button" value="%loc!OK!" onclick="%s.DoCmd(this, \'ok-setsort\');" style="font-size:x-small;">'+
+      '    <table cellspacing="0" cellpadding="0"><tr><td style="vertical-align:top;padding-right:10px;">'+
+      '      <div style="%tbt.">%loc!Set Cells To Sort!</div>'+
+      '      <select id="%id.sortlist" size="1" onfocus="%s.CmdGotFocus(this);"><option selected>[select range]</option></select>'+
+      '     </td><td><br>'+
+      '      <input type="button" value="%loc!OK!" onclick="%s.DoCmd(this, \'ok-setsort\');" style="font-size:x-small;">'+
+      '     </td>'+
+      '    </tr></table>'+
       '   </td>'+
       '   <td style="vertical-align:middle;padding-right:16px;width:100px;text-align:right;">'+
       '    <div style="%tbt.">&nbsp;</div>'+
