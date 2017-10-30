@@ -1,10 +1,12 @@
+#svgcontainer {margin-top:50px; margin-left:230px; width:92%; height:800px; padding:0;background: #D0D0D0; background: #A0A0A0;}
+
 
 button.iconbtn, button.iconbtn2 {border: none; box-shadow: none; background-color:transparent; margin: 5px 5px; padding: 5px;}
-button.iconbtn {margin-right: 15px;}
+button.iconbtn {margin-right: 10px;}
 button.iconbtn:hover {background-color:#ddd;}
 button.iconbtn2:hover {background-color:#ddd;}
 
-#topbar {position: absolute; margin-top:60px; margin-left: 225px; background:transparent;}
+#topbar {position: absolute; top:50px; left: 240px; background:transparent; background: #D0D0D0; width:85%; margin-top:0; padding:15px 0 0 0; height:50px;}
 
 #filetitle {margin-top: -5px; padding: 6px; width: 300px; padding: 6px; border:none; border-bottom: 2px solid #aaa; background-color: transparent; color:#333; font-family:helvetica,arial,sans-serif;font-weight: bold; font-size: 14px;}
 
@@ -25,7 +27,7 @@ button.iconbtn2:hover {background-color:#ddd;}
 #tool_save img {width:21px; height:21px;}
 #tool_export {margin-top:-3px; margin-left:10px;}
 #tool_export img {width:19px; height:20px;}
-#tool_clear {margin-top:-3px; margin-left:50px;}
+#tool_clear {margin-top:-3px; margin-left:60px;}
 #tool_clear img {width:19px; height:20px;}
 #tool_docprops {margin-top:-3px; margin-left:5px;}
 #tool_docprops img {width:20px; height:20px;}
@@ -62,8 +64,8 @@ button.iconbtn2:hover {background-color:#ddd;}
   background-color: transparent;
   z-index:-2000;
   position:absolute;
-  margin-top:100px;
-  margin-left:225px;
+  margin-top:65px;
+  margin-left:0px;
   width: 630px;
   overflow: hidden;
 }
@@ -80,7 +82,7 @@ button.iconbtn2:hover {background-color:#ddd;}
   transform: translateY(-100%);
 }
 
-#buttonrow {float:left; margin-right:15px;}
+#buttonrow {float:left; margin-right:0px;}
 
 #main_button2 {
   float:left;
@@ -88,7 +90,7 @@ button.iconbtn2:hover {background-color:#ddd;}
   margin-top:3px;
   position: absolute;
   margin-left:560px;
-  margin-left:680px;
+  margin-left:665px;
 }
 
 #main_icon {
@@ -137,5 +139,4 @@ button.iconbtn2:hover {background-color:#ddd;}
 }
 
 #main_menu ul li {font-family: Helvetica, Arial, sans-serif; font-size: .75em !important;}
-
 

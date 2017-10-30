@@ -1,5 +1,5 @@
 ﻿body {
-	background: #D0D0D0;
+	background: transparent;
 }
 
 html, body, div{
@@ -48,9 +48,15 @@ select {
 #svgroot {
   -moz-user-select: none;
   -webkit-user-select: none;
+  /*
   position: absolute;
   top: 0;
   left: 0;
+  */
+  top: 100px;
+  left: 230px;
+  background:transparent;
+  background:#D0D0D0;
 }
 
 
@@ -68,8 +74,10 @@ select {
 	  A subtle gradient effect in the canvas.
 	  Just experimenting - not sure if this is worth it.
 	*/
+	/*
 	background: -moz-radial-gradient(45deg,#bbb,#222);
 	background: -webkit-gradient(radial, center center, 3, center center, 1000, from(#bbb), to(#222));
+	*/
 }
 
 /* Rulers
@@ -87,6 +95,7 @@ select {
   top: 181px;
   top: 191px;
   left: 271px;
+  left: 278px;
   width: 15px;
   height: 15px;
 }
@@ -94,11 +103,11 @@ select {
 #ruler_x {
 	height: 15px;
 	top: 41px;
-	top: 181px;
 	top: 191px;
 	left: 56px;
-    left: 286px;
+    left: 293px;
 	right: 30px;
+	right: 40px;
 	border-bottom: 1px solid;
 	border-left: 1px solid #777;
 }
@@ -106,10 +115,9 @@ select {
 #ruler_y {
 	width: 15px;
 	top: 55px;
-	top: 195px;
 	top: 205px;
 	left: 41px;
-    left: 271px;
+    left: 278px;
 	bottom: 56px;
 	border-right: 1px solid;
 	border-top: 1px solid #777;
@@ -174,9 +182,10 @@ select {
 	top: 40px;
 	top: 190px !important;
 	left: 40px;
-    left: 270px;
+    left: 277px;
 	bottom: 40px;
 	right: 14px;
+	right: 22px;
 	background-color: #A0A0A0;
 	border: 1px solid #808080;
 	overflow: auto;
@@ -192,6 +201,8 @@ select {
 	right: 0;
 	width: 2px;
 	padding: 10px;
+	background-color:#999999;
+	background-color: #D0D0D0;
 	border-color: #808080;
 	border-style: solid;
 	border-width: 1px;
@@ -221,7 +232,7 @@ select {
 #sidepanel_handle {
 	display: inline-block;
 	position: absolute;
-	background-color: #D0D0D0;
+	background-color: #999999;
 	font-weight: bold;
 	left: 0;
     left: 230;
@@ -494,10 +505,11 @@ div.palette_item:first-child {
 #tools_top {
 	position: absolute;
 	left: 108px;
-    left: 233px !important;
+    left: 233px;
+    left: 240px !important;
 	right: 2px;
 	top: 2px;
-    top: 112px !important;
+    top: 118px !important;
 	height: 40px;
 	height: 80px;
 	border-bottom: none;
@@ -515,10 +527,13 @@ div.palette_item:first-child {
 	top: 40px;
     top: 191px !important;
     left: 1px;
-    left: 231px !important;
+    left: 231px;
+    left: 238px !important;
 	margin-top: -2px;
 	padding-left: 2px;
 	background: #D0D0D0; /* Needed so flyout icons don't appear on the left */
+	background: #A0A0A0; /* Needed so flyout icons don't appear on the left */
+	background: transparent;
 	z-index: 4;
 }
 
@@ -827,7 +842,8 @@ span.zoom_tool {
 
 .tools_flyout {
 	position: absolute;
-	margin-left:230px !important;
+	left:266px;
+	left:273px !important;
 	display: none;
 	cursor: pointer;
 	width: 400px;
@@ -855,7 +871,7 @@ span.zoom_tool {
 #tools_bottom {
 	position: absolute;
 	left: 40px;
-    left: 270px;
+    left: 277px !important;
 	right: 0;
 	bottom: 0 !important;
 	height: 40px;
@@ -1019,7 +1035,8 @@ span.zoom_tool {
 	position: absolute;
 	height: auto;
 	z-index: 3;
-	margin: -10px;
+	margin-top: -10px !important;
+	margin-left: -150px !important;
 	list-style: none;
 	padding-left: 0;
 }
@@ -1074,8 +1091,10 @@ ul li.current {
 .overlay {
 	position: absolute;
 	top: 0;
-	right: 0;
 	left: 0;
+	right: 0;
+	margin-top: 50px;
+	margin-left: 230px;
 	bottom: 0;
 	background-color: black;
 	opacity: 0.6;
@@ -1466,7 +1485,6 @@ ul li.current {
 .contextMenu LI.delete A { background-image: url(images/page_white_delete.png); }
 .contextMenu LI.quit A { background-image: url(images/door.png); }
 */
-
 
 
 @media screen and (max-width:1539px) {
