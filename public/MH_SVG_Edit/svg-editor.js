@@ -1394,7 +1394,7 @@ var onlysave = false; //NOTE: Might not need with modifications
                 //NOTE: Original code does not work in most browsers
 			//	exportWindow.location.href = data.datauri;
 			
-				exportWindow.document.write('<!DOCTYPE html><html><head><meta charset="utf-8" /></head><body><a href="' + data.datauri + '"><img id="thisimage" src="' + data.datauri + '" /></a></body></html>');
+				exportWindow.document.write('<!DOCTYPE html><html><head><meta charset="utf-8" /></head><body><a href="' + data.datauri + '"><img id="thisimage" src="/MH_SVG_Edit/' + data.datauri + '" /></a></body></html>');
 
 				var done = $.pref('export_notice_done');
 				if (done !== 'all') {
@@ -2913,7 +2913,7 @@ var onlysave = false; //NOTE: Might not need with modifications
 						}
 
 						if (!svgicons) {
-							icon = $('<img src="' + btn.icon + '">');
+							icon = $('<img src="/MH_SVG_Edit/' + btn.icon + '">');
 						} else {
 							fallback_obj[id] = btn.icon;
 							svgicon = btn.svgicon || btn.id;
