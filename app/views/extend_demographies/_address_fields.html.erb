@@ -9,7 +9,7 @@
           <div class="form-group col-md-12">
             <%= f.label :address_type , class: 'col-md-2 control-label' %>
             <div class="col-md-8">
-              <%= f.select :address_type_id, options_for_select( AddressType.active.pluck(:name, :id), selected: f.object.address_type.try(:id) ), {}, {class: 'form-control'} %>
+              <%= form.select :address_type_id, options_for_select( AddressType.active.pluck(:name, :id), selected: form.object.address_type.try(:id) ), {}, {class: 'form-control'} %>
             </div>
           </div>
 
