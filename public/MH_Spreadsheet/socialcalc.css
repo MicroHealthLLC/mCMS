@@ -62,8 +62,11 @@ button.iconbtn2:hover {background-color:#ddd;}
 
 #topbar {margin-left:-10px;margin-right:-10px;height: 50px; padding:3px 6px 5px 6px; background-color: #D0D0D0;}
 #spreadsheetname {width: 300px; padding: 6px; border:none; border-bottom: 2px solid #aaa; background-color: transparent; color:#333; font-family:helvetica,arial,sans-serif;font-weight: bold; font-size: 14px;}
-#filename_div {z-index:1500; display:none;margin-top:-57px; margin-left:44px; margin-bottom:11px; background-color:#aaa; width:310px;height:40px;padding:6px 4px 8px 10px;}
-#filenameinput {width:200px;height:20px;}
+/*  NOTE: This is for standalone app  */
+#filename_div {z-index:1500; display:none; margin-top:-54px; margin-left:46px; margin-bottom:0px; background-color:#aaa; width:310px; height:40px; padding:6px 4px 8px 10px;}
+/*  NOTE: This is for mCMS app  */
+#filename_div {z-index:1500; display:none; margin-top: -50px; margin-left: 46px; margin-bottom: 0px; background-color:#aaa; width:310px; height: 50px; padding:6px 4px 8px 10px;}
+#filenameinput {width:180px;height:20px;}
 #fileext {font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight:bold;}
 #submitfilename, #cancelfilename {margin-left:0px; margin-right:0px;}
 #submitfilename img, #cancelfilename img {width:20px; height:20px;}
