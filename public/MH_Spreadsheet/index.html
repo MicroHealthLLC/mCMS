@@ -321,6 +321,7 @@ deleteallbtn.addEventListener("click", function () {
     presentsheet_id = -1;
     update_sheetslisting(null);
     doreload();
+    localStorage.removeItem("thesemh_spreadsheets");
 });
 
 var searchbtn = document.getElementById("searchbtn");
@@ -572,6 +573,7 @@ function saveMHSpreadsheets() {
     if (presentsheet_id !== -1) {
       gathersheet();
     }
+    localStorage.removeItem("thesemh_spreadsheets");
     var thesemh_spreadsheets = JSON.stringify(mh_spreadsheets);
     localStorage.setItem("thesemh_spreadsheets", thesemh_spreadsheets);
 }
