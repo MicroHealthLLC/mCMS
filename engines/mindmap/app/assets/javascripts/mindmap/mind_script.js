@@ -1,8 +1,21 @@
 var mhmind_maps = [];
 
-var presentmap_saved = false;
-
 var presentmap_id = -1;
+
+var filenamediv = document.getElementById("filename_div");
+var filenameinput = document.getElementById("filenameinput");
+var nametype = document.getElementById("nametype");
+
+var docfilename = document.getElementById("docfilename");
+docfilename.addEventListener("click", function () {
+  if (docfilename.value !== "MHMind.jm") {
+    nametype.value = "modifyfunc";
+    if (filenamediv.style.display !== "block") {
+       filenamediv.style.display = "block";
+       filenameinput.value = docfilename.value.slice(0,-3);
+    }
+  }
+});
 
 var _jm = null;
 
@@ -18,13 +31,13 @@ function open_empty(){
 }
 
 /*
- function open_ajax(){
- var mind_url = 'data_example.json';
- MHMind.util.ajax.get(mind_url,function(mind){
- _jm.show(mind);
- });
- }
- */
+function open_ajax(){
+    var mind_url = 'data_example.json';
+    MHMind.util.ajax.get(mind_url,function(mind){
+        _jm.show(mind);
+    });
+}
+*/
 function screen_shot(){
     "use strict";
     _jm.screenshot.shootDownload();
@@ -34,18 +47,21 @@ function screen_shot(){
 function save_file(){
     "use strict";
     var mind_data = _jm.get_data();
-    var mind_name = mind_data.meta.name;
+    var mind_name = docfilename.value;
+//  mind_name = mind_data.meta.name +'.jm';   // ORIGINAL CODE     
     var mind_str = MHMind.util.json.json2string(mind_data);
+/*
     if (mind_str === '{"meta":{"name":"MHMind","author":"MicroHealth, LLC","version":"0.1.0"},"format":"node_tree","data":{"id":"root","topic":"Your Concept Here","expanded":true}}') {
         prompt_info("Default map!");
         return;
     }
-    MHMind.util.file.save(mind_str,'text/jsmind',mind_name+'.jm');
+*/
+    MHMind.util.file.save(mind_str,'text/jsmind',mind_name);
 }
+
 
 function open_file(){
     "use strict";
-    var file_input = document.getElementById('file_input');
     var files = file_input.files;
     if(files.length > 0){
         var file_data = files[0];
@@ -53,6 +69,7 @@ function open_file(){
             var mind = MHMind.util.json.string2json(jsmind_data);
             if(!!mind){
                 _jm.show(mind);
+                docfilename.value = file_input.value.slice(12);
             }else{
                 prompt_info('Can not open this file as mindmap.');
             }
@@ -61,6 +78,25 @@ function open_file(){
         prompt_info('Please choose a file first.')
     }
 }
+
+var submituploadbtn = document.getElementById("submituploadbtn");
+submituploadbtn.addEventListener("click", function () {
+    open_file();
+});
+
+var file_input = document.getElementById("file_input");
+file_input.addEventListener("change", function () {
+    if (file_input.value !== "") {
+        submituploadbtn.click();
+    }         
+});
+
+var uploadbtn = document.getElementById("uploadbtn");
+uploadbtn.addEventListener("click", function () {
+    file_input.value = "";
+    file_input.click();
+});
+
 
 function select_node(){
     "use strict";
@@ -114,7 +150,7 @@ imageChooser.addEventListener('change', function (event) {
             "height": "100"};
         var node = _jm.add_node(selected_node, nodeid, topic, data);
         //var node = _jm.add_image_node(selected_node, nodeid, reader.result, 100, 100);
-        //add_image_node:function(parent_node, nodeid, image, width, height, data, idx, direction, expanded){
+    //add_image_node:function(parent_node, nodeid, image, width, height, data, idx, direction, expanded){
     });
 
     var file = imageChooser.files[0];
@@ -162,10 +198,10 @@ function move_to_last(){
 }
 
 /*    function move_node(){
- // move a node before another
- _jm.move_node('other','open');
- }
- */
+    // move a node before another
+    _jm.move_node('other','open');
+}
+*/
 function remove_node(){
     "use strict";
     var selected_id = get_selected_nodeid();
@@ -213,16 +249,16 @@ function change_background_color(){
     var colorpick = document.getElementById("colorpickerbtn").value;
     var selected_id = get_selected_nodeid();
     if(!selected_id){prompt_info('Please select a node first.');return;}
-    _jm.set_node_color(selected_id, colorpick, null);
+    _jm.set_node_color(selected_id, colorpick, null);       
 }
 
 function open_color_picker(){
-    "use strict";
+    "use strict";    
     document.getElementById("colorpicker").style.display = "block";
 }
 
 function close_color_picker(){
-    "use strict";
+    "use strict";    
     document.getElementById("colorpicker").style.display = "none";
 }
 
@@ -265,7 +301,7 @@ function toggle_editable(btn){
     var editable = _jm.get_editable();
     if(editable){
         _jm.disable_edit();
-        //    btn.innerHTML = 'enable editable';
+    //    btn.innerHTML = 'enable editable';
         btn.innerHTML = '<img src="/mindmap/glyphicons-200-ban-circle.png" class="wh22x22"> <img src="/mindmap/glyphicons-31-pencil.png" class="wh18x18">';
     }else{
         _jm.enable_edit();
@@ -284,43 +320,43 @@ function change_container(widthsize){
     "use strict";
     var c = document.getElementById('jsmind_container');
     if (widthsize === 'xxlarge2') {
-        c.style.width = '100%';
+        c.style.width = '2200px';
         c.style.height = '1340px';
-    } else if (widthsize === 'xxlarge1') {
-        c.style.width = '100%';
+   } else if (widthsize === 'xxlarge1') {
+        c.style.width = '1900px';
         c.style.height = '1000px';
-    } else if (widthsize === 'xlarge3') {
-        c.style.width = '100%';
+   } else if (widthsize === 'xlarge3') {
+        c.style.width = '1660px';
         c.style.height = '940px';
-    } else if (widthsize === 'xlarge2') {
-        c.style.width = '100%';
+   } else if (widthsize === 'xlarge2') {
+        c.style.width = '1580px';
         c.style.height = '900px';
-    } else if (widthsize === 'xlarge1') {
-        c.style.width = '100%';
+   } else if (widthsize === 'xlarge1') {
+        c.style.width = '1490px';
         c.style.height = '900px';
-    } else if (widthsize === 'large2') {
-        c.style.width = '100%';
+   } else if (widthsize === 'large2') {
+        c.style.width = '1390px';
         c.style.height = '900px';
-    } else if (widthsize === 'large1') {
-        c.style.width = '100%';
+   } else if (widthsize === 'large1') {
+        c.style.width = '1290px';
         c.style.height = '800px';
     } else if (widthsize === 'medium2') {
-        c.style.width = '100%';
+        c.style.width = '1190px';
         c.style.height = '740px';
     } else if (widthsize === 'small2') {
-        c.style.width = '100%';
+        c.style.width = '930px';
         c.style.height = '600px';
     } else if (widthsize === 'small1') {
-        c.style.width = '100%';
+        c.style.width = '760px';
         c.style.height = '900px';
     } else if (widthsize === 'xsmall2') {
-        c.style.width = '100%';
+        c.style.width = '630px';
         c.style.height = '900px';
     } else if (widthsize === 'xsmall1') {
-        c.style.width = '100%';
-        c.style.height = '300px';
+            c.style.width = '600px';
+            c.style.height = '300px';
     } else  { //medium1
-        c.style.width = '100%';
+        c.style.width = '990px';
         c.style.height = '700px';
     }
     resize_jsmind();
@@ -360,7 +396,7 @@ function setlayout() {
             change_container('xxlarge2');
         }
     }
-}
+}      
 
 function expand(){
     "use strict";
@@ -387,13 +423,13 @@ function toggle(){
 }
 
 /*
- function expand_all(){
- _jm.expand_all();
- }
- function collapse_all(){
- _jm.collapse_all();
- }
- */
+function expand_all(){
+    _jm.expand_all();
+}
+function collapse_all(){
+    _jm.collapse_all();
+}
+*/
 
 function expand_to_level2(){
     "use strict";
@@ -412,7 +448,7 @@ function collapse_expand_all(){
         _jm.collapse_all();
     } else {
         document.getElementById('collapse_expand_btn').innerHTML = '<sup><img src="/mindmap/glyphicons-172-fast-backward.png" class="wh13x9"></sup> <img src="/mindmap/glyphicons-154-unchecked.png">'
-        _jm.expand_all();
+        _jm.expand_all();            
     }
 }
 
@@ -422,68 +458,79 @@ function prompt_info(msg){
 }
 
 
+
 function get_map_info() {
     "use strict";
     var mind_data = _jm.get_data();
-    var mind_name = mind_data.meta.name;
     var mind_str = MHMind.util.json.json2string(mind_data);
+/*
     if (mind_str === '{"meta":{"name":"MHMind","author":"MicroHealth, LLC","version":"0.1.0"},"format":"node_tree","data":{"id":"root","topic":"Your Concept Here","expanded":true}}') {
         return true;
     } else {
-        return mind_str;
+        return mind_str;          
     }
+*/
+    return mind_str;          
 }
 
 
 function default_map() {
     "use strict";
     document.getElementById("jsmind_container").innerHTML = null;
-    open_empty();
     presentmap_id = -1;
-    document.getElementById("savebtn").innerHTML = '<img src="/mindmap/glyphicons-447-floppy-save.png" class="wh19x19">';
+    docfilename.value = "MHMind.jm";
+    open_empty();
 }
 
 
-
-/* NOT NECESSARY WITH MULTIMAP SUPPORT, USE function newmap 
- function reset_map() {
- var mind_str = get_map_info();
- if (mind_str !== true) {
- if (presentmap_saved === false) {
- var checkstr = window.confirm('Click "Cancel" if this mind map needs to be saved first, otherwise click "OK".');
- if (checkstr === false) {
- return;
- }
- }
- default_map();
- }
- }
- */
-
-function newmap() {
+function checkDefault() {
     "use strict";
-    var mind_str = get_map_info();
-    if (mind_str !== true) {
-        if (presentmap_saved === false) {
+    if (docfilename.value.toLowerCase() !== "mhmind.jm") {
+        return false;      
+    }
+    var mind_data = _jm.get_data();
+    var mind_str = MHMind.util.json.json2string(mind_data);
+    if (mind_str === '{"meta":{"name":"MHMind","author":"MicroHealth, LLC","version":"0.1.0"},"format":"node_tree","data":{"id":"root","topic":"Your Concept Here","expanded":true}}') {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+var resetmapbtn = document.getElementById("resetmapbtn");
+resetmapbtn.addEventListener("click", function () {
+    if (presentmap_id !== -1) {
+        savemap();
+    } else {
+        var defaultmap = checkDefault();
+        if (defaultmap === false) {
             var checkstr = window.confirm('Click "Cancel" if this mind map needs to be saved first, otherwise click "OK".');
             if (checkstr === false) {
+                filenameform();
                 return;
             }
         }
-        default_map();
-    } else {
-        prompt_info("Use this map!");
     }
-}
+    default_map();
+});
+
+
 
 
 function editmap(btnid) {
     "use strict";
     if (Number(btnid) !== presentmap_id) {
-        if ((presentmap_saved === false) && (presentmap_id !== -1)) {
-            var checkstr = window.confirm('Click "Cancel" if this mind map needs to be saved first, otherwise click "OK".');
-            if (checkstr === false) {
-                return;
+        if (presentmap_id !== -1) {
+            savemap();
+        } else {
+            var defaultmap = checkDefault();
+            if (defaultmap === false) {
+                var checkstr = window.confirm('Click "Cancel" if this mind map needs to be saved first, otherwise click "OK".');
+                if (checkstr === false) {
+                    filenameform();
+                    return;
+                }
             }
         }
         var found = false, i = -1;
@@ -496,8 +543,7 @@ function editmap(btnid) {
         if (found === true) {
             presentmap_id = Number(btnid);
             _jm.show(mhmind_maps[i].map);
-            presentmap_saved = true;
-            document.getElementById("savebtn").innerHTML = '<img src="/mindmap/glyphicons-445-floppy-saved.png" class="wh19x19">';
+            docfilename.value = mhmind_maps[i].docfilename;
         } else {
             prompt_info("Error, map not found!");
         }
@@ -526,51 +572,59 @@ function deletemap(btnid) {
     }
 }
 
+var deleteallbtn = document.getElementById("deleteallbtn");
+deleteallbtn.addEventListener("click", function () {
+    var checkstr = window.confirm('Sure you want to delete ALL maps? Click "OK" to proceed, otherwise "Cancel"?');
+    if (checkstr === false) {
+        return;
+    }
+    resetmapbtn.click();
+    mhmind_maps.length = 0;
+    update_maplisting(null);
+    localStorage.removeItem("thesemhminds1");
+});
+
 
 function update_maplisting(srchinput) {
     "use strict";
     var i, s1, s2, nodetext, nodestr, nodetopic, foundtopic, c = 0, maplist_items = "", warning = false;
+    var searchtext = document.getElementById("searchtext");
     var this_list = document.getElementById("maplisting");
     this_list.innerHTML = null;
     if (srchinput === null) {
         document.getElementById("searchmaps").value = "";
     }
-    for (i = 0; i < mhmind_maps.length; i+=1) {
+    for (i = mhmind_maps.length - 1; i >= 0; i-=1) {
         if (srchinput !== null) {
-            foundtopic = false;
-            nodetext = JSON.stringify(mhmind_maps[i].map.data);
-            nodestr = nodetext.toLowerCase();
-            while ((foundtopic === false) && (nodestr.indexOf('"topic":"') !== -1)) {
-                s1 = nodestr.indexOf('"topic":"');
-                nodestr = nodestr.slice(s1 + 9);
-                s2 = nodestr.indexOf('","expanded":');
-                nodetopic = nodestr.slice(0, s2);
-                if (nodetopic.indexOf(srchinput.toLowerCase()) !== -1) {
-                    foundtopic = true;
+            if (mhmind_maps[i].docfilename.toLowerCase().indexOf(srchinput) > -1) {
+                foundtopic = true;
+            } else {
+                foundtopic = false;                
+            }
+            if ((foundtopic === false) && (searchtext.checked === true)) {
+                nodetext = JSON.stringify(mhmind_maps[i].map.data);
+                nodestr = nodetext.toLowerCase();
+                while ((foundtopic === false) && (nodestr.indexOf('"topic":"') > -1)) {
+                    s1 = nodestr.indexOf('"topic":"');
+                    nodestr = nodestr.slice(s1 + 9);
+                    s2 = nodestr.indexOf('","expanded":');
+                    nodetopic = nodestr.slice(0, s2);
+                    if (nodetopic.indexOf(srchinput.toLowerCase()) > -1) {
+                        foundtopic = true;
+                    }
                 }
             }
         }
         if ((srchinput === null) || (foundtopic === true)) {
-            maplist_items = maplist_items + '<p><button id="deletebtn' + mhmind_maps[i].id + '" class="iconbtn maplistbtn deletemapbtn" title="Delete ' + mhmind_maps[i].map.data.topic + '"><img src="/mindmap/glyphicons-208-remove.png" class="wh12x12"></button><button id="editbtn' + mhmind_maps[i].id + '" class="iconbtn maplistbtn editmapbtn" title="Edit ' + mhmind_maps[i].map.data.topic + '"><img src="/mindmap/glyphicons-151-edit.png" class="wh17x15"></button> ';
-            if (mhmind_maps[i].map.data.topic !== "Your Concept Here") {
-                maplist_items = maplist_items + mhmind_maps[i].map.data.topic + '</p>';
-            } else {
-                maplist_items = maplist_items + '<span class="defaulttopic">' + mhmind_maps[i].map.data.topic + '</span>*</p>';
-                warning = true;
-            }
+           maplist_items = maplist_items + '<p><button id="deletebtn' + mhmind_maps[i].id + '" class="deletemapbtn" title="Delete ' + mhmind_maps[i].docfilename + '"><img src="/mindmap/glyphicons-208-remove.png" class="wh12x12"></button><button id="editbtn' + mhmind_maps[i].id + '" class="editmapbtn" title="Edit ' + mhmind_maps[i].docfilename + '"><img src="/mindmap/glyphicons-151-edit.png" class="wh17x15"></button>' + mhmind_maps[i].docfilename + '</p>';
         }
     }
     this_list.innerHTML = maplist_items;
-    if (warning === false) {
-        document.getElementById("warndiv").style.display = 'none';
-    } else {
-        document.getElementById("warndiv").style.display = 'block';
-    }
     var j, editbtns = document.querySelectorAll(".editmapbtn");
     for (j = 0; j < editbtns.length; j+=1) {
         editbtns[j].addEventListener("click", function() {
             editmap(this.id.slice(7));
-        });
+       });
     }
     var k, deletebtns = document.querySelectorAll(".deletemapbtn");
     for (k = 0; k < deletebtns.length; k+=1) {
@@ -580,9 +634,20 @@ function update_maplisting(srchinput) {
                 return;
             }
             deletemap(this.id.slice(9));
-        });
+       });
     }
+    var deletediv = document.getElementById("deletediv");
+    var filesessionmsg = document.getElementById("filesessionmsg");
+    if (mhmind_maps.length > 0) {
+        deletediv.style.display = "block";
+        filesessionmsg.style.display = "block";
+    } else {
+        deletediv.style.display = "none";
+        filesessionmsg.style.display = "none";
+    }
+    return;
 }
+
 
 var searchmaps = document.getElementById("searchmaps");
 searchmaps.addEventListener("change", function() {
@@ -595,55 +660,194 @@ searchmaps.addEventListener("change", function() {
 function findmap() {
     "use strict";
     var searchitem = document.getElementById("searchmaps").value.trim().toLowerCase();
-    if ((searchitem !== "") && (presentmap_saved === false)) {
-        var checkstr = window.confirm('Proceed searching with this unsaved mind map?');
+    if ((searchitem !== "") && (presentmap_id === -1)) {
+        var checkstr = window.confirm('Proceed with search, excluding this unsaved mind map?');
         if (checkstr === false) {
             return;
         }
     }
     update_maplisting(searchitem);
-}
+ }
 
 function save_map(mind_str) {
     "use strict";
+//    alert('save_map');
+    var thisfile = docfilename.value;
     var this_map = JSON.parse(mind_str);
     var this_group = {};
     if (presentmap_id === -1) {
         if (mhmind_maps.length > 0) {
-            var this_id = Number(mhmind_maps[mhmind_maps.length - 1].id);
-            this_id += 1;
+            var this_id = Number(mhmind_maps[mhmind_maps.length - 1].id) + 1;
         } else {
-            this_id = 0;
-        }
+            var this_id = 0;
+       }
         this_group.id = this_id;
+        this_group.docfilename = thisfile;
         this_group.map = this_map;
         mhmind_maps.push(this_group);
         presentmap_id = this_id;
-        update_maplisting(null);
     } else {
-        var previous_topic = mhmind_maps[presentmap_id].map.data.topic;
         mhmind_maps[presentmap_id].map = this_map;
-        if (previous_topic !== mhmind_maps[presentmap_id].map.data.topic) {
-            update_maplisting(null);
-        }
+        mhmind_maps[presentmap_id].docfilename = thisfile;
     }
-    presentmap_saved = true;
-    document.getElementById("savebtn").innerHTML = '<img src="/mindmap/glyphicons-445-floppy-saved.png" class="wh19x19">';
+    update_maplisting(null);
     return;
 }
 
+        function checkValid() {
+            var validname = false;
+            var thisdocfilename = docfilename.value.trim();
+            docfilename.value = thisdocfilename;
+            if (thisdocfilename === "") {
+                alert("Must input doc file name!");
+            } else {
+                if (thisdocfilename.toLowerCase() === "mhmind.jm") {
+                    alert('File name must not be "mhmind.jm"!');
+                } else {
+                    validname = true;
+                }
+            }
+            return validname;
+        }
+
+        function checkName() {
+            var i = -1, found = false;
+            while ((found === false) && (i < mhmind_maps.length - 1)) {
+                i += 1;
+                if (mhmind_maps[i].docfilename.toLowerCase() === docfilename.value.toLowerCase()) {
+                    found = true;
+                }
+            }
+            if (found === true) {
+                return(i);
+            } else {
+                return(-1);
+            }
+        }
+
+
 function savemap() {
     "use strict";
-    var mind_str = get_map_info();
-    if (mind_str !== true) {
+//    alert('savemap');
+    var validname = checkValid();
+    if (validname === true) {
+        var found = checkName();
+        if (presentmap_id === -1) {
+            if (found > -1) {
+                alert("Change the file name, this one already exists!");
+                docfilename.value = "MHMind.jm";
+                return;
+            }
+        } else {
+            if ((found !== -1) && (found !== presentmap_id) && (nametype.value === "copyfunc")) {
+                alert("That file name already exists for another file!");
+                docfilename.value = mhmind_maps[presentmap_id].docfilename;
+                return;
+            }
+        }
+        var mind_str = get_map_info();
         save_map(mind_str);
-    } else {
-        prompt_info("Default map!");
     }
-
-    thesemhminds1 = JSON.stringify(mhmind_maps);
-    $.ajax({ url: '/mindmap/mindmap/save.js?content='+thesemhminds1 })
+    return;
 }
+
+
+function duplicatemap() {
+    "use strict";
+//    alert('duplicatemap');
+    var validname = checkValid();
+    if (validname === true) {
+        var found = checkName();
+        if (found !== -1) {
+            alert("That file name already exists for another file!");
+            docfilename.value = mhmind_maps[presentmap_id].docfilename;
+            return;
+        }
+        presentmap_id = -1;
+        var mind_str = get_map_info();
+        save_map(mind_str);
+    }
+    return;
+}
+
+
+
+
+var cancelfilename = document.getElementById("cancelfilename");
+cancelfilename.addEventListener("click", function (e) {
+  e.preventDefault();
+  filenameinput.value = "";
+  nametype.value = "newfunc";
+  filenamediv.style.display = "none";
+});
+
+var submitfilename = document.getElementById("submitfilename");
+submitfilename.addEventListener("click", function (e) {
+   e.preventDefault();
+   var thisfilename = filenameinput.value.trim();
+   if (thisfilename === "") {
+      alert("Input file name!");
+      filenameinput.value = "";
+   } else if (thisfilename.toLowerCase() === "mhmind") {
+      alert('File name must not be "MHMind.jm"!');    
+      filenameinput.value = "";
+   } else {
+      thisfilename = thisfilename + ".jm";
+      var j = -1, found = false;
+      while ((found === false) && (j < mhmind_maps.length - 1)) {
+        j += 1;
+        if (thisfilename === mhmind_maps[j].docfilename) {
+          found = true;
+          alert("File name already exists!");
+        }
+      }
+      if (found === false) {
+        docfilename.value = thisfilename;
+        filenameinput.value = "";
+        filenamediv.style.display = "none";
+        if (nametype.value === "newfunc") {
+          savemap();
+        } else if (nametype.value === "modifyfunc") {
+          nametype.value = "newfunc";
+          mhmind_maps[presentmap_id].docfilename = docfilename.value;
+          savemap();
+        } else if (nametype.value === "copyfunc") {
+          nametype.value = "newfunc";
+          duplicatemap();
+        } else {
+          alert("Error, illegal submit name type!");
+          nametype.value = "newfunc";
+        }
+      }
+   }
+});
+
+
+function filenameform() {
+  filenamediv.style.display = "block";
+  return;
+}
+
+var newfilebtn = document.getElementById("newfilebtn");
+newfilebtn.addEventListener("click", function(e) {
+  e.preventDefault();
+  if (presentmap_id !== -1) {
+    resetmapbtn.click();
+  }
+  filenameform();
+});
+
+
+var duplicatebtn = document.getElementById("duplicatebtn");
+duplicatebtn.addEventListener("click", function(e) {
+  e.preventDefault();
+  if (presentmap_id === -1) {
+    alert("May not duplicate unsaved file!");
+  }
+  savemap();
+  nametype.value = "copyfunc";
+  filenameform();
+});
 
 
 var openSlider = document.getElementById("openSliderbtn"),
@@ -663,16 +867,6 @@ closeSlider.addEventListener("click", function () {
     }, 800);
 });
 
-
-function open_export_import() {
-    "use strict";
-    document.getElementById("export_import").style.display = "block";
-}
-
-function close_export_import() {
-    "use strict";
-    document.getElementById("export_import").style.display = "none";
-}
 
 
 function close_info() {
@@ -694,28 +888,29 @@ window.onresize = function() {
     setlayout();
 }
 
+function setupMap() {
+    var thesemhminds1 = localStorage.getItem("thesemhminds1");
+    if ((thesemhminds1 !== null) && (thesemhminds1 !== "") && (thesemhminds1 !== undefined)) {
+        thesemhminds1 = JSON.parse(thesemhminds1);
+        mhmind_maps.length = 0;
+        mhmind_maps = thesemhminds1;
+        update_maplisting(null);
+    }
+    default_map();
+}
+
+
 open_empty();
 setlayout();
+setupMap();
 
-var thesemhminds1 = localStorage.getItem("thesemhminds1");
-if ((thesemhminds1 !== null) && (thesemhminds1 !== "") && (thesemhminds1 !== undefined)) {
-    thesemhminds1 = JSON.parse(thesemhminds1);
-    mhmind_maps.length = 0;
-    mhmind_maps = thesemhminds1;
-    update_maplisting(null);
-}
 
 function saveMHMind() {
     "use strict";
-    if (presentmap_saved === false) {
-        var mind_str = get_map_info();
-        if (mind_str !== true) {
-            save_map(mind_str);
-        }
+    if (presentmap_id !== -1) {
+        savemap();
     }
-//    setTimeout(function () {
-    thesemhminds1 = JSON.stringify(mhmind_maps);
-    $.ajax({ url: '/mindmap/mindmap/save.js?content='+thesemhminds1 })
-    //localStorage.setItem("thesemhminds1", thesemhminds1);
-//    }, 2000);
+    localStorage.removeItem("thesemhminds1");
+    var thesemhminds1 = JSON.stringify(mhmind_maps);
+    localStorage.setItem("thesemhminds1", thesemhminds1);
 }
