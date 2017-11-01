@@ -2,6 +2,7 @@
 
 <%= link_to 'Assign new product', inventory.new_product_assign_path(user_id: User.current.id), class: 'btn btn-primary pull-right btn-edition' if can?(:manage_roles) %>
 <section id="widget-grid" class="show_customer_account">
+  <%= render partial: 'state_button_filter'%>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'list',
