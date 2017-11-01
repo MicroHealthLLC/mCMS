@@ -1332,13 +1332,11 @@
                 var node = this.mind.add_node(parent_node, nodeid, topic, data);
                 if(!!node){
                     this.view.add_node(node);
-                    presentmap_saved = false;
                     this.layout.layout();
                     this.view.show(false);
                     this.view.reset_node_custom_style(node);
                     this.expand_node(parent_node);
                     this.invoke_event_handle(jm.event_type.edit,{evt:'add_node',data:[parent_node.id,nodeid,topic,data],node:nodeid});
-                    document.getElementById("savebtn").innerHTML = '<img src="/mindmap/glyphicons-447-floppy-save.png" class="wh19x19">';
                 }
                 return node;
             }else{
@@ -1457,8 +1455,6 @@
                     this.layout.layout();
                     this.view.show(false);
                     this.invoke_event_handle(jm.event_type.edit,{evt:'update_node',data:[nodeid,topic],node:nodeid});
-                    presentmap_saved = false;
-                    document.getElementById("savebtn").innerHTML = '<img src="/mindmap/glyphicons-447-floppy-save.png" class="wh19x19">';
                 }
             }else{
                 logger.error('fail, this mind map is not editable');
@@ -1474,8 +1470,6 @@
                     this.layout.layout();
                     this.view.show(false);
                     this.invoke_event_handle(jm.event_type.edit,{evt:'move_node',data:[nodeid,beforeid,parentid,direction],node:nodeid});
-                    presentmap_saved = false;
-                    document.getElementById("savebtn").innerHTML = '<img src="/mindmap/glyphicons-447-floppy-save.png" class="wh19x19">';
                 }
             }else{
                 logger.error('fail, this mind map is not editable');
@@ -1621,8 +1615,6 @@
                         }
                     }
                     this.view.reset_node_custom_style(node);
-                    presentmap_saved = false;
-                    document.getElementById("savebtn").innerHTML = '<img src="/mindmap/glyphicons-447-floppy-save.png" class="wh19x19">';
                 }
             }else{
                 logger.error('fail, this mind map is not editable');
@@ -2430,8 +2422,6 @@
                 node._data.view.element = null;
                 node._data.view.expander = null;
             }            
-            presentmap_saved = false;
-            document.getElementById("savebtn").innerHTML = '<img src="/mindmap/glyphicons-447-floppy-save.png" class="wh19x19">';
         },
 
         update_node:function(node){

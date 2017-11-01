@@ -304,7 +304,8 @@
 
         _download:function(){
             var c = this.canvas_elem;
-            var name = this.jm.mind.name+'.png';
+        //    var name = this.jm.mind.name+'.png';
+            var name = docfilename.value.slice(0,-3)+'.png';
 
             if (navigator.msSaveBlob && (!!c.msToBlob)) {
                 var blob = c.msToBlob();
