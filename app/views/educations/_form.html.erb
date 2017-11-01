@@ -1,6 +1,6 @@
 
 <div class="row">
-  <div class="col-xs-12 col-md-6">
+  <div class="col-xs-12 col-md-8">
     <% if EducationType.count.zero? %>
         <h2>Education Type must be present</h2>
     <% end %>
@@ -88,7 +88,7 @@
         </fieldset>
     <% end %>
   </div>
-  <div class="col-xs-12 col-md-6">
+  <div class="col-xs-12 col-md-4">
     <%= render partial: 'map', locals: {
         location: 'education_institution',
         location_lat: 'education_location_lat',
