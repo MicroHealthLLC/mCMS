@@ -89,7 +89,7 @@ button.iconbtn2:hover {background-color:#ddd;}
 
 #expand_level {margin-top:-38px; margin-left:745px; display:block;}
 
-#export_import {display:none;}
+#import_div {display:none;}
 
 
 #info {display:none; margin:-50px 10px 10px 50px; width:90%; }
