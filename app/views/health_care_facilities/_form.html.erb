@@ -1,7 +1,7 @@
 <div class="row">
-  <div class="col-xs-12 col-md-6">
+  <div class="col-xs-12 col-md-8">
     <fieldset>
-      <legend></legend>
+      <legend>Health Care Facility</legend>
       <%= form_for(health_care_facility, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
           <% if health_care_facility.errors.any? %>
               <div id="error_explanation">
@@ -90,7 +90,7 @@
       <% end %>
     </fieldset>
   </div>
-  <div class="col-xs-12 col-md-6">
+  <div class="col-xs-12 col-md-4">
     <%= render partial: 'map', locals: {
         location: 'health_care_facility_name',
         location_lat: 'health_care_facility_location_lat',
