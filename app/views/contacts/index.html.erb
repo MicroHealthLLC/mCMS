@@ -1,21 +1,9 @@
+<%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary' %>
+<%= link_to( 'New Contact', new_contact_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_contacts, :manage_contacts, :manage_roles)  %>
+<%= link_to( 'Search Contact', search_contacts_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:search_contacts, :manage_contacts, :manage_roles)  %>
+
 <section id="widget-grid" class="contacts_section">
-  <div class="col-xs-12 btn-edition tabs-section">
-    <%= render partial: 'state_button_filter'%>
-    <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
-      <ul class="dropdown-menu dropdown-links" role="menu">
-        <li>
-          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-          <%= link_to( 'Search Contact', search_contacts_path, class: 'dropdown-item') if can?(:search_contacts, :manage_contacts, :manage_roles)  %>
-        </li>
-        <div class='dropdown-item-dividier'></div>
-        <li>
-          <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-          <%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'dropdown-item' %>
-        </li>
-      </ul>
-    </div>
-  </div>
+<%= render partial: 'state_button_filter'%>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'list',
