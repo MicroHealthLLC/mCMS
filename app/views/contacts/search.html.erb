@@ -1,7 +1,5 @@
 <div class="row">
   <div class="col-xs-12">
-    <%= link_to( 'New Contact', new_contact_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_contacts, :manage_contacts, :manage_roles)  %>
-
     <%= text_field_tag :contact_search, '', class: 'form-control contact-autocomplete' %>
   </div>
 </div>
