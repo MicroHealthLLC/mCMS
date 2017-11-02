@@ -31,13 +31,13 @@ function open_empty(){
 }
 
 /*
-function open_ajax(){
-    var mind_url = 'data_example.json';
-    MHMind.util.ajax.get(mind_url,function(mind){
-        _jm.show(mind);
-    });
-}
-*/
+ function open_ajax(){
+ var mind_url = 'data_example.json';
+ MHMind.util.ajax.get(mind_url,function(mind){
+ _jm.show(mind);
+ });
+ }
+ */
 function screen_shot(){
     "use strict";
     _jm.screenshot.shootDownload();
@@ -48,14 +48,7 @@ function save_file(){
     "use strict";
     var mind_data = _jm.get_data();
     var mind_name = docfilename.value;
-//  mind_name = mind_data.meta.name +'.jm';   // ORIGINAL CODE     
     var mind_str = MHMind.util.json.json2string(mind_data);
-/*
-    if (mind_str === '{"meta":{"name":"MHMind","author":"MicroHealth, LLC","version":"0.1.0"},"format":"node_tree","data":{"id":"root","topic":"Your Concept Here","expanded":true}}') {
-        prompt_info("Default map!");
-        return;
-    }
-*/
     MHMind.util.file.save(mind_str,'text/jsmind',mind_name);
 }
 
@@ -78,6 +71,7 @@ function open_file(){
         prompt_info('Please choose a file first.')
     }
 }
+
 
 var submituploadbtn = document.getElementById("submituploadbtn");
 submituploadbtn.addEventListener("click", function () {
@@ -150,7 +144,7 @@ imageChooser.addEventListener('change', function (event) {
             "height": "100"};
         var node = _jm.add_node(selected_node, nodeid, topic, data);
         //var node = _jm.add_image_node(selected_node, nodeid, reader.result, 100, 100);
-    //add_image_node:function(parent_node, nodeid, image, width, height, data, idx, direction, expanded){
+        //add_image_node:function(parent_node, nodeid, image, width, height, data, idx, direction, expanded){
     });
 
     var file = imageChooser.files[0];
@@ -198,10 +192,10 @@ function move_to_last(){
 }
 
 /*    function move_node(){
-    // move a node before another
-    _jm.move_node('other','open');
-}
-*/
+ // move a node before another
+ _jm.move_node('other','open');
+ }
+ */
 function remove_node(){
     "use strict";
     var selected_id = get_selected_nodeid();
@@ -249,16 +243,16 @@ function change_background_color(){
     var colorpick = document.getElementById("colorpickerbtn").value;
     var selected_id = get_selected_nodeid();
     if(!selected_id){prompt_info('Please select a node first.');return;}
-    _jm.set_node_color(selected_id, colorpick, null);       
+    _jm.set_node_color(selected_id, colorpick, null);
 }
 
 function open_color_picker(){
-    "use strict";    
+    "use strict";
     document.getElementById("colorpicker").style.display = "block";
 }
 
 function close_color_picker(){
-    "use strict";    
+    "use strict";
     document.getElementById("colorpicker").style.display = "none";
 }
 
@@ -301,12 +295,12 @@ function toggle_editable(btn){
     var editable = _jm.get_editable();
     if(editable){
         _jm.disable_edit();
-    //    btn.innerHTML = 'enable editable';
-        btn.innerHTML = '<img src="/mindmap/glyphicons-200-ban-circle.png" class="wh22x22"> <img src="/mindmap/glyphicons-31-pencil.png" class="wh18x18">';
+        //    btn.innerHTML = 'enable editable';
+        btn.innerHTML = '<img src="/mindmap/glyphicons-200-ban-circle.png" class="wh20x20"> <img src="/mindmap/glyphicons-31-pencil.png" class="wh16x16">';
     }else{
         _jm.enable_edit();
 //            btn.innerHTML = 'disable editable';
-        btn.innerHTML = '<img src="/mindmap/glyphicons-199-ok-circle.png" class="wh22x22"> <img src="/mindmap/glyphicons-31-pencil.png" class="wh18x18">';
+        btn.innerHTML = '<img src="/mindmap/glyphicons-199-ok-circle.png" class="wh20x20"> <img src="/mindmap/glyphicons-31-pencil.png" class="wh16x16">';
     }
 }
 
@@ -320,43 +314,43 @@ function change_container(widthsize){
     "use strict";
     var c = document.getElementById('jsmind_container');
     if (widthsize === 'xxlarge2') {
-        c.style.width = '2200px';
+        c.style.width = '100%';
         c.style.height = '1340px';
-   } else if (widthsize === 'xxlarge1') {
-        c.style.width = '1900px';
+    } else if (widthsize === 'xxlarge1') {
+        c.style.width = '100%';
         c.style.height = '1000px';
-   } else if (widthsize === 'xlarge3') {
-        c.style.width = '1660px';
+    } else if (widthsize === 'xlarge3') {
+        c.style.width = '100%';
         c.style.height = '940px';
-   } else if (widthsize === 'xlarge2') {
-        c.style.width = '1580px';
+    } else if (widthsize === 'xlarge2') {
+        c.style.width = '100%';
         c.style.height = '900px';
-   } else if (widthsize === 'xlarge1') {
-        c.style.width = '1490px';
+    } else if (widthsize === 'xlarge1') {
+        c.style.width = '100%';
         c.style.height = '900px';
-   } else if (widthsize === 'large2') {
-        c.style.width = '1390px';
+    } else if (widthsize === 'large2') {
+        c.style.width = '100%';
         c.style.height = '900px';
-   } else if (widthsize === 'large1') {
-        c.style.width = '1290px';
+    } else if (widthsize === 'large1') {
+        c.style.width = '100%';
         c.style.height = '800px';
     } else if (widthsize === 'medium2') {
-        c.style.width = '1190px';
+        c.style.width = '100%';
         c.style.height = '740px';
     } else if (widthsize === 'small2') {
-        c.style.width = '930px';
+        c.style.width = '100%';
         c.style.height = '600px';
     } else if (widthsize === 'small1') {
-        c.style.width = '760px';
+        c.style.width = '100%';
         c.style.height = '900px';
     } else if (widthsize === 'xsmall2') {
-        c.style.width = '630px';
+        c.style.width = '100%';
         c.style.height = '900px';
     } else if (widthsize === 'xsmall1') {
-            c.style.width = '600px';
-            c.style.height = '300px';
+        c.style.width = '100%';
+        c.style.height = '300px';
     } else  { //medium1
-        c.style.width = '990px';
+        c.style.width = '100%';
         c.style.height = '700px';
     }
     resize_jsmind();
@@ -396,7 +390,7 @@ function setlayout() {
             change_container('xxlarge2');
         }
     }
-}      
+}
 
 function expand(){
     "use strict";
@@ -423,13 +417,13 @@ function toggle(){
 }
 
 /*
-function expand_all(){
-    _jm.expand_all();
-}
-function collapse_all(){
-    _jm.collapse_all();
-}
-*/
+ function expand_all(){
+ _jm.expand_all();
+ }
+ function collapse_all(){
+ _jm.collapse_all();
+ }
+ */
 
 function expand_to_level2(){
     "use strict";
@@ -443,12 +437,12 @@ function expand_to_level3(){
 
 function collapse_expand_all(){
     "use strict";
-    if (document.getElementById('collapse_expand_btn').innerHTML === '<sup><img src="/mindmap/glyphicons-172-fast-backward.png" class="wh13x9"></sup> <img src="/mindmap/glyphicons-154-unchecked.png">') {
-        document.getElementById('collapse_expand_btn').innerHTML = '<img src="/mindmap/glyphicons-154-unchecked.png"> <sup><img src="/mindmap/glyphicons-178-fast-forward.png" class="wh13x9"></sup>';
+    if (document.getElementById('collapse_expand_btn').innerHTML === '<sup><img src="/mindmap/glyphicons-172-fast-backward.png" class="wh13x9"></sup> <img src="/mindmap/glyphicons-154-unchecked.png" class="wh16x16">') {
+        document.getElementById('collapse_expand_btn').innerHTML = '<img src="/mindmap/glyphicons-154-unchecked.png" class="wh16x16"> <sup><img src="/mindmap/glyphicons-178-fast-forward.png" class="wh13x9"></sup>';
         _jm.collapse_all();
     } else {
-        document.getElementById('collapse_expand_btn').innerHTML = '<sup><img src="/mindmap/glyphicons-172-fast-backward.png" class="wh13x9"></sup> <img src="/mindmap/glyphicons-154-unchecked.png">'
-        _jm.expand_all();            
+        document.getElementById('collapse_expand_btn').innerHTML = '<sup><img src="/mindmap/glyphicons-172-fast-backward.png" class="wh13x9"></sup> <img src="/mindmap/glyphicons-154-unchecked.png" class="wh16x16">';
+        _jm.expand_all();
     }
 }
 
@@ -458,18 +452,10 @@ function prompt_info(msg){
 }
 
 
-
 function get_map_info() {
     "use strict";
     var mind_data = _jm.get_data();
     var mind_str = MHMind.util.json.json2string(mind_data);
-/*
-    if (mind_str === '{"meta":{"name":"MHMind","author":"MicroHealth, LLC","version":"0.1.0"},"format":"node_tree","data":{"id":"root","topic":"Your Concept Here","expanded":true}}') {
-        return true;
-    } else {
-        return mind_str;          
-    }
-*/
     return mind_str;          
 }
 
@@ -514,7 +500,6 @@ resetmapbtn.addEventListener("click", function () {
     }
     default_map();
 });
-
 
 
 
@@ -571,6 +556,7 @@ function deletemap(btnid) {
         prompt_info("Error, map not found!");
     }
 }
+
 
 var deleteallbtn = document.getElementById("deleteallbtn");
 deleteallbtn.addEventListener("click", function () {
@@ -657,6 +643,7 @@ searchmaps.addEventListener("change", function() {
     }
 });
 
+
 function findmap() {
     "use strict";
     var searchitem = document.getElementById("searchmaps").value.trim().toLowerCase();
@@ -667,11 +654,11 @@ function findmap() {
         }
     }
     update_maplisting(searchitem);
- }
+}
+
 
 function save_map(mind_str) {
     "use strict";
-//    alert('save_map');
     var thisfile = docfilename.value;
     var this_map = JSON.parse(mind_str);
     var this_group = {};
@@ -694,41 +681,55 @@ function save_map(mind_str) {
     return;
 }
 
-        function checkValid() {
-            var validname = false;
-            var thisdocfilename = docfilename.value.trim();
-            docfilename.value = thisdocfilename;
-            if (thisdocfilename === "") {
-                alert("Must input doc file name!");
-            } else {
-                if (thisdocfilename.toLowerCase() === "mhmind.jm") {
-                    alert('File name must not be "mhmind.jm"!');
-                } else {
-                    validname = true;
-                }
-            }
-            return validname;
+function checkValid() {
+    var validname = false;
+    var thisdocfilename = docfilename.value.trim();
+    docfilename.value = thisdocfilename;
+    if (thisdocfilename === "") {
+        alert("Must input doc file name!");
+    } else {
+        if (thisdocfilename.toLowerCase() === "mhmind.jm") {
+            alert('File name must not be "mhmind.jm"!');
+        } else {
+            validname = true;
         }
+    }
+    return validname;
+}
 
-        function checkName() {
-            var i = -1, found = false;
-            while ((found === false) && (i < mhmind_maps.length - 1)) {
-                i += 1;
-                if (mhmind_maps[i].docfilename.toLowerCase() === docfilename.value.toLowerCase()) {
-                    found = true;
-                }
-            }
-            if (found === true) {
-                return(i);
-            } else {
-                return(-1);
-            }
+function checkName() {
+    var i = -1, found = false;
+    while ((found === false) && (i < mhmind_maps.length - 1)) {
+        i += 1;
+        if (mhmind_maps[i].docfilename.toLowerCase() === docfilename.value.toLowerCase()) {
+            found = true;
         }
+    }
+    if (found === true) {
+        return(i);
+    } else {
+        return(-1);
+    }
+}
+
+/*
+function savemap() {
+    "use strict";
+    var mind_str = get_map_info();
+    if (mind_str !== true) {
+        save_map(mind_str);
+    } else {
+        prompt_info("Default map!");
+    }
+
+    thesemhminds1 = JSON.stringify(mhmind_maps);
+    $.ajax({ url: '/mindmap/mindmap/save.js?content='+thesemhminds1 })
+}
+*/
 
 
 function savemap() {
     "use strict";
-//    alert('savemap');
     var validname = checkValid();
     if (validname === true) {
         var found = checkName();
@@ -747,14 +748,16 @@ function savemap() {
         }
         var mind_str = get_map_info();
         save_map(mind_str);
+        thesemhminds1 = JSON.stringify(mhmind_maps);
+        $.ajax({ url: '/mindmap/mindmap/save.js?content='+thesemhminds1 })
     }
     return;
 }
 
 
+
 function duplicatemap() {
     "use strict";
-//    alert('duplicatemap');
     var validname = checkValid();
     if (validname === true) {
         var found = checkName();
@@ -771,8 +774,6 @@ function duplicatemap() {
 }
 
 
-
-
 var cancelfilename = document.getElementById("cancelfilename");
 cancelfilename.addEventListener("click", function (e) {
   e.preventDefault();
@@ -780,6 +781,7 @@ cancelfilename.addEventListener("click", function (e) {
   nametype.value = "newfunc";
   filenamediv.style.display = "none";
 });
+
 
 var submitfilename = document.getElementById("submitfilename");
 submitfilename.addEventListener("click", function (e) {
@@ -868,6 +870,16 @@ closeSlider.addEventListener("click", function () {
 });
 
 
+function open_export_import() {
+    "use strict";
+    document.getElementById("export_import").style.display = "block";
+}
+
+function close_export_import() {
+    "use strict";
+    document.getElementById("export_import").style.display = "none";
+}
+
 
 function close_info() {
     "use strict";
@@ -888,6 +900,7 @@ window.onresize = function() {
     setlayout();
 }
 
+
 function setupMap() {
     var thesemhminds1 = localStorage.getItem("thesemhminds1");
     if ((thesemhminds1 !== null) && (thesemhminds1 !== "") && (thesemhminds1 !== undefined)) {
@@ -898,7 +911,6 @@ function setupMap() {
     }
     default_map();
 }
-
 
 open_empty();
 setlayout();
@@ -912,5 +924,6 @@ function saveMHMind() {
     }
     localStorage.removeItem("thesemhminds1");
     var thesemhminds1 = JSON.stringify(mhmind_maps);
-    localStorage.setItem("thesemhminds1", thesemhminds1);
+    //    localStorage.setItem("thesemhminds1", thesemhminds1);
+    $.ajax({ url: '/mindmap/mindmap/save.js?content='+thesemhminds1 })
 }
