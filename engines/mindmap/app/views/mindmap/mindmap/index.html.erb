@@ -23,7 +23,10 @@
     <button class="iconbtn" title="Add a Text Node" onclick="add_node();"><%= image_tag "mindmap/glyphicons-433-plus.png" %> <%= image_tag "mindmap/glyphicons-154-unchecked.png" %></button>
     <button class="iconbtn" title="Add an Image Node" onclick="add_image_node();"><%= image_tag "mindmap/glyphicons-433-plus.png" %> <%= image_tag "mindmap/glyphicons-139-picture.png" %></button>
     <button class="iconbtn" title="Edit Node Text" onclick="edit_node_text();"><%= image_tag "mindmap/glyphicons-151-edit.png" %></button>
-    <sup><button type="button" title="Open Colorpicker and Display Node Active Background Color" id="colorpickerbtn" value="#0000cd" onclick="open_color_picker();"/></button></sup>
+    <sup>
+      <button type="button" title="Open Colorpicker and Display Node Active Background Color" id="colorpickerbtn" value="#0000cd" onclick="open_color_picker();" />
+      </button>
+    </sup>
     <button class="iconbtn" id="changebgcolorbtn" title="Change Node Background Color to Active Color" onclick="change_background_color();"><%= image_tag "mindmap/glyphicons-607-text-background.png" %></button>
     <button class="iconbtn" title="Change Node Text Color Toggled Black or White" onclick="change_text_color();"><sup><strong>B/W</strong></sup> <%= image_tag "mindmap/glyphicons-606-text-color.png" %></button>
     <button class="iconbtn" title="Set Node as First Child" onclick="move_to_first();"><%= image_tag "mindmap/glyphicons-154-unchecked.png" %> <%= image_tag "mindmap/glyphicons-188-more.png" %></button>
