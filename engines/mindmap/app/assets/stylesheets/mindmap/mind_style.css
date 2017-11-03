@@ -19,7 +19,7 @@ button.iconbtn2:hover {background-color:#ddd;}
 #closeSliderbtn, #close_colorpicker {float:right;}
 
 #docfilename {width: 300px; padding: 6px; border:none; border-bottom: 2px solid #aaa; background-color: transparent; color:#333; font-family:helvetica,arial,sans-serif;font-weight: bold; font-size: 14px;}
-#filename_div {z-index:1500; display:none;margin-top:-50px; margin-left:54px; background-color:#aaa; width:310px;height:40px;padding:6px 4px 8px 10px;}
+#filename_div {z-index:1500; display:none;margin:-50px 0 0 54px; background-color:#aaa; width:310px;height:50px;padding:6px 4px 8px 10px;}
 #filenameinput {width:200px;height:20px;}
 #fileext {font-family: Helvetica, Arial, sans-serif; font-size: 14px; font-weight:bold;}
 #submitfilename, #cancelfilename {margin-left:0px; margin-right:0px;}
@@ -37,15 +37,6 @@ button.iconbtn2:hover {background-color:#ddd;}
 .deletemapbtn {margin-left: 0px; margin-right: 0px;}
 .editmapbtn {margin-left: 0px;}
 
-
-.flipimg {
-    -moz-transform: scaleX(-1);
-    -o-transform: scaleX(-1);
-    -webkit-transform: scaleX(-1);
-    transform: scaleX(-1);
-    filter: FlipH;
-    -ms-filter: "FlipH";            
-}
 
 #jsmind_container{
     margin: 0 auto;
