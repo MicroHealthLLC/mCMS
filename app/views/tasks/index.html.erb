@@ -7,7 +7,7 @@
       <ul class="dropdown-menu dropdown-links" role="menu">
           <li>
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-            <%= link_to('New Task', new_task_path, class: 'dropdown-item') if can?(:create_tasks, :manage_tasks, :manage_roles) and !(User.current.allowed_to?(:manage_roles) and session[:employee_id].nil?) %>
+            <%= link_to 'New Task', new_task_path, class: 'dropdown-item' %>
           </li>
           <div class='dropdown-item-dividier'></div>
         <li>
