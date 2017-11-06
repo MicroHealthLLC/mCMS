@@ -1,6 +1,6 @@
 
 <fieldset>
-  <legend>Survey</legend>
+  <legend></legend>
   <%= form_for(@survey, :url => survey_scope(@survey), html: { class: 'form-horizontal' }) do |f| %>
 
       <% if f.object.errors.messages.any? %>
