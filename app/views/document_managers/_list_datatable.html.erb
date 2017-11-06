@@ -24,7 +24,7 @@
         <td><%= format_date(folder.created_at) %></td>
         <td><%= format_date(folder.updated_at) %></td>
         <td> - </td>
-        <td><%= folder.files.count %></td>
+        <td><%= folder.document_managers.count %></td>
         <td> - </td>
         <td> - </td>
         <td> - </td>
@@ -70,12 +70,6 @@
           text: 'New Document',
           action: function ( e, dt, node, config ) {
             $('#new_doc').trigger('click')
-          }
-        },
-        {
-          text: 'New Folder',
-          action: function ( e, dt, node, config ) {
-            $('#new_folder').trigger('click')
           }
         }
       ],

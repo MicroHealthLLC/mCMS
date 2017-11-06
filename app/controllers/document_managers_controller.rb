@@ -17,9 +17,9 @@ class DocumentManagersController < ProtectForgeryApplication
     # Get featured categories and recently uploaded documents
     #  making sure to hide private docs and categories
     @featured = Category.featured
-    @current_folder = params[:document_folder_id] ? DocumentFolder.find( params[:document_folder_id] ): DocumentFolder.new
+    @current_folder = params[:document_folder_id] ? Category.find( params[:document_folder_id] ): Category.new
     @latest_docs = DocumentManager.latest_docs @current_folder.id
-    @sub_folders = DocumentFolder.includes(:files).references(:files).where(parent_id: @current_folder.id)
+    @sub_folders = Category.where(parent_id: @current_folder.id)
   end
 
   def new_folder

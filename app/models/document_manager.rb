@@ -28,14 +28,14 @@ class DocumentManager < ApplicationRecord
   def self.latest_docs(folder_id)
     categories = Category.includes(:group=>[:memberships]).
         references(:group=>[:memberships]).
-        where(is_private: true).where(memberships: {user_id: User.current})
+        where(is_private: true).where(memberships: {user_id: User.current}).where(id: folder_id)
     scope = Revision.includes(:user, :document_manager=>[:category]).
         references(:user, :document_manager=>[:category])
 
     scope.where(document_managers: {is_private: false}).
         where(categories: {is_private: false}).
         or( scope.
-            where(document_managers: {is_private: false, folder_id: folder_id}).
+            where(document_managers: {is_private: false}).
             where(categories: {id: categories.pluck(:id)})).
         order('revisions.updated_at DESC')
   end
