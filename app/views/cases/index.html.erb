@@ -7,7 +7,7 @@
         <% if params[:action] == 'index' and !(User.current.allowed_to?(:manage_roles) and session[:employee_id].nil?) %>
           <li>
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-            <%= link_to('New Case', new_case_path, class: 'dropdown-item') if can?(:create_cases, :manage_cases) %>
+            <%= link_to 'New Case', new_case_path, class: 'dropdown-item' %>
           </li>
           <div class='dropdown-item-dividier'></div>
         <% end %>

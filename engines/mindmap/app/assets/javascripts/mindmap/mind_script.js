@@ -437,11 +437,11 @@ function expand_to_level3(){
 
 function collapse_expand_all(){
     "use strict";
-    if (document.getElementById('collapse_expand_btn').innerHTML === '<sup><img src="/mindmap/glyphicons-172-fast-backward.png" class="wh13x9"></sup> <img src="/mindmap/glyphicons-154-unchecked.png" class="wh16x16">') {
-        document.getElementById('collapse_expand_btn').innerHTML = '<img src="/mindmap/glyphicons-154-unchecked.png" class="wh16x16"> <sup><img src="/mindmap/glyphicons-178-fast-forward.png" class="wh13x9"></sup>';
+    if (document.getElementById('collapse_expand_btn').innerHTML === '<img src="/mindmap/glyphicons-172-fast-backward.png" class="wh13x9"> <img src="/mindmap/glyphicons-154-unchecked.png" class="wh16x16">') {
+        document.getElementById('collapse_expand_btn').innerHTML = '<img src="/mindmap/glyphicons-154-unchecked.png" class="wh16x16"> <img src="/mindmap/glyphicons-178-fast-forward.png" class="wh13x9">';
         _jm.collapse_all();
     } else {
-        document.getElementById('collapse_expand_btn').innerHTML = '<sup><img src="/mindmap/glyphicons-172-fast-backward.png" class="wh13x9"></sup> <img src="/mindmap/glyphicons-154-unchecked.png" class="wh16x16">';
+        document.getElementById('collapse_expand_btn').innerHTML = '<img src="/mindmap/glyphicons-172-fast-backward.png" class="wh13x9"> <img src="/mindmap/glyphicons-154-unchecked.png" class="wh16x16">';
         _jm.expand_all();
     }
 }
