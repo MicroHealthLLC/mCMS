@@ -1,4 +1,5 @@
 <% if module_enabled?('case_support') %>
+     <%= link_to(t('new_cases_support'), new_case_support_path(case_id: params[:case_id]), class: 'btn btn-primary pull-right btn-edition') if can?(:create_cases, :manage_roles, :manage_case_supports) %>
      <%= link_to(t('label_search_suuport'), search_case_supports_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:search_case_supports, :manage_roles, :manage_case_supports) %>
 
     <div class="row">
