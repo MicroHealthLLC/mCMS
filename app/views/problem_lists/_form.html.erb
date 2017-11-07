@@ -1,5 +1,5 @@
 <fieldset>
-  <legend>Problem List</legend>
+  <legend></legend>
   <%= form_for(problem_list, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
       <% if problem_list.errors.any? %>
           <div id="error_explanation">
@@ -82,7 +82,7 @@
         <%= f.simple_fields_for :problem_list_attachments do |attachment| %>
             <%= render 'attachments/attachment_show', :f => attachment %>
         <% end %>
-        <div id="attachment_fields" class="col-md-2 margin-top-10 " style="padding-right: 2px;" >
+        <div id="attachment_fields" class="col-xs-2 margin-top-10 " style="padding-right: 2px;" >
           <%= link_to_add_association 'add file', f, :problem_list_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
         </div>
       </div>
