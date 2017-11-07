@@ -7,7 +7,7 @@
         <% if can?(:create_insurances, :manage_roles, :manage_insurances) %>
           <li>
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-            <%= link_to( t('new_insurance'), new_insurance_path, class: 'dropdown-item' %>
+            <%= link_to t('new_insurance'), new_insurance_path, class: 'dropdown-item' %>
           </li>
           <div class='dropdown-item-dividier'></div>
         <% end %>
