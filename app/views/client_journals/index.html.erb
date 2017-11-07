@@ -7,7 +7,7 @@
         <% if can?(:create_client_journals, :manage_roles, :manage_client_journals) %>
           <li>
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-            <%= link_to( 'New Client Journal', new_client_journal_path, class: 'dropdown-item' %>
+            <%= link_to 'New Client Journal', new_client_journal_path, class: 'dropdown-item' %>
           </li>
           <div class='dropdown-item-dividier'></div>
         <% end %>
