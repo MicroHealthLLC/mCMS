@@ -223,7 +223,7 @@ var ch, cv, selcolortr, selcolortd, selcolors = "", colordiv = document.getEleme
 for (cv = 0; cv < colorshades.length; cv+=1) {
     selcolortr = '<tr>';
     for (ch = 0; ch < colorshades[cv].length; ch+=1) {
-        selcolortd = '<td class="colorshade" style="width:16px;height:16px;padding:10px;background-color:' + colorshades[cv][ch] + '"></td>';
+        selcolortd = '<td class="colorshade" style="background-color:' + colorshades[cv][ch] + '"></td>';
         selcolortr = selcolortr + selcolortd;
     }
     selcolortr = selcolortr + '</tr>';
