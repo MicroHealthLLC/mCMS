@@ -1,5 +1,5 @@
 <fieldset>
-  <legend>Set role </legend>
+  <legend></legend>
 
   <%= form_for(role, html: { class: 'form-horizontal' }) do |f| %>
       <% if role.errors.any? %>
@@ -41,6 +41,7 @@
 
       <div class="form-group" >
         <div class="col-md-11">
+          <%= link_to t('button_cancel'), roles_path, class: 'btn btn-warning pull-right' %>
           <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
         </div>
       </div>
