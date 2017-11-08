@@ -1,51 +1,53 @@
-<section id="widget-grid" class="billings_section ">
+<section id="widget-grid" class="billings_section">
   <% if User.current.can?(:manage_roles) %>
-      <script>
-        $( function() {
-          dateFormat = 'YYYY-MM-DD';
-          $('#from').datetimepicker({format: dateFormat});
-          $('#to').datetimepicker({
-            format: dateFormat,
-            useCurrent: false //Important! See issue #1075
-          });
-          $("#from").on("dp.change", function (e) {
-            $('#to').data("DateTimePicker").minDate(e.date);
-          });
-          $("#to").on("dp.change", function (e) {
-            $('#from').data("DateTimePicker").maxDate(e.date);
-          });
-        } );
-      </script>
-      <div class="row">
-        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <%= form_tag '/billings', method: 'get' do %>
-              <%= hidden_field_tag :status_type, params[:status_type]  %>
-              <div class="row btn-edition">
-                <div class="col-xs-12 col-sm-4 btn-edition">
-                  <input type="text" id="from" name="from" value="<%= params[:from] || 1.month.ago.strftime('%y-%m-%d') %>" class="form-control" placeholder="FROM">
-                </div>
-                <div class="col-xs-12 col-sm-4 btn-edition">
-                  <input type="text" id="to" name="to" value="<%= params[:to] || 1.month.from_now.strftime('%y-%m-%d') %>" class="form-control" placeholder="TO">
-                </div>
-                <div class="col-xs-4 col-sm-2 btn-edition ">
-                  <input type="submit" class="btn btn-default">
-                </div>
+    <script>
+      $( function() {
+        dateFormat = 'YYYY-MM-DD';
+        $('#from').datetimepicker({format: dateFormat});
+        $('#to').datetimepicker({
+          format: dateFormat,
+          useCurrent: false //Important! See issue #1075
+        });
+        $("#from").on("dp.change", function (e) {
+          $('#to').data("DateTimePicker").minDate(e.date);
+        });
+        $("#to").on("dp.change", function (e) {
+          $('#from').data("DateTimePicker").maxDate(e.date);
+        });
+      });
+    </script>
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= form_tag '/billings', method: 'get' do %>
+            <%= hidden_field_tag :status_type, params[:status_type]  %>
+            <div class="row btn-edition">
+              <div class="col-xs-12 col-sm-4 btn-edition">
+                <input type="text" id="from" name="from" value="<%= params[:from] || 1.month.ago.strftime('%y-%m-%d') %>" class="form-control" placeholder="FROM">
               </div>
+              <div class="col-xs-12 col-sm-4 btn-edition">
+                <input type="text" id="to" name="to" value="<%= params[:to] || 1.month.from_now.strftime('%y-%m-%d') %>" class="form-control" placeholder="TO">
+              </div>
+              <div class="col-xs-4 col-sm-2 btn-edition ">
+                <input type="submit" class="btn btn-default">
+              </div>
+            </div>
           <% end %>
         </article>
       </div>
   <% end %>
-  <% if User.current.can?(:manage_roles) %>
-    <div class="col-xs-12 btn-edition tabs-section">
-      <%= render partial: 'state_button_filter' %>
-      <div class="btn-group">
-        <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
-        <ul class="dropdown-menu dropdown-links" role="menu">
-          <li>
-            <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-            <%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'dropdown-item'  %>
-          </li>
-        </ul>
+  <div class="row">
+   <% if User.current.can?(:manage_roles) %>
+      <div class="col-xs-12 btn-edition tabs-section">
+        <%= render partial: 'state_button_filter' %>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+          <ul class="dropdown-menu dropdown-links" role="menu">
+            <li>
+              <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+              <%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'dropdown-item'  %>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -69,18 +71,19 @@
                      } %>
         </article>
       </div>
-  <% else %>
-    <%= render partial: 'state_button_filter' %>
-      <div class="row">
-        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <%= render partial: 'list',
-                     layout: 'shared/smart_widget_wrapper',
-                     locals: {
-                         billings: @billings,
-                         wid_id: 'billing',
-                         wid_title: t('billings')
-                     } %>
-        </article>
-      </div>
-  <% end %>
+    <% else %>
+      <%= render partial: 'state_button_filter' %>
+        <div class="row">
+          <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <%= render partial: 'list',
+                       layout: 'shared/smart_widget_wrapper',
+                       locals: {
+                           billings: @billings,
+                           wid_id: 'billing',
+                           wid_title: t('billings')
+                       } %>
+          </article>
+        </div>
+    <% end %>
+  </div>
 </section>
