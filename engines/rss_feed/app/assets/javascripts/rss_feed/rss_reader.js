@@ -173,6 +173,7 @@ function resetInput() {
 $("#update_feeds").click(function (e) {
 
     e.preventDefault();
+    alert('update feeds);
     var el = $(this);
     el.prop("disabled", true);
     $("#rss-feeds").empty();
