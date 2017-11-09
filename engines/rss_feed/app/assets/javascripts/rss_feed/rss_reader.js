@@ -256,7 +256,7 @@ function setCheckedToggle() {
         includedbtns[i].addEventListener("click", function () {
             var thisid = this.id.slice(12), btnimg = document.getElementById("togglechkbtn" + thisid);
             if (btnimg.src.indexOf("/rss_feed/glyphicons-154-unchecked.png") > -1) {
-                btnimg.src = "/rss_feed/glyphicons-153-check.png";
+                btnimg.src = "/rss_feed/glyphicons-199-ok-circle.png";
                 $("#include_feed" + thisid).addClass("includedyes");
                 $("#include_feed" + thisid).removeClass("includedno");
             } else {
@@ -299,7 +299,7 @@ $("#all_feeds").click(function () {
 
     var i, feeds = document.querySelectorAll(".includedimg");
     for (i = 0; i < feeds.length; i+=1) {
-        feeds[i].src = "/rss_feed/glyphicons-153-check.png";
+        feeds[i].src = "/rss_feed/glyphicons-199-ok-circle.png";
     }
 });
 
@@ -387,9 +387,9 @@ function showRssList() {
     var i, newfeed;
     for (i = 0; i < rssReaderFeeds.length; i+=1) {
         if (rssReaderFeeds[i].included === true) {
-            newfeed = '<p class="feedlist"><button type="button" id="delete_feed' + i + '" class="deletebtn"><i class="fa fa-times"></i></button><button type="button" id="edit_feed' + i + '" class="editbtn"><i class="fa fa-pencil-square-o"></i></button><span id="feedid' + i + '" class="feedid" hidden>' + rssReaderFeeds[i].id + '</span><span id="feedname' + i + '">' + rssReaderFeeds[i].name + '</span><span id="feedsite' + i + '" hidden>' + rssReaderFeeds[i].site + '</span><button id="include_feed' + i + '" name="include_feed' + i + '" class="includeck includedyes"><img class="includedimg" id="togglechkbtn' + i + '" src="/rss_feed/glyphicons-153-check.png"></button></p>';
+            newfeed = '<p class="feedlist"><button type="button" id="delete_feed' + i + '" class="deletebtn"><i class="fa fa-times"></i></button><button type="button" id="edit_feed' + i + '" class="editbtn"><i class="fa fa-pencil-square-o"></i></button><span id="feedid' + i + '" class="feedid" hidden>' + rssReaderFeeds[i].id + '</span><button id="include_feed' + i + '" name="include_feed' + i + '" class="includeck includedyes"><img class="includedimg" id="togglechkbtn' + i + '" src="/rss_feed/glyphicons-199-ok-circle.png"></button><span id="feedname' + i + '">' + rssReaderFeeds[i].name + '</span><span id="feedsite' + i + '" hidden>' + rssReaderFeeds[i].site + '</span></p>';
         } else {
-            newfeed = '<p class="feedlist"><button type="button" id="delete_feed' + i + '" class="deletebtn"><i class="fa fa-times"></i></button><button type="button" id="edit_feed' + i + '" class="editbtn"><i class="fa fa-pencil-square-o"></i></button><span id="feedid' + i + '" class="feedid" hidden>' + rssReaderFeeds[i].id + '</span><span id="feedname' + i + '">' + rssReaderFeeds[i].name + '</span><span id="feedsite' + i + '" hidden>' + rssReaderFeeds[i].site + '</span><button id="include_feed' + i + '" name="include_feed' + i + '" class="includeck includedno"><img class="includedimg" id="togglechkbtn' + i + '" src="/rss_feed/glyphicons-154-unchecked.png"></button></p>';
+            newfeed = '<p class="feedlist"><button type="button" id="delete_feed' + i + '" class="deletebtn"><i class="fa fa-times"></i></button><button type="button" id="edit_feed' + i + '" class="editbtn"><i class="fa fa-pencil-square-o"></i></button><span id="feedid' + i + '" class="feedid" hidden>' + rssReaderFeeds[i].id + '</span><button id="include_feed' + i + '" name="include_feed' + i + '" class="includeck includedno"><img class="includedimg" id="togglechkbtn' + i + '" src="/rss_feed/glyphicons-154-unchecked.png"></button><span id="feedname' + i + '">' + rssReaderFeeds[i].name + '</span><span id="feedsite' + i + '" hidden>' + rssReaderFeeds[i].site + '</span></p>';
         }
         $("#feedslisting").append(newfeed);
     }
@@ -411,4 +411,3 @@ $(document).ready(function () {
     showRssList();
     $("#update_feeds").click();
 });
-
