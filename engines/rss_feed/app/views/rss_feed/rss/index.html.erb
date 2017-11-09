@@ -2,9 +2,9 @@
 <div class="row">
   <div class="col-xs-12">
     <div id="topbar" class="row">
-      <button id="openSliderbtn" title="Open RSS Feeds Listing and Instructions Panel"><img src="/rss_feed/glyphicons-115-list.png"></button>
+      <button id="openSliderbtn" class="iconbtn" title="Open RSS Feeds Listing and Instructions Panel"><img src="/rss_feed/glyphicons-115-list.png"></button>
       <div class="row" id="searchfeed_div">
-        <div class="col-xs-12 col-sm-6 col-md-4" >
+        <div class="col-xs-12 col-sm-6 col-md-4">
           <input type="text" id="searchfromdate" name="searchfromdate" placeholder="Search from date" />
           <input type="text" id="searchtodate" name="searchtodate" placeholder="Search to date" />
         </div>
@@ -19,14 +19,15 @@
     <div id="feedslistingdiv">
       <div id="controller" class="slide slide-up">
         <div id="feed_control_div">
-          <p><span id="list_name"><span id="mh">MH</span><span id="rss">RSS</span>Reader</span></p>
+          <button id="closeSliderbtn" class="iconbtn2" title="Close RSS Feeds Listing and Instructions Panel"><img src="/rss_feed/glyphicons-370-collapse-top.png"></button>
+          <p id="list_name"><span id="mh">MH</span> RSS Reader</p>
           <div id="topbtns">
             <button type="button" id="saveform_btn">Save</button>
             <button type="button" id="showform_btn">Add Feed</button>
             <button type="button" id="instructions_btn">Instructions</button>
           </div>
           <div id="instructions_div">
-            <button id="closeinstr_btn" title="Close Instructions Panel"><img src="/rss_feed/glyphicons-370-collapse-top.png"></button>
+            <button id="closeinstr_btn" class="iconbtn2" title="Close Instructions Panel"><img src="/rss_feed/glyphicons-370-collapse-top.png"></button>
             <h4>Feeds Control</h4>
             <p>Click &ldquo;Add Feed&rdquo; to display the Feed Form. Input a name and url for the feed, then click &ldquo;Save&rdquo;. The new RSS feed will be added to the feeds listing and the feeds content display will automatically update.</p>
             <p>Checked feeds will be included in the feeds content display. Select feeds individually, click &ldquo;Check All&rdquo;, or click &ldquo;Uncheck All&rdquo;; then click &ldquo;Update&rdquo;.</p>
@@ -36,7 +37,7 @@
 
           <div id="feeds_form_div">
             <form id="feeds_form">
-              <button id="closeform_btn" title="Close Feeds Form Panel"><i class="fa fa-check-square-o"></i></button>
+              <button id="closeform_btn" class="iconbtn2" title="Close Feeds Form Panel"><i class="fa fa-check-square-o"></i></button>
               <h4>Feed Form</h4>
               <div hidden>
                 <label for="feed_id" class="formlabel">ID:</label>
@@ -57,23 +58,18 @@
               <br><br>
             </form>
           </div>
-
           <br>
-
           <button type="button" id="update_feeds">Update</button>
           <button type="button" id="clear_feeds">Uncheck All</button>
           <button type="button" id="all_feeds">Check All</button>
           <br><br>
           <div id="feedslisting"></div>
-          <button id="top_feeds" title="To Top of Feeds Listing"><img src="/rss_feed/glyphicons-214-arrow-up.png"></button>
-          <button id="closeSliderbtn" title="Close RSS Feeds Listing and Instructions Panel"><img src="/rss_feed/glyphicons-370-collapse-top.png"></button>
         </div>
       </div>
     </div>
 
     <div id="main">
       <div id="rss-feeds"></div>
-      <a href="#container"><button id="to_top" title="To Top of Page"><img src="/rss_feed/glyphicons-214-arrow-up.png"></button></a>
     </div>
   </div>
 </div>
