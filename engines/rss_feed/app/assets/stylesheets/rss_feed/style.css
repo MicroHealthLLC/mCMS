@@ -32,15 +32,13 @@ h4 {font-size: 1.2em; font-weight: bold; margin-top: 0;}
 .morebtn {width: 2.5em; height: 2em; background-color: #aaa; color: black; border: none;}
 .morebtn:hover {background-color: #999;}
 
-.deletebtn, .editbtn {float:left; margin-right: 20px; background-color:transparent; border:none; padding: 5px 5px 3px 5px;}
+.deletebtn, .editbtn {float:right; margin-left: 10px; background-color:transparent; border:none;}
 .deletebtn:hover, .editbtn:hover {background-color:#ddd;}
-.deletebtn img {width:14px;height:14px;}
-.editbtn img {width:18px;height:16px;}
+.editbtn img {width: 17px; height: 15px;}
+.deletebtn img {width: 14px; height: 14px;}
 
-.includeck {float:right; margin-top:5px;}
-
-.includedyes img {width: 17px; height: 15px; margin-right: 0px;}
-.includedno img {width: 15px; height: 15px; margin-right: 2px;}
+.includedyes img {width: 16px; height: 14px; margin-right: 20px;}
+.includedno img {width: 14px; height: 14px; margin-right: 22px;}
 
 #feedslisting {clear: both; margin: -10px 0 30px 0;}
 .feedlist {border-top: 1px solid #DD9036; padding-top: 10px;}
