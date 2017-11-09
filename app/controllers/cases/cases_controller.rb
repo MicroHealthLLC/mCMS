@@ -3,7 +3,8 @@ class CasesController < UserCasesController
   include ApplicationHelper
 
   # before_action :set_case_with_includes, only: []
-  before_action :set_case, only: [:show, :timeline, :new_assign_survey, :watchers, :edit, :update,
+  before_action :set_case, only: [:show, :timeline, :new_assign_survey, :watchers,
+                                  :edit, :update, :new_assign,
                                   :destroy, :new_relation, :delete_sub_case_relation]
 
   before_action :authorize_edit, only: [:edit, :update]
@@ -295,7 +296,7 @@ class CasesController < UserCasesController
   end
 
   def survey_case_params
-    params.require(:survey_case).permit(SurveyCase.safe_attibutes)
+    params.require(:survey_case).permit(SurveyCase.safe_attributes)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
