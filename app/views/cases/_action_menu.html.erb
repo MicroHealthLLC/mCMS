@@ -16,20 +16,20 @@
         <% if @case.can?(:edit_cases, :manage_roles, :manage_cases) %>
           <li>
             <span class="glyphicon glyphicon-glyphicon-edit" aria-hidden="true"></span>
-            <%= link_to(t('button_edit'), edit_case_path(@case), class: 'dropdown-item' %>
+            <%= link_to t('button_edit'), edit_case_path(@case), class: 'dropdown-item' %>
           </li>
           <div class='dropdown-item-dividier'></div>
         <% end %>
 
           <li>
             <span class="glyphicon glyphicon-glyphicon-triangle-left" aria-hidden="true"></span>
-            <%= link_to(t('button_cancel'), case_back_url(@case), class: 'dropdown-item' %>
+            <%= link_to t('button_cancel'), case_back_url(@case), class: 'dropdown-item' %>
           </li>
           <div class='dropdown-item-dividier'></div>
 
           <li>
             <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-            <%= link_to(t('button_print'), case_path(@case, format: 'pdf'), class: 'dropdown-item' %>
+            <%= link_to t('button_print'), case_path(@case, format: 'pdf'), class: 'dropdown-item' %>
           </li>
             <div class='dropdown-item-dividier'></div>
 
