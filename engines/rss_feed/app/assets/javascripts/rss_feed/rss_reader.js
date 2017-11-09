@@ -173,7 +173,6 @@ function resetInput() {
 $("#update_feeds").click(function (e) {
 
     e.preventDefault();
-    alert('update feeds);
     var el = $(this);
     el.prop("disabled", true);
     $("#rss-feeds").empty();
@@ -249,7 +248,7 @@ $("#closeform_btn").click(function (e) {
 
 
 // FEEDS LISTING FORM ******************************************************************************
-
+/*
 function setCheckedToggle() {
 
     var i, includedbtns = document.querySelectorAll(".includeck");
@@ -257,19 +256,32 @@ function setCheckedToggle() {
         includedbtns[i].addEventListener("click", function () {
             var thisid = this.id.slice(12), btnimg = document.getElementById("togglechkbtn" + thisid);
             if (btnimg.src.indexOf("/rss_feed/glyphicons-154-unchecked.png") > -1) {
-                alert('include feed; ok circle image');
                 btnimg.src = "/rss_feed/glyphicons-199-ok-circle.png";
                 $("#include_feed" + thisid).addClass("includedyes");
                 $("#include_feed" + thisid).removeClass("includedno");
             } else {
-                alert('do not include feed; unchecked image');
-                btnimg.src = "/rss_feed/glyphicons-154-unchecked.png";
+                 btnimg.src = "/rss_feed/glyphicons-154-unchecked.png";
                 $("#include_feed" + thisid).addClass("includedno");
                 $("#include_feed" + thisid).removeClass("includedyes");
             }
         });
     }
 }
+*/
+
+$("body").on("click", ".includeck", function (e) {
+    e.preventDefault();
+    var thisid = this.id.slice(12), btnimg = document.getElementById("togglechkbtn" + thisid);
+    if (btnimg.src.indexOf("/rss_feed/glyphicons-154-unchecked.png") > -1) {
+        btnimg.src = "/rss_feed/glyphicons-199-ok-circle.png";
+        $("#include_feed" + thisid).addClass("includedyes");
+        $("#include_feed" + thisid).removeClass("includedno");
+    } else {
+         btnimg.src = "/rss_feed/glyphicons-154-unchecked.png";
+        $("#include_feed" + thisid).addClass("includedno");
+        $("#include_feed" + thisid).removeClass("includedyes");
+    }
+});
 
 var openSlider = document.getElementById("openSliderbtn"),
     slide = document.querySelector(".slide"),
@@ -279,7 +291,7 @@ var openSlider = document.getElementById("openSliderbtn"),
 openSlider.addEventListener("click",  function () {
     feedslistingdiv.style.zIndex = 2000;
     slide.classList.remove("slide-up");
-    setCheckedToggle();
+//    setCheckedToggle();
 });
 
 closeSlider.addEventListener("click", function () {
