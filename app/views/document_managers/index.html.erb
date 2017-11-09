@@ -5,15 +5,7 @@
 <% end %>
 <div class="row" >
   <div class="col-xs-12 col-sm-6 col-md-6" style="display:inline-block">
-    <%= form_tag search_document_managers_path, method: :post do %>
-        <div class="input-group">
-          <%= search_field_tag :query, nil, style: "width: 400px; margin-left: 25px",
-                               :class => "form-control", placeholder: "Search for documents and categories ..." %>
-          <div class="input-group-btn">
-            <%= submit_tag "search", :class => "btn btn-default" %>
-          </div>
-        </div>
-    <% end %>
+
   </div>
   <div class="col-xs-12 col-sm-3 col-md-3" style="display:inline-block">
     <%= render partial: "document_managers/upload" %>
