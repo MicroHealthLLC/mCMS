@@ -14,50 +14,59 @@
     $tabs = $( "#tabs" ).tabs();
   } );
 </script>
-<section id="widget-grid" class="show_tab">
+<section id="widget-grid" class="show_tab" style="margin-top: 10px">
   <div class="row">
+    <%  tabs = Enumeration.get_subclasses.sort{|a,b| t(a::OptionName) <=> t(b::OptionName) }.inject( Hash.new { |h, k| h[k] = Array.new }){ |hash, v|
+      c = t(v::OptionName)[0].to_s.capitalize
+      hash[c] << v
+      hash
+    } %>
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs">
         <ul id="nav" class="nav-tabs ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
-          <% Enumeration.get_subclasses.sort{|a,b| t(a::OptionName) <=> t(b::OptionName) }.each do |klass| %>
+          <% tabs.each do |key, klass| %>
               <li class="ui-state-default ui-corner-top">
-                <a id="link-tabs-modules" class="ui-tabs-anchor" href="<%=  "#tabs-#{klass.to_s }" %>">
-                  <%= t(klass::OptionName) %>
+                <a id="link-tabs-modules" class="ui-tabs-anchor" href="<%=  "#tabs-#{key.to_s }" %>">
+                  <%= key %>
                 </a>
               </li>
           <% end -%>
         </ul>
-        <% Enumeration.get_subclasses.sort{|a,b| t(a::OptionName) <=> t(b::OptionName) }.each_with_index do |klass, idx| %>
-            <div id="<%= "tabs-#{klass.to_s}" %>" style="display: <%= idx.zero? ? 'block' : 'none' %>" class="nav-tabs-div ui-tabs-panel ui-widget-content ui-corner-bottom"  >
-              <div class="row">
-                <p><%= link_to I18n.t("enumeration_new_label"), new_enumeration_path(:type => klass.name), class: 'btn btn-primary'  %></p>
-                <% enumerations = klass.where(nil) %>
-                <% if enumerations.any? %>
+        <% tabs.each_with_index do |(key, enums), idx| %>
+            <div id="<%= "tabs-#{key.to_s}" %>" style="display: <%= idx.zero? ? 'block' : 'none' %>" class="nav-tabs-div ui-tabs-panel ui-widget-content ui-corner-bottom"  >
+              <% enums.each_with_index do |klass, kj| %>
+                  <h3><%= klass.to_s %></h3>
+                  <div class="row">
+                    <p><%= link_to I18n.t("enumeration_new_label"), new_enumeration_path(:type => klass.name), class: 'btn btn-primary'  %></p>
+                    <% enumerations = klass.where(nil) %>
+                    <% if enumerations.any? %>
 
-                    <table class="table table-responsive table-bordered table-striped enumerations ">
-                      <thead>
-                      <tr>
-                        <th><%= t :label_name %></th>
-                        <th><%= t :label_default %></th>
-                        <th><%= t :label_active %></th>
-                        <th></th>
-                      </tr>
-                      </thead>
-                      <% enumerations.each do |enumeration| %>
+                        <table class="table table-responsive table-bordered table-striped enumerations ">
+                          <thead>
                           <tr>
-                            <td class="name"><%= link_to enumeration, edit_enumeration_path(enumeration) %></td>
-                            <td class="tick"><%= enumeration.is_default? %></td>
-                            <td class="tick"><%= enumeration.active? %></td>
-                            <td class="buttons">
-                              <%= reorder_handle(enumeration, :url => enumeration_path(enumeration), :param => 'enumeration') %>
-                              <%= delete_link enumeration_path(enumeration) %>
-                            </td>
+                            <th><%= t :label_name %></th>
+                            <th><%= t :label_default %></th>
+                            <th><%= t :label_active %></th>
+                            <th></th>
                           </tr>
-                      <% end %>
-                    </table>
+                          </thead>
+                          <% enumerations.each do |enumeration| %>
+                              <tr>
+                                <td class="name"><%= link_to enumeration, edit_enumeration_path(enumeration) %></td>
+                                <td class="tick"><%= enumeration.is_default? %></td>
+                                <td class="tick"><%= enumeration.active? %></td>
+                                <td class="buttons">
+                                  <%= reorder_handle(enumeration, :url => enumeration_path(enumeration), :param => 'enumeration') %>
+                                  <%= delete_link enumeration_path(enumeration) %>
+                                </td>
+                              </tr>
+                          <% end %>
+                        </table>
 
-                <% end %>
-              </div>
+                    <% end %>
+                  </div>
+
+              <% end %>
             </div>
         <% end %>
 
