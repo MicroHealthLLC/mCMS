@@ -4,7 +4,18 @@
   </div>
 </div>
 <% if false %>
-    <%= render partial: "document_managers/documents_grid" %>
-<% else %>
     <%= render partial: "document_managers/documents_list" %>
 <% end %>
+
+<section id="widget-grid" class="show_group_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'categories',
+                     wid_title: 'Categories'
+                 } %>
+    </article>
+  </div>
+</section>

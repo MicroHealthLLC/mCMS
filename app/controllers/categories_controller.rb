@@ -27,7 +27,7 @@ class CategoriesController < ProtectForgeryApplication
   def show
     # Get category and its subcategories
 
-    @subcategories = @category.children
+    @categories = @category.children
 
     # Check if category is restricted to group members only
     if @category.is_private
