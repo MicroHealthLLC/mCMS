@@ -256,10 +256,12 @@ function setCheckedToggle() {
         includedbtns[i].addEventListener("click", function () {
             var thisid = this.id.slice(12), btnimg = document.getElementById("togglechkbtn" + thisid);
             if (btnimg.src.indexOf("/rss_feed/glyphicons-154-unchecked.png") > -1) {
+                alert('include feed; ok circle image');
                 btnimg.src = "/rss_feed/glyphicons-199-ok-circle.png";
                 $("#include_feed" + thisid).addClass("includedyes");
                 $("#include_feed" + thisid).removeClass("includedno");
             } else {
+                alert('do not include feed; unchecked image');
                 btnimg.src = "/rss_feed/glyphicons-154-unchecked.png";
                 $("#include_feed" + thisid).addClass("includedno");
                 $("#include_feed" + thisid).removeClass("includedyes");
