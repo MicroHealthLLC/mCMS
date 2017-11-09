@@ -358,21 +358,6 @@ $("body").on("click", ".morebtn", function () {
 });
 
 
-$("#top_feeds").click(function () {
-
-    if ($(window).width() > 769) {
-        window.scrollTo(0, 70);
-    } else {
-        window.scrollTo(0, 120);
-    }
-});
-
-$("#to_top").click(function () {
-
-    window.scrollTo(0, 0);
-});
-
-
 var theserssfeeds;
 
 function saveFeeds() {
