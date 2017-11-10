@@ -7,7 +7,7 @@
         <% if can?(:create_other_histories, :manage_roles, :manage_other_histories) %>
         <li>
           <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-          <%= link_to(t('new_other_history'), new_other_history_path, class: 'dropdown-item' %>
+          <%= link_to t('new_other_history'), new_other_history_path, class: 'dropdown-item' %>
         </li>
         <div class='dropdown-item-dividier'></div>
         <% end %>
