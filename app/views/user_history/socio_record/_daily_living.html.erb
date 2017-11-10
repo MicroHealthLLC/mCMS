@@ -7,7 +7,7 @@
         <% if can?(:create_daily_livings, :manage_roles, :manage_daily_livings) %>
         <li>
           <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-          <%= link_to( t('new_daily_living'), new_daily_living_path, class: 'dropdown-item' %>
+          <%= link_to t('new_daily_living'), new_daily_living_path, class: 'dropdown-item' %>
         </li>
         <div class='dropdown-item-dividier'></div>
         <% end %>
