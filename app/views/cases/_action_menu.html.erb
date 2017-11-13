@@ -4,7 +4,7 @@
       <ul class="dropdown-menu dropdown-links" role="menu">
         <% if @case.can?(:delete_cases, :manage_roles, :manage_cases) %>
           <li>
-            <span class="glyphicon glyphicon-glyphicon-remove" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
               <%= link_to('Delete', case_path(@case), class: 'dropdown-item',
                           :method => :delete,
                           :data => {:confirm => t(:text_are_you_sure)}) 
@@ -15,14 +15,14 @@
 
         <% if @case.can?(:edit_cases, :manage_roles, :manage_cases) %>
           <li>
-            <span class="glyphicon glyphicon-glyphicon-edit" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
             <%= link_to t('button_edit'), edit_case_path(@case), class: 'dropdown-item' %>
           </li>
           <div class='dropdown-item-dividier'></div>
         <% end %>
 
           <li>
-            <span class="glyphicon glyphicon-glyphicon-triangle-left" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
             <%= link_to t('button_cancel'), case_back_url(@case), class: 'dropdown-item' %>
           </li>
           <div class='dropdown-item-dividier'></div>
@@ -34,14 +34,14 @@
             <div class='dropdown-item-dividier'></div>
 
           <li>
-            <span class="glyphicon glyphicon-glyphicon-list" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
             <%= link_to t('button_history_changes'), "/histories/#{@case.class}/#{@case.id}", class: 'dropdown-item' %>
           </li>
  
         <% if @case.subcase_id and @case.can?(:edit_cases, :manage_roles, :manage_cases) %>
             <div class='dropdown-item-dividier'></div>
          <li>
-            <span class="glyphicon glyphicon-glyphicon-remove-circle" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
             <%= link_to 'Unlink', delete_sub_case_relation_case_path(@case), class: 'dropdown-item' %>
           </li>
         <% end %>
@@ -49,7 +49,7 @@
         <% if @case.can?(:manage_roles, :manage_cases) %>
           <div class='dropdown-item-dividier'></div>
           <li>
-            <span class="glyphicon glyphicon-glyphicon-time" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
             <%= link_to 'TimeLine', '#', class: 'dropdown-item', onclick: "openNav()" %>
           </li>
         <% end %>
