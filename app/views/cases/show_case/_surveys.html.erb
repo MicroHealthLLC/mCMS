@@ -1,6 +1,24 @@
 <% if module_enabled?('surveys') %>
-    <%= link_to t('new_survey'), new_assign_survey_case_path(@case.id), class: 'btn btn-primary pull-right btn-edition'  if can?(:create_surveys, :manage_roles, :manage_surveys) %>
-
+<section id="widget-grid" class="surveys_section">
+  <div class="col-xs-12 btn-edition tabs-section">
+    <%= render partial: 'state_button_filter'%>
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+      <ul class="dropdown-menu dropdown-links" role="menu">
+        <% if can?(:create_surveys, :manage_roles, :manage_surveys) %>
+        <li>
+          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+          <%= link_to t('new_survey'), new_assign_survey_case_path(@case.id), class: 'dropdown-item' %>
+        </li>
+        <div class='dropdown-item-dividier'></div>
+        <% end %>
+        <li>
+          <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+          <%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'dropdown-item' %>
+        </li>
+      </ul>
+    </div>
+  </div>
     <div class="row">
       <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <%= render partial: 'surveys/display_survey_case',
@@ -12,5 +30,5 @@
                    } %>
       </article>
     </div>
-
+  </section>
 <% end %>
