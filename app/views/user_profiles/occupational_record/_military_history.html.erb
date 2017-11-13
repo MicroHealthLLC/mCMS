@@ -1,9 +1,9 @@
-<div class="row">
+<section id="widget-grid" class="military_histories_section">
   <div class="col-xs-12 btn-edition tabs-section">
     <%= render partial: 'state_button_filter'%>
     <div class="btn-group">
       <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
-      <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:250px;">
+      <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:200px;">
         <% if can?(:create_military_histories, :manage_roles, :manage_military_histories) %>
         <li>
           <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
@@ -18,7 +18,6 @@
       </ul>
     </div>
   </div>
-</div>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'military_histories/list',
@@ -29,3 +28,4 @@
                  } %>
     </article>
   </div>
+</section>
