@@ -1,4 +1,4 @@
-<div class="row">
+<section id="widget-grid" class="resumes_section">
   <div class="col-xs-12 btn-edition tabs-section">
     <%= render partial: 'state_button_filter'%>
     <div class="btn-group">
@@ -18,14 +18,14 @@
       </ul>
     </div>
   </div>
-</div>
-<div class="row">
-  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <%= render partial: 'resumes/list',
-               layout: 'shared/smart_widget_wrapper',
-               locals: {
-                   wid_id: 'resume',
-                   wid_title: t('resumes')
-               } %>
-  </article>
-</div>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'resumes/list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'resume',
+                     wid_title: t('resumes')
+                 } %>
+    </article>
+  </div>
+</section>
