@@ -1,12 +1,32 @@
-<%= link_to(t('new_problem_list'), new_problem_list_path, class: 'btn btn-primary pull-right margin-bottom-10') if can?(:create_problem_lists, :manage_problem_lists, :manage_roles) %>
-<div class="row">
-  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <%= render partial: 'problem_lists/list',
-               layout: 'shared/smart_widget_wrapper',
-               locals: {
-                   problem_lists: @problem_lists,
-                   wid_id: 'problem_lists',
-                   wid_title: t('problem_lists')
-               } %>
-  </article>
-</div>
+<section id="widget-grid" class="problem_lists_section">
+  <div class="col-xs-12 btn-edition tabs-section">
+    <%= render partial: 'state_button_filter'%>
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+      <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:200px;">
+        <% if can?(:create_problem_lists, :manage_problem_lists, :manage_roles) %>
+        <li>
+          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+          <%= link_to t('new_problem_list'), new_problem_list_path, class: 'dropdown-item' %>
+        </li>
+        <div class='dropdown-item-dividier'></div>
+        <% end %>
+        <li>
+          <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+          <%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'dropdown-item' %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'problem_lists/list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     problem_lists: @problem_lists,
+                     wid_id: 'problem_lists',
+                     wid_title: t('problem_lists')
+                 } %>
+    </article>
+  </div>
+</section>
