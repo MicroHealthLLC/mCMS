@@ -1,7 +1,7 @@
 class DocumentManager < ApplicationRecord
   belongs_to :user
   belongs_to :category
-  belongs_to :folder, :class_name => 'DocumentFolder'
+  # belongs_to :folder, :class_name => 'DocumentFolder'
   has_many :revisions, dependent: :destroy
   has_many :dms_documemnts, dependent: :destroy
 
