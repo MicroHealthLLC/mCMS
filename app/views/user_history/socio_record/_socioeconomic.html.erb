@@ -1,4 +1,4 @@
-<div class="row">
+<section id="widget-grid" class="socioeconomics_section">
   <div class="col-xs-12 btn-edition tabs-section">
     <%= render partial: 'state_button_filter'%>
     <div class="btn-group">
@@ -17,16 +17,16 @@
         </li>
       </ul>
     </div>
+  </div>    
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     socioeconomics: @socioeconomics,
+                     wid_id: 'socioeconomics',
+                     wid_title: t('socioeconomics')
+                 } %>
+    </article>
   </div>
-</div>
-<div class="row">
-  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <%= render partial: 'socioeconomics/list',
-               layout: 'shared/smart_widget_wrapper',
-               locals: {
-                   socioeconomics: @socioeconomics,
-                   wid_id: 'socioeconomics',
-                   wid_title: t('socioeconomics')
-               } %>
-  </article>
-</div>
+</section>
