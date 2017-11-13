@@ -1,4 +1,4 @@
-<div class="row">
+<section id="widget-grid" class="other_skills_section">
   <div class="col-xs-12 btn-edition tabs-section">
     <%= render partial: 'state_button_filter'%>
     <div class="btn-group">
@@ -18,15 +18,15 @@
       </ul>
     </div>
   </div>
-</div>
-<div class="row">
-  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <%= render partial: 'other_skills/list',
-               layout: 'shared/smart_widget_wrapper',
-               locals: {
-                   other_skills: @other_skills,
-                   wid_id: 'other_skills',
-                   wid_title: t('other_skills')
-               } %>
-  </article>
-</div>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'other_skills/list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     other_skills: @other_skills,
+                     wid_id: 'other_skills',
+                     wid_title: t('other_skills')
+                 } %>
+    </article>
+  </div>
+</section>
