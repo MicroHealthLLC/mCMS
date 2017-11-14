@@ -2,7 +2,7 @@
   <div class="form-group">
     <%= f.label :folder %>
     <% if @document %>
-        <%= f.select :folder_id, options_for_select(DocumentFolder.pluck(:name, :id), selected: @document.folder_id) %>
+        <%= f.hidden_field :folder_id, value: @document.folder_id %>
     <% else %>
         <%= f.hidden_field :folder_id, value: @current_folder.id %>
     <% end %>
