@@ -3,7 +3,7 @@
     <%= render partial: 'state_button_filter'%>
     <div class="btn-group">
       <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
-      <ul class="dropdown-menu dropdown-links" role="menu">
+      <ul class="dropdown-menu dropdown-links" role="menu" style="width:200px">
         <% if can?(:create_client_journals, :manage_roles, :manage_client_journals) %>
           <li>
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>

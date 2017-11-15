@@ -1,11 +1,31 @@
-<%= link_to(t('new_job_application'), new_job_app_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_job_applications, :manage_roles, :manage_job_applications) %>
-<div class="row">
-  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <%= render partial: 'job_apps/list',
-               layout: 'shared/smart_widget_wrapper',
-               locals: {
-                   wid_id: 'job_application',
-                   wid_title: t('job_applications')
-               } %>
-  </article>
-</div>
+<section id="widget-grid" class="job_applications_section">
+  <div class="col-xs-12 btn-edition tabs-section">
+    <%= render partial: 'state_button_filter'%>
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+      <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:200px;">
+        <% if can?(:create_job_applications, :manage_roles, :manage_job_applications) %>
+        <li>
+          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+          <%= link_to t('new_job_application'), new_job_app_path, class: 'dropdown-item' %>
+        </li>
+        <div class='dropdown-item-dividier'></div>
+        <% end %>
+        <li>
+          <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+          <%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'dropdown-item' %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'job_apps/list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'job_application',
+                     wid_title: t('job_applications')
+                 } %>
+    </article>
+  </div>
+</section>

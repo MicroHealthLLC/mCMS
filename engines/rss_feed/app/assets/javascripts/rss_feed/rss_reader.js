@@ -67,7 +67,17 @@ function showFeed(datefrom, dateto, searchinfo) {
         if (rssReaderFeeds[i].included === true) {
             thisname = rssReaderFeeds[i].name;
             thissite = rssReaderFeeds[i].site;
-            $("#rss-feeds").rss(thissite,{limit: null, ssl: false, entryTemplate: '<li class="lishow"><a href="{url}" target="_blank"><span class="title">{title}</span></a><br/><span class="rss_small">' + thisname + '<br/><span class="date">{date}</span></span><br/><button type="button" class="morebtn">&plus;</button><span class="rssshort">{shortBody}</span><br/><span class="rssall">{bodyPlain}</span><br /></li>', dateFormat: 'MMMM D, YYYY, h:mm:ss A'})
+            $("#rss-feeds").rss(thissite, {
+                limit: null,
+                ssl: false,
+                entryTemplate: '<li class="lishow">' +
+                '<a href="{url}" target="_blank">' +
+                '<span class="title">{title}</span></a><br/><span class="rss_small">' + thisname + '<br/>' +
+                '<span class="date">{date}</span></span><br/><span class="rssall">{bodyPlain}</span>' +
+                '</div>  <div class="link"> <a class="read_more" href="#" onclick="changeheight(this); return false;" >Read more</a> </div>' +
+                '<br /></li>',
+                dateFormat: 'MMMM D, YYYY, h:mm:ss A'
+            });
         }
     }
     findFeeds(datefrom, dateto, searchinfo);
@@ -348,17 +358,6 @@ $("body").on("click", ".deletebtn", function (e) {
     }
     showRssList();
     $("#update_feeds").click();
-});
-
-$("body").on("click", ".morebtn", function () {
-
-    if ($(this).closest("li").find(".rssshort").css("display") === "block") {
-        $(this).closest("li").find(".rssshort").hide();
-        $(this).closest("li").find(".rssall").show();
-    } else {
-        $(this).closest("li").find(".rssshort").show();
-        $(this).closest("li").find(".rssall").hide();
-    }
 });
 
 
