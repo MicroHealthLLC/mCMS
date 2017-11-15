@@ -14,7 +14,7 @@
         <% end %>
         <% if can?(:search_case_supports, :manage_roles, :manage_case_supports) %>
         <li>
-          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
           <%= link_to 'Search Support', search_case_supports_path(case_id: @case.id), class: 'dropdown-item' %>
         </li>
         <div class='dropdown-item-dividier'></div>
