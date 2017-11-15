@@ -99,7 +99,7 @@ Rails.application.configure do
   # Exception Notifier Gem
   Rails.application.config.middleware.use ExceptionNotification::Rack,
                                           :email => {
-                                              :exception_recipients => %w{bilel.kedidi@gmail.com}
+                                              :exception_recipients => %w{bilel.kedidi@gmail.com e67b35dd.microhealthllc.com@amer.teams.ms}
                                           }
 
 
