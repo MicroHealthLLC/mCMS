@@ -13,7 +13,7 @@
         <% end %>
         <li>
           <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-          <%= link_to 'Print', health_care_facility_path(@health_care_facility, format: 'pdf'), class: 'dropdown-item' %>
+          <%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'dropdown-item' %>
         </li>
         <div class='dropdown-item-dividier'></div>
         <li>
