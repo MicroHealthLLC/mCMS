@@ -1,14 +1,52 @@
 <div class="col-xs-12 btn-edition">
-  <%= link_to('Delete',  enrollment_path(@enrollment), class: 'btn btn-danger pull-right' ,
-              :method => :delete,
-              :data => {:confirm => t(:text_are_you_sure)}) if @enrollment.can?(:delete_enrollments, :manage_enrollments, :manage_roles)
-  %>
-  <% if params[:action] == 'show' %>
-      <%= link_to 'Edit', edit_enrollment_path(@enrollment), class: 'btn btn-success pull-right' if @enrollment.can?(:edit_enrollments, :manage_enrollments, :manage_roles) %>
-  <% else %>
-      <%= link_to 'Show', enrollment_path(@enrollment), class: 'btn btn-success pull-right' if @enrollment.can?(:show_enrollments, :manage_enrollments, :manage_roles) %>
-  <% end %>
-  <%= link_to t('button_cancel'), (@enrollment.case ? case_path(@enrollment.case) : enrollments_path), class: 'btn btn-warning pull-right' %>
-  <%= link_to t('button_print'), enrollment_path(@enrollment, format: 'pdf'), class: 'btn btn-primary pull-right' %>
-  <%= link_to t('button_history_changes'), "/histories/#{@enrollment.class}/#{@enrollment.id}", class: 'btn btn-primary pull-right' %>
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+    <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:170px;">
+      <% if @enrollment.can?(:delete_enrollments, :manage_enrollments, :manage_roles) %>
+        <li>
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            <%= link_to('Delete',  enrollment_path(@enrollment), class: 'dropdown-item',
+                        :method => :delete,
+                        :data => {:confirm => t(:text_are_you_sure)}) 
+            %>
+        </li>
+        <div class='dropdown-item-dividier'></div>
+      <% end %>
+
+      <% if params[:action] == 'show' %>
+        <% if @enrollment.can?(:edit_enrollments, :manage_enrollments, :manage_roles) %>
+          <li>
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <%= link_to 'Edit', edit_enrollment_path(@enrollment), class: 'dropdown-item' %>
+          </li>
+          <div class='dropdown-item-dividier'></div>
+        <% end %>
+      <% else %>
+        <% if @enrollment.can?(:show_enrollments, :manage_enrollments, :manage_roles) %>
+          <li>
+            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+            <%= link_to 'Show', enrollment_path(@enrollment), class: 'dropdown-item' %>
+          </li>
+          <div class='dropdown-item-dividier'></div>
+        <% end %>
+      <% end %>
+
+        <li>
+          <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+          <%= link_to 'Cancel', (@enrollment.case ? case_path(@enrollment.case) : enrollments_path), class: 'dropdown-item' %>
+        </li>
+        <div class='dropdown-item-dividier'></div>
+
+        <li>
+          <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+          <%= link_to 'Print', enrollment_path(@enrollment, format: 'pdf'), class: 'dropdown-item' %>
+        </li>
+          <div class='dropdown-item-dividier'></div>
+
+        <li>
+          <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+          <%= link_to 'History Changes', "/histories/#{@enrollment.class}/#{@enrollment.id}", class: 'dropdown-item' %>
+        </li>
+    </ul>
+  </div>
 </div>
