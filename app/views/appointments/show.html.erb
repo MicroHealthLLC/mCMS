@@ -195,7 +195,7 @@
         <% if can?(:add_jsignatures, :manage_roles) %>
           <li>
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-            <%= link_to t('add_jsignature'), new_jsignature_path(owner_type: "#{@appointment.class}", class: 'dropdown-item' %>
+            <%= link_to t('add_jsignature'), new_jsignature_path(owner_type: "#{@appointment.class}"), class: 'dropdown-item' %>
           </li>
           <div class='dropdown-item-dividier'></div>
         <% end %>
