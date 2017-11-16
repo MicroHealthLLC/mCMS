@@ -1,48 +1,13 @@
-<%= render partial: 'action_menu' %>
-<div class="row">
-  <div class="col-xs-12">
-
-
-
-    <p>
-      <strong><%= t('case') %>:</strong>
-      <%= link_to_case @teleconsult.case %>
-    </p>
-    <p>
-      <strong>Contact method:</strong>
-      <%= @teleconsult.contact_method %>
-    </p>
-
-    <p>
-      <strong>Contact type:</strong>
-      <%= @teleconsult.contact_type %>
-    </p>
-
-    <p>
-      <strong>Consult status:</strong>
-      <%= @teleconsult.consult_status %>
-    </p>
-
-    <p>
-      <strong>Date:</strong>
-      <%= format_date @teleconsult.date %>
-    </p>
-
-    <p>
-      <strong>Time:</strong>
-      <%= @teleconsult.time %>
-    </p>
-
-    <p>
-      <strong>Note:</strong>
-      <%= @teleconsult.note.html_safe %>
-    </p>
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @teleconsult.consult_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
-    
+<section id="widget-grid" class="case_teleconsults">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Teleconsult'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
