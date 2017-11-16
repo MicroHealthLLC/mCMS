@@ -1,45 +1,14 @@
 <%= render partial: 'action_menu' %>
-<div class="row">
-  <div class="col-xs-12">
-    <p>
-      <strong><%= t('case') %>:</strong>
-      <%= link_to_case @enrollment.case %>
-    </p>
-    <p>
-      <strong>Name:</strong>
-      <%= @enrollment.name %>
-    </p>
 
-    <p>
-      <strong>Enrollment type:</strong>
-      <%= @enrollment.enrollment_type %>
-    </p>
-
-    <p>
-      <strong>Enrollment Status:</strong>
-      <%= @enrollment.enrollment_status %>
-    </p>
-
-    <p>
-      <strong>Date start:</strong>
-      <%= format_date @enrollment.date_start %>
-    </p>
-
-    <p>
-      <strong>Date end:</strong>
-      <%= format_date @enrollment.date_end %>
-    </p>
-
-    <p>
-      <strong>Note:</strong>
-      <%= @enrollment.note.html_safe %>
-    </p>
-
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @enrollment.enrollment_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
+<section id="widget-grid" class="case_enrollments">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Enrollment'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
