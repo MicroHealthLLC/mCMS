@@ -52,6 +52,8 @@ module Snomed
     end
 
     data
+  rescue
+    data
   end
 
   # def get_snomed_from_ihtsdotools(term, default_search)
