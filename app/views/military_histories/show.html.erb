@@ -1,45 +1,13 @@
-<%= render partial: 'action_menu' %>
-
-<div class="row">
-  <div class="col-xs-12">
-
-    <p>
-      <strong>Service Name:</strong>
-      <%= @military_history.text %>
-    </p>
-
-    <p>
-      <strong>Service type:</strong>
-      <%= @military_history.service_type %>
-    </p>
-
-    <p>
-      <strong>Service status:</strong>
-      <%= @military_history.service_status %>
-    </p>
-
-    <p>
-      <strong>Date started:</strong>
-      <%= format_date @military_history.date_started %>
-    </p>
-
-    <p>
-      <strong>Date ended:</strong>
-      <%= format_date @military_history.date_ended %>
-    </p>
-
-    <p>
-      <strong>Note:</strong>
-      <%= @military_history.note.html_safe %>
-    </p>
-
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @military_history.military_history_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
+<section id="widget-grid" class="military_histories_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Military History'
+                 } %>
+    </article>
   </div>
-</div>
-
-
+</section>
