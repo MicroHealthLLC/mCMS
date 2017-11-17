@@ -1,51 +1,13 @@
-<%= render partial: 'action_menu' %>
-
-<div class="row">
-  <div class="col-xs-12">
-
-    <p>
-      <strong>Housing Type:</strong>
-      <%= @housing.snomed %>
-    </p>
-
-    <p>
-      <strong>Housing Status:</strong>
-      <%= @housing.housing_status %>
-    </p>
-
-    <p>
-      <strong>Primary address:</strong>
-      <%= @housing.address %>
-    </p>
-
-    <p>
-      <strong>Estimated monthly payment:</strong>
-      <%= @housing.estimated_monthly_payment %>
-    </p>
-
-    <p>
-      <strong>Date start:</strong>
-      <%= format_date @housing.date_start %>
-    </p>
-
-    <p>
-      <strong>Date end:</strong>
-      <%= format_date @housing.date_end %>
-    </p>
-
-    <p>
-      <strong>Description:</strong>
-      <%= @housing.description.html_safe %>
-    </p>
-
-
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @housing.housing_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
-
-
+<section id="widget-grid" class="housing_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Housing'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
