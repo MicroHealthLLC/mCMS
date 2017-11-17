@@ -1,39 +1,13 @@
-<%= render partial: 'action_menu' %>
-
-<div class="row">
-  <div class="col-xs-12">
-
-    <p>
-      <strong>Financial Type:</strong>
-      <%= @financial.snomed %>
-    </p>
-
-    <p>
-      <strong>Description:</strong>
-      <%= @financial.description.html_safe %>
-    </p>
-
-    <p>
-      <strong>Financial status:</strong>
-      <%= @financial.financial_status %>
-    </p>
-
-
-    <p>
-      <strong>Date start:</strong>
-      <%= format_date @financial.date_start %>
-    </p>
-
-    <p>
-      <strong>Date end:</strong>
-      <%= format_date @financial.date_end %>
-    </p>
-
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @financial.financial_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
+<section id="widget-grid" class="financial_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Financial'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
