@@ -1,14 +1,52 @@
 <div class="col-xs-12 btn-edition">
-  <%= link_to('Delete',  resume_path(@resume), class: 'btn btn-danger pull-right' ,
-              :method => :delete,
-              :data => {:confirm => t(:text_are_you_sure)}) if @resume.can?(:delete_resumes, :manage_resumes, :manage_roles)
-  %>
-  <% if params[:action] == 'show' %>
-      <%= link_to 'Edit', edit_resume_path(@resume), class: 'btn btn-success pull-right' if @resume.can?(:edit_resumes, :manage_resumes, :manage_roles) %>
-  <% else %>
-      <%= link_to 'Show', resume_path(@resume), class: 'btn btn-success pull-right' if @resume.can?(:show_resumes, :manage_resumes, :manage_roles) %>
-  <% end %>
-  <%= link_to t('button_cancel'),  resumes_path, class: 'btn btn-warning pull-right' %>
-  <%= link_to t('button_print'), resume_path(@resume, format: 'pdf'), class: 'btn btn-primary pull-right' %>
-  <%= link_to t('button_history_changes'), "/histories/#{@resume.class}/#{@resume.id}", class: 'btn btn-primary pull-right' %>
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+    <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:170px;">
+      <% if @resume.can?(:delete_resumes, :manage_resumes, :manage_roles) %>
+        <li>
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            <%= link_to('Delete', resume_path(@resume), class: 'dropdown-item',
+                        :method => :delete,
+                        :data => {:confirm => t(:text_are_you_sure)}) 
+            %>
+        </li>
+        <div class='dropdown-item-dividier'></div>
+      <% end %>
+
+      <% if params[:action] == 'show' %>
+        <% if @resume.can?(:edit_resumes, :manage_resumes, :manage_roles) %>
+          <li>
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <%= link_to 'Edit', edit_resume_path(@resume), class: 'dropdown-item' %>
+          </li>
+          <div class='dropdown-item-dividier'></div>
+        <% end %>
+      <% else %>
+        <% if @resume.can?(:show_resumes, :manage_resumes, :manage_roles) %>
+          <li>
+            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+            <%= link_to 'Show', resume_path(@resume), class: 'dropdown-item' %>
+          </li>
+          <div class='dropdown-item-dividier'></div>
+        <% end %>
+      <% end %>
+
+        <li>
+          <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+          <%= link_to 'Cancel', resumes_path, class: 'dropdown-item' %>
+        </li>
+        <div class='dropdown-item-dividier'></div>
+
+        <li>
+          <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+          <%= link_to 'Print', resume_path(@resume, format: 'pdf'), class: 'dropdown-item' %>
+        </li>
+          <div class='dropdown-item-dividier'></div>
+
+        <li>
+          <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+          <%= link_to 'History Changes', "/histories/#{@resume.class}/#{@resume.id}", class: 'dropdown-item' %>
+        </li>
+    </ul>
+  </div>
 </div>
