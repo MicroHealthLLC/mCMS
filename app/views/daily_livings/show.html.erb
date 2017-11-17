@@ -1,38 +1,13 @@
-<%= render partial: 'action_menu' %>
-
-<div class="row">
-  <div class="col-xs-12">
-    <p>
-      <strong>Daily living Type:</strong>
-      <%= @daily_living.snomed %>
-    </p>
-
-    <p>
-      <strong>Daily living status:</strong>
-      <%= @daily_living.daily_living_status %>
-    </p>
-
-    <p>
-      <strong>Description:</strong>
-      <%= @daily_living.description.html_safe %>
-    </p>
-
-    <p>
-      <strong>Date start:</strong>
-      <%= format_date @daily_living.date_start %>
-    </p>
-
-    <p>
-      <strong>Date end:</strong>
-      <%= format_date  @daily_living.date_end %>
-    </p>
-
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @daily_living.daily_living_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
-
+<section id="widget-grid" class="daily_living_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Daily Living'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
