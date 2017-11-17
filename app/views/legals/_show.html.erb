@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>Title:</strong>
+      <%= @legal.title %>
+    </p>
+
+    <p>
+      <strong>Legal History Type:</strong>
+      <%= @legal.legal_history_type %>
+    </p>
+
+    <p>
+      <strong>Legal History Status:</strong>
+      <%= @legal.legal_history_status %>
+    </p>
+    <p>
+      <strong>Date Start:</strong>
+      <%= format_date @legal.date_start %>
+    </p>
+
+    <p>
+      <strong>Date End:</strong>
+      <%= format_date @legal.date_end %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @legal.description.html_safe %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @legal.legal_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
+</div>
