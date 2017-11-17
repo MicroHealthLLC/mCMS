@@ -1,54 +1,13 @@
-
-<%= render partial: 'action_menu' %>
-
-<div class="row">
-  <div class="col-xs-12">
-
-    <p>
-      <strong>Transportation mean:</strong>
-      <%= @transportation.transportation_mean %>
-    </p>
-
-    <p>
-      <strong>Transportation type:</strong>
-      <%= @transportation.transportation_type %>
-    </p>
-
-    <p>
-      <strong>Transportation accessibility:</strong>
-      <%= @transportation.transportation_accessibility %>
-    </p>
-
-    <p>
-      <strong>Transportation status:</strong>
-      <%= @transportation.transportation_status %>
-    </p>
-
-    <p>
-      <strong>Description:</strong>
-      <%= @transportation.description.html_safe %>
-    </p>
-
-    <p>
-      <strong>Estimated monthly cost:</strong>
-      <%= @transportation.estimated_monthly_cost %>
-    </p>
-
-    <p>
-      <strong>Date start:</strong>
-      <%= format_date @transportation.date_start %>
-    </p>
-
-    <p>
-      <strong>Date end:</strong>
-      <%= format_date @transportation.date_end %>
-    </p>
-
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @transportation.transportation_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
+<section id="widget-grid" class="transportation_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Transportation'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
