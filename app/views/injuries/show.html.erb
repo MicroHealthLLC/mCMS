@@ -1,64 +1,13 @@
-<%= render partial: 'action_menu' %>
-
-<div class="row">
-  <div class="col-xs-12">
-
-    <p>
-      <strong>Injury Name:</strong>
-      <%= @injury.injury_name %>
-    </p>
-
-     <p>
-      <strong>Snomed:</strong>
-      <%= @injury.snomed_occupation %>
-    </p>
-
-    <p>
-      <strong>Injury type:</strong>
-      <%= @injury.injury_type %>
-    </p>
-
-    <p>
-      <strong>Injury Cause:</strong>
-      <%= @injury.injury_cause_name %>
-    </p>
-
-     <p>
-      <strong><%= 'Snomed Cause' %>:</strong>
-      <%= @injury.snomed_event %>
-    </p>
-
-    <p>
-      <strong>Injury status:</strong>
-      <%= @injury.injury_status %>
-    </p>
-
-    <p>
-      <strong>Employer:</strong>
-      <%= @injury.employer %>
-    </p>
-
-    <p>
-      <strong>Date of injury:</strong>
-      <%= @injury.date_of_injury %>
-    </p>
-
-    <p>
-      <strong>Date resolved:</strong>
-      <%= format_date @injury.date_resolved %>
-    </p>
-
-    <p>
-      <strong>Description:</strong>
-      <%= @injury.description.html_safe %>
-    </p>
-
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @injury.injury_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
-    
+<section id="widget-grid" class="injuries_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Injury'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
