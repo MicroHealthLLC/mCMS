@@ -1,38 +1,13 @@
-<%= render partial: 'action_menu' %>
-
-<div class="row">
-  <div class="col-xs-12">
-    <p>
-      <strong>Title:</strong>
-      <%= @resume.title %>
-    </p>
-
-    <p>
-      <strong>Date:</strong>
-      <%= format_date @resume.date %>
-    </p>
-
-    <p>
-      <strong>Resume type:</strong>
-      <%= @resume.resume_type %>
-    </p>
-
-    <p>
-      <strong>Resume status:</strong>
-      <%= @resume.resume_status %>
-    </p>
-
-    <p>
-      <strong>Note:</strong>
-      <%= @resume.note.html_safe %>
-    </p>
-
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @resume.resume_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
-    
+<section id="widget-grid" class="resumes_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Resume'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
