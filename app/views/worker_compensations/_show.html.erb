@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>Injury:</strong>
+      <%= @worker_compensation.injury %>
+    </p>
+
+    <p>
+      <strong>Compensation type:</strong>
+      <%= @worker_compensation.compensation_type %>
+    </p>
+
+    <p>
+      <strong>Compensation status:</strong>
+      <%= @worker_compensation.compensation_status %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @worker_compensation.description.html_safe %>
+    </p>
+
+    <p>
+      <strong>Date of compensation start:</strong>
+      <%= format_date @worker_compensation.date_of_compensation_start %>
+    </p>
+
+    <p>
+      <strong>Date of compensation end:</strong>
+      <%= format_date @worker_compensation.date_of_compensation_end %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @worker_compensation.worker_compensation_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
+</div>
+
