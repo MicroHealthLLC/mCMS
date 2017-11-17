@@ -1,62 +1,13 @@
-<%= render partial: 'action_menu' %>
-<div class="col-xs-12">
-
-  <p>
-    <strong>Title:</strong>
-    <%= @position.title %>
-  </p>
-
-  <p>
-    <strong>Occupation:</strong>
-    <%= @position.occupation %>
-  </p>
-
-  <p>
-    <strong>Position description:</strong>
-    <%= @position.position_description.html_safe %>
-  </p>
-
-  <p>
-    <strong>Location:</strong>
-    <%= @position.location %>
-  </p>
-
-  <p>
-    <strong><%= t('employment_type') %>:</strong>
-    <%= @position.employment_type %>
-  </p>
-
-  <p>
-    <strong><%= t('position_status') %>:</strong>
-    <%= @position.position_status %>
-  </p>
-
-  <p>
-    <strong><%= t('estimated_monthly_amount') %>:</strong>
-    <%= @position.estimated_monthly_amount %>
-  </p>
-
-  <p>
-    <strong>Employer:</strong>
-    <%= @position.note.html_safe %>
-  </p>
-
-
-  <p>
-    <strong>Date start:</strong>
-    <%= format_date @position.date_start %>
-  </p>
-
-  <p>
-    <strong>Date end:</strong>
-    <%= format_date @position.date_end %>
-  </p>
-
-  <p>
-    <strong><%= t('attachments') %>:</strong>
-    <% @position.position_attachments.each do |attachment| %>
-        <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-    <% end %>
-  </p>
-
-</div>
+<section id="widget-grid" class="positions_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Position'
+                 } %>
+    </article>
+  </div>
+</section>
