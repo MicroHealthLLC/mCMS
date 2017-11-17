@@ -1,50 +1,13 @@
-<%= render partial: 'action_menu' %>
-
-<div class="row">
-  <div class="col-xs-12">
-
-    <p>
-      <strong>Name:</strong>
-      <%= @other_history.name %>
-    </p>
-
-
-    <p>
-      <strong>Snomed:</strong>
-      <%= @other_history.icdcm_code %>
-    </p>
-
-    <p>
-      <strong>Date identified:</strong>
-      <%= format_date @other_history.date_identified %>
-    </p>
-
-    <p>
-      <strong>Date resolved:</strong>
-      <%= format_date @other_history.date_resolved %>
-    </p>
-
-    <p>
-      <strong>Other history status:</strong>
-      <%= @other_history.other_history_status %>
-    </p>
-
-    <p>
-      <strong>Other history type:</strong>
-      <%= @other_history.other_history_type %>
-    </p>
-
-    <p>
-      <strong>Description:</strong>
-      <%= @other_history.description.html_safe %>
-    </p>
-
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @other_history.other_history_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
-    
+<section id="widget-grid" class="other_history_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Other History'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
