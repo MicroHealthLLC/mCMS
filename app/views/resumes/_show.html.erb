@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>Title:</strong>
+      <%= @resume.title %>
+    </p>
+
+    <p>
+      <strong>Date:</strong>
+      <%= format_date @resume.date %>
+    </p>
+
+    <p>
+      <strong>Resume type:</strong>
+      <%= @resume.resume_type %>
+    </p>
+
+    <p>
+      <strong>Resume status:</strong>
+      <%= @resume.resume_status %>
+    </p>
+
+    <p>
+      <strong>Note:</strong>
+      <%= @resume.note.html_safe %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @resume.resume_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>   
+  </div>
+</div>
