@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>Housing Type:</strong>
+      <%= @housing.snomed %>
+    </p>
+
+    <p>
+      <strong>Housing Status:</strong>
+      <%= @housing.housing_status %>
+    </p>
+
+    <p>
+      <strong>Primary address:</strong>
+      <%= @housing.address %>
+    </p>
+
+    <p>
+      <strong>Estimated monthly payment:</strong>
+      <%= @housing.estimated_monthly_payment %>
+    </p>
+
+    <p>
+      <strong>Date start:</strong>
+      <%= format_date @housing.date_start %>
+    </p>
+
+    <p>
+      <strong>Date end:</strong>
+      <%= format_date @housing.date_end %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @housing.description.html_safe %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @housing.housing_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
+</div>
