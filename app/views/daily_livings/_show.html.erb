@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>Daily living Type:</strong>
+      <%= @daily_living.snomed %>
+    </p>
+
+    <p>
+      <strong>Daily living status:</strong>
+      <%= @daily_living.daily_living_status %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @daily_living.description.html_safe %>
+    </p>
+
+    <p>
+      <strong>Date start:</strong>
+      <%= format_date @daily_living.date_start %>
+    </p>
+
+    <p>
+      <strong>Date end:</strong>
+      <%= format_date  @daily_living.date_end %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @daily_living.daily_living_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
+</div>
