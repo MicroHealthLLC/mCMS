@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>Service Name:</strong>
+      <%= @military_history.text %>
+    </p>
+
+    <p>
+      <strong>Service type:</strong>
+      <%= @military_history.service_type %>
+    </p>
+
+    <p>
+      <strong>Service status:</strong>
+      <%= @military_history.service_status %>
+    </p>
+
+    <p>
+      <strong>Date started:</strong>
+      <%= format_date @military_history.date_started %>
+    </p>
+
+    <p>
+      <strong>Date ended:</strong>
+      <%= format_date @military_history.date_ended %>
+    </p>
+
+    <p>
+      <strong>Note:</strong>
+      <%= @military_history.note.html_safe %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @military_history.military_history_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
+</div>
+
+
