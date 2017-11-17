@@ -1,42 +1,13 @@
-<%= render partial: 'action_menu' %>
-<div class="col-xs-12">
-
-  <p>
-    <strong><%= t('label_name') %>:</strong>
-    <%= @other_skill.name %>
-  </p>
-
-  <p>
-    <strong><%= t('skill_status') %>:</strong>
-    <%= @other_skill.skill_status %>
-  </p>
-
-  <p>
-    <strong><%= t('skill_type') %>:</strong>
-    <%= @other_skill.skill_type %>
-  </p>
-
-  <p>
-    <strong>Date received:</strong>
-    <%= format_date @other_skill.date_received %>
-  </p>
-
-  <p>
-    <strong>Date expired:</strong>
-    <%= format_date @other_skill.date_expired %>
-  </p>
-
-  <p>
-    <strong><%= t('note') %>:</strong>
-    <%= @other_skill.note.html_safe %>
-  </p>
-
-  <p>
-    <strong><%= t('attachments') %>:</strong>
-    <% @other_skill.skill_attachments.each do |attachment| %>
-        <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-    <% end %>
-  </p>
-
-
-</div>
+<section id="widget-grid" class="other_skills_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Skill'
+                 } %>
+    </article>
+  </div>
+</section>
