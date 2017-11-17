@@ -1,47 +1,13 @@
-<%= render partial: 'action_menu' %>
-<div class="row">
-  <div class="col-xs12">
-
-    <p>
-      <strong>Name:</strong>
-      <%= @socioeconomic.name %>
-    </p>
-
-    <p>
-      <strong>Snomed:</strong>
-      <%= @socioeconomic.snomed %>
-    </p>
-
-    <p>
-      <strong>Date identified:</strong>
-      <%= format_date @socioeconomic.date_identified %>
-    </p>
-
-    <p>
-      <strong>Date resolved:</strong>
-      <%= format_date @socioeconomic.date_resolved %>
-    </p>
-
-    <p>
-      <strong>Socioeconomic status:</strong>
-      <%= @socioeconomic.socioeconomic_status %>
-    </p>
-
-    <p>
-      <strong>Socioeconomic type:</strong>
-      <%= @socioeconomic.socioeconomic_type %>
-    </p>
-
-    <p>
-      <strong>Description:</strong>
-      <%= @socioeconomic.description.html_safe %>
-    </p>
-
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @socioeconomic.socioeconomic_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
+<section id="widget-grid" class="socioeconomic_history_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Socioeconomic History'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
