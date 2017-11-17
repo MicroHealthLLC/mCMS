@@ -1,36 +1,13 @@
-<%= render partial: 'action_menu' %>
-<div class="col-xs-12">
-
-  <p>
-    <strong>clearance Type:</strong>
-    <%= @clearance.clearence_type %>
-  </p>
-
-  <p>
-    <strong>clearance Status:</strong>
-    <%= @clearance.clearence_status %>
-  </p>
-
-  <p>
-    <strong>Date received:</strong>
-    <%= format_date @clearance.date_received %>
-  </p>
-
-  <p>
-    <strong>Date expired:</strong>
-    <%= format_date @clearance.date_expired %>
-  </p>
-
-  <p>
-    <strong>Note:</strong>
-    <%= @clearance.note.html_safe %>
-  </p>
-
-  <p>
-    <strong><%= t('attachments') %>:</strong>
-    <% @clearance.clearance_attachments.each do |attachment| %>
-        <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-    <% end %>
-  </p>
-
-</div>
+<section id="widget-grid" class="clearances_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Clearance'
+                 } %>
+    </article>
+  </div>
+</section>
