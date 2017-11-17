@@ -1,58 +1,16 @@
- <%= render partial: 'action_menu' %>
-
- <div class="row">
-  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
-    <p>
-      <strong>Case:</strong>
-      <%= link_to_case @appointment.case  %>
-    </p>
-
-    <p>
-      <strong>Title:</strong>
-      <%= @appointment.title %>
-    </p>
-
-    <p>
-      <strong>Description:</strong>
-      <%= @appointment.description.html_safe %>
-    </p>
-
-    <p>
-      <strong>Appointment type:</strong>
-      <%= @appointment.appointment_type %>
-    </p>
-
-    <p>
-      <strong>Start Time:</strong>
-      <%= @appointment.start_time_to_time %>
-    </p>
-
-    <p>
-      <strong>End Time:</strong>
-      <%= @appointment.end_time_to_time %>
-    </p>
-
-    <p>
-      <strong>Appointment status:</strong>
-      <%= @appointment.appointment_status %>
-    </p>
-
-    <p>
-      <strong>Place Of Service:</strong>
-      <%= @appointment.place_of_service %>
-    </p>
-    <p>
-      <strong>With who:</strong>
-      <%= @appointment.with_who %>
-    </p>
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @appointment.appointment_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
+<section id="widget-grid" class="appointments_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Appointment'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
 
 
 <section id="widget-grid" class="appointment_captures">
