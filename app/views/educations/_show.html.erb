@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>Education Type:</strong>
+      <%= @education.education_type %>
+    </p>
+
+    <p>
+      <strong>Institution:</strong>
+      <%= @education.institution %>
+    </p>
+
+    <p>
+      <strong>Education Status:</strong>
+      <%= @education.education_status %>
+    </p>
+
+    <p>
+      <strong>Date recieved:</strong>
+      <%= format_date @education.date_recieved %>
+    </p>
+
+    <p>
+      <strong>Date expired:</strong>
+      <%= format_date @education.date_expired %>
+    </p>
+
+    <p>
+      <strong>Note:</strong>
+      <%= @education.note.html_safe %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @education.education_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
+</div>
