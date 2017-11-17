@@ -1,14 +1,52 @@
 <div class="col-xs-12 btn-edition">
-  <%= link_to( 'Delete', financial_path(@financial), class: 'btn btn-danger pull-right',
-               :method => :delete,
-               :data => {:confirm => t(:text_are_you_sure)}) if @financial.can?(:manage_roles, :manages_financials, :delete_financials)
-  %>
-  <% if params[:action] == 'show' %>
-      <%= link_to( 'Edit', edit_financial_path(@financial), class: 'btn btn-success pull-right') if @financial.can?(:manage_roles, :manages_financials, :edit_financials) %>
-  <% else %>
-      <%= link_to( 'Show', financial_path(@financial), class: 'btn btn-success pull-right') if @financial.can?(:manage_roles, :manages_financials, :show_financials) %>
-  <% end %>
-  <%= link_to t('button_cancel'), financials_path, class: 'btn btn-warning pull-right' %>
-  <%= link_to t('button_print'), financial_path(@financial, format: 'pdf'), class: 'btn btn-primary pull-right' %>
-  <%= link_to t('button_history_changes'), "/histories/#{@financial.class}/#{@financial.id}", class: 'btn btn-primary pull-right' %>
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+    <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:170px;">
+      <% if @financial.can?(:manage_roles, :manages_financials, :delete_financials) %>
+        <li>
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            <%= link_to('Delete', financial_path(@financial), class: 'dropdown-item',
+                        :method => :delete,
+                        :data => {:confirm => t(:text_are_you_sure)}) 
+            %>
+        </li>
+        <div class='dropdown-item-dividier'></div>
+      <% end %>
+
+      <% if params[:action] == 'show' %>
+        <% if @financial.can?(:manage_roles, :manages_financials, :edit_financials) %>
+          <li>
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <%= link_to 'Edit', edit_financial_path(@financial), class: 'dropdown-item' %>
+          </li>
+          <div class='dropdown-item-dividier'></div>
+        <% end %>
+      <% else %>
+        <% if @financial.can?(:manage_roles, :manages_financials, :show_financials) %>
+          <li>
+            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+            <%= link_to 'Show', financial_path(@financial), class: 'dropdown-item' %>
+          </li>
+          <div class='dropdown-item-dividier'></div>
+        <% end %>
+      <% end %>
+
+        <li>
+          <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+          <%= link_to 'Cancel', financials_path, class: 'dropdown-item' %>
+        </li>
+        <div class='dropdown-item-dividier'></div>
+
+        <li>
+          <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+          <%= link_to 'Print', financial_path(@financial, format: 'pdf'), class: 'dropdown-item' %>
+        </li>
+          <div class='dropdown-item-dividier'></div>
+
+        <li>
+          <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+          <%= link_to 'History Changes', "/histories/#{@financial.class}/#{@financial.id}", class: 'dropdown-item' %>
+        </li>
+    </ul>
+  </div>
 </div>
