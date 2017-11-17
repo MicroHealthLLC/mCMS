@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>Title:</strong>
+      <%= @job_app.title %>
+    </p>
+
+    <p>
+      <strong>Occupation:</strong>
+      <%= @job_app.occupation %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @job_app.description.html_safe %>
+    </p>
+
+    <p>
+      <strong>App state:</strong>
+      <%= @job_app.app_state %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @job_app.job_app_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
+</div>
