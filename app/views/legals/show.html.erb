@@ -1,41 +1,13 @@
-<%= render partial: 'action_menu' %>
-
-<div class="row">
-  <div class="col-xs-12">
-    <p>
-      <strong>Title:</strong>
-      <%= @legal.title %>
-    </p>
-
-    <p>
-      <strong>Legal History Type:</strong>
-      <%= @legal.legal_history_type %>
-    </p>
-
-    <p>
-      <strong>Legal History Status:</strong>
-      <%= @legal.legal_history_status %>
-    </p>
-    <p>
-      <strong>Date Start:</strong>
-      <%= format_date @legal.date_start %>
-    </p>
-
-    <p>
-      <strong>Date End:</strong>
-      <%= format_date @legal.date_end %>
-    </p>
-
-    <p>
-      <strong>Description:</strong>
-      <%= @legal.description.html_safe %>
-    </p>
-
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @legal.legal_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
+<section id="widget-grid" class="legal_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Legal'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
