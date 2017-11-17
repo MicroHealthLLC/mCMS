@@ -1,43 +1,13 @@
-<%= render partial: 'action_menu' %>
-
-<div class="row">
-  <div class="col-xs-12">
-    <p>
-      <strong>Injury:</strong>
-      <%= @worker_compensation.injury %>
-    </p>
-
-    <p>
-      <strong>Compensation type:</strong>
-      <%= @worker_compensation.compensation_type %>
-    </p>
-
-    <p>
-      <strong>Compensation status:</strong>
-      <%= @worker_compensation.compensation_status %>
-    </p>
-
-    <p>
-      <strong>Description:</strong>
-      <%= @worker_compensation.description.html_safe %>
-    </p>
-
-    <p>
-      <strong>Date of compensation start:</strong>
-      <%= format_date @worker_compensation.date_of_compensation_start %>
-    </p>
-
-    <p>
-      <strong>Date of compensation end:</strong>
-      <%= format_date @worker_compensation.date_of_compensation_end %>
-    </p>
-
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @worker_compensation.worker_compensation_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
-
+<section id="widget-grid" class="worker_comp_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Worker Compensation'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
