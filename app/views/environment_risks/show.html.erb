@@ -1,47 +1,13 @@
-<%= render partial: 'action_menu' %>
-
-<div class="row">
-  <div class="col-xs-12">
-    <p>
-      <strong>Name:</strong>
-      <%= @environment_risk.name %>
-    </p>
-
-     <p>
-      <strong>Snomed:</strong>
-      <%= @environment_risk.snomed %>
-    </p>
-
-    <p>
-      <strong>Date started:</strong>
-      <%= format_date @environment_risk.date_started %>
-    </p>
-
-    <p>
-      <strong>Date ended:</strong>
-      <%= format_date @environment_risk.date_ended %>
-    </p>
-
-    <p>
-      <strong>Environment status:</strong>
-      <%= @environment_risk.environment_status %>
-    </p>
-
-    <p>
-      <strong>Environment type:</strong>
-      <%= @environment_risk.environment_type %>
-    </p>
-
-    <p>
-      <strong>Description:</strong>
-      <%= @environment_risk.description.html_safe %>
-    </p>
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @environment_risk.environment_risk_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
-    
+<section id="widget-grid" class="environment_risk_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Environment Risk'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
