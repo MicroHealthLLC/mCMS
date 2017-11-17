@@ -1,50 +1,13 @@
-<%= render partial: 'action_menu' %>
-<div class="col-xs-12">
-
-  <p>
-    <strong>Name:</strong>
-    <%= @certification.name %>
-  </p>
-
-   <p>
-    <strong>Certifying organization:</strong>
-    <%= @certification.certifying_organization %>
-  </p>
-
-  <p>
-    <strong>Certification type:</strong>
-    <%= @certification.certification_type %>
-  </p>
-
-
-  <p>
-    <strong>Certification Status:</strong>
-    <%= @certification.certification_status %>
-  </p>
-
-
-
-  <p>
-    <strong>Date received:</strong>
-    <%= format_date@certification.date_received %>
-  </p>
-
-  <p>
-    <strong>Date expired:</strong>
-    <%=  format_date @certification.date_expired %>
-  </p>
-
-  <p>
-    <strong>Note:</strong>
-    <%= @certification.note.html_safe %>
-  </p>
-
-
-  <p>
-    <strong><%= t('attachments') %>:</strong>
-    <% @certification.certification_attachments.each do |attachment| %>
-        <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-    <% end %>
-  </p>
-
-</div>
+<section id="widget-grid" class="certifications_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Certification'
+                 } %>
+    </article>
+  </div>
+</section>
