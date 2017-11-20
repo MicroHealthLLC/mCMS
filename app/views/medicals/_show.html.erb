@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>Name:</strong>
+      <%= @medical.name %>
+    </p>
+
+    <p>
+      <strong>Snomed:</strong>
+      <%= @medical.snomed %>
+    </p>
+
+    <p>
+      <strong>Medical facility:</strong>
+      <%= @medical.medical_facility %>
+    </p>
+
+    <p>
+      <strong>Date of diagnosis:</strong>
+      <%= format_date @medical.date_of_diagnosis %>
+    </p>
+
+    <p>
+      <strong>Medical history status:</strong>
+      <%= @medical.medical_history_status %>
+    </p>
+
+    <p>
+      <strong>Medical history type:</strong>
+      <%= @medical.medical_history_type %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @medical.description.html_safe %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @medical.medical_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
+</div>
