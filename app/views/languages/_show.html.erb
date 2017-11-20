@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>language Type:</strong>
+      <%= @language.language_type %>
+    </p>
+
+    <p>
+      <strong>language Status:</strong>
+      <%= @language.language_status %>
+    </p>
+
+    <p>
+      <strong>Proficient:</strong>
+      <%= @language.proficiency_type %>
+    </p>
+
+    <p>
+      <strong>Note:</strong>
+      <%= @language.note.html_safe %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @language.language_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
+</div>
