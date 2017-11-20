@@ -1,43 +1,13 @@
-<%= render partial: 'action_menu' %>
-<div class="row">
-  <div class="col-xs12">
-
-    <p>
-      <strong>Care Facility name:</strong>
-      <%= @admission.care_family_name %>
-    </p>
-
-    <p>
-      <strong>Date admitted:</strong>
-      <%= format_date @admission.date_admitted %>
-    </p>
-
-    <p>
-      <strong>Date discharged:</strong>
-      <%= format_date @admission.date_discharged %>
-    </p>
-
-    <p>
-      <strong>Admission status:</strong>
-      <%= @admission.admission_status %>
-    </p>
-
-    <p>
-      <strong>Admission type:</strong>
-      <%= @admission.admission_type %>
-    </p>
-
-    <p>
-      <strong>Description:</strong>
-      <%= @admission.description.html_safe %>
-    </p>
-
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @admission.admission_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
-
+<section id="widget-grid" class="admissions_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Admission'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
