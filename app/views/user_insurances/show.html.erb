@@ -1,70 +1,18 @@
-<%= render partial: 'action_menu' %>
-<div class="row" >
-  <div class="col-xs-12" >
-    <p>
-      <strong>User:</strong>
-      <%= @user_insurance.user %>
-    </p>
-
-    <p>
-      <strong>Insurance:</strong>
-      <%= @user_insurance.insurance %>
-    </p>
-
-    <p>
-      <strong>Insurance Relationship:</strong>
-      <%= @user_insurance.insurance_relationship %>
-    </p>
-
-    <p>
-      <strong>Insured name:</strong>
-      <%= @user_insurance.insured_name %>
-    </p>
-
-    <p>
-      <strong>Insurance Type:</strong>
-      <%= @user_insurance.insurance_type %>
-    </p>
-
-    <p>
-      <strong>Insurance Status:</strong>
-      <%= @user_insurance.insurance_status %>
-    </p>
-
-    <p>
-      <strong>Insurance ID:</strong>
-      <%= @user_insurance.insurance_identifier %>
-    </p>
-
-      <p>
-      <strong>Group ID:</strong>
-      <%= @user_insurance.group_id %>
-    </p>
-
-    <p>
-      <strong>Issue date:</strong>
-      <%= format_date @user_insurance.issue_date %>
-    </p>
-
-    <p>
-      <strong>Expiration date:</strong>
-      <%= format_date @user_insurance.expiration_date %>
-    </p>
-
-    <p>
-      <strong>Note:</strong>
-      <%= @user_insurance.note.html_safe %>
-    </p>
-
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @user_insurance.user_insurance_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
-
+<section id="widget-grid" class="user_insurance_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'User Insurance'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
+
+
 <%= link_to( t('add_jsignature'), new_jsignature_path(owner_type: "#{@user_insurance.class}", owner_id: @user_insurance.id), class: 'btn btn-primary pull-right btn-edition') if can?(:add_jsignatures, :manage_roles) %>
 <div class="row">
   <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
