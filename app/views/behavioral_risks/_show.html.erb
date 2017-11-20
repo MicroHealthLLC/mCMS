@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>Name:</strong>
+      <%= @behavioral_risk.name %>
+    </p>
+    <p>
+      <strong>Snomed:</strong>
+      <%= @behavioral_risk.snomed %>
+    </p>
+
+    <p>
+      <strong>Date started:</strong>
+      <%= format_date @behavioral_risk.date_started %>
+    </p>
+
+    <p>
+      <strong>Date ended:</strong>
+      <%= format_date @behavioral_risk.date_ended %>
+    </p>
+
+    <p>
+      <strong>Behavioral risk status:</strong>
+      <%= @behavioral_risk.behavioral_risk_status %>
+    </p>
+
+    <p>
+      <strong>Behavioral risk type:</strong>
+      <%= @behavioral_risk.behavioral_risk_type %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @behavioral_risk.description.html_safe %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @behavioral_risk.behavioral_risk_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>   
+  </div>
+</div>
