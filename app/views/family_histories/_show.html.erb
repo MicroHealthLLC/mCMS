@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>Name:</strong>
+      <%= @family_history.name %>
+    </p>
+
+    <p>
+      <strong>Snomed:</strong>
+      <%= @family_history.snomed %>
+    </p>
+
+    <p>
+      <strong>Date identified:</strong>
+      <%= format_date @family_history.date_identified %>
+    </p>
+
+    <p>
+      <strong>Family status:</strong>
+      <%= @family_history.family_status %>
+    </p>
+
+    <p>
+      <strong>Family type:</strong>
+      <%= @family_history.family_type %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @family_history.description.html_safe %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @family_history.family_history_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>   
+  </div>
+</div>
