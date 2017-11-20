@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>Name:</strong>
+      <%= @laboratory_examination.snomed %>
+    </p>
+
+    <p>
+      <strong>Facility:</strong>
+      <%= @laboratory_examination.facility %>
+    </p>
+
+    <p>
+      <strong>Date:</strong>
+      <%= @laboratory_examination.date %>
+    </p>
+    <p>
+      <strong>Laboratory result status:</strong>
+      <%= @laboratory_examination.laboratory_result_status %>
+    </p>
+    <p>
+      <strong>Result:</strong>
+      <%= @laboratory_examination.result.html_safe %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @laboratory_examination.laboratory_examination_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
+</div>
