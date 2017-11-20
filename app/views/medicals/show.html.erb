@@ -1,48 +1,13 @@
-<%= render partial: 'action_menu' %>
-
-<div class="row">
-  <div class="col-xs-12">
-
-    <p>
-      <strong>Name:</strong>
-      <%= @medical.name %>
-    </p>
-
-    <p>
-      <strong>Snomed:</strong>
-      <%= @medical.snomed %>
-    </p>
-
-    <p>
-      <strong>Medical facility:</strong>
-      <%= @medical.medical_facility %>
-    </p>
-
-    <p>
-      <strong>Date of diagnosis:</strong>
-      <%= format_date @medical.date_of_diagnosis %>
-    </p>
-
-    <p>
-      <strong>Medical history status:</strong>
-      <%= @medical.medical_history_status %>
-    </p>
-
-    <p>
-      <strong>Medical history type:</strong>
-      <%= @medical.medical_history_type %>
-    </p>
-
-    <p>
-      <strong>Description:</strong>
-      <%= @medical.description.html_safe %>
-    </p>
-
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @medical.medical_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
+<section id="widget-grid" class="medical_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Medical History'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
