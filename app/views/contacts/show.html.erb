@@ -1,58 +1,13 @@
-<%= render partial: 'action_menu.html.erb' %>
-<div class="col-xs-12">
-  <p>
-    <strong>Emergency contact:</strong>
-    <%= @contact.emergency_contact %>
-  </p>
-
-
-  <p>
-    <strong>First name:</strong>
-    <%= @contact.first_name %>
-  </p>
-
-  <p>
-    <strong>Middle name:</strong>
-    <%= @contact.middle_name %>
-  </p>
-
-  <p>
-    <strong>Last name:</strong>
-    <%= @contact.last_name %>
-  </p>
-
-  <p>
-    <strong>Contact status:</strong>
-    <%= @contact.contact_status %>
-  </p>
-
-  <p>
-    <strong>language:</strong>
-    <%= @contact.language %>
-  </p>
-
-  <p>
-    <strong>Date started:</strong>
-    <%= format_date @contact.date_started %>
-  </p>
-
-  <p>
-    <strong>Date ended:</strong>
-    <%= format_date @contact.date_ended %>
-  </p>
-
-  <p>
-    <strong>Note:</strong>
-    <%= @contact.note.html_safe %>
-  </p>
-
-
-  <p>
-    <strong><%= t('attachments') %>:</strong>
-    <% @contact.contact_attachments.each do |attachment| %>
-        <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-    <% end %>
-  </p>
-
-  <%= render_extend_demography_information(@contact.contact_extend_demography) %>
-</div>
+<section id="widget-grid" class="contacts_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Contact'
+                 } %>
+    </article>
+  </div>
+</section>
