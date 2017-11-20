@@ -1,17 +1,67 @@
 <div class="col-xs-12 btn-edition">
-  <%= link_to('Delete', case_support_path(@case_support), class: 'btn btn-danger pull-right',
-              :method => :delete,
-              :data => {:confirm => t(:text_are_you_sure)}) if @case_support.can?(:manage_roles, :delete_case_supports, :manage_case_supports)
-  %>
-  <%= link_to(t('button_edit'), edit_case_support_path(@case_support), class: 'btn btn-success pull-right') if @case_support.can?(:manage_roles, :manage_case_supports, :edit_case_supports) %>
-  <%= link_to(t('button_cancel'), case_url(@case_support.case), class: 'btn btn-warning pull-right') %>
-  <%= link_to(t('button_print'), case_support_path(@case_support, format: 'pdf'), class: 'btn btn-primary pull-right') %>
-  <%= link_to t('button_history_changes'), "/histories/#{@case_support.class}/#{@case_support.id}", class: 'btn btn-primary pull-right' %>
-  <% if @case_support.can?(:manage_roles, :manage_case_supports, :edit_case_supports) %>
-      <% if @case_support.removed? %>
-          <%= link_to( 'put it back', remove_case_support_path(@case_support, back: true), class: 'btn btn-danger pull-right') %>
-      <% else %>
-          <%= link_to( t('button_remove'), remove_case_support_path(@case_support), class: 'btn btn-danger pull-right') %>
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+    <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:170px;">
+      <% if @case_support.can?(:manage_roles, :delete_case_supports, :manage_case_supports) %>
+        <li>
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            <%= link_to('Delete', case_support_path(@case_support), class: 'dropdown-item',
+                        :method => :delete,
+                        :data => {:confirm => t(:text_are_you_sure)}) 
+            %>
+        </li>
+        <div class='dropdown-item-dividier'></div>
       <% end %>
-  <% end %>
+
+      <% if params[:action] == 'show' %>
+        <% if @case_support.can?(:manage_roles, :manage_case_supports, :edit_case_supports) %>
+          <li>
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <%= link_to 'Edit', edit_case_support_path(@case_support), class: 'dropdown-item' %>
+          </li>
+          <div class='dropdown-item-dividier'></div>
+        <% end %>
+      <% else %>
+        <% if @case_support.can?(:manage_roles, :manage_case_supports, :show_case_supports) %>
+          <li>
+            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+            <%= link_to 'Show', case_support_path(@case_support), class: 'dropdown-item' %>
+          </li>
+          <div class='dropdown-item-dividier'></div>
+        <% end %>
+      <% end %>
+
+        <li>
+          <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+          <%= link_to 'Cancel', case_url(@case_support.case), class: 'dropdown-item' %>
+        </li>
+        <div class='dropdown-item-dividier'></div>
+
+        <li>
+          <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+          <%= link_to 'Print', case_support_path(@case_support, format: 'pdf'), class: 'dropdown-item' %>
+        </li>
+          <div class='dropdown-item-dividier'></div>
+
+        <li>
+          <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+          <%= link_to 'History Changes', "/histories/#{@case_support.class}/#{@case_support.id}", class: 'dropdown-item' %>
+        </li>
+
+        <% if @case_support.can?(:manage_roles, :manage_case_supports, :edit_case_supports) %>
+          <div class='dropdown-item-dividier'></div>
+          <% if @case_support.removed? %>
+            <li>
+              <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
+              <%= link_to 'Put It Back', remove_case_support_path(@case_support, back: true), class: 'dropdown-item' %>
+            </li>
+          <% else %>
+            <li>
+              <span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span>
+              <%= link_to 'Remove', remove_case_support_path(@case_support), class: 'dropdown-item' %>
+            </li>
+        <% end %>
+    </ul>
+  </div>
 </div>
+
