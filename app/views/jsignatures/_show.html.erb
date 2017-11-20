@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>Person name:</strong>
+      <%= @jsignature.person_name %>
+    </p>
+
+    <p>
+      <strong>User:</strong>
+      <%= @jsignature.user %>
+    </p>
+
+    <p>
+      <strong>Created at:</strong>
+      <%= format_date_time @jsignature.created_at %>
+    </p>
+
+    <% unless @jsignature.signature_owner.class.is_a? User %>
+        <p>
+          <strong><%= @jsignature.signature_owner.class %>:</strong>
+          <%= link_to @jsignature.signature_owner.to_s, @jsignature.signature_owner %>
+        </p>
+    <% end %>
+
+    <p>
+      <strong>Signature:</strong>
+      <%= image_tag @jsignature.signature.html_safe, class: 'img-responsive' %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @jsignature.signature_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
+</div>
