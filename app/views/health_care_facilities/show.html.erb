@@ -1,48 +1,13 @@
-<%= render partial: 'action_menu' %>
-<div class="row">
-  <div class="col-xs-12">
-
-    <p>
-      <strong>Name:</strong>
-      <%= @health_care_facility.name %>
-    </p>
-
-    <p>
-      <strong>Health care facility type:</strong>
-      <%= @health_care_facility.health_care_facility_type %>
-    </p>
-
-    <p>
-      <strong>Health care facility status:</strong>
-      <%= @health_care_facility.health_care_facility_status %>
-    </p>
-
-    <p>
-      <strong>Health care facility contact:</strong>
-      <%= @health_care_facility.health_care_facility_contact.html_safe %>
-    </p>
-
-    <p>
-      <strong>Date started:</strong>
-      <%= format_date @health_care_facility.date_started %>
-    </p>
-
-    <p>
-      <strong>Date end:</strong>
-      <%= format_date @health_care_facility.date_end %>
-    </p>
-
-    <p>
-      <strong>Description:</strong>
-      <%= @health_care_facility.description.html_safe %>
-    </p>
-
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @health_care_facility.health_care_facility_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
-
+<section id="widget-grid" class="health_care_facility_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Health Care Facility'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
