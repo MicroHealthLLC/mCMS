@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>Case:</strong>
+      <%= @case_watcher.case %>
+    </p>
+
+    <p>
+      <strong>User:</strong>
+      <%= @case_watcher.user %>
+    </p>
+
+    <p>
+      <strong>Reason:</strong>
+      <%= @case_watcher.reason.to_s.html_safe %>
+    </p>
+  </div>
+</div>
