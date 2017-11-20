@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>Name:</strong>
+      <%= @problem_list.name %>
+    </p>
+
+    <p>
+      <strong>Snomed:</strong>
+      <%= @problem_list.snomed %>
+    </p>
+
+    <p>
+      <strong>Date onset:</strong>
+      <%= format_date @problem_list.date_onset %>
+    </p>
+
+    <p>
+      <strong>Date resolved:</strong>
+      <%= format_date @problem_list.date_resolved %>
+    </p>
+
+    <p>
+      <strong>Problem status:</strong>
+      <%= @problem_list.problem_status %>
+    </p>
+
+    <p>
+      <strong>Problem type:</strong>
+      <%= @problem_list.problem_type %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @problem_list.description.html_safe %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @problem_list.problem_list_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
+</div>
