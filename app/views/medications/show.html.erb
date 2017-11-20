@@ -1,60 +1,13 @@
-<%= render partial: 'action_menu' %>
-
-<div class="row">
-  <div class="col-xs-12">
-
-    <p>
-      <strong>Medication TTY:</strong> <%= @medication.medication_tty %><br/>
-      <strong>Medication rxcui:</strong> <%= @medication.rxcui %><br/>
-      <strong>Medication Name:</strong> <%= @medication.medication %><br/>
-      <strong>Medication synonym:</strong> <%= @medication.medication_synonym %>
-    </p>
-
-    <p>
-      <strong>Count:</strong>
-      <%= @medication.dose %>
-    </p>
-
-    <p>
-      <strong>Directions:</strong>
-      <%= @medication.description %>
-    </p>
-
-    <p>
-      <strong>Date prescripted:</strong>
-      <%= format_date @medication.date_prescribed %>
-    </p>
-
-    <p>
-      <strong>Date expired:</strong>
-      <%= format_date @medication.date_expired %>
-    </p>
-
-    <p>
-      <strong>Total refills:</strong>
-      <%= @medication.total_refills %>
-    </p>
-
-    <p>
-      <strong>Refills left:</strong>
-      <%= @medication.refills_left %>
-    </p>
-
-    <p>
-      <strong>Medication status:</strong>
-      <%= @medication.medication_status %>
-    </p>
-
-    <p>
-      <strong>Medication description:</strong>
-      <%= @medication.medication_description.html_safe %>
-    </p>
-
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @medication.medication_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
+<section id="widget-grid" class="medication_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Medication'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
