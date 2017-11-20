@@ -1,35 +1,13 @@
-<%= render partial: 'action_menu' %>
-<div class="row">
-  <div class="col-xs-12">
-
-    <p>
-      <strong>Name:</strong>
-      <%= @laboratory_examination.snomed %>
-    </p>
-
-    <p>
-      <strong>Facility:</strong>
-      <%= @laboratory_examination.facility %>
-    </p>
-
-    <p>
-      <strong>Date:</strong>
-      <%= @laboratory_examination.date %>
-    </p>
-    <p>
-      <strong>Laboratory result status:</strong>
-      <%= @laboratory_examination.laboratory_result_status %>
-    </p>
-    <p>
-      <strong>Result:</strong>
-      <%= @laboratory_examination.result.html_safe %>
-    </p>
-
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @laboratory_examination.laboratory_examination_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
+<section id="widget-grid" class="laboratory_examination">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Laboratory Examination'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
