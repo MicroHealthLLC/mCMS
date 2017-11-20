@@ -1,14 +1,52 @@
 <div class="col-xs-12 btn-edition">
-  <%= link_to( 'Delete', language_path(@language), class: 'btn btn-danger pull-right',
-               :method => :delete,
-               :data => {:confirm => t(:text_are_you_sure)})  if @language.can?(:delete_languages, :manage_languages, :manage_roles)
-  %>
-  <% if params[:action] == 'show' %>
-      <%= link_to 'Edit', edit_language_path(@language), class: 'btn btn-success pull-right'   if @language.can?(:edit_languages, :manage_languages, :manage_roles)%>
-  <% else %>
-      <%= link_to 'Show', language_path(@language), class: 'btn btn-success pull-right'   if @language.can?(:show_languages, :manage_languages, :manage_roles)%>
-  <% end %>
-  <%= link_to t('button_cancel'), languages_path, class: 'btn btn-warning pull-right' %>
-  <%= link_to t('button_print'), language_path(@language, format: 'pdf'), class: 'btn btn-primary pull-right' %>
-  <%= link_to t('button_history_changes'), "/histories/#{@language.class}/#{@language.id}", class: 'btn btn-primary pull-right' %>
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+    <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:170px;">
+      <% if @language.can?(:delete_languages, :manage_languages, :manage_roles) %>
+        <li>
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            <%= link_to('Delete', language_path(@language), class: 'dropdown-item',
+                        :method => :delete,
+                        :data => {:confirm => t(:text_are_you_sure)}) 
+            %>
+        </li>
+        <div class='dropdown-item-dividier'></div>
+      <% end %>
+
+      <% if params[:action] == 'show' %>
+        <% if @language.can?(:edit_languages, :manage_languages, :manage_roles) %>
+          <li>
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <%= link_to 'Edit', edit_language_path(@language), class: 'dropdown-item' %>
+          </li>
+          <div class='dropdown-item-dividier'></div>
+        <% end %>
+      <% else %>
+        <% if @language.can?(:show_languages, :manage_languages, :manage_roles) %>
+          <li>
+            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+            <%= link_to 'Show', language_path(@language), class: 'dropdown-item' %>
+          </li>
+          <div class='dropdown-item-dividier'></div>
+        <% end %>
+      <% end %>
+
+        <li>
+          <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+          <%= link_to 'Cancel', languages_path, class: 'dropdown-item' %>
+        </li>
+        <div class='dropdown-item-dividier'></div>
+
+        <li>
+          <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+          <%= link_to 'Print', language_path(@language, format: 'pdf'), class: 'dropdown-item' %>
+        </li>
+          <div class='dropdown-item-dividier'></div>
+
+        <li>
+          <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+          <%= link_to 'History Changes', "/histories/#{@language.class}/#{@language.id}", class: 'dropdown-item' %>
+        </li>
+    </ul>
+  </div>
 </div>
