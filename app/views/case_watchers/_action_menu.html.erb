@@ -1,8 +1,40 @@
 <div class="col-xs-12 btn-edition">
-  <%= link_to('Delete', case_watcher_path(@case_watcher), class: 'btn btn-danger pull-right',
-              :method => :delete,
-              :data => {:confirm => t(:text_are_you_sure)}) if can?(:manage_roles, :manage_watchers)
-  %>
-  <%= link_to(t('button_edit'), edit_case_watcher_path(@case_watcher), class: 'btn btn-success pull-right') if can?(:manage_roles, :manage_watchers) %>
-  <%= link_to(t('button_cancel'), case_url(@case_watcher.case), class: 'btn btn-warning pull-right') %>
- </div>
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+    <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:170px;">
+      <% if can?(:manage_roles, :manage_watchers, :delete_watchers) %>
+        <li>
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            <%= link_to('Delete', case_watcher_path(@case_watcher), class: 'dropdown-item',
+                        :method => :delete,
+                        :data => {:confirm => t(:text_are_you_sure)}) 
+            %>
+        </li>
+        <div class='dropdown-item-dividier'></div>
+      <% end %>
+
+      <% if params[:action] == 'show' %>
+        <% if can?(:manage_roles, :manage_watchers, :edit_manage_watchers) %>
+          <li>
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <%= link_to 'Edit', edit_case_watcher_path(@case_watcher), class: 'dropdown-item' %>
+          </li>
+          <div class='dropdown-item-dividier'></div>
+        <% end %>
+      <% else %>
+        <% if can?(:manage_roles, :manage_watchers, :show_manage_watchers) %>
+          <li>
+            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+            <%= link_to 'Show', case_watcher_path(@case_watcher), class: 'dropdown-item' %>
+          </li>
+          <div class='dropdown-item-dividier'></div>
+        <% end %>
+      <% end %>
+
+        <li>
+          <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+          <%= link_to 'Cancel', case_url(@case_watcher.case), class: 'dropdown-item' %>
+        </li>
+     </ul>
+  </div>
+</div>
