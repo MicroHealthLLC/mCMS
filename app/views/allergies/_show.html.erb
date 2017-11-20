@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>Allergy type:</strong>
+      <%= @allergy.snomed %>
+    </p>
+
+    <p>
+      <strong>Allergy date:</strong>
+      <%= format_date @allergy.allergy_date %>
+    </p>
+
+    <p>
+      <strong>Allergy status:</strong>
+      <%= @allergy.allergy_status %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @allergy.description %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @allergy.allergy_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>   
+  </div>
+</div>
