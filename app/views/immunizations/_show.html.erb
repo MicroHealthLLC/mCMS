@@ -1,0 +1,50 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>Medication:</strong>
+      <%= @immunization.snomed %>
+    </p>
+
+    <p>
+      <strong>Next date due:</strong>
+      <%= format_date @immunization.next_date_due %>
+    </p>
+
+    <p>
+      <strong>Date immunized:</strong>
+      <%= format_date @immunization.date_immunized %>
+    </p>
+
+    <p>
+      <strong>Manufacturer:</strong>
+      <%= @immunization.manufacturer %>
+    </p>
+
+    <p>
+      <strong>Lot number:</strong>
+      <%= @immunization.lot_number %>
+    </p>
+
+    <p>
+      <strong>Expiration date:</strong>
+      <%= format_date @immunization.expiration_date %>
+    </p>
+
+    <p>
+      <strong>Immnunization status:</strong>
+      <%= @immunization.immunization_status %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @immunization.description.html_safe %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @immunization.immunization_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
+</div>
