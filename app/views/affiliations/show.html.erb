@@ -1,42 +1,13 @@
-<%= render partial: 'action_menu' %>
-<div class="col-xs-12">
-  <p>
-    <strong>Name:</strong>
-    <%= @affiliation.name %>
-  </p>
-
-  <p>
-    <strong>Affiliation Type:</strong>
-    <%= @affiliation.affiliation_type %>
-  </p>
-
-  <p>
-    <strong>Affiliation Status:</strong>
-    <%= @affiliation.affiliation_status %>
-  </p>
-
-  <p>
-    <strong>Date Start:</strong>
-    <%= format_date  @affiliation.date_start %>
-  </p>
-
-  <p>
-    <strong>Date End:</strong>
-    <%= format_date @affiliation.date_end %>
-  </p>
-
-  <p>
-    <strong>Note:</strong>
-    <%= @affiliation.note.html_safe %>
-  </p>
-
-
-  <p>
-    <strong><%= t('attachments') %>:</strong>
-    <% @affiliation.affiliation_attachments.each do |attachment| %>
-        <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-    <% end %>
-  </p>
-
-  <%= render_extend_demography_information(@affiliation.affiliation_extend_demography) %>
-</div>
+<section id="widget-grid" class="affiliations_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Affiliation'
+                 } %>
+    </article>
+  </div>
+</section>
