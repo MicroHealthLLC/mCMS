@@ -1,26 +1,14 @@
-<fieldset>
-  <legend></legend>
-  <%= simple_form_for(@case_watcher, html: { class: 'form-horizontal' }) do |f| %>
-      <div class="form-group">
-        <%= f.label :user, class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select 'user_id', options_for_select(@users.map{|user| [user.name, user.id]}), {}, {class: 'form-control'} %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :reason, class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_area :reason, class: 'form-control ck-editor' %>
-        </div>
-      </div>
-
-      <div class="form-group" >
-        <div class="col-md-11">
-          <%= link_to t('button_cancel'), case_url(@case), class: 'btn btn-warning pull-right' %>
-          <%= submit_tag t('button_save'), class: 'btn btn-primary pull-right' %>
-        </div>
-      </div>
-  <% end %>
-
-</fieldset>
+<%= render partial: 'action_menu' %>
+<section id="widget-grid" class="case_watcher_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'form',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     admission: @case_watcher,
+                     wid_id: 'casewatcher',
+                     wid_title: 'Edit Case Watcher'
+                 } %>
+    </article>
+  </div>
+</section>
