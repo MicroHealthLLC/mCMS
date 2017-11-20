@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>Name:</strong>
+      <%= @surgical.name %>
+    </p>
+
+    <p>
+      <strong><%= t :hcpc %>:</strong>
+      <%= @surgical.hcpc %>
+    </p>
+
+    <p>
+      <strong>Medical facility:</strong>
+      <%= @surgical.medical_facility %>
+    </p>
+
+    <p>
+      <strong>Surgery status:</strong>
+      <%= @surgical.surgery_status %>
+    </p>
+
+    <p>
+      <strong>Surgery type:</strong>
+      <%= @surgical.surgery_type %>
+    </p>
+
+    <p>
+      <strong>surgery date:</strong>
+      <%= format_date @surgical.surgery_date %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @surgical.description.html_safe %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @surgical.surgical_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>    
+  </div>
+</div>
