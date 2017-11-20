@@ -1,56 +1,17 @@
-
-<%= render partial: 'action_menu' %>
-
-<div class="row">
-  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
-
-    <p>
-      <strong>User:</strong>
-      <%= @transport.user %>
-    </p>
-
-    <p>
-      <strong>Reason:</strong>
-      <%= @transport.reason %>
-    </p>
-
-    <p>
-      <strong>Transport type:</strong>
-      <%= @transport.transport_type %>
-    </p>
-
-     <p>
-      <strong>Location:</strong>
-      <%= @transport.location %>
-    </p>
-
-    <p>
-      <strong>Description:</strong>
-      <%= @transport.description.html_safe %>
-    </p>
-
-    <p>
-      <strong>Transport location:</strong>
-      <%= @transport.transport_location %>
-    </p>
-
-    <p>
-      <strong>Transport status:</strong>
-      <%= @transport.transport_status %>
-    </p>
-
-    <p>
-      <strong>Date time:</strong>
-      <%= format_date_time @transport.date_time %>
-    </p>
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @transport.transport_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
+<section id="widget-grid" class="transport_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Transport'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
+
 
 <section id="widget-grid" class="appointment_captures">
   <div class="col-xs-12 btn-edition tabs-section">
