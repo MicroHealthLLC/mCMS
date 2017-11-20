@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>User:</strong>
+      <%= @transport.user %>
+    </p>
+
+    <p>
+      <strong>Reason:</strong>
+      <%= @transport.reason %>
+    </p>
+
+    <p>
+      <strong>Transport type:</strong>
+      <%= @transport.transport_type %>
+    </p>
+
+     <p>
+      <strong>Location:</strong>
+      <%= @transport.location %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @transport.description.html_safe %>
+    </p>
+
+    <p>
+      <strong>Transport location:</strong>
+      <%= @transport.transport_location %>
+    </p>
+
+    <p>
+      <strong>Transport status:</strong>
+      <%= @transport.transport_status %>
+    </p>
+
+    <p>
+      <strong>Date time:</strong>
+      <%= format_date_time @transport.date_time %>
+    </p>
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @transport.transport_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
+</div>
