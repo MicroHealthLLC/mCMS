@@ -1,45 +1,13 @@
-<%= render partial: 'action_menu' %>
-
-<div class="row">
-  <div class="col-xs-12">
-
-    <p>
-      <strong>Name:</strong>
-      <%= @family_history.name %>
-    </p>
-
-    <p>
-      <strong>Snomed:</strong>
-      <%= @family_history.snomed %>
-    </p>
-
-    <p>
-      <strong>Date identified:</strong>
-      <%= format_date @family_history.date_identified %>
-    </p>
-
-    <p>
-      <strong>Family status:</strong>
-      <%= @family_history.family_status %>
-    </p>
-
-    <p>
-      <strong>Family type:</strong>
-      <%= @family_history.family_type %>
-    </p>
-
-    <p>
-      <strong>Description:</strong>
-      <%= @family_history.description.html_safe %>
-    </p>
-
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @family_history.family_history_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
-
-    
+<section id="widget-grid" class="family_history_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Family History'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
