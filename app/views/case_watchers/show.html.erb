@@ -1,22 +1,13 @@
-<%= render partial: 'action_menu' %>
-<section id="widget-grid" class="checklists_account">
+<section id="widget-grid" class="case_watcher_section">
+  <%= render partial: 'action_menu' %>
   <div class="row">
-    <div class="col-xs-12">
-
-      <p>
-        <strong>Case:</strong>
-        <%= @case_watcher.case %>
-      </p>
-
-      <p>
-        <strong>User:</strong>
-        <%= @case_watcher.user %>
-      </p>
-
-      <p>
-        <strong>Reason:</strong>
-        <%= @case_watcher.reason.to_s.html_safe %>
-      </p>
-    </div>
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Case Watcher'
+                 } %>
+    </article>
   </div>
 </section>
