@@ -1,47 +1,13 @@
-<%= render partial: 'action_menu' %>
-<div class="row">
-  <div class="col-xs12">
-    <p>
-      <strong>Name:</strong>
-      <%= @problem_list.name %>
-    </p>
-
-    <p>
-      <strong>Snomed:</strong>
-      <%= @problem_list.snomed %>
-    </p>
-
-    <p>
-      <strong>Date onset:</strong>
-      <%= format_date @problem_list.date_onset %>
-    </p>
-
-    <p>
-      <strong>Date resolved:</strong>
-      <%= format_date @problem_list.date_resolved %>
-    </p>
-
-    <p>
-      <strong>Problem status:</strong>
-      <%= @problem_list.problem_status %>
-    </p>
-
-    <p>
-      <strong>Problem type:</strong>
-      <%= @problem_list.problem_type %>
-    </p>
-
-    <p>
-      <strong>Description:</strong>
-      <%= @problem_list.description.html_safe %>
-    </p>
-
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @problem_list.problem_list_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
-
+<section id="widget-grid" class="problem_list_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Problem List'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
