@@ -1,40 +1,13 @@
-<%= render partial: 'action_menu' %>
-<div class="row">
-  <div class="col-xs-12">
-
-    <p>
-      <strong>Person name:</strong>
-      <%= @jsignature.person_name %>
-    </p>
-
-    <p>
-      <strong>User:</strong>
-      <%= @jsignature.user %>
-    </p>
-
-    <p>
-      <strong>Created at:</strong>
-      <%= format_date_time @jsignature.created_at %>
-    </p>
-
-    <% unless @jsignature.signature_owner.class.is_a? User %>
-        <p>
-          <strong><%= @jsignature.signature_owner.class %>:</strong>
-          <%= link_to @jsignature.signature_owner.to_s, @jsignature.signature_owner %>
-        </p>
-    <% end %>
-
-    <p>
-      <strong>Signature:</strong>
-      <%= image_tag @jsignature.signature.html_safe, class: 'img-responsive' %>
-    </p>
-
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @jsignature.signature_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
-
+<section id="widget-grid" class="jsignature_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Signature'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
