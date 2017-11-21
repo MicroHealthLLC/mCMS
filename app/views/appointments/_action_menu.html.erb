@@ -17,7 +17,7 @@
         <% if @appointment.can?(:manage_roles, :edit_appointment, :manage_appointment) %>
           <li>
             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-            <%= link_to 'Edit', edit_case_path(@case), class: 'dropdown-item' %>
+            <%= link_to 'Edit', edit_appointment_path(@appointment), class: 'dropdown-item' %>
           </li>
           <div class='dropdown-item-dividier'></div>
         <% end %>
