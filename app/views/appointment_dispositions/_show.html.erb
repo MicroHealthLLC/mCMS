@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>User:</strong>
+      <%= @appointment_disposition.user %>
+    </p>
+
+    <p>
+      <strong>Appointment:</strong>
+      <%= @appointment_disposition.appointment %>
+    </p>
+
+    <p>
+      <strong>Disposition:</strong>
+      <%= @appointment_disposition.disposition %>
+    </p>
+
+    <p>
+      <strong>Related to:</strong>
+      <%= @appointment_disposition.related_to %>
+    </p>
+
+    <p>
+      <strong>Date recorded:</strong>
+      <%= format_date @appointment_disposition.date_recorded %>
+    </p>
+
+    <p>
+      <strong>Note:</strong>
+      <%= @appointment_disposition.note.html_safe %>
+    </p>
+  </div>
+</div>
