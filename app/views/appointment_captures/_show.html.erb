@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>User:</strong>
+      <%= @appointment_capture.user %>
+    </p>
+
+    <p>
+      <strong>Appointment:</strong>
+      <%= @appointment_capture.appointment %>
+    </p>
+
+    <p>
+      <strong>Icdcm code:</strong>
+      <%= @appointment_capture.icdcm_code %>
+    </p>
+
+    <p>
+      <strong>Date recorded:</strong>
+      <%= format_date @appointment_capture.date_recorded %>
+    </p>
+
+    <p>
+      <strong>Note:</strong>
+      <%= @appointment_capture.note.html_safe %>
+    </p>
+  </div>
+</div>
