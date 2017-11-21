@@ -1,36 +1,13 @@
-<div class="col-xs-12 btn-edition">
-  <%= link_to 'Delete',  appointment_capture_path(@appointment_capture), class: 'btn btn-danger pull-right',
-              :method => :delete,
-              :data => {:confirm => t(:text_are_you_sure)}
-  %>
-  <%= link_to t('button_edit'), edit_appointment_capture_path(@appointment_capture), class: 'btn btn-success pull-right' %>
-  <%= link_to t('button_cancel'), @appointment_capture.appointment, class: 'btn btn-warning pull-right' %>
-</div>
-<div class="col-xs-12">
-  <p>
-    <strong>User:</strong>
-    <%= @appointment_capture.user %>
-  </p>
-
-  <p>
-    <strong>Appointment:</strong>
-    <%= @appointment_capture.appointment %>
-  </p>
-
-
-  <p>
-    <strong>Icdcm code:</strong>
-    <%= @appointment_capture.icdcm_code %>
-  </p>
-
-
-   <p>
-    <strong>Date recorded:</strong>
-    <%= format_date @appointment_capture.date_recorded %>
-  </p>
-
-  <p>
-    <strong>Note:</strong>
-    <%= @appointment_capture.note.html_safe %>
-  </p>
-</div>
+<section id="widget-grid" class="appointment_captures_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'A&D'
+                 } %>
+    </article>
+  </div>
+</section>
