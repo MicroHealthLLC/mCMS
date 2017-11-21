@@ -1,69 +1,13 @@
-<%= render partial: 'action_menu' %>
-<div class="row">
-  <div class="col-xs-12">
-    <p>
-      <strong>Name:</strong>
-      <%= @measurement.measurement_name %>
-    </p>
-
-    <p>
-      <strong>Component:</strong>
-      <%= @measurement.component %>
-    </p>
-
-    <p>
-      <strong>Order:</strong>
-      <%= @measurement.order %>
-    </p>
-
-    <p>
-      <strong>Lower age:</strong>
-      <%= @measurement.lower_age %>
-    </p>
-
-    <p>
-      <strong>Upper age:</strong>
-      <%= @measurement.upper_age %>
-    </p>
-
-    <p>
-      <strong>Lower height:</strong>
-      <%= @measurement.lower_height %>
-    </p>
-
-    <p>
-      <strong>Upper height:</strong>
-      <%= @measurement.upper_height %>
-    </p>
-
-    <p>
-      <strong>Lower weight:</strong>
-      <%= @measurement.lower_weight %>
-    </p>
-
-    <p>
-      <strong>Upper weight:</strong>
-      <%= @measurement.upper_weight %>
-    </p>
-
-    <p>
-      <strong>Gender:</strong>
-      <%= @measurement.gender %>
-    </p>
-
-    <p>
-      <strong>Measured by:</strong>
-      <%= @measurement.measured_by %>
-    </p>
-
-    <p>
-      <strong>Lower measure:</strong>
-      <%= @measurement.lower_measure %>
-    </p>
-
-    <p>
-      <strong>Higher measure:</strong>
-      <%= @measurement.higher_measure %>
-    </p>
+<section id="widget-grid" class="measurement_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Measurement'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
