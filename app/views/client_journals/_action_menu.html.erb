@@ -13,12 +13,22 @@
         <div class='dropdown-item-dividier'></div>
       <% end %>
 
-      <% if @client_journal.can?(:manage_roles, :manages_client_journals, :edit_client_journals) %>
-        <li>
-          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-          <%= link_to 'Edit', edit_client_journal_path(@client_journal), class: 'dropdown-item' %>
-        </li>
-        <div class='dropdown-item-dividier'></div>
+      <% if params[:action] == 'show' %>
+        <% if @client_journal.can?(:manage_roles, :manages_client_journals, :edit_client_journals) %>
+          <li>
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <%= link_to 'Edit', edit_client_journal_path(@client_journal), class: 'dropdown-item' %>
+          </li>
+          <div class='dropdown-item-dividier'></div>
+        <% end %>
+      <% else %>
+        <% if @client_journal.can?(:manage_roles, :manages_client_journals, :show_client_journals) %>
+          <li>
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <%= link_to 'Show', client_journal_path(@client_journal), class: 'dropdown-item' %>
+          </li>
+          <div class='dropdown-item-dividier'></div>
+        <% end %>
       <% end %>
 
       <% if can?(:add_notes, :manage_roles) %>
