@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <% if !@document.is_client_document %>
+        <p>
+          <strong>Case:</strong>
+          <%= link_to_case @document.case %>
+        </p>
+    <% end %>
+
+    <p>
+      <strong><%= t('title') %>:</strong>
+      <%= @document.title %>
+    </p>
+
+    <p>
+      <strong><%= t('description') %>:</strong>
+      <%= @document.description.html_safe %>
+    </p>
+
+    <p>
+      <strong><%= t('document_type') %>:</strong>
+      <%= @document.document_type %>
+    </p>
+
+    <p>
+      <strong><%= t('label_date') %>:</strong>
+      <%= format_date @document.date %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @document.document_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+  </div>
+</div>
+
