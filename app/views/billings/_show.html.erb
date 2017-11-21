@@ -1,0 +1,100 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>Appointment:</strong>
+      <%= link_to @billing.appointment, @billing.appointment%>
+    </p>
+
+    <p>
+      <strong>Bill type:</strong>
+      <%= @billing.bill_type %>
+    </p>
+
+    <p>
+      <strong>Bill status:</strong>
+      <%= @billing.bill_status%>
+    </p>
+
+    <p>
+      <strong>Bill date:</strong>
+      <%= format_date @billing.bill_date %>
+    </p>
+
+    <p>
+      <strong>Bill amount:</strong>
+      <%= @billing.bill_amount %>
+    </p>
+
+    <p>
+      <strong>Accept assignment:</strong>
+      <%= @billing.accept_assignment%>
+    </p>
+
+     <p>
+      <strong>Associated ICD10:</strong>
+      <%= @billing.associated_icd %>
+    </p>
+
+     <p>
+      <strong>Associated HCPCS:</strong>
+      <%= @billing.associated_hcpc%>
+    </p>
+
+    <p>
+      <strong>Resubmission code:</strong>
+      <%= @billing.resubmission_code %>
+    </p>
+
+    <p>
+      <strong>Original reference number:</strong>
+      <%= @billing.original_reference_number %>
+    </p>
+
+    <p>
+      <strong>Prior authorization number:</strong>
+      <%= @billing.prior_authorization_number %>
+    </p>
+
+    <p>
+      <strong>Outside lab:</strong>
+      <%= @billing.outside_lab%>
+    </p>
+
+    <p>
+      <strong>Outside lab charges:</strong>
+      <%= @billing.outside_lab_charges %>
+    </p>
+
+    <p>
+      <strong>Othre source:</strong>
+      <%= @billing.other_source%>
+    </p>
+
+    <p>
+      <strong>Total charge:</strong>
+      <%= @billing.total_charge %>
+    </p>
+
+    <p>
+      <strong>Amount paid:</strong>
+      <%= @billing.amount_paid %>
+    </p>
+
+     <p>
+      <strong>Amount Collected:</strong>
+      <%= @billing.amount_collected %>
+    </p>
+
+    <p>
+      <strong>Note:</strong>
+      <%= @billing.note.html_safe %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @billing.billing_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>    
+  </div>
+</div>
