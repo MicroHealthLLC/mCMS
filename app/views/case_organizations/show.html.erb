@@ -1,20 +1,13 @@
-
-<%= render partial: 'action_menu' %>
-<div class="row">
-  <div class="col-xs-12">
-    <p>
-      <strong><%= t('case') %>:</strong>
-      <%= link_to_case @case_organization.case %>
-    </p>
-
-    <p>
-      <strong><%= t('organization') %>:</strong>
-      <%= @case_organization.organization %>
-    </p>
-
-    <p>
-      <strong>Association:</strong>
-      <%= @case_organization.association_type %>
-    </p>
+<section id="widget-grid" class="case_organization_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Case Organization'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
