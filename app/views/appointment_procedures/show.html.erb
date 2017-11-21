@@ -1,75 +1,13 @@
-<div class="col-xs-12 btn-edition">
-  <%= link_to 'Delete',  appointment_procedure_path(@appointment_procedure), class: 'btn btn-danger pull-right',
-              :method => :delete,
-              :data => {:confirm => t(:text_are_you_sure)}
-  %>
-  <%= link_to t('button_edit'), edit_appointment_procedure_path(@appointment_procedure), class: 'btn btn-success pull-right' %>
-  <%= link_to t('button_cancel'), @appointment_procedure.appointment, class: 'btn btn-warning pull-right' %>
-</div>
-<div class="col-xs-12">
-  <p>
-    <strong>User:</strong>
-    <%= @appointment_procedure.user %>
-  </p>
-
-  <p>
-    <strong>Appointment:</strong>
-    <%= @appointment_procedure.appointment %>
-  </p>
-
-
-  <p>
-    <strong><%= t :hcpc %>:</strong>
-    <%= @appointment_procedure.hcpc %>
-  </p>
-
-  <p>
-    <strong>Modifier:</strong>
-    <%= @appointment_procedure.modifier %>
-  </p>
-
-   <p>
-    <strong>E&M CODE:</strong>
-    <%= @appointment_procedure.em_code %>
-  </p>
-
-   <p>
-    <strong>EPSDT:</strong>
-    <%= @appointment_procedure.epsdt %>
-  </p>
-
-   <p>
-    <strong>Emergency:</strong>
-    <%= @appointment_procedure.emergency %>
-  </p>
-
-  <p>
-    <strong>Unit:</strong>
-    <%= @appointment_procedure.unit %>
-  </p>
-
-  <p>
-    <strong>Diagnosis Pointer:</strong>
-    <%= @appointment_procedure.diagnosis_pointer %>
-  </p>
-
-  <p>
-    <strong>Charges:</strong>
-    <%= @appointment_procedure.charges %>
-  </p>
-
-  <p>
-    <strong>Provider:</strong>
-    <%= @appointment_procedure.provider %>
-  </p>
-
-  <p>
-    <strong>Date recorded:</strong>
-    <%= format_date @appointment_procedure.date_recorded %>
-  </p>
-
-  <p>
-    <strong>Note:</strong>
-    <%= @appointment_procedure.note.html_safe %>
-  </p>
-</div>
+<section id="widget-grid" class="appointment_procedures_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Procedure'
+                 } %>
+    </article>
+  </div>
+</section>
