@@ -1,29 +1,13 @@
-<%= render partial: 'action_menu' %>
-<div class="row">
-  <div class="col-xs12">
-    <p>
-      <strong>Related client:</strong>
-      <%= @related_client.related_client %>
-    </p>
-
-    <p>
-      <strong>Relationship:</strong>
-      <%= @related_client.snomed %>
-    </p>
-
-    <p>
-      <strong>Date start:</strong>
-      <%= format_date @related_client.date_start %>
-    </p>
-
-    <p>
-      <strong>Date end:</strong>
-      <%= format_date @related_client.date_end %>
-    </p>
-
-    <p>
-      <strong>Description:</strong>
-      <%= @related_client.description.html_safe %>
-    </p>
+<section id="widget-grid" class="related_client_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Related Client'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
