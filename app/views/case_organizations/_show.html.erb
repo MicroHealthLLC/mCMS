@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong><%= t('case') %>:</strong>
+      <%= link_to_case @case_organization.case %>
+    </p>
+
+    <p>
+      <strong><%= t('organization') %>:</strong>
+      <%= @case_organization.organization %>
+    </p>
+
+    <p>
+      <strong>Association:</strong>
+      <%= @case_organization.association_type %>
+    </p>
+  </div>
+</div>
