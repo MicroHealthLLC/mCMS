@@ -1,0 +1,10 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>Name:</strong>
+      <%= @insurance.name %>
+    </p>
+
+    <%= render_extend_demography_information(@insurance.insurance_extend_demography) %>
+  </div>
+</div>
