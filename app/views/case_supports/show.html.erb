@@ -1,55 +1,13 @@
-<%= render partial: 'action_menu' %>
-<div class="col-xs-12">
-  <p>
-    <strong><%= t('case') %>:</strong>
-    <%= link_to_case @case_support.case %>
-  </p>
-
-  <p>
-    <strong><%= t('profile.first_name') %>:</strong>
-    <%= @case_support.first_name %>
-  </p>
-
-  <p>
-    <strong><%= t('profile.middle_name') %>:</strong>
-    <%= @case_support.middle_name %>
-  </p>
-
-  <p>
-    <strong><%= t('profile.last_name') %>:</strong>
-    <%= @case_support.last_name %>
-  </p>
-
-  <p>
-    <strong><%= t('case_support_type') %>:</strong>
-    <%= @case_support.case_support_type %>
-  </p>
-
-   <p>
-    <strong><%= t('support_status') %>:</strong>
-    <%= @case_support.support_status %>
-  </p>
-
-   <p>
-    <strong><%= t('date_started') %>:</strong>
-    <%= @case_support.date_started %>
-  </p>
-
-   <p>
-    <strong><%= t('date_ended') %>:</strong>
-    <%= format_date @case_support.date_ended %>
-  </p>
-
-  <p>
-    <strong><%= t('label_note') %>:</strong>
-    <%=@case_support.note.html_safe %>
-  </p>
-  <p>
-    <strong><%= t('attachments') %>:</strong>
-    <% @case_support.case_support_attachments.each do |attachment| %>
-        <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-    <% end %>
-  </p>
-
-  <%= render_extend_demography_information(@case_support.case_support_extend_demography) %>
-</div>
+<section id="widget-grid" class="case_support_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Case Support'
+                 } %>
+    </article>
+  </div>
+</section>
