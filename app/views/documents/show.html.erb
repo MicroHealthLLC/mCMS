@@ -1,41 +1,15 @@
-<%= render partial: 'action_menu' %>
-<div class="row">
-  <div class="col-xs-12">
-    <% if !@document.is_client_document %>
-        <p>
-          <strong>Case:</strong>
-          <%= link_to_case @document.case %>
-        </p>
-
-    <% end %>
-
-    <p>
-      <strong><%= t('title') %>:</strong>
-      <%= @document.title %>
-    </p>
-
-
-    <p>
-      <strong><%= t('description') %>:</strong>
-      <%= @document.description.html_safe %>
-    </p>
-
-    <p>
-      <strong><%= t('document_type') %>:</strong>
-      <%= @document.document_type %>
-    </p>
-
-    <p>
-      <strong><%= t('label_date') %>:</strong>
-      <%= format_date @document.date %>
-    </p>
-
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @document.document_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
+<section id="widget-grid" class="documents_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Document'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
+
 <%= render partial: 'notes/notes', locals: {notes: @document.document_notes} %>
