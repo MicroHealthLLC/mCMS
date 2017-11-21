@@ -1,9 +1,13 @@
-<%= render partial: 'action_menu' %>
-<div class="col-xs-12">
-  <p>
-    <strong>Name:</strong>
-    <%= @insurance.name %>
-  </p>
-
-  <%= render_extend_demography_information(@insurance.insurance_extend_demography) %>
-</div>
+<section id="widget-grid" class="insurance_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Insurance'
+                 } %>
+    </article>
+  </div>
+</section>
