@@ -22,7 +22,7 @@
           <div class='dropdown-item-dividier'></div>
         <% end %>
       <% else %>
-        <% if @language.can?(:show_contacts, :manage_contacts, :manage_roles) %>
+        <% if @contact.can?(:show_contacts, :manage_contacts, :manage_roles) %>
           <li>
             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
             <%= link_to 'Show', contact_path(@contact), class: 'dropdown-item' %>
