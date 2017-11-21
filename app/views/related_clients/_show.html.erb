@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>Related client:</strong>
+      <%= @related_client.related_client %>
+    </p>
+
+    <p>
+      <strong>Relationship:</strong>
+      <%= @related_client.snomed %>
+    </p>
+
+    <p>
+      <strong>Date start:</strong>
+      <%= format_date @related_client.date_start %>
+    </p>
+
+    <p>
+      <strong>Date end:</strong>
+      <%= format_date @related_client.date_end %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @related_client.description.html_safe %>
+    </p>
+  </div>
+</div>
