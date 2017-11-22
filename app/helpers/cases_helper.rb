@@ -50,7 +50,7 @@ module CasesHelper
     end
 
     if @measurement_records
-      tabs<< {:name => 'Measurements', :partial => 'cases/show_case/measurement_records', :label => :measurement_records}
+      tabs<< {:name => 'measurement_records', :partial => 'cases/show_case/measurement_records', :label => 'Measurements'}
     end
 
     if @appointments
@@ -70,7 +70,7 @@ module CasesHelper
     end
 
     if @watchers
-      tabs<< {:name => 'Share Individual', :partial => 'cases/show_case/watcher', :label => :watcher}
+      tabs<< {:name => 'watcher', :partial => 'cases/show_case/watcher', :label => 'Share Individual'}
     end
 
     tabs
