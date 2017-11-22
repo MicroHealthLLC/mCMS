@@ -15,7 +15,7 @@ module UserProfilesHelper
       tabs<<  {:name => 'affiliation', :partial => 'user_profiles/profile_record/affiliation', :label => :affiliation}
     end
     if @user_insurances
-      tabs<<  {:name => 'Insurance', :partial => 'user_profiles/profile_record/user_insurance', :label => :user_insurance}
+      tabs<<  {:name => 'user_insurance', :partial => 'user_profiles/profile_record/user_insurance', :label => 'Insurance'}
     end
     if @documents
       tabs<<  {:name => 'document', :partial => 'user_profiles/profile_record/document', :label => :document}
