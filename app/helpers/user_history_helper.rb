@@ -32,10 +32,10 @@ module UserHistoryHelper
       tabs<<  {:name => 'allergy', :partial => 'user_history/medical_record/allergy', :label => :allergy}
     end
     if @laboratory_examinations
-      tabs<<  {:name => 'Laboratory', :partial => 'user_history/medical_record/laboratory_examination', :label => :laboratory_examination}
+      tabs<<  {:name => 'laboratory_examination', :partial => 'user_history/medical_record/laboratory_examination', :label => 'Laboratory'}
     end
     if @radiologic_examinations
-      tabs<<  {:name => 'Radiology', :partial => 'user_history/medical_record/radiologic_examination', :label => :radiologic_examination}
+      tabs<<  {:name => 'radiologic_examination', :partial => 'user_history/medical_record/radiologic_examination', :label => 'Radiology'}
     end
 
     tabs
