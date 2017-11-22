@@ -1,58 +1,18 @@
-<%= render partial: 'action_menu' %>
-<div class="row">
-  <div class="col-xs-12">
-    <p>
-      <strong>Name:</strong>
-      <%= @product.name %>
-    </p>
-
-    <p>
-      <strong>Description:</strong>
-      <%= @product.description.html_safe %>
-    </p>
-
-    <p>
-      <strong>Product category:</strong>
-      <%= @product.product_category %>
-    </p>
-
-    <p>
-      <strong>Product type:</strong>
-      <%= @product.product_type %>
-    </p>
-
-    <p>
-      <strong>Manufacturer:</strong>
-      <%= @product.manufacturer %>
-    </p>
-
-    <p>
-      <strong>Model:</strong>
-      <%= @product.model %>
-    </p>
-
-    <p>
-      <strong>Serial:</strong>
-      <%= @product.serial %>
-    </p>
-
-    <p>
-      <strong>Unit cost:</strong>
-      <%= @product.unit_cost %>
-    </p>
-
-    <p>
-      <strong>Product Location:</strong>
-      <%= @product.product_location %>
-    </p>
-
-    <p>
-      <strong>Product status:</strong>
-      <%= @product.product_status %>
-    </p>
-
+<section id="widget-grid" class="products_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Product'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
+
+
 <%= link_to 'Assign product', inventory.new_product_assign_path(product_id: @product.id), class: ' btn btn-primary btn-edition pull-right' %>
 <section id="widget-grid" class="show_customer_account">
   <div class="row">
