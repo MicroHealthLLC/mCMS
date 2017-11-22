@@ -66,7 +66,7 @@ module CasesHelper
     end
 
     if @case_organizations
-      tabs<<  {:name => 'case_organizations', :partial => 'cases/show_case/case_organizations', :label => :case_organizations}
+      tabs<<  {:name => 'case_organizations', :partial => 'cases/show_case/case_organizations', :label => 'Share Organization'}
     end
 
     if @watchers
