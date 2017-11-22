@@ -70,7 +70,7 @@ module CasesHelper
     end
 
     if @watchers
-      tabs<< {:name => 'watcher', :partial => 'cases/show_case/watcher', :label => :watcher}
+      tabs<< {:name => 'Share Individual', :partial => 'cases/show_case/watcher', :label => :watcher}
     end
 
     tabs
