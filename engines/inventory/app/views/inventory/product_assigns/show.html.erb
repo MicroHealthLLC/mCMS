@@ -1,24 +1,13 @@
-<%= render partial: 'action_menu' %>
-<div class="row">
-  <div class="col-xs-12">
-    <p>
-      <strong>Product:</strong>
-      <%= @product_assign.product %>
-    </p>
-
-    <p>
-      <strong>User:</strong>
-      <%= @product_assign.user %>
-    </p>
-
-    <p>
-      <strong>Date:</strong>
-      <%= @product_assign.date %>
-    </p>
-
-    <p>
-      <strong>Assignment status:</strong>
-      <%= @product_assign.assignment_status %>
-    </p>
+<section id="widget-grid" class="product_assign_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Product Assign'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
