@@ -1,58 +1,16 @@
-
-<%= render partial: 'action_menu' %>
-<div class="row">
-  <div class="col-xs-12">
-    <p>
-      <strong><%= t('case') %>:</strong>
-      <%= link_to_case @need.case %>
-    </p>
-
-    <p>
-      <strong><%= t('need') %>:</strong>
-      <%= @need.need_enum %>
-    </p>
-
-    <p>
-      <strong><%= t('priority') %>:</strong>
-      <%= @need.priority_type %>
-    </p>
-
-    <p>
-      <strong><%= t('need_status') %>:</strong>
-      <%= @need.need_status %>
-    </p>
-     <p>
-      <strong> Percent Done:</strong>
-      <%= @need.percent_done || 0 %> %
-    </p>
-    <p>
-      <strong><%= t('assigned_to') %>:</strong>
-      <%= @need.assigned_to %>
-    </p>
-
-    <p>
-      <strong><%= t('description') %>:</strong>
-      <%= @need.description.html_safe %>
-    </p>
-
-    <p>
-      <strong><%= t('date_identified') %>:</strong>
-      <%= format_date @need.date_identified %>
-    </p>
-    <p>
-      <strong><%= t('date_due') %>:</strong>
-      <%= @need.date_due %>
-    </p>
-
-    <p>
-      <strong><%= t('date_completed') %>:</strong>
-      <%= format_date @need.date_completed %>
-    </p>
-
-
-
+<section id="widget-grid" class="needs_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Need'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
 
 
 <% if module_enabled?('goals') %>
