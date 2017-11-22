@@ -4,11 +4,11 @@
     <%= render partial: 'state_button_filter'%>
     <div class="btn-group">
       <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
-      <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:180px;">
+      <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:190px;">
         <% if can?(:manage_roles, :manage_watchers, :create_watchers) %>
         <li>
           <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-          <%= link_to t(:manage_watcher), watchers_case_path(@case), class: 'dropdown-item' %>
+          <%= link_to 'New Individual', watchers_case_path(@case), class: 'dropdown-item' %>
         </li>
         <div class='dropdown-item-dividier'></div>
         <% end %>
