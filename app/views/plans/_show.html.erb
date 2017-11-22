@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong><%= t('case') %>:</strong>
+      <%= link_to_case @plan.case %>
+    </p>
+
+    <p>
+      <strong><%= t('label_name') %>:</strong>
+      <%= @plan.name %>
+    </p>
+
+    <p>
+      <strong><%= t('priority') %>:</strong>
+      <%= @plan.priority_type %>
+    </p>
+
+    <p>
+      <strong><%= t('plan_status') %>:</strong>
+      <%= @plan.plan_status %>
+    </p>
+
+    <p>
+      <strong><%= t('plan_type') %>:</strong>
+      <%= @plan.plan_type %>
+    </p>
+
+    <p>
+      <strong>Percent Done:</strong>
+      <%= @plan.percent_done || 0 %> %
+    </p>
+
+    <p>
+      <strong><%= t('assigned_to') %>:</strong>
+      <%= @plan.assigned_to %>
+    </p>
+
+    <p>
+      <strong><%= t('description') %>:</strong>
+      <%= @plan.description.html_safe %>
+    </p>
+
+    <p>
+      <strong><%= t('date_start') %>:</strong>
+      <%= format_date @plan.date_start %>
+    </p>
+
+    <p>
+      <strong><%= t('date_due') %>:</strong>
+      <%= format_date @plan.date_due %>
+    </p>
+
+    <p>
+      <strong><%= t('date_completed') %>:</strong>
+      <%= format_date @plan.date_completed %>
+    </p>
+  </div>
+</div>
