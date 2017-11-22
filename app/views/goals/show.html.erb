@@ -1,59 +1,16 @@
-<%= render partial: 'action_menu' %>
-<div class="row">
-  <div class="col-xs-12">
-    <p>
-      <strong><%= t('case') %>:</strong>
-      <%= link_to_case @goal.case %>
-    </p>
-
-    <p>
-      <strong><%= t('label_name') %>:</strong>
-      <%= @goal.name %>
-    </p>
-
-    <p>
-      <strong><%= t('priority') %> :</strong>
-      <%= @goal.priority_type %>
-    </p>
-
-    <p>
-      <strong><%= t('goal_status') %>:</strong>
-      <%= @goal.goal_status %>
-    </p>
-     <p>
-      <strong><%= t('goal_type') %>:</strong>
-      <%= @goal.goal_type %>
-    </p>
-     <p>
-      <strong> Percent Done:</strong>
-      <%= @goal.percent_done|| 0 %> %
-    </p>
-    <p>
-      <strong><%= t('assigned_to') %>:</strong>
-      <%= @goal.assigned_to %>
-    </p>
-
-    <p>
-      <strong><%= t('description') %>:</strong>
-      <%= @goal.description.html_safe %>
-    </p>
-
-    <p>
-      <strong><%= t('date_start') %>:</strong>
-      <%= format_date @goal.date_start %>
-    </p>
-
-    <p>
-      <strong><%= t('date_due') %>:</strong>
-      <%= format_date @goal.date_due %>
-    </p>
-
-    <p>
-      <strong><%= t('date_completed') %>:</strong>
-      <%= format_date @goal.date_completed %>
-    </p>
+<section id="widget-grid" class="goals_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Goal'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
 
 
 <% if module_enabled?('plans') %>
