@@ -48,28 +48,15 @@
           <%= link_to 'History Changes', "/histories/#{@task.class}/#{@task.id}", class: 'dropdown-item' %>
         </li>
 
-      <% if can?(:edit_plans, :manage_plans, :manage_roles) %>
-          <div class='dropdown-item-dividier'></div>
-        <li>
-          <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-            <%= link_to 'Manage Actions', links_plan_path(@plan), class: 'dropdown-item' %>
-        </li>
-          <div class='dropdown-item-dividier'></div>
-        <li>
-          <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-            <%= link_to 'Link to Goals', link_goal_plan_path(@plan), class: 'dropdown-item' %>
-        </li>
-      <% end %>
-
       <% if can?(:create_tasks, :manage_tasks, :manage_roles) %>
           <div class='dropdown-item-dividier'></div>
         <li>
-          <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
             <%= link_to t('add_sub_task'), new_task_path(sub_task_id: @task.id), class: 'dropdown-item' %>
         </li>
           <div class='dropdown-item-dividier'></div>
         <li>
-          <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+          <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
             <%= link_to 'Link to Plan', link_plan_task_path(@task), class: 'dropdown-item' %>
         </li>
       <% end %>
@@ -77,7 +64,7 @@
       <% if @task.related_to_id and @task.can?(:edit_tasks, :manage_tasks, :manage_roles) %>
           <div class='dropdown-item-dividier'></div>
         <li>
-          <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+          <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
             <%= link_to 'Unlink', delete_sub_task_relation_task_path(@task), class: 'dropdown-item' %>
         </li>
       <% end %>
