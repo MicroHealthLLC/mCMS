@@ -1,29 +1,29 @@
-<h1>Note Templates</h1>
-
-<%= link_to 'New Note Template', new_note_template_path, class:'btn btn-primary pull-right margin-bottom-10'  %>
-
-<table  class="table table-responsive table-bordered">
-  <thead>
-  <tr>
-    <th>Title</th>
-    <th colspan="3"></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% if @note_templates.present? %>
-      <% @note_templates.each do |note_template| %>
-          <tr>
-            <td><%= note_template.title %></td>
-            <td><%= link_to 'Show', note_template %></td>
-            <td><%= link_to 'Edit', edit_note_template_path(note_template) %></td>
-            <td><%= link_to 'Destroy', note_template, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-      <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+<section id="widget-grid" class="note_templates_section">
+  <div class="col-xs-12 btn-edition tabs-section">
+    <%= render partial: 'state_button_filter'%>
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+      <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:220px;">
+        <li>
+          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+          <%= link_to 'New Note Template', new_note_template_path, class: 'dropdown-item' %>
+        </li>
+        <div class='dropdown-item-dividier'></div>
+        <li>
+          <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+          <%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'dropdown-item'  %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'notetemplates',
+                     wid_title: 'Note Templates'
+                 } %>
+    </article>
+  </div>
+</section>
