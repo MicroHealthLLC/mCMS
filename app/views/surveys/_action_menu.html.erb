@@ -12,6 +12,8 @@
         </li>
         <div class='dropdown-item-dividier'></div>
         <% end %>
+        
+       <% if params[:action] == 'show' %>       
         <% if @survey.can?(:manage_roles, :edit_surveys, :manage_surveys) %>
         <li>
           <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
@@ -19,6 +21,16 @@
         </li>
         <div class='dropdown-item-dividier'></div>
         <% end %>
+      <% else %>
+        <% if @survey.can?(:manage_roles, :show_surveys, :manage_surveys) %>
+        <li>
+          <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+          <%= link_to 'Show', survey_path(@survey), class: 'dropdown-item' %>
+        </li>
+        <div class='dropdown-item-dividier'></div>
+        <% end %>
+      <% end %>
+             
         <li>
           <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
           <%= link_to t('button_cancel'), :back, class: 'dropdown-item' %>
