@@ -1,4 +1,4 @@
-<h1>Survey <%= @survey.name %></h1>
+<h1><%= @survey.name %></h1>
 <%= form_for(@attempt, :url => attempt_scope(@attempt), html: { class: 'form-horizontal' }) do |f| %>
     <%= hidden_field_tag :survey_id, @survey.id %>
     <%= hidden_field_tag :case_id, params[:case_id] %>
@@ -23,6 +23,7 @@
     <% end -%>
     <div class="form-group" >
       <div class="col-md-11">
+        <%= link_to t('button_cancel'), surveys_path, class: 'btn btn-warning pull-right' %>
         <%= f.submit t('button_save'), class: 'btn btn-primary pull-right' %>
       </div>
     </div>
