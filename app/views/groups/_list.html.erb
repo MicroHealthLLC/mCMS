@@ -4,7 +4,7 @@
     <th> Group Name </th>
     <th> Leaders </th>
     <th> Members </th>
-    <th> Actions </th>
+    <th colspan="2"> Actions </th>
   </tr>
   </thead>
   <tbody>
@@ -21,10 +21,8 @@
               <%= group.member_names %>
           <% end %>
         </td>
-        <td>
-          <%= link_to "Edit", edit_group_path(group), :class => "btn btn-primary " %>
-          <%= link_to "Delete", group_path(group), method: :delete, :class => "btn btn-danger " %>
-        </td>
+        <td> <%= edit_link, edit_group_path(group) %> </td>
+        <td> <%= delete_link, group_path(group), method: :delete, data: { confirm: 'Are you sure?' } %> </td>
       </tr>
   <% end %>
   </tbody>
