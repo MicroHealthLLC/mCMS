@@ -1,12 +1,4 @@
-<div class="col-xs-12 btn-edition">
-  <%= link_to 'Delete',  checklist_template_path(@checklist), class: 'btn btn-danger pull-right',
-              :method => :delete,
-              :data => {:confirm => t(:text_are_you_sure)}
-  %>
-  <%= link_to t('button_edit'), edit_checklist_template_path(@checklist) , class: 'btn btn-success pull-right' if User.current.admin? %>
-  <%= link_to t('button_cancel'), :back, class: 'btn btn-warning pull-right' %>
-  <%= link_to t('button_print'), checklist_template_path(@checklist, format: 'pdf'), class: 'btn btn-primary pull-right' %>
- </div>
+<%= render partial: 'action_menu' %>
 <% checklist = @checklist %>
 <section id="widget-grid" class="checklists_account">
   <div class="row">
