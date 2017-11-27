@@ -15,8 +15,8 @@
         <td> <%=  category.is_private %> </td>
         <td> <%=  category.is_writable %> </td>
         <td> <%=  category.is_featured %> </td>
-        <td> <%= edit_link, edit_category_path(category) %> </td>
-        <td> <%= delete_link, category_path(category), method: :delete, data: { confirm: 'Are you sure?' } %> </td>
+        <td> <%= edit_link edit_category_path(category) %> </td>
+        <td> <%= delete_link category_path(category), method: :delete, data: { confirm: 'Are you sure?' } %> </td>
       </tr>
   <% end %>
 
