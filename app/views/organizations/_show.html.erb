@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-xs-12" style="padding:15px 25px 15px 25px;">
+    <p>
+      <strong>Name:</strong>
+      <%= @organization.name %>
+    </p>
+    <p>
+      <strong> <%= t :organization_type %></strong>
+      <%= @organization.organization_type %>
+    </p>
+
+    <p>
+      <strong>Note:</strong>
+      <%= @organization.note.html_safe %>
+    </p>
+
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @organization.organization_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>
+
+    <%= render_extend_demography_information(@organization.organization_extend_demography) %>
+  </div>
+</div>
