@@ -1,21 +1,16 @@
-<div class="row">
-  <div class="col-xs-12">
-    <%= render partial: 'show' %>
-  </div>
-</div>
-<% if false %>
-    <%= render partial: "document_managers/documents_list" %>
-<% end %>
-
-<section id="widget-grid" class="show_group_account">
+<section id="widget-grid" class="categories_section">
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <%= render partial: 'list',
+      <%= render partial: 'show',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     wid_id: 'categories',
-                     wid_title: 'Categories'
+                     wid_id: 'info',
+                     wid_title: 'Category'
                  } %>
     </article>
   </div>
 </section>
+
+<% if false %>
+    <%= render partial: "document_managers/documents_list" %>
+<% end %>
