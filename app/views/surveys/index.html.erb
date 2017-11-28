@@ -1,3 +1,5 @@
+<h2>Surveys</h2>
+
 <% if User.current.admin? %>
     <section id="widget-grid" class="surveys_section">
       <div class="col-xs-12 btn-edition tabs-section">
@@ -22,8 +24,7 @@
           <%= render partial: 'list',
                      layout: 'shared/smart_widget_wrapper',
                      locals: {
-                         wid_id: 'surveys',
-                         wid_title: 'Surveys'
+                         wid_id: 'surveys'
                      } %>
         </article>
       </div>
@@ -54,8 +55,7 @@
                      layout: 'shared/smart_widget_wrapper',
                      locals: {
                              surveys: @surveys,
-                             wid_id: 'surveys',
-                             wid_title: t('surveys')
+                             wid_id: 'surveys'
                      } %>
         </article>
       </div>
