@@ -1,7 +1,5 @@
 <%= wiki_page_style %>
 
-<h1><%=wt 'Editing wiki page' %></h1>
-
 <% if params[:preview] %>
     <div class="wiki_content">
       <%=wiki_content @page.content %>
@@ -15,7 +13,7 @@
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
                      wid_id: 'Wiki',
-                     wid_title: 'New wiki'
+                     wid_title: 'Edit Wiki Page'
                  } %>
     </article>
   </div>
