@@ -1,5 +1,30 @@
 <% unless User.current.admin? %>
-    <%= render partial: 'show', locals: {attempt: @attempt} %>
-    <%= render partial: 'notes/notes', locals: {show_case_column: false,
-                                                notes: @attempt.attempt_notes} %>
+    <section id="widget-grid" class="attempts_section">
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'show',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                        attempt: @attempt,
+                         wid_id: 'info',
+                         wid_title: 'Attempt'
+                     } %>
+        </article>
+      </div>
+    </section>
+    <br>
+    <section id="widget-grid" class="attempts_section">
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'notes/notes',
+                    layout: 'shared/smart_widget_wrapper',
+                    locals: {
+                          show_case_column: false,
+                          notes: @attempt.attempt_notes,                
+                          wid_id: 'info',
+                          wid_title: 'Attempt'
+                    } %>
+        </article>
+      </div>
+    </section>
 <% end %>
