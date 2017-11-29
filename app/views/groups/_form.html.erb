@@ -1,0 +1,19 @@
+<fieldset>
+  <legend></legend>
+  <%= form_for @group do |f| %>
+
+      <div class="form-group">
+        <%= f.label :name, class: 'col-md-2 control-label' %>
+        <div class="col-md-9">
+          <%= f.text_field :name , class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= link_to t('button_cancel'), groups_path, class: 'btn btn-warning pull-right' %>
+          <%= f.submit "Create", class: 'btn btn-primary pull-right' %>
+        </div>
+      </div>
+
+  <% end %>
+</fieldset>
