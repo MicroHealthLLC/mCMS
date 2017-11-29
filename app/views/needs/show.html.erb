@@ -16,7 +16,7 @@
 <% if module_enabled?('goals') %>
     <%#= link_to(t('new_goal'), new_goal_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_goals, :manage_roles, :manage_goals) %>
 
-  <section id="widget-grid" class="appointment_captures">
+  <section id="widget-grid" class="goals_section">
     <div class="col-xs-12 btn-edition tabs-section">
       <%= render partial: 'state_button_filter'%>
       <div class="btn-group">
