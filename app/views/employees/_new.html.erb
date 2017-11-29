@@ -236,7 +236,8 @@
 
       <div class="form-group" >
         <div class="col-md-11">
-          <%= f.submit t(:button_create), class: 'btn btn-primary pull-right' %>
+         <%= link_to t('button_cancel'), :back, class: 'btn btn-warning pull-right' %>
+         <%= f.submit t(:button_create), class: 'btn btn-primary pull-right' %>
         </div>
       </div>
     </fieldset>
