@@ -1,18 +1,29 @@
 <%= wiki_page_style -%>
-<div class="col-md-4 pull-right">
-  <%= link_to( 'New Page', 'new', class: 'btn btn-primary pull-right margin-bottom-10', id: 'new_page_link')%>
-</div>
-
 
 <h1><%=wt 'All pages' %></h1>
 
-<ul>
+<section id="widget-grid" class="news_section">
+  <div class="col-xs-12 btn-edition">
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+      <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:170px;">
+        <li>
+          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+          <%= 'New Page', 'new', class: 'dropdown-item', id: 'new_page_link' %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <ul>
+        <% @pages.each do |page| -%>
+            <li><%= link_to page.title, wiki_page_path( page ) %></li>
+            <%= render_subpages(page).html_safe %>
+        <% end -%>
 
-  <% @pages.each do |page| -%>
-      <li><%= link_to page.title, wiki_page_path( page ) %></li>
-      <%= render_subpages(page).html_safe %>
-  <% end -%>
-
-  <%= will_paginate @pages, renderer: BootstrapPagination::Rails %>
-
-</ul>
+        <%= will_paginate @pages, renderer: BootstrapPagination::Rails %>
+      </ul>
+    </div>
+  </div>
+</section>
