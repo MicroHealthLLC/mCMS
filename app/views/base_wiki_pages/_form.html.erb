@@ -42,7 +42,13 @@
       <%= f.hidden_field :comment,:value => 'First Revision', class: 'form-control' %>
       <%= hidden_field_tag :path, @page.path %>
       <%= render partial: 'base_wiki_pages/wiki_page_attachments', locals: {f: f} %>
+ 
+      <div class="form-group" >
+        <div class="col-md-11">
+          <%= link_to t('button_cancel'), base_wiki_pages_path, class: 'btn btn-warning pull-right' %>
+          <input type="submit" value="<%=wt 'Save' %>" class="submit btn btn-primary pull-right" />
+        </div>
+      </div>
 
-      <input type="submit" value="<%=wt 'Save' %>" class="submit btn btn-primary pull-right" />
   <% end %>
 </fieldset>
