@@ -1,6 +1,12 @@
-<div class="row btn-edition">
-  <div class="col-xs-12">
-    <%= link_to 'Print', {}.merge(format: 'pdf'), class: 'pull-right btn btn-primary' %>
+<div class="col-xs-12 btn-edition">
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+    <ul class="dropdown-menu dropdown-links" role="menu">
+      <li>
+        <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+        <%= link_to 'Print', {}.merge(format: 'pdf'), class: 'dropdown-item' %>
+      </li>
+    </ul>
   </div>
 </div>
 <%= render_tabs user_profiles_tab %>
