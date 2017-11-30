@@ -1,0 +1,19 @@
+  <h2 class="survey-title">
+    <% if @case %>
+        <p>
+          <label><%= t('case') %>:</label>
+          <%= link_to_case @case %>
+        </p>
+    <% end %>
+    <%= @survey.name %>
+    <p><small><%= @survey.description.html_safe %></small></p>
+  </h2>
+  <% if @attempts.any? %>
+      <div class="row">
+        <% @attempts.each_with_index do |attempt, index| %>
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+              <%= render partial: 'show', locals: {attempt: attempt, index: index} %>
+            </div>
+        <% end %>
+      </div>
+  <% end %>
