@@ -1,23 +1,14 @@
 <%= render partial: 'action_menu' %>
-<div class="container" style="padding:15px 25px 15px 25px;">
-  <h2 class="survey-title">
-    <% if @case %>
-        <p>
-          <label><%= t('case') %>:</label>
-          <%= link_to_case @case %>
-        </p>
-    <% end %>
-    <%= @survey.name %>
-    <p><small><%= @survey.description.html_safe %></small></p>
-  </h2>
-  <% if @attempts.any? %>
-      <div class="row">
-        <% @attempts.each_with_index do |attempt, index| %>
-            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-              <%= render partial: 'show', locals: {attempt: attempt, index: index} %>
-            </div>
 
-        <% end %>
-      </div>
-  <% end %>
-</div>
+<section id="widget-grid" class="survey_attemps_section">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'survey_attempts',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'surveyattempts',
+                     wid_title: 'Survey Attempts'
+                 } %>
+    </div>
+  </div>
+</section>
