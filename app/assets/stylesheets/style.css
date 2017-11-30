@@ -64,3 +64,8 @@ fieldset{
     padding-left: 0  !important;
     padding-right: 0  !important;
 }
+
+
+#pivot_btns .btn {
+  margin: 0 10px 10px 0;
+}
