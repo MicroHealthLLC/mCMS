@@ -79,3 +79,9 @@ fieldset{
 #output table.pvtUi tr td:first-child {
   min-width:200px;
 }
+
+
+abbr[title] {
+  border-bottom: none;
+  text-decoration: none;
+}
