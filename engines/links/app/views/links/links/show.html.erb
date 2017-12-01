@@ -1,20 +1,13 @@
-<%= render partial: 'action_menu' %>
-
-<div class="row">
-  <div class="col-xs-12">
-    <p>
-      <strong>Title:</strong>
-      <%= @link.title %>
-    </p>
-
-    <p>
-      <strong>Url:</strong>
-      <%= link_to @link.url %>
-    </p>
-
-    <p>
-      <strong>Hostname:</strong>
-      <%= @link.hostname %>
-    </p>
+<section id="widget-grid" class="links_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Link'
+                 } %>
+    </article>
   </div>
-</div>
+</section>
