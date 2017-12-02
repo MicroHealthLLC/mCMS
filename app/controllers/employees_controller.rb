@@ -64,7 +64,7 @@ class EmployeesController < ProtectForgeryApplication
 
   def destroy
     session[:employee_id] = nil
-    flash[:notice]= "Logged Off from #{@employee.login}"
+    # flash[:notice]= "Logged Off from #{@employee.login}"
     redirect_to root_path
   end
 
