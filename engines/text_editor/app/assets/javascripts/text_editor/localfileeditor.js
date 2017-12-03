@@ -204,13 +204,12 @@ function createEditor() {
     //    var person = prompt("Please enter your name.");
         var person;
         if (mh_texteditorperson.name === "Unknown Author") {
-            person = prompt("Please enter your name.");
-            if ((person !== null) && (person.trim() !== "")) {
-                person = person.trim();
-                mh_texteditorperson.name = person;
-            } else {
-                person = "Unknown Author";
-            }
+            // person = prompt("Please enter your name.");
+            // if ((person !== null) && (person.trim() !== "")) {
+                mh_texteditorperson.name = person_name;
+            // } else {
+            //     person = "Unknown Author";
+            // }
         } else {
             person = mh_texteditorperson.name;
         }

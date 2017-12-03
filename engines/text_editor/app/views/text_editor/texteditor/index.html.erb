@@ -1,4 +1,6 @@
-
+<script>
+  var person_name = '<%= User.current.full_name %>';
+</script>
 <%= stylesheet_link_tag 'text_editor/application'  %>
 
 <!-- editor: start -->
@@ -26,7 +28,7 @@
 <div id="docslistingdiv">
     <div id="list_search" class="slide slide-up">
         <button id="closeSliderbtn" class="iconbtn2" title="Close Listings/Search Panel"><img src="/texteditor/glyphicons-370-collapse-top.png"></button>
-        <p id="list_name"><span id="mh">MH</span> Text Editor</span></p>
+        <p id="list_name"><span id="mh">MH</span> Text Editor</p>
         <input type="search" id="searchfiles" name="searchfiles" title="Search Input Textbox" />
         <button id="searchbtn" class="iconbtn2" title="Submit Search"><img src="/texteditor/glyphicons-28-search.png"></button>
         <label for="searchname"><input type="radio" name="searchwhat" id="searchname" checked /> File Name</label>
