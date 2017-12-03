@@ -89,6 +89,8 @@ class PlansController < UserCasesController
   def edit
     @tasks = @plan.tasks
     @measurement_records = @plan.measurement_records
+
+    @goals = @plan.goals
   end
 
   # POST /plans

@@ -104,6 +104,8 @@ class TasksController < UserCasesController
   # GET /tasks/1/edit
   def edit
     @note = TaskNote.new(user_id: User.current.id)
+
+    @plans = @task.plans
   end
 
   # POST /tasks

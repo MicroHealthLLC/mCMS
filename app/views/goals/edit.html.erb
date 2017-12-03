@@ -16,43 +16,57 @@
 
 
 <% if module_enabled?('plans') %>
-  <section id="widget-grid" class="plans_section">
-    <div class="col-xs-12 btn-edition tabs-section">
-      <%= render partial: 'state_button_filter'%>
-      <div class="btn-group">
-        <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
-        <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:190px;">
-          <% if @case && can?(:create_plans, :manage_roles, :manage_plans) %>
+    <section id="widget-grid" class="plans_section">
+      <div class="col-xs-12 btn-edition tabs-section">
+        <%= render partial: 'state_button_filter'%>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+          <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:190px;">
+            <% if @case && can?(:create_plans, :manage_roles, :manage_plans) %>
+                <li>
+                  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                  <%= link_to t('new_plan'), new_plan_path(case_id: @case.id,  goal_id: @goal.id), class: 'dropdown-item' %>
+                </li>
+                <div class='dropdown-item-dividier'></div>
+            <% end %>
             <li>
-              <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-              <%= link_to t('new_plan'), new_plan_path(case_id: @case.id,  goal_id: @goal.id), class: 'dropdown-item' %>
+              <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+              <%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'dropdown-item' %>
             </li>
-            <div class='dropdown-item-dividier'></div>
-          <% end %>
-          <li>
-            <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-            <%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'dropdown-item' %>
-          </li>
-        </ul>
+          </ul>
+        </div>
       </div>
-    </div>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'plans/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         plans: @plans,
+                         wid_id: 'plans',
+                         wid_title: 'plans'
+                     } %>
+        </article>
+      </div>
+    </section>
+    <script>
+        $(document).ready(function(){
+            <% if @plans.present? %>  initDataTable('plans_table') <% end %>
+        } );
+    </script>
+<% end %>
+<% if module_enabled?('needs') %>
     <div class="row">
       <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <%= render partial: 'plans/list',
+        <%= render partial: 'needs/list',
                    layout: 'shared/smart_widget_wrapper',
                    locals: {
-                       plans: @plans,
-                       wid_id: 'plans',
-                       wid_title: 'plans'
+                       needs: @needs,
+                       wid_id: 'needs',
+                       wid_title: t('needs')
                    } %>
       </article>
     </div>
-  </section>
-    <script>
-      $(document).ready(function(){
-        <% if @plans.present? %>  initDataTable('plans_table') <% end %>
-      } );
-    </script>
+
 <% end %>
 <% if module_enabled?('tasks') %>
     <%#= link_to(t('new_goal'), new_goal_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_goals, :manage_roles, :manage_goals) %>
@@ -61,9 +75,9 @@
         <%= render partial: 'tasks/list',
                    layout: 'shared/smart_widget_wrapper',
                    locals: {
-                           tasks: @tasks,
-                           wid_id: 'tasks',
-                           wid_title: t('tasks')
+                       tasks: @tasks,
+                       wid_id: 'tasks',
+                       wid_title: t('tasks')
                    } %>
       </article>
     </div>
@@ -80,11 +94,11 @@
       <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
       <ul class="dropdown-menu dropdown-links" role="menu">
         <% if can?(:add_notes, :manage_roles) %>
-          <li>
-            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-            <%= link_to t('add_note'), new_note_path(type: 'GoalNote', owner_id: @goal.id), class: 'dropdown-item' %>
-          </li>
-          <div class='dropdown-item-dividier'></div>
+            <li>
+              <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+              <%= link_to t('add_note'), new_note_path(type: 'GoalNote', owner_id: @goal.id), class: 'dropdown-item' %>
+            </li>
+            <div class='dropdown-item-dividier'></div>
         <% end %>
         <li>
           <span class="glyphicon glyphicon-print" aria-hidden="true"></span>

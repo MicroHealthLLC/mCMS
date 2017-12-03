@@ -93,6 +93,8 @@ class GoalsController <  UserCasesController
   def edit
     @plans = @goal.plans
     @tasks = @plans.map(&:tasks).flatten.uniq
+
+    @needs = @goal.needs
   end
 
   # POST /goals
