@@ -10,6 +10,7 @@ class CoreDemographic < ApplicationRecord
   belongs_to :gender_type, foreign_key: :gender_id, optional: true
   belongs_to :citizenship_type, optional: true
   belongs_to :marital_status, optional: true
+  belongs_to :civility_title, optional: true
 
   # validates_presence_of :user_id
 
@@ -25,6 +26,14 @@ class CoreDemographic < ApplicationRecord
       super
     else
       ReligionType.default
+    end
+  end
+
+  def civility_title
+    if civility_title_id
+      super
+    else
+      CivilityTitle.default
     end
   end
 
@@ -71,7 +80,7 @@ class CoreDemographic < ApplicationRecord
   def self.safe_attributes
     [
         :user_id, :first_name, :last_name, :middle_name,
-        :gender, :title, :marital_status_id,
+        :gender, :title, :marital_status_id, :civility_title_id,
         :birth_date, :religion,
         :note, :ethnicity, :citizenship_type_id, :height, :weight, user_attributes: [User.safe_attributes]
     ]
