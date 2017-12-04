@@ -46,6 +46,13 @@
         <%= l.hidden_field :level, value: Membership::LEVELS[:regular] %>
         <%= l.submit "remove", :class => "btn btn-danger btn-xs" %>
     <% end %>
+    
+    <br />
+    <div class="form-group" >
+      <div class="col-md-11">
+        <%= link_to t('button_cancel'), groups_path, class: 'btn btn-warning pull-right' %>
+      </div>
+    </div>
 
   </div>
 </div>
