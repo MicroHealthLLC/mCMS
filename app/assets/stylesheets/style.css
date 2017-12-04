@@ -39,6 +39,8 @@ label, legend, .jarviswidget header h2 strong, a{
     transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
 }
 
+.surveyrule {color: black;}
+
 .btn {
     margin-left: 10px;
 }
