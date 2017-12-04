@@ -8,18 +8,21 @@
       <% if can?(:create_news, :manage_roles, :manage_news) %>
         <li>
           <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-          <%= 'New News', new_news_path, class: 'dropdown-item' %>
+          <%= link_to 'New News', new_news_path, class: 'dropdown-item' %>
         </li>
       <% end %>
       </ul>
     </div>
   </div>
   <div class="row">
-    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <% @news.each do |news| %>
-          <%= render partial: 'news', locals: {news: news} %>
-      <% end %>
-    </article>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'newspages',
+                     wid_title: ' '
+                 } %>
+    </div>
   </div>
 </section>
 

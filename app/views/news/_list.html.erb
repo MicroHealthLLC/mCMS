@@ -1,0 +1,7 @@
+<div class="row">
+  <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding:15px 25px 15px 25px;">
+    <% @news.each do |news| %>
+        <%= render partial: 'news', locals: {news: news} %>
+    <% end %>
+  </article>
+ </div>

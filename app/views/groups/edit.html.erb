@@ -1,55 +1,12 @@
-<div class="panel panel-default">
-  <div class="panel-body">
-    <div class="col-md-8">
-      <div class="row">
-        <%= form_for @group do |f| %>
-            <%= f.label :name %>
-            <%= f.text_field :name, :class => "form-control", placeholder: @group.name %>
-            <br />
-            <%= f.submit "submit", :class => "btn btn-default btn-xs" %>
-        <% end %>
-
-        <h3> Categories </h3>
-        <%= @group.category_names %>
-
-        <h3> Group Leaders </h3>
-        <%= @group.leader_names %>
-        <hr />
-
-        <%= form_for :membership, url: add_member_group_path(group_id: params[:id]) do |l| %>
-            <%= l.label :add_leader %>
-            <%= l.select :user_id, User.all.collect { |u| [u.username, u.id] }, {include_blank: true} %>
-            <%= l.hidden_field :level, value: Membership::LEVELS[:leader] %>
-            <%= l.submit "add", :class => "btn btn-default btn-xs" %>
-        <% end %>
-
-        <%= form_for :membership, url: remove_member_group_path(group_id: params[:id]) do |l| %>
-            <%= l.label :remove_leader %>
-            <%= l.select :user_id, @group.leaders.collect { |u| [u.username, u.id] }, {include_blank: true} %>
-            <%= l.hidden_field :level, value: Membership::LEVELS[:leader] %>
-            <%= l.submit "remove", :class => "btn btn-danger btn-xs" %>
-        <% end %>
-        <hr />
-
-        <h3> Group Members </h3>
-        <%= @group.member_names %>
-        <hr />
-
-        <%= form_for :membership, url: add_member_group_path(group_id: params[:id]) do |m| %>
-            <%= m.label :add_member %>
-            <%= m.select :user_id, User.all.collect { |u| [u.full_name, u.id]}, {include_blank: true} %>
-            <%= m.hidden_field :level, value: Membership::LEVELS[:regular] %>
-            <%= m.submit "add", :class => "btn btn-default btn-xs" %>
-        <% end %>
-
-        <%= form_for :membership, url: remove_member_group_path(group_id: params[:id]) do |l| %>
-            <%= l.label :remove_leader %>
-            <%= l.select :user_id, @group.members.collect { |u| [u.full_name, u.id] }, {include_blank: true} %>
-            <%= l.hidden_field :level, value: Membership::LEVELS[:regular] %>
-            <%= l.submit "remove", :class => "btn btn-danger btn-xs" %>
-        <% end %>
-
-      </div>
-    </div>
+<section id="widget-grid" class="groups_section">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'edit',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'info',
+                     wid_title: 'Edit Group'
+                 } %>
+    </article>
   </div>
-</div>
+</section>

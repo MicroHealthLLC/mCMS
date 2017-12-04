@@ -3,17 +3,17 @@
   <%= form_tag  upload_enumerations_path, method: :post,  class: 'form_submit form-horizontal',  :multipart => true  do %>
    <div class="col-xs-6 col-sm-4 col-md-3">
      <%= file_field_tag :file, multiple: false, require: true %>
-     <br>
+     <br />
     </div>
     <div class="col-xs-6 col-sm-8 col-md-6">
       <% options = Enumeration.get_subclasses.sort{|a,b| a.to_s <=> b.to_s }.map{|e| [e.to_s.gsub(/(?<=[a-z])(?=[A-Z])/, ' '), e.to_s]} %>
       <%= select_tag :type, options_for_select(options)  %>
-      <br>
+      <br />
       <%= submit_tag :import, class: 'btn btn-primary pull-right', id: 'import_spreadsheet_submit' %>
     </div>
   <% end %>
 </div>
-<br>
+<br />
 <script>
   $( function() {
     $tabs = $( "#tabs" ).tabs();
