@@ -1,8 +1,7 @@
 <div class="col-xs-12">
-  <h4>Role info: <%= User.current.principal_role %></h4>
+  <p>Role info: <%= User.current.principal_role %></p>
   <% org = job_detail.try(:organization)  %>
-  <h4>Organization info: <%= org || 'None' %></h4>
-  <br>
+  <p>Organization info: <%= org || 'None' %></p>
   <% if org %>
       <%= render_extend_demography_information(org.organization_extend_demography) %>
   <% end %>
