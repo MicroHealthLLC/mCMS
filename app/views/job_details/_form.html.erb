@@ -1,5 +1,6 @@
 <div class="col-xs-12">
   <p>Role info: <%= User.current.principal_role %></p>
+  <br />
   <% org = job_detail.try(:organization)  %>
   <p>Organization info: <%= org || 'None' %></p>
   <% if org %>
