@@ -8,7 +8,7 @@
       <% if can?(:create_news, :manage_roles, :manage_news) %>
         <li>
           <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-          <%= 'New News', new_news_path, class: 'dropdown-item' %>
+          <%= link_to 'New News', new_news_path, class: 'dropdown-item' %>
         </li>
       <% end %>
       </ul>
