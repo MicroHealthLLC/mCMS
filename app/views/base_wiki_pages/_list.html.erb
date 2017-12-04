@@ -5,8 +5,6 @@
           <li><%= link_to page.title, wiki_page_path( page ) %></li>
           <%= render_subpages(page).html_safe %>
       <% end -%>
-
-      <%= will_paginate @pages, renderer: BootstrapPagination::Rails %>
     </ul>
   </div>
 </div>
