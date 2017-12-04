@@ -17,6 +17,23 @@ class ProblemList < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:problem_type, :problem_status).
+        references(:problem_type, :problem_status)
+  end
+
+  def self.csv_attributes
+    [
+        'Name',
+        'Snomed',
+        'Date onset',
+        'Date resolved',
+        'Problem status',
+        'Problem type'
+    ]
+  end
+
+
   def problem_type
     if problem_type_id
       super
@@ -76,5 +93,5 @@ class ProblemList < ApplicationRecord
     output.html_safe
   end
 
-  
+
 end

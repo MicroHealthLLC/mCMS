@@ -10,16 +10,22 @@ class ProblemListsController < UserHistoryController
   # GET /problem_lists.json
   def index
     redirect_to medical_record_path if request.format.to_sym == :html
-    scope = ProblemList.visible
-    scope = case params[:status_type]
-              when 'all' then scope.all_data
-              when 'opened' then scope.opened
-              when 'closed' then scope.closed
-              when 'flagged' then scope.flagged
-              else
-                scope.all_data
-            end
-    @problem_lists = scope
+    respond_to do |format|
+      format.html{  redirect_to medical_record_path}
+      format.js{}
+      format.pdf{}
+      format.csv{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        json = ProblemListDatatable.new(view_context, options).as_json
+        send_data ProblemList.to_csv(json[:data]), filename: "language-#{Date.today}.csv"
+      }
+      format.json{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        render json: ProblemListDatatable.new(view_context,options)
+      }
+    end
   end
 
   # GET /problem_lists/1

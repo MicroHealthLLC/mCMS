@@ -23,8 +23,16 @@
   <% end %>
   </tbody>
 </table>
-<script>
-  $(document).ready(function(){
-    initDataTable('problem_list_table')
-  })
-</script>
+<% columns= [  { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'problem_list_table',
+    url: problem_lists_path(format: :csv),
+    columns: columns.flatten,
+    ajax_url: problem_lists_path(format: :json, status_type: params[:status_type])
+} %>
