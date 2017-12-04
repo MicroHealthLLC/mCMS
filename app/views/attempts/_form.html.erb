@@ -1,4 +1,7 @@
-<h1><%= @survey.name %></h1>
+<fieldset>
+  <legend></legend>
+
+    <h1><%= @survey.name %></h1>
 <%= form_for(@attempt, :url => attempt_scope(@attempt), html: { class: 'form-horizontal' }) do |f| %>
     <%= hidden_field_tag :survey_id, @survey.id %>
     <%= hidden_field_tag :case_id, params[:case_id] %>
@@ -28,3 +31,4 @@
       </div>
     </div>
 <% end -%>
+</fieldset>
