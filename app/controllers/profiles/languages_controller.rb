@@ -10,8 +10,22 @@ class LanguagesController < UserProfilesController
   # GET /languages
   # GET /languages.json
   def index
-    redirect_to  User.current.can?(:manage_roles) ? edit_user_registration_path : profile_record_path
-    @languages = Language.for_status params[:status_type]
+    respond_to do |format|
+      format.html{  redirect_to  User.current.can?(:manage_roles) ? edit_user_registration_path : profile_record_path }
+      format.js{}
+      format.pdf{}
+      format.csv{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        json = LanguageDatatable.new(view_context, options).as_json
+        send_data Language.to_csv(json[:data]), filename: "language-#{Date.today}.csv"
+      }
+      format.json{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        render json: LanguageDatatable.new(view_context,options)
+      }
+    end
   end
 
   # GET /languages/1

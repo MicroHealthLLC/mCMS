@@ -1,7 +1,7 @@
 class Language < ApplicationRecord
   audited except: [:created_by_id, :updated_by_id]
   belongs_to :user
-  belongs_to :language_type
+
   belongs_to :language_status, foreign_key: :status_id
   belongs_to :proficiency_type, foreign_key: :proficiency_id
 
@@ -20,7 +20,22 @@ class Language < ApplicationRecord
     snomed
   end
 
- def language_status
+  def self.include_enumerations
+    includes(:language_status, :proficiency_type).
+        references(:language_status, :proficiency_type)
+  end
+
+  def self.csv_attributes
+    [
+        I18n.t('language_type'),
+        I18n.t('language_status'),
+        I18n.t('proficiency'),
+        I18n.t('label_date'),
+    ]
+  end
+
+
+  def language_status
     if status_id
       super
     else

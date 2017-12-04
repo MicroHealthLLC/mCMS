@@ -46,7 +46,7 @@ class Devise::RegistrationsController < DeviseController
     @core_demographic = User.current.core_demographic || CoreDemographic.new(user_id: User.current.id)
     if User.current.can?(:manage_roles)
       if module_enabled?( 'languages')
-        @languages = Language.for_status params[:status_type]
+        @languages = []
       end
 
       if module_enabled?( 'contacts')

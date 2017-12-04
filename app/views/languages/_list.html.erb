@@ -1,4 +1,4 @@
-<table class="table table-responsive table-bordered" id="language_table">
+<table class="table table-bordered table-responsive" id="language_table"  style="width: 100%">
   <thead>
   <tr>
     <th><%= t('language_type') %></th>
@@ -9,21 +9,18 @@
   </thead>
 
   <tbody>
-  <% @languages.each do |language| %>
-      <tr>
-        <td><%= link_to_edit_if_can language.language_type, {ctrl: :languages, object: language } %></td>
-        <td><%= language.language_status %></td>
-        <td><%= language.proficiency_type %></td>
-        <td><%= format_date language.updated_at %></td>
-      </tr>
-  <% end %>
   </tbody>
 </table>
-
-<script>
-  $(document).ready(function(){
-    initDataTable('language_table')
-  } );
-</script>
+<% columns= [  { "searchable": true, "orderable": true },
+                { "searchable": true, "orderable": true },
+                { "searchable": true, "orderable": true },
+                { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'language_table',
+    url: languages_path(format: :csv),
+    columns: columns.flatten,
+    ajax_url: languages_path(format: :json, status_type: params[:status_type])
+} %>
 
 
