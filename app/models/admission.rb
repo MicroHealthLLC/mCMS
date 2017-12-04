@@ -24,6 +24,19 @@ class Admission < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:admission_type, :admission_status).
+        references(:admission_type, :admission_status)
+  end
+
+  def self.csv_attributes
+    ['Care Facility Name',
+    'Date Admitted',
+    'Date Discharged',
+    'Admission Status',
+    'Admission Type']
+  end
+
   def admission_type
     if admission_type_id
       super

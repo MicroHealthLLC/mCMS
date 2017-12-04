@@ -10,19 +10,18 @@
   </thead>
 
   <tbody>
-  <% @admissions.each do |admission| %>
-      <tr>
-        <td><%= link_to_edit_if_can admission.care_family_name, {ctrl: :admissions, object: admission } %></td>
-        <td><%= format_date admission.date_admitted %></td>
-        <td><%= format_date admission.date_discharged %></td>
-        <td><%= admission.admission_status %></td>
-        <td><%= admission.admission_type %></td>
-       </tr>
-  <% end %>
+
   </tbody>
 </table>
-<script>
-  $(document).ready(function(){
-    initDataTable('admission_table')
-  })
-</script>
+<% columns= [  { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'admission_table',
+    url: admissions_path(format: :csv),
+    columns: columns.flatten,
+    ajax_url: admissions_path(format: :json, status_type: params[:status_type])
+} %>
