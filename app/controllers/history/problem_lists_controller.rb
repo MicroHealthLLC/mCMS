@@ -9,7 +9,6 @@ class ProblemListsController < UserHistoryController
   # GET /problem_lists
   # GET /problem_lists.json
   def index
-    redirect_to medical_record_path if request.format.to_sym == :html
     respond_to do |format|
       format.html{  redirect_to medical_record_path}
       format.js{}
@@ -18,7 +17,7 @@ class ProblemListsController < UserHistoryController
         options = Hash.new
         options[:status_type] = params[:status_type]
         json = ProblemListDatatable.new(view_context, options).as_json
-        send_data ProblemList.to_csv(json[:data]), filename: "language-#{Date.today}.csv"
+        send_data ProblemList.to_csv(json[:data]), filename: "problem-list-#{Date.today}.csv"
       }
       format.json{
         options = Hash.new

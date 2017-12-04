@@ -1,5 +1,5 @@
 
-<table class="table table-responsive" id="health_care_table">
+<table class="table table-responsive" id="health_care_table" style="width: 100%">
   <thead>
   <tr>
     <th>Name</th>
@@ -12,20 +12,19 @@
   </thead>
 
   <tbody>
-  <% @health_care_facilities.each do |health_care_facility| %>
-      <tr>
-        <td><%= link_to_edit_if_can health_care_facility.name, {ctrl: :health_care_facilities, object: health_care_facility } %></td>
-        <td><%= health_care_facility.health_care_facility_type %></td>
-        <td><%= health_care_facility.health_care_facility_status %></td>
-        <td><%= health_care_facility.health_care_facility_contact %></td>
-        <td><%= format_date health_care_facility.date_started %></td>
-        <td><%= format_date health_care_facility.date_end %></td>
-  </tr>
-  <% end %>
+
   </tbody>
 </table>
-<script>
-  $(document).ready(function(){
-    initDataTable('health_care_table')
-  })
-</script>
+<% columns= [  { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'health_care_table',
+    url: health_care_facilities_path(format: :csv),
+    columns: columns.flatten,
+    ajax_url: health_care_facilities_path(format: :json, status_type: params[:status_type])
+} %>

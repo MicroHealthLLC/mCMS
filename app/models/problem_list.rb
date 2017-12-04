@@ -33,7 +33,6 @@ class ProblemList < ApplicationRecord
     ]
   end
 
-
   def problem_type
     if problem_type_id
       super

@@ -17,6 +17,23 @@ class HealthCareFacility < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:health_care_facility_status, :health_care_facility_type).
+        references(:health_care_facility_status, :health_care_facility_type)
+  end
+
+  def self.csv_attributes
+    [
+        'Name',
+        'health_care_facility_type',
+        'health_care_facility_status',
+        'health_care_facility_contact',
+        'Date started',
+        'Date ended'
+    ]
+  end
+
+
   def health_care_facility_status
     if health_care_facility_status_id
       super
