@@ -5,10 +5,11 @@ class UserHistoryController < ProtectForgeryApplication
   before_action :authorize, except: [:medical_record, :socioeconomic_record]
 
   def medical_record
-    @admissions = Admission.for_status(params[:status_type]) if module_enabled?( 'admissions')  && can?(:manage_roles, :view_admissions, :manage_admissions)
-    @health_care_facilities = HealthCareFacility.for_status(params[:status_type]) if module_enabled?( 'health_care_facilities')  && can?(:manage_roles, :view_health_care_facilities, :manage_health_care_facilities)
-    @problem_lists = ProblemList.for_status(params[:status_type]) if module_enabled?( 'problem_lists')  && can?(:manage_roles, :view_problem_lists, :manage_problem_lists)
-    @surgicals = Surgical.for_status(params[:status_type]) if module_enabled?( 'surgicals')  && can?(:manage_roles, :view_surgicals, :manage_surgicals)
+    @admissions = [] if module_enabled?( 'admissions')  && can?(:manage_roles, :view_admissions, :manage_admissions)
+    @health_care_facilities =  [] if module_enabled?( 'health_care_facilities')  && can?(:manage_roles, :view_health_care_facilities, :manage_health_care_facilities)
+    @problem_lists = [] if module_enabled?( 'problem_lists')  && can?(:manage_roles, :view_problem_lists, :manage_problem_lists)
+    @surgicals = [] if module_enabled?( 'surgicals')  && can?(:manage_roles, :view_surgicals, :manage_surgicals)
+
     @medicals = Medical.for_status(params[:status_type]) if module_enabled?( 'medicals')  && can?(:manage_roles, :view_medicals, :manage_medicals)
     @medications = Medication.for_status(params[:status_type]) if module_enabled?( 'medications')  && can?(:manage_roles, :view_medications, :manage_medications)
     @behavioral_risks = BehavioralRisk.for_status(params[:status_type]) if module_enabled?( 'behavioral_risks')  && can?(:manage_roles, :view_behavioral_risks, :manage_behavioral_risks)
