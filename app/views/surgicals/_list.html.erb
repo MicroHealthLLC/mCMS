@@ -1,4 +1,4 @@
-<table class="table table-responsive" id="surgical_table">
+<table class="table table-responsive" id="surgical_table" style="width: 100%">
   <thead>
   <tr>
     <th>Name</th>
@@ -11,21 +11,19 @@
   </thead>
 
   <tbody>
-  <% @surgicals.each do |surgical| %>
-      <tr>
-        <td><%= link_to_edit_if_can surgical.name, {ctrl: :surgicals, object: surgical } %></td>
-        <td><%= link_to_edit_if_can surgical.hcpc, {ctrl: :surgicals, object: surgical } %></td>
-
-        <td><%= surgical.medical_facility %></td>
-        <td><%= surgical.surgery_status %></td>
-        <td><%= surgical.surgery_type %></td>
-        <td><%= format_date surgical.surgery_date %></td>
-      </tr>
-  <% end %>
   </tbody>
 </table>
-<script>
-  $(document).ready(function(){
-    initDataTable('surgical_table')
-  })
-</script>
+<% columns= [  { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true }
+]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'surgical_table',
+    url: surgicals_path(format: :csv),
+    columns: columns.flatten,
+    ajax_url: surgicals_path(format: :json, status_type: params[:status_type])
+} %>

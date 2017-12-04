@@ -18,6 +18,23 @@ class Surgical < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:surgery_type, :surgery_status).
+        references(:surgery_type, :surgery_status)
+  end
+
+  def self.csv_attributes
+    [
+        'Name',
+        I18n.t('hcpc'),
+        'Medical Facility',
+        'Surgery Status',
+        'Surgery Type',
+        'Surgical Date',
+    ]
+  end
+
+
   def surgery_type
     if surgery_type_id
       super
@@ -50,7 +67,7 @@ class Surgical < ApplicationRecord
 
     pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
-  
+
   def self.safe_attributes
     [:name, :icdcm_code_id, :user_id, :medical_facility,
      :surgery_status_id, :surgery_type_id, :hcpc_id, :location_lat, :location_long,
