@@ -9,17 +9,22 @@ class FamilyHistoriesController < UserHistoryController
   # GET /family_histories
   # GET /family_histories.json
   def index
-    redirect_to medical_record_path if request.format.to_sym == :html
-    scope = FamilyHistory.visible
-    scope = case params[:status_type]
-              when 'all' then scope.all_data
-              when 'opened' then scope.opened
-              when 'closed' then scope.closed
-              when 'flagged' then scope.flagged
-              else
-                scope.all_data
-            end
-    @family_histories = scope
+    respond_to do |format|
+      format.html{  redirect_to  medical_record_path }
+      format.js{}
+      format.pdf{}
+      format.csv{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        json = FamilyHistoryDatatable.new(view_context, options).as_json
+        send_data FamilyHistory.to_csv(json[:data]), filename: "Family-histories-#{Date.today}.csv"
+      }
+      format.json{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        render json: FamilyHistoryDatatable.new(view_context,options)
+      }
+    end
   end
 
   # GET /family_histories/1

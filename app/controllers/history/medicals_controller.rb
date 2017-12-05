@@ -17,7 +17,7 @@ class MedicalsController < UserHistoryController
         options = Hash.new
         options[:status_type] = params[:status_type]
         json = MedicalDatatable.new(view_context, options).as_json
-        send_data Medical.to_csv(json[:data]), filename: "surgical-#{Date.today}.csv"
+        send_data Medical.to_csv(json[:data]), filename: "Medical-#{Date.today}.csv"
       }
       format.json{
         options = Hash.new

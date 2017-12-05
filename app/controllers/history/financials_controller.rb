@@ -8,18 +8,22 @@ class FinancialsController < UserHistoryController
   # GET /financials
   # GET /financials.json
   def index
-    redirect_to socioeconomic_record_path if request.format.to_sym == :html
-    scope = Financial.visible
-    scope = case params[:status_type]
-              when 'all' then scope.all_data
-              when 'opened' then scope.opened
-              when 'closed' then scope.closed
-              when 'flagged' then scope.flagged
-              else
-                scope.all_data
-            end
-
-    @financials = scope
+    respond_to do |format|
+      format.html{  redirect_to  socioeconomic_record_path }
+      format.js{}
+      format.pdf{}
+      format.csv{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        json = FinancialDatatable.new(view_context, options).as_json
+        send_data Financial.to_csv(json[:data]), filename: "Financial-#{Date.today}.csv"
+      }
+      format.json{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        render json: FinancialDatatable.new(view_context,options)
+      }
+    end
   end
 
   # GET /financials/1

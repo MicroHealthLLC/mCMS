@@ -9,19 +9,22 @@ class RadiologicExaminationsController < UserHistoryController
   # GET /radiologic_examinations
   # GET /radiologic_examinations.json
   def index
-    redirect_to medical_record_path if request.format.to_sym == :html
-    scope = RadiologicExamination.visible
-
-    scope = case params[:status_type]
-              when 'all' then scope.all_data
-              when 'opened' then scope.opened
-              when 'closed' then scope.closed
-              when 'flagged' then scope.flagged
-              else
-                scope.all_data
-            end
-
-    @radiologic_examinations = scope
+    respond_to do |format|
+      format.html{  redirect_to  medical_record_path }
+      format.js{}
+      format.pdf{}
+      format.csv{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        json = RadiologicExaminationDatatable.new(view_context, options).as_json
+        send_data RadiologicExamination.to_csv(json[:data]), filename: "radiologic-exam-#{Date.today}.csv"
+      }
+      format.json{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        render json: RadiologicExaminationDatatable.new(view_context,options)
+      }
+    end
   end
 
   # GET /radiologic_examinations/1

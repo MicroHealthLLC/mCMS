@@ -9,18 +9,22 @@ class BehavioralRisksController < UserHistoryController
   # GET /behavioral_risks
   # GET /behavioral_risks.json
   def index
-    redirect_to medical_record_path if request.format.to_sym == :html
-    scope = BehavioralRisk.visible
-    scope = case params[:status_type]
-              when 'all' then scope.all_data
-              when 'opened' then scope.opened
-              when 'closed' then scope.closed
-              when 'flagged' then scope.flagged
-              else
-                scope.all_data
-            end
-
-    @behavioral_risks = scope
+    respond_to do |format|
+      format.html{  redirect_to medical_record_path }
+      format.js{}
+      format.pdf{}
+      format.csv{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        json = BehavioralRiskDatatable.new(view_context, options).as_json
+        send_data BehavioralRisk.to_csv(json[:data]), filename: "Behavioral-risk-#{Date.today}.csv"
+      }
+      format.json{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        render json: BehavioralRiskDatatable.new(view_context,options)
+      }
+    end
   end
 
   # GET /behavioral_risks/1
