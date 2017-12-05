@@ -19,6 +19,20 @@ class Affiliation < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:affiliation_status, :affiliation_status).
+        references(:affiliation_status, :affiliation_status)
+  end
+
+  def self.csv_attributes
+    ['Care Facility Name',
+     'Date Admitted',
+     'Date Discharged',
+     'Admission Status',
+     'Admission Type']
+  end
+
+
   def affiliation_status
     if status_id
       super

@@ -9,18 +9,17 @@
   </thead>
 
   <tbody>
-  <% @daily_livings.each do |daily_living| %>
-      <tr>
-        <td><%= link_to_edit_if_can daily_living.snomed,{ctrl: :daily_livings, object: daily_living }  %></td>
-        <td><%= daily_living.daily_living_status %></td>
-        <td><%= format_date daily_living.date_start %></td>
-        <td><%= format_date daily_living.date_end %></td>
-      </tr>
-  <% end %>
+
   </tbody>
 </table>
-<script>
-  $(document).ready(function(){
-    initDataTable('daily_livings_table')
-  })
-</script>
+<% columns= [  { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'daily_livings_table',
+    url: daily_livings_path(format: :csv),
+    columns: columns.flatten,
+    ajax_url: daily_livings_path(format: :json, status_type: params[:status_type])
+} %>

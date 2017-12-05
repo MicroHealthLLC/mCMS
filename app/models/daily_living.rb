@@ -15,6 +15,23 @@ class DailyLiving < ApplicationRecord
     ]
   end
 
+
+
+  def self.include_enumerations
+    includes(:daily_living_type, :daily_living_status).
+        references(:daily_living_type, :daily_living_status)
+  end
+
+  def self.csv_attributes
+    [
+
+        'Daily living Type',
+        'Daily living status',
+        'Date start',
+        'Date end'
+    ]
+  end
+
   def daily_living_status
     if daily_living_status_id
       super

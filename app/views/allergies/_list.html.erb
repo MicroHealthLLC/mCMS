@@ -1,4 +1,4 @@
-<table class="table table-responsive" id="allergy_table">
+<table class="table table-responsive" id="allergy_table" style="width: 100%;">
   <thead>
   <tr>
     <th>Allergy type</th>
@@ -9,17 +9,16 @@
   </thead>
 
   <tbody>
-  <% @allergies.each do |allergy| %>
-      <tr>
-        <td><%= link_to_edit_if_can  allergy.snomed, {ctrl: :allergies, object: allergy } %></td>
-        <td><%= format_date allergy.allergy_date %></td>
-        <td><%= allergy.allergy_status %></td>
-        </tr>
-  <% end %>
+
   </tbody>
 </table>
-<script>
-  $(document).ready(function(){
-    initDataTable('allergy_table')
-  })
-</script>
+<% columns= [  { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'allergy_table',
+    url: allergies_path(format: :csv),
+    columns: columns.flatten,
+    ajax_url: allergies_path(format: :json, status_type: params[:status_type])
+} %>

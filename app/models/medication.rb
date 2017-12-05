@@ -14,6 +14,28 @@ class Medication < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:medication_status).
+        references(:medication_status)
+  end
+
+  def self.csv_attributes
+    [
+    'Medication',
+    'Count',
+    'Directions',
+
+    'Date prescribed',
+    'Date expired',
+    'Total refills',
+
+    'Refills left',
+    'Medication status',
+
+    ]
+  end
+
+  
 
   def medication_status
     if medication_status_id

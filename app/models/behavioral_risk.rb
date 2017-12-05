@@ -17,6 +17,22 @@ class BehavioralRisk < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:behavioral_risk_type, :behavioral_risk_status).
+        references(:behavioral_risk_type, :behavioral_risk_status)
+  end
+
+  def self.csv_attributes
+    [
+        'Name',
+        I18n.t('hcpc'),
+        'Medical Facility',
+        'Surgery Status',
+        'Surgery Type',
+        'Surgical Date',
+    ]
+  end
+
   def behavioral_risk_type
     if behavioral_risk_type_id
       super

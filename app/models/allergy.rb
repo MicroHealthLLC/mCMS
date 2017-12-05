@@ -19,6 +19,21 @@ class Allergy < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:allergy_status).
+        references(:allergy_status)
+  end
+
+  def self.csv_attributes
+    [
+    'Allergy type',
+
+    'Allergy date',
+    'Allergy status'
+
+    ]
+  end
+
   def allergy_status
     if allergy_status_id
       super

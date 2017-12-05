@@ -30,8 +30,8 @@ class AdmissionDatatable < AjaxDatatablesRails::Base
           @view.link_to_edit_if_can( admission.care_family_name, {ctrl: :admissions, object: admission }),
           @view.format_date( admission.date_admitted),
           @view.format_date( admission.date_discharged),
-          admission.admission_status,
-          admission.admission_type,
+          "#{admission.admission_status}",
+          "#{admission.admission_type}"
       ]
 
 

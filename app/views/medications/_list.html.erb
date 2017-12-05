@@ -1,35 +1,38 @@
-<table class="table table-responsive" id="medications_table">
+<table class="table table-responsive" id="medications_table" style="width: 100%;">
   <thead>
   <tr>
     <th>Medication</th>
     <th>Count</th>
     <th>Directions</th>
+
     <th>Date prescribed</th>
     <th>Date expired</th>
     <th>Total refills</th>
+
     <th>Refills left</th>
     <th>Medication status</th>
   </tr>
   </thead>
 
   <tbody>
-  <% @medications.each do |medication| %>
-      <tr>
-        <td><%= link_to_edit_if_can medication.medication_synonym, {ctrl: :medications, object: medication } %></td>
 
-        <td><%= medication.dose %></td>
-        <td><%= medication.description %></td>
-        <td><%= format_date medication.date_prescribed %></td>
-        <td><%= format_date medication.date_expired %></td>
-        <td><%= medication.total_refills %></td>
-        <td><%= medication.refills_left %></td>
-        <td><%= medication.medication_status %></td>
-      </tr>
-  <% end %>
   </tbody>
 </table>
-<script>
-  $(document).ready(function(){
-    initDataTable('medications_table')
-  })
-</script>
+<% columns= [  { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+
+               { "searchable": true, "orderable": true },
+
+               { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'medications_table',
+    url: medications_path(format: :csv),
+    columns: columns.flatten,
+    ajax_url: medications_path(format: :json, status_type: params[:status_type])
+} %>
