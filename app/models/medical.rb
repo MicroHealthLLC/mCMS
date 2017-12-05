@@ -17,6 +17,23 @@ class Medical < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:medical_history_type, :medical_history_status).
+        references(:medical_history_type, :medical_history_status)
+  end
+
+  def self.csv_attributes
+    [
+    'Name',
+    'Snomed',
+    'Medical facility',
+    'Date of diagnosis',
+    'Medical history status',
+    'Medical history type'
+
+    ]
+  end
+
   def medical_history_type
     if medical_history_type_id
       super

@@ -1,4 +1,4 @@
-<table class="table table-responsive" id="medicals_table">
+<table class="table table-responsive" id="medicals_table" style="width: 100%">
   <thead>
   <tr>
     <th>Name</th>
@@ -12,20 +12,20 @@
   </thead>
 
   <tbody>
-  <% @medicals.each do |medical| %>
-      <tr>
-        <td><%= link_to_edit_if_can medical.name, {ctrl: :medicals, object: medical } %></td>
-        <td><%= link_to_edit_if_can medical.snomed, {ctrl: :medicals, object: medical } %></td>
-        <td><%= medical.medical_facility %></td>
-        <td><%= format_date medical.date_of_diagnosis %></td>
-        <td><%= medical.medical_history_status %></td>
-        <td><%= medical.medical_history_type %></td>
-      </tr>
-  <% end %>
+
   </tbody>
 </table>
-<script>
-  $(document).ready(function(){
-    initDataTable('medicals_table')
-  })
-</script>
+<% columns= [  { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'medicals_table',
+    url: medicals_path(format: :csv),
+    columns: columns.flatten,
+    ajax_url: medicals_path(format: :json, status_type: params[:status_type])
+} %>

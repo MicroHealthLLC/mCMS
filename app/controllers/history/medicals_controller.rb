@@ -9,17 +9,22 @@ class MedicalsController < UserHistoryController
   # GET /medicals
   # GET /medicals.json
   def index
-    redirect_to medical_record_path if request.format.to_sym == :html
-    scope = Medical.visible
-    scope = case params[:status_type]
-              when 'all' then scope.all_data
-              when 'opened' then scope.opened
-              when 'closed' then scope.closed
-              when 'flagged' then scope.flagged
-              else
-                scope.all_data
-            end
-    @medicals = scope
+    respond_to do |format|
+      format.html{  redirect_to medical_record_path }
+      format.js{}
+      format.pdf{}
+      format.csv{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        json = MedicalDatatable.new(view_context, options).as_json
+        send_data Medical.to_csv(json[:data]), filename: "surgical-#{Date.today}.csv"
+      }
+      format.json{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        render json: MedicalDatatable.new(view_context,options)
+      }
+    end
   end
 
   # GET /medicals/1
