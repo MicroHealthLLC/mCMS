@@ -1,4 +1,4 @@
-<table class="table table-responsive" id="behavioral_risk_table">
+<table class="table table-responsive" id="behavioral_risk_table" style="width: 100%">
   <thead>
   <tr>
 
@@ -13,20 +13,21 @@
   </thead>
 
   <tbody>
-  <% @behavioral_risks.each do |behavioral_risk| %>
-      <tr>
-        <td><%= link_to_edit_if_can behavioral_risk.name, {ctrl: :behavioral_risks, object: behavioral_risk } %></td>
-        <td><%= link_to behavioral_risk.snomed, behavioral_risk%></td>
-        <td><%= format_date behavioral_risk.date_started %></td>
-        <td><%= format_date  behavioral_risk.date_ended %></td>
-        <td><%= behavioral_risk.behavioral_risk_status %></td>
-        <td><%= behavioral_risk.behavioral_risk_type %></td>
-      </tr>
-  <% end %>
+
   </tbody>
 </table>
-<script>
-  $(document).ready(function(){
-    initDataTable('behavioral_risk_table')
-  })
-</script>
+<% columns= [  { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'behavioral_risk_table',
+    url: behavioral_risks_path(format: :csv),
+    columns: columns.flatten,
+    ajax_url: behavioral_risks_path(format: :json, status_type: params[:status_type])
+} %>
+
