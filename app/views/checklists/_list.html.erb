@@ -9,7 +9,7 @@
     <th><%= t('checklist_type') %></th>
     <th><%= t('number_of_checklist') %></th>
     <% if User.current.admin? %>
-        <th ></th>
+        <th colspan="2"></th>
     <% end %>
   </tr>
   </thead>
@@ -33,6 +33,7 @@
 
             <% if User.current.admin? %>
                 <td><%= edit_link edit_checklist_template_path(checklist_template) %></td>
+                <td><%= delete_link checklist_template_path(checklist_template) %></td>
             <% end %>
 
           </tr>

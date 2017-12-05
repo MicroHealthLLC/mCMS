@@ -4,6 +4,28 @@
 <%= thredded_page do %>
     <div class="row">
 
+        <div class="col-xs-12 btn-edition">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+            <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:180px;">
+              <% if policy(Thredded::Messageboard.new).create? %>
+                <li>
+                  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                  <%= link_to t('thredded.messageboard.create'), new_messageboard_path, class: 'dropdown-item' %>
+                </li>
+                <div class='dropdown-item-dividier'></div>
+              <% end %>
+
+              <% if policy(Thredded::MessageboardGroup.new).create? %>
+                <li>
+                  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                  <%= link_to t('thredded.messageboard_group.create'), new_messageboard_group_path, class: 'dropdown-item' %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+
       <div class="col-sm-12">
 
         <div class="well">
@@ -31,12 +53,4 @@
           </div>
         </div>
       </div>
-    <div class="col-xs-12" align="center">
-      <% if policy(Thredded::Messageboard.new).create? %>
-          <a  class='btn btn-primary' href="<%= new_messageboard_path %>"><%= t('thredded.messageboard.create') %></a>
-      <% end %>
-      <% if policy(Thredded::MessageboardGroup.new).create? %>
-          <a class='btn btn-primary' href="<%= new_messageboard_group_path %>"><%= t('thredded.messageboard_group.create') %></a>
-      <% end %>
-    </div>
 <% end %>
