@@ -3,7 +3,7 @@
   <tr>
     <th><%= t :insurance %></th>
     <th><%= 'created at' %></th>
-    <th></th>
+    <th colspan="2"></th>
   </tr>
   </thead>
 
@@ -14,6 +14,7 @@
             <td><%= link_to insurance.name, insurance_path(insurance) %></td>
             <td><%= format_date insurance.created_at %></td>
             <td><%= edit_link edit_insurance_path(insurance) %></td>
+            <td><%= delete_link insurance_path(insurance) %></td>
           </tr>
       <% end %>
   <% else %>
