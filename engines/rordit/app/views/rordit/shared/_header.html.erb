@@ -11,8 +11,10 @@
         <% end %>
 
         <% if params[:action] != 'new' and can?(:manage_roles, :manage_link_share, :create_link_share) %>
-          <div class='dropdown-item-dividier'></div>
-          <li>
+          <% unless params[:action] == 'index' %>
+            <div class='dropdown-item-dividier'></div>
+          <% end %>
+         <li>
             <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
             <%= link_to 'Share Link', '/rordit/share-link', class: 'dropdown-item' %>
           </li>
