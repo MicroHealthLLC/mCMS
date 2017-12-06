@@ -19,6 +19,23 @@ class Housing < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:housing_status, :housing_type).
+        references(:housing_status, :housing_type)
+  end
+
+  def self.csv_attributes
+    [
+    'Housing Type',
+    'Housing status',
+    'Primary address',
+    'Estimated monthly payment',
+    'Date start',
+    'Date end'
+    ]
+  end
+  
+
   def housing_status
     if housing_status_id
       super

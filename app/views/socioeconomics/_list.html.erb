@@ -1,4 +1,4 @@
-<table class="table table-responsive" id="socioeconomic_table">
+<table class="table table-responsive" id="socioeconomic_table" style="width: 100%">
   <thead>
   <tr>
 
@@ -13,21 +13,20 @@
   </thead>
 
   <tbody>
-  <% @socioeconomics.each do |socioeconomic| %>
-      <tr>
-        <td><%= link_to_edit_if_can socioeconomic.name, {ctrl: :socioeconomics, object: socioeconomic } %></td>
-        <td><%= link_to_edit_if_can socioeconomic.snomed, {ctrl: :socioeconomics, object: socioeconomic } %></td>
-        <td><%= format_date socioeconomic.date_identified %></td>
-        <td><%= format_date socioeconomic.date_resolved %></td>
-        <td><%= socioeconomic.socioeconomic_status %></td>
-        <td><%= socioeconomic.socioeconomic_type %></td>
-      </tr>
-  <% end %>
+
   </tbody>
 </table>
 
-<script>
-  $(document).ready(function(){
-    initDataTable('socioeconomic_table')
-  })
-</script>
+<% columns= [  { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'socioeconomic_table',
+    url: socioeconomics_path(format: :csv),
+    columns: columns.flatten,
+    ajax_url: socioeconomics_path(format: :json, status_type: params[:status_type])
+} %>

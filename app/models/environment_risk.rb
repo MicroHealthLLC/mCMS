@@ -17,6 +17,23 @@ class EnvironmentRisk < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:environment_type, :environment_status).
+        references(:environment_type, :environment_status)
+  end
+
+  def self.csv_attributes
+    [
+    'Name',
+    'Snomed',
+    'Date started',
+    'Date ended',
+    'Environment status',
+    'Environment type'
+    ]
+  end
+  
+
   def environment_type
     if environment_type_id
       super

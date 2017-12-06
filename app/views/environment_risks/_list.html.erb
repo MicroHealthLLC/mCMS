@@ -1,4 +1,4 @@
-<table class="table table-responsive" id="environment_risk_table">
+<table class="table table-responsive" id="environment_risk_table" style="width: 100%">
   <thead>
   <tr>
     <th>Name</th>
@@ -11,20 +11,20 @@
   </thead>
 
   <tbody>
-  <% @environment_risks.each do |environment_risk| %>
-      <tr>
-        <td><%= link_to_edit_if_can environment_risk.name, {ctrl: :environment_risks, object: environment_risk } %></td>
-        <td><%= link_to_edit_if_can environment_risk.snomed, {ctrl: :environment_risks, object: environment_risk } %></td>
-        <td><%= environment_risk.date_started %></td>
-        <td><%= environment_risk.date_ended %></td>
-        <td><%= environment_risk.environment_status %></td>
-        <td><%= environment_risk.environment_type %></td>
-        </tr>
-  <% end %>
+
   </tbody>
 </table>
-<script>
-  $(document).ready(function(){
-    initDataTable('environment_risk_table')
-  })
-</script>
+<% columns= [  { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'environment_risk_table',
+    url: environment_risks_path(format: :csv),
+    columns: columns.flatten,
+    ajax_url: environment_risks_path(format: :json, status_type: params[:status_type])
+} %>

@@ -21,11 +21,11 @@ class UserHistoryController < ProtectForgeryApplication
   end
 
   def socioeconomic_record
-    @daily_livings = DailyLiving.for_status(params[:status_type])  if module_enabled?( 'daily_livings')  && can?(:manage_roles, :view_daily_livings, :manage_daily_livings)
-    @socioeconomics = Socioeconomic.for_status(params[:status_type])  if module_enabled?( 'socioeconomics')  && can?(:manage_roles, :view_socioeconomics, :manage_socioeconomics)
-    @environment_risks = EnvironmentRisk.for_status(params[:status_type])  if module_enabled?( 'environment_risks')  && can?(:manage_roles, :view_environment_risks, :manage_environment_risks)
-    @housings = Housing.for_status(params[:status_type])  if module_enabled?( 'housings')  && can?(:manage_roles, :view_housings, :manage_housings)
-    @financials = Financial.for_status(params[:status_type])  if module_enabled?( 'financials')  && can?(:manage_roles, :view_financials, :manage_financials)
+    @daily_livings =  []  if module_enabled?( 'daily_livings')  && can?(:manage_roles, :view_daily_livings, :manage_daily_livings)
+    @socioeconomics = []  if module_enabled?( 'socioeconomics')  && can?(:manage_roles, :view_socioeconomics, :manage_socioeconomics)
+    @environment_risks = []  if module_enabled?( 'environment_risks')  && can?(:manage_roles, :view_environment_risks, :manage_environment_risks)
+    @housings = []  if module_enabled?( 'housings')  && can?(:manage_roles, :view_housings, :manage_housings)
+    @financials = []  if module_enabled?( 'financials')  && can?(:manage_roles, :view_financials, :manage_financials)
     @legals = Legal.for_status(params[:status_type])  if module_enabled?( 'legals')  && can?(:manage_roles, :view_legals, :manage_legals)
     @transportations = Transportation.for_status(params[:status_type])  if module_enabled?( 'transportations')  && can?(:manage_roles, :view_transportations, :manage_transportations)
     @other_histories = OtherHistory.for_status(params[:status_type])  if module_enabled?( 'other_histories')  && can?(:manage_roles, :view_other_histories, :manage_other_histories)

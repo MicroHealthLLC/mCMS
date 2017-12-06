@@ -16,6 +16,21 @@ class Legal < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:legal_history_status, :legal_history_type).
+        references(:legal_history_status, :legal_history_type)
+  end
+
+  def self.csv_attributes
+    [
+    'Title',
+    'Legal History Type',
+    'Legal History Status',
+    'Date start',
+    'Date end'
+    ]
+  end
+  
   def legal_history_type
     if legal_history_type_id
       super

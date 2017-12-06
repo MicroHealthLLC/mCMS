@@ -17,6 +17,23 @@ class Socioeconomic < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:socioeconomic_type, :socioeconomic_status).
+        references(:socioeconomic_type, :socioeconomic_status)
+  end
+
+  def self.csv_attributes
+    [
+    'Name',
+    'Snomed',
+    'Date identified',
+    'Date resolved',
+    'Socioeconomic status',
+    'Socioeconomic type'
+    ]
+  end
+  
+
   def socioeconomic_type
     if socioeconomic_type_id
       super

@@ -16,13 +16,13 @@ class EnvironmentRisksController < UserHistoryController
       format.csv{
         options = Hash.new
         options[:status_type] = params[:status_type]
-        json = DailyLivingDatatable.new(view_context, options).as_json
+        json = EnvironmentRiskDatatable.new(view_context, options).as_json
         send_data EnvironmentRisk.to_csv(json[:data]), filename: "Environment-risk-#{Date.today}.csv"
       }
       format.json{
         options = Hash.new
         options[:status_type] = params[:status_type]
-        render json: DailyLivingDatatable.new(view_context,options)
+        render json: EnvironmentRiskDatatable.new(view_context,options)
       }
     end
   end

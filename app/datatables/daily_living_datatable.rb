@@ -5,7 +5,6 @@ class DailyLivingDatatable < AjaxDatatablesRails::Base
     @sortable_columns ||= %w{
         DailyLiving.snomed
       Enumeration.name
-      Enumeration.name
       DailyLiving.date_start
       DailyLiving.date_end
     }
@@ -15,7 +14,6 @@ class DailyLivingDatatable < AjaxDatatablesRails::Base
     # Declare strings in this format: ModelName.column_name
     @searchable_columns ||= %w{
       DailyLiving.snomed
-      Enumeration.name
       Enumeration.name
       DailyLiving.date_start
       DailyLiving.date_end

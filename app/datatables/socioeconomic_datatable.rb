@@ -3,10 +3,10 @@ class SocioeconomicDatatable < AjaxDatatablesRails::Base
   def sortable_columns
     # Declare strings in this format: ModelName.column_name
     @sortable_columns ||= %w{
-       BehavioralRisk.name
-      BehavioralRisk.snomed
-      BehavioralRisk.date_started
-      BehavioralRisk.date_ended
+      Socioeconomic.name
+      Socioeconomic.snomed
+      Socioeconomic.date_identified
+      Socioeconomic.date_resolved
       Enumeration.name
       Enumeration.name
     }
@@ -15,10 +15,10 @@ class SocioeconomicDatatable < AjaxDatatablesRails::Base
   def searchable_columns
     # Declare strings in this format: ModelName.column_name
     @searchable_columns ||= %w{
-      BehavioralRisk.name
-      BehavioralRisk.snomed
-      BehavioralRisk.date_started
-      BehavioralRisk.date_ended
+      Socioeconomic.name
+      Socioeconomic.snomed
+      Socioeconomic.date_identified
+      Socioeconomic.date_resolved
       Enumeration.name
       Enumeration.name
     }
@@ -27,14 +27,14 @@ class SocioeconomicDatatable < AjaxDatatablesRails::Base
   private
 
   def data
-    records.map do |behavioral_risk|
+    records.map do |socioeconomic|
       [
-          @view.link_to_edit_if_can( behavioral_risk.name, {ctrl: :behavioral_risks, object: behavioral_risk }) ,
-          @view.link_to( behavioral_risk.snomed, behavioral_risk),
-          @view.format_date( behavioral_risk.date_started) ,
-          @view.format_date(  behavioral_risk.date_ended) ,
-          behavioral_risk.behavioral_risk_status ,
-          behavioral_risk.behavioral_risk_type ,
+          @view.link_to_edit_if_can( socioeconomic.name, {ctrl: :socioeconomics, object: socioeconomic } ),
+          @view.link_to_edit_if_can(socioeconomic.snomed, {ctrl: :socioeconomics, object: socioeconomic }) ,
+          @view.format_date( socioeconomic.date_identified) ,
+          @view.format_date( socioeconomic.date_resolved) ,
+          socioeconomic.socioeconomic_status.to_s,
+          socioeconomic.socioeconomic_type.to_s ,
       ]
 
     end

@@ -30,8 +30,8 @@ class HealthCareFacilityDatatable < AjaxDatatablesRails::Base
     records.map do |health_care_facility|
       [
           @view.link_to_edit_if_can( health_care_facility.name, {ctrl: :health_care_facilities, object: health_care_facility }) ,
-          health_care_facility.health_care_facility_type ,
-          health_care_facility.health_care_facility_status ,
+          health_care_facility.health_care_facility_type.to_s,
+          health_care_facility.health_care_facility_status.to_s ,
           health_care_facility.health_care_facility_contact ,
           @view.format_date( health_care_facility.date_started) ,
           @view.format_date( health_care_facility.date_end)

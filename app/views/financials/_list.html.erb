@@ -1,4 +1,4 @@
-<table class="table table-responsive" id="financials_table">
+<table class="table table-responsive" id="financials_table" style="width: 100%">
   <thead>
   <tr>
     <th>Financial Type</th>
@@ -10,18 +10,17 @@
   </thead>
 
   <tbody>
-  <% @financials.each do |financial| %>
-      <tr>
-        <td><%= link_to_edit_if_can financial.snomed.presence, {ctrl: :financials, object: financial } %></td>
-        <td><%= financial.financial_status %></td>
-        <td><%= format_date financial.date_start %></td>
-        <td><%= format_date financial.date_end %></td>
-       </tr>
-  <% end %>
+
   </tbody>
 </table>
-<script>
-  $(document).ready(function(){
-    initDataTable('financials_table')
-  })
-</script>
+<% columns= [  { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'financials_table',
+    url: financials_path(format: :csv),
+    columns: columns.flatten,
+    ajax_url: financials_path(format: :json, status_type: params[:status_type])
+} %>

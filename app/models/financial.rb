@@ -16,6 +16,20 @@ class Financial < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:financial_type, :financial_status).
+        references(:financial_type, :financial_status)
+  end
+
+  def self.csv_attributes
+    [
+        'Financial Type',
+        'Financial status',
+        'Date start',
+        'Date end',
+    ]
+  end
+
 
   def financial_status
     if financial_status_id
