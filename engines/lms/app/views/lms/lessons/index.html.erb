@@ -1,5 +1,17 @@
-<%= link_to( 'New Lesson', lms.new_course_lesson_path(@course), class:'btn btn-primary pull-right margin-bottom-10') if can?(:manage_roles) %>
-<section id="widget-grid" class="allergies_section">
+<div class="col-xs-12 btn-edition">
+  <div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+    <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:180px;">
+      <% if can?(:manage_roles) %>
+        <li>
+          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+          <%= link_to 'New Lesson', lms.new_course_lesson_path(@course), class: 'dropdown-item' %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<section id="widget-grid" class="course_lesson_section">
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'list',
