@@ -1,9 +1,9 @@
+<h2><%= @course.name %> </h2>
+
 <%= render partial: 'action_menu' %>
+
 <div class="row">
   <div class="col-xs-12">
-    <div class="page-header center">
-      <h1><%= @course.name %> </h1>
-    </div>
 
     <div class="row">
       <div class="col-md-4">
@@ -48,7 +48,7 @@
                     <td> <%= a.body.html_safe %> </td>
                     <td>
                       <%= link_to lms.edit_course_assignment_path(@course, a), class: "navbar-brand" do %>
-                          <span class="glyphicon glyphicon-pencil"></span>
+                          <span class="glyphicon glyphicon-edit"></span>
                       <% end %>
                       <%= link_to lms.course_assignment_path(@course, a), class: "navbar-brand", method: :delete, data: { confirm: 'Are you sure?' } do %>
                           <span class="glyphicon glyphicon-trash"></span>

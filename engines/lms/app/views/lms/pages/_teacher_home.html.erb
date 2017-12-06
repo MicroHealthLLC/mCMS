@@ -1,14 +1,26 @@
-<div class="page-header center">
-  <h1>Teacher Dashboard</h1>
+<div class="module-title">
+  <h2 class='module-title-text'>TEACHER DASHBOARD</h2>
 </div>
-<%= link_to 'New course', lms.new_course_path, class: 'btn btn-primary btn-edition pull-right' %>
+<div class="row">
+  <div class="col-xs-12 btn-edition">
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+      <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:170px;">
+        <li>
+          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+          <%= link_to 'New Course', lms.new_course_path, class: 'dropdown-item' %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
 <table class="table table-striped">
   <thead>
   <tr>
     <th>Name</th>
     <th>Description</th>
-    <th>Course code</th>
-    <th>Edit course</th>
+    <th>Course Code</th>
+    <th colspan="2"> </th>
     <th>Tools</th>
   </tr>
   </thead>
@@ -16,16 +28,12 @@
   <tbody>
   <% @courses.each do |c| %>
       <tr>
-        <td><%= c.name %></td>
+        <td><%= link_to c.name, c %></td>
         <td><%= c.description.html_safe %></td>
         <td><%= c.course_code %></td>
-        <td>
-          <ul>
-            <li> <%= link_to 'Show', c %> </li>
-            <li> <%= link_to 'Edit', lms.edit_course_path(c) %> </li>
-            <li> <%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %> </li>
-          </ul>
-        </td>
+        <td><%= edit_link lms.edit_course_path(c) %></td>
+        <td><%= delete_link c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td> </td>
       </tr>
   <% end %>
   </tbody>

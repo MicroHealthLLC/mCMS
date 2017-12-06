@@ -23,7 +23,7 @@
 
       <% if @course.can?(:manage_roles, :manages_courses, :edit_courses) %>
         <li>
-          <span class="glyphicon glyphicon-plug-sign" aria-hidden="true"></span>
+          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
           <%= link_to 'Add Assignment', lms.new_course_assignment_path(@course), class: 'dropdown-item' %>
         </li>
         <div class='dropdown-item-dividier'></div>
@@ -43,7 +43,7 @@
   </div>
   <div class="btn-group">
     <div class="col-xs-12 btn-edition">
-      <a data-toggle="modal" data-target=".add-link-modal" class='btn btn-primary pull-right' >Create a Link</a>
+      <a data-toggle="modal" data-target=".add-link-modal" class='btn btn-primary'>Create a Link</a>
     </div>
   </div>
 </div>
