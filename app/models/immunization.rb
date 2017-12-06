@@ -14,6 +14,25 @@ class Immunization < ApplicationRecord
         ["#{ImmunizationStatus}", 'immunization_status_id']
     ]
   end
+  
+  def self.include_enumerations
+    includes(:immunization_status).
+        references(:immunization_status)
+  end
+
+  def self.csv_attributes
+    [
+    'Medication',
+
+    'Next date due',
+    'Date immunized',
+    'Manufacturer',
+    'Lot number',
+    'Expiration date',
+    'Immunization status'
+    ]
+  end
+  
 
   def immunization_status
     if immunization_status_id

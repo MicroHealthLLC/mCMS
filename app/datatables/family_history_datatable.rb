@@ -1,12 +1,11 @@
-class FinancialDatatable < AjaxDatatablesRails::Base
+class FamilyHistoryDatatable < AjaxDatatablesRails::Base
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name
     @sortable_columns ||= %w{
-       BehavioralRisk.name
-      BehavioralRisk.snomed
-      BehavioralRisk.date_started
-      BehavioralRisk.date_ended
+      FamilyHistory.name
+      FamilyHistory.snomed
+      FamilyHistory.date_identified
       Enumeration.name
       Enumeration.name
     }
@@ -15,10 +14,9 @@ class FinancialDatatable < AjaxDatatablesRails::Base
   def searchable_columns
     # Declare strings in this format: ModelName.column_name
     @searchable_columns ||= %w{
-      BehavioralRisk.name
-      BehavioralRisk.snomed
-      BehavioralRisk.date_started
-      BehavioralRisk.date_ended
+      FamilyHistory.name
+      FamilyHistory.snomed
+      FamilyHistory.date_identified
       Enumeration.name
       Enumeration.name
     }
@@ -27,14 +25,13 @@ class FinancialDatatable < AjaxDatatablesRails::Base
   private
 
   def data
-    records.map do |behavioral_risk|
+    records.map do |family_history|
       [
-          @view.link_to_edit_if_can( behavioral_risk.name, {ctrl: :behavioral_risks, object: behavioral_risk }) ,
-          @view.link_to( behavioral_risk.snomed, behavioral_risk),
-          @view.format_date( behavioral_risk.date_started) ,
-          @view.format_date(  behavioral_risk.date_ended) ,
-          behavioral_risk.behavioral_risk_status ,
-          behavioral_risk.behavioral_risk_type ,
+          @view.link_to_edit_if_can( family_history.name, {ctrl: :family_histories, object: family_history }) ,
+          @view.link_to_edit_if_can( family_history.snomed, {ctrl: :family_histories, object: family_history }) ,
+          @view.format_date( family_history.date_identified) ,
+          family_history.family_status.to_s,
+          family_history.family_type.to_s ,
       ]
 
     end

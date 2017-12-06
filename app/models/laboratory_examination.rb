@@ -14,6 +14,20 @@ class LaboratoryExamination < ApplicationRecord
     [["#{LaboratoryResultStatus}", 'laboratory_result_status_id' ]]
   end
 
+  def self.include_enumerations
+    includes(:laboratory_result_status).
+        references(:laboratory_result_status)
+  end
+
+  def self.csv_attributes
+    [
+        'Name',
+        'Facility',
+        'Date',
+        'Laboratory result status',
+    ]
+  end
+
   def to_s
     snomed
   end

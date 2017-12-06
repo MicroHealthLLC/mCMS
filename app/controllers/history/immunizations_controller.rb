@@ -16,7 +16,7 @@ class ImmunizationsController < UserHistoryController
       format.csv{
         options = Hash.new
         options[:status_type] = params[:status_type]
-        json = ImmunizationyDatatable.new(view_context, options).as_json
+        json = ImmunizationDatatable.new(view_context, options).as_json
         send_data Immunization.to_csv(json[:data]), filename: "Immunization-#{Date.today}.csv"
       }
       format.json{

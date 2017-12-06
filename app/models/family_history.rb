@@ -17,6 +17,21 @@ class FamilyHistory < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:family_status, :family_type).
+        references(:family_status, :family_type)
+  end
+
+  def self.csv_attributes
+    [
+    'Name',
+    'Snomed',
+    'Date identified',
+    'Family status',
+    'Family type'
+    ]
+  end
+
   def family_type
     if family_type_id
       super

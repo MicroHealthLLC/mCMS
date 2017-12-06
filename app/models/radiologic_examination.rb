@@ -14,6 +14,20 @@ class RadiologicExamination < ApplicationRecord
     [["#{RadiologicResultStatus}", 'radiologic_result_status_id' ]]
   end
 
+  def self.include_enumerations
+    includes(:radiologic_result_status).
+        references(:radiologic_result_status)
+  end
+
+  def self.csv_attributes
+    [
+        'Name',
+        'Facility',
+        'Date',
+        'Laboratory result status',
+    ]
+  end
+
   def to_s
     snomed
   end

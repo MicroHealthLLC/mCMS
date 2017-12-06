@@ -1,4 +1,4 @@
-<table class="table table-responsive" id="immunization_table">
+<table class="table table-responsive" id="immunization_table" style="width: 100%">
   <thead>
   <tr>
     <th>Medication</th>
@@ -13,21 +13,21 @@
   </thead>
 
   <tbody>
-  <% @immunizations.each do |immunization| %>
-      <tr>
-        <td><%= link_to_edit_if_can immunization.snomed, {ctrl: :immunizations, object: immunization } %></td>
-        <td><%= format_date immunization.next_date_due %></td>
-        <td><%= format_date immunization.date_immunized %></td>
-        <td><%= immunization.manufacturer %></td>
-        <td><%= immunization.lot_number %></td>
-        <td><%= format_date immunization.expiration_date %></td>
-        <td><%= immunization.immunization_status %></td>
-       </tr>
-  <% end %>
+
   </tbody>
 </table>
-<script>
-  $(document).ready(function(){
-    initDataTable('immunization_table')
-  })
-</script>
+<% columns= [  { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'immunization_table',
+    url: immunizations_path(format: :csv),
+    columns: columns.flatten,
+    ajax_url: immunizations_path(format: :json, status_type: params[:status_type])
+} %>

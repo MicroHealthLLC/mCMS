@@ -13,11 +13,11 @@ class UserHistoryController < ProtectForgeryApplication
     @medicals = [] if module_enabled?( 'medicals')  && can?(:manage_roles, :view_medicals, :manage_medicals)
     @medications = [] if module_enabled?( 'medications')  && can?(:manage_roles, :view_medications, :manage_medications)
     @behavioral_risks = [] if module_enabled?( 'behavioral_risks')  && can?(:manage_roles, :view_behavioral_risks, :manage_behavioral_risks)
-    @family_histories = FamilyHistory.for_status(params[:status_type]) if module_enabled?( 'family_histories')  && can?(:manage_roles, :view_family_histories, :manage_family_histories)
-    @immunizations = Immunization.for_status(params[:status_type]) if module_enabled?( 'immunizations')  && can?(:manage_roles, :view_immunizations, :manage_immunizations)
+    @family_histories = [] if module_enabled?( 'family_histories')  && can?(:manage_roles, :view_family_histories, :manage_family_histories)
+    @immunizations = [] if module_enabled?( 'immunizations')  && can?(:manage_roles, :view_immunizations, :manage_immunizations)
     @allergies = [] if module_enabled?( 'allergies')  && can?(:manage_roles, :view_allergies, :manage_allergies)
-    @laboratory_examinations = LaboratoryExamination.for_status(params[:status_type]) if module_enabled?( 'laboratory_examinations')  && can?(:manage_roles, :view_laboratory_examinations, :manage_laboratory_examinations)
-    @radiologic_examinations = RadiologicExamination.for_status(params[:status_type]) if module_enabled?( 'radiologic_examinations')  && can?(:manage_roles, :view_radiologic_examinations, :manage_radiologic_examinations)
+    @laboratory_examinations =  [] if module_enabled?( 'laboratory_examinations')  && can?(:manage_roles, :view_laboratory_examinations, :manage_laboratory_examinations)
+    @radiologic_examinations = [] if module_enabled?( 'radiologic_examinations')  && can?(:manage_roles, :view_radiologic_examinations, :manage_radiologic_examinations)
   end
 
   def socioeconomic_record
