@@ -1,5 +1,5 @@
-<div class="page-header center">
-  <h1>Teacher Dashboard</h1>
+<div class="module-title">
+  <h2 class='module-title-text'>TEACHER DASHBOARD</h2>
 </div>
 <div class="row">
   <div class="col-xs-12 btn-edition">
@@ -19,8 +19,8 @@
   <tr>
     <th>Name</th>
     <th>Description</th>
-    <th>Course code</th>
-    <th>Edit course</th>
+    <th>Course Code</th>
+    <th colspan="3"> </th>
     <th>Tools</th>
   </tr>
   </thead>
@@ -28,16 +28,13 @@
   <tbody>
   <% @courses.each do |c| %>
       <tr>
-        <td><%= c.name %></td>
+        <td><%= link_to c.name, c %></td>
         <td><%= c.description.html_safe %></td>
         <td><%= c.course_code %></td>
-        <td>
-          <ul>
-            <li> <%= link_to 'Show', c %> </li>
-            <li> <%= link_to 'Edit', lms.edit_course_path(c) %> </li>
-            <li> <%= link_to 'Destroy', c, method: :delete, data: { confirm: 'Are you sure?' } %> </li>
-          </ul>
-        </td>
+        <td><%= link_to 'Show', c %></td>
+        <td><%= edit_link lms.edit_course_path(c) %></td>
+        <td><%= delete_link c, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td> </td>
       </tr>
   <% end %>
   </tbody>
