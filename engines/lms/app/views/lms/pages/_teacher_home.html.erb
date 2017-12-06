@@ -1,7 +1,19 @@
 <div class="page-header center">
   <h1>Teacher Dashboard</h1>
 </div>
-<%= link_to 'New course', lms.new_course_path, class: 'btn btn-primary btn-edition pull-right' %>
+<div class="row">
+  <div class="col-xs-12 btn-edition">
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+      <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:180px;">
+        <li>
+          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+          <%= link_to 'New Course', lms.new_course_path, class: 'dropdown-item' %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
 <table class="table table-striped">
   <thead>
   <tr>
