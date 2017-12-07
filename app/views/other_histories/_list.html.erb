@@ -1,4 +1,4 @@
-<table class="table table-responsive" id="other_history_table">
+<table class="table table-responsive" id="other_history_table" style="width: 100%">
   <thead>
   <tr>
     <th>Name</th>
@@ -11,21 +11,20 @@
   </thead>
 
   <tbody>
-  <% @other_histories.each do |other_history| %>
-      <tr>
-        <td><%= link_to_edit_if_can other_history.name, {ctrl: :other_histories, object: other_history } %></td>
-        <td><%= other_history.icdcm_code %></td>
-        <td><%= format_date other_history.date_identified %></td>
-        <td><%= format_date other_history.date_resolved %></td>
-        <td><%= other_history.other_history_status %></td>
-        <td><%= other_history.other_history_type %></td>
-       </tr>
-  <% end %>
+
   </tbody>
 </table>
 
-<script>
-  $(document).ready(function(){
-    initDataTable('other_history_table')
-  })
-</script>
+<% columns= [  { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'other_history_table',
+    url: other_histories_path(format: :csv),
+    columns: columns.flatten,
+    ajax_url: other_histories_path(format: :json, status_type: params[:status_type])
+} %>

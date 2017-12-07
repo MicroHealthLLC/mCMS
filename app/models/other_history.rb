@@ -17,6 +17,24 @@ class OtherHistory < ApplicationRecord
     ]
   end
 
+
+  def self.include_enumerations
+    includes(:other_history_type, :other_history_status, :icdcm_code).
+        references(:other_history_type, :other_history_status, :icdcm_code)
+  end
+
+  def self.csv_attributes
+    [
+    'Name',
+    'Snomed',
+    'Date identified',
+    'Date resolved',
+    'Other history status',
+    'Other history type'
+    ]
+  end
+
+
   def other_history_type
     if other_history_type_id
       super

@@ -1,4 +1,4 @@
-<table class="table table-responsive" id="transportations_table">
+<table class="table table-responsive" id="transportations_table" style="width: 100%">
   <thead>
   <tr>
     <th>Transportation mean</th>
@@ -12,23 +12,21 @@
   </thead>
 
   <tbody>
-  <% @transportations.each do |transportation| %>
-      <tr>
-        <td><%= link_to_edit_if_can transportation.transportation_mean, {ctrl: :transportations, object: transportation } %></td>
 
-        <td><%= transportation.transportation_type %></td>
-        <td><%= transportation.transportation_accessibility %></td>
-        <td><%= transportation.transportation_status %></td>
-
-        <td><%= transportation.estimated_monthly_cost %></td>
-        <td><%= format_date transportation.date_start %></td>
-        <td><%= format_date transportation.date_end %></td>
-      </tr>
-  <% end %>
   </tbody>
 </table>
-<script>
-    $(document).ready(function(){
-        initDataTable('transportations_table')
-    })
-</script>
+<% columns= [  { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'transportations_table',
+    url: transportations_path(format: :csv),
+    columns: columns.flatten,
+    ajax_url: transportations_path(format: :json, status_type: params[:status_type])
+} %>

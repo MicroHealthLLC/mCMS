@@ -19,6 +19,24 @@ class Transportation < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:transportation_type, :transportation_status, :transportation_mean, :transportation_accessibility).
+        references(:transportation_type, :transportation_status, :transportation_mean, :transportation_accessibility)
+  end
+
+  def self.csv_attributes
+    [
+    'Transportation mean',
+    'Transportation type',
+    'Transportation accessibility',
+    'Transportation status',
+    'Estimated monthly cost',
+    'Date start',
+    'Date end'
+    ]
+  end
+  
+
   def transportation_type
     if transportation_type_id
       super
