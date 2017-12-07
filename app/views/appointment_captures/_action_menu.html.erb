@@ -17,7 +17,7 @@
         <% if @appointment_capture.can?(:manage_roles, :manage_appointment_capture, :edit_appointment_capture) %>
           <li>
             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-            <%= link_to 'Edit', edit_appointment_disposition_path(@appointment_disposition), class: 'dropdown-item' %>
+            <%= link_to 'Edit', edit_appointment_capture_path(@appointment_capture), class: 'dropdown-item' %>
           </li>
           <div class='dropdown-item-dividier'></div>
         <% end %>
@@ -25,7 +25,7 @@
         <% if @appointment_capture.can?(:manage_roles, :manage_appointment_capture, :show_appointment_capture) %>
           <li>
             <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-            <%= link_to 'Show', appointment_disposition_path(@appointment_disposition), class: 'dropdown-item' %>
+            <%= link_to 'Show', appointment_capture_path(@appointment_capture), class: 'dropdown-item' %>
           </li>
           <div class='dropdown-item-dividier'></div>
         <% end %>
