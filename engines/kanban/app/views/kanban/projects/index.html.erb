@@ -14,11 +14,11 @@
   <nav class="navbar">
     <div class="navbar-inner">
       <div class="row">
-        <div class="col-xs-2">
-          <button class='btn btn-default' id="openSliderbtn" title="Open Files Listing and Search Panel" ng-click="openFilesListing()"><i class="glyphicon glyphicon-th-list"></i></button>
+        <div class="col-xs-1">
+          <button class='btn btn-default' id="openSliderbtn" title="Open Files Listing and Search Panel"><i class="glyphicon glyphicon-th-list"></i></button>
         </div>
 
-        <div class="navbar-header col-xs-4">
+        <div class="navbar-header col-xs-5">
           <span id="kanbanName" class="navbar-brand" ng-model="kanban" ng-hide="editingName"><a class="renameKanban" ng-click="editingKanbanName()">{{kanban.name}}</a></span>
           <div ng-show="editingName" class="pull-left">
             <form ng-submit="rename()" >
@@ -48,7 +48,7 @@
 
   <div class="row" id="fileslistingdiv" style="display:none;">
     <div class="col-xs-12 col-sm-8 col-md-4" id="list_search" class="slide slide-up">
-      <button id="closeSliderbtn" class='btn btn-default' title="Close Listings/Search Panel" ng-click="closeFilesListing()"><i class="glyphicon glyphicon-collapse-up"></i></button><br>
+      <button id="closeSliderbtn" class='btn btn-default' title="Close Listings/Search Panel"><i class="glyphicon glyphicon-collapse-up"></i></button><br>
       <p id="list_name"><span id="mh">MH</span> Planner</p>
       <div id="quickSwitch" style="padding: 0 10px" class="form-group">
         <select ng-model="switchTo" id="fileslist" ng-options="name for name in switchToList" ng-change="switchToKanban(switchTo)">
@@ -98,19 +98,23 @@
 
   <!-- Cloud stuff from here -->
 </script>
+  
+<script>
+var fileslistingdiv = document.getElementById("fileslistingdiv");
+var fileslist = document.getElementById("fileslist");
+var openSliderbtn = document.getElementById("openSliderbtn");
+openSliderbtn.addEventListener("click", function () {
+  fileslistingdiv.style.display = "block";
+  fileslist.click();
+});
+var closeSliderbtn = document.getElementById("closeSliderbtn");
+closeSliderbtn.addEventListener("click", function () {
+  fileslistingdiv.style.display = "none";
+});
+</script>
+
 <footer></footer>
 <%= javascript_include_tag 'kanban/application' %>
 </div>
 
-<script>
-var fileslistingdiv = document.getElementById("fileslistingdiv");
-var fileslist = document.getElementById("fileslist");
-function openFilesListing() {
-  fileslistingdiv.style.display = "block";
-  fileslist.click();
-}
-function closeFilesListing() {
-  fileslistingdiv.style.display = "none";
-}
-</script>
 
