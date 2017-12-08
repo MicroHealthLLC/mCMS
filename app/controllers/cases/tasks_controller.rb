@@ -12,7 +12,7 @@ class TasksController < UserCasesController
   def index
     respond_to do |format|
       format.html{}
-      format.csv{
+      format.csv{ params[:length] = 500
         options = Hash.new
         options[:status_type] = params[:status_type]
         json =  TaskDatatable.new(view_context, options).as_json

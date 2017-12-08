@@ -34,7 +34,7 @@ class CasesController < UserCasesController
                 end
         @cases = scope
       }
-      format.csv{
+      format.csv{ params[:length] = 500
         options = Hash.new
         options[:status_type] = params[:status_type]
         json = CaseDatatable.new(view_context, options).as_json

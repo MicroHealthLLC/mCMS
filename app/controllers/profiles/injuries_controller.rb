@@ -13,7 +13,7 @@ class InjuriesController < UserProfilesController
       format.html{  redirect_to occupational_record_path }
       format.js{}
       format.pdf{}
-      format.csv{
+      format.csv{ params[:length] = 500
         options = Hash.new
         options[:status_type] = params[:status_type]
         json = EducationDatatable.new(view_context, options).as_json

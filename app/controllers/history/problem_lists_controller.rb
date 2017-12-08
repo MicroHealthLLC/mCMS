@@ -13,7 +13,7 @@ class ProblemListsController < UserHistoryController
       format.html{  redirect_to medical_record_path}
       format.js{}
       format.pdf{}
-      format.csv{
+      format.csv{ params[:length] = 500
         options = Hash.new
         options[:status_type] = params[:status_type]
         json = ProblemListDatatable.new(view_context, options).as_json
