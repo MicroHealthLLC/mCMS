@@ -87,3 +87,30 @@ abbr[title] {
   border-bottom: none;
   text-decoration: none;
 }
+
+
+
+.ui-tabs .ui-tabs-nav li a {
+  background-color:#4D7484;border:1px solid #4D7484;color:#ffffff;
+}
+.ui-tabs .ui-tabs-nav li a:hover {
+  border:1px solid #DBC2A4;border-bottom:1px solid #ddd;background-color:#DBC2A4;
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-active a {
+  border:1px solid #F59B69;border-bottom:1px solid #ddd;background-color:#F59B69;color:#000000;
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-active:hover {
+  background:#F59B69;cursor:text;
+}
+
+
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+  background-color:#4D7484;
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-active a {
+  background-color:#F59B69;
+}
+
+.ui-tabs .ui-tabs-nav li {
+  margin: 4px .2em 0 0;
+}
