@@ -22,6 +22,29 @@ class Position < ApplicationRecord
     ]
   end
 
+
+  def self.include_enumerations
+    includes(:position_status, :employment_type, :location_type, :occupation).
+        references(:position_status, :employment_type , :location_type, :occupation)
+  end
+
+  def self.csv_attributes
+    [
+    I18n.t('title'),
+    'Occupation',
+    I18n.t('enumeration_location_type'),
+
+    I18n.t('date_start'),
+    I18n.t('date_end'),
+    I18n.t('employment_type'),
+
+    I18n.t('position_status'),
+    I18n.t('estimated_monthly_amount') 
+    ]
+  end
+
+  
+
   def pay_rate_type
     if pay_rate_id
       super

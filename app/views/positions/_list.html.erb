@@ -1,36 +1,39 @@
 
-<table class="table table-bordered table-responsive" id="oposition_table">
+<table class="table table-bordered table-responsive" id="positions_table">
   <thead>
   <tr>
     <th><%= t('title') %></th>
     <th><%= 'Occupation' %></th>
     <th><%= t('enumeration_location_type') %></th>
+
     <th><%= t('date_start') %></th>
     <th><%= t('date_end') %></th>
     <th><%= t('employment_type') %></th>
+
     <th><%= t('position_status') %></th>
     <th><%= t('estimated_monthly_amount') %></th>
   </tr>
   </thead>
 
   <tbody>
-      <% @positions.each do |position| %>
-          <tr>
-            <td><%= link_to_edit_if_can position.title, {ctrl: :positions, object: position } %></td>
-            <td><%= position.occupation %></td>
-            <td><%= position.location_type %></td>
-            <td><%= format_date position.date_start %></td>
-            <td><%= format_date position.date_end %></td>
-            <td><%= position.employment_type %></td>
-            <td><%= position.position_status %></td>
-            <td><%= position.estimated_monthly_amount %></td>
-          </tr>
-      <% end %>
+
   </tbody>
 </table>
-<script>
-  $(document).ready(function(){
-    initDataTable('oposition_table')
-  } );
-</script>
+
+<% columns= [  { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'positions_table',
+    url: positions_path(format: :csv),
+    columns: columns.flatten,
+    ajax_url: positions_path(format: :json, status_type: params[:status_type])
+} %>
 

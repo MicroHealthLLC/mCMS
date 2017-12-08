@@ -15,6 +15,22 @@ class Certification < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:certification_status, :certification_type).
+        references(:certification_status, :certification_type)
+  end
+
+  def self.csv_attributes
+    [
+        I18n.t('label_name') ,
+        I18n.t('enumeration_certification_type') ,
+        I18n.t('certification_status') ,
+        I18n.t('education_date_received') ,
+        I18n.t('education_date_expired')
+
+    ]
+  end
+
   def certification_type
     if certification_type_id
       super
@@ -23,13 +39,13 @@ class Certification < ApplicationRecord
     end
   end
 
-   def certification_status
+  def certification_status
     if status_id
       super
     else
       CertificationStatus.default
     end
-   end
+  end
   alias status certification_status
 
   def to_s

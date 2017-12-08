@@ -18,13 +18,13 @@ class PositionsController < UserProfilesController
       format.csv{
         options = Hash.new
         options[:status_type] = params[:status_type]
-        json = EducationDatatable.new(view_context, options).as_json
-        send_data Education.to_csv(json[:data]), filename: "Education-#{Date.today}.csv"
+        json = PositionDatatable.new(view_context, options).as_json
+        send_data Position.to_csv(json[:data]), filename: "Position-#{Date.today}.csv"
       }
       format.json{
         options = Hash.new
         options[:status_type] = params[:status_type]
-        render json: EducationDatatable.new(view_context,options)
+        render json: PositionDatatable.new(view_context,options)
       }
     end
   end

@@ -16,13 +16,13 @@ class ClearancesController < UserProfilesController
       format.csv{
         options = Hash.new
         options[:status_type] = params[:status_type]
-        json = EducationDatatable.new(view_context, options).as_json
-        send_data Education.to_csv(json[:data]), filename: "Education-#{Date.today}.csv"
+        json = ClearanceDatatable.new(view_context, options).as_json
+        send_data Clearance.to_csv(json[:data]), filename: "Clearance-#{Date.today}.csv"
       }
       format.json{
         options = Hash.new
         options[:status_type] = params[:status_type]
-        render json: EducationDatatable.new(view_context,options)
+        render json: ClearanceDatatable.new(view_context,options)
       }
     end
   end

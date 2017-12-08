@@ -1,4 +1,4 @@
-<table class="table table-responsive table-bordered" id="certifications_table">
+<table class="table table-responsive table-bordered" id="certifications_table" style="width: 100%">
   <thead>
   <tr>
     <th><%= t('label_name') %></th>
@@ -10,20 +10,19 @@
   </thead>
 
   <tbody>
-      <% @certifications.each do |certification| %>
-          <tr>
-            <td><%= link_to_edit_if_can certification.name, {ctrl: :certifications, object: certification } %></td>
-            <td><%=  certification.certification_type %></td>
-            <td><%= certification.certification_status %></td>
-            <td><%= format_date certification.date_received %></td>
-            <td><%= format_date certification.date_expired %></td>
-          </tr>
-      <% end %>
+
   </tbody>
 </table>
 
-<script>
-  $(document).ready(function(){
-    initDataTable('certifications_table')
-  } );
-</script>
+<% columns= [  { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'certifications_table',
+    url: certifications_path(format: :csv),
+    columns: columns.flatten,
+    ajax_url: certifications_path(format: :json, status_type: params[:status_type])
+} %>

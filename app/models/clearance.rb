@@ -15,6 +15,21 @@ class Clearance < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:clearence_status, :clearence_type).
+        references(:clearence_status, :clearence_type)
+  end
+
+  def self.csv_attributes
+    [
+    I18n.t('enumeration_clearence_type') ,
+    I18n.t('clearance_status') ,
+    I18n.t('education_date_received') ,
+    I18n.t('education_date_expired') 
+    ]
+  end
+  
+    
   def clearence_status
     if status_id
       super
