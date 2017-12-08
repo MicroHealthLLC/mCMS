@@ -41,7 +41,7 @@ class MedicationDatatable < AjaxDatatablesRails::Base
           @view.format_date(medication.date_expired ),
           medication.total_refills ,
           medication.refills_left ,
-          medication.medication_status ,
+          medication.medication_status.to_s ,
       ]
 
     end

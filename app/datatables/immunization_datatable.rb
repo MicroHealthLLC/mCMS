@@ -37,7 +37,7 @@ class ImmunizationDatatable < AjaxDatatablesRails::Base
           immunization.manufacturer ,
           immunization.lot_number ,
           @view.format_date( immunization.expiration_date) ,
-          immunization.immunization_status ,
+          immunization.immunization_status.to_s ,
       ]
 
     end

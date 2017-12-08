@@ -33,8 +33,8 @@ class ProblemListDatatable < AjaxDatatablesRails::Base
           @view.link_to_edit_if_can(problem_list.snomed, {ctrl: :problem_lists, object: problem_list } ),
           @view.format_date( problem_list.date_onset) ,
           @view.format_date( problem_list.date_resolved) ,
-          problem_list.problem_status ,
-          problem_list.problem_type
+          problem_list.problem_status.to_s ,
+          problem_list.problem_type.to_s
       ]
 
     end

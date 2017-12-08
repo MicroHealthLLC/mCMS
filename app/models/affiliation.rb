@@ -25,11 +25,13 @@ class Affiliation < ApplicationRecord
   end
 
   def self.csv_attributes
-    ['Care Facility Name',
-     'Date Admitted',
-     'Date Discharged',
-     'Admission Status',
-     'Admission Type']
+    [
+        I18n.t(:label_name) ,
+        I18n.t(:affiliation_type) ,
+        I18n.t(:affiliation_status) ,
+        I18n.t(:date_start) ,
+        I18n.t(:date_end)
+    ]
   end
 
 

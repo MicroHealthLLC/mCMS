@@ -9,8 +9,22 @@ class UserInsurancesController < UserProfilesController
   # GET /user_insurances
   # GET /user_insurances.json
   def index
-    redirect_to profile_record_path if request.format.to_sym == :html
-    @user_insurances = UserInsurance.for_status(params[:status_type])
+    respond_to do |format|
+      format.html{  redirect_to  profile_record_path }
+      format.js{}
+      format.pdf{}
+      format.csv{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        json = UserInsuranceDatatable.new(view_context, options).as_json
+        send_data UserInsurance.to_csv(json[:data]), filename: "UserInsurance-#{Date.today}.csv"
+      }
+      format.json{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        render json: UserInsuranceDatatable.new(view_context,options)
+      }
+    end
   end
 
   # GET /user_insurances/1

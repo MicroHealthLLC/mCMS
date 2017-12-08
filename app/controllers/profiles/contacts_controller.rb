@@ -9,18 +9,19 @@ class ContactsController < UserProfilesController
   # GET /contacts.json
   def index
     respond_to do |format|
-      format.html{ redirect_to profile_record_path }
-      format.pdf{
-        scope = Contact.visible
-        scope = case params[:status_type]
-                  when 'all' then scope.all_data
-                  when 'opened' then scope.opened
-                  when 'closed' then scope.closed
-                  when 'flagged' then scope.flagged
-                  else
-                    scope.opened
-                end
-        @contacts = scope
+      format.html{  redirect_to  profile_record_path }
+      format.js{}
+      format.pdf{}
+      format.csv{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        json = ContactDatatable.new(view_context, options).as_json
+        send_data Contact.to_csv(json[:data]), filename: "Contact-#{Date.today}.csv"
+      }
+      format.json{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        render json: ContactDatatable.new(view_context,options)
       }
     end
   end

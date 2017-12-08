@@ -18,6 +18,22 @@ class UserInsurance < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:insurance_status, :insurance_type).
+        references(:insurance_status, :insurance_type)
+  end
+
+  def self.csv_attributes
+    [
+        I18n.t('insurance'),
+        I18n.t('insurance_type'),
+        I18n.t('insurance_status'),
+        'Insurance Identifier',
+        'Issue date',
+        'Expiration Date'
+    ]
+  end
+
   def group; group_id; end
 
   def insurance_type
@@ -29,16 +45,16 @@ class UserInsurance < ApplicationRecord
   end
 
 
-   def insurance_status
+  def insurance_status
     if status_id
       super
     else
       InsuranceStatus.default
     end
-   end
+  end
   alias status insurance_status
 
-   def insurance_relationship
+  def insurance_relationship
     if insurance_relationship_id
       super
     else

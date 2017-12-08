@@ -1,4 +1,4 @@
-<table class="table table-bordered table-responsive" id="affiliation_table">
+<table class="table table-bordered table-responsive" id="affiliation_table" style="width: 100%">
   <thead>
   <tr>
     <th><%= t :label_name %></th>
@@ -10,20 +10,19 @@
   </thead>
 
   <tbody>
-      <% affiliations.each do |affiliation| %>
-          <tr>
-            <td><%= link_to_edit_if_can affiliation.name, {ctrl: :affiliations, object: affiliation } %></td>
-            <td><%= affiliation.affiliation_type %></td>
-            <td><%= affiliation.affiliation_status %></td>
-            <td><%= format_date affiliation.date_start %></td>
-            <td><%= format_date affiliation.date_end %></td>
-            </tr>
-      <% end %>
+    
   </tbody>
 </table>
 
-<script>
-  $(document).ready(function(){
-    initDataTable('affiliation_table')
-  } );
-</script>
+<% columns= [  { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'affiliation_table',
+    url: affiliations_path(format: :csv),
+    columns: columns.flatten,
+    ajax_url: affiliations_path(format: :json, status_type: params[:status_type])
+} %>

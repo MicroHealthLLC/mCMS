@@ -34,8 +34,8 @@ class MedicalDatatable < AjaxDatatablesRails::Base
           @view.link_to_edit_if_can( medical.snomed, {ctrl: :medicals, object: medical }) ,
           medical.medical_facility ,
           @view.format_date( medical.date_of_diagnosis) ,
-          medical.medical_history_status ,
-          medical.medical_history_type
+          medical.medical_history_status.to_s,
+          medical.medical_history_type.to_s
       ]
 
     end

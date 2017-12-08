@@ -32,8 +32,8 @@ class SurgeryDatatable < AjaxDatatablesRails::Base
           @view.link_to_edit_if_can(surgical.name, {ctrl: :surgicals, object: surgical } ),
           @view.link_to_edit_if_can( surgical.hcpc, {ctrl: :surgicals, object: surgical }) ,
           surgical.medical_facility ,
-          surgical.surgery_status ,
-          surgical.surgery_type ,
+          surgical.surgery_status.to_s ,
+          surgical.surgery_type.to_s ,
           @view.format_date(surgical.surgery_date) ,
       ]
 
