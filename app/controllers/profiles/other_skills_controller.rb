@@ -9,8 +9,22 @@ class OtherSkillsController < UserProfilesController
   # GET /other_skills
   # GET /other_skills.json
   def index
-    redirect_to occupational_record_path if request.format.to_sym == :html
-    @other_skills = OtherSkill.for_status params[:status_type]
+    respond_to do |format|
+      format.html{  redirect_to occupational_record_path }
+      format.js{}
+      format.pdf{}
+      format.csv{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        json = OtherSkillDatatable.new(view_context, options).as_json
+        send_data OtherSkill.to_csv(json[:data]), filename: "skill-#{Date.today}.csv"
+      }
+      format.json{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        render json: OtherSkillDatatable.new(view_context,options)
+      }
+    end
   end
 
   # GET /other_skills/1

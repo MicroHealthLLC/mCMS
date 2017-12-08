@@ -11,8 +11,22 @@ class EducationsController < UserProfilesController
   # GET /educations
   # GET /educations.json
   def index
-    redirect_to occupational_record_path if request.format.to_sym == :html
-    @educations = Education.for_status params[:status_type]
+    respond_to do |format|
+      format.html{  redirect_to occupational_record_path }
+      format.js{}
+      format.pdf{}
+      format.csv{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        json = EducationDatatable.new(view_context, options).as_json
+        send_data Education.to_csv(json[:data]), filename: "Education-#{Date.today}.csv"
+      }
+      format.json{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        render json: EducationDatatable.new(view_context,options)
+      }
+    end
   end
 
   # GET /educations/1

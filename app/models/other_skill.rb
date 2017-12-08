@@ -14,6 +14,22 @@ class OtherSkill < ApplicationRecord
   before_create :check_private_author
   default_scope -> {where(is_private: false).or(where(private_author_id: User.current.id)) }
 
+
+  def self.include_enumerations
+    includes(:other_skill_type, :other_skill_status).
+        references(:other_skill_type, :other_skill_status)
+  end
+
+  def self.csv_attributes
+    [
+        I18n.t('label_name') ,
+        I18n.t('skill_status') ,
+        I18n.t('skill_type') ,
+        I18n.t('education_date_received') ,
+        I18n.t('education_date_expired')
+    ]
+  end
+
   def check_private_author
     if self.is_private
       self.private_author_id = User.current.id
@@ -46,7 +62,7 @@ class OtherSkill < ApplicationRecord
   end
   alias status skill_status
 
-   def skill_type
+  def skill_type
     if skill_type_id
       other_skill_type
     else

@@ -18,6 +18,20 @@ class Education < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:education_type, :education_status).
+        references(:education_type, :education_status)
+  end
+
+  def self.csv_attributes
+    [
+    I18n.t( :education_type ) ,
+    I18n.t( :education_status ) ,
+    I18n.t( :education_date_received ) ,
+    I18n.t( :education_date_expired )
+    ]
+  end
+
   def education_type
     if education_type_id
       super
