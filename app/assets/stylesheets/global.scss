@@ -99,10 +99,18 @@ ul.dropdown-links a:hover{
   border:1px solid #DBC2A4;border-bottom:1px solid #ddd;background-color:#DBC2A4;
 }
 .ui-tabs .ui-tabs-nav li.ui-tabs-active a {
-  border:1px solid #ddd;border-bottom:1px solid #F59B69;background-color:#F59B69;color:#000000;
+  border:1px solid #F59B69;border-bottom:1px solid #ddd;background-color:#F59B69;color:#000000;
 }
 .ui-tabs .ui-tabs-nav li.ui-tabs-active:hover {
   background:#F59B69;cursor:text;
+}
+
+
+.ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+  background-color:#9BACBC;  
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-active a {
+  background-color:#F59B69;
 }
 
 .ui-tabs .ui-tabs-nav li {
