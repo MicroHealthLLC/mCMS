@@ -14,7 +14,7 @@
           <li>
             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
               <%= link_to('New Document', document_managers_path(@document_managers), class: 'dropdown-item',
-                          :action => {$('#new_doc').trigger('click')}) 
+                          :action => {var newdoc = document.getElementById("new_doc"); newdoc.click();}) 
               %>
           </li>
           <div class='dropdown-item-dividier'></div>
