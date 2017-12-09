@@ -18,6 +18,27 @@ class Injury < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:injury_type, :injury_status, :injury_cause).
+        references(:injury_type, :injury_status, :injury_cause)
+  end
+
+  def self.csv_attributes
+    [
+    'Injury Name',
+    'Snomed',
+    'Injury type',
+
+    'Injury cause',
+    'Snmed cause',
+    'Injury status',
+
+    'Employer',
+    'Date of injury',
+    'Date resolved'
+    ]
+  end
+
   def injury_type
     if injury_type_id
       super

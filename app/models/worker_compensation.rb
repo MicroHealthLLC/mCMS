@@ -18,6 +18,23 @@ class WorkerCompensation < ApplicationRecord
     ]
   end
 
+
+  def self.include_enumerations
+    includes(:compensation_type, :compensation_status, :injury).
+        references(:compensation_type, :compensation_status, :injury)
+  end
+
+  def self.csv_attributes
+    [
+    'Injury',
+    'Compensation type',
+    'Compensation status',
+    'Date of compensation start',
+    'Date of compensation end'
+    ]
+  end
+
+
   def compensation_type
     if compensation_type_id
       super

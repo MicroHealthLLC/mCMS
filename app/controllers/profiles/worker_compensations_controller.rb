@@ -18,13 +18,13 @@ class WorkerCompensationsController < UserProfilesController
       format.csv{ params[:length] = 500
         options = Hash.new
         options[:status_type] = params[:status_type]
-        json = EducationDatatable.new(view_context, options).as_json
-        send_data Education.to_csv(json[:data]), filename: "Education-#{Date.today}.csv"
+        json = WorkerCompensationDatatable.new(view_context, options).as_json
+        send_data WorkerCompensation.to_csv(json[:data]), filename: "WorkerCompensation-#{Date.today}.csv"
       }
       format.json{
         options = Hash.new
         options[:status_type] = params[:status_type]
-        render json: EducationDatatable.new(view_context,options)
+        render json: WorkerCompensationDatatable.new(view_context,options)
       }
     end
   end

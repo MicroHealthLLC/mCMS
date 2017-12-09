@@ -1,12 +1,14 @@
-<table class="table table-responsive" id="injury_table">
+<table class="table table-responsive" id="injuries_table" style="width: 100%">
   <thead>
   <tr>
     <th>Injury Name</th>
     <th>Snomed</th>
     <th>Injury type</th>
+
     <th>Injury cause</th>
     <th><%= 'Snmed cause' %></th>
     <th>Injury status</th>
+
     <th>Employer</th>
     <th>Date of injury</th>
     <th>Date resolved</th>
@@ -14,24 +16,27 @@
   </thead>
 
   <tbody>
-  <% @injuries.each do |injury| %>
-      <tr>
-        <td><%= link_to_edit_if_can injury.injury_name, {ctrl: :injuries, object: injury } %></td>
-        <td><%= injury.snomed_occupation %></td>
-        <td><%= injury.injury_type %></td>
-        <td><%= injury.injury_cause_name %></td>
-        <td><%= injury.snomed_event %></td>
-        <td><%= injury.injury_status %></td>
-        <td><%= injury.employer %></td>
-        <td><%= injury.date_of_injury %></td>
-        <td><%= format_date injury.date_resolved %></td>
-        </tr>
-  <% end %>
+
   </tbody>
 </table>
 
-<script>
-  $(document).ready(function(){
-    initDataTable('injury_table')
-  })
-</script>
+
+<% columns= [  { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'injuries_table',
+    url: injuries_path(format: :csv),
+    columns: columns.flatten,
+    ajax_url: injuries_path(format: :json, status_type: params[:status_type])
+} %>
+

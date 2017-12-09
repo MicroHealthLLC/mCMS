@@ -1,4 +1,4 @@
-<table class="table table-responsive" id="worker_compensation_table">
+<table class="table table-responsive" id="worker_compensation_table" style="width: 100%">
   <thead>
   <tr>
     <th>Injury</th>
@@ -10,20 +10,19 @@
   </thead>
 
   <tbody>
-  <% @worker_compensations.each do |worker_compensation| %>
-      <tr>
-        <td><%= link_to_edit_if_can worker_compensation.injury.to_s, {ctrl: :worker_compensations, object:  worker_compensation } %></td>
 
-        <td><%= worker_compensation.compensation_type %></td>
-        <td><%= worker_compensation.compensation_status %></td>
-        <td><%= format_date worker_compensation.date_of_compensation_start %></td>
-        <td><%= format_date worker_compensation.date_of_compensation_end %></td>
-        </tr>
-  <% end %>
   </tbody>
 </table>
-<script>
-  $(document).ready(function(){
-    initDataTable('worker_compensation_table')
-  })
-</script>
+<% columns= [  { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'worker_compensation_table',
+    url: worker_compensations_path(format: :csv),
+    columns: columns.flatten,
+    ajax_url: worker_compensations_path(format: :json, status_type: params[:status_type])
+} %>

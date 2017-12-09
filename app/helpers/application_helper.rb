@@ -118,7 +118,9 @@ module ApplicationHelper
   end
 
   def format_date datetime
-    datetime.to_date.strftime(Setting['format_date']) if datetime.present?
+    if datetime.present?
+      datetime.to_date.strftime(Setting['format_date']) rescue ''
+    end
   end
 
   def link_to_edit_if_can(text, options)
