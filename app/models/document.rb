@@ -26,6 +26,21 @@ class Document < ApplicationRecord
 
   before_create :check_private_author
 
+  def self.include_enumerations
+    includes(:document_type, :case).
+        references(:document_type, :case)
+  end
+
+  def self.csv_attributes
+    [
+        'Allergy type',
+
+        'Allergy date',
+        'Allergy status'
+
+    ]
+  end
+
   def check_private_author
     if self.is_private
       self.private_author_id = User.current.id

@@ -1,0 +1,57 @@
+<% show_case = defined?(show_case_column) ? show_case_column : true %>
+<table class="table table-bordered table-responsive" id="documents_table" style="width: 100%">
+  <thead>
+  <tr>
+    <th><%= t(:title) %></th>
+    <% if show_case and !params[:controller] == 'client_documents' %>
+        <th><%= t(:case) %></th>
+    <% end %>
+    <th><%= t(:document_type)%></th>
+    <th><%= t('label_date') %></th>
+    <% if @appointment and can?(:manage_roles) %>
+        <th></th>
+    <% end %>
+  </tr>
+  </thead>
+
+  <tbody>
+
+  </tbody>
+</table>
+
+<% columns= [  { "searchable": true, "orderable": true }]
+   if show_case and !params[:controller] == 'client_documents'
+     columns <<  { "searchable": true, "orderable": true }
+   end
+
+   columns <<  [{ "searchable": true, "orderable": true },
+                { "searchable": true, "orderable": true }]
+   if @appointment and can?(:manage_roles)
+     columns <<  { "searchable": false, "orderable": false }
+   end
+%>
+<% if params[:action] == 'profile_record' %>
+    <%= render partial: 'datatable_script', locals: {
+        model_table: 'documents_table',
+        url: client_documents_path(format: :csv),
+        columns: columns.flatten,
+        ajax_url: client_documents_path(format: :json,
+                                        status_type: params[:status_type]
+                                        )
+    } %>
+
+<% else %>
+
+    <%= render partial: 'datatable_script', locals: {
+        model_table: 'documents_table',
+        url: documents_path(format: :csv),
+        columns: columns.flatten,
+        ajax_url: documents_path(format: :json,
+                                 status_type: params[:status_type],
+                                 show_case: show_case,
+                                 appointlent: @appointment.try(:id))
+    } %>
+
+<% end %>
+
+

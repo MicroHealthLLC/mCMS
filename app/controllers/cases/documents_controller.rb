@@ -8,16 +8,22 @@ class DocumentsController < UserCasesController
   # GET /documents
   # GET /documents.json
   def index
-    scope = Document.for_cases.visible
-    scope = case params[:status_type]
-              when 'all' then scope.all_data
-              when 'opened' then scope.opened
-              when 'closed' then scope.closed
-              when 'flagged' then scope.flagged
-              else
-                scope.all_data
-            end
-    @documents = scope
+    respond_to do |format|
+      format.html{ }
+      format.js{}
+      format.pdf{}
+      format.csv{ params[:length] = 500
+      options = Hash.new
+      options[:status_type] = params[:status_type]
+      json = DocumentDatatable.new(view_context, options).as_json
+      send_data Document.to_csv(json[:data]), filename: "Document-#{Date.today}.csv"
+      }
+      format.json{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        render json: DocumentDatatable.new(view_context,options)
+      }
+    end
   end
 
   def all_files

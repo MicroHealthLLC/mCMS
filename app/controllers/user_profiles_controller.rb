@@ -9,7 +9,7 @@ class UserProfilesController < ProtectForgeryApplication
     @contacts = [] if module_enabled?( 'contacts')  && can?(:manage_roles, :view_contacts, :manage_contacts)
     @affiliations = [] if module_enabled?( 'affiliations')  && can?(:manage_roles, :view_affiliations, :manage_affiliations)
     @user_insurances = [] if module_enabled?( 'insurances')  && can?(:manage_roles, :view_insurances, :manage_insurances)
-    @documents = Document.for_profile.for_status(params[:status_type]) if module_enabled?( 'documents')  && can?(:manage_roles, :view_documents, :manage_documents)
+    @documents = [] if module_enabled?( 'documents')  && can?(:manage_roles, :view_documents, :manage_documents)
     @jsignatures = User.current.jsignatures if module_enabled?( 'jsignatures')
   end
 

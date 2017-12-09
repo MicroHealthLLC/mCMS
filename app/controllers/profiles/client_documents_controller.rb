@@ -8,11 +8,23 @@ class ClientDocumentsController <  UserCasesController
   # GET /documents
   # GET /documents.json
   def index
-    if request.format.to_sym == :html
-      redirect_to  User.current.can?(:manage_roles) ? edit_user_registration_path : profile_record_path
-    else
-      @documents = Document.for_profile.for_status params[:status_type]
-      render 'documents/index'
+    respond_to do |format|
+      format.html{  redirect_to  User.current.can?(:manage_roles) ? edit_user_registration_path : profile_record_path }
+      format.js{}
+      format.pdf{}
+      format.csv{ params[:length] = 500
+      options = Hash.new
+      options[:status_type] = params[:status_type]
+      options[:for] = 'profile'
+      json = DocumentDatatable.new(view_context, options).as_json
+      send_data Document.to_csv(json[:data]), filename: "Document-#{Date.today}.csv"
+      }
+      format.json{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        options[:for] = 'profile'
+        render json: DocumentDatatable.new(view_context,options)
+      }
     end
   end
 
