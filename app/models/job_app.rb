@@ -17,6 +17,20 @@ class JobApp < ApplicationRecord
      :user_id, job_app_attachments_attributes: [Attachment.safe_attributes]]
   end
 
+  def self.include_enumerations
+    includes(:app_state, :occupation).
+        references(:app_state, :occupation)
+  end
+
+  def self.csv_attributes
+    [
+    'Title',
+    'Occupation',
+    'App state',
+    ]
+  end
+
+
   def self.enumeration_columns
     [
         ["#{AppState}", 'app_state_id']

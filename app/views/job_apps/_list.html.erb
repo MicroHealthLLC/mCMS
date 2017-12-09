@@ -1,4 +1,4 @@
-<table class="table table-responsive" id="job_application_table">
+<table class="table table-responsive" id="job_apps_table" style="width: 100%">
   <thead>
   <tr>
     <th>Title</th>
@@ -8,17 +8,17 @@
   </thead>
 
   <tbody>
-  <% @job_apps.each do |job_app| %>
-      <tr>
-        <td><%= link_to_edit_if_can job_app.title, {ctrl: :job_apps, object: job_app } %></td>
-        <td><%= job_app.occupation %></td>
-        <td><%= job_app.app_state %></td>
-        </tr>
-  <% end %>
+
   </tbody>
 </table>
-<script>
-  $(document).ready(function(){
-    initDataTable('job_application_table')
-  })
-</script>
+<% columns= [  { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+            
+               { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'job_apps_table',
+    url: job_apps_path(format: :csv),
+    columns: columns.flatten,
+    ajax_url: job_apps_path(format: :json, status_type: params[:status_type])
+} %>
