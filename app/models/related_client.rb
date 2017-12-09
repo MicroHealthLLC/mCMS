@@ -5,6 +5,20 @@ class RelatedClient < ApplicationRecord
 
   validates_presence_of :user_id, :related_client_id
 
+  def self.include_enumerations
+    includes(:related_client).
+        references(:related_client)
+  end
+
+  def self.csv_attributes
+    [
+    'Related client',
+    'Relationship',
+    'Date start',
+    'Date end',
+    ]
+  end
+  
   def to_s
     related_client
   end

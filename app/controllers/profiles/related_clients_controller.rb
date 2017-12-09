@@ -11,8 +11,22 @@ class RelatedClientsController < UserProfilesController
 
 
   def index
-    redirect_to profile_record_path if request.format.to_sym == :html
-    @related_clients = RelatedClient.visible
+    respond_to do |format|
+      format.html{  redirect_to  profile_record_path }
+      format.js{}
+      format.pdf{}
+      format.csv{ params[:length] = 500
+      options = Hash.new
+      options[:status_type] = params[:status_type]
+      json = RelatedClientDatatable.new(view_context, options).as_json
+      send_data RelatedClient.to_csv(json[:data]), filename: "RelatedClient-#{Date.today}.csv"
+      }
+      format.json{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        render json: RelatedClientDatatable.new(view_context,options)
+      }
+    end
   end
   # GET /related_clients/1
   # GET /related_clients/1.json
