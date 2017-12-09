@@ -1,10 +1,11 @@
-class JobAppDatatable < AjaxDatatablesRails::Base
+class ResumeDatatable < AjaxDatatablesRails::Base
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name
     @sortable_columns ||= %w{
-       JobApp.title
-      Occupation.code
+      Resume.title
+      Resume.date
+      Enumeration.name
       Enumeration.name
     }
   end
@@ -12,8 +13,9 @@ class JobAppDatatable < AjaxDatatablesRails::Base
   def searchable_columns
     # Declare strings in this format: ModelName.column_name
     @searchable_columns ||= %w{
-      JobApp.title
-      Occupation.code
+      Resume.title
+      Resume.date
+      Enumeration.name
       Enumeration.name
     }
   end
@@ -21,18 +23,20 @@ class JobAppDatatable < AjaxDatatablesRails::Base
   private
 
   def data
-    records.map do |job_app|
+    records.map do |resume|
       [
-       link_to_edit_if_can( job_app.title, {ctrl: :job_apps, object: job_app }) ,
-         job_app.occupation.to_s ,
-       job_app.app_state.to_s ,
+          @view.link_to_edit_if_can( resume.title, {ctrl: :resumes, object: resume }) ,
+
+          @view.format_date( resume.date ),
+          resume.resume_type.to_s ,
+          resume.resume_status.to_s ,
       ]
 
     end
   end
 
   def get_raw_records
-    scope = JobApp.include_enumerations
+    scope = Resume.include_enumerations
     scope.for_status @options[:status_type]
   end
 

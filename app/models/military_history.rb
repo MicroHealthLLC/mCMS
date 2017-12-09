@@ -17,6 +17,22 @@ class MilitaryHistory < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:service_type, :service_status).
+        references(:service_type, :service_status)
+  end
+
+  def self.csv_attributes
+    [
+    'Service Name',
+      'Service type',
+    'Service status',
+      'Date started',
+    'Date ended',
+    ]
+  end
+
+
   def service_status
     super || ServiceStatus.default
   end

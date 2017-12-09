@@ -21,6 +21,19 @@ class Resume < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:resume_status, :resume_type).
+        references(:resume_status, :resume_type)
+  end
+
+  def self.csv_attributes
+    [  'Title',
+       'Date',
+       'Resume type',
+       'Resume status',]
+  end
+
+
   def resume_type
     if resume_type_id
       super

@@ -8,17 +8,23 @@ class MilitaryHistoriesController < UserHistoryController
   # GET /military_histories
   # GET /military_histories.json
   def index
-    redirect_to occupational_record_path if request.format.to_sym == :html
-    scope = MilitaryHistory.visible
-    scope = case params[:status_type]
-              when 'all' then scope.all_data
-              when 'opened' then scope.opened
-              when 'closed' then scope.closed
-              when 'flagged' then scope.flagged
-              else
-                scope.all_data
-            end
-    @military_histories = scope
+    respond_to do |format|
+      format.html{  redirect_to occupational_record_path }
+      format.js{}
+      format.pdf{}
+      format.csv{
+        params[:length] = 500
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        json = MilitaryHistoryDatatable.new(view_context, options).as_json
+        send_data MilitaryHistory.to_csv(json[:data]), filename: "MilitaryHistory-#{Date.today}.csv"
+      }
+      format.json{
+        options = Hash.new
+        options[:status_type] = params[:status_type]
+        render json: MilitaryHistoryDatatable.new(view_context,options)
+      }
+    end
   end
 
   # GET /military_histories/1
