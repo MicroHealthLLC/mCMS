@@ -33,10 +33,10 @@ class Document < ApplicationRecord
 
   def self.csv_attributes
     [
-        'Allergy type',
+        'Title',
 
-        'Allergy date',
-        'Allergy status'
+        'Document Type',
+        'date'
 
     ]
   end
