@@ -1,10 +1,11 @@
-<table class="table table-bordered table-responsive" id="contact_table">
+<table class="table table-bordered table-responsive" id="contact_table" style="width: 100%">
   <thead>
   <tr>
 
     <th><%= t('label_name') %></th>
     <th><%= t('emergency_contact') %></th>
     <th><%= t('relationship') %></th>
+    
     <th><%= t('enumeration_contact_status') %></th>
     <th><%= t('language') %></th>
     <th><%= t('date_started') %></th>
@@ -15,19 +16,22 @@
   <tbody>
   <% contacts.each do |contact| %>
       <tr>
-        <td><%= link_to contact.name, contact %></td>
-        <td><%= contact.emergency_contact %></td>
-        <td><%= contact.contact_type %></td>
-        <td><%= contact.contact_status %></td>
-        <td><%= contact.language %></td>
-        <td><%= format_date contact.date_started %></td>
-        <td><%= format_date contact.date_ended %></td>
+      
       </tr>
   <% end %>
   </tbody>
 </table>
-<script>
-  $(document).ready(function(){
-    initDataTable('contact_table')
-  } );
-</script>
+<% columns= [  { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'contact_table',
+    url: contacts_path(format: :csv),
+    columns: columns.flatten,
+    ajax_url: contacts_path(format: :json, status_type: params[:status_type])
+} %>

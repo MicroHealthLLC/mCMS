@@ -11,7 +11,25 @@ class Contact < ApplicationRecord
 
   scope :not_show_in_search, ->{ where(not_show_in_search: false)}
 
+  def self.include_enumerations
+    includes(:contact_status, :contact_type).
+        references(:contact_status, :contact_type)
+  end
 
+  def self.csv_attributes
+    [
+    I18n.t('label_name') ,
+    I18n.t('emergency_contact') ,
+    I18n.t('relationship') ,
+
+    I18n.t('enumeration_contact_status') ,
+    I18n.t('language') ,
+    I18n.t('date_started') ,
+    I18n.t('date_end')
+    ]
+  end
+  
+  
   def self.visible
     super.active
   end

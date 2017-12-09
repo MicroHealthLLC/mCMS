@@ -3,35 +3,41 @@ class ContactDatatable < AjaxDatatablesRails::Base
   def sortable_columns
     # Declare strings in this format: ModelName.column_name
     @sortable_columns ||= %w{
-      Admission.care_family_name
-      Admission.date_admitted
-      Admission.date_discharged
+      Contact.first_name
+      Contact.emergency_contact
       Enumeration.name
       Enumeration.name
+      Contact.language
+      Contact.date_started
+      Contact.date_ended
     }
   end
 
   def searchable_columns
     # Declare strings in this format: ModelName.column_name
     @searchable_columns ||= %w{
-      Admission.care_family_name
-      Admission.date_admitted
-      Admission.date_discharged
+      Contact.first_name
+      Contact.emergency_contact
       Enumeration.name
       Enumeration.name
+      Contact.language
+      Contact.date_started
+      Contact.date_ended
     }
   end
 
   private
 
   def data
-    records.map do |admission|
+    records.map do |contact|
       [
-          @view.link_to_edit_if_can( admission.care_family_name, {ctrl: :admissions, object: admission }),
-          @view.format_date( admission.date_admitted),
-          @view.format_date( admission.date_discharged),
-          "#{admission.admission_status}",
-          "#{admission.admission_type}"
+          @view.link_to( contact.name, contact),
+          contact.emergency_contact,
+          contact.contact_type.to_s,
+          contact.contact_status.to_s,
+          contact.language.to_s,
+          @view.format_date( contact.date_started),
+          @view.format_date( contact.date_ended),
       ]
 
 
