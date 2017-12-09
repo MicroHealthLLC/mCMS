@@ -13,7 +13,7 @@ class PositionsController < UserProfilesController
   def index
     respond_to do |format|
       format.html{  redirect_to occupational_record_path }
-      format.js{}
+     format.js{ render 'application/index' }
       format.pdf{}
       format.csv{ params[:length] = 500
         options = Hash.new

@@ -10,7 +10,7 @@ class DocumentsController < UserCasesController
   def index
     respond_to do |format|
       format.html{ }
-      format.js{}
+     format.js{ render 'application/index' }
       format.pdf{}
       format.csv{ params[:length] = 500
       options = Hash.new
