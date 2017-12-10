@@ -10,7 +10,7 @@ class ClearancesController < UserProfilesController
   # GET /clearances.json
   def index
     respond_to do |format|
-      format.html{  redirect_to occupational_record_path }
+      format.html{  redirect_to occupational_record_path + "#tabs-clearance" }
      format.js{ render 'application/index' }
       format.pdf{}
       format.csv{ params[:length] = 500

@@ -10,7 +10,7 @@ class ResumesController < UserHistoryController
   # GET /resumes.json
   def index
     respond_to do |format|
-      format.html{  redirect_to occupational_record_path }
+      format.html{  redirect_to occupational_record_path + "#tabs-resume" }
      format.js{ render 'application/index' }
       format.pdf{}
       format.csv{

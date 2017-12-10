@@ -9,7 +9,7 @@ class ContactsController < UserProfilesController
   # GET /contacts.json
   def index
     respond_to do |format|
-      format.html{  redirect_to  profile_record_path }
+      format.html{  redirect_to  profile_record_path + "#tabs-contact" }
      format.js{ render 'application/index' }
       format.pdf{}
       format.csv{ params[:length] = 500

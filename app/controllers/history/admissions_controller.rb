@@ -10,7 +10,7 @@ class AdmissionsController < UserHistoryController
   # GET /admissions.json
   def index
     respond_to do |format|
-      format.html{  redirect_to  medical_record_path }
+      format.html{  redirect_to  medical_record_path + "#tabs-admission" }
      format.js{ render 'application/index' }
       format.pdf{}
       format.csv{ params[:length] = 500

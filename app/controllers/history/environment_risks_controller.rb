@@ -10,7 +10,7 @@ class EnvironmentRisksController < UserHistoryController
   # GET /environment_risks.json
   def index
     respond_to do |format|
-      format.html{  redirect_to  socioeconomic_record_path }
+      format.html{  redirect_to  socioeconomic_record_path + "#tabs-environments_risk" }
      format.js{ render 'application/index' }
       format.pdf{}
       format.csv{ params[:length] = 500

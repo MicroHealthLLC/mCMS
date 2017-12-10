@@ -9,7 +9,7 @@ class DailyLivingsController < UserHistoryController
   # GET /daily_livings.json
   def index
     respond_to do |format|
-      format.html{  redirect_to  socioeconomic_record_path }
+      format.html{  redirect_to  socioeconomic_record_path + "#tabs-daily_living" }
      format.js{ render 'application/index' }
       format.pdf{}
       format.csv{ params[:length] = 500

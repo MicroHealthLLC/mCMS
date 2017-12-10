@@ -12,7 +12,7 @@ class WorkerCompensationsController < UserProfilesController
 # GET /worker_compensations.json
   def index
     respond_to do |format|
-      format.html{  redirect_to occupational_record_path }
+      format.html{  redirect_to occupational_record_path + "#tabs-worker_compensation" }
      format.js{ render 'application/index' }
       format.pdf{}
       format.csv{ params[:length] = 500

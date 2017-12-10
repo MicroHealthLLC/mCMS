@@ -9,7 +9,7 @@ class MilitaryHistoriesController < UserHistoryController
   # GET /military_histories.json
   def index
     respond_to do |format|
-      format.html{  redirect_to occupational_record_path }
+      format.html{  redirect_to occupational_record_path  + "#tabs-military_history"}
      format.js{ render 'application/index' }
       format.pdf{}
       format.csv{
