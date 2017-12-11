@@ -1,7 +1,11 @@
 
 <script>
   $( function() {
-    $tabs = $( "#<%= tab_name %>" ).tabs();
+    $tabs = $( "#<%= tab_name %>" ).tabs({
+        activate: function (e, ui) {
+            window.location.hash = ui.newTab.find("a").attr("href")
+        }
+    });
   } );
 </script>
 <section id="widget-grid" class="show_tab">
