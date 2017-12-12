@@ -23,9 +23,9 @@ class JobAppDatatable < AjaxDatatablesRails::Base
   def data
     records.map do |job_app|
       [
-       link_to_edit_if_can( job_app.title, {ctrl: :job_apps, object: job_app }) ,
-         job_app.occupation.to_s ,
-       job_app.app_state.to_s ,
+          @view.link_to_edit_if_can( job_app.title, {ctrl: :job_apps, object: job_app }) ,
+          job_app.occupation.to_s ,
+          job_app.app_state.to_s ,
       ]
 
     end

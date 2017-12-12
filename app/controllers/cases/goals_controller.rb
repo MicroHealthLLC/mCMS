@@ -63,7 +63,7 @@ class GoalsController <  UserCasesController
   def add_need
     respond_to do |format|
       format.js{
-        @ne-ed_id = params[:need_id]
+        @need_id = params[:need_id]
         g = @goal.need_goals.where(need_id: @need_id)
         if g.present?
           g.delete_all
