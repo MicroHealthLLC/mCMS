@@ -142,7 +142,7 @@ class DocumentManagersController < ProtectForgeryApplication
     end
 
     if !category.nil?
-      redirect_to @document.folder ? document_managers_path(document_folder_id: @document.folder_id ) : document_managers_path
+      redirect_to @document.category ? document_managers_path(document_folder_id: @document.category_id ) : document_managers_path
     else
       redirect_to root_path
     end
