@@ -13,7 +13,20 @@
   </div>
 </section>
 
+<% if module_enabled?('needs') %>
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= render partial: 'needs/list',
+                   layout: 'shared/smart_widget_wrapper',
+                   locals: {
+                       needs: @needs,
+                       wid_id: 'needs',
+                       wid_title: t('needs')
+                   } %>
+      </article>
+    </div>
 
+<% end %>
 
 <% if module_enabled?('plans') %>
     <section id="widget-grid" class="plans_section">
@@ -54,20 +67,7 @@
         } );
     </script>
 <% end %>
-<% if module_enabled?('needs') %>
-    <div class="row">
-      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <%= render partial: 'needs/list',
-                   layout: 'shared/smart_widget_wrapper',
-                   locals: {
-                       needs: @needs,
-                       wid_id: 'needs',
-                       wid_title: t('needs')
-                   } %>
-      </article>
-    </div>
 
-<% end %>
 <% if module_enabled?('tasks') %>
     <%#= link_to(t('new_goal'), new_goal_path(case_id: @case.id), class: 'btn btn-primary pull-right btn-edition') if can?(:create_goals, :manage_roles, :manage_goals) %>
     <div class="row">
