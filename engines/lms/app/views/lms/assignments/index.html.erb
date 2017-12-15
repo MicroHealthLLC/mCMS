@@ -1,5 +1,17 @@
 <h1 class="center">My Assignments:</h1>
-<%= link_to 'New Assignment', lms.new_course_assignment_path(@course), class: 'btn btn-primary' %>
+<div class="row">
+  <div class="col-xs-12 btn-edition">
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+      <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:210px;">
+        <li>
+          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+          <%= link_to 'New Assignment', lms.new_course_assignment_path(@course), class: 'dropdown-item' %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
 <table class="table table-striped">
   <thead>
     <tr>

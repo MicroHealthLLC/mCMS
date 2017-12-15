@@ -25,6 +25,10 @@
   <meta name="turbolinks-cache-control" content="no-cache">
 
   <style>
+    body {
+        font-size: 15px;    
+    }
+
     .smart-style-5
     {
       background: url(/assets/glass.jpg) no-repeat center center fixed;
@@ -34,9 +38,72 @@
       background-size: cover;
     }
 
+    .smart-style-3 #header {
+      background-color: #dddddd;
+      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#dddddd), to(#dddddd));
+      background-image: -webkit-linear-gradient(top, #dddddd, #dddddd);
+      background-image: linear-gradient(to bottom, #dddddd, #dddddd);
+    }
+
+    .smart-style-3 .btn-header>:first-child>a {
+      background-color: #DD7C37;
+      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#dd7c37), to(#dd7c37));
+      background-image: -webkit-linear-gradient(top, #dd7c37, #dd7c37);
+      background-image: linear-gradient(to bottom, #dd7c37, #dd7c37);
+      color: #fff !important;
+      border: 1px solid #dd7c37;
+      text-shadow: none;
+    }
+   
+    .smart-style-1 .btn-header>:first-child>a {
+      background: #dd7c37;
+      border: 1px solid #dd7c37;
+      color: #fff !important;
+      cursor: pointer !important;
+    }
+
+   
+    h2 {
+        font-size: 24px;
+    }
+    .form-control {
+        font-size: 15px; 
+    }
+
+    .btn {
+        font-size: 15px; 
+    }
+
+    .table thead tr {
+        font-size: 14px; 
+    }
+
+    .dropdown-menu {
+        min-width: 170px;
+        font-size: 15px;
+    }
+
+    .login-info a span {
+        font-size: 14px; 
+    }
+ 
     abbr[title] {
       border-bottom: none;
       text-decoration: none;
+    }
+
+    .jarviswidget-color-blueLight>header {
+      border-color:#a0aeb3 !important;background:#B2C8D6;
+    }
+    .jarviswidget-color-blueLight .nav-tabs li:not(.active) a {
+        color: white !important;
+    }
+    .jarviswidget>header h2 {
+        font-size: 18px;
+    }
+
+    .jarviswidget>div {
+        font-size: 15px;
     }
 
     .ui-tabs .ui-tabs-nav li a {
@@ -61,17 +128,27 @@
       margin: 4px .2em 0 0;
     }
 
-    .jarviswidget-color-blueLight>header {
-      border-color:#a0aeb3 !important;background:#B2C8D6;
-    }
-    .jarviswidget-color-blueLight .nav-tabs li:not(.active) a {
-        color: white !important;
-    }
-    .jarviswidget-color-blueLight .nav-tabs li:(.active) a {
-        color: black !important;
+
+    nav ul li a, .smart-style-3 nav>ul>li>a, .smart-style-1 nav ul ul li>a {
+        font-size: 15px; 
     }
 
-  
+    .page-footer span {
+        font-size: 1.125em; 
+    }
+
+    div.dataTables_info {
+        font-size: 14px; 
+    }
+
+    .pagination-sm>li>a {
+        font-size: 14px; 
+    }
+    
+    #logo-group>span {
+        font-size: 24px; 
+    }
+    
   </style>
   <!-- We recommend you use "your_style.css" to override SmartAdmin
        specific styles this will also ensure you retrain your customization with each SmartAdmin update.
