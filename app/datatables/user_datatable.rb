@@ -35,7 +35,7 @@ class UserDatatable < AjaxDatatablesRails::Base
   def data
     records.map do |user|
       [
-          user.id ,
+          user.uuid ,
           link_user(user),
           user.email,
 

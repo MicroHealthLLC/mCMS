@@ -133,6 +133,11 @@ class User < ApplicationRecord
     self.ldap_authenticatable= '' if self.ldap_authenticatable.to_s.blank?
   end
 
+  after_create do
+    self.uuid = 10_000_000_000 + self.id
+    self.save
+  end
+
   after_update :check_status
 
   validates_uniqueness_of :login, :email
