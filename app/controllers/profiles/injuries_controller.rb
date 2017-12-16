@@ -1,4 +1,5 @@
 class InjuriesController < UserProfilesController
+  add_breadcrumb 'Occupational History', '/occupational_record'
   add_breadcrumb I18n.t(:injuries), :injuries_path
   before_action :set_injury, only: [:show, :edit, :update, :destroy]
 

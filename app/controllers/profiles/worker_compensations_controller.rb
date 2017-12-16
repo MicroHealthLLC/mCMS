@@ -1,4 +1,5 @@
 class WorkerCompensationsController < UserProfilesController
+  add_breadcrumb 'Occupational History', '/occupational_record'
   add_breadcrumb I18n.t(:worker_compensations), :worker_compensations_path
   before_action :set_worker_compensation, only: [:show, :edit, :update, :destroy]
 # before_action :find_optional_user

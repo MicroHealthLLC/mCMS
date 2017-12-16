@@ -1,4 +1,5 @@
 class SurgicalsController < UserHistoryController
+  add_breadcrumb 'Health History', '/medical_record'
   add_breadcrumb I18n.t(:surgicals), :surgicals_path
   before_action :set_surgical, only: [:show, :edit, :update, :destroy]
 

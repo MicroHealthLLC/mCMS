@@ -1,10 +1,10 @@
 class UserProfilesController < ProtectForgeryApplication
   include ApplicationHelper
-  add_breadcrumb I18n.t(:home), :root_path
   before_action  :authenticate_user!
   before_action :authorize, except: [:occupational_record, :profile_record ]
 
   def profile_record
+    add_breadcrumb 'Client Profile', '/profile_record'
     @languages = [] if module_enabled?( 'languages')  && can?(:manage_roles, :view_languages, :manage_languages)
     @contacts = [] if module_enabled?( 'contacts')  && can?(:manage_roles, :view_contacts, :manage_contacts)
     @affiliations = [] if module_enabled?( 'affiliations')  && can?(:manage_roles, :view_affiliations, :manage_affiliations)
@@ -14,6 +14,7 @@ class UserProfilesController < ProtectForgeryApplication
   end
 
   def occupational_record
+    add_breadcrumb 'Occupational History', '/occupational_record'
     @educations = [] if module_enabled?( 'educations')  && can?(:manage_roles, :view_educations, :manage_educations)
     @other_skills = [] if module_enabled?( 'other_skills')  && can?(:manage_roles, :view_other_skills, :manage_other_skills)
     @certifications = [] if module_enabled?( 'certifications')  && can?(:manage_roles, :view_certifications, :manage_certifications)

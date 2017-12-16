@@ -1,5 +1,6 @@
 class FinancialsController < UserHistoryController
-  
+  add_breadcrumb 'Socioeconomic History', '/socioeconomic_record'
+
   add_breadcrumb I18n.t(:financials), :financials_path
   before_action :set_financial, only: [:show, :edit, :update, :destroy]
 

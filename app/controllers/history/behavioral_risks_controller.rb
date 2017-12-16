@@ -1,4 +1,5 @@
 class BehavioralRisksController < UserHistoryController
+  add_breadcrumb 'Health History', '/medical_record'
   add_breadcrumb I18n.t(:behavioral_risks), :behavioral_risks_path
   before_action :set_behavioral_risk, only: [:show, :edit, :update, :destroy]
 

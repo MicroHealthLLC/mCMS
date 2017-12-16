@@ -1,4 +1,5 @@
 class ProblemListsController < UserHistoryController
+  add_breadcrumb 'Health History', '/medical_record'
   add_breadcrumb I18n.t(:problem_lists), :problem_lists_path
   before_action :set_problem_list, only: [:show, :edit, :update, :destroy]
 

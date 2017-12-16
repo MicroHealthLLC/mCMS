@@ -1,4 +1,5 @@
 class MilitaryHistoriesController < UserHistoryController
+  add_breadcrumb 'Occupational History', '/occupational_record'
   add_breadcrumb I18n.t(:military_histories), :military_histories_path
   before_action :set_military_history, only: [:show, :edit, :update, :destroy]
 

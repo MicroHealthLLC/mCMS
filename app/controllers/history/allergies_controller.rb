@@ -1,4 +1,5 @@
 class AllergiesController < UserHistoryController
+  add_breadcrumb 'Health History', '/medical_record'
   add_breadcrumb I18n.t(:allergies), :allergies_path
   before_action :set_allergy, only: [:show, :edit, :update, :destroy]
 

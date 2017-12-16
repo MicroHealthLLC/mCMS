@@ -1,4 +1,5 @@
 class OtherHistoriesController < UserHistoryController
+  add_breadcrumb 'Socioeconomic History', '/socioeconomic_record'
   add_breadcrumb I18n.t(:other_histories), :other_histories_path
   before_action :set_other_history, only: [:show, :edit, :update, :destroy]
 

@@ -1,4 +1,5 @@
 class FamilyHistoriesController < UserHistoryController
+  add_breadcrumb 'Health History', '/medical_record'
   add_breadcrumb I18n.t(:family_histories), :family_histories_path
   before_action :set_family_history, only: [:show, :edit, :update, :destroy]
 

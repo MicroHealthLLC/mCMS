@@ -1,10 +1,10 @@
 class UserHistoryController < ProtectForgeryApplication
   include ApplicationHelper
-  add_breadcrumb I18n.t(:home), :root_path
   before_action  :authenticate_user!
   before_action :authorize, except: [:medical_record, :socioeconomic_record]
 
   def medical_record
+    add_breadcrumb 'Health History', '/medical_record'
     @admissions = [] if module_enabled?( 'admissions')  && can?(:manage_roles, :view_admissions, :manage_admissions)
     @health_care_facilities =  [] if module_enabled?( 'health_care_facilities')  && can?(:manage_roles, :view_health_care_facilities, :manage_health_care_facilities)
     @problem_lists = [] if module_enabled?( 'problem_lists')  && can?(:manage_roles, :view_problem_lists, :manage_problem_lists)
@@ -21,6 +21,7 @@ class UserHistoryController < ProtectForgeryApplication
   end
 
   def socioeconomic_record
+    add_breadcrumb 'Socioeconomic History', '/socioeconomic_record'
     @daily_livings =  []  if module_enabled?( 'daily_livings')  && can?(:manage_roles, :view_daily_livings, :manage_daily_livings)
     @socioeconomics = []  if module_enabled?( 'socioeconomics')  && can?(:manage_roles, :view_socioeconomics, :manage_socioeconomics)
     @environment_risks = []  if module_enabled?( 'environment_risks')  && can?(:manage_roles, :view_environment_risks, :manage_environment_risks)

@@ -1,4 +1,5 @@
 class ClientDocumentsController <  UserCasesController
+  add_breadcrumb 'Client Profile', '/profile_record'
   add_breadcrumb I18n.t(:client_documents), :documents_path
   before_action :set_document, only: [:show, :edit, :update, :destroy]
 

@@ -1,5 +1,6 @@
 module Inventory
   class ProductAssignsController < ProtectForgeryApplication
+    add_breadcrumb "Inventory - Product assignments", :product_assigns_path
     before_action :set_product_assign, only: [:show, :edit, :update, :destroy]
     before_action :authorize
 
@@ -51,6 +52,7 @@ module Inventory
       # Use callbacks to share common setup or constraints between actions.
       def set_product_assign
         @product_assign = ProductAssign.find(params[:id])
+        add_breadcrumb @product_assign, @product_assign
       rescue ActiveRecord::RecordNotFound
         render_404
       end

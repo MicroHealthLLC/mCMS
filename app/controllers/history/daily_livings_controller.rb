@@ -1,4 +1,5 @@
 class DailyLivingsController < UserHistoryController
+  add_breadcrumb 'Socioeconomic History', '/socioeconomic_record'
   add_breadcrumb I18n.t(:daily_livings), :daily_livings_path
   before_action :set_daily_living, only: [:show, :edit, :update, :destroy]
 

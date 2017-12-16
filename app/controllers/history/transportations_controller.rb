@@ -1,4 +1,5 @@
 class TransportationsController < UserHistoryController
+  add_breadcrumb 'Socioeconomic History', '/socioeconomic_record'
   add_breadcrumb I18n.t(:transportations), :transportations_path
   before_action :set_transportation, only: [:show, :edit, :update, :destroy]
 

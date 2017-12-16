@@ -1,5 +1,5 @@
 class RadiologicExaminationsController < UserHistoryController
-
+  add_breadcrumb 'Health History', '/medical_record'
   add_breadcrumb I18n.t(:radiologic_examination), :radiologic_examinations_path
   before_action :set_radiologic_examination, only: [:show, :edit, :update, :destroy]
 

@@ -1,5 +1,5 @@
 class LaboratoryExaminationsController < UserHistoryController
-
+  add_breadcrumb 'Health History', '/medical_record'
   add_breadcrumb I18n.t(:laboratory_examinations), :laboratory_examinations_path
   before_action :set_laboratory_examination, only: [:show, :edit, :update, :destroy]
 

@@ -1,4 +1,5 @@
 class ContactsController < UserProfilesController
+  add_breadcrumb 'Client Profile', '/profile_record'
   add_breadcrumb I18n.t(:contacts), :contacts_path
   before_action :set_contact, only: [:remove, :show, :edit, :update, :destroy]
 

@@ -1,4 +1,5 @@
 class HousingsController < UserHistoryController
+  add_breadcrumb 'Socioeconomic History', '/socioeconomic_record'
 
   add_breadcrumb I18n.t(:housings), :housings_path
   before_action :set_housing, only: [:show, :edit, :update, :destroy]

@@ -1,4 +1,5 @@
 class EnvironmentRisksController < UserHistoryController
+  add_breadcrumb 'Socioeconomic History', '/socioeconomic_record'
   add_breadcrumb I18n.t(:environment_risks), :environment_risks_path
   before_action :set_environment_risk, only: [:show, :edit, :update, :destroy]
 

@@ -1,4 +1,5 @@
 class HealthCareFacilitiesController < UserHistoryController
+  add_breadcrumb 'Health History', '/medical_record'
   add_breadcrumb I18n.t(:health_care_facilities), :health_care_facilities_path
   before_action :set_health_care_facility, only: [:show, :edit, :update, :destroy]
 

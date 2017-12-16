@@ -1,5 +1,5 @@
 class CasesController < UserCasesController
-  add_breadcrumb I18n.t(:cases), :cases_path
+  # add_breadcrumb I18n.t(:cases), :cases_path
   include ApplicationHelper
 
   # before_action :set_case_with_includes, only: []

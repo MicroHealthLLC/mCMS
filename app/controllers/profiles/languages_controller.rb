@@ -1,4 +1,5 @@
 class LanguagesController < UserProfilesController
+  add_breadcrumb 'Client Profile', '/profile_record'
   add_breadcrumb I18n.t(:languages), :languages_path
   before_action :set_language, only: [:show, :edit, :update, :destroy]
 

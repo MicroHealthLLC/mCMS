@@ -83,8 +83,17 @@ class JsignaturesController < UserCasesController
   def set_jsignature
     @jsignature = Jsignature.find(params[:id])
     @owner = @jsignature.signature_owner
-    add_breadcrumb @owner.to_s, @owner
-    add_breadcrumb @jsignature, @jsignature
+
+    if @jsignature.signature_owner_type == 'User'
+      @breadcrumbs = []
+      add_breadcrumb 'Client Profile', '/profile_record'
+      add_breadcrumb 'Signatures', :jsignatures_path
+      add_breadcrumb @owner.to_s, @jsignature
+    else
+      add_breadcrumb @owner.to_s, @owner
+      add_breadcrumb @jsignature, @jsignature
+    end
+
   rescue ActiveRecord::RecordNotFound
     render_404
   end

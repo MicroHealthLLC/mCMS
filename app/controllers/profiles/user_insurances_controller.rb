@@ -1,4 +1,5 @@
 class UserInsurancesController < UserProfilesController
+  add_breadcrumb 'Client Profile', '/profile_record'
   add_breadcrumb I18n.t(:insurance_plural), :user_insurances_path
   before_action :set_user_insurance, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user

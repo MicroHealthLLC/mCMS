@@ -1,4 +1,5 @@
 class AffiliationsController < UserProfilesController
+  add_breadcrumb 'Client Profile', '/profile_record'
   add_breadcrumb I18n.t(:affiliations), :affiliations_path
   before_action :set_affiliation, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user

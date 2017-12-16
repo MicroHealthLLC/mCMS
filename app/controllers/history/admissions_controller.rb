@@ -1,4 +1,5 @@
 class AdmissionsController < UserHistoryController
+  add_breadcrumb 'Health History', '/medical_record'
   add_breadcrumb I18n.t(:admissions), :admissions_path
   before_action :set_admission, only: [:show, :edit, :update, :destroy]
 

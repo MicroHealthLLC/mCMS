@@ -1,4 +1,5 @@
 class CertificationsController < UserProfilesController
+  add_breadcrumb 'Occupational History', '/occupational_record'
   add_breadcrumb I18n.t(:certifications), :certifications_path
   before_action :set_certification, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user

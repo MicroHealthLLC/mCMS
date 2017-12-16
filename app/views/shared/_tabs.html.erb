@@ -20,7 +20,7 @@
           <% end -%>
         </ul>
         <% tabs.each_with_index do |tab, idx| -%>
-            <div style="display: <%= idx.zero? ? 'block' : 'none' %>" class="nav-tabs-div ui-tabs-panel ui-widget-content ui-corner-bottom" id="<%= "tabs-#{tab[:name]}" %>">
+            <div style="padding: 0; display: <%= idx.zero? ? 'block' : 'none' %>" class="nav-tabs-div ui-tabs-panel ui-widget-content ui-corner-bottom" id="<%= "tabs-#{tab[:name]}" %>">
               <%= render partial: tab[:partial], :locals => {:tab => tab} %>
             </div>
         <% end -%>

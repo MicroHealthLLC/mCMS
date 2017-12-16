@@ -1,4 +1,5 @@
 class OtherSkillsController < UserProfilesController
+  add_breadcrumb 'Occupational History', '/occupational_record'
   add_breadcrumb I18n.t(:other_skills), :other_skills_path
   before_action :set_other_skill, only: [:show, :edit, :update, :destroy]
 

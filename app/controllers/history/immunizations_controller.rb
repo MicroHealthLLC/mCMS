@@ -1,4 +1,5 @@
 class ImmunizationsController < UserHistoryController
+  add_breadcrumb 'Health History', '/medical_record'
   add_breadcrumb I18n.t(:immunizations), :immunizations_path
   before_action :set_immunization, only: [:show, :edit, :update, :destroy]
 

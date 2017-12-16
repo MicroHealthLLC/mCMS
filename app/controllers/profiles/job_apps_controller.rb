@@ -1,4 +1,5 @@
 class JobAppsController < UserProfilesController
+  add_breadcrumb 'Occupational History', '/occupational_record'
   add_breadcrumb I18n.t(:job_apps), :job_apps_path
   before_action :set_job_app, only: [:show, :edit, :update, :destroy]
 # before_action :find_optional_user

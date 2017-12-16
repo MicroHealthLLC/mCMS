@@ -1,4 +1,5 @@
 class LegalsController < UserHistoryController
+  add_breadcrumb 'Socioeconomic History', '/socioeconomic_record'
   add_breadcrumb I18n.t(:legals), :legals_path
   before_action :set_legal, only: [:show, :edit, :update, :destroy]
 

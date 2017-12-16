@@ -1,4 +1,5 @@
 class ResumesController < UserHistoryController
+  add_breadcrumb 'Occupational History', '/occupational_record'
   add_breadcrumb I18n.t(:resumes), :resumes_path
   before_action :set_resume, only: [:show, :edit, :update, :destroy]
 

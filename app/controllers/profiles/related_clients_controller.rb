@@ -1,4 +1,6 @@
 class RelatedClientsController < UserProfilesController
+  add_breadcrumb 'Client Profile', '/profile_record'
+  add_breadcrumb 'Related clients', :related_clients_path
 
 
   before_action :set_breadcrumb

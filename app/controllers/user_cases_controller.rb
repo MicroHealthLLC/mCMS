@@ -1,5 +1,5 @@
 class UserCasesController < ProtectForgeryApplication
-  add_breadcrumb I18n.t(:home), :root_path
+  add_breadcrumb 'Case records', :cases_path
   before_action  :authenticate_user!
   before_action :authorize
   before_action :get_user_cases, only: [:index]
@@ -54,7 +54,6 @@ class UserCasesController < ProtectForgeryApplication
   def set_variable
     @link_id = params[:id]
     @link_type = params[:controller].classify
-    puts "Related Appointment =>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#{@link_type}"
     @appointments_case = Appointment.visible.opened
     @modules = [
         'Referral', 'Need', 'Goal', 'Case',
@@ -87,5 +86,4 @@ class UserCasesController < ProtectForgeryApplication
       User.current = object.user
     end
   end
-
 end

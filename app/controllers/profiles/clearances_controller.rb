@@ -1,4 +1,5 @@
 class ClearancesController < UserProfilesController
+  add_breadcrumb 'Occupational History', '/occupational_record'
   add_breadcrumb I18n.t(:clearances), :clearances_path
   before_action :set_clearance, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
