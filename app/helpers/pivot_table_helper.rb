@@ -76,8 +76,8 @@ module PivotTableHelper
   end
 
   def render_language
-    Language.includes(:user, :language_type, :proficiency_type).
-        references(:user, :language_type, :proficiency_type).map do |lang|
+    Language.includes(:user, :proficiency_type).
+        references(:user, :proficiency_type).map do |lang|
       {
           user: lang.user,
           language_type: lang.language_type,
