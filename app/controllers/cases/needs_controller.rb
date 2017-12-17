@@ -13,6 +13,13 @@ class NeedsController < UserCasesController
     options[:status_type] = params[:status_type]
     options[:show_case] = params[:show_case]
     options[:case_id] = params[:case_id]
+    if params[:case_id]
+      @case = Case.find params[:case_id]
+    end
+     if params[:appointment_id]
+      @appointment = Appointment.find params[:appointment_id]
+    end
+    options[:appointment_id] = params[:appointment_id]
     respond_to do |format|
       format.html{  }
       format.js{ render 'application/index' }

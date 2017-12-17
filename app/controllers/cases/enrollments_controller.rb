@@ -9,17 +9,30 @@ class EnrollmentsController < UserCasesController
   # GET /enrollments
   # GET /enrollments.json
   def index
-    scope =  Enrollment.visible
-    scope = case params[:status_type]
-              when 'all' then scope.all_data
-              when 'opened' then scope.opened
-              when 'closed' then scope.closed
-              when 'flagged' then scope.flagged
-              else
-                scope.all_data
-            end
+    options = Hash.new
+    options[:status_type] = params[:status_type]
+    options[:case_id] = params[:case_id]
+    options[:appointment_id] = params[:appointment_id]
+    if params[:case_id]
+      @case = Case.find params[:case_id]
+    end
+    if params[:appointment_id]
+      @appointment = Appointment.find params[:appointment_id]
+    end
+    respond_to do |format|
+      format.html{ }
+      format.js{ render 'application/index' }
+      format.pdf{}
+      format.csv{ params[:length] = 500
 
-    @enrollments = scope
+      json = EnrollmentDatatable.new(view_context, options).as_json
+      send_data Enrollment.to_csv(json[:data]), filename: "Enrollment-#{Date.today}.csv"
+      }
+      format.json{
+
+        render json: EnrollmentDatatable.new(view_context,options)
+      }
+    end
   end
 
   # GET /enrollments/1

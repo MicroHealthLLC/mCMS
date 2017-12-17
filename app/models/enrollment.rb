@@ -22,6 +22,21 @@ class Enrollment < ApplicationRecord
         ["#{EnrollmentStatus}", 'enrollment_status_id']
     ]
   end
+  def self.include_enumerations
+    includes(:enrollment_status, :enrollment_type).
+        references(:enrollment_status, :enrollment_type)
+  end
+
+  def self.csv_attributes
+    [
+        'Name',
+        'Enrollment Type',
+        'Enrollment Status',
+        'Date start',
+        'Date end'
+    ]
+  end
+
 
   def enrollment_type
     if self.enrollment_type_id

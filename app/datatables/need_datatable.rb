@@ -71,11 +71,15 @@ class NeedDatatable < AjaxDatatablesRails::Base
           @view.format_date( need.date_due) ,
           @view.format_date( need.date_completed)
       ]
+      if @options[:appointment_id] and User.current_user.can?(:manage_roles)
+        arr<<  @view.link_to("<i class='fa fa-unlink fa-lg'></i>".html_safe, @view.unlink_appointment_path(appointment_id: @appointment.id, type: 'Need', id: need.id ))
+      end
       arr.flatten
     end
   end
 
   def get_raw_records
+    @appointment = Appointment.find @options[:appointment_id] if @options[:appointment_id]
     scope = if @options[:case_id]
               Case.find(@options[:case_id]).needs.include_enumerations
             else
