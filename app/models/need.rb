@@ -24,6 +24,27 @@ class Need < ApplicationRecord
     self.case.try(:goals) || []
   end
 
+
+  def self.include_enumerations
+    includes(:user, :case, :priority_type, :need_status, :need_enum).
+        references(:user, :case, :priority_type, :need_status, :need_enum)
+  end
+
+  def self.csv_attributes
+    [
+        I18n.t('client'),
+        I18n.t('need') ,
+        I18n.t('case') ,
+        I18n.t('priority') ,
+        I18n.t('need_status') ,
+        'Percent Done',
+        I18n.t('date_identified') ,
+        I18n.t('date_due') ,
+        I18n.t('date_completed') ,
+
+    ]
+  end
+
   def self.enumeration_columns
     [
         ["#{PriorityType}", 'priority_type_id'],

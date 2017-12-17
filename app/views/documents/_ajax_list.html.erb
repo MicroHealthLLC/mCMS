@@ -33,7 +33,7 @@
 <% if params[:action] == 'profile_record' %>
     <%= render partial: 'datatable_script', locals: {
         model_table: 'documents_table',
-        url: client_documents_path(format: :csv),
+        url: client_documents_path(format: :csv, status_type: params[:status_type]),
         columns: columns.flatten,
         ajax_url: client_documents_path(format: :json,
                                         status_type: params[:status_type]
@@ -44,7 +44,7 @@
 
     <%= render partial: 'datatable_script', locals: {
         model_table: 'documents_table',
-        url: documents_path(format: :csv),
+        url: documents_path(format: :csv, status_type: params[:status_type]),
         columns: columns.flatten,
         ajax_url: documents_path(format: :json,
                                  status_type: params[:status_type],

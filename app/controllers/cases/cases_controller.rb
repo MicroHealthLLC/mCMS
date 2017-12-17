@@ -84,7 +84,7 @@ class CasesController < UserCasesController
     @checklists   = @case.checklists    if module_enabled?('checklists') && can?(:manage_roles, :view_checklists, :manage_checklists)
     @notes        = @case.case_notes    if module_enabled?('notes') && can?(:manage_roles, :view_notes, :manage_notes)
     @appointments = @case.appointments  if module_enabled?('appointments') && can?(:manage_roles, :view_appointments, :manage_appointments)
-    @needs        = @case.needs         if module_enabled?('needs') && can?(:manage_roles, :view_needs, :manage_needs)
+    @needs        = []     if module_enabled?('needs') && can?(:manage_roles, :view_needs, :manage_needs)
     @plans        = @case.plans         if module_enabled?('plans') && can?(:manage_roles, :view_plans, :manage_plans)
     @goals        = @case.goals         if module_enabled?('goals') && can?(:manage_roles, :view_goals, :manage_goals)
     @jsignatures  = @case.jsignatures   if module_enabled?('jsignatures') && can?(:manage_roles, :view_jsignatures, :manage_jsignatures)

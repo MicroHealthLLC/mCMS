@@ -21,7 +21,7 @@
 %>
 <%= render partial: 'datatable_script', locals: {
     model_table: 'legals_table',
-    url: legals_path(format: :csv),
+    url: legals_path(format: :csv, status_type: params[:status_type]),
     columns: columns.flatten,
     ajax_url: legals_path(format: :json, status_type: params[:status_type])
 } %>

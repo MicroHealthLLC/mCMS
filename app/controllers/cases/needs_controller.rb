@@ -9,16 +9,23 @@ class NeedsController < UserCasesController
   # GET /needs
   # GET /needs.json
   def index
-    scope =  User.current.can?(:manage_roles) ? Need.where(assigned_to_id: User.current.id) : Need.visible
-    scope = case params[:status_type]
-              when 'all' then scope.all_data
-              when 'opened' then scope.opened
-              when 'closed' then scope.closed
-              when 'flagged' then scope.flagged
-              else
-                scope.all_data
-            end
-    @needs = scope
+    options = Hash.new
+    options[:status_type] = params[:status_type]
+    options[:show_case] = params[:show_case]
+    options[:case_id] = params[:case_id]
+    respond_to do |format|
+      format.html{  }
+      format.js{ render 'application/index' }
+      format.pdf{}
+      format.csv{
+        params[:length] = 500
+        json = NeedDatatable.new(view_context, options).as_json
+        send_data Need.to_csv(json[:data]), filename: "Needs-#{Date.today}.csv"
+      }
+      format.json{
+        render json: NeedDatatable.new(view_context,options)
+      }
+    end
   end
 
   # GET /needs/1

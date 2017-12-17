@@ -84,15 +84,23 @@ class ApplicationRecord < ActiveRecord::Base
 
   def self.for_status(status)
     scope =  self.visible
-    scope = case status
-              when 'all' then scope.all_data
-              when 'opened' then scope.opened
-              when 'closed' then scope.closed
-              when 'flagged' then scope.flagged
-              else
-                scope.all_data
-            end
-    scope
+    scope.filter_status status
+  end
+
+  def self.filter_status status
+    case status
+      when 'all' then all_data
+      when 'opened' then opened
+      when 'closed' then closed
+      when 'flagged' then flagged
+      else
+        all_data
+    end
+  end
+
+  def self.for_manager_status(status)
+    scope =  User.current.can?(:manage_roles) ? self.where(assigned_to_id: User.current.id) : self.visible
+    scope.filter_status status
   end
 
   def self.to_csv(data)

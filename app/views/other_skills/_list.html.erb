@@ -23,7 +23,7 @@
 %>
 <%= render partial: 'datatable_script', locals: {
     model_table: 'other_skill_table',
-    url: other_skills_path(format: :csv),
+    url: other_skills_path(format: :csv, status_type: params[:status_type]),
     columns: columns.flatten,
     ajax_url: other_skills_path(format: :json, status_type: params[:status_type])
 } %>

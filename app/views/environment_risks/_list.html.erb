@@ -24,7 +24,7 @@
 %>
 <%= render partial: 'datatable_script', locals: {
     model_table: 'environment_risk_table',
-    url: environment_risks_path(format: :csv),
+    url: environment_risks_path(format: :csv, status_type: params[:status_type]),
     columns: columns.flatten,
     ajax_url: environment_risks_path(format: :json, status_type: params[:status_type])
 } %>

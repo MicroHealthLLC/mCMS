@@ -26,7 +26,7 @@
 %>
 <%= render partial: 'datatable_script', locals: {
     model_table: 'behavioral_risk_table',
-    url: behavioral_risks_path(format: :csv),
+    url: behavioral_risks_path(format: :csv, status_type: params[:status_type]),
     columns: columns.flatten,
     ajax_url: behavioral_risks_path(format: :json, status_type: params[:status_type])
 } %>

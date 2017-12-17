@@ -32,7 +32,7 @@
 %>
 <%= render partial: 'datatable_script', locals: {
     model_table: 'medications_table',
-    url: medications_path(format: :csv),
+    url: medications_path(format: :csv, status_type: params[:status_type]),
     columns: columns.flatten,
     ajax_url: medications_path(format: :json, status_type: params[:status_type])
 } %>

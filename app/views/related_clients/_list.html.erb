@@ -20,7 +20,7 @@
 %>
 <%= render partial: 'datatable_script', locals: {
     model_table: 'related_client_table',
-    url: related_clients_path(format: :csv),
+    url: related_clients_path(format: :csv, status_type: params[:status_type]),
     columns: columns.flatten,
     ajax_url: related_clients_path(format: :json, status_type: params[:status_type])
 } %>

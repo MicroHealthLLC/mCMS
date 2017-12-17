@@ -23,7 +23,7 @@
 %>
 <%= render partial: 'datatable_script', locals: {
     model_table: 'problem_list_table',
-    url: problem_lists_path(format: :csv),
+    url: problem_lists_path(format: :csv, status_type: params[:status_type]),
     columns: columns.flatten,
     ajax_url: problem_lists_path(format: :json, status_type: params[:status_type])
 } %>

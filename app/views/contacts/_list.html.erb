@@ -27,7 +27,7 @@
 %>
 <%= render partial: 'datatable_script', locals: {
     model_table: 'contact_table',
-    url: contacts_path(format: :csv),
+    url: contacts_path(format: :csv, status_type: params[:status_type]),
     columns: columns.flatten,
     ajax_url: contacts_path(format: :json, status_type: params[:status_type])
 } %>

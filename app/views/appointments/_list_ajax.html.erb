@@ -25,7 +25,7 @@
 %>
 <%= render partial: 'datatable_script', locals: {
     model_table: 'appointments_table',
-    url: appointments_path(format: :csv),
+    url: appointments_path(format: :csv, status_type: params[:status_type]),
     columns: columns.flatten,
     ajax_url: appointments_path(format: :json, status_type: params[:status_type])
 } %>

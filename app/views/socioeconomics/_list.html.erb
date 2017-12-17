@@ -26,7 +26,7 @@
 %>
 <%= render partial: 'datatable_script', locals: {
     model_table: 'socioeconomic_table',
-    url: socioeconomics_path(format: :csv),
+    url: socioeconomics_path(format: :csv, status_type: params[:status_type]),
     columns: columns.flatten,
     ajax_url: socioeconomics_path(format: :json, status_type: params[:status_type])
 } %>

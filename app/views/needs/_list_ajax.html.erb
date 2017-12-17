@@ -1,0 +1,47 @@
+<% show_case = defined?(show_case_column) ? show_case_column : true %>
+<table class="table table-responsive " id="needs_table">
+  <thead>
+  <tr>
+    <% if User.current.can?(:manage_roles) %>
+        <th><%= t('client') %></th>
+    <% end %>
+    <th><%= t('need') %></th>
+    <% if show_case %>
+        <th><%= t('case') %></th>
+    <% end %>
+    <th><%= t('priority') %></th>
+    <th><%= t('need_status') %></th>
+    <th> Percent Done</th>
+    <th><%= t('date_identified') %></th>
+    <th><%= t('date_due') %></th>
+    <th><%= t('date_completed') %></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  </tbody>
+</table>
+<% columns= [ ]
+   if User.current.can?(:manage_roles)
+     columns << { "searchable": true, "orderable": true }
+   end
+
+   columns << { "searchable": true, "orderable": true }
+   if show_case
+     columns << { "searchable": true, "orderable": true }
+   end
+   columns << [ { "searchable": true, "orderable": true },
+                { "searchable": true, "orderable": true },
+                { "searchable": true, "orderable": true },
+                { "searchable": true, "orderable": true },
+
+                { "searchable": true, "orderable": true },
+
+                { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'needs_table',
+    url: needs_path(format: :csv, status_type: params[:status_type], show_case: show_case, case_id: @case.try(:id)),
+    columns: columns.flatten,
+    ajax_url: needs_path(format: :json, status_type: params[:status_type], show_case: show_case, case_id: @case.try(:id))
+} %>

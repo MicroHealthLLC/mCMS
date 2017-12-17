@@ -24,7 +24,7 @@
 %>
 <%= render partial: 'datatable_script', locals: {
     model_table: 'health_care_table',
-    url: health_care_facilities_path(format: :csv),
+    url: health_care_facilities_path(format: :csv, status_type: params[:status_type]),
     columns: columns.flatten,
     ajax_url: health_care_facilities_path(format: :json, status_type: params[:status_type])
 } %>

@@ -22,7 +22,7 @@
 %>
 <%= render partial: 'datatable_script', locals: {
     model_table: 'affiliation_table',
-    url: affiliations_path(format: :csv),
+    url: affiliations_path(format: :csv, status_type: params[:status_type]),
     columns: columns.flatten,
     ajax_url: affiliations_path(format: :json, status_type: params[:status_type])
 } %>

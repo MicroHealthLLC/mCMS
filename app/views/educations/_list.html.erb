@@ -20,7 +20,7 @@
 %>
 <%= render partial: 'datatable_script', locals: {
     model_table: 'educations_table',
-    url: educations_path(format: :csv),
+    url: educations_path(format: :csv, status_type: params[:status_type]),
     columns: columns.flatten,
     ajax_url: educations_path(format: :json, status_type: params[:status_type])
 } %>

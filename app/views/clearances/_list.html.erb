@@ -20,7 +20,7 @@
 %>
 <%= render partial: 'datatable_script', locals: {
     model_table: 'clearance_table',
-    url: clearances_path(format: :csv),
+    url: clearances_path(format: :csv, status_type: params[:status_type]),
     columns: columns.flatten,
     ajax_url: clearances_path(format: :json, status_type: params[:status_type])
 } %>

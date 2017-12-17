@@ -27,7 +27,7 @@
 %>
 <%= render partial: 'datatable_script', locals: {
     model_table: 'insurances_table',
-    url: user_insurances_path(format: :csv),
+    url: user_insurances_path(format: :csv, status_type: params[:status_type]),
     columns: columns.flatten,
     ajax_url: user_insurances_path(format: :json, status_type: params[:status_type])
 } %>

@@ -24,7 +24,7 @@
 %>
 <%= render partial: 'datatable_script', locals: {
     model_table: 'other_history_table',
-    url: other_histories_path(format: :csv),
+    url: other_histories_path(format: :csv, status_type: params[:status_type]),
     columns: columns.flatten,
     ajax_url: other_histories_path(format: :json, status_type: params[:status_type])
 } %>
