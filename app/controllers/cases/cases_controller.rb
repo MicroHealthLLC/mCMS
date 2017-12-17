@@ -78,21 +78,25 @@ class CasesController < UserCasesController
     @cases        = @case.sub_cases     if module_enabled?('subcases')
     @relations    = @case.relations
 
+    @teleconsults = []  if module_enabled?('teleconsults') && can?(:manage_roles, :view_teleconsults, :manage_teleconsults)
+    @transports   = []    if module_enabled?('transports') && can?(:manage_roles, :view_transports, :manage_transports)
+    @enrollments  = []   if module_enabled?('enrollments') && can?(:manage_roles, :view_enrollments, :manage_enrollments)
+    @measurement_records = []   if module_enabled?('measurement_records')  && can?(:manage_roles, :view_measurement_records, :manage_measurement_records)
+    @needs        = []     if module_enabled?('needs') && can?(:manage_roles, :view_needs, :manage_needs)
+
     @tasks        = @case.tasks         if module_enabled?('tasks') && can?(:manage_roles, :view_tasks, :manage_tasks)
     @surveys      = @case.survey_cases  if module_enabled?('surveys') && can?(:manage_roles, :view_surveys, :manage_surveys)
     @documents    = @case.documents     if module_enabled?('documents') && can?(:manage_roles, :view_documents, :manage_documents)
+
     @checklists   = @case.checklists    if module_enabled?('checklists') && can?(:manage_roles, :view_checklists, :manage_checklists)
     @notes        = @case.case_notes    if module_enabled?('notes') && can?(:manage_roles, :view_notes, :manage_notes)
     @appointments = @case.appointments  if module_enabled?('appointments') && can?(:manage_roles, :view_appointments, :manage_appointments)
-    @needs        = []     if module_enabled?('needs') && can?(:manage_roles, :view_needs, :manage_needs)
+
     @plans        = @case.plans         if module_enabled?('plans') && can?(:manage_roles, :view_plans, :manage_plans)
     @goals        = @case.goals         if module_enabled?('goals') && can?(:manage_roles, :view_goals, :manage_goals)
     @jsignatures  = @case.jsignatures   if module_enabled?('jsignatures') && can?(:manage_roles, :view_jsignatures, :manage_jsignatures)
-    @enrollments  = []   if module_enabled?('enrollments') && can?(:manage_roles, :view_enrollments, :manage_enrollments)
+
     @referrals    = @case.referrals     if module_enabled?('referrals')  && can?(:manage_roles, :view_referrals, :manage_referrals)
-    @teleconsults = []  if module_enabled?('teleconsults') && can?(:manage_roles, :view_teleconsults, :manage_teleconsults)
-    @transports   = []    if module_enabled?('transports') && can?(:manage_roles, :view_transports, :manage_transports)
-    @measurement_records = @case.measurement_records    if module_enabled?('measurement_records')  && can?(:manage_roles, :view_measurement_records, :manage_measurement_records)
     @case_organizations  = @case.case_organizations     if module_enabled?('case_organizations') && can?(:manage_roles, :view_case_managements, :manage_case_managements)
     @watchers     = @case.watchers.includes(:user=> :core_demographic) if module_enabled?('enrollments') && can?(:manage_roles, :view_case_watchers, :manage_case_watchers)
 

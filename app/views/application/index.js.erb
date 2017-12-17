@@ -1,1 +1,1 @@
-$('#<%= params[:container] %>').html("'<%= escape_javascript(render partial: "#{params[:controller]}/list") %>'" )
+$('#<%= params[:container] %>').html("<%= escape_javascript(render partial: "#{params[:controller]}/list") %>" )

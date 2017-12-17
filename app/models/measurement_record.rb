@@ -21,6 +21,30 @@ class MeasurementRecord < ApplicationRecord
     end
   end
 
+  def self.enumeration_columns
+    [
+        ["#{MeasurementStatus}", 'measurement_status_id']
+    ]
+  end
+  
+  def self.include_enumerations
+    includes(:case, :recorded_by,:measurement_status  , :component).
+        references(:case, :recorded_by,:measurement_status  , :component)
+  end
+
+  def self.csv_attributes
+    [
+    'Measurement',
+    'Component',
+    'Measure',
+    'Measured by',
+    'Date time',
+    'Recorded by',
+    'Flag',
+    'Measurement status'
+    ]
+  end
+  
   def gender
     gender_type || GenderType.default
   end

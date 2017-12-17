@@ -1,5 +1,7 @@
 <%#= link_to 'New Measurement', new_measurement_record_path, class: 'btn btn-primary pull-right btn-edition' if can?(:manage_roles, :create_measurement_records, :manage_measurement_records) %>
 <%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
+<%= render partial: 'state_button_filter_with_remote',
+           locals: {controller_name: 'measurement_records', container: 'measurement_records_container'} %>
 
 <section id="widget-grid" class="show_customer_measurement">
   <% if can?(:create_measurement_records, :manage_roles, :manage_measurement_records) %>
@@ -24,7 +26,7 @@
       <%= render partial: 'list',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     wid_id: 'measurements',
+                     wid_id: 'measurement_records',
                      wid_title: 'Measurements'
                  } %>
     </article>

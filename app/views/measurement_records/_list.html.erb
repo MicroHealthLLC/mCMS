@@ -1,9 +1,10 @@
-<table class="table table-responsive " id="measurement_table">
+<table class="table table-responsive " id="measurement_records_table" style="width: 100%">
   <thead>
   <tr>
     <th>Measurement</th>
     <th>Component</th>
     <th>Measure</th>
+    
     <th>Measured by</th>
     <th>Date time</th>
     <th>Recorded by</th>
@@ -14,24 +15,23 @@
   </thead>
 
   <tbody>
-  <% @measurement_records.each do |measurement_record| %>
-      <tr>
-        <td><%= link_to_edit_if_can measurement_record.measurement, {ctrl: :measurement_records, object: measurement_record } %></td>
-        <td><%= measurement_record.component.component %></td>
-        <td><%= measurement_record.measure %></td>
-        <td><%= measurement_record.measured_by %></td>
-        <td><%= format_date_time  measurement_record.date_time %></td>
-        <td><%= measurement_record.recorded_by %></td>
-        <td><%= measurement_record.flag %></td>
-        <td><%= measurement_record.measurement_status %></td>
-        </tr>
-  <% end %>
+
   </tbody>
 </table>
-<script>
-  $(document).ready(function(){
-    initDataTable('measurement_table')
-  } );
-</script>
+<% columns= [  { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true }]
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'measurement_records_table',
+    url: measurement_records_path(format: :csv, status_type: params[:status_type], case_id: @case.try(:id)),
+    columns: columns.flatten,
+    ajax_url: measurement_records_path(format: :json, status_type: params[:status_type], case_id: @case.try(:id))
+} %>
 
 

@@ -26,7 +26,6 @@
      columns << { "searchable": false, "orderable": false }
    end
 %>
-%>
 <%= render partial: 'datatable_script', locals: {
     model_table: 'enrollments_table',
     url: enrollments_path(format: :csv, status_type: params[:status_type], case_id: @case.try(:id), appointment_id: @appointment.try(:id)),

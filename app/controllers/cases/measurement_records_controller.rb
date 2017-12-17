@@ -9,21 +9,35 @@ class MeasurementRecordsController < UserCasesController
   # GET /measurement_records
   # GET /measurement_records.json
   def index
-    respond_to do |format|
-      format.html{
-        @measurement_records = MeasurementRecord.visible
-      }
-      format.js{
-        @measurement_record = MeasurementRecord.new(measurement_params)
-        @measurement_record.user_id = User.current.id
-        @measurement_record.age = User.current.age
-        @measurement_record.height = User.current.height
-        @measurement_record.weight = User.current.weight
-        @measurement_record.gender_id = User.current.gender.try(:id)
-      }
-
-      format.pdf{@measurement_records = MeasurementRecord.visible}
+    options = Hash.new
+    options[:status_type] = params[:status_type]
+    options[:show_case] = params[:show_case]
+    options[:case_id] = params[:case_id]
+    options[:appointment_id] = params[:appointment_id]
+    if params[:case_id]
+      @case = Case.find params[:case_id]
     end
+    if params[:appointment_id]
+      @appointment = Appointment.find params[:appointment_id]
+    end
+    respond_to do |format|
+      format.html{ }
+      format.js{ render 'application/index' }
+      format.pdf{}
+      format.csv{ params[:length] = 500
+
+      json = MeasurementRecordDatatable.new(view_context, options).as_json
+      send_data MeasurementRecord.to_csv(json[:data]), filename: "MeasurementRecord-#{Date.today}.csv"
+      }
+      format.json{
+
+        render json: MeasurementRecordDatatable.new(view_context,options)
+      }
+    end
+    end
+
+  def form
+
   end
 
   # GET /measurement_records/1
@@ -33,8 +47,21 @@ class MeasurementRecordsController < UserCasesController
 
   # GET /measurement_records/new
   def new
-    @measurement_record = MeasurementRecord.new(measurement_params)
-    @measurement_record.user_id = User.current.id
+    respond_to do |format|
+      format.html{
+        @measurement_record = MeasurementRecord.new(measurement_params)
+        @measurement_record.user_id = User.current.id
+      }
+      format.js{
+        @measurement_record = MeasurementRecord.new(measurement_params)
+        @measurement_record.user_id = User.current.id
+        @measurement_record.age = User.current.age
+        @measurement_record.height = User.current.height
+        @measurement_record.weight = User.current.weight
+        @measurement_record.gender_id = User.current.gender.try(:id)
+      }
+      format.pdf{@measurement_records = MeasurementRecord.visible}
+    end
   end
 
   # GET /measurement_records/1/edit

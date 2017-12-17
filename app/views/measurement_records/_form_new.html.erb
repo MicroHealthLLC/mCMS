@@ -29,7 +29,7 @@
             $(document).ready(function(){
               $('#measurement_record_measurement').on('change', function(){
                 val = $(this).val();
-                $.getScript("<%= measurement_records_path(format: :js) %>?case_id=<%=f.object.case_id%>&plan_id=<%=f.object.plan_id%>&measurement="+val)
+                $.getScript("<%= new_measurement_record_path(format: :js) %>?case_id=<%=f.object.case_id%>&plan_id=<%=f.object.plan_id%>&measurement="+val)
               })
             })
           </script>
