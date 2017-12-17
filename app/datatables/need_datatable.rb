@@ -80,12 +80,17 @@ class NeedDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records
     @appointment = Appointment.find @options[:appointment_id] if @options[:appointment_id]
-    scope = if @options[:case_id]
-              Case.find(@options[:case_id]).needs.include_enumerations
-            else
-              Need.include_enumerations
-            end
-    scope.for_manager_status @options[:status_type]
+    if @options[:appointment_id]
+      @appointment_links = @appointment.appointment_links.includes(:linkable)
+      Need.include_enumerations.where(id: @appointment_links.where(linkable_type: 'Need').map(&:linkable).map(&:id))
+    else
+      scope = if @options[:case_id]
+                Case.find(@options[:case_id]).needs.include_enumerations
+              else
+                Need.include_enumerations
+              end
+      scope.for_manager_status @options[:status_type]
+    end
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

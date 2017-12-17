@@ -9,16 +9,31 @@ class TeleconsultsController  < UserCasesController
   # GET /teleconsults
   # GET /teleconsults.json
   def index
-    scope = Teleconsult.visible
-    scope = case params[:status_type]
-              when 'all' then scope.all_data
-              when 'opened' then scope.opened
-              when 'closed' then scope.closed
-              when 'flagged' then scope.flagged
-              else
-                scope.all_data
-            end
-    @teleconsults = scope
+    options = Hash.new
+    options[:status_type] = params[:status_type]
+    options[:show_case] = params[:show_case]
+    options[:case_id] = params[:case_id]
+    options[:appointment_id] = params[:appointment_id]
+    if params[:case_id]
+      @case = Case.find params[:case_id]
+    end
+    if params[:appointment_id]
+      @appointment = Appointment.find params[:appointment_id]
+    end
+    respond_to do |format|
+      format.html{ }
+      format.js{ render 'application/index' }
+      format.pdf{}
+      format.csv{ params[:length] = 500
+
+      json = TeleconsultDatatable.new(view_context, options).as_json
+      send_data Teleconsult.to_csv(json[:data]), filename: "Teleconsult-#{Date.today}.csv"
+      }
+      format.json{
+
+        render json: TeleconsultDatatable.new(view_context,options)
+      }
+    end
   end
 
   # GET /teleconsults/1

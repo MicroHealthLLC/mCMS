@@ -25,6 +25,22 @@ class Teleconsult < ApplicationRecord
     contact_method
   end
 
+  def self.include_enumerations
+    includes(:contact_type, :consult_status, :case, :contact_method, :user).
+        references(:contact_type, :consult_status, :case, :contact_method,  :user)
+  end
+
+  def self.csv_attributes
+    [
+        'Contact Method',
+        'Contact Type',
+        'Consult Status',
+        'Date',
+        'Time'
+    ]
+  end
+
+
   def self.enumeration_columns
     [
         ["#{ContactMethod}", 'contact_method_id'],

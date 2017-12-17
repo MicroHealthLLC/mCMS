@@ -71,7 +71,7 @@ class AppointmentsController < UserCasesController
     @checklists  = @appointment_links.where(linkable_type: 'ChecklistCase').map(&:linkable)
     @notes       = @appointment_links.where(linkable_type: 'Note').map(&:linkable)
     @appointments= @appointment_links.where(linkable_type: 'Appointment').map(&:linkable)
-    @needs       = @appointment_links.where(linkable_type: 'Need').map(&:linkable)
+    @needs       = []
     @plans       = @appointment_links.where(linkable_type: 'Plan').map(&:linkable)
     @goals       = @appointment_links.where(linkable_type: 'Goal').map(&:linkable)
     # @watchers    = @case.watchers.where('date(updated_at) = ?', update_rails).includes(:user=> :core_demographic)

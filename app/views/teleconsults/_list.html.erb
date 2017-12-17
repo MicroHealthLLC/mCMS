@@ -1,5 +1,5 @@
 <% show_case = defined?(show_case_column) ? show_case_column : true %>
-<table class="table  table-responsive" id="teleconsults_table">
+<table class="table  table-responsive" id="teleconsults_table" style="width: 100%">
   <thead>
   <tr>
     <th>Contact Method</th>
@@ -11,34 +11,31 @@
     <th>Consult Status</th>
     <th>Date</th>
     <th>Time</th>
-    <% if @appointment %>
+    <% if @appointment and can?(:manage_roles) %>
         <th></th>
     <% end %>
   </tr>
   </thead>
 
   <tbody>
-  <% @teleconsults.each do |teleconsult| %>
-      <tr>
-        <td><%= link_to_edit_if_can teleconsult.contact_method, {ctrl: :teleconsults, object: teleconsult } %></td>
-
-        <% if show_case %>
-            <td><%= link_to_case teleconsult.case %></td>
-        <% end %>
-        <td><%= teleconsult.contact_type %></td>
-        <td><%= teleconsult.consult_status %></td>
-        <td><%= format_date teleconsult.date %></td>
-        <td><%= teleconsult.time %></td>
-        <% if @appointment and can?(:manage_roles) %>
-            <td><%= link_to "<i class='fa fa-unlink fa-lg'></i>".html_safe, unlink_appointment_path(appointment_id: @appointment.id, type: 'Teleconsult', id: teleconsult.id ) %></td>
-        <% end %>
-      </tr>
-  <% end %>
   </tbody>
 </table>
 
-<script>
-  $(document).ready(function(){
-     initDataTable('teleconsults_table')
-  } );
-</script>
+
+<% columns= [  { "searchable": true, "orderable": true } ]
+   columns<<  { "searchable": true, "orderable": true }  if show_case
+
+   columns<< [{ "searchable": true, "orderable": true },
+              { "searchable": true, "orderable": true },
+              { "searchable": true, "orderable": true },
+              { "searchable": true, "orderable": true }]
+   if @appointment and can?(:manage_roles)
+     columns << { "searchable": false, "orderable": false }
+   end
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'teleconsults_table',
+    url: teleconsults_path(format: :csv, status_type: params[:status_type], show_case: show_case, case_id: @case.try(:id), appointment_id: @appointment.try(:id)),
+    columns: columns.flatten,
+    ajax_url: teleconsults_path(format: :json, status_type: params[:status_type], show_case: show_case, case_id: @case.try(:id), appointment_id: @appointment.try(:id))
+} %>

@@ -227,7 +227,7 @@
     <%= render( partial: 'cases/show_case/subcases') if @cases.present? %>
     <%= render( partial: 'cases/show_case/case_support') if @case_supports.present? %>
     <%= render( partial: 'cases/show_case/notes') if @notes.present? %>
-    <%= render( partial: 'cases/show_case/needs') if @needs.present? %>
+    <%= render( partial: 'cases/show_case/needs') if @needs %>
     <%= render( partial: 'cases/show_case/goals')if @goals.present? %>
     <%= render( partial: 'cases/show_case/plans') if @plans.present? %>
     <%= render( partial: 'cases/show_case/tasks') if  @tasks.present? %>
