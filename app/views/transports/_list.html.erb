@@ -1,5 +1,5 @@
 <% show_case = defined?(show_case_column) ? show_case_column : true %>
-<table class="table table-responsive" id="transports_table">
+<table class="table table-responsive" id="transports_table" style="width: 100%">
   <thead>
   <tr>
     <th>Reason</th>
@@ -9,31 +9,35 @@
     <th>Transport type</th>
     <th>Location</th>
     <th>Transport location</th>
+    
     <th>Transport status</th>
     <th>Date time</th>
+    <% if @appointment and can?(:manage_roles) %>
+        <th></th>
+    <% end %>
   </tr>
   </thead>
 
   <tbody>
-  <% @transports.each do |transport| %>
-      <tr>
-        <td><%= link_to_edit_if_can transport.reason, {ctrl: :transports, object: transport } %></td>
 
-        <% if show_case %>
-            <td><%= link_to_case transport.case %></td>
-        <% end %>
-        <td><%= transport.transport_type %></td>
-        <td><%= transport.location %></td>
-        <td><%= transport.transport_location %></td>
-        <td><%= transport.transport_status %></td>
-        <td><%= format_date_time transport.date_time %></td>
-      </tr>
-  <% end %>
   </tbody>
 </table>
 
-<script>
-  $(document).ready(function(){
-    initDataTable('transports_table')
-  })
-</script>
+<% columns= [  { "searchable": true, "orderable": true } ]
+   columns<<  { "searchable": true, "orderable": true }  if show_case
+
+   columns<< [{ "searchable": true, "orderable": true },
+              { "searchable": true, "orderable": true },
+              { "searchable": true, "orderable": true },
+              { "searchable": true, "orderable": true },
+              { "searchable": true, "orderable": true }]
+   if @appointment and can?(:manage_roles)
+     columns << { "searchable": false, "orderable": false }
+   end
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'transports_table',
+    url: transports_path(format: :csv, status_type: params[:status_type], show_case: show_case, case_id: @case.try(:id), appointment_id: @appointment.try(:id)),
+    columns: columns.flatten,
+    ajax_url: transports_path(format: :json, status_type: params[:status_type], show_case: show_case, case_id: @case.try(:id), appointment_id: @appointment.try(:id))
+} %>

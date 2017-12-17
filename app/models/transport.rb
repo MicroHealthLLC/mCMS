@@ -6,7 +6,7 @@ class Transport < ApplicationRecord
   belongs_to :transport_status, optional: true
   belongs_to :transport_location, optional: true
   belongs_to :case, optional: true
-  
+
   has_many :transport_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :transport_attachments, reject_if: :all_blank, allow_destroy: true
 
@@ -14,6 +14,21 @@ class Transport < ApplicationRecord
 
   validates_presence_of :user_id
 
+  def self.include_enumerations
+    includes(:transport_type, :transport_status, :case, :transport_location).
+        references(:transport_type, :transport_status, :case, :transport_location)
+  end
+
+  def self.csv_attributes
+    [
+        'Reason',
+        'Transport type',
+        'Location',
+        'Transport location',
+        'Transport status',
+        'Date time',
+    ]
+  end
 
 
   def self.enumeration_columns
@@ -26,7 +41,7 @@ class Transport < ApplicationRecord
   def to_s
     reason
   end
-  
+
   def transport_location
     super || TransportLocation.default
   end
@@ -55,5 +70,5 @@ class Transport < ApplicationRecord
     pdf.table([[ "date & time: ", " #{date_time}"]], :column_widths => [ 150, 373])
     pdf.table([[ "description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
   end
-  
+
 end

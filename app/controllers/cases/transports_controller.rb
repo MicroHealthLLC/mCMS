@@ -9,7 +9,30 @@ class TransportsController  <  UserCasesController
   # GET /transports
   # GET /transports.json
   def index
-    @transports = Transport.visible
+    options = Hash.new
+    options[:status_type] = params[:status_type]
+    options[:show_case] = params[:show_case]
+    options[:case_id] = params[:case_id]
+    options[:appointment_id] = params[:appointment_id]
+    if params[:case_id]
+      @case = Case.find params[:case_id]
+    end
+    if params[:appointment_id]
+      @appointment = Appointment.find params[:appointment_id]
+    end
+    respond_to do |format|
+      format.html{ }
+      format.js{ render 'application/index' }
+      format.pdf{}
+      format.csv{ params[:length] = 500
+      json = TransportDatatable.new(view_context, options).as_json
+      send_data Transport.to_csv(json[:data]), filename: "Transport-#{Date.today}.csv"
+      }
+      format.json{
+
+        render json: TransportDatatable.new(view_context,options)
+      }
+    end
   end
 
   # GET /transports/1
