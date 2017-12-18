@@ -1,7 +1,11 @@
 <%= stylesheet_link_tag 'measurements_converter/application' %>
+
+<div class="module-title">
+  <h2 class='module-title-text'>MEASUREMENT CONVERTOR</h2>
+</div>
+
 <div id="ng-app" ng-app="Converter" class="containerMain" ng-controller="mCtrl as type">
   <div id="innerContainer" ng-controller="PanelCtrl as panel">
-    <h1>Measurement Converter</h1>
     <ul>
       <li class="{{panel.one}}"><a href="#" ng-click="panel.selectTab(0)">{{type.measurement[0].name}}</a></li>
       <li class="{{panel.two}}"><a href="#"  ng-click="panel.selectTab(1)">{{type.measurement[1].name}}</a></li>
