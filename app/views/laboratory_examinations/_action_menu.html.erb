@@ -1,52 +1,54 @@
-<div class="col-xs-12 btn-edition">
-  <div class="btn-group">
-    <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
-    <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:210px;">
-      <% if @laboratory_examination.can?(:delete_laboratory_examinations, :manage_laboratory_examinations, :manage_roles) %>
-        <li>
-          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-            <%= link_to('Delete', laboratory_examination_path(@laboratory_examination), class: 'dropdown-item',
-                        :method => :delete,
-                        :data => {:confirm => t(:text_are_you_sure)}) 
-            %>
-        </li>
-        <div class='dropdown-item-dividier'></div>
-      <% end %>
-
-      <% if params[:action] == 'show' %>
-        <% if @laboratory_examination.can?(:edit_laboratory_examinations, :manage_laboratory_examinations, :manage_roles) %>
+<div class="row">
+  <div class="col-xs-12 btn-edition">
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+      <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:210px;">
+        <% if @laboratory_examination.can?(:delete_laboratory_examinations, :manage_laboratory_examinations, :manage_roles) %>
           <li>
-            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-            <%= link_to 'Edit', edit_laboratory_examination_path(@laboratory_examination), class: 'dropdown-item' %>
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              <%= link_to('Delete', laboratory_examination_path(@laboratory_examination), class: 'dropdown-item',
+                          :method => :delete,
+                          :data => {:confirm => t(:text_are_you_sure)}) 
+              %>
           </li>
           <div class='dropdown-item-dividier'></div>
         <% end %>
-      <% else %>
-        <% if @laboratory_examination.can?(:show_laboratory_examinations, :manage_laboratory_examinations, :manage_roles) %>
+
+        <% if params[:action] == 'show' %>
+          <% if @laboratory_examination.can?(:edit_laboratory_examinations, :manage_laboratory_examinations, :manage_roles) %>
+            <li>
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              <%= link_to 'Edit', edit_laboratory_examination_path(@laboratory_examination), class: 'dropdown-item' %>
+            </li>
+            <div class='dropdown-item-dividier'></div>
+          <% end %>
+        <% else %>
+          <% if @laboratory_examination.can?(:show_laboratory_examinations, :manage_laboratory_examinations, :manage_roles) %>
+            <li>
+              <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+              <%= link_to 'Show', laboratory_examination_path(@laboratory_examination), class: 'dropdown-item' %>
+            </li>
+            <div class='dropdown-item-dividier'></div>
+          <% end %>
+        <% end %>
+
           <li>
-            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-            <%= link_to 'Show', laboratory_examination_path(@laboratory_examination), class: 'dropdown-item' %>
+            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+            <%= link_to 'Cancel', laboratory_examinations_path, class: 'dropdown-item' %>
           </li>
           <div class='dropdown-item-dividier'></div>
-        <% end %>
-      <% end %>
 
-        <li>
-          <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
-          <%= link_to 'Cancel', laboratory_examinations_path, class: 'dropdown-item' %>
-        </li>
-        <div class='dropdown-item-dividier'></div>
+          <li>
+            <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+            <%= link_to 'Print', laboratory_examination_path(@laboratory_examination, format: 'pdf'), class: 'dropdown-item' %>
+          </li>
+            <div class='dropdown-item-dividier'></div>
 
-        <li>
-          <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-          <%= link_to 'Print', laboratory_examination_path(@laboratory_examination, format: 'pdf'), class: 'dropdown-item' %>
-        </li>
-          <div class='dropdown-item-dividier'></div>
-
-        <li>
-          <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-          <%= link_to 'History Changes', "/histories/#{@laboratory_examination.class}/#{@laboratory_examination.id}", class: 'dropdown-item' %>
-        </li>
-    </ul>
+          <li>
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+            <%= link_to 'History Changes', "/histories/#{@laboratory_examination.class}/#{@laboratory_examination.id}", class: 'dropdown-item' %>
+          </li>
+      </ul>
+    </div>
   </div>
 </div>
