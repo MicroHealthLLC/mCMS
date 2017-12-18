@@ -1,52 +1,54 @@
-<div class="col-xs-12 btn-edition">
-  <div class="btn-group">
-    <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
-    <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:210px;">
-      <% if @problem_list.can?(:delete_problem_lists, :manage_problem_lists, :manage_roles) %>
-        <li>
-          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-            <%= link_to('Delete', problem_list_path(@problem_list), class: 'dropdown-item',
-                        :method => :delete,
-                        :data => {:confirm => t(:text_are_you_sure)}) 
-            %>
-        </li>
-        <div class='dropdown-item-dividier'></div>
-      <% end %>
-
-      <% if params[:action] == 'show' %>
-        <% if @problem_list.can?(:edit_problem_lists, :manage_problem_lists, :manage_roles) %>
+<div class="row">
+  <div class="col-xs-12 btn-edition">
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+      <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:210px;">
+        <% if @problem_list.can?(:delete_problem_lists, :manage_problem_lists, :manage_roles) %>
           <li>
-            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-            <%= link_to 'Edit', edit_problem_list_path(@problem_list), class: 'dropdown-item' %>
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              <%= link_to('Delete', problem_list_path(@problem_list), class: 'dropdown-item',
+                          :method => :delete,
+                          :data => {:confirm => t(:text_are_you_sure)}) 
+              %>
           </li>
           <div class='dropdown-item-dividier'></div>
         <% end %>
-      <% else %>
-        <% if @problem_list.can?(:show_problem_lists, :manage_problem_lists, :manage_roles) %>
+
+        <% if params[:action] == 'show' %>
+          <% if @problem_list.can?(:edit_problem_lists, :manage_problem_lists, :manage_roles) %>
+            <li>
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              <%= link_to 'Edit', edit_problem_list_path(@problem_list), class: 'dropdown-item' %>
+            </li>
+            <div class='dropdown-item-dividier'></div>
+          <% end %>
+        <% else %>
+          <% if @problem_list.can?(:show_problem_lists, :manage_problem_lists, :manage_roles) %>
+            <li>
+              <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+              <%= link_to 'Show', problem_list_path(@problem_list), class: 'dropdown-item' %>
+            </li>
+            <div class='dropdown-item-dividier'></div>
+          <% end %>
+        <% end %>
+
           <li>
-            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-            <%= link_to 'Show', problem_list_path(@problem_list), class: 'dropdown-item' %>
+            <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+            <%= link_to 'Cancel', problem_lists_path, class: 'dropdown-item' %>
           </li>
           <div class='dropdown-item-dividier'></div>
-        <% end %>
-      <% end %>
 
-        <li>
-          <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
-          <%= link_to 'Cancel', problem_lists_path, class: 'dropdown-item' %>
-        </li>
-        <div class='dropdown-item-dividier'></div>
+          <li>
+            <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+            <%= link_to 'Print', problem_list_path(@problem_list, format: 'pdf'), class: 'dropdown-item' %>
+          </li>
+            <div class='dropdown-item-dividier'></div>
 
-        <li>
-          <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-          <%= link_to 'Print', problem_list_path(@problem_list, format: 'pdf'), class: 'dropdown-item' %>
-        </li>
-          <div class='dropdown-item-dividier'></div>
-
-        <li>
-          <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-          <%= link_to 'History Changes', "/histories/#{@problem_list.class}/#{@problem_list.id}", class: 'dropdown-item' %>
-        </li>
-    </ul>
+          <li>
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+            <%= link_to 'History Changes', "/histories/#{@problem_list.class}/#{@problem_list.id}", class: 'dropdown-item' %>
+          </li>
+      </ul>
+    </div>
   </div>
 </div>
