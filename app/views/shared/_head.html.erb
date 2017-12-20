@@ -110,10 +110,10 @@
       background-color:#4D7484;border:1px solid #4D7484;color:#ffffff;
     }
     .ui-tabs .ui-tabs-nav li a:hover {
-      border:1px solid #DBC2A4;border-bottom:1px solid #ddd;background-color:#DBC2A4;
+      border:1px solid #DBC2A4;border-bottom:1px solid #F59B69;background-color:#DBC2A4;
     }
     .ui-tabs .ui-tabs-nav li.ui-tabs-active a {
-      border:1px solid #F59B69;border-bottom:1px solid #ddd;background-color:#F59B69;color:#000000;
+      border:1px solid #F59B69;border-bottom:1px solid #F59B69;background-color:#F59B69;color:#000000;
     }
     .ui-tabs .ui-tabs-nav li.ui-tabs-active:hover {
       background:#F59B69;cursor:text;
@@ -124,8 +124,13 @@
     .ui-tabs .ui-tabs-nav li.ui-tabs-active a {
       background-color:#F59B69;
     }
-    .ui-tabs .ui-tabs-nav li.ui-tabs-active a {
+   .ui-tabs .ui-tabs-nav {
+    border: solid #F59B69;
+    border-width: 0 0 3px;
+    border-radius: 0;
+    background: 0 0;
     }
+   
     .ui-tabs .ui-tabs-nav li {
       margin: 4px 0 0 0;
     }
@@ -154,7 +159,6 @@
    .ui-widget-content, .ui-widget.ui-widget-content {
      border: none;
     }
-    
   </style>
   <!-- We recommend you use "your_style.css" to override SmartAdmin
        specific styles this will also ensure you retrain your customization with each SmartAdmin update.
