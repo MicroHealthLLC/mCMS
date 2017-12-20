@@ -1,5 +1,5 @@
 class UserCasesController < ProtectForgeryApplication
-  add_breadcrumb 'Case records', :cases_path
+  add_breadcrumb 'Case Records', :cases_path
   before_action  :authenticate_user!
   before_action :authorize
   before_action :get_user_cases, only: [:index]
