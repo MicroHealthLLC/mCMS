@@ -1,10 +1,35 @@
 <% unless User.current.admin? %>
     <div class="row">
-      <div class="col-xs-11 btn-edition">
-        <%= link_to(t('new_note'), new_note_path(type: 'AttemptNote', owner_id: attempt.id), class: 'btn btn-primary pull-right') if can?(:add_notes, :manage_roles) %>
-        <%= link_to( 'show', survey_attempt_path( attempt), class: 'btn btn-success pull-right') %>
-        <%= link_to( t('button_cancel'), attempts_path(survey_id: attempt.survey.id, case_id: attempt.participant_id), class: 'btn btn-warning pull-right') %>
-        <%= link_to( t('button_print'), survey_attempt_path( attempt, format: :pdf), class: 'btn btn-primary pull-right') %>
+      <div class="col-xs-11 btn-edition tabs-section">
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+          <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:190px;">
+            <% if can?(:add_notes, :manage_roles) %>
+              <li>
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                <%= link_to t('new_note'), new_note_path(type: 'AttemptNote', owner_id: attempt.id), class: 'dropdown-item' %>
+              </li>
+              <div class='dropdown-item-dividier'></div>
+            <% end %>
+
+            <li>
+              <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+              <%= link_to 'Show', survey_attempt_path( attempt), class: 'dropdown-item' %>
+            </li>
+            <div class='dropdown-item-dividier'></div>
+
+            <li>
+              <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+              <%= link_to 'Cancel', attempts_path(survey_id: attempt.survey.id, case_id: attempt.participant_id), class: 'dropdown-item' %>
+            </li>
+            <div class='dropdown-item-dividier'></div>
+
+            <li>
+              <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+              <%= link_to 'Print', survey_attempt_path( attempt, format: :pdf), class: 'dropdown-item' %>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 <% end %>
