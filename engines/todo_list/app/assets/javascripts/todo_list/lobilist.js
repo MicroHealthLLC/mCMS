@@ -1103,7 +1103,7 @@ $(function () {
         // Default action buttons for all lists
         controls: ['edit', 'add', 'remove', 'styleChange'],
         //List style
-        defaultStyle: 'lobilist-default',
+        defaultStyle: 'lobilist-info',
         // Whether to show lists on single line or not
         onSingleLine: true,
 
