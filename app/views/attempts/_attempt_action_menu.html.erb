@@ -1,9 +1,9 @@
 <% unless User.current.admin? %>
     <div class="row">
-      <div class="col-xs-11 btn-edition tabs-section">
+      <div class="col-xs-11 btn-edition">
         <div class="btn-group">
           <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
-          <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:190px;">
+          <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:170px;">
             <% if can?(:add_notes, :manage_roles) %>
               <li>
                 <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
