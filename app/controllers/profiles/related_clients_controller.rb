@@ -3,7 +3,7 @@ class RelatedClientsController < UserProfilesController
   add_breadcrumb 'Related clients', :related_clients_path
 
 
-  before_action :set_breadcrumb
+  # before_action :set_breadcrumb
   before_action :set_related_client, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
 
