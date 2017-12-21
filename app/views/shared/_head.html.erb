@@ -107,28 +107,33 @@
     }
 
     .ui-tabs .ui-tabs-nav li a {
-      background-color:#4D7484;border:1px solid #4D7484;color:#ffffff;
+      background-color:#4D7484;color:#ffffff;border:1px solid #ffffff;border-bottom:1px solid #4D7484;
     }
     .ui-tabs .ui-tabs-nav li a:hover {
-      border:1px solid #DBC2A4;border-bottom:1px solid #F59B69;background-color:#DBC2A4;
-    }
-    .ui-tabs .ui-tabs-nav li.ui-tabs-active a {
-      border:1px solid #F59B69;border-bottom:1px solid #F59B69;background-color:#F59B69;color:#000000;
+      border:1px solid #DBC2A4;border-bottom:1px solid #dd7c37;background-color:#DBC2A4;
     }
     .ui-tabs .ui-tabs-nav li.ui-tabs-active:hover {
-      background:#F59B69;cursor:text;
+      background:#dd7c37;cursor:text;
     }
     .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
       background-color:#4D7484;
     }
+    .ui-tabs .ui-tabs-nav li.ui-tabs-active {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
     .ui-tabs .ui-tabs-nav li.ui-tabs-active a {
-      background-color:#F59B69;
+      margin-top: 0; background-color:#dd7c37;color:#ffffff;border:1px solid #ffffff;border-bottom:1px solid #dd7c37;
+      font-weight: 400; box-shadow: none;
     }
    .ui-tabs .ui-tabs-nav {
-    border: solid #F59B69;
+    border: solid #dd7c37;
     border-width: 0 0 3px;
     border-radius: 0;
     background: 0 0;
+    }
+    .ui-tabs .ui-tabs-nav li a:hover, .ui-tabs .ui-tabs-nav li.ui-tabs-active:hover {
+      color:#000000;
     }
    
     .ui-tabs .ui-tabs-nav li {
