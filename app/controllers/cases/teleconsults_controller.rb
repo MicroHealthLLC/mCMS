@@ -1,5 +1,5 @@
 class TeleconsultsController  < UserCasesController
-  add_breadcrumb I18n.t(:teleconsults), :teleconsults_path
+
   before_action :set_teleconsult, only: [:show, :edit, :update, :destroy]
 
   before_action :authorize_edit, only: [:edit, :update]
@@ -9,6 +9,7 @@ class TeleconsultsController  < UserCasesController
   # GET /teleconsults
   # GET /teleconsults.json
   def index
+    add_breadcrumb I18n.t(:teleconsults), :teleconsults_path
     options = Hash.new
     options[:status_type] = params[:status_type]
     options[:show_case] = params[:show_case]
@@ -97,6 +98,14 @@ class TeleconsultsController  < UserCasesController
   # Use callbacks to share common setup or constraints between actions.
   def set_teleconsult
     @teleconsult = Teleconsult.find(params[:id])
+    if @teleconsult.case
+      add_breadcrumb @teleconsult.case, @teleconsult.case
+      add_breadcrumb I18n.t(:teleconsults), case_path(@teleconsult.case) + '#tabs-teleconsults'
+
+    else
+      add_breadcrumb I18n.t(:teleconsults), :teleconsults_path
+
+    end
     add_breadcrumb @teleconsult.to_s, @teleconsult
   rescue ActiveRecord::RecordNotFound
     render_404

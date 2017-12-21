@@ -1,5 +1,4 @@
 class GoalsController <  UserCasesController
-  add_breadcrumb I18n.t(:goals), :goals_path
   before_action :set_goal, only: [:link_need, :add_need, :links, :add_plan, :show, :edit, :update, :destroy]
 
   before_action :authorize_edit, only: [:edit, :update]
@@ -8,6 +7,8 @@ class GoalsController <  UserCasesController
   # GET /goals
   # GET /goals.json
   def index
+    add_breadcrumb I18n.t(:goals), :goals_path
+
     scope =  User.current.can?(:manage_roles) ? Goal.where(assigned_to_id: User.current.id) : Goal.visible
     scope = case params[:status_type]
               when 'all' then scope.all_data
@@ -145,6 +146,13 @@ class GoalsController <  UserCasesController
   def set_goal
     @goal = Goal.find(params[:id])
     @case = @goal.case
+    if @goal.case
+      add_breadcrumb @goal.case, @goal.case
+      add_breadcrumb I18n.t(:goals), case_path(@goal.case) + '#tabs-goals'
+    else
+      add_breadcrumb I18n.t(:goals), :goals_path
+    end
+
     add_breadcrumb @goal, goal_path(@goal)
   rescue ActiveRecord::RecordNotFound
     render_404

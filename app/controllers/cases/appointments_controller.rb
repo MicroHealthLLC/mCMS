@@ -1,5 +1,4 @@
 class AppointmentsController < UserCasesController
-  add_breadcrumb I18n.t(:appointments), :appointments_path
 
   before_action :set_appointment, only: [:edit, :update, :destroy]
   before_action :set_appointment_with_includes, only: [:show, :cms_form]
@@ -9,6 +8,8 @@ class AppointmentsController < UserCasesController
   # GET /appointments
   # GET /appointments.json
   def index
+    add_breadcrumb I18n.t(:appointments), :appointments_path
+
     respond_to do |format|
       format.html{}
       format.csv{ params[:length] = 500
@@ -153,8 +154,16 @@ class AppointmentsController < UserCasesController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_appointment
-    @appointment = Appointment.includes(:appointment_notes, :user=> :core_demographic).
-        find(params[:id])
+    @appointment = Appointment.includes(:appointment_notes, :user=> :core_demographic).find(params[:id])
+
+
+    if @appointment.case
+      add_breadcrumb @appointment.case, @appointment.case
+      add_breadcrumb I18n.t(:appointments), case_path(@appointment.case) + "#tabs-appointments"
+    else
+      add_breadcrumb I18n.t(:appointments), :appointments_path
+    end
+
     add_breadcrumb @appointment.to_s, appointment_url(@appointment)
   rescue ActiveRecord::RecordNotFound
     render_404
@@ -168,6 +177,13 @@ class AppointmentsController < UserCasesController
                    :billings, :appointment_procedures ,
                    :user=> [:core_demographic, :user_extend_demography => [:addresses, :phones]]).
         find(params[:id])
+
+    if @appointment.case
+      add_breadcrumb @appointment.case, @appointment.case
+      add_breadcrumb I18n.t(:appointments), case_path(@appointment.case) + "#tabs-appointments"
+    else
+      add_breadcrumb I18n.t(:appointments), :appointments_path
+    end
     add_breadcrumb @appointment.to_s, appointment_url(@appointment)
   rescue ActiveRecord::RecordNotFound
     render_404

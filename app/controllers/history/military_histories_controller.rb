@@ -87,6 +87,8 @@ class MilitaryHistoriesController < UserHistoryController
   # Use callbacks to share common setup or constraints between actions.
   def set_military_history
     @military_history = MilitaryHistory.find(params[:id])
+    add_breadcrumb @military_history, @military_history
+
   rescue ActiveRecord::RecordNotFound
     render_404
   end

@@ -1,5 +1,4 @@
 class NeedsController < UserCasesController
-  add_breadcrumb I18n.t(:needs), :needs_path
   before_action :set_need, only: [:links, :add_goal, :show, :edit, :update, :destroy]
 
   before_action :authorize_edit, only: [:edit, :update, :links, :add_goal]
@@ -9,6 +8,8 @@ class NeedsController < UserCasesController
   # GET /needs
   # GET /needs.json
   def index
+    add_breadcrumb I18n.t(:needs), :needs_path
+
     options = Hash.new
     options[:status_type] = params[:status_type]
     options[:show_case] = params[:show_case]
@@ -139,6 +140,12 @@ class NeedsController < UserCasesController
   def set_need
     @need = Need.find(params[:id])
     @case = @need.case
+    if @need.case
+      add_breadcrumb @need.case, @need.case
+      add_breadcrumb I18n.t(:needs), case_path(@need.case) + '#tabs-needs'
+    else
+      add_breadcrumb I18n.t(:needs), :needs_path
+    end
     add_breadcrumb @need, needs_path(@need)
   rescue ActiveRecord::RecordNotFound
     render_404

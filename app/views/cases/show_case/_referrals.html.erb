@@ -8,7 +8,7 @@
         <% if can?(:create_referrals, :manage_roles, :manage_referrals) %>
         <li>
           <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-          <%= link_to t('new_referral'), new_referral_path(related_to: @case.id, type: 'case'), class: 'dropdown-item' %>
+          <%= link_to t('new_referral'), new_referral_path(case_id: @case.id), class: 'dropdown-item' %>
         </li>
         <div class='dropdown-item-dividier'></div>
         <% end %>

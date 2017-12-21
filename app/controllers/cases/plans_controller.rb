@@ -1,5 +1,5 @@
 class PlansController < UserCasesController
-  add_breadcrumb I18n.t('plans'), :plans_path
+
   before_action :set_plan, only: [:links, :add_action, :link_goal, :add_goal,  :show, :edit, :update, :destroy]
 
   before_action :authorize_edit, only: [:links, :add_action, :edit, :update]
@@ -8,6 +8,7 @@ class PlansController < UserCasesController
   # GET /plans
   # GET /plans.json
   def index
+    add_breadcrumb I18n.t('plans'), :plans_path
     scope = User.current.can?(:manage_roles) ? Plan.where(assigned_to_id: User.current.id) : Plan.visible
     scope = case params[:status_type]
               when 'all' then scope.all_data
@@ -141,6 +142,14 @@ class PlansController < UserCasesController
   def set_plan
     @plan = Plan.find(params[:id])
     @case = @plan.case
+
+    if @plan.case
+      add_breadcrumb @plan.case, @plan.case
+      add_breadcrumb I18n.t('plans'), case_path(@plan.case) + '#tabs-plans'
+    else
+      add_breadcrumb I18n.t('plans'), :plans_path
+    end
+
     add_breadcrumb @plan.to_s, @plan
   rescue ActiveRecord::RecordNotFound
     render_404

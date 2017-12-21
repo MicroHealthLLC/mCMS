@@ -360,10 +360,11 @@ module ApplicationHelper
     Setting["#{type}_KEY".upcase].present?
   end
 
+  # TODO use truncate instead  + add truncate html to avoid htmlbugs
   def display_note(note)
     learn_more = "<span class='note_span link_label_more'>#{I18n.t('label_more')}</span>"
     learn_less = "<span class='note_span link_label_less'>#{I18n.t('label_less')}</span>"
-    if note.length> 50
+    if note.length > 50
       note = "<span class='all_notes'>#{note}...#{learn_less}</span>"+
           "<span class='less_notes'>#{note[0..50]}...#{learn_more}</span>"
     end

@@ -1,5 +1,5 @@
 class TasksController < UserCasesController
-  add_breadcrumb I18n.t('tasks'), :tasks_path
+
   before_action :set_task, only: [:link_plan, :add_plan, :show, :edit, :update, :destroy,
                                   :delete_sub_task_relation]
 
@@ -10,6 +10,7 @@ class TasksController < UserCasesController
   # GET /tasks
   # GET /tasks.json
   def index
+    add_breadcrumb I18n.t('tasks'), :tasks_path
     respond_to do |format|
       format.html{}
       format.csv{ params[:length] = 500
@@ -160,7 +161,14 @@ class TasksController < UserCasesController
   # Use callbacks to share common setup or constraints between actions.
   def set_task
     @task = Task.find(params[:id])
-    add_breadcrumb @task.to_s, @task
+    if @task.case
+      add_breadcrumb @task.case, @task.case
+      add_breadcrumb I18n.t('tasks'), case_path(@task.case) + '#tabs-care_plan'
+    else
+      add_breadcrumb I18n.t('tasks'), :tasks_path
+
+    end
+     add_breadcrumb @task.to_s, @task
   rescue ActiveRecord::RecordNotFound
     render_404
   end

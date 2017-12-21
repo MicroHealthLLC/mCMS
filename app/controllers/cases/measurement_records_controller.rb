@@ -1,6 +1,4 @@
 class MeasurementRecordsController < UserCasesController
-  add_breadcrumb I18n.t('home'), :root_path
-  add_breadcrumb 'Measurements', :measurement_records_path
   before_action :authenticate_user!
   before_action :authorize
 
@@ -9,6 +7,7 @@ class MeasurementRecordsController < UserCasesController
   # GET /measurement_records
   # GET /measurement_records.json
   def index
+    add_breadcrumb 'Measurements', :measurement_records_path
     options = Hash.new
     options[:status_type] = params[:status_type]
     options[:show_case] = params[:show_case]
@@ -121,6 +120,12 @@ class MeasurementRecordsController < UserCasesController
   def set_measurement_record
     @measurement_record = MeasurementRecord.find(params[:id])
     @component = @measurement_record.component
+    if @measurement_record.case
+    add_breadcrumb @measurement_record.case, @measurement_record.case
+    add_breadcrumb 'Measurements', case_path(@measurement_record.case) + '#tabs-measurement_records'
+    else
+    add_breadcrumb 'Measurements', :measurement_records_path
+    end
     add_breadcrumb @measurement_record, @measurement_record
   rescue ActiveRecord::RecordNotFound
     render_404

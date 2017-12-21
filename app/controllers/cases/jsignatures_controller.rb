@@ -91,6 +91,9 @@ class JsignaturesController < UserCasesController
       add_breadcrumb @owner.to_s, @jsignature
     else
       add_breadcrumb @owner.to_s, @owner
+      if @owner.is_a? Case
+        add_breadcrumb I18n.t(:jsignatures), case_path(@owner) + '#tabs-signatures'
+      end
       add_breadcrumb @jsignature, @jsignature
     end
 

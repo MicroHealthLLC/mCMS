@@ -13,6 +13,10 @@ module CasesHelper
 
   def case_tabs
     tabs =  [ ]
+
+    if @needs or @plans or goals or @tasks or @jsignatures
+      tabs<< {:name => 'care_plan', :partial => 'cases/show_case/care_plan', :label => :care_plan}
+    end
     if @cases
       tabs<<  {:name => 'subcases', :partial => 'cases/show_case/subcases', :label => :subcases}
     end
@@ -23,10 +27,6 @@ module CasesHelper
 
     if @notes
       tabs<<  {:name => 'notes', :partial => 'cases/show_case/notes', :label => :notes}
-    end
-
-    if @needs or @plans or goals or @tasks or @jsignatures
-      tabs<< {:name => 'care_plan', :partial => 'cases/show_case/care_plan', :label => :care_plan}
     end
 
     if @documents

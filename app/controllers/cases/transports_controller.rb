@@ -1,5 +1,5 @@
 class TransportsController  <  UserCasesController
-  add_breadcrumb I18n.t(:transports), :transports_path
+
   before_action :set_transport, only: [:show, :edit, :update, :destroy]
 
   before_action :authorize_edit, only: [:edit, :update]
@@ -9,6 +9,7 @@ class TransportsController  <  UserCasesController
   # GET /transports
   # GET /transports.json
   def index
+    add_breadcrumb I18n.t(:transports), :transports_path
     options = Hash.new
     options[:status_type] = params[:status_type]
     options[:show_case] = params[:show_case]
@@ -94,6 +95,14 @@ class TransportsController  <  UserCasesController
   def set_transport
     @transport = Transport.find(params[:id])
     @case = @transport.case
+    if @transport.case
+      add_breadcrumb @transport.case, @transport.case
+      add_breadcrumb I18n.t(:transports), case_path(@transport.case) + '#tabs-transports'
+
+    else
+      add_breadcrumb I18n.t(:transports), :transports_path
+
+    end
     add_breadcrumb @transport, @transport
   rescue ActiveRecord::RecordNotFound
     render_404

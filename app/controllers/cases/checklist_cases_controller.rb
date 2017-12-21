@@ -2,6 +2,7 @@ class ChecklistCasesController < UserCasesController
   before_action :set_checklist_case, only: [:show, :update, :destroy]
 
   def index
+    add_breadcrumb 'Checklists', :checklist_cases_path
     cases = Case.root
     cases = cases.visible
     scope =  ChecklistCase
@@ -56,6 +57,14 @@ class ChecklistCasesController < UserCasesController
   def set_checklist_case
     @checklist_case = ChecklistCase.includes(:checklist_template).find(params[:id])
     @checklist = @checklist_case.checklist_template
+
+    if  @checklist_case.case
+      add_breadcrumb @checklist_case.case, @checklist_case.case
+      add_breadcrumb 'Checklists', case_path(@checklist_case.case) + '#tabs-checklists'
+    else
+      add_breadcrumb 'Checklists', :checklist_cases_path
+    end
+    add_breadcrumb @checklist_case, @checklist_case
   rescue ActiveRecord::RecordNotFound
     render_404
   end

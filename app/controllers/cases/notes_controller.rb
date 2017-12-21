@@ -1,8 +1,9 @@
 class NotesController < UserCasesController
-  add_breadcrumb I18n.t('notes'), :notes_path
   before_action :set_note, only: [:update, :edit, :show, :destroy]
 
   def index
+    add_breadcrumb I18n.t('notes'), :notes_path
+
     respond_to do |format|
       format.html{}
       format.json{
@@ -68,7 +69,11 @@ class NotesController < UserCasesController
   # Use callbacks to share common setup or constraints between actions.
   def set_note
     @note = Note.find(params[:id])
+
     add_breadcrumb @note.object.to_s, @note.object
+    add_breadcrumb I18n.t('notes'), :notes_path
+
+    add_breadcrumb @note.id, @note
   rescue ActiveRecord::RecordNotFound
     render_404
   end

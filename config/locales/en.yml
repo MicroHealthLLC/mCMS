@@ -488,7 +488,7 @@ en:
   transport: transport
   new_transport: New transport
   edit_transport: Edit transport
-  transports: transport
+  transports: transports
   transport_type: transport Type
   transport_status: transport Status
   transport_location: transport Location

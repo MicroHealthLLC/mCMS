@@ -1,5 +1,5 @@
 class DocumentsController < UserCasesController
-  add_breadcrumb I18n.t(:documents), :documents_path
+
   before_action :set_document, only: [:show, :edit, :update, :destroy]
 
   before_action :authorize_edit, only: [:edit, :update]
@@ -8,6 +8,7 @@ class DocumentsController < UserCasesController
   # GET /documents
   # GET /documents.json
   def index
+    add_breadcrumb I18n.t(:documents), :documents_path
     respond_to do |format|
       format.html{ }
      format.js{ render 'application/index' }
@@ -89,6 +90,12 @@ class DocumentsController < UserCasesController
   # Use callbacks to share common setup or constraints between actions.
   def set_document
     @document = Document.find(params[:id])
+    if @document.case
+      add_breadcrumb @document.case,  @document.case
+      add_breadcrumb I18n.t(:documents), case_path(@document.case) + "#tabs-documents"
+    else
+      add_breadcrumb I18n.t(:documents), :documents_path
+    end
     add_breadcrumb @document, document_path(@document)
   rescue ActiveRecord::RecordNotFound
     render_404

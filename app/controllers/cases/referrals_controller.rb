@@ -1,5 +1,4 @@
 class ReferralsController < UserCasesController
-  add_breadcrumb I18n.t(:referrals), :referrals_path
   before_action :set_referral, only: [:links, :add_referral, :show, :edit, :update, :destroy]
 
   before_action :authorize_edit, only: [:edit, :update]
@@ -9,6 +8,8 @@ class ReferralsController < UserCasesController
 # GET /referrals
 # GET /referrals.json
   def index
+    add_breadcrumb I18n.t(:referrals), :referrals_path
+
     scope =  Referral.visible
     scope = case params[:status_type]
               when 'all' then scope.all_data
@@ -123,6 +124,14 @@ class ReferralsController < UserCasesController
 # Use callbacks to share common setup or constraints between actions.
   def set_referral
     @referral = Referral.includes(:user, :referred_by, :referred_to).find(params[:id])
+    if @referral.case
+      add_breadcrumb @referral.case, @referral.case
+      add_breadcrumb I18n.t(:referrals), case_path(@referral.case) + '#tabs-referrals'
+
+    else
+      add_breadcrumb I18n.t(:referrals), :referrals_path
+
+    end
     add_breadcrumb @referral.to_s, @referral
   rescue ActiveRecord::RecordNotFound
     render_404

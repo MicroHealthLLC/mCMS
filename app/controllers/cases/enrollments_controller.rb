@@ -1,5 +1,4 @@
 class EnrollmentsController < UserCasesController
-  add_breadcrumb I18n.t('enrollments'), :enrollments_path
   before_action :set_enrollment, only: [:show, :edit, :update, :destroy]
 
   before_action :authorize_edit, only: [:edit, :update]
@@ -9,6 +8,7 @@ class EnrollmentsController < UserCasesController
   # GET /enrollments
   # GET /enrollments.json
   def index
+    add_breadcrumb I18n.t('enrollments'), :enrollments_path
     options = Hash.new
     options[:status_type] = params[:status_type]
     options[:case_id] = params[:case_id]
@@ -96,6 +96,13 @@ class EnrollmentsController < UserCasesController
   # Use callbacks to share common setup or constraints between actions.
   def set_enrollment
     @enrollment = Enrollment.includes(:user).find(params[:id])
+    if  @enrollment.case
+      add_breadcrumb @enrollment.case,  @enrollment.case
+      add_breadcrumb I18n.t('enrollments'), case_path(@enrollment.case) + '#tabs-enrollments'
+    else
+    add_breadcrumb I18n.t('enrollments'), :enrollments_path
+    end
+
     add_breadcrumb @enrollment.to_s, @enrollment
   rescue ActiveRecord::RecordNotFound
     render_404
