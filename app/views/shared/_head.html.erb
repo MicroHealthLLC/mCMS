@@ -95,10 +95,7 @@
     .jarviswidget-color-blueLight>header {
       border-color:#a0aeb3 !important;background:#B2C8D6;
     }
-    .jarviswidget-color-blueLight .nav-tabs li:not(.active) a {
-        color: white !important;
-    }
-    .jarviswidget>header h2 {
+   .jarviswidget>header h2 {
         font-size: 18px;
     }
 
@@ -107,10 +104,10 @@
     }
 
     .ui-tabs .ui-tabs-nav li a {
-      background-color:#4D7484;color:#ffffff;border:1px solid #ffffff;border-bottom:1px solid #4D7484;
+      background-color:#4D7484;color:#ffffff;border:none;box-shadow: none;
     }
     .ui-tabs .ui-tabs-nav li a:hover {
-      border:1px solid #DBC2A4;border-bottom:1px solid #dd7c37;background-color:#DBC2A4;
+      border:none;background-color:#DBC2A4;color:#000000;box-shadow: none;
     }
     .ui-tabs .ui-tabs-nav li.ui-tabs-active:hover {
       background:#dd7c37;cursor:text;
@@ -123,21 +120,35 @@
       margin-bottom: 0;
     }
     .ui-tabs .ui-tabs-nav li.ui-tabs-active a {
-      margin-top: 0; background-color:#dd7c37;color:#ffffff;border:1px solid #ffffff;border-bottom:1px solid #dd7c37;
+      background-color:#dd7c37;color:#ffffff;border:none;
       font-weight: 400; box-shadow: none;
     }
+    .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+      background: #dd7c37;
+    }
+    .jarviswidget-color-blueLight .nav-tabs li:not(.active) a {
+        color: white !important;
+    }
+    .jarviswidget-color-blueLight .nav-tabs li a:hover {
+        color: black !important;
+    }  
+    
    .ui-tabs .ui-tabs-nav {
     border: solid #dd7c37;
     border-width: 0 0 3px;
     border-radius: 0;
     background: 0 0;
     }
-    .ui-tabs .ui-tabs-nav li a:hover, .ui-tabs .ui-tabs-nav li.ui-tabs-active:hover {
-      color:#000000;
+    .ui-tabs .ui-tabs-nav li a:hover, .ui-tabs .ui-tabs-nav li.ui-tabs-active:hover, .jarviswidget-color-blueLight .nav-tabs li a:hover {
+      color:#000000;box-shadow: none;border:none;
     }
    
     .ui-tabs .ui-tabs-nav li {
-      margin: 4px 0 0 0;
+      margin: 0 1px;
+      border: none;
+    }
+    .ui-tabs .ui-tabs-nav li a {
+      border: none;box-shadow: none;
     }
 
 
