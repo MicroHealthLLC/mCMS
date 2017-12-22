@@ -33,7 +33,7 @@ class EmployeeDatatable < AjaxDatatablesRails::Base
   def data
     records.map do |user|
       [
-          @view.link_to( user.uuid,  @view.employee_path(user), 'data-turbolinks'=> false) ,
+          @view.link_to( user.uuid,  @view.log_in_employee_path(user), 'data-turbolinks'=> false) ,
           @view.link_to( user.first_name.to_s,  @view.log_in_employee_path(user), 'data-turbolinks'=> false) ,
           user.middle_name ,
 
