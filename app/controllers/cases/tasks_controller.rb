@@ -175,7 +175,7 @@ class TasksController < UserCasesController
     @task = Task.find(params[:id])
     if @task.case
       add_breadcrumb @task.case, @task.case
-      add_breadcrumb I18n.t('tasks'), case_path(@task.case) + '#tabs-care_plan'
+      add_breadcrumb I18n.t('tasks'), case_path(@task.case) + '#tabs-tasks'
     else
       add_breadcrumb I18n.t('tasks'), :tasks_path
 

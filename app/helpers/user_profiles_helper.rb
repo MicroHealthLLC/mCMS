@@ -5,6 +5,8 @@ module UserProfilesHelper
         {:name => 'extend_demographic', :partial => 'user_profiles/profile_record/extend_demography', :label => :extend_demography},
         {:name => 'related_client', :partial => 'user_profiles/profile_record/related_client', :label => :related_client}
     ]
+    tabs << {:name => 'identification', :partial => 'devise/registrations/shared/identification_form', :label => :identification}
+
     if @languages
       tabs<<  {:name => 'languages', :partial => 'user_profiles/profile_record/languages', :label => :languages}
     end
