@@ -30,6 +30,26 @@ class Referral < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:case, :referred_by, :referral_type, :referral_status).
+        references( :case, :referred_by, :referral_type, :referral_status)
+  end
+
+  def self.csv_attributes
+    [
+        I18n.t('client'),
+        I18n.t('need') ,
+        I18n.t('case') ,
+        I18n.t('priority') ,
+        I18n.t('need_status') ,
+        'Percent Done',
+        I18n.t('date_identified') ,
+        I18n.t('date_due') ,
+        I18n.t('date_completed') ,
+
+    ]
+  end
+
   def referral_type
     if referral_type_id
       super

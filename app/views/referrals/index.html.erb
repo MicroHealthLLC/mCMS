@@ -1,7 +1,7 @@
 <%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
 
 <section id="widget-grid" class="referrals_section">
-  <%= render partial: 'state_button_filter'%>
+  <%= render partial: 'state_button_filter_with_remote', locals: {controller_name: 'goals', container: 'goals_container'} %>
   <% if can?(:create_referrals, :manage_roles, :manage_referrals) %>
       <div class="btn-group pull-right btn-edition">
         <button class="btn btn-primary">

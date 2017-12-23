@@ -1,5 +1,5 @@
 <% show_case = @case.nil? %>
-<table class="table table-responsive" id="referral_table">
+<table class="table table-responsive" id="referrals_table" style="width: 100%">
   <thead>
   <tr>
     <th>Title</th>
@@ -19,27 +19,30 @@
   </thead>
 
   <tbody>
-  <% referrals.each do |referral| %>
-      <tr>
-        <td><%= link_to_edit_if_can referral.title, {ctrl: :referrals, object: referral } %></td>
-        <% if show_case %>
-            <td><%= link_to_case referral.case %></td>
-        <% end %>
-        <td><%= referral.referral_type %></td>
-        <td><%= format_date referral.referral_date %></td>
-        <td><%= referral.referral_appointment %></td>
-        <td><%= referral.referral_status %></td>
-        <td><%= referral.referred_by %></td>
-        <td><%= referral.referred_to_address %></td>
-        <% if @appointment %>
-            <td><%= link_to "<i class='fa fa-unlink fa-lg'></i>".html_safe, unlink_appointment_path(appointment_id: @appointment.id, type: 'Referral', id: referral.id ) %></td>
-        <% end %>
-  <% end %>
+
   </tbody>
 </table>
 
-<script>
-  $(document).ready(function(){
-    initDataTable('referral_table')
-  })
-</script>
+<% columns= [ ]
+   columns << { "searchable": true, "orderable": true }
+   if show_case
+     columns << { "searchable": true, "orderable": true }
+   end
+   columns << [ { "searchable": true, "orderable": true },
+                { "searchable": true, "orderable": true },
+                { "searchable": true, "orderable": true },
+                { "searchable": true, "orderable": true },
+
+                { "searchable": true, "orderable": true },
+
+                { "searchable": true, "orderable": true }]
+   if @appointment and can?(:manage_roles)
+     columns << { "searchable": false, "orderable": false }
+   end
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'referrals_table',
+    url: referrals_path(format: :csv, status_type: params[:status_type], show_case: show_case, case_id: @case.try(:id), appointment_id: @appointment.try(:id)),
+    columns: columns.flatten,
+    ajax_url: referrals_path(format: :json, status_type: params[:status_type], show_case: show_case, case_id: @case.try(:id), appointment_id: @appointment.try(:id))
+} %>

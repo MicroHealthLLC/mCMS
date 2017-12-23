@@ -88,7 +88,7 @@ class CasesController < UserCasesController
     @plans               = []  if module_enabled?('plans') && can?(:manage_roles, :view_plans, :manage_plans)
     @tasks               = []  if module_enabled?('tasks') && can?(:manage_roles, :view_tasks, :manage_tasks)
 
-    @referrals           = @case.referrals     if module_enabled?('referrals')  && can?(:manage_roles, :view_referrals, :manage_referrals)
+    @referrals           = []  if module_enabled?('referrals')  && can?(:manage_roles, :view_referrals, :manage_referrals)
     @appointments        = @case.appointments  if module_enabled?('appointments') && can?(:manage_roles, :view_appointments, :manage_appointments)
     @case_supports       = @case.case_supports.active if module_enabled?('case_support')  && can?(:manage_roles, :view_case_supports, :manage_case_supports)
 
