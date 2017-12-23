@@ -92,7 +92,7 @@ class CasesController < UserCasesController
     @appointments        = @case.appointments  if module_enabled?('appointments') && can?(:manage_roles, :view_appointments, :manage_appointments)
     @case_supports       = @case.case_supports.active if module_enabled?('case_support')  && can?(:manage_roles, :view_case_supports, :manage_case_supports)
 
-    @documents           = @case.documents     if module_enabled?('documents') && can?(:manage_roles, :view_documents, :manage_documents)
+    @documents           = []  if module_enabled?('documents') && can?(:manage_roles, :view_documents, :manage_documents)
     @checklists          = @case.checklists    if module_enabled?('checklists') && can?(:manage_roles, :view_checklists, :manage_checklists)
     @surveys             = @case.survey_cases  if module_enabled?('surveys') && can?(:manage_roles, :view_surveys, :manage_surveys)
 

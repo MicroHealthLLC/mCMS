@@ -9,19 +9,23 @@ class DocumentsController < UserCasesController
   # GET /documents.json
   def index
     add_breadcrumb I18n.t(:documents), :documents_path
+
+    options = Hash.new
+    options[:status_type] = params[:status_type]
+    options[:case_id] = params[:case_id]
+    options[:appointment_id] = params[:appointment_id]
+
     respond_to do |format|
       format.html{ }
-     format.js{ render 'application/index' }
+      format.js{ render 'application/index' }
       format.pdf{}
-      format.csv{ params[:length] = 500
-      options = Hash.new
-      options[:status_type] = params[:status_type]
-      json = DocumentDatatable.new(view_context, options).as_json
-      send_data Document.to_csv(json[:data]), filename: "Document-#{Date.today}.csv"
+      format.csv{
+        params[:length] = 500
+        options[:show_case] = 'true'
+        json = DocumentDatatable.new(view_context, options).as_json
+        send_data Document.to_csv(json[:data]), filename: "Document-#{Date.today}.csv"
       }
       format.json{
-        options = Hash.new
-        options[:status_type] = params[:status_type]
         render json: DocumentDatatable.new(view_context,options)
       }
     end

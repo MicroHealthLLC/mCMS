@@ -9,6 +9,7 @@ class ClientDocumentsController <  UserCasesController
   # GET /documents
   # GET /documents.json
   def index
+    @is_client_doc = true
     respond_to do |format|
       format.html{  redirect_to  User.current.can?(:manage_roles) ? edit_user_registration_path : profile_record_path + "#tabs-document" }
      format.js{ render 'application/index' }

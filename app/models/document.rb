@@ -34,7 +34,6 @@ class Document < ApplicationRecord
   def self.csv_attributes
     [
         'Title',
-
         'Document Type',
         'date'
 

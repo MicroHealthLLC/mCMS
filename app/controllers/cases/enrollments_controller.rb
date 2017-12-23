@@ -24,7 +24,7 @@ class EnrollmentsController < UserCasesController
       format.js{ render 'application/index' }
       format.pdf{}
       format.csv{ params[:length] = 500
-
+      options[:show_case] = 'true'
       json = EnrollmentDatatable.new(view_context, options).as_json
       send_data Enrollment.to_csv(json[:data]), filename: "Enrollment-#{Date.today}.csv"
       }

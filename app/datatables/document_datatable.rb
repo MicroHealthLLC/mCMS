@@ -42,7 +42,11 @@ class DocumentDatatable < AjaxDatatablesRails::Base
     scope = if @options[:for] == 'profile'
               Document.for_profile
             else
-              Document.for_cases
+              if @options[:case_id]
+                Case.find(@options[:case_id]).documents
+              else
+                Document.for_cases
+              end
             end
 
     scope = scope.include_enumerations
