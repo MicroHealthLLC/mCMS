@@ -32,6 +32,7 @@ class DocumentsController < UserCasesController
   end
 
   def all_files
+    @breadcrumbs =  []
     @files = Attachment.visible
   end
 

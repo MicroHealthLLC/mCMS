@@ -1,6 +1,4 @@
 class CategoriesController < ProtectForgeryApplication
-  add_breadcrumb I18n.t('home'), :root_path
-  add_breadcrumb I18n.t('categories'), :categories_path
 
   before_action  :authenticate_user!
   before_filter :set_category, only: [:edit, :update, :destroy, :show]

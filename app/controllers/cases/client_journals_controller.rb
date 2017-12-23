@@ -1,4 +1,4 @@
-class ClientJournalsController < UserCasesController
+class ClientJournalsController < ProtectForgeryApplication
   add_breadcrumb I18n.t(:client_journals), :client_journals_path
   before_action :set_client_journal, only: [:show, :edit, :update, :destroy]
 

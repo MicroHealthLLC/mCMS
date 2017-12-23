@@ -1,6 +1,4 @@
 class GroupsController < ProtectForgeryApplication
-  add_breadcrumb I18n.t('home'), :root_path
-  add_breadcrumb I18n.t('groups'), :groups_path
   before_action  :authenticate_user!
 
   before_filter :set_group, only: [:show, :edit, :update, :destroy, :remove_member, :add_member]
