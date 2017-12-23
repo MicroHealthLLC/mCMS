@@ -32,6 +32,27 @@ class Plan < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:user, :case, :priority_type, :plan_status, :plan_type).
+        references(:user, :case, :priority_type, :plan_status, :plan_type)
+  end
+
+  def self.csv_attributes
+    [
+        I18n.t('client'),
+        I18n.t('plan') ,
+        I18n.t('case') ,
+        I18n.t('priority') ,
+        I18n.t('plan_status') ,
+        I18n.t('plan_type') ,
+        'Percent Done',
+        I18n.t('date_start') ,
+        I18n.t('date_due') ,
+        I18n.t('date_completed') ,
+
+    ]
+  end
+
   def available_tasks
     self.case.try(:tasks) || []
   end

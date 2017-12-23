@@ -11,14 +11,22 @@ class TasksController < UserCasesController
   # GET /tasks.json
   def index
     add_breadcrumb I18n.t('tasks'), :tasks_path
+
+
+    options = Hash.new
+    options[:status_type] = params[:status_type]
+    options[:show_case] = params[:show_case]
+    options[:case_id] = params[:case_id]
+    if params[:case_id]
+      @case = Case.find params[:case_id]
+    end
+    if params[:appointment_id]
+      @appointment = Appointment.find params[:appointment_id]
+    end
+    options[:appointment_id] = params[:appointment_id]
     respond_to do |format|
-      format.html{}
-      format.csv{ params[:length] = 500
-        options = Hash.new
-        options[:status_type] = params[:status_type]
-        json =  TaskDatatable.new(view_context, options).as_json
-        send_data Task.to_csv(json[:data]), filename: "actions-#{Date.today}.csv"
-      }
+      format.html{  }
+      format.js{ render 'application/index' }
       format.pdf{
         scope = Task.root
         scope = case params[:status_type]
@@ -33,10 +41,14 @@ class TasksController < UserCasesController
             where('tasks.assigned_to_id = :user OR tasks.for_individual_id = :user', user:  User.current.id)
         @tasks = scope
       }
+      format.csv{
+        options[:show_case] = 'true'
+        params[:length] = 500
+        json = TaskDatatable.new(view_context, options).as_json
+        send_data Task.to_csv(json[:data]), filename: "Actions-#{Date.today}.csv"
+      }
       format.json{
-        options = Hash.new
-        options[:status_type] = params[:status_type]
-        render json: TaskDatatable.new(view_context, options)
+        render json: TaskDatatable.new(view_context,options)
       }
     end
   end

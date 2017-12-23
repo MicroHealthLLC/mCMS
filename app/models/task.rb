@@ -32,12 +32,19 @@ class Task < ApplicationRecord
   end
 
   def self.include_enumerations
-    includes(:case, :task_type, :task_status_type).
-        references(:case, :task_type, :task_status_type)
+    includes(:user, :case, :task_type, :task_status_type).
+        references(:user, :case, :task_type, :task_status_type)
   end
 
   def self.csv_attributes
-    ['Client', 'Title', 'Case', 'Type', 'Status', 'Date start', 'Date end']
+    [
+        'Title',
+        'Case',
+        'Type',
+        'Status',
+        'Date start',
+        'Date end'
+    ]
   end
 
 

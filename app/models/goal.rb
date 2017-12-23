@@ -35,6 +35,26 @@ class Goal < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:user, :case, :priority_type, :goal_status, :goal_type).
+        references(:user, :case, :priority_type, :goal_status, :goal_type)
+  end
+
+  def self.csv_attributes
+    [
+        I18n.t('client'),
+        I18n.t('goal') ,
+        I18n.t('case') ,
+        I18n.t('priority') ,
+        I18n.t('goal_status') ,
+        I18n.t('goal_type') ,
+        'Percent Done',
+        I18n.t('date_start') ,
+        I18n.t('date_due') ,
+        I18n.t('date_completed')
+    ]
+  end
+
   def available_plans
     self.case.try(:plans) || []
   end

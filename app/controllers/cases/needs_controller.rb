@@ -17,7 +17,7 @@ class NeedsController < UserCasesController
     if params[:case_id]
       @case = Case.find params[:case_id]
     end
-     if params[:appointment_id]
+    if params[:appointment_id]
       @appointment = Appointment.find params[:appointment_id]
     end
     options[:appointment_id] = params[:appointment_id]
@@ -26,6 +26,7 @@ class NeedsController < UserCasesController
       format.js{ render 'application/index' }
       format.pdf{}
       format.csv{
+        options[:show_case] = 'true'
         params[:length] = 500
         json = NeedDatatable.new(view_context, options).as_json
         send_data Need.to_csv(json[:data]), filename: "Needs-#{Date.today}.csv"

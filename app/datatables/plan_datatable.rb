@@ -1,4 +1,4 @@
-class TaskDatatable < AjaxDatatablesRails::Base
+class PlanDatatable < AjaxDatatablesRails::Base
 
   def sortable_columns
 
@@ -9,7 +9,7 @@ class TaskDatatable < AjaxDatatablesRails::Base
           else
             []
           end
-    arr << ['Task.title']
+    arr << ['Plan.name']
     if @options[:show_case] == 'true'
       arr << 'Case.title'
     end
@@ -17,8 +17,11 @@ class TaskDatatable < AjaxDatatablesRails::Base
     arr <<
         [ 'Enumeration.name',
           'Enumeration.name',
-          'Task.date_start',
-          'Task.date_completed',
+          'Enumeration.name',
+          'Plan.percent_done',
+          'Plan.date_start',
+          'Plan.date_due',
+          'Plan.date_completed',
         ]
 
     @sortable_columns = arr.flatten
@@ -33,16 +36,18 @@ class TaskDatatable < AjaxDatatablesRails::Base
           else
             []
           end
-    arr << ['Task.title']
+    arr << ['Plan.name']
     if @options[:show_case] == 'true'
       arr << 'Case.title'
     end
 
     arr << [ 'Enumeration.name',
              'Enumeration.name',
-
-             'Task.date_start',
-             'Task.date_completed',
+             'Enumeration.name',
+             'Plan.percent_done',
+             'Plan.date_start',
+             'Plan.date_due',
+             'Plan.date_completed',
     ]
 
     @searchable_columns = arr.flatten
@@ -51,23 +56,26 @@ class TaskDatatable < AjaxDatatablesRails::Base
   private
 
   def data
-    records.map do |task|
+    records.map do |plan|
       arr = Array.new
       if User.current.can?(:manage_roles)
-        arr << task.user.to_s
+        arr << plan.user.to_s
       end
-      arr << @view.link_to_edit_if_can(task.title, {ctrl: :tasks, object: task })
+      arr << @view.link_to_edit_if_can(plan.name, {ctrl: :plans, object: plan })
       if @options[:show_case] == 'true'
-        arr << @view.link_to_case( task.case)
+        arr << @view.link_to_case( plan.case)
       end
       arr<< [
-          task.task_type.to_s ,
-          task.task_status_type.to_s ,
-          @view.format_date( task.date_start ),
-          @view.format_date( task.date_completed)
+          plan.priority_type.to_s ,
+          plan.plan_status.to_s ,
+          plan.plan_type.to_s ,
+          plan.percent_done || 0 ,
+          @view.format_date( plan.date_start ),
+          @view.format_date( plan.date_due) ,
+          @view.format_date( plan.date_completed)
       ]
       if @options[:appointment_id] and User.current_user.can?(:manage_roles)
-        arr<<  @view.link_to("<i class='fa fa-unlink fa-lg'></i>".html_safe, @view.unlink_appointment_path(appointment_id: @appointment.id, type: 'Need', id: task.id ))
+        arr<<  @view.link_to("<i class='fa fa-unlink fa-lg'></i>".html_safe, @view.unlink_appointment_path(appointment_id: @appointment.id, type: 'Plan', id: plan.id ))
       end
       arr.flatten
     end
@@ -77,17 +85,15 @@ class TaskDatatable < AjaxDatatablesRails::Base
     @appointment = Appointment.find @options[:appointment_id] if @options[:appointment_id]
     if @options[:appointment_id]
       @appointment_links = @appointment.appointment_links.includes(:linkable)
-      Task.include_enumerations.where(id: @appointment_links.where(linkable_type: 'Task').map(&:linkable).map(&:id))
+      Plan.include_enumerations.where(id: @appointment_links.where(linkable_type: 'Plan').map(&:linkable).map(&:id))
     else
       scope = if @options[:case_id]
-                Case.find(@options[:case_id]).tasks.include_enumerations
+                Case.find(@options[:case_id]).plans.include_enumerations
               else
-                Task.root.include_enumerations
+                Plan.include_enumerations
               end
-      scope = scope.where('tasks.assigned_to_id = :user OR tasks.for_individual_id = :user', user:  User.current.id)
-      scope.filter_status @options[:status_type]
+      scope.for_manager_status @options[:status_type]
     end
-
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

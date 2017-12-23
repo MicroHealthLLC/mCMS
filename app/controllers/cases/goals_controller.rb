@@ -9,17 +9,31 @@ class GoalsController <  UserCasesController
   def index
     add_breadcrumb I18n.t(:goals), :goals_path
 
-    scope =  User.current.can?(:manage_roles) ? Goal.where(assigned_to_id: User.current.id) : Goal.visible
-    scope = case params[:status_type]
-              when 'all' then scope.all_data
-              when 'opened' then scope.opened
-              when 'closed' then scope.closed
-              when 'flagged' then scope.flagged
-              else
-                scope.all_data
-            end
-
-    @goals = scope
+    options = Hash.new
+    options[:status_type] = params[:status_type]
+    options[:show_case] = params[:show_case]
+    options[:case_id] = params[:case_id]
+    if params[:case_id]
+      @case = Case.find params[:case_id]
+    end
+    if params[:appointment_id]
+      @appointment = Appointment.find params[:appointment_id]
+    end
+    options[:appointment_id] = params[:appointment_id]
+    respond_to do |format|
+      format.html{  }
+      format.js{ render 'application/index' }
+      format.pdf{}
+      format.csv{
+        options[:show_case] = 'true'
+        params[:length] = 500
+        json = GoalDatatable.new(view_context, options).as_json
+        send_data Goal.to_csv(json[:data]), filename: "Goals-#{Date.today}.csv"
+      }
+      format.json{
+        render json: GoalDatatable.new(view_context,options)
+      }
+    end
   end
 
   # GET /goals/1
