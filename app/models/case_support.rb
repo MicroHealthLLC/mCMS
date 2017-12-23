@@ -26,6 +26,23 @@ class CaseSupport < ApplicationRecord
     ]
   end
 
+  def self.include_enumerations
+    includes(:user, :case, :support_status, :case_support_type).
+        references(:user, :case, :support_status, :case_support_type)
+  end
+
+  def self.csv_attributes
+    [
+        I18n.t('case_suport') ,
+        I18n.t('case') ,
+        I18n.t('case_support_type') ,
+        I18n.t('support_status') ,
+        I18n.t('date_start') ,
+        I18n.t('date_ended') ,
+    ]
+  end
+
+
   def to_s
     name
   end

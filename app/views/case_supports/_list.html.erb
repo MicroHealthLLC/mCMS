@@ -1,5 +1,5 @@
 <% show_case = @case.nil? %>
-<table class="table table-responsive " id="case_supports_table">
+<table class="table table-responsive " id="case_supports_table" style="width: 100%">
   <thead>
   <tr>
     <th><%= t('label_name')%></th>
@@ -9,6 +9,7 @@
     <th><%= t('case_support_type')%></th>
     <th><%= t('support_status')%></th>
     <th><%= t('date_started')%></th>
+
     <th><%= t('date_ended')%></th>
     <% if @appointment %>
         <th> Unlink </th>
@@ -17,26 +18,28 @@
   </thead>
 
   <tbody>
-      <% case_supports.each do |case_support| %>
-          <tr>
-            <td><%= link_to case_support.name, case_support%></td>
-            <% if show_case %>
-                <td><%= link_to_case case_support.case %></td>
-            <% end %>
-            <td><%= case_support.case_support_type %></td>
-            <td><%= case_support.support_status %></td>
-            <td><%= format_date case_support.date_started %></td>
-            <td><%= format_date case_support.date_ended %></td>
-            <% if @appointment and can?(:manage_roles) %>
-                <td><%= link_to "<i class='fa fa-unlink fa-lg'></i>".html_safe, unlink_appointment_path(appointment_id: @appointment.id, type: 'CaseSuppport', id: case_support.id ) %></td>
-            <% end %>
-          </tr>
-      <% end %>
-
   </tbody>
 </table>
-<script>
-  $(document).ready(function(){
-   initDataTable('case_supports_table')
-  } );
-</script>
+
+<% columns= [ ]
+   columns << { "searchable": true, "orderable": true }
+   if show_case
+     columns << { "searchable": true, "orderable": true }
+   end
+   columns << [ { "searchable": true, "orderable": true },
+                { "searchable": true, "orderable": true },
+                { "searchable": true, "orderable": true },
+
+
+                { "searchable": true, "orderable": true }]
+   if @appointment and can?(:manage_roles)
+     columns << { "searchable": false, "orderable": false }
+   end
+%>
+<%= render partial: 'datatable_script', locals: {
+    model_table: 'case_supports_table',
+    url: case_supports_path(format: :csv, status_type: params[:status_type], show_case: show_case, case_id: @case.try(:id), appointment_id: @appointment.try(:id)),
+    columns: columns.flatten,
+    ajax_url: case_supports_path(format: :json, status_type: params[:status_type], show_case: show_case, case_id: @case.try(:id), appointment_id: @appointment.try(:id))
+} %>
+

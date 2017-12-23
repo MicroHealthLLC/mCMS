@@ -1,6 +1,6 @@
 <%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
 <section id="widget-grid" class="case_support">
-  <%= render partial: 'state_button_filter'%>
+  <%= render partial: 'state_button_filter_with_remote', locals: {controller_name: 'case_supports', container: 'case_supports_container'} %>
   <% if can?(:create_case_supports, :manage_roles, :manage_case_supports) %>
       <div class="btn-group pull-right btn-edition">
         <button class="btn btn-primary">
@@ -24,7 +24,7 @@
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
                          case_supports: @case_supports,
-                         wid_id: 'case_support',
+                         wid_id: 'case_supports',
                          wid_title: t('cases_support')
                  } %>
     </article>
