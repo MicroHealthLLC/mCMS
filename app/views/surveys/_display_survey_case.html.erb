@@ -30,16 +30,13 @@
             <td><%= link_to 'New attempt', new_attempt_path(survey_id: survey.id, case_id: @case.id) %> </td>
           </tr>
       <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
-      </tr>
+
   <% end %>
 
   </tbody>
 </table>
 <script>
   $(document).ready(function(){
-    <% if @surveys.present? %>  initDataTable('surveys_table') <% end %>
+   initDataTable('surveys_table')
   } );
 </script>

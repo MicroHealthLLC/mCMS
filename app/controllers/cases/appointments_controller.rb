@@ -10,33 +10,36 @@ class AppointmentsController < UserCasesController
   def index
     add_breadcrumb I18n.t(:appointments), :appointments_path
 
+    options = Hash.new
+    options[:status_type] = params[:status_type]
+    options[:show_case] = params[:show_case]
+    options[:case_id] = params[:case_id]
+    if params[:case_id]
+      @case = Case.find params[:case_id]
+    end
+    if params[:appointment_id]
+      @appointment = Appointment.find params[:appointment_id]
+    end
+    options[:appointment_id] = params[:appointment_id]
     respond_to do |format|
-      format.html{}
-      format.csv{ params[:length] = 500
-        options = Hash.new
-        options[:status_type] = params[:status_type]
-        json = AppointmentDatatable.new(view_context, options).as_json
-        send_data Appointment.to_csv(json[:data]), filename: "appointment-#{Date.today}.csv"
-      }
+      format.html{  }
+      format.js{ render 'application/index' }
       format.pdf{
         scope = Appointment
-        scope = case params[:status_type]
-                  when 'all' then scope.all_data
-                  when 'opened' then scope.opened
-                  when 'closed' then scope.closed
-                  when 'flagged' then scope.flagged
-                  else
-                    scope.all_data
-                end
+        scope = scope.filter_status params[:status_type]
         @appointments = scope.include_enumerations.
             includes(:user=> :core_demographic).
             references(:user=> :core_demographic).
             my_appointments
       }
+      format.csv{
+        options[:show_case] = 'true'
+        params[:length] = 500
+        json = AppointmentDatatable.new(view_context, options).as_json
+        send_data Appointment.to_csv(json[:data]), filename: "Appointment-#{Date.today}.csv"
+      }
       format.json{
-        options = Hash.new
-        options[:status_type] = params[:status_type]
-        render json: AppointmentDatatable.new(view_context, options)
+        render json: AppointmentDatatable.new(view_context,options)
       }
     end
   end

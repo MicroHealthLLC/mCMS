@@ -28,8 +28,8 @@ class Appointment < ApplicationRecord
   scope :my_appointment_for_me, -> { where(with_who_id: User.current.id).where(with_who_type: "User")}
 
   def self.include_enumerations
-    includes(:appointment_type, :appointment_status).
-        references(:appointment_type, :appointment_status)
+    includes(:user, :case, :appointment_type, :appointment_status).
+        references(:user, :case, :appointment_type, :appointment_status)
   end
 
   def self.enumeration_columns

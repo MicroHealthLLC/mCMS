@@ -1,94 +1,91 @@
 class AppointmentDatatable < AjaxDatatablesRails::Base
 
   def sortable_columns
-    # Declare strings in this format: ModelName.column_name
-    @sortable_columns ||= %w{
-        Appointment.title
-        Enumeration.name
-        Enumeration.name
-        Appointment.date
-    }
-    if User.current.can?(:manage_roles)
-      @sortable_columns ||= %w{
-        CoreDemographic.first_name
-        Appointment.title
-        Enumeration.name
-        Enumeration.name
-        Appointment.date
-     }
-    else
-      @sortable_columns ||= %w{
 
-        Appointment.title
-        Enumeration.name
-        Enumeration.name
-        Appointment.date
-     }
+    return @sortable_columns if @sortable_columns
+    # Declare strings in this format: ModelName.column_name
+    arr = if User.current.can?(:manage_roles)
+            ['User.login']
+          else
+            []
+          end
+    arr << ['Appointment.title']
+    if @options[:show_case] == 'true'
+      arr << 'Case.title'
     end
+
+    arr <<
+        [  'Enumeration.name',
+           'Enumeration.name',
+           'Appointment.date'
+        ]
+
+    @sortable_columns = arr.flatten
   end
 
   def searchable_columns
-    # Declare strings in this format: ModelName.column_name
-    if User.current.can?(:manage_roles)
-      @searchable_columns ||= %w{
-     CoreDemographic.first_name
-        Appointment.title
-        Enumeration.name
-        Enumeration.name
-        Appointment.date
-     }
-    else
-      @searchable_columns ||= %w{
 
-        Appointment.title
-        Enumeration.name
-        Enumeration.name
-        Appointment.date
-     }
+
+    return @searchable_columns if @searchable_columns
+    # Declare strings in this format: ModelName.column_name
+    arr = if User.current.can?(:manage_roles)
+            ['User.login']
+          else
+            []
+          end
+    arr << ['Appointment.title']
+    if @options[:show_case] == 'true'
+      arr << 'Case.title'
     end
 
+    arr <<
+        [  'Enumeration.name',
+           'Enumeration.name',
+           'Appointment.date'
+        ]
+
+    @searchable_columns = arr.flatten
   end
 
   private
 
   def data
-    if User.current.can?(:manage_roles)
-      records.map do |appointment|
-        [
-            "<b>#{appointment.user.to_s}<b/>".html_safe,
-            @view.link_to_edit_if_can( appointment.title, {ctrl: :appointments, object: appointment }),
-            appointment.appointment_type.to_s,
-            appointment.appointment_status.to_s,
-            appointment.start_time_to_time
-        ]
+    records.map do |appointment|
+      arr = Array.new
+      if User.current.can?(:manage_roles)
+        arr << appointment.user.to_s
       end
-    else
-      records.map do |appointment|
-        [
-            @view.link_to_edit_if_can( appointment.title, {ctrl: :appointments, object: appointment }),
-            appointment.appointment_type.to_s,
-            appointment.appointment_status.to_s,
-            appointment.start_time_to_time
-        ]
+      arr << @view.link_to_edit_if_can(appointment.title, {ctrl: :appointments, object: appointment })
+      if @options[:show_case] == 'true'
+        arr << @view.link_to_case( appointment.case)
       end
+      arr<< [
+          appointment.appointment_type.to_s,
+          appointment.appointment_status.to_s,
+          appointment.start_time_to_time
+      ]
+      if @options[:appointment_id] and User.current_user.can?(:manage_roles)
+        arr<<  @view.link_to("<i class='fa fa-unlink fa-lg'></i>".html_safe, @view.unlink_appointment_path(appointment_id: @appointment.id, type: 'Appointment', id: need.id ))
+      end
+      arr.flatten
+
     end
   end
 
   def get_raw_records
-    scope = Appointment
-    scope = case @options[:status_type]
-              when 'all' then scope.all_data
-              when 'opened' then scope.opened
-              when 'closed' then scope.closed
-              when 'flagged' then scope.flagged
+    @appointment = Appointment.find @options[:appointment_id] if @options[:appointment_id]
+    if @options[:appointment_id]
+      @appointment_links = @appointment.appointment_links.includes(:linkable)
+      Appointment.include_enumerations.where(id: @appointment_links.where(linkable_type: 'Appointment').map(&:linkable).map(&:id))
+    else
+      scope = if @options[:case_id]
+                Case.find(@options[:case_id]).appointments.include_enumerations
               else
-                scope.opened
-            end
-    scope.include_enumerations.
-        includes(:user=> :core_demographic).
-        references(:user=> :core_demographic).
-        my_appointments
+                Appointment.my_appointments.include_enumerations
+              end
+      scope.filter_status @options[:status_type]
+    end
   end
 
-  # ==== Insert 'presenter'-like methods below if necessary
+# ==== Insert 'presenter'-like methods below if necessary
 end

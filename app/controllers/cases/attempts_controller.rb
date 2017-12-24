@@ -10,9 +10,15 @@ class AttemptsController < UserCasesController
     if params[:case_id]
       @case = Case.find( params[:case_id])
       @attempts = scope.where(participant_type: 'Case', participant_id: params[:case_id])
+      add_breadcrumb @case, @case
+      add_breadcrumb 'Surveys', case_path(@case) + '#tabs-surveys'
+
+      add_breadcrumb @survey , "/attempts"
+
     else
       @attempts = scope.where(participant: User.current)
-    end
+  end
+  add_breadcrumb @measurement_record, @measurement_record
   rescue ActiveRecord::RecordNotFound
     render_404
   end
