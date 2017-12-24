@@ -8,16 +8,17 @@
   <h2 class='module-title-text'>DOCUMENTS</h2>
 </div>
 
+<%= render partial: "document_managers/upload" %>
 <div class="row">
-  <div class="col-xs-12 col-sm-6 col-md-6" style="display:inline-block">
 
-  </div>
-  <div class="col-xs-12 col-sm-3 col-md-3" style="display:inline-block">
-    <%= render partial: "document_managers/upload" %>
-  </div>
   <div class="col-xs-12 col-sm-3 col-md-3" style="display:inline-block">
     <%= render partial: "document_managers/new_folder" %>
   </div>
 </div>
 
-<%= render partial: 'list_datatable' %>
+<%= render partial: 'list_datatable',
+           layout: 'shared/smart_widget_wrapper',
+    locals: {
+        wid_id: 'documents',
+        wid_title: 'Documents'
+    } %>

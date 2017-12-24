@@ -60,24 +60,15 @@
 <script>
   $(document).ready(function(){
     $('#doc_manager_table').DataTable({
-      "sSwfPath": "/swf/copy_csv_xls_pdf.swf",
       display: [[0, 'desc']],
       "aoColumnDefs": [
         { "iDataSort": 1, "aTargets": [ 0 ] }
       ],
-      buttons: [
-        {
-          text: 'New Document',
-          action: function ( e, dt, node, config ) {
-            $('#new_doc').trigger('click')
-          }
-        }
-      ],
+
       "bDestroy": true,
       "sDom": "<'dt-toolbar'" +
       "<'col-sm-3 col-xs-6'f>" + //search box
       "<'col-sm-5 col-sm-offset-2 col-xs-2 'C>"+// drop down column hide
-      "<'col-sm-1 col-xs-4 'B>"+// buttons export
       "<'col-sm-1 col-xs-2 'l>>"+// length
       "t"+ // the table
       "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
