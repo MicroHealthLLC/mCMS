@@ -11,7 +11,7 @@ class UserProfilesController < ProtectForgeryApplication
     @affiliations          = [] if module_enabled?( 'affiliations')  && can?(:manage_roles, :view_affiliations, :manage_affiliations)
     @user_insurances       = [] if module_enabled?( 'insurances')  && can?(:manage_roles, :view_insurances, :manage_insurances)
     @documents             = [] if module_enabled?( 'documents')  && can?(:manage_roles, :view_documents, :manage_documents)
-    @jsignatures           = User.current.jsignatures if module_enabled?( 'jsignatures')
+    @jsignatures           = [] if module_enabled?( 'jsignatures')
   end
 
   def occupational_record

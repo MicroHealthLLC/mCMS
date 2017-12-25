@@ -50,20 +50,12 @@ class Devise::RegistrationsController < DeviseController
       end
 
       if module_enabled?( 'contacts')
-        scope = Contact.visible
-        scope = case params[:status_type]
-                  when 'all' then scope.all_data
-                  when 'opened' then scope.opened
-                  when 'closed' then scope.closed
-                  when 'flagged' then scope.flagged
-                  else
-                    scope.opened
-                end
-        @contacts = scope
+        @contacts = []
       end
 
       if module_enabled?( 'documents')
-        @documents = Document.for_profile.for_status params[:status_type]
+        @is_client_doc = true
+        @documents = []
       end
       # if module_enabled?( 'related_clients')
       #   @related_clients = RelatedClient.visible

@@ -9,9 +9,32 @@ class JsignaturesController < UserCasesController
   # before_action :set_appointment_links, only: [:show]
 
   def index
-    @jsignatures = Jsignature.includes(:user).
-        where(signature_owner_type: 'Case',
-              signature_owner_id: Case.visible.pluck(:id) )
+    options = Hash.new
+    options[:status_type] = params[:status_type]
+    options[:show_case] = params[:show_case]
+    options[:case_id] = params[:case_id]
+    if params[:case_id]
+      @case = Case.find params[:case_id]
+    end
+    if params[:appointment_id]
+      @appointment = Appointment.find params[:appointment_id]
+    end
+    options[:appointment_id] = params[:appointment_id]
+    respond_to do |format|
+      format.html{  }
+      format.js{ render 'application/index' }
+      format.pdf{}
+      format.csv{
+        options[:show_case] = 'true'
+        params[:length] = 500
+        json = JsignatureDatatable.new(view_context, options).as_json
+        send_data Jsignature.to_csv(json[:data]), filename: "Signatures-#{Date.today}.csv"
+      }
+      format.json{
+        render json: JsignatureDatatable.new(view_context,options)
+      }
+    end
+    
   end
 
   # GET /jsignatures/1

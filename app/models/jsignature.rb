@@ -11,10 +11,33 @@ class Jsignature < ApplicationRecord
     person_name
   end
 
+  def self.enumeration_columns
+    [
+    ]
+  end
   def self.safe_attributes
     [:user_id, :person_name, :signature_owner_type,
      :signature_owner_id,
      :signature, signature_attachments_attributes: [Attachment.safe_attributes] ]
+  end
+
+  def self.include_enumerations
+    includes(:user).
+        references(:user)
+  end
+
+  def self.all_data
+    where(nil)
+  end
+
+  def self.csv_attributes
+    [
+    'Person name',
+    'User',
+    'User title',
+    'Created at',
+    'Signature'
+    ]
   end
 
   def little_description
