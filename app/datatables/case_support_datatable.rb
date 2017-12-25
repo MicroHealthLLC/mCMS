@@ -75,7 +75,7 @@ class CaseSupportDatatable < AjaxDatatablesRails::Base
               else
                 CaseSupport.include_enumerations
               end
-      scope.for_manager_status @options[:status_type]
+      scope.for_status @options[:status_type]
     end
   end
 

@@ -42,27 +42,10 @@ function initDataTable(table_id)
 {
     $('#'+table_id).DataTable({
         display: [[0, 'desc']],
-        "oTableTools": {
-            "aButtons":  [
-                {
-                    "sExtends": "csv",
-                    "sButtonText": "CSV",
-                    "sCharSet": "utf8",
-                    "bBomInc": true,
-                    "fnCellRender": function ( sValue, iColumn, nTr, iDataIndex ) {
-                        if(sValue.toString().match("href")){
-                            return $(sValue).attr("href");
-                        }
-                        return sValue;
-                    }
-                }
-            ]
-        },
         "bDestroy": true,
         "sDom": "<'dt-toolbar'" +
         "<'col-sm-5 col-xs-8'f>" + //search box
-        "<'col-sm-2 col-sm-offset-2 col-xs-2 'C>"+// drop down column hide
-        "<'col-sm-2 col-xs-2 'T>"+// buttons export
+        "<'col-sm-4 col-sm-offset-2 col-xs-2 'C>"+// drop down column hide
         "<'col-sm-1 col-xs-2 'l>>"+// length
         "t"+ // the table
         "<'dt-toolbar-footer'<'col-sm-6 col-xs-12 hidden-xs'i><'col-xs-12 col-sm-6'p>>",
