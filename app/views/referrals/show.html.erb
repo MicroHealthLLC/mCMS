@@ -14,8 +14,9 @@
 
 
 <section id="widget-grid" class="referrals_section">
-  <% if can?(:manage_referrals, :manage_roles) %>
-    <div class="col-xs-12 btn-edition tabs-section">
+  <div class="col-xs-12 btn-edition tabs-section">
+    <%= render partial: 'state_button_filter'%>
+    <% if can?(:manage_referrals, :manage_roles) %>
       <div class="btn-group">
         <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
         <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:240px">
@@ -25,8 +26,8 @@
           </li>
         </ul>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'referral_results/list',
@@ -69,11 +70,10 @@
 </section>
 
 
-
-
 <section id="widget-grid" class="referrals_section">
-  <% if can?(:add_notes, :manage_roles) %>
-    <div class="col-xs-12 btn-edition tabs-section">
+  <div class="col-xs-12 btn-edition tabs-section">
+    <%= render partial: 'state_button_filter'%>
+    <% if can?(:add_notes, :manage_roles) %>
       <div class="btn-group">
         <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
         <ul class="dropdown-menu dropdown-links" role="menu">
@@ -83,8 +83,8 @@
           </li>
         </ul>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'notes/notes',
