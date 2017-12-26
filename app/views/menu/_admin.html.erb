@@ -5,7 +5,7 @@
       <%= link_to "Users", '/users' %>
     </li>
     <li>
-      <%= link_to "Enumeration", '/enumerations' %>
+      <%= link_to "Enumerations", '/enumerations' %>
     </li>
     <li>
       <%= link_to "Roles", '/roles' %>
@@ -27,7 +27,7 @@
       </ul>
     </li>
     <li>
-      <%= link_to "Note template", '/note_templates' %>
+      <%= link_to "Note Templates", '/note_templates' %>
     </li>
     <li>
       <a href="<%= '/organizations' %>" title="<%= t(:organizations) %>"> <span class="menu-item-parent"><%= t(:organizations) %></span></a>
@@ -43,14 +43,14 @@
         </li>
     <% end  %>
     <li>
-      <a href="/pivot_table/index" title="<%= 'Pivot table' %>"><span class="menu-item-parent"><%= 'Pivot table' %></span></a>
+      <a href="/pivot_table/index" title="<%= 'Pivot Tables' %>"><span class="menu-item-parent"><%= 'Pivot Tables' %></span></a>
     </li>
     <li>
-      <%= link_to "Setting", '/settings' %>
+      <%= link_to "Settings", '/settings' %>
     </li>
     <% if  module_enabled?('measurement_records') %>
         <li>
-          <%= link_to "Measurement", '/measurements' %>
+          <%= link_to "Measurements", '/measurements' %>
         </li>
     <% end %>
     <% if module_enabled? 'inventory/products' %>
