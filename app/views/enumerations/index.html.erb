@@ -4,11 +4,11 @@
 
 <div class="row">
   <%= form_tag  upload_enumerations_path, method: :post,  class: 'form_submit form-horizontal',  :multipart => true  do %>
-   <div class="col-xs-12 col-sm-4 col-md-3">
+   <div class="col-xs-12 col-sm-4">
      <%= file_field_tag :file, multiple: false, require: true %>
      <br />
     </div>
-    <div class="col-xs-10 col-sm-6 col-md-7">
+    <div class="col-xs-10 col-sm-6">
       <% options = Enumeration.get_subclasses.sort{|a,b| a.to_s <=> b.to_s }.map{|e| [e.to_s.gsub(/(?<=[a-z])(?=[A-Z])/, ' '), e.to_s]} %>
       <%= select_tag :type, options_for_select(options)  %>
     </div>
