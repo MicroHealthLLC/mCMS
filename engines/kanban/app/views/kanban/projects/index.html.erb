@@ -43,7 +43,7 @@
 
         <div class="col-xs-4">
           <% if User.current.can?(:manage_kanban_projects, :manage_roles) %>
-            <a class="mpkNew btn btn-default iconbtn" title="New Kanban Board" ng-click="kanbanMenu.openNewKanban()"><i class="glyphicon glyphicon-file"></i></a>
+            <a class="mpkNew btn btn-default iconbtn" title="New Kanban Board" ng-click="kanbanMenu.openNewKanban()"><i class="glyphicon glyphicon-file"></i><sup>+</sup></a>
             <a class='btn btn-default iconbtn' title="Delete Kanban" ng-click="kanbanMenu.delete()"><i class="glyphicon glyphicon-remove"></i></a>
             <a class='btn btn-default iconbtn' title="Manage Users" href="/kanban/projects/manage_users"><i class="glyphicon glyphicon-user"></i></a>
           <% end %>
