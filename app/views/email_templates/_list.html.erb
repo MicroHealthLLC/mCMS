@@ -9,6 +9,8 @@
   <% @email_templates.each do |email_template| %>
       <tr>
         <td><%= link_to email_template.model, edit_email_template_path(email_template) %></td>
+        <td><%= edit_link edit_email_template_path(email_template) %></td>
+        <td><%= delete_link email_template, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
   <% end %>
   </tbody>
