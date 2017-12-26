@@ -166,6 +166,7 @@ a:focus {
 }
 .note textarea.cnt {
     min-height: 200px;
+    font-size: 15px;
 }
 .note:nth-child(2n) {
     background: #FAAACA;
