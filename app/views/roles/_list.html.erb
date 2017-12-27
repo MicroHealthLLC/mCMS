@@ -16,7 +16,7 @@
             <td><%= role.state %></td>
             <td><%= role.note %></td>
             <td><%= edit_link edit_role_path(role) %></td>
-            <td><%= delete_link role %></td>
+            <td><%= delete_link role, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
       <% end %>
   <% else %>
