@@ -6,9 +6,8 @@
     <th>Attempts</th>
     <th>Last updated</th>
     <th></th>
-    <th></th>
     <% if User.current.admin? %>
-        <th></th>
+        <th colspan="2"></th>
     <% end %>
   </tr>
   </thead>
@@ -29,16 +28,15 @@
             <td><%= survey.attempts.last.answers.last.updated_at.strftime('%d/%m/%y %H:%M') rescue '' %></td>
 
             <% if params[:controller] == 'cases' %>
-                <td><%= link_to 'New attempt', new_attempt_path(survey_id: survey.id, c: params[:controller], case_id: @case.id) %> </td>
-                <td><%= link_to 'Show attempts', attempts_path(survey_id: survey.id, case_id: @case.id) %> </td>
+                 <td><%= link_to 'Show attempts', attempts_path(survey_id: survey.id, case_id: @case.id) %> </td>
             <% else %>
-                <td><%= link_to 'New attempt', new_attempt_path(survey_id: survey.id) %> </td>
-                <td><%= link_to 'Show attempts', attempts_path(survey_id: survey.id) %> </td>
+                 <td><%= link_to 'Show attempts', attempts_path(survey_id: survey.id) %> </td>
             <% end %>
 
 
             <% if User.current.admin? %>
                 <td><%= edit_link edit_survey_path survey %></td>
+                <td><%= delete_link survey_path(survey) %></td>
             <% end %>
 
           </tr>
