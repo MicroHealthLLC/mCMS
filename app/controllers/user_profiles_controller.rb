@@ -6,7 +6,7 @@ class UserProfilesController < ProtectForgeryApplication
   def profile_record
     @is_client_doc = true
     add_breadcrumb 'Client Profile', '/profile_record'
-    @languages             = [] if module_enabled?( 'languages')  && can?(:manage_roles, :view_languages, :manage_languages)
+    @languages             = [] if module_enabled?( 'languages')  && can?(:view_languages, :manage_languages)
     @contacts              = [] if module_enabled?( 'contacts')  && can?(:manage_roles, :view_contacts, :manage_contacts)
     @affiliations          = [] if module_enabled?( 'affiliations')  && can?(:manage_roles, :view_affiliations, :manage_affiliations)
     @user_insurances       = [] if module_enabled?( 'insurances')  && can?(:manage_roles, :view_insurances, :manage_insurances)
