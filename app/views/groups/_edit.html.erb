@@ -4,7 +4,7 @@
         <%= f.label :name %>
         <%= f.text_field :name, :class => "form-control", placeholder: @group.name %>
         <br />
-        <%= f.submit "submit", :class => "btn btn-default btn-xs" %>
+        <%= f.submit "submit", :class => "btn btn-success btn-xs" %>
     <% end %>
 
     <h3> Categories </h3>
@@ -18,7 +18,7 @@
         <%= l.label :add_leader %>
         <%= l.select :user_id, User.all.collect { |u| [u.username, u.id] }, {include_blank: true} %>
         <%= l.hidden_field :level, value: Membership::LEVELS[:leader] %>
-        <%= l.submit "add", :class => "btn btn-default btn-xs" %>
+        <%= l.submit "add", :class => "btn btn-success btn-xs" %>
     <% end %>
 
     <%= form_for :membership, url: remove_member_group_path(group_id: params[:id]) do |l| %>
@@ -37,7 +37,7 @@
         <%= m.label :add_member %>
         <%= m.select :user_id, User.all.collect { |u| [u.full_name, u.id]}, {include_blank: true} %>
         <%= m.hidden_field :level, value: Membership::LEVELS[:regular] %>
-        <%= m.submit "add", :class => "btn btn-default btn-xs" %>
+        <%= m.submit "add", :class => "btn btn-success btn-xs" %>
     <% end %>
 
     <%= form_for :membership, url: remove_member_group_path(group_id: params[:id]) do |l| %>
