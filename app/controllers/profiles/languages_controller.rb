@@ -98,14 +98,14 @@ class LanguagesController < UserProfilesController
   end
 
   def authorize_show
-    raise Unauthorized unless @language.can?(:view_languages, :manage_languages)
+    raise Unauthorized unless @language.can?(:view_languages, :manage_languages, :manage_roles)
   end
 
   def authorize_edit
-    raise Unauthorized unless @language.can?(:edit_languages, :manage_languages)
+    raise Unauthorized unless @language.can?(:edit_languages, :manage_languages, :manage_roles)
   end
 
   def authorize_delete
-    raise Unauthorized unless @language.can?(:delete_languages, :manage_languages)
+    raise Unauthorized unless @language.can?(:delete_languages, :manage_languages, :manage_roles)
   end
 end
