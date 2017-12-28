@@ -17,14 +17,6 @@
   <nav class="navbar">
     <div class="navbar-inner">
       <div class="row">
-        <div class="col-xs-4">
-          <div id="quickSwitch" style="padding: 0 10px" class="form-group">
-            <select ng-model="switchTo" id="fileslist" ng-options="name for name in switchToList" ng-change="switchToKanban(switchTo)">
-              <option>Switch to ...</option>
-            </select>
-          </div>
-        </div>
-
         <div class="navbar-header col-xs-4">
           <span id="kanbanName" class="navbar-brand" ng-model="kanban" ng-hide="editingName"><a class="renameKanban" ng-click="editingKanbanName()">{{kanban.name}}</a></span>
           <div ng-show="editingName" class="pull-left">
@@ -43,11 +35,19 @@
 
         <div class="col-xs-4">
           <% if User.current.can?(:manage_kanban_projects, :manage_roles) %>
-            <a class="mpkNew btn btn-default iconbtn" title="New Kanban Board" ng-click="kanbanMenu.openNewKanban()"><i class="glyphicon glyphicon-file"></i><sup>+</sup></a>
-            <a class='btn btn-default iconbtn' title="Delete Kanban" ng-click="kanbanMenu.delete()"><i class="glyphicon glyphicon-remove"></i></a>
-            <a class='btn btn-default iconbtn' title="Manage Users" href="/kanban/projects/manage_users"><i class="glyphicon glyphicon-user"></i></a>
+            <a class="mpkNew iconbtn" title="New Kanban Board" ng-click="kanbanMenu.openNewKanban()"><i class="glyphicon glyphicon-file"></i><sup>+</sup></a>
+            <a class='iconbtn' title="Delete Kanban" ng-click="kanbanMenu.delete()"><i class="glyphicon glyphicon-remove"></i></a>
+            <a class='iconbtn' title="Manage Users" href="/kanban/projects/manage_users"><i class="glyphicon glyphicon-user"></i></a>
           <% end %>
-            <a class='btn btn-default iconbtn' title="Open Archive" ng-click="kanbanMenu.openArchive(kanban)"><i class="glyphicon glyphicon-folder-open"></i></a>
+            <a class='iconbtn' title="Open Archive" ng-click="kanbanMenu.openArchive(kanban)"><i class="glyphicon glyphicon-folder-open"></i></a>
+        </div>
+
+        <div class="col-xs-4">
+          <div id="quickSwitch" style="padding: 0 10px" class="form-group">
+            <select ng-model="switchTo" id="fileslist" ng-options="name for name in switchToList" ng-change="switchToKanban(switchTo)">
+              <option>Switch to ...</option>
+            </select>
+          </div>
         </div>
       </div>
     </div>
