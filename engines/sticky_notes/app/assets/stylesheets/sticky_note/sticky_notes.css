@@ -180,12 +180,16 @@ a:focus {
     font-size: 22px;
     color: #000000;
     margin-left: 20px;
-    padding: 1em 1.25em;
-    padding: 0.5em 1em;
+    padding: 0.5em;
     background-color: transparent;
 }
 .button:hover {
+    color: #000000;
     background-color: #cccccc;
+}
+.button:active
+    color: #000000;
+    background-color: transparent;
 }
 
 
