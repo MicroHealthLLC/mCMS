@@ -5,11 +5,15 @@
     <th hidden>Name</th>
     <th>Created At</th>
     <th>Updated At</th>
+  <% if params[:document_folder_id] %>
     <th>Category</th>
+  <% end %>   
     <th>Files</th>
+  <% if params[:document_folder_id] %>
     <th>From</th>
     <th>Download Count</th>
     <th>Download Last Revision</th>
+  <% end %>   
   </tr>
   </thead>
   <tbody>
@@ -23,13 +27,17 @@
         <td hidden><%= "#{folder.name}".html_safe %></td>
         <td><%= format_date(folder.created_at) %></td>
         <td><%= format_date(folder.updated_at) %></td>
+      <% if params[:document_folder_id] %>
         <td> - </td>
+      <% end %>
         <td><%= folder.document_managers.joins(:revisions).count %></td>
+      <% if params[:document_folder_id] %>
         <td> - </td>
         <td> - </td>
         <td> - </td>
+      <% end %>
       </tr>
-  <% end %>
+   <% end %>
   <% @latest_docs.each do |rev| %>
       <% if doc = rev.document_manager and !doc.current_revision.nil? %>
           <tr>
@@ -41,18 +49,21 @@
             <td hidden><%= doc.title %></td>
             <td><%= format_date(doc.created_at) %></td>
             <td><%= format_date(doc.current_revision.created_at) %></td>
+          <% if params[:document_folder_id] %>
             <td> <%= doc.category.try(:name) %> </td>
-            <td> - </td>
+          <% end %>
+          <td> - </td>
+          <% if params[:document_folder_id] %>
             <td> <%= doc.current_revision.user.full_name %> </td>
             <td><%= doc.total_downloads %></td>
             <td><%= link_to download_document_manager_revision_path(document_manager_id: doc.id, revision_id: doc.current_revision.id, id: doc.current_revision.id), "data-no-turbolink" => true do %>
                   <i class="fa fa-download"></i>
               <% end %>
             </td>
-          </tr>
-
+          <% end %>
+         </tr>
       <% end %>
-  <% end %>
+    <% end %>
 
   </tbody>
 </table>
