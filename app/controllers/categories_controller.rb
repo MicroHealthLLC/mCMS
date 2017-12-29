@@ -99,7 +99,6 @@ class CategoriesController < ProtectForgeryApplication
 
   def set_category
     @category = Category.find_by_id(params[:id])
-    add_breadcrumb @category, @category
   rescue ActiveRecord::RecordNotFound
     render_404
   end

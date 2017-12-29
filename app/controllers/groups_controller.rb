@@ -60,7 +60,6 @@ class GroupsController < ProtectForgeryApplication
 
   def set_group
     @group = Group.find(params[:id])
-    add_breadcrumb @group, @group
   rescue ActiveRecord::RecordNotFound
     render_404
   end
