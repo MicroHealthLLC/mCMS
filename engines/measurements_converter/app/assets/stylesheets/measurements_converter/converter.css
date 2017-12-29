@@ -12,17 +12,17 @@
 .containerMain ul {
     margin: 1% 0 0 0;
     padding: 0;
-    background-color: #555383;
-    background-color: #666494;
+    background-color: #4D7484;
 }
 .containerMain ul li {
     display: inline-block;
     width: 24.5%;
     text-align: center;
     font-size: 1.1em;
+    padding: 5px;
 }
 .containerMain ul li:hover {
-    background-color: #6665a5;
+    background-color: #DBC2A4;
 }
 
 .containerMain ul li a {
@@ -30,6 +30,9 @@
     color: #eee;
     padding: 7% 0;
     text-align: center;
+}
+.containerMain ul li a:hover {
+    color: black;
 }
 
 form, fieldset {
@@ -43,8 +46,8 @@ form, fieldset {
 }
 
 #results {
-    background-color: #aaaaee;
-    background-color: #9997c7;
+    background-color: #B2C8D6;
+    border: 3px solid #dd7c37;
     padding: 3% 0;
 }
 
@@ -66,5 +69,12 @@ form, fieldset {
 
 
 .active1, .active2, .active3, .active4 {
-    background-color: #333272;
+    background-color: #dd7c37;
+}
+
+
+@media all and (max-width:786px) {
+    .containerMain {
+        width: 90%;
+    }
 }
