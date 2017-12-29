@@ -151,7 +151,10 @@ a.iconbtn:active{
     text-shadow: none;
 }
 
-
+#fileslist {
+    width: 100%;
+    padding: 0px;
+}
 
 @media all and (max-width: 767px) {
     #kanban {
