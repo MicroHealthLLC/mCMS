@@ -4,7 +4,8 @@
     </div>
 
     <div class="col-md-12">
-      <%= f.submit :save, class: 'btn btn-primary pull-right' %>
+      <%= link_to t('button_cancel'), lms.course_lessons_path(@course), class: 'btn btn-warning pull-right' %>
+      <%= f.submit :save, class: 'btn btn-success pull-right' %>
     </div>
 
 <% end %>
