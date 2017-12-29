@@ -71,7 +71,12 @@ class NotesController < UserCasesController
     @note = Note.find(params[:id])
 
     add_breadcrumb @note.object.to_s, @note.object
-    add_breadcrumb I18n.t('notes'), :notes_path
+    if @note.object.is_a? Case
+      add_breadcrumb I18n.t('notes'), case_path(@note.object) + "#tabs-notes"
+    else
+      add_breadcrumb I18n.t('notes'), :notes_path
+    end
+
 
     add_breadcrumb @note.id, @note
   rescue ActiveRecord::RecordNotFound
