@@ -6,7 +6,7 @@ class Immunization < ApplicationRecord
   has_many :immunization_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :immunization_attachments, reject_if: :all_blank, allow_destroy: true
 
-  validates_presence_of :user_id, :medication
+  validates_presence_of :user_id, :medication, :snomed
 
 
   def self.enumeration_columns
@@ -43,7 +43,7 @@ class Immunization < ApplicationRecord
   end
 
   def to_s
-    immunization_cvx
+    snomed
   end
     
   def self.safe_attributes
