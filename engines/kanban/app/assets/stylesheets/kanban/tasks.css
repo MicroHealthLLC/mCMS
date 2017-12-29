@@ -106,8 +106,10 @@
     -webkit-box-shadow: none;
     box-shadow: none;
 }
+
 a.iconbtn {
-    font-size: 18px;
+    font-size: 20px;
+    color: black;
     margin: 5px 10px;
     padding: 0.5em;
     background: transparent;
@@ -116,9 +118,14 @@ a.iconbtn {
 }
 a.iconbtn:hover {
     background: #eeeeee;
+    color: black;
 }
 a.iconbtn:active{
     background: transparent;
+}
+.iconbtn {
+    font-size: 20px;
+    color: black;
 }
 
 #archiveinfo {

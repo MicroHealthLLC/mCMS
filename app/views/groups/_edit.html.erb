@@ -41,7 +41,7 @@
     <% end %>
 
     <%= form_for :membership, url: remove_member_group_path(group_id: params[:id]) do |l| %>
-        <%= l.label :remove_leader %>
+        <%= l.label :remove_member %>
         <%= l.select :user_id, @group.members.collect { |u| [u.full_name, u.id] }, {include_blank: true} %>
         <%= l.hidden_field :level, value: Membership::LEVELS[:regular] %>
         <%= l.submit "remove", :class => "btn btn-danger btn-xs" %>

@@ -33,7 +33,7 @@
           </div>
         </div>
 
-        <div class="col-xs-4">
+        <div class="col-xs-4" style="margin-top:10px;">
           <% if User.current.can?(:manage_kanban_projects, :manage_roles) %>
             <a class="mpkNew iconbtn" title="New Kanban Board" ng-click="kanbanMenu.openNewKanban()"><i class="glyphicon glyphicon-file"></i><sup>+</sup></a>
             <a class='iconbtn' title="Delete Kanban" ng-click="kanbanMenu.delete()"><i class="glyphicon glyphicon-remove"></i></a>
