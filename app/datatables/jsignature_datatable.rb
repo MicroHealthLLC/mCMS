@@ -51,8 +51,7 @@ class JsignatureDatatable < AjaxDatatablesRails::Base
   def get_raw_records
     @appointment = Appointment.find @options[:appointment_id] if @options[:appointment_id]
     if @options[:appointment_id]
-      @appointment_links = @appointment.appointment_links.includes(:linkable)
-      Jsignature.include_enumerations.where(id: @appointment_links.where(linkable_type: 'Jsignature').map(&:linkable).map(&:id))
+      @appointment.jsignatures.include_enumerations
     else
       scope = if @options[:case_id]
                 Case.find(@options[:case_id]).jsignatures.include_enumerations

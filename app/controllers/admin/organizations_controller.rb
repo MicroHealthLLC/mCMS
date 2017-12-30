@@ -1,5 +1,6 @@
 class OrganizationsController < ProtectForgeryApplication
   before_action  :authenticate_user!
+  add_breadcrumb 'Organizations', :organizations_path
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
   before_action :require_admin, except: [:show]
@@ -64,6 +65,7 @@ class OrganizationsController < ProtectForgeryApplication
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
       @organization = Organization.find(params[:id])
+      add_breadcrumb @organization, @organization
     rescue ActiveRecord::RecordNotFound
       render_404
     end

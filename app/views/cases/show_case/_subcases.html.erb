@@ -1,4 +1,4 @@
-<% if module_enabled?('subcases') %>
+
 <section id="widget-grid" class="subcases_section">
   <div class="col-xs-12 btn-edition tabs-section">
     <%= render partial: 'state_button_filter'%>
@@ -6,11 +6,13 @@
       <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
       <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:190px;">
         <% if can?(:manage_roles, :create_cases, :manage_cases) %>
-        <li>
-          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-          <%= link_to t('add_subcase'), new_case_path(subcase_id: @case.id), class: 'dropdown-item' %>
-        </li>
-        <div class='dropdown-item-dividier'></div>
+            <%  if (params[:controller] != 'appointments' and @case) or (@stored_appointment and @appointment == @stored_appointment ) %>
+                <li>
+                  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                  <%= link_to t('add_subcase'), new_case_path(subcase_id: @case.id), class: 'dropdown-item' %>
+                </li>
+                <div class='dropdown-item-dividier'></div>
+            <% end %>
         <% end %>
         <li>
           <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
@@ -19,16 +21,16 @@
       </ul>
     </div>
   </div>
-    <div class="row">
-      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-        <%= render partial: 'cases/list_content',
-                   layout: 'shared/smart_widget_wrapper',
-                   locals: {
-                       wid_id: 'subcases',
-                       wid_title: (@appointment ? 'Cases' : 'Sub cases')
-                   } %>
-      </article>
-    </div>
-  </section>
-<% end %>
+      <%= render partial: 'cases/list_content',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'subcases',
+                     wid_title: (@appointment ? 'Cases' : 'Sub cases')
+                 } %>
+    </article>
+  </div>
+</section>
+

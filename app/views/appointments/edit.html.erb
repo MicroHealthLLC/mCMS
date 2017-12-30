@@ -12,3 +12,10 @@
     </article>
   </div>
 </section>
+
+<%= render_tabs appointment_tabs %>
+
+
+<% if @case %>
+    <%= render_tabs appointment_case_tabs, params[:tab], 'tab-case' %>
+<% end %>

@@ -1,37 +1,39 @@
 <% if module_enabled?('teleconsults') %>
-<section id="widget-grid" class="teleconsults_section">
-  <div class="col-xs-12 btn-edition tabs-section">
-    <%= render partial: 'application/state_button_filter_with_remote',
-               locals: {controller_name: 'teleconsults', container: 'teleconsults_container',
-                        other_options: {appointment_id: @appointment.try(:id), case_id: @case.try(:id) }} %>
-    <div class="btn-group">
-      <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
-      <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:210px;">
-        <% if can?(:create_teleconsults, :manage_roles, :manage_teleconsults) %>
-        <li>
-          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-          <%= link_to t('new_teleconsult'), new_teleconsult_path(case_id: @case.id), class: 'dropdown-item' %>
-        </li>
-        <div class='dropdown-item-dividier'></div>
-        <% end %>
-        <li>
-          <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
-          <%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'dropdown-item' %>
-        </li>
-      </ul>
-    </div>
-  </div>
-    <div class="row">
-      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <%= render partial: 'teleconsults/list',
-                   layout: 'shared/smart_widget_wrapper',
-                   locals: {
-                       show_case_column: false,
-                       teleconsults: @teleconsults,
-                       wid_id: 'teleconsults',
-                       wid_title: 'teleconsults'
-                   } %>
-      </article>
-    </div>
-  </section>
+    <section id="widget-grid" class="teleconsults_section">
+      <div class="col-xs-12 btn-edition tabs-section">
+        <%= render partial: 'application/state_button_filter_with_remote',
+                   locals: {controller_name: 'teleconsults', container: 'teleconsults_container',
+                            other_options: {appointment_id: @appointment.try(:id), case_id: @case.try(:id) }} %>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+          <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:210px;">
+            <% if can?(:create_teleconsults, :manage_roles, :manage_teleconsults) %>
+                <%  if (params[:controller] != 'appointments' and @case) or (@stored_appointment and @appointment == @stored_appointment ) %>
+                    <li>
+                      <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                      <%= link_to t('new_teleconsult'), new_teleconsult_path(case_id: @case.id), class: 'dropdown-item' %>
+                    </li>
+                <% end %>
+                <div class='dropdown-item-dividier'></div>
+            <% end %>
+            <li>
+              <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+              <%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'dropdown-item' %>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'teleconsults/list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         show_case_column: false,
+                         teleconsults: @teleconsults,
+                         wid_id: 'teleconsults',
+                         wid_title: 'teleconsults'
+                     } %>
+        </article>
+      </div>
+    </section>
 <% end %>

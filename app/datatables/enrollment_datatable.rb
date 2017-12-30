@@ -46,15 +46,15 @@ class EnrollmentDatatable < AjaxDatatablesRails::Base
     @appointment = Appointment.find @options[:appointment_id] if @options[:appointment_id]
     if @options[:appointment_id]
       @appointment_links = @appointment.appointment_links.includes(:linkable)
-      scope = Need.include_enumerations.where(id: @appointment_links.where(linkable_type: 'Need').map(&:linkable).map(&:id))
+      Enrollment.include_enumerations.where(id: @appointment_links.where(linkable_type: 'Enrollment').map(&:linkable).map(&:id))
     else
-    scope = if @options[:case_id]
-              Case.find(@options[:case_id]).enrollments.include_enumerations
-            else
-              Enrollment.include_enumerations
-            end
-    scope.for_status @options[:status_type]
-  end
+      scope = if @options[:case_id]
+                Case.find(@options[:case_id]).enrollments.include_enumerations
+              else
+                Enrollment.include_enumerations
+              end
+      scope.for_status @options[:status_type]
+    end
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

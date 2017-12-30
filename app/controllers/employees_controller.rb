@@ -17,6 +17,8 @@ class EmployeesController < ProtectForgeryApplication
   end
 
   def show
+    redirect_to '/profile_record'
+    add_breadcrumb 'Client Profile', '/profile_record'
     @languages = Language.for_status(params[:status_type]) if module_enabled?( 'languages')  && can?(:manage_roles, :view_languages, :manage_languages)
     @contacts = Contact.for_status(params[:status_type]) if module_enabled?( 'contacts')  && can?(:manage_roles, :view_contacts, :manage_contacts)
     @affiliations = Affiliation.for_status(params[:status_type]) if module_enabled?( 'affiliations')  && can?(:manage_roles, :view_affiliations, :manage_affiliations)
