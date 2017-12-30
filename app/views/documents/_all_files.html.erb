@@ -11,7 +11,13 @@
   <tbody>
   <% @files.each do |attachment| %>
       <tr>
-        <td>      <%= link_to attachment.owner.to_s,  attachment.owner %>    </td>
+        <td>
+          <% begin %>
+              <%= link_to_edit_if_can(attachment.owner.to_s, {ctrl: attachment.owner.class.table_name, object:  attachment.owner }) %>
+          <%rescue %>
+              <%= link_to (attachment.owner.to_s, attachment.owner ) %>
+          <% end %>
+        </td>
         <td>     <%= render 'attachments/file', attachment: attachment %>   </td>
         <td>      <%= format_date attachment.created_at %>    </td>
       </tr>
@@ -21,7 +27,7 @@
 
 <script>
     $(document).ready(function(){
-         initDataTable('files_table')
+        initDataTable('files_table')
     } );
 </script>
 
