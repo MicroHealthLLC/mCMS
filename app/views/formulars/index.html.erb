@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Formulars</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Icon</th>
+      <th>Placement</th>
+      <th>Form</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @formulars.each do |formular| %>
+      <tr>
+        <td><%= formular.name %></td>
+        <td><%= formular.icon %></td>
+        <td><%= formular.placement %></td>
+        <td><%= link_to 'Show', formular %></td>
+        <td><%= link_to 'Edit', edit_formular_path(formular) %></td>
+        <td><%= link_to 'Destroy', formular, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Formular', new_formular_path %>

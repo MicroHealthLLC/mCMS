@@ -1,0 +1,108 @@
+
+<fieldset>
+  <legend> Form Content </legend>
+
+
+
+
+  <div class="row">
+    <%= form_for( @formular, html: { class: 'form-horizontal', id: 'formular_form',  :multipart => true}) do |f| %>
+        <% if  @formular.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize( @formular.errors.count, "error") %> prohibited this daily living from being saved:</h2>
+
+              <ul>
+                <%  @formular.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+        <% end %>
+
+
+        <div class="form-inputs">
+          <div class="form-group">
+            <%= f.label t(:label_name) , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_area :form , class: 'form-control', style: 'display: none', id: 'form_builder_content' %>
+              <%= f.text_field :name , class: 'form-control' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label 'Placement', class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :placement, options_for_select([['Profile Record', 1],['Occupation Record', 2],['Health Record', 3],['Socioeconomic Record', 4]], selected: f.object.placement) , {} ,{class: 'form-control'} %>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-inputs">
+          <div class="form-group">
+            <%= label_tag 'Form builder' , 'Form builder',  class: 'col-md-2 control-label' %>
+
+            <div class="col-md-9" id="formbuilder_content">
+              <div id="fb-editor"></div>
+              <div id="fb-rendered-form">
+                <button class="btn btn-default edit-form">Edit</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="form-actions">
+          <%= f.submit :submit %>
+        </div>
+
+
+        <script>
+            $(document).ready(function(){
+                var $fbEditor = $(document.getElementById('fb-editor')),
+                    $formContainer = $(document.getElementById('fb-rendered-form')),
+                    fbOptions = {
+                        onSave: function() {
+                            $fbEditor.toggle();
+                            $formContainer.toggle();
+                            $('#formbuilder_content', $formContainer).formRender({
+                                formData: formBuilder.formData
+                            });
+                        },
+                        disabledActionButtons: ['save'],
+                        defaultFields: <%= raw( f.object.form || []) %>
+                    },
+                    formBuilder = $fbEditor.formBuilder(fbOptions);
+
+                $('.edit-form', $formContainer).click(function() {
+                    $fbEditor.toggle();
+                    $formContainer.toggle();
+                });
+                $('#formular_form').on('submit', function(e){
+                    e.preventDefault;
+                    json = formBuilder.actions.getData('json', true);
+                    $('#form_builder_content').val(json);
+                    $(this).submit();
+                })
+            })
+        </script>
+    <% end %>
+  </div>
+
+</fieldset>
+
+
+
+<style>
+
+  #fb-rendered-form {
+    clear: both;
+    display: none;
+  }
+
+  #fb-rendered-form button{
+    float:right;
+  }
+</style>
+<%= javascript_include_tag 'form_builder/form-builder.min' %>
+<%= javascript_include_tag 'form_builder/form-render.min' %>

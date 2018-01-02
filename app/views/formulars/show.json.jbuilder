@@ -1,0 +1,1 @@
+json.partial! "formulars/formular", formular: @formular

@@ -1,0 +1,1 @@
+json.array! @formulars, partial: 'formulars/formular', as: :formular

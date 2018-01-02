@@ -15,7 +15,7 @@
           <% begin %>
               <%= link_to_edit_if_can(attachment.owner.to_s, {ctrl: attachment.owner.class.table_name, object:  attachment.owner }) %>
           <%rescue %>
-              <%= link_to (attachment.owner.to_s, attachment.owner ) %>
+              <%= link_to(attachment.owner.to_s, attachment.owner ) %>
           <% end %>
         </td>
         <td>     <%= render 'attachments/file', attachment: attachment %>   </td>

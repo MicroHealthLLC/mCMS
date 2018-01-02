@@ -17,6 +17,7 @@ class TasksController < UserCasesController
     options[:status_type] = params[:status_type]
     options[:show_case] = params[:show_case]
     options[:case_id] = params[:case_id]
+    options[:appointment_id] = params[:appointment_id]
     if params[:case_id]
       @case = Case.find params[:case_id]
     end

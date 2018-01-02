@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @formular.name %>
+</p>
+
+<p>
+  <strong>Icon:</strong>
+  <%= @formular.icon %>
+</p>
+
+<p>
+  <strong>Placement:</strong>
+  <%= @formular.placement %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_formular_path(@formular) %> |
+<%= link_to 'Back', formulars_path %>
+
+
+<%= javascript_include_tag 'form_builder/form-builder.min' %>
+<%= javascript_include_tag 'form_builder/form-render.min' %>
+
+<p id="formbuilder_content" >
+
+</p>
+<script>
+    $(document).ready(function(){
+
+        $('#formbuilder_content').formRender({
+            formData: <%= raw @formular.form %>
+        });
+    })
+</script>
