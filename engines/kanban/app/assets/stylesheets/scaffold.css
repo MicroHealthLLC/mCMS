@@ -82,3 +82,27 @@ div.actions {
 label {
   display: block;
 }
+
+
+
+
+a.iconbtn {
+    font-size: 18px;
+    color: black;
+    margin: 5px 10px;
+    padding: 0.5em;
+    background: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+a.iconbtn:hover {
+    background: #eeeeee;
+    color: black;
+}
+a.iconbtn:active{
+    background: transparent;
+}
+.iconbtn {
+    font-size: 18px;
+    color: black;
+}
