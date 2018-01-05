@@ -12,7 +12,7 @@
   <tbody>
   <% @categories.each do |category| %>
       <tr>
-        <td> <%= link_to category.name, category_path(category) %> </td>
+        <td> <%= category.name %> </td>
         <td> <%=  category.is_private %> </td>
         <td> <%=  category.is_writable %> </td>
         <td> <%=  category.is_featured %> </td>
