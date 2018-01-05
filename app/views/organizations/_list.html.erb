@@ -11,7 +11,7 @@
   <% if organizations.any? %>
       <% organizations.each do |organization| %>
           <tr>
-            <td><%= link_to organization.name, organization %></td>
+            <td><%= organization.name %></td>
             <td><%= organization.organization_type %></td>
             <td><%= edit_link( edit_organization_path(organization)) %></td>
             <td><%= delete_link( organization)%></td>
