@@ -2,7 +2,7 @@
   <thead>
   <tr>
     <th><%= t :insurance %></th>
-    <th><%= 'created at' %></th>
+    <th><%= 'Created at' %></th>
     <th colspan="2"></th>
   </tr>
   </thead>
@@ -11,7 +11,7 @@
   <% if insurances.any? %>
       <% insurances.each do |insurance| %>
           <tr>
-            <td><%= link_to insurance.name, insurance_path(insurance) %></td>
+            <td><%= insurance.name %></td>
             <td><%= format_date insurance.created_at %></td>
             <td><%= edit_link edit_insurance_path(insurance) %></td>
             <td><%= delete_link insurance_path(insurance) %></td>
