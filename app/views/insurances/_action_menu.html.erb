@@ -13,24 +13,6 @@
           <div class='dropdown-item-dividier'></div>
         <% end %>
 
-        <% if params[:action] == 'show' %>
-          <% if @insurance.can?(:edit_insurances, :manages_insurances, :manage_roles) %>
-            <li>
-              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-              <%= link_to 'Edit', edit_insurance_path(@insurance), class: 'dropdown-item' %>
-            </li>
-            <div class='dropdown-item-dividier'></div>
-          <% end %>
-        <% else %>
-          <% if @insurance.can?(:show_insurances, :manages_insurances, :manage_roles) %>
-            <li>
-              <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-              <%= link_to 'Show', insurance_path(@insurance), class: 'dropdown-item' %>
-            </li>
-            <div class='dropdown-item-dividier'></div>
-          <% end %>
-        <% end %>
-
           <li>
             <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
             <%= link_to 'Cancel', insurances_path, class: 'dropdown-item' %>
