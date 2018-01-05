@@ -11,20 +11,6 @@
         </li>
           <div class='dropdown-item-dividier'></div>
 
-        <% if params[:action] == 'show' %>
-          <li>
-            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-            <%= link_to 'Edit', edit_note_template_path(@note_template), class: 'dropdown-item' %>
-          </li>
-            <div class='dropdown-item-dividier'></div>
-        <% else %>
-          <li>
-            <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-            <%= link_to 'Show', note_template_path(@note_template), class: 'dropdown-item' %>
-          </li>
-            <div class='dropdown-item-dividier'></div>
-        <% end %>
-
           <li>
             <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
             <%= link_to 'Cancel', note_templates_path, class: 'dropdown-item' %>
