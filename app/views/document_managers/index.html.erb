@@ -1,8 +1,3 @@
-<% if @current_folder.parent %>
-    <p> <%= link_to "<< Back".html_safe, document_managers_path(document_folder_id: @current_folder.parent.id) %></p>
-<% elsif params[:document_folder_id]%>
-    <p> <%= link_to "<< Back".html_safe, document_managers_path %></p>
-<% end %>
 
 <div class="module-title">
   <h2 class='module-title-text'>DOCUMENTS</h2>
