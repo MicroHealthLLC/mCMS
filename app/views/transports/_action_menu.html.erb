@@ -25,7 +25,7 @@
           <% if @transport.can?(:manage_roles, :manages_transports, :show_transports) %>
             <li>
               <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
-              <%= link_to 'Show', case_path(@case) + '#tabs-transports', class: 'dropdown-item' %>
+              <%= link_to 'Show', transport_path(@transport), class: 'dropdown-item' %>
             </li>
             <div class='dropdown-item-dividier'></div>
           <% end %>
@@ -33,7 +33,7 @@
 
           <li>
             <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
-            <%= link_to 'Cancel', transports_path, class: 'dropdown-item' %>
+            <%= link_to 'Cancel', @transport.case + '#tabs-transports', class: 'dropdown-item' %>
           </li>
           <div class='dropdown-item-dividier'></div>
 
