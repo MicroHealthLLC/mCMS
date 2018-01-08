@@ -1,6 +1,5 @@
 class OrganizationsController < ProtectForgeryApplication
   before_action  :authenticate_user!
-  add_breadcrumb 'Organizations', :organizations_path
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
   # before_action :find_optional_user
   before_action :require_admin, except: [:show]
