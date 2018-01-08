@@ -4,7 +4,7 @@
       <ul class="dropdown-menu dropdown-links" role="menu">
         <li>
           <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-            <%= link_to('Delete', role_path(role), class: 'dropdown-item',
+            <%= link_to('Delete', role_path(@role), class: 'dropdown-item',
                         :method => :delete,
                         :data => {:confirm => t(:text_are_you_sure)}) 
             %>
