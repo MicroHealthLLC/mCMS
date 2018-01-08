@@ -7,8 +7,8 @@
     <!-- END LOGO PLACEHOLDER -->
 
   </div>
-  <% if session[:employee_id] %>
-      <div class='col-xs-9 col-sm-8 col-md-8'>
+  <div id="midheader" class='col-xs-9 col-sm-8 col-md-8'>
+    <% if session[:employee_id] %>
         <div class='col-xs-12 col-sm-8 margin-top-10' style='float: left; <%= Setting.theme_style(User.current.can?(:manage_role)) == 'smart-style-1' ? 'color:white; ' : '' %> font-weight: bold;'>
           <%= cache User.current do %>
               <%= render_employee_information.html_safe %>
@@ -37,11 +37,8 @@
               </div>
             </div>
         <% end %>
-
-      </div>
-
-
-  <% end %>
+    <% end %>
+  </div>
   <!-- end projects dropdown -->
 
   <!-- pulled right: nav area -->
