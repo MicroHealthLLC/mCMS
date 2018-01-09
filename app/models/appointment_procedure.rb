@@ -21,7 +21,7 @@ class AppointmentProcedure < ApplicationRecord
   end
 
   def to_s
-    procedure
+    hcpc
   end
 
   def em_code

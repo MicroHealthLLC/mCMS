@@ -58,7 +58,7 @@ class AppointmentDispositionsController < ProtectForgeryApplication
   def destroy
     @appointment_disposition.destroy
     respond_to do |format|
-      format.html { redirect_to appointment_dispositions_url, notice: 'Appointment disposition was successfully destroyed.' }
+      format.html { redirect_to appointment_path(@appointment)+'#tabs-disposition', notice: 'Appointment disposition was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -68,6 +68,13 @@ class AppointmentDispositionsController < ProtectForgeryApplication
   def set_appointment_disposition
     @appointment_disposition = AppointmentDisposition.find(params[:id])
     @appointment = @appointment_disposition.appointment
+    if @appointment.case
+      add_breadcrumb @appointment.case, @appointment.case
+      add_breadcrumb I18n.t(:appointments), case_path(@appointment.case) + '#tabs-appointments'
+    else
+      add_breadcrumb I18n.t(:appointments), :appointments_path
+    end
+
     add_breadcrumb @appointment, appointment_path(@appointment)
     add_breadcrumb @appointment_disposition, @appointment_disposition
   rescue ActiveRecord::RecordNotFound

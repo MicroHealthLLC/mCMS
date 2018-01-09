@@ -58,7 +58,7 @@ class AppointmentCapturesController < UserCasesController
   def destroy
     @appointment_capture.destroy
     respond_to do |format|
-      format.html { redirect_to appointment_captures_url, notice: 'Appointment capture was successfully destroyed.' }
+      format.html { redirect_to appointment_path(@appointment)+'#tabs-capture'  , notice: 'Appointment capture was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
