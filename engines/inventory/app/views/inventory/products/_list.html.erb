@@ -11,14 +11,13 @@
     <th>Unit cost</th>
     <th>Product Location</th>
     <th>Product status</th>
-    <th colspan="2"></th>
   </tr>
   </thead>
 
   <tbody>
   <% @products.each do |product| %>
       <tr>
-        <td><%= product.name %></td>
+        <td><%=  link_to product.name, product  %></td>
         <td><%= product.product_category %></td>
         <td><%= product.product_type %></td>
         <td><%= product.manufacturer %></td>
@@ -27,8 +26,6 @@
         <td><%= product.unit_cost %></td>
         <td><%= product.product_location %></td>
         <td><%= product.product_status %></td>
-        <td><%= edit_link edit_product_path(product) %></td>
-        <td><%= delete_link product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
   <% end %>
   </tbody>
