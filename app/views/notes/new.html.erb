@@ -6,7 +6,7 @@
                  locals: {
                      note: @note,
                      wid_id: 'note_form',
-                     wid_title: t('add_note')
+                     wid_title: @note.is_a?(PostNote) ?  'Add Comment' : t('add_note')
                  } %>
     </article>
   </div>

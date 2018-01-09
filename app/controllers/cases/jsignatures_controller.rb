@@ -111,7 +111,7 @@ class JsignaturesController < UserCasesController
     if @jsignature.signature_owner_type == 'User'
       @breadcrumbs = []
       add_breadcrumb 'Client Profile', '/profile_record'
-      add_breadcrumb 'Signatures', :jsignatures_path
+      add_breadcrumb 'Signatures', '/profile_record#tabs-signature'
       add_breadcrumb @owner.to_s, @jsignature
     else
       add_breadcrumb @owner.to_s, @owner
