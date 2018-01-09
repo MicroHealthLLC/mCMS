@@ -18,6 +18,7 @@ class NewsController < ProtectForgeryApplication
   # GET /news/1
   # GET /news/1.json
   def show
+    @case = true
   end
 
   # GET /news/new
