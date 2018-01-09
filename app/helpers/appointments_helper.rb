@@ -28,7 +28,7 @@ module AppointmentsHelper
     tabs<< {:name => 'needs', partial: 'cases/show_case/needs' , :label => 'Needs'} if module_enabled?('needs')
     tabs<< {:name => 'goals', partial: 'cases/show_case/goals' , :label => 'Goals'} if module_enabled?('goals')
     tabs<< {:name => 'plans', partial: 'cases/show_case/plans' , :label => 'Plans'} if module_enabled?('plans')
-    tabs<< {:name => 'tasks', partial: 'cases/show_case/tasks' , :label => 'Tasks'} if module_enabled?('tasks')
+    tabs<< {:name => 'tasks', partial: 'cases/show_case/tasks' , :label => 'Actions'} if module_enabled?('tasks')
     tabs<< {:name => 'documents', partial: 'cases/show_case/documents', :label => 'Documents'} if module_enabled?('documents')
     tabs<< {:name => 'enrollments', partial: 'cases/show_case/enrollments' , :label => 'Enrollments'} if module_enabled?('enrollments')
     tabs<< {:name => 'teleconsults', partial: 'cases/show_case/teleconsults' , :label => 'Teleconsults'} if module_enabled?('teleconsults')

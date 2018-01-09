@@ -1,5 +1,4 @@
 class AppointmentCapturesController < UserCasesController
-  add_breadcrumb I18n.t(:appointments), :appointments_path
   before_action :set_appointment_capture, only: [:show, :edit, :update, :destroy]
 
   before_action :authorize_edit, only: [:edit, :update]
@@ -69,8 +68,15 @@ class AppointmentCapturesController < UserCasesController
   def set_appointment_capture
     @appointment_capture = AppointmentCapture.find(params[:id])
     @appointment = @appointment_capture.appointment
+    if @appointment.case
+      add_breadcrumb @appointment.case, @appointment.case
+      add_breadcrumb I18n.t(:appointments), case_path(@appointment.case) + '#tabs-appointments'
+    else
+      add_breadcrumb I18n.t(:appointments), :appointments_path
+    end
+
     add_breadcrumb @appointment, appointment_path(@appointment)
-    add_breadcrumb @appointment_capture, appointment_capture_path(@appointment_capture)
+    add_breadcrumb @appointment_capture.to_s, appointment_capture_path(@appointment_capture)
   rescue ActiveRecord::RecordNotFound
     render_404
   end

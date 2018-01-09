@@ -22,7 +22,7 @@ class AppointmentCapture < ApplicationRecord
   end
 
   def to_s
-    assessment
+    icdcm_code
   end
 
   def to_pdf(pdf, show_user= true)
