@@ -51,6 +51,20 @@ class JsignaturesController < UserCasesController
                                  signature_owner_id: @owner.id
     )
 
+
+    if @jsignature.signature_owner_type == 'User'
+      @breadcrumbs = []
+      add_breadcrumb 'Client Profile', '/profile_record'
+      add_breadcrumb 'Signatures', '/profile_record#tabs-signature'
+      add_breadcrumb @owner.to_s, @jsignature
+    else
+      add_breadcrumb @owner.to_s, @owner
+      if @owner.is_a? Case
+        add_breadcrumb I18n.t(:jsignatures), case_path(@owner) + '#tabs-signatures'
+      end
+      add_breadcrumb @jsignature, @jsignature
+    end
+
   rescue ActiveRecord::RecordNotFound
     render_404
   rescue StandardError::StandardError
