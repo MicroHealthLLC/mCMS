@@ -24,7 +24,7 @@
 
           <li>
             <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
-            <%= link_to 'Cancel', :back + '#tabs-checklists', class: 'dropdown-item' %>
+            <%= link_to 'Cancel',  (@checklist_case.case ? case_path(@checklist_case.case) + '#tabs-checklists' : :back), class: 'dropdown-item' %>
           </li>
           <div class='dropdown-item-dividier'></div>
 
