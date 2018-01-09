@@ -70,10 +70,16 @@ class NotesController < UserCasesController
   def set_note
     @note = Note.find(params[:id])
 
-    add_breadcrumb @note.object.to_s, @note.object
     if @note.object.is_a? Case
       add_breadcrumb I18n.t('notes'), case_path(@note.object) + "#tabs-notes"
+    elsif @note.object.is_a? Appointment
+      if @note.object.case
+        add_breadcrumb @note.object.case, case_path(@note.object.case)
+      end
+      add_breadcrumb @note.object, appointment_path(@note.object) + "#tabs-note"
     else
+      add_breadcrumb @note.object.to_s, @note.object
+
       add_breadcrumb I18n.t('notes'), :notes_path
     end
 
@@ -93,7 +99,7 @@ class NotesController < UserCasesController
              :case_note
            elsif params[:task_note]
              :task_note
-            elsif params[:referral_note]
+           elsif params[:referral_note]
              :referral_note
            elsif params[:post_note]
              :post_note
