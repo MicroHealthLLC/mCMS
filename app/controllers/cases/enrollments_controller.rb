@@ -45,6 +45,14 @@ class EnrollmentsController < UserCasesController
     @enrollment = Enrollment.new(user_id: User.current.id,
                                  date_start: Date.today,
                                  case_id: params[:case_id])
+
+    @case = @enrollment.case
+    if  @case
+      add_breadcrumb @case,  @case
+      add_breadcrumb I18n.t('enrollments'), case_path(@case) + '#tabs-enrollments'
+    else
+      add_breadcrumb I18n.t('enrollments'), :enrollments_path
+    end
   end
 
   # GET /enrollments/1/edit
@@ -102,7 +110,7 @@ class EnrollmentsController < UserCasesController
       add_breadcrumb @case,  @case
       add_breadcrumb I18n.t('enrollments'), case_path(@case) + '#tabs-enrollments'
     else
-    add_breadcrumb I18n.t('enrollments'), :enrollments_path
+      add_breadcrumb I18n.t('enrollments'), :enrollments_path
     end
 
     add_breadcrumb @enrollment.to_s, @enrollment

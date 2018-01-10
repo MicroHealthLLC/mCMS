@@ -112,6 +112,13 @@ class TasksController < UserCasesController
                        related_to_type: params[:type])
     end
 
+    if @task.case
+      add_breadcrumb @task.case, @task.case
+      add_breadcrumb I18n.t('tasks'), case_path(@task.case) + '#tabs-tasks'
+    else
+      add_breadcrumb I18n.t('tasks'), :tasks_path
+
+    end
 
   end
 

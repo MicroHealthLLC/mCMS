@@ -57,6 +57,13 @@ class CaseSupportsController < UserCasesController
     @case_support = CaseSupport.new(user_id: User.current.id,
                                     date_started: Date.today,
                                     case_id: params[:case_id])
+
+    if @case_support.case
+      add_breadcrumb @case_support.case, @case_support.case
+      add_breadcrumb I18n.t(:cases_supports), case_path(@case_support.case) + "#tabs-case_supports"
+    else
+      add_breadcrumb I18n.t(:cases_supports), :case_supports_path
+    end
   end
 
   # GET /case_supports/1/edit

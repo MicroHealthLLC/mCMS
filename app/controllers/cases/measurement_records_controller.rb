@@ -50,6 +50,15 @@ class MeasurementRecordsController < UserCasesController
       format.html{
         @measurement_record = MeasurementRecord.new(measurement_params)
         @measurement_record.user_id = User.current.id
+
+
+        if @measurement_record.case
+          add_breadcrumb @measurement_record.case, @measurement_record.case
+          add_breadcrumb 'Measurements', case_path(@measurement_record.case) + '#tabs-measurement_records'
+        else
+          add_breadcrumb 'Measurements', :measurement_records_path
+        end
+
       }
       format.js{
         @measurement_record = MeasurementRecord.new(measurement_params)

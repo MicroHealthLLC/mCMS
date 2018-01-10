@@ -44,6 +44,14 @@ class TransportsController  <  UserCasesController
   # GET /transports/new
   def new
     @transport = Transport.new(user_id: User.current.id, case_id: params[:case_id])
+    if @transport.case
+      add_breadcrumb @transport.case, @transport.case
+      add_breadcrumb I18n.t(:transports), case_path(@transport.case) + '#tabs-transports'
+
+    else
+      add_breadcrumb I18n.t(:transports), :transports_path
+
+    end
   end
 
   # GET /transports/1/edit

@@ -73,6 +73,15 @@ class ReferralsController < UserCasesController
                              referred_to_id: User.current_user.id,
                              referral_date: Date.today ,
                              case_id: params[:case_id])
+
+    if @referral.case
+      add_breadcrumb @referral.case, @referral.case
+      add_breadcrumb I18n.t(:referrals), case_path(@referral.case) + '#tabs-referrals'
+
+    else
+      add_breadcrumb I18n.t(:referrals), :referrals_path
+
+    end
   end
 
 # GET /referrals/1/edit

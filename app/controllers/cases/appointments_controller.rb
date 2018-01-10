@@ -95,6 +95,13 @@ class AppointmentsController < UserCasesController
                                    date: Time.now,
                                    with_who_id: User.current_user.id,
                                    related_to_id: params[:related_to])
+
+    if @appointment.case
+      add_breadcrumb @appointment.case, @appointment.case
+      add_breadcrumb I18n.t(:appointments), case_path(@appointment.case) + "#tabs-appointments"
+    else
+      add_breadcrumb I18n.t(:appointments), :appointments_path
+    end
   end
 
   # GET /appointments/1/edit

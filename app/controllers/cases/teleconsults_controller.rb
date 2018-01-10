@@ -47,6 +47,15 @@ class TeleconsultsController  < UserCasesController
     @teleconsult = Teleconsult.new(user_id: User.current.id,
                                    date: Date.today,
                                    case_id: params[:case_id])
+
+    if @teleconsult.case
+      add_breadcrumb @teleconsult.case, @teleconsult.case
+      add_breadcrumb I18n.t(:teleconsults), case_path(@teleconsult.case) + '#tabs-teleconsults'
+
+    else
+      add_breadcrumb I18n.t(:teleconsults), :teleconsults_path
+
+    end
   end
 
   # GET /teleconsults/1/edit

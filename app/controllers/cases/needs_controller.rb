@@ -82,6 +82,14 @@ class NeedsController < UserCasesController
                      assigned_to_id: User.current_user.id,
                      date_identified: Date.today,
                      case_id: params[:case_id])
+
+
+    if @need.case
+      add_breadcrumb @need.case, @need.case
+      add_breadcrumb I18n.t(:needs), case_path(@need.case) + '#tabs-needs'
+    else
+      add_breadcrumb I18n.t(:needs), :needs_path
+    end
   end
 
   # GET /needs/1/edit

@@ -99,6 +99,13 @@ class PlansController < UserCasesController
     if params[:goal_id]
       @plan.goal_plans.build(goal_id: params[:goal_id])
     end
+
+    if @plan.case
+      add_breadcrumb @plan.case, @plan.case
+      add_breadcrumb I18n.t('plans'), case_path(@plan.case) + '#tabs-plans'
+    else
+      add_breadcrumb I18n.t('plans'), :plans_path
+    end
   end
 
   # GET /plans/1/edit

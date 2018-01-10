@@ -81,7 +81,7 @@ class Enrollment < ApplicationRecord
     output<<"<b>Enrollment Status : </b> #{enrollment_status}<br/>"
     output<<"<b>Date start : </b> #{date_start}<br/>"
     output<<"<b>Date end : </b> #{date_end}<br/>"
-    output<<"<b>Description: </b> #{description} <br/>"
+    output<<"<b>Description: </b> #{note} <br/>"
     output.html_safe
   end
 

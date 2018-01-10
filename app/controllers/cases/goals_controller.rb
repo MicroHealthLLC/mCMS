@@ -106,6 +106,13 @@ class GoalsController <  UserCasesController
     if params[:need_id]
       @goal.need_goals.build(need_id: params[:need_id])
     end
+
+    if @goal.case
+      add_breadcrumb @goal.case, @goal.case
+      add_breadcrumb I18n.t(:goals), case_path(@goal.case) + '#tabs-goals'
+    else
+      add_breadcrumb I18n.t(:goals), :goals_path
+    end
   end
 
   # GET /goals/1/edit
