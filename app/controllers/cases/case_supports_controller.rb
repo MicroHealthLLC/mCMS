@@ -106,7 +106,7 @@ class CaseSupportsController < UserCasesController
   def destroy
     @case_support.destroy
     respond_to do |format|
-      format.html { redirect_to case_supports_url, notice: 'Case support was successfully destroyed.' }
+      format.html { redirect_to back_index_case_url, notice: 'Case support was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -128,9 +128,10 @@ class CaseSupportsController < UserCasesController
   # Use callbacks to share common setup or constraints between actions.
   def set_case_support
     @case_support = CaseSupport.find(params[:id])
+    @case =  @case_support.case
     if @case_support.case
       add_breadcrumb @case_support.case, @case_support.case
-      add_breadcrumb I18n.t(:cases_supports), case_path(@case_support.case) + "#tabs-case_support"
+      add_breadcrumb I18n.t(:cases_supports), case_path(@case_support.case) + "#tabs-case_supports"
     else
       add_breadcrumb I18n.t(:cases_supports), :case_supports_path
     end

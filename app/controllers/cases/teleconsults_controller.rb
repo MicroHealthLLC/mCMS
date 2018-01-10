@@ -89,7 +89,7 @@ class TeleconsultsController  < UserCasesController
   def destroy
     @teleconsult.destroy
     respond_to do |format|
-      format.html { redirect_to teleconsults_url, notice: 'Teleconsult was successfully destroyed.' }
+      format.html { redirect_to back_index_case_url, notice: 'Teleconsult was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -98,6 +98,7 @@ class TeleconsultsController  < UserCasesController
   # Use callbacks to share common setup or constraints between actions.
   def set_teleconsult
     @teleconsult = Teleconsult.find(params[:id])
+    @case = @teleconsult.case
     if @teleconsult.case
       add_breadcrumb @teleconsult.case, @teleconsult.case
       add_breadcrumb I18n.t(:teleconsults), case_path(@teleconsult.case) + '#tabs-teleconsults'

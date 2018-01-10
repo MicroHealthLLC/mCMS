@@ -150,7 +150,7 @@ class AppointmentsController < UserCasesController
   def destroy
     @appointment.destroy
     respond_to do |format|
-      format.html { redirect_to appointments_url, notice: 'Appointment was successfully destroyed.' }
+      format.html { redirect_to back_index_case_url, notice: 'Appointment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -182,6 +182,7 @@ class AppointmentsController < UserCasesController
                    :user=> [:core_demographic, :user_extend_demography => [:addresses, :phones]]).
         find(params[:id])
 
+    @case = @appointment.case
     if @appointment.case
       add_breadcrumb @appointment.case, @appointment.case
       add_breadcrumb I18n.t(:appointments), case_path(@appointment.case) + "#tabs-appointments"

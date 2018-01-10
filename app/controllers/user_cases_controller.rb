@@ -86,4 +86,12 @@ class UserCasesController < ProtectForgeryApplication
       User.current = object.user
     end
   end
+
+  def back_index_case_url
+    if @case
+      case_path(@case) + "#tabs-#{params[:controller]}"
+    else
+      {controller: params[:controller], action: 'index'}
+    end
+  end
 end

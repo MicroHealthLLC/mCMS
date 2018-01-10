@@ -1,0 +1,39 @@
+<table class="table  table-responsive" id="tasks_table">
+  <thead>
+  <tr>
+    <th><%= t('title') %></th>
+    <th><%= t('case') %></th>
+    <th><%= t('task_type') %></th>
+    <th><%= t('status') %></th>
+
+    <th><%= t('date_start') %></th>
+    <th><%= t('date_end') %></th>
+    <% if @appointment %>
+        <th></th>
+    <% end %>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% tasks.each do |task| %>
+      <tr>
+        <td><%= link_to_edit_if_can task.title, {ctrl: :tasks, object: task } %></td>
+
+        <td><%= link_to_case task.case %></td>
+        <td><%= task.task_type %></td>
+        <td><%= task.task_status_type %></td>
+        <td><%= format_date_time task.date_start %></td>
+        <td><%= format_date_time task.date_completed %></td>
+        <% if @appointment and can?(:manage_roles) %>
+            <td><%= link_to "<i class='fa fa-unlink fa-lg'></i>".html_safe, unlink_appointment_path(appointment_id: @appointment.id, type: 'Task', id: task.id ) %></td>
+        <% end %>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+    $(document).ready(function(){
+        initDataTable('tasks_table')
+    } );
+</script>

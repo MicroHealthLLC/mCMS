@@ -87,7 +87,7 @@ class DocumentsController < UserCasesController
   def destroy
     @document.destroy
     respond_to do |format|
-      format.html { redirect_to documents_url, notice: 'Document was successfully destroyed.' }
+      format.html { redirect_to back_index_case_url, notice: 'Document was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -96,6 +96,7 @@ class DocumentsController < UserCasesController
   # Use callbacks to share common setup or constraints between actions.
   def set_document
     @document = Document.find(params[:id])
+    @case =  @document.case
     if @document.case
       add_breadcrumb @document.case,  @document.case
       add_breadcrumb I18n.t(:documents), case_path(@document.case) + "#tabs-documents"

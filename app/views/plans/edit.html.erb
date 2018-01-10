@@ -13,6 +13,19 @@
   </div>
 </section>
 
+<% if module_enabled?('goals') %>
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= render partial: 'goals/all_list',
+                   layout: 'shared/smart_widget_wrapper',
+                   locals: {
+                       goals: @goals,
+                       wid_id: 'goals',
+                       wid_title: t('goals')
+                   } %>
+      </article>
+    </div>
+<% end %>
 
 <% if module_enabled?('tasks') %>
 
@@ -36,23 +49,11 @@
           </ul>
         </div>
       </div>
-      <% if module_enabled?('goals') %>
-          <div class="row">
-            <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <%= render partial: 'goals/list',
-                         layout: 'shared/smart_widget_wrapper',
-                         locals: {
-                             goals: @goals,
-                             wid_id: 'goals',
-                             wid_title: t('goals')
-                         } %>
-            </article>
-          </div>
-      <% end %>
+
       <% if module_enabled?('tasks') %>
           <div class="row">
             <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <%= render partial: 'tasks/list',
+              <%= render partial: 'tasks/all_list',
                          layout: 'shared/smart_widget_wrapper',
                          locals: {
                              tasks: @tasks,
@@ -88,7 +89,7 @@
       </div>
       <div class="row">
         <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <%= render partial: 'measurement_records/list',
+          <%= render partial: 'measurement_records/all_list',
                      layout: 'shared/smart_widget_wrapper',
                      locals: {
                          show_case_column: false,

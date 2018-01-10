@@ -1,0 +1,74 @@
+<% if module_enabled?('goals') %>
+    <section id="widget-grid" class="goals_section">
+      <div class="col-xs-12 btn-edition tabs-section">
+        <%= render partial: 'state_button_filter'%>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+          <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:190px;">
+            <% if @case && can?(:create_goals, :manage_roles, :manage_goals) %>
+                <li>
+                  <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                  <%= link_to t('new_goal'), new_goal_path(case_id: @case.id,  need_id: @need.id), class: 'dropdown-item' %>
+                </li>
+                <div class='dropdown-item-dividier'></div>
+            <% end %>
+            <li>
+              <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+              <%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'dropdown-item' %>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'goals/all_list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         goals: @goals,
+                         wid_id: 'goals',
+                         wid_title: 'goals'
+                     } %>
+        </article>
+      </div>
+    </section>
+<% end %>
+
+<span id="plans_tasks">
+ <%= render partial: 'plans_tasks' %>
+</span>
+
+
+
+
+<section id="widget-grid" class="needs_notes">
+  <div class="col-xs-12 btn-edition tabs-section">
+    <%= render partial: 'state_button_filter'%>
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+      <ul class="dropdown-menu dropdown-links" role="menu">
+        <% if can?(:add_notes, :manage_roles) %>
+            <li>
+              <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+              <%= link_to t('add_note'), new_note_path(type: 'NeedNote', owner_id: @need.id), class: 'dropdown-item' %>
+            </li>
+            <div class='dropdown-item-dividier'></div>
+        <% end %>
+        <li>
+          <span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+          <%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'dropdown-item'  %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'notes/notes',
+                 locals: {
+                     notes: @need.need_notes,
+                     wid_id: 'notes',
+                     wid_title: t('notes')
+                 } %>
+    </article>
+  </div>
+</section>
+

@@ -46,6 +46,9 @@ class GoalsController <  UserCasesController
     end
     @plans = @goal.plans
     @tasks = @plans.map(&:tasks).flatten.uniq
+
+
+    @needs = @goal.needs
   end
 
   def links

@@ -110,7 +110,7 @@ class MeasurementRecordsController < UserCasesController
   def destroy
     @measurement_record.destroy
     respond_to do |format|
-      format.html { redirect_to measurement_records_url, notice: 'Measurement record was successfully destroyed.' }
+      format.html { redirect_to back_index_case_url, notice: 'Measurement record was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -120,6 +120,7 @@ class MeasurementRecordsController < UserCasesController
   def set_measurement_record
     @measurement_record = MeasurementRecord.find(params[:id])
     @component = @measurement_record.component
+    @case =  @measurement_record.case
     if @measurement_record.case
     add_breadcrumb @measurement_record.case, @measurement_record.case
     add_breadcrumb 'Measurements', case_path(@measurement_record.case) + '#tabs-measurement_records'

@@ -113,7 +113,7 @@ class JsignaturesController < UserCasesController
   def destroy
     @jsignature.destroy
     respond_to do |format|
-      format.html { redirect_to jsignatures_url, notice: 'Jsignature was successfully destroyed.' }
+      format.html { redirect_to back_index_case_url, notice: 'Jsignature was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -132,6 +132,7 @@ class JsignaturesController < UserCasesController
     else
       add_breadcrumb @owner.to_s, @owner
       if @owner.is_a? Case
+        @case = @owner
         add_breadcrumb I18n.t(:jsignatures), case_path(@owner) + '#tabs-signatures'
       end
       add_breadcrumb @jsignature, @jsignature

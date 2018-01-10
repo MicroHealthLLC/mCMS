@@ -22,7 +22,7 @@ module CasesHelper
     end
 
     if @case_supports
-      tabs<< {:name => 'case_support', :partial => 'cases/show_case/case_support', :label => :case_support}
+      tabs<< {:name => 'case_supports', :partial => 'cases/show_case/case_support', :label => :case_supports}
     end
 
     if @notes

@@ -159,7 +159,7 @@ class TasksController < UserCasesController
   def destroy
     @task.destroy
     respond_to do |format|
-      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
+      format.html { redirect_to back_index_case_url, notice: 'Task was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -174,6 +174,7 @@ class TasksController < UserCasesController
   # Use callbacks to share common setup or constraints between actions.
   def set_task
     @task = Task.find(params[:id])
+    @case =  @task.case
     if @task.case
       add_breadcrumb @task.case, @task.case
       add_breadcrumb I18n.t('tasks'), case_path(@task.case) + '#tabs-tasks'

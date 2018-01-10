@@ -87,18 +87,20 @@ class EnrollmentsController < UserCasesController
   def destroy
     @enrollment.destroy
     respond_to do |format|
-      format.html { redirect_to enrollments_url, notice: 'Enrollment was successfully destroyed.' }
+      format.html { redirect_to back_index_case_url, notice: 'Enrollment was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_enrollment
     @enrollment = Enrollment.includes(:user).find(params[:id])
-    if  @enrollment.case
-      add_breadcrumb @enrollment.case,  @enrollment.case
-      add_breadcrumb I18n.t('enrollments'), case_path(@enrollment.case) + '#tabs-enrollments'
+    @case = @enrollment.case
+    if  @case
+      add_breadcrumb @case,  @case
+      add_breadcrumb I18n.t('enrollments'), case_path(@case) + '#tabs-enrollments'
     else
     add_breadcrumb I18n.t('enrollments'), :enrollments_path
     end

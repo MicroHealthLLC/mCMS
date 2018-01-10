@@ -147,7 +147,7 @@ class PlansController < UserCasesController
   def destroy
     @plan.destroy
     respond_to do |format|
-      format.html { redirect_to plans_url, notice: 'Plan was successfully destroyed.' }
+      format.html { redirect_to back_index_case_url, notice: 'Plan was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

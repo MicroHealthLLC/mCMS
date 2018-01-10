@@ -114,7 +114,7 @@ class ReferralsController < UserCasesController
   def destroy
     @referral.destroy
     respond_to do |format|
-      format.html { redirect_to referrals_url, notice: 'Referral was successfully destroyed.' }
+      format.html { redirect_to back_index_case_url, notice: 'Referral was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -139,6 +139,7 @@ class ReferralsController < UserCasesController
 # Use callbacks to share common setup or constraints between actions.
   def set_referral
     @referral = Referral.includes(:user, :referred_by, :referred_to).find(params[:id])
+    @case =  @referral.case
     if @referral.case
       add_breadcrumb @referral.case, @referral.case
       add_breadcrumb I18n.t(:referrals), case_path(@referral.case) + '#tabs-referrals'

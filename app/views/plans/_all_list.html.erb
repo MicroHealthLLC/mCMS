@@ -1,0 +1,53 @@
+<% show_case = defined?(show_case_column) ? show_case_column : true %>
+<table class="table table-responsive " id="plans_table">
+  <thead>
+  <tr>
+    <% if User.current.can?(:manage_roles) %>
+        <th><%= t('client') %></th>
+    <% end %>
+    <th><%= t('label_name') %></th>
+    <% if show_case %>
+        <th><%= t('case') %></th>
+    <% end %>
+    <th><%= t('priority') %></th>
+    <th><%= t('plan_status') %></th>
+    <th><%= t('plan_type') %></th>
+    <th>Percent Done</th>
+    <th><%= t('date_start') %></th>
+    <th><%= t('date_due') %></th>
+    <th><%= t('date_completed') %></th>
+    <% if @appointment %>
+        <th></th>
+    <% end %>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @plans.each do |plan| %>
+      <tr>
+        <% if User.current.can?(:manage_roles) %>
+            <th><%= plan.user %></th>
+        <% end %>
+        <td><%= link_to_edit_if_can plan.name, {ctrl: :plans, object: plan } %></td>
+        <% if show_case %>
+            <td><%= link_to_case plan.case %></td>
+        <% end %>
+        <td><%= plan.priority_type %></td>
+        <td><%= plan.plan_status %></td>
+        <td><%= plan.plan_type %></td>
+        <td><%= plan.percent_done || 0 %> % </td>
+        <td><%= format_date plan.date_start %></td>
+        <td><%= format_date plan.date_due %></td>
+        <td><%= format_date plan.date_completed %></td>
+        <% if @appointment  and can?(:manage_roles) %>
+            <td><%= link_to "<i class='fa fa-unlink fa-lg'></i>".html_safe, unlink_appointment_path(appointment_id: @appointment.id, type: 'Plan', id: plan.id ) %></td>
+        <% end %>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<script>
+    $(document).ready(function(){
+        initDataTable('plans_table')
+    } );
+</script>

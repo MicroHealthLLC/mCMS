@@ -85,7 +85,7 @@ class TransportsController  <  UserCasesController
   def destroy
     @transport.destroy
     respond_to do |format|
-      format.html { redirect_to transports_url, notice: 'Transport was successfully destroyed.' }
+      format.html { redirect_to back_index_case_url, notice: 'Transport was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
