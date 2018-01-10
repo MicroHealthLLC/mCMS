@@ -17,21 +17,22 @@ class DocumentManagersController < ProtectForgeryApplication
     # Get featured categories and recently uploaded documents
     #  making sure to hide private docs and categories
     @featured = Category.featured
-    @current_folder = params[:document_folder_id] ? Category.includes(:parent).find( params[:document_folder_id] ): Category.new
+    @current_folder = Category.includes(:parent).where(id: params[:document_folder_id] ).first  || Category.new
     @latest_docs = DocumentManager.latest_docs @current_folder.id
     @sub_folders = Category.where(parent_id: @current_folder.id)
     show_breadcrumb
   end
 
   def show_breadcrumb
-     categories = Array.new
-     categories<< @current_folder if @current_folder.persisted?
-     category = @current_folder
+    categories = Array.new
+    categories<< @current_folder if @current_folder.persisted?
+    category = @current_folder
     while parent =  category.parent
       categories<< parent
       category = category.parent
     end
 
+    add_breadcrumb "Documents", document_managers_path(document_folder_id: -1)
     categories.reverse.each do |c|
       add_breadcrumb c, document_managers_path(document_folder_id: c.id)
     end
@@ -45,7 +46,7 @@ class DocumentManagersController < ProtectForgeryApplication
     redirect_to document_managers_path
   end
 
-  def show 
+  def show
     @document = DocumentManager.find_by_id(params[:id])
 
     if can_view_document(@document)
@@ -111,12 +112,12 @@ class DocumentManagersController < ProtectForgeryApplication
       else
         # Create the initial revision of the new document
         @revision = Revision.new(file_name: revision_params.original_filename,
-            file_type: revision_params.content_type,
-            # file_data: revision_params.read,
-            document_manager_id: @document.id,
-            user_id: current_user.id,
-            position: 0
-          )
+                                 file_type: revision_params.content_type,
+                                 # file_data: revision_params.read,
+                                 document_manager_id: @document.id,
+                                 user_id: current_user.id,
+                                 position: 0
+        )
 
         d = DmsDocumemnt.new(document_manager_id: @document.id)
 
@@ -160,12 +161,12 @@ class DocumentManagersController < ProtectForgeryApplication
       flash[:success] = "DocumentManager updated!"
       redirect_to @document
     else
-      flash[:error] = "DocumentManager failed to update: #{@document.errors.full_messages.to_sentence}" 
+      flash[:error] = "DocumentManager failed to update: #{@document.errors.full_messages.to_sentence}"
       redirect_to @document
     end
   end
 
-  def destroy 
+  def destroy
     @document = DocumentManager.find(params[:id])
     @category = @document.category
     @document.destroy
@@ -173,12 +174,12 @@ class DocumentManagersController < ProtectForgeryApplication
   end
 
   private
-    def document_params
-      params.require(:document).permit(:title, :description, :folder_id,
-        :category_id, :is_writable, :is_private)
-    end
+  def document_params
+    params.require(:document).permit(:title, :description, :folder_id,
+                                     :category_id, :is_writable, :is_private)
+  end
 
-    def revision_params
-      params[:document][:revision][:file] if !params[:document][:revision].blank?
-    end
+  def revision_params
+    params[:document][:revision][:file] if !params[:document][:revision].blank?
+  end
 end
