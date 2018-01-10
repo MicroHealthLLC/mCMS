@@ -5,8 +5,7 @@ class PlanGoalWorker
   def perform(plan_id)
     plan = Plan.find(plan_id)
     plan.goals.each do |goal|
-      goal.percent_done = goal.plans.average(:percent_done).to_i
-      goal.save
+      goal.update_attributes percent_done: goal.plans.average(:percent_done).to_i
     end
   end
 end

@@ -23,7 +23,10 @@ class Goal < ApplicationRecord
   after_save :update_percent_done
 
   def update_percent_done
-   GoalNeedWorker.perform_in(1.second, self.id)
+   # GoalNeedWorker.perform_in(1.second, self.id)
+    needs.each do |need|
+      need.update_attributes(percent_done: need.goals.average(:percent_done).to_i)
+    end
   end
 
   validates_presence_of :name

@@ -21,7 +21,10 @@ class Plan < ApplicationRecord
   after_save :update_percent_done
 
   def update_percent_done
-    PlanGoalWorker.perform_in(1.second, self.id)
+    # PlanGoalWorker.perform_in(1.second, self.id)
+    goals.each do |goal|
+      goal.update_attributes percent_done: goal.plans.average(:percent_done).to_i
+    end
   end
 
   def self.safe_attributes
