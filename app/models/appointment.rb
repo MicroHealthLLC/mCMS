@@ -18,7 +18,7 @@ class Appointment < ApplicationRecord
   accepts_nested_attributes_for :appointment_attachments, reject_if: :all_blank, allow_destroy: true
 
 
-  validates_presence_of :date, :title, :description, :with_who_id, :with_who_type
+  validates_presence_of :date, :title, :with_who_id, :with_who_type
 
   # attr_accessor :with_who
 

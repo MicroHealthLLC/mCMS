@@ -87,7 +87,7 @@
       <div class="form-group">
         <%= f.label :employer , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.text_area :note , class: 'form-control' %>
+          <%= f.text_field :note , class: 'form-control address' %>
         </div>
       </div>
 
@@ -123,5 +123,12 @@
           <%= f.submit t('button_save'), class: 'btn btn-success pull-right' %>
         </div>
       </div>
-  <% end %>
+      <%= render partial: 'map_address', locals: {
+          location: "#{f.object.note}",
+          object: f.object
+      } %>
+
+<% end %>
 </fieldset>
+
+

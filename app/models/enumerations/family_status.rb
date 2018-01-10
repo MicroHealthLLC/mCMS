@@ -8,7 +8,7 @@ class FamilyStatus < Enumeration
   end
 
   def objects
-    Family.where(:family_status_id => self.id)
+    FamilyHistory.where(:family_status_id => self.id)
   end
 
   def objects_count

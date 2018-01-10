@@ -63,7 +63,7 @@ class TaskDatatable < AjaxDatatablesRails::Base
       arr<< [
           task.task_type.to_s ,
           task.task_status_type.to_s ,
-          @view.format_date( task.date_start ),
+          @view.format_date_time( task.date_start ),
           @view.format_date( task.date_completed)
       ]
       if @options[:appointment_id] and User.current_user.can?(:manage_roles)

@@ -9,7 +9,7 @@ class Enrollment < ApplicationRecord
   accepts_nested_attributes_for :enrollment_attachments, reject_if: :all_blank, allow_destroy: true
   has_many :appointment_links, as: :linkable
 
-  validates_presence_of :name, :user_id, :note, :case_id
+  validates_presence_of :name, :user_id, :case_id
 
   def self.safe_attributes
     [:user_id, :name, :enrollment_type_id, :enrollment_status_id, :case_id,

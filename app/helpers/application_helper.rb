@@ -126,9 +126,9 @@ module ApplicationHelper
   def link_to_edit_if_can(text, options)
     url_path = "/#{options[:ctrl]}/#{ options[:object].id}"
     if User.current_user.allowed_to?(controller: options[:ctrl], action: :edit)
-      link_to text, "#{url_path}/edit"
+      link_to text.presence, "#{url_path}/edit"
     else
-      link_to text, url_path
+      link_to text.presence, url_path
     end
   end
 

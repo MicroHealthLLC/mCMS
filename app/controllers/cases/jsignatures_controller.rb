@@ -62,7 +62,9 @@ class JsignaturesController < UserCasesController
       if @owner.is_a? Case
         add_breadcrumb I18n.t(:jsignatures), case_path(@owner) + '#tabs-signatures'
       end
-      add_breadcrumb @jsignature, @jsignature
+      if @jsignature.to_s
+        add_breadcrumb @jsignature, @jsignature
+      end
     end
 
   rescue ActiveRecord::RecordNotFound

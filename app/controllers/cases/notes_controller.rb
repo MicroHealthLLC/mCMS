@@ -21,6 +21,10 @@ class NotesController < UserCasesController
 
   def new
     @note = Note.new(type: params[:type], owner_id: params[:owner_id], user_id: User.current_user.id)
+
+    if @note.is_a? PostNote
+      @breadcrumbs = []
+    end
   rescue
     render_404
   end
@@ -85,6 +89,12 @@ class NotesController < UserCasesController
 
 
     add_breadcrumb @note.id, @note
+
+
+    if @note.is_a? PostNote
+      @breadcrumbs = []
+    end
+
   rescue ActiveRecord::RecordNotFound
     render_404
   end
