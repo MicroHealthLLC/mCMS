@@ -72,7 +72,8 @@ class ExtendDemographiesController < ProtectForgeryApplication
     elsif User.current != current_user
       employee_path(User.current)
     else
-      User.current.can?(:manage_roles) ? edit_user_registration_path : profile_record_path
+    #  User.current.can?(:manage_roles) ? edit_user_registration_path : profile_record_path
+      profile_record_path
     end
   end
 end
