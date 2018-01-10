@@ -69,10 +69,10 @@ class ExtendDemographiesController < ProtectForgeryApplication
       insurances_path
     elsif @extend_demography.case_support_id
       case_support_path
-    elsif User.current != current_user
-      employee_path(User.current)
+    elsif User.current != User.current_user
+      '/profile_record#tabs-extend_demographic'
     else
-      User.current.can?(:manage_roles) ? edit_user_registration_path : profile_record_path
+      User.current.can?(:manage_roles) ? edit_user_registration_path : '/profile_record#tabs-extend_demographic'
     end
   end
 end
