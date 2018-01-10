@@ -8,7 +8,7 @@ class CaseCategoryType < Enumeration
   end
 
   def objects
-    Case.where(:case_category_type_id => self.id)
+    Case.where(:case_category_id => self.id)
   end
 
   def objects_count
@@ -16,6 +16,6 @@ class CaseCategoryType < Enumeration
   end
 
   def transfer_relations(to)
-    objects.update_all(:case_category_type_id => to.id)
+    objects.update_all(:case_category_id => to.id)
   end
 end
