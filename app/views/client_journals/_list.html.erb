@@ -11,7 +11,7 @@
   <tbody>
   <% @client_journals.each do |client_journal| %>
       <tr>
-        <td><%= link_to client_journal.title, client_journal %></td>
+        <td><%= link_to_edit_if_can client_journal.title,  {ctrl: :client_journals, object: client_journal }%></td>
         <td><%= client_journal.client_journal_type %></td>
         <td><%= format_date client_journal.date %></td>
       </tr>
