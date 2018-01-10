@@ -24,6 +24,8 @@ class NotesController < UserCasesController
 
     if @note.is_a? PostNote
       @breadcrumbs = []
+    elsif @note.is_a? ClientJournalNote
+      @breadcrumbs = []
     end
   rescue
     render_404
@@ -92,6 +94,8 @@ class NotesController < UserCasesController
 
 
     if @note.is_a? PostNote
+      @breadcrumbs = []
+    elsif @note.is_a? ClientJournalNote
       @breadcrumbs = []
     end
 

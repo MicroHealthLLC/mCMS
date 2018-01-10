@@ -72,7 +72,15 @@ class ExtendDemographiesController < ProtectForgeryApplication
     elsif User.current != User.current_user
       '/profile_record#tabs-extend_demographic'
     else
-      User.current.can?(:manage_roles) ? edit_user_registration_path : '/profile_record#tabs-extend_demographic'
+      if  User.current.can?(:manage_roles)
+        if @user != User.current
+          user_path(@user) + '#tabs-extend_demographic'
+        else
+          :back
+        end
+      else
+        '/profile_record#tabs-extend_demographic'
+      end
     end
   end
 end

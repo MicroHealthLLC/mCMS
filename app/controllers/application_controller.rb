@@ -25,12 +25,12 @@ class ApplicationController < ActionController::Base
     if user_signed_in?
       User.current_user = current_user
 
-      if params[:user_id]
-        @user = User.find params[:user_id]
-        User.current = @user
-      elsif session[:employee_id]
+      if session[:employee_id]
         User.current = User.find session[:employee_id]
         @user = User.current
+      elsif params[:user_id]
+        @user = User.find params[:user_id]
+        User.current = current_user
       elsif params[:employee_id]
         User.current = User.find params[:employee_id]
         @user = User.current
