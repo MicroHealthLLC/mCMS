@@ -165,7 +165,8 @@ class ApplicationRecord < ActiveRecord::Base
   end
 
   def self.all_data
-    where.not(id: closed.pluck(:id))
+    # where.not(id: closed.pluck(:id))
+    where(nil)
   end
 
   def self.opened
