@@ -9,7 +9,7 @@
     <% if !User.current.allowed_to?(:manage_roles) %>
         <% if module_enabled?('cases') && can?(:manage_roles, :view_cases, :manage_cases) %>
             <li class="<%= menu_active?('cases') %>">
-              <a href="/cases" title="<%= t(:cases) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent">Case Record</span></a>
+              <a href="/cases" title="<%= t(:cases) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent">Case Records</span></a>
             </li>
         <% end %>
 

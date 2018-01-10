@@ -13,6 +13,24 @@
           <div class='dropdown-item-dividier'></div>
         <% end %>
 
+        <% if params[:action] == 'show' %>
+           <% if @product.can?(:manage_roles, :manages_products, :edit_products) %>
+             <li>
+               <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+               <%= link_to 'Edit', edit_product_path(@product), class: 'dropdown-item' %>
+             </li>
+             <div class='dropdown-item-dividier'></div>
+           <% end %>
+         <% else %>
+           <% if @product.can?(:manage_roles, :manages_products, :show_products) %>
+             <li>
+               <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+               <%= link_to 'Show', product_path(@product), class: 'dropdown-item' %>
+             </li>
+             <div class='dropdown-item-dividier'></div>
+           <% end %>
+         <% end %>
+
           <li>
             <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
             <%= link_to 'Cancel', products_path, class: 'dropdown-item' %>

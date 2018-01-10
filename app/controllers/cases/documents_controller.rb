@@ -33,7 +33,7 @@ class DocumentsController < UserCasesController
 
   def all_files
     @breadcrumbs =  []
-    add_breadcrumb 'All Files', '/all_files'
+    # add_breadcrumb 'All Files', '/all_files'
     @files = Attachment.visible
   end
 
