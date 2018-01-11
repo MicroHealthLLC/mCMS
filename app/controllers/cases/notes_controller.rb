@@ -77,6 +77,7 @@ class NotesController < UserCasesController
     @note = Note.find(params[:id])
 
     if @note.object.is_a? Case
+      add_breadcrumb @note.object, case_path(@note.object)
       add_breadcrumb I18n.t('notes'), case_path(@note.object) + "#tabs-notes"
     elsif @note.object.is_a? Appointment
       if @note.object.case
