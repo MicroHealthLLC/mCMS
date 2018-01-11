@@ -1,3 +1,11 @@
+<style>
+  .ui-widget-content a {
+    color: #214e75;
+  }
+  a.btn{
+    color: white
+  }
+</style>
 <%= simple_form_for([extend_demography.object, extend_demography],  html: {  class: 'form-horizontal' }) do |f| %>
     <% if extend_demography.errors.any? %>
         <div id="error_explanation">
