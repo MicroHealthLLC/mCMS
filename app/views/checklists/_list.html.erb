@@ -9,45 +9,41 @@
     <th><%= t('checklist_type') %></th>
     <th><%= t('number_of_checklist') %></th>
     <% if User.current.admin? %>
-        <th colspan="2"></th>
+        <th ></th>
+        <th ></th>
     <% end %>
   </tr>
   </thead>
 
   <tbody>
-  <% if @checklists.any? %>
-      <% @checklists.each do |checklist_case| %>
-          <% checklist_template = checklist_case.is_a?(ChecklistCase) ? checklist_case.checklist_template : checklist_case  %>
-          <tr>
-            <% if User.current.admin? %>
-                <td><%= link_to checklist_template.title, checklist_template_path(checklist_template ) %></td>
-            <% else %>
-                <td><%= link_to checklist_template.title, checklist_case_path(checklist_case) %></td>
-                <% if show_case %>
-                    <td><%= checklist_case.case %></td>
-                <% end %>
+  <% @checklists.each do |checklist_case| %>
+      <% checklist_template = checklist_case.is_a?(ChecklistCase) ? checklist_case.checklist_template : checklist_case  %>
+      <tr>
+        <% if User.current.admin? %>
+            <td><%= link_to checklist_template.title, checklist_template_path(checklist_template ) %></td>
+        <% else %>
+            <td><%= link_to checklist_template.title, checklist_case_path(checklist_case) %></td>
+            <% if show_case %>
+                <td><%= checklist_case.case %></td>
             <% end %>
+        <% end %>
 
-            <td><%= checklist_template.checklist_type %></td>
-            <td><%= checklist_template.checklists.count %></td>
+        <td><%= checklist_template.checklist_type %></td>
+        <td><%= checklist_template.checklists.count %></td>
 
-            <% if User.current.admin? %>
-                <td><%= edit_link edit_checklist_template_path(checklist_template) %></td>
-                <td><%= delete_link checklist_template_path(checklist_template) %></td>
-            <% end %>
+        <% if User.current.admin? %>
+            <td><%= edit_link edit_checklist_template_path(checklist_template) %></td>
+            <td><%= delete_link checklist_template_path(checklist_template) %></td>
+        <% end %>
 
-          </tr>
-      <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
       </tr>
   <% end %>
+
   </tbody>
 </table>
 <script>
-  $(document).ready(function(){
-    <% if @checklists.present? %>  initDataTable('checklists_table') <% end %>
-  } );
+    $(document).ready(function(){
+        initDataTable('checklists_table')
+    } );
 </script>
 
