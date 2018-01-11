@@ -4,23 +4,26 @@
       <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
       <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:190px;">
         <% if @case %>
-          <li>
-            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-            <%= link_to 'New Attempt', new_attempt_path(survey_id: @survey.id, case_id: @case.id), class: 'dropdown-item' %>
-          </li>
-          <div class='dropdown-item-dividier'></div>
+            <li>
+              <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+              <%= link_to 'New Attempt', new_attempt_path(survey_id: @survey.id, case_id: @case.id), class: 'dropdown-item' %>
+            </li>
+            <div class='dropdown-item-dividier'></div>
+            <li>
+              <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+              <%= link_to 'Cancel', case_path(@case) + '#tabs-surveys', class: 'dropdown-item' %>
+            </li>
         <% else %>
-          <li>
-            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-            <%= link_to 'New Attempt', new_attempt_path(survey_id: @survey.id), class: 'dropdown-item' %>
-          </li>
-          <div class='dropdown-item-dividier'></div>
+            <li>
+              <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+              <%= link_to 'New Attempt', new_attempt_path(survey_id: @survey.id), class: 'dropdown-item' %>
+            </li>
+            <div class='dropdown-item-dividier'></div>
+            <li>
+              <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+              <%= link_to 'Cancel', '/surveys', class: 'dropdown-item' %>
+            </li>
         <% end %>
-
-        <li>
-          <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
-          <%= link_to 'Cancel', case_path(@case) + '#tabs-surveys', class: 'dropdown-item' %>
-        </li>
         <div class='dropdown-item-dividier'></div>
 
         <li>
