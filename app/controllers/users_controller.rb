@@ -2,7 +2,7 @@ class UsersController < ProtectForgeryApplication
   before_action  :authenticate_user!
   before_action :find_user, except: [:restore, :index, :active, :audit, :recently_connected]
 
-  before_filter :require_admin, only: [:destroy, :active]
+  before_filter :require_admin, only: [:index, :destroy, :active]
   def index
     respond_to do |format|
       format.html{}
@@ -81,6 +81,11 @@ class UsersController < ProtectForgeryApplication
   end
 
   def show
+    unless User.current_user.can?(:manage_roles)
+      if @user != User.current
+        render_403
+      end
+    end
     @profile       = @user.profile
     @educations    = @user.educations
     @documents     = @user.documents
