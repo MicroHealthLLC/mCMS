@@ -124,6 +124,8 @@ class NotesController < UserCasesController
              :goal_note
            elsif params[:plan_note]
              :plan_note
+           elsif params[:job_app_note]
+             :job_app_note
            elsif params[:appointment_note]
              :appointment_note
            elsif params[:document_note]
