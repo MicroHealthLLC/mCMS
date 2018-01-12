@@ -49,23 +49,20 @@
           </ul>
         </div>
       </div>
-
-      <% if module_enabled?('tasks') %>
-          <div class="row">
-            <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-              <%= render partial: 'tasks/all_list',
-                         layout: 'shared/smart_widget_wrapper',
-                         locals: {
-                             tasks: @tasks,
-                             wid_id: 'tasks',
-                             wid_title: t('tasks')
-                         } %>
-            </article>
-          </div>
-      <% end %>
-    </section>
-
+      <div class="row">
+        <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <%= render partial: 'tasks/all_list',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         tasks: @tasks,
+                         wid_id: 'tasks',
+                         wid_title: t('tasks')
+                     } %>
+        </article>
+      </div>
+   </section>
 <% end %>
+
 <% if module_enabled?('measurement_records') %>
     <section id="widget-grid" class="measurements_section">
       <div class="col-xs-12 btn-edition tabs-section">
