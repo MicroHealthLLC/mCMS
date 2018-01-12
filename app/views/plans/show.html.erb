@@ -12,6 +12,19 @@
   </div>
 </section>
 
+<% if module_enabled?('goals') %>
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= render partial: 'goals/all_list',
+                   layout: 'shared/smart_widget_wrapper',
+                   locals: {
+                       goals: @goals,
+                       wid_id: 'goals',
+                       wid_title: t('goals')
+                   } %>
+      </article>
+    </div>
+<% end %>
 
 <% if module_enabled?('tasks') %>
 
