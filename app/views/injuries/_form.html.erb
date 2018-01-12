@@ -1,126 +1,140 @@
-<fieldset>
-  <legend></legend>
-  <%= form_for(injury, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
-      <% if injury.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(injury.errors.count, "error") %> prohibited this Injury from being saved:</h2>
 
-            <ul>
-              <% injury.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-      <% end %>
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+  <fieldset>
+    <legend></legend>
+    <%= form_for(injury, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+        <% if injury.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(injury.errors.count, "error") %> prohibited this Injury from being saved:</h2>
 
-      <%= f.hidden_field :user_id %>
-      <div class="form-group">
-        <%= f.label :injury_name , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :injury_name, class: 'form-control', required: true%>
-        </div>
-      </div>
-      <div class="form-group">
-        <%= f.label :snomed, class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= text_field_tag :snomed_occupation, f.object.snomed_occupation,  class: 'form-control', placeholder: 'Type to Search' %>
-          <%= f.hidden_field :snomed_occupation %>
-          <script>
-            $(document).ready(function(){
-              $('#snomed_occupation').autocomplete({
-                source: "/snomed.json?default=disorder",
-                minLength: 2,
-                select: function( event, ui ) {
-                  $('#injury_snomed_occupation').val(ui.item.id)
-                }
-              })
-            })
-          </script>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:injury_type), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :injury_type_id, options_for_select(InjuryType.active.pluck(:name, :id), selected: f.object.injury_type.try(:id)) , {} ,{class: 'form-control'} %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :injury_cause , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :injury_cause_name, class: 'form-control' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :snomed_cause, class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= text_field_tag :snomed_event, f.object.snomed_event,  class: 'form-control' %>
-          <%= f.hidden_field :snomed_event %>
-          <script>
-            $(document).ready(function(){
-              $('#snomed_event').autocomplete({
-                source: "/snomed.json?default=event",
-                minLength: 2,
-                select: function( event, ui ) {
-                  $('#injury_snomed_event').val(ui.item.id)
-                }
-              })
-            })
-          </script>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:injury_status), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :injury_status_id, options_for_select(InjuryStatus.active.pluck(:name, :id), selected: f.object.injury_status.try(:id)) , {} ,{class: 'form-control'} %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :employer , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :employer, class: 'form-control' %>
-        </div>
-      </div>
-      <div class="form-group">
-        <%= f.label :date_of_injury , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :date_of_injury, class: 'form-control date_picker' %>
-        </div>
-      </div>
-      <div class="form-group">
-        <%= f.label :date_resolved , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :date_resolved, class: 'form-control date_picker' %>
-        </div>
-      </div>
-      <div class="form-group">
-        <%= f.label t(:description) , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_area :description , class: 'form-control ck-editor' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="col-md-12">
-          <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
-        </div>
-        <%= f.simple_fields_for :injury_attachments do |attachment| %>
-            <%= render 'attachments/attachment_show', :f => attachment %>
+              <ul>
+                <% injury.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
         <% end %>
-        <div id="attachment_fields" class="col-xs-2 margin-top-10 " style="padding-right: 2px;" >
-          <%= link_to_add_association 'add file', f, :injury_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
-        </div>
-      </div>
 
-      <div class="form-group" >
-        <div class="col-md-11">
-          <%= link_to t('button_cancel'), injuries_path, class: 'btn btn-warning pull-right' %>
-          <%= f.submit t(:button_save), class: 'btn btn-success pull-right' %>
+        <%= f.hidden_field :user_id %>
+        <div class="form-group">
+          <%= f.label :injury_name , class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.text_field :injury_name, class: 'form-control', required: true%>
+          </div>
         </div>
-      </div>
-  <% end %>
-</fieldset>
+        <div class="form-group">
+          <%= f.label :snomed, class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= text_field_tag :snomed_occupation, f.object.snomed_occupation,  class: 'form-control', placeholder: 'Type to Search' %>
+            <%= f.hidden_field :snomed_occupation %>
+            <script>
+              $(document).ready(function(){
+                $('#snomed_occupation').autocomplete({
+                  source: "/snomed.json?default=disorder",
+                  minLength: 2,
+                  select: function( event, ui ) {
+                    $('#injury_snomed_occupation').val(ui.item.id)
+                  }
+                })
+              })
+            </script>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label t(:injury_type), class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.select :injury_type_id, options_for_select(InjuryType.active.pluck(:name, :id), selected: f.object.injury_type.try(:id)) , {} ,{class: 'form-control'} %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :injury_cause , class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.text_field :injury_cause_name, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :snomed_cause, class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= text_field_tag :snomed_event, f.object.snomed_event,  class: 'form-control' %>
+            <%= f.hidden_field :snomed_event %>
+            <script>
+              $(document).ready(function(){
+                $('#snomed_event').autocomplete({
+                  source: "/snomed.json?default=event",
+                  minLength: 2,
+                  select: function( event, ui ) {
+                    $('#injury_snomed_event').val(ui.item.id)
+                  }
+                })
+              })
+            </script>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label t(:injury_status), class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.select :injury_status_id, options_for_select(InjuryStatus.active.pluck(:name, :id), selected: f.object.injury_status.try(:id)) , {} ,{class: 'form-control'} %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :employer , class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.text_field :employer, class: 'form-control' %>
+            <%= f.hidden_field :location_lat, class: 'form-control' %>
+            <%= f.hidden_field :location_long, class: 'form-control' %>
+         </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :date_of_injury , class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.text_field :date_of_injury, class: 'form-control date_picker' %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :date_resolved , class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.text_field :date_resolved, class: 'form-control date_picker' %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label t(:description) , class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.text_area :description , class: 'form-control ck-editor' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-12">
+            <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+          </div>
+          <%= f.simple_fields_for :injury_attachments do |attachment| %>
+              <%= render 'attachments/attachment_show', :f => attachment %>
+          <% end %>
+          <div id="attachment_fields" class="col-xs-2 margin-top-10 " style="padding-right: 2px;" >
+            <%= link_to_add_association 'add file', f, :injury_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+          </div>
+        </div>
+
+        <div class="form-group" >
+          <div class="col-md-11">
+            <%= link_to t('button_cancel'), injuries_path, class: 'btn btn-warning pull-right' %>
+            <%= f.submit t(:button_save), class: 'btn btn-success pull-right' %>
+          </div>
+        </div>
+    <% end %>
+  </fieldset>
+  </div>
+  <div class="col-xs-12 col-md-4">
+    <%= render partial: 'map', locals: {
+        location: 'injury_employer',
+        location_lat: 'injury_location_lat',
+        location_long: 'injury_location_long',
+        object: injury
+    } %></div>
+</div>
