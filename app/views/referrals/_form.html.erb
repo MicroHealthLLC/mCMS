@@ -1,98 +1,107 @@
-<fieldset>
-  <legend></legend>
-  <%= form_for(referral, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
-      <% if referral.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(referral.errors.count, "error") %> prohibited this problem list from being saved:</h2>
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+  <fieldset>
+    <legend></legend>
+    <%= form_for(referral, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+        <% if referral.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(referral.errors.count, "error") %> prohibited this problem list from being saved:</h2>
 
-            <ul>
-              <% referral.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-      <% end %>
-
-      <%= f.hidden_field :user_id %>
-      <%= f.hidden_field :case_id %>
-
-      <div class="form-group">
-        <%= f.label :title , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :title, class: 'form-control' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:referral_type), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :referral_type_id, options_for_select(ReferralType.active.pluck(:name, :id), selected: f.object.referral_type.try(:id)) , {} ,{class: 'form-control'} %>
-        </div>
-      </div>
-      
-      
-      <div class="form-group">
-        <%= f.label :referral_date , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :referral_date,class: 'form-control date_picker' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :referral_appointment , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :referral_appointment, value: format_date_time(f.object.referral_appointment) ,class: 'form-control datetimepicker' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:referral_status), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :referral_status_id, options_for_select(ReferralStatus.active.pluck(:name, :id), selected: f.object.referral_status.try(:id)) , {} ,{class: 'form-control'} %>
-        </div>
-      </div>
-
-     <div class="form-group">
-        <%= f.label :referred_by, class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :referred_by_id, options_for_select(User.power_user.map{|user| [user.name, user.id]}, selected: f.object.referred_by_id) , {} ,{class: 'form-control'} %>
-        </div>
-      </div>
-     <div class="form-group">
-        <%= f.label :referred_to, class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :referred_to_address,  class: 'form-control address' %>
-          <%= render partial: 'map_address', locals: {
-              location: "#{f.object_name.gsub(/[\[\]]+/, '_').chop}_address",
-              object: f.object
-          } %>
-        </div>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label :referral_reason , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_area :referral_reason , class: 'form-control ck-editor' %>
-        </div>
-      </div>
-      
-      <div class="form-group">
-        <div class="col-md-12">
-          <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
-        </div>
-        <%= f.simple_fields_for :referral_attachments do |attachment| %>
-            <%= render 'attachments/attachment_show', :f => attachment %>
+              <ul>
+                <% referral.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
         <% end %>
-        <div id="attachment_fields" class="col-xs-2 margin-top-10 " style="padding-right: 2px;" >
-          <%= link_to_add_association 'add file', f, :referral_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
-        </div>
-      </div>
 
-      <div class="form-group" >
-        <div class="col-md-11">
-          <%= link_to t('button_cancel'), referrals_path, class: 'btn btn-warning pull-right' %>
-          <%= f.submit t(:button_save), class: 'btn btn-success pull-right' %>
+        <%= f.hidden_field :user_id %>
+        <%= f.hidden_field :case_id %>
+
+        <div class="form-group">
+          <%= f.label :title , class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.text_field :title, class: 'form-control' %>
+          </div>
         </div>
-      </div>
-  <% end %>
-</fieldset>
+
+        <div class="form-group">
+          <%= f.label t(:referral_type), class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.select :referral_type_id, options_for_select(ReferralType.active.pluck(:name, :id), selected: f.object.referral_type.try(:id)) , {} ,{class: 'form-control'} %>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <%= f.label :referral_date , class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.text_field :referral_date,class: 'form-control date_picker' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :referral_appointment , class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.text_field :referral_appointment, value: format_date_time(f.object.referral_appointment) ,class: 'form-control datetimepicker' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label t(:referral_status), class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.select :referral_status_id, options_for_select(ReferralStatus.active.pluck(:name, :id), selected: f.object.referral_status.try(:id)) , {} ,{class: 'form-control'} %>
+          </div>
+        </div>
+
+       <div class="form-group">
+          <%= f.label :referred_by, class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.select :referred_by_id, options_for_select(User.power_user.map{|user| [user.name, user.id]}, selected: f.object.referred_by_id) , {} ,{class: 'form-control'} %>
+          </div>
+        </div>
+       <div class="form-group">
+          <%= f.label :referred_to, class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.text_field :referred_to_address,  class: 'form-control address' %>
+            <%= f.hidden_field :location_lat, class: 'form-control' %>
+            <%= f.hidden_field :location_long, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :referral_reason , class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.text_area :referral_reason , class: 'form-control ck-editor' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-md-12">
+            <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+          </div>
+          <%= f.simple_fields_for :referral_attachments do |attachment| %>
+              <%= render 'attachments/attachment_show', :f => attachment %>
+          <% end %>
+          <div id="attachment_fields" class="col-xs-2 margin-top-10 " style="padding-right: 2px;" >
+            <%= link_to_add_association 'add file', f, :referral_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+          </div>
+        </div>
+
+        <div class="form-group" >
+          <div class="col-md-11">
+            <%= link_to t('button_cancel'), referrals_path, class: 'btn btn-warning pull-right' %>
+            <%= f.submit t(:button_save), class: 'btn btn-success pull-right' %>
+          </div>
+        </div>
+    <% end %>
+  </fieldset>
+  </div>
+  <div class="col-xs-12 col-md-4">
+    <%= render partial: 'map', locals: {
+        location: 'referral_referred_to_address',
+        location_lat: 'referral_location_lat',
+        location_long: 'referral_location_long',
+        object: referral
+    } %></div>
+</div>
