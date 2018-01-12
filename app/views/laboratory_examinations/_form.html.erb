@@ -1,90 +1,98 @@
-<fieldset>
-  <legend></legend>
-  <%= form_for(laboratory_examination, html: { class: 'form-horizontal' }) do |f| %>
-      <% if laboratory_examination.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(laboratory_examination.errors.count, "error") %> </h2>
 
-            <ul>
-              <% laboratory_examination.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-              <% end %>
-            </ul>
-          </div>
-      <% end %>
-      <%= f.hidden_field :user_id %>
-      <div class="form-group">
-        <%= f.label t(:label_name), class: 'col-md-2 control-label' %>
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+  <fieldset>
+    <legend></legend>
+    <%= form_for(laboratory_examination, html: { class: 'form-horizontal' }) do |f| %>
+        <% if laboratory_examination.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(laboratory_examination.errors.count, "error") %> </h2>
 
-        <div class="col-md-9">
-          <%= text_field_tag :snomed, f.object.snomed,  class: 'form-control' , placeholder: 'Type to Search' %>
-          <%= f.hidden_field :snomed %>
-          <%= f.hidden_field :name %>
-          <script>
-            $(document).ready(function(){
-              $('#snomed').autocomplete({
-                source: "/snomed.json?default=procedure",
-                minLength: 2,
-                select: function( event, ui ) {
-                  $('#laboratory_examination_snomed').val(ui.item.id)
-                  $('#laboratory_examination_name').val(ui.item.id)
-                }
-              })
-            })
-          </script>
-        </div>
-      </div>
-      <div class="form-group">
-        <%= f.label :facility,  class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :facility , class: 'form-control address' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:label_date) , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :date , class: 'form-control date_picker' %>
-        </div>
-      </div>
-
-
-      <div class="form-group">
-        <%= f.label t('laboratory_result_status'), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :laboratory_result_status_id, options_for_select(LaboratoryResultStatus.pluck(:name, :id), selected: f.object.laboratory_result_status.try(:id)), {},{ class: 'form-control'} %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :result , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_area :result , class: 'form-control ck-editor' %>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="col-md-12">
-          <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
-        </div>
-        <%= f.simple_fields_for :laboratory_examination_attachments do |attachment| %>
-            <%= render 'attachments/attachment_show', :f => attachment %>
+              <ul>
+                <% laboratory_examination.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
         <% end %>
-        <div id="attachment_fields" class="col-xs-2 margin-top-10 " style="padding-right: 2px;" >
-          <%= link_to_add_association 'add file', f, :laboratory_examination_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+        <%= f.hidden_field :user_id %>
+        <div class="form-group">
+          <%= f.label t(:label_name), class: 'col-md-2 control-label' %>
+
+          <div class="col-md-9">
+            <%= text_field_tag :snomed, f.object.snomed,  class: 'form-control' , placeholder: 'Type to Search' %>
+            <%= f.hidden_field :snomed %>
+            <%= f.hidden_field :name %>
+            <script>
+              $(document).ready(function(){
+                $('#snomed').autocomplete({
+                  source: "/snomed.json?default=procedure",
+                  minLength: 2,
+                  select: function( event, ui ) {
+                    $('#laboratory_examination_snomed').val(ui.item.id)
+                    $('#laboratory_examination_name').val(ui.item.id)
+                  }
+                })
+              })
+            </script>
+          </div>
         </div>
-      </div>
-
-      <div class="form-group" >
-        <div class="col-md-11">
-          <%= link_to t('button_cancel'), laboratory_examinations_path, class: 'btn btn-warning pull-right' %>
-          <%= f.submit t('button_save'), class: 'btn btn-success pull-right' %>
+        <div class="form-group">
+          <%= f.label :facility,  class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.text_field :facility, class: 'form-control address' %>
+            <%= f.hidden_field :location_lat, class: 'form-control' %>
+            <%= f.hidden_field :location_long, class: 'form-control' %>
+          </div>
         </div>
-      </div>
 
-      <%= render partial: 'map_address', locals: {
-          location: "#{f.object.facility}",
-          object: f.object
-      } %>
+        <div class="form-group">
+          <%= f.label t(:label_date) , class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.text_field :date , class: 'form-control date_picker' %>
+          </div>
+        </div>
 
-  <% end %>
-</fieldset>
+
+        <div class="form-group">
+          <%= f.label t('laboratory_result_status'), class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.select :laboratory_result_status_id, options_for_select(LaboratoryResultStatus.pluck(:name, :id), selected: f.object.laboratory_result_status.try(:id)), {},{ class: 'form-control'} %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :result , class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.text_area :result , class: 'form-control ck-editor' %>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-12">
+            <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+          </div>
+          <%= f.simple_fields_for :laboratory_examination_attachments do |attachment| %>
+              <%= render 'attachments/attachment_show', :f => attachment %>
+          <% end %>
+          <div id="attachment_fields" class="col-xs-2 margin-top-10 " style="padding-right: 2px;" >
+            <%= link_to_add_association 'add file', f, :laboratory_examination_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+          </div>
+        </div>
+
+        <div class="form-group" >
+          <div class="col-md-11">
+            <%= link_to t('button_cancel'), laboratory_examinations_path, class: 'btn btn-warning pull-right' %>
+            <%= f.submit t('button_save'), class: 'btn btn-success pull-right' %>
+          </div>
+        </div>
+    <% end %>
+  </fieldset>
+  </div>
+  <div class="col-xs-12 col-md-4">
+    <%= render partial: 'map', locals: {
+        location: 'laboratory_examination_facility',
+        location_lat: 'laboratory_examination_location_lat',
+        location_long: 'laboratory_examination_location_long',
+        object: laboratory_examination
+    } %></div>
+</div>
