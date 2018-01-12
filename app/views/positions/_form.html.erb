@@ -127,11 +127,6 @@
             <%= f.submit t('button_save'), class: 'btn btn-success pull-right' %>
           </div>
         </div>
-        <%= render partial: 'map_address', locals: {
-            location: "#{f.object.note}",
-            object: f.object
-        } %>
-
   <% end %>
   </fieldset>
   </div>
