@@ -77,7 +77,7 @@ class Referral < ApplicationRecord
   def self.safe_attributes
     [
         :user_id, :title, :referral_type_id, :referral_date, :referral_appointment, :case_id,
-        :referral_status_id, :referred_by_id, :referred_to_id, :referral_reason, :referred_to_address, :location_lat, :location_long, 
+        :referral_status_id, :referred_by_id, :referred_to_id, :referral_reason, :referred_to_address, :location, :location_lat, :location_long, 
         referral_attachments_attributes: [Attachment.safe_attributes]
     ]
   end
