@@ -12,8 +12,8 @@ class Enrollment < ApplicationRecord
   validates_presence_of :name, :user_id, :case_id
 
   def self.safe_attributes
-    [:user_id, :name, :enrollment_type_id, :enrollment_status_id, :case_id,
-     :date_start, :date_end, :note, :location, :location_lat, :location_long, enrollment_attachments_attributes: [Attachment.safe_attributes]]
+    [:user_id, :name, :location_lat, :location_long, :enrollment_type_id, :enrollment_status_id, :case_id,
+     :date_start, :date_end, :note, enrollment_attachments_attributes: [Attachment.safe_attributes]]
   end
 
   def self.enumeration_columns
