@@ -31,7 +31,7 @@ class ContactDatatable < AjaxDatatablesRails::Base
   def data
     records.map do |contact|
       [
-          @view.link_to( contact.name, contact),
+          @view.link_to_edit_if_can(contact.name, {ctrl: :contacts, object: contact }),
           contact.emergency_contact,
           contact.contact_type.to_s,
           contact.contact_status.to_s,
