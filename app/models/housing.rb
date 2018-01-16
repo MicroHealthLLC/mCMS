@@ -60,7 +60,7 @@ class Housing < ApplicationRecord
   def self.safe_attributes
     [:user_id, :title, :snomed,
      :housing_status_id, :description,
-     :primary_address_id, :address, :location, :location_lat, :location_long, :estimated_monthly_payment,
+     :primary_address_id, :address, :location_lat, :location_long, :estimated_monthly_payment,
      :date_start, :date_end,
      housing_attachments_attributes: [Attachment.safe_attributes]]
   end
