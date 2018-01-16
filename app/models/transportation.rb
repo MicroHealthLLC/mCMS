@@ -71,7 +71,7 @@ class Transportation < ApplicationRecord
 
 
   def to_s
-    title
+    transportation_type.to_s
   end
 
   def self.safe_attributes

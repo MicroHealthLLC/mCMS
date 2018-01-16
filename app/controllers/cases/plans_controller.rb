@@ -41,6 +41,7 @@ class PlansController < UserCasesController
   # GET /plans/1.json
   def show
     set_client_profile(@plan)
+    @goals = @plan.goals
     @tasks = @plan.tasks
     @measurement_records = @plan.measurement_records
   end
