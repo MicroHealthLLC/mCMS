@@ -61,7 +61,7 @@ class Affiliation < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:name, :affiliation_type_id, :note, :user_id,
+    [:name, :affiliation_type_id, :note, :user_id, :location, :location_lat, :location_long,
      :status_id, :date_start, :date_end, affiliation_attachments_attributes: [Attachment.safe_attributes] ]
   end
 

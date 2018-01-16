@@ -86,7 +86,7 @@ class Position < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:user_id, :title, :position_description, :estimated_monthly_amount,
+    [:user_id, :title, :position_description, :estimated_monthly_amount, :location_lat, :location_long,
      :location_type_id, :special_requirement, :note, :location_lat, :location_long, :status_id, :occupation_id, :snomed,
      :date_start, :date_end, :organization_id, :salary, :pay_rate_id, :employment_type_id,
      position_attachments_attributes: [Attachment.safe_attributes]]

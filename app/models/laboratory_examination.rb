@@ -42,7 +42,8 @@ class LaboratoryExamination < ApplicationRecord
 
   def self.safe_attributes
     [
-        :user_id, :name, :facility, :location_lat, :location_long, :date, :result, :laboratory_result_status_id, :snomed,
+        :user_id, :name, :facility, :location_lat, :location_long, :date, :result,
+        :laboratory_result_status_id, :snomed,
         laboratory_examination_attachments_attributes: [Attachment.safe_attributes]
     ]
   end
