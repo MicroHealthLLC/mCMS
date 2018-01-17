@@ -95,8 +95,8 @@ class ReferralsController < UserCasesController
     respond_to do |format|
       if @referral.save
         set_link_to_appointment(@referral)
-        format.html { redirect_to @referral, notice: 'Referral was successfully created.' }
-        format.json { render :show, status: :created, location: @referral }
+        format.html { redirect_to back_index_case_url, notice: 'Referral was successfully created.' }
+      #  format.json { render :show, status: :created, location: @referral }
       else
         format.html { render :new }
         format.json { render json: @referral.errors, status: :unprocessable_entity }
@@ -109,8 +109,8 @@ class ReferralsController < UserCasesController
   def update
     respond_to do |format|
       if @referral.update(referral_params)
-        format.html { redirect_to @referral, notice: 'Referral was successfully updated.' }
-        format.json { render :show, status: :ok, location: @referral }
+        format.html { redirect_to back_index_case_url, notice: 'Referral was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @referral }
       else
         format.html { render :edit }
         format.json { render json: @referral.errors, status: :unprocessable_entity }
