@@ -51,11 +51,11 @@ class AffiliationsController < UserProfilesController
 
     respond_to do |format|
       if @affiliation.save
-        format.html { redirect_to @affiliation, notice: 'Affiliation was successfully created.' }
-        format.json { render :show, status: :created, location: @affiliation }
+        format.html { redirect_to affiliations_url, notice: 'Affiliation was successfully created.' }
+      #  format.json { render :show, status: :created, location: @affiliation }
       else
         format.html { render :new }
-        format.json { render json: @affiliation.errors, status: :unprocessable_entity }
+      #  format.json { render json: @affiliation.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -65,11 +65,11 @@ class AffiliationsController < UserProfilesController
   def update
     respond_to do |format|
       if @affiliation.update(affiliation_params)
-        format.html { redirect_to @affiliation, notice: 'Affiliation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @affiliation }
+        format.html { redirect_to affiliations_url, notice: 'Affiliation was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @affiliation }
       else
         format.html { render :edit }
-        format.json { render json: @affiliation.errors, status: :unprocessable_entity }
+      #  format.json { render json: @affiliation.errors, status: :unprocessable_entity }
       end
     end
   end

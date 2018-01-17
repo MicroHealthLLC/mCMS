@@ -51,11 +51,11 @@ class RelatedClientsController < UserProfilesController
 
     respond_to do |format|
       if @related_client.save
-        format.html { redirect_to @related_client, notice: 'Related client was successfully created.' }
-        format.json { render :show, status: :created, location: @related_client }
+        format.html { redirect_to related_clients_url, notice: 'Related client was successfully created.' }
+      #  format.json { render :show, status: :created, location: @related_client }
       else
         format.html { render :new }
-        format.json { render json: @related_client.errors, status: :unprocessable_entity }
+      #  format.json { render json: @related_client.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -65,11 +65,11 @@ class RelatedClientsController < UserProfilesController
   def update
     respond_to do |format|
       if @related_client.update(related_client_params)
-        format.html { redirect_to @related_client, notice: 'Related client was successfully updated.' }
-        format.json { render :show, status: :ok, location: @related_client }
+        format.html { redirect_to related_clients_url, notice: 'Related client was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @related_client }
       else
         format.html { render :edit }
-        format.json { render json: @related_client.errors, status: :unprocessable_entity }
+      #  format.json { render json: @related_client.errors, status: :unprocessable_entity }
       end
     end
   end

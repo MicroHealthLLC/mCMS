@@ -50,11 +50,11 @@ class LanguagesController < UserProfilesController
 
     respond_to do |format|
       if @language.save
-        format.html { redirect_to @language, notice: 'Language was successfully created.' }
-        format.json { render :show, status: :created, location: @language }
+        format.html { redirect_to languages_url, notice: 'Language was successfully created.' }
+      #  format.json { render :show, status: :created, location: @language }
       else
         format.html { render :new }
-        format.json { render json: @language.errors, status: :unprocessable_entity }
+      #  format.json { render json: @language.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -64,11 +64,11 @@ class LanguagesController < UserProfilesController
   def update
     respond_to do |format|
       if @language.update(language_params)
-        format.html { redirect_to @language, notice: 'Language was successfully updated.' }
-        format.json { render :show, status: :ok, location: @language }
+        format.html { redirect_to languages_url, notice: 'Language was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @language }
       else
         format.html { render :edit }
-        format.json { render json: @language.errors, status: :unprocessable_entity }
+      #  format.json { render json: @language.errors, status: :unprocessable_entity }
       end
     end
   end
