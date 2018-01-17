@@ -49,8 +49,8 @@ class MedicalsController < UserHistoryController
 
     respond_to do |format|
       if @medical.save
-        format.html { redirect_to @medical, notice: 'Medical was successfully created.' }
-        format.json { render :show, status: :created, location: @medical }
+        format.html { redirect_to medicals_url, notice: 'Medical was successfully created.' }
+      #  format.json { render :show, status: :created, location: @medical }
       else
         format.html { render :new }
         format.json { render json: @medical.errors, status: :unprocessable_entity }
@@ -63,8 +63,8 @@ class MedicalsController < UserHistoryController
   def update
     respond_to do |format|
       if @medical.update(medical_params)
-        format.html { redirect_to @medical, notice: 'Medical was successfully updated.' }
-        format.json { render :show, status: :ok, location: @medical }
+        format.html { redirect_to medicals_url, notice: 'Medical was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @medical }
       else
         format.html { render :edit }
         format.json { render json: @medical.errors, status: :unprocessable_entity }
