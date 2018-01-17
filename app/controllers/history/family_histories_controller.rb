@@ -50,8 +50,8 @@ class FamilyHistoriesController < UserHistoryController
 
     respond_to do |format|
       if @family_history.save
-        format.html { redirect_to @family_history, notice: 'FamilyHistory was successfully created.' }
-        format.json { render :show, status: :created, location: @family_history }
+        format.html { redirect_to family_histories_url, notice: 'FamilyHistory was successfully created.' }
+      #  format.json { render :show, status: :created, location: @family_history }
       else
         format.html { render :new }
         format.json { render json: @family_history.errors, status: :unprocessable_entity }
@@ -64,8 +64,8 @@ class FamilyHistoriesController < UserHistoryController
   def update
     respond_to do |format|
       if @family_history.update(family_history_params)
-        format.html { redirect_to @family_history, notice: 'FamilyHistory was successfully updated.' }
-        format.json { render :show, status: :ok, location: @family_history }
+        format.html { redirect_to family_histories_url, notice: 'FamilyHistory was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @family_history }
       else
         format.html { render :edit }
         format.json { render json: @family_history.errors, status: :unprocessable_entity }
