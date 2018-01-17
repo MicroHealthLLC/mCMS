@@ -50,8 +50,8 @@ class HealthCareFacilitiesController < UserHistoryController
 
     respond_to do |format|
       if @health_care_facility.save
-        format.html { redirect_to @health_care_facility, notice: 'Health care facility was successfully created.' }
-        format.json { render :show, status: :created, location: @health_care_facility }
+        format.html { redirect_to health_care_facilities_url, notice: 'Health care facility was successfully created.' }
+      #  format.json { render :show, status: :created, location: @health_care_facility }
       else
         format.html { render :new }
         format.json { render json: @health_care_facility.errors, status: :unprocessable_entity }
@@ -64,8 +64,8 @@ class HealthCareFacilitiesController < UserHistoryController
   def update
     respond_to do |format|
       if @health_care_facility.update(health_care_facility_params)
-        format.html { redirect_to @health_care_facility, notice: 'Health care facility was successfully updated.' }
-        format.json { render :show, status: :ok, location: @health_care_facility }
+        format.html { redirect_to health_care_facilities_url, notice: 'Health care facility was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @health_care_facility }
       else
         format.html { render :edit }
         format.json { render json: @health_care_facility.errors, status: :unprocessable_entity }
