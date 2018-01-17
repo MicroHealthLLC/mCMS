@@ -49,8 +49,8 @@ class FinancialsController < UserHistoryController
 
     respond_to do |format|
       if @financial.save
-        format.html { redirect_to @financial, notice: 'Financial was successfully created.' }
-        format.json { render :show, status: :created, location: @financial }
+        format.html { redirect_to financials_url, notice: 'Financial was successfully created.' }
+      #  format.json { render :show, status: :created, location: @financial }
       else
         format.html { render :new }
         format.json { render json: @financial.errors, status: :unprocessable_entity }
@@ -63,8 +63,8 @@ class FinancialsController < UserHistoryController
   def update
     respond_to do |format|
       if @financial.update(financial_params)
-        format.html { redirect_to @financial, notice: 'Financial was successfully updated.' }
-        format.json { render :show, status: :ok, location: @financial }
+        format.html { redirect_to financials_url, notice: 'Financial was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @financial }
       else
         format.html { render :edit }
         format.json { render json: @financial.errors, status: :unprocessable_entity }
