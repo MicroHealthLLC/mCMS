@@ -56,7 +56,7 @@ class PositionsController < UserProfilesController
       #  format.json { render :show, status: :created, location: @position }
       else
         format.html { render :new }
-      #  format.json { render json: @position.errors, status: :unprocessable_entity }
+        format.json { render json: @position.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -70,7 +70,7 @@ class PositionsController < UserProfilesController
       #  format.json { render :show, status: :ok, location: @position }
       else
         format.html { render :edit }
-      #  format.json { render json: @position.errors, status: :unprocessable_entity }
+        format.json { render json: @position.errors, status: :unprocessable_entity }
       end
     end
   end
