@@ -55,7 +55,7 @@ class RelatedClientsController < UserProfilesController
       #  format.json { render :show, status: :created, location: @related_client }
       else
         format.html { render :new }
-      #  format.json { render json: @related_client.errors, status: :unprocessable_entity }
+        format.json { render json: @related_client.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -69,7 +69,7 @@ class RelatedClientsController < UserProfilesController
       #  format.json { render :show, status: :ok, location: @related_client }
       else
         format.html { render :edit }
-      #  format.json { render json: @related_client.errors, status: :unprocessable_entity }
+        format.json { render json: @related_client.errors, status: :unprocessable_entity }
       end
     end
   end
