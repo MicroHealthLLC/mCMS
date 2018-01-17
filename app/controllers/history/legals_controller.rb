@@ -49,8 +49,8 @@ class LegalsController < UserHistoryController
 
     respond_to do |format|
       if @legal.save
-        format.html { redirect_to @legal, notice: 'Legal was successfully created.' }
-        format.json { render :show, status: :created, location: @legal }
+        format.html { redirect_to legals_url, notice: 'Legal was successfully created.' }
+      #  format.json { render :show, status: :created, location: @legal }
       else
         format.html { render :new }
         format.json { render json: @legal.errors, status: :unprocessable_entity }
@@ -63,8 +63,8 @@ class LegalsController < UserHistoryController
   def update
     respond_to do |format|
       if @legal.update(legal_params)
-        format.html { redirect_to @legal, notice: 'Legal was successfully updated.' }
-        format.json { render :show, status: :ok, location: @legal }
+        format.html { redirect_to legals_url, notice: 'Legal was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @legal }
       else
         format.html { render :edit }
         format.json { render json: @legal.errors, status: :unprocessable_entity }
