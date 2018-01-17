@@ -50,8 +50,8 @@ class BehavioralRisksController < UserHistoryController
 
     respond_to do |format|
       if @behavioral_risk.save
-        format.html { redirect_to @behavioral_risk, notice: 'BehavioralRisk was successfully created.' }
-        format.json { render :show, status: :created, location: @behavioral_risk }
+        format.html { redirect_to behavioral_risks_url, notice: 'BehavioralRisk was successfully created.' }
+      #  format.json { render :show, status: :created, location: @behavioral_risk }
       else
         format.html { render :new }
         format.json { render json: @behavioral_risk.errors, status: :unprocessable_entity }
@@ -64,8 +64,8 @@ class BehavioralRisksController < UserHistoryController
   def update
     respond_to do |format|
       if @behavioral_risk.update(behavioral_risk_params)
-        format.html { redirect_to @behavioral_risk, notice: 'BehavioralRisk was successfully updated.' }
-        format.json { render :show, status: :ok, location: @behavioral_risk }
+        format.html { redirect_to behavioral_risks_url, notice: 'BehavioralRisk was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @behavioral_risk }
       else
         format.html { render :edit }
         format.json { render json: @behavioral_risk.errors, status: :unprocessable_entity }
