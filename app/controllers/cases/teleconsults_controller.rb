@@ -70,8 +70,8 @@ class TeleconsultsController  < UserCasesController
     respond_to do |format|
       if @teleconsult.save
         set_link_to_appointment(@teleconsult)
-        format.html { redirect_to @teleconsult, notice: 'Teleconsult was successfully created.' }
-        format.json { render :show, status: :created, location: @teleconsult }
+        format.html { redirect_to back_index_case_url, notice: 'Teleconsult was successfully created.' }
+      #  format.json { render :show, status: :created, location: @teleconsult }
       else
         format.html { render :new }
         format.json { render json: @teleconsult.errors, status: :unprocessable_entity }
@@ -84,8 +84,8 @@ class TeleconsultsController  < UserCasesController
   def update
     respond_to do |format|
       if @teleconsult.update(teleconsult_params)
-        format.html { redirect_to @teleconsult, notice: 'Teleconsult was successfully updated.' }
-        format.json { render :show, status: :ok, location: @teleconsult }
+        format.html { redirect_to back_index_case_url, notice: 'Teleconsult was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @teleconsult }
       else
         format.html { render :edit }
         format.json { render json: @teleconsult.errors, status: :unprocessable_entity }
