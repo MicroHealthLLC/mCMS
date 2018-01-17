@@ -49,8 +49,8 @@ class AllergiesController < UserHistoryController
 
     respond_to do |format|
       if @allergy.save
-        format.html { redirect_to @allergy, notice: 'Allergy was successfully created.' }
-        format.json { render :show, status: :created, location: @allergy }
+        format.html { redirect_to allergies_url, notice: 'Allergy was successfully created.' }
+      #  format.json { render :show, status: :created, location: @allergy }
       else
         format.html { render :new }
         format.json { render json: @allergy.errors, status: :unprocessable_entity }
@@ -63,8 +63,8 @@ class AllergiesController < UserHistoryController
   def update
     respond_to do |format|
       if @allergy.update(allergy_params)
-        format.html { redirect_to @allergy, notice: 'Allergy was successfully updated.' }
-        format.json { render :show, status: :ok, location: @allergy }
+        format.html { redirect_to allergies_url, notice: 'Allergy was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @allergy }
       else
         format.html { render :edit }
         format.json { render json: @allergy.errors, status: :unprocessable_entity }
