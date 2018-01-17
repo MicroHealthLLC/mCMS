@@ -49,8 +49,8 @@ class TransportationsController < UserHistoryController
 
     respond_to do |format|
       if @transportation.save
-        format.html { redirect_to @transportation, notice: 'Transportation was successfully created.' }
-        format.json { render :show, status: :created, location: @transportation }
+        format.html { redirect_to transportations_url, notice: 'Transportation was successfully created.' }
+      #  format.json { render :show, status: :created, location: @transportation }
       else
         format.html { render :new }
         format.json { render json: @transportation.errors, status: :unprocessable_entity }
@@ -63,8 +63,8 @@ class TransportationsController < UserHistoryController
   def update
     respond_to do |format|
       if @transportation.update(transportation_params)
-        format.html { redirect_to @transportation, notice: 'Transportation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @transportation }
+        format.html { redirect_to transportations_url, notice: 'Transportation was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @transportation }
       else
         format.html { render :edit }
         format.json { render json: @transportation.errors, status: :unprocessable_entity }
