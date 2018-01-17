@@ -53,7 +53,7 @@ class JobAppsController < UserProfilesController
     respond_to do |format|
       if @job_app.save
         format.html { redirect_to job_apps_url, notice: 'JobApp was successfully created.' }
-        format.json { render :show, status: :created, location: @job_app }
+      #  format.json { render :show, status: :created, location: @job_app }
       else
         format.html { render :new }
         format.json { render json: @job_app.errors, status: :unprocessable_entity }
@@ -67,7 +67,7 @@ class JobAppsController < UserProfilesController
     respond_to do |format|
       if @job_app.update(job_app_params)
         format.html { redirect_to job_apps_url, notice: 'JobApp was successfully updated.' }
-        format.json { render :show, status: :ok, location: @job_app }
+      #  format.json { render :show, status: :ok, location: @job_app }
       else
         format.html { render :edit }
         format.json { render json: @job_app.errors, status: :unprocessable_entity }
