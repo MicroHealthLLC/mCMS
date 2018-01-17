@@ -50,8 +50,8 @@ class SocioeconomicsController < UserHistoryController
 
     respond_to do |format|
       if @socioeconomic.save
-        format.html { redirect_to @socioeconomic, notice: 'Socioeconomic was successfully created.' }
-        format.json { render :show, status: :created, location: @socioeconomic }
+        format.html { redirect_to socioeconomics_url, notice: 'Socioeconomic was successfully created.' }
+      #  format.json { render :show, status: :created, location: @socioeconomic }
       else
         format.html { render :new }
         format.json { render json: @socioeconomic.errors, status: :unprocessable_entity }
@@ -64,8 +64,8 @@ class SocioeconomicsController < UserHistoryController
   def update
     respond_to do |format|
       if @socioeconomic.update(socioeconomic_params)
-        format.html { redirect_to @socioeconomic, notice: 'Socioeconomic was successfully updated.' }
-        format.json { render :show, status: :ok, location: @socioeconomic }
+        format.html { redirect_to socioeconomics_url, notice: 'Socioeconomic was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @socioeconomic }
       else
         format.html { render :edit }
         format.json { render json: @socioeconomic.errors, status: :unprocessable_entity }
