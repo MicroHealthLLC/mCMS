@@ -49,8 +49,8 @@ class DailyLivingsController < UserHistoryController
 
     respond_to do |format|
       if @daily_living.save
-        format.html { redirect_to @daily_living, notice: 'Daily living was successfully created.' }
-        format.json { render :show, status: :created, location: @daily_living }
+        format.html { redirect_to daily_livings_url, notice: 'Daily living was successfully created.' }
+      #  format.json { render :show, status: :created, location: @daily_living }
       else
         format.html { render :new }
         format.json { render json: @daily_living.errors, status: :unprocessable_entity }
@@ -63,8 +63,8 @@ class DailyLivingsController < UserHistoryController
   def update
     respond_to do |format|
       if @daily_living.update(daily_living_params)
-        format.html { redirect_to @daily_living, notice: 'Daily living was successfully updated.' }
-        format.json { render :show, status: :ok, location: @daily_living }
+        format.html { redirect_to daily_livings_url, notice: 'Daily living was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @daily_living }
       else
         format.html { render :edit }
         format.json { render json: @daily_living.errors, status: :unprocessable_entity }
