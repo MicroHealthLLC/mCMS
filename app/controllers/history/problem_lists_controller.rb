@@ -49,8 +49,8 @@ class ProblemListsController < UserHistoryController
 
     respond_to do |format|
       if @problem_list.save
-        format.html { redirect_to @problem_list, notice: 'ProblemList was successfully created.' }
-        format.json { render :show, status: :created, location: @problem_list }
+        format.html { redirect_to problem_lists_url, notice: 'ProblemList was successfully created.' }
+      #  format.json { render :show, status: :created, location: @problem_list }
       else
         format.html { render :new }
         format.json { render json: @problem_list.errors, status: :unprocessable_entity }
@@ -63,8 +63,8 @@ class ProblemListsController < UserHistoryController
   def update
     respond_to do |format|
       if @problem_list.update(problem_list_params)
-        format.html { redirect_to @problem_list, notice: 'ProblemList was successfully updated.' }
-        format.json { render :show, status: :ok, location: @problem_list }
+        format.html { redirect_to problem_lists_url, notice: 'ProblemList was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @problem_list }
       else
         format.html { render :edit }
         format.json { render json: @problem_list.errors, status: :unprocessable_entity }
