@@ -48,8 +48,8 @@ class LaboratoryExaminationsController < UserHistoryController
 
     respond_to do |format|
       if @laboratory_examination.save
-        format.html { redirect_to @laboratory_examination, notice: 'Radiologic examination was successfully created.' }
-        format.json { render :show, status: :created, location: @laboratory_examination }
+        format.html { redirect_to laboratory_examinations_url, notice: 'Radiologic examination was successfully created.' }
+      #  format.json { render :show, status: :created, location: @laboratory_examination }
       else
         format.html { render :new }
         format.json { render json: @laboratory_examination.errors, status: :unprocessable_entity }
@@ -62,8 +62,8 @@ class LaboratoryExaminationsController < UserHistoryController
   def update
     respond_to do |format|
       if @laboratory_examination.update(laboratory_examination_params)
-        format.html { redirect_to @laboratory_examination, notice: 'Radiologic examination was successfully updated.' }
-        format.json { render :show, status: :ok, location: @laboratory_examination }
+        format.html { redirect_to laboratory_examinations_url, notice: 'Radiologic examination was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @laboratory_examination }
       else
         format.html { render :edit }
         format.json { render json: @laboratory_examination.errors, status: :unprocessable_entity }
