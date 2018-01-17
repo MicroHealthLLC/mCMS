@@ -50,8 +50,8 @@ class MilitaryHistoriesController < UserHistoryController
 
     respond_to do |format|
       if @military_history.save
-        format.html { redirect_to @military_history, notice: 'Military history was successfully created.' }
-        format.json { render :show, status: :created, location: @military_history }
+        format.html { redirect_to military_histories_url, notice: 'Military history was successfully created.' }
+      #  format.json { render :show, status: :created, location: @military_history }
       else
         format.html { render :new }
         format.json { render json: @military_history.errors, status: :unprocessable_entity }
@@ -64,8 +64,8 @@ class MilitaryHistoriesController < UserHistoryController
   def update
     respond_to do |format|
       if @military_history.update(military_history_params)
-        format.html { redirect_to @military_history, notice: 'Military history was successfully updated.' }
-        format.json { render :show, status: :ok, location: @military_history }
+        format.html { redirect_to military_histories_url, notice: 'Military history was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @military_history }
       else
         format.html { render :edit }
         format.json { render json: @military_history.errors, status: :unprocessable_entity }
