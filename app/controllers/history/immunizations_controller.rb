@@ -49,8 +49,8 @@ class ImmunizationsController < UserHistoryController
 
     respond_to do |format|
       if @immunization.save
-        format.html { redirect_to @immunization, notice: 'Immunization was successfully created.' }
-        format.json { render :show, status: :created, location: @immunization }
+        format.html { redirect_to immunizations_url, notice: 'Immunization was successfully created.' }
+      #  format.json { render :show, status: :created, location: @immunization }
       else
         format.html { render :new }
         format.json { render json: @immunization.errors, status: :unprocessable_entity }
@@ -63,8 +63,8 @@ class ImmunizationsController < UserHistoryController
   def update
     respond_to do |format|
       if @immunization.update(immunization_params)
-        format.html { redirect_to @immunization, notice: 'Immunization was successfully updated.' }
-        format.json { render :show, status: :ok, location: @immunization }
+        format.html { redirect_to immunizations_url, notice: 'Immunization was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @immunization }
       else
         format.html { render :edit }
         format.json { render json: @immunization.errors, status: :unprocessable_entity }
