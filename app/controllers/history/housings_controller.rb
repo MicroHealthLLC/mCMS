@@ -50,8 +50,8 @@ class HousingsController < UserHistoryController
 
     respond_to do |format|
       if @housing.save
-        format.html { redirect_to @housing, notice: 'Housing was successfully created.' }
-        format.json { render :show, status: :created, location: @housing }
+        format.html { redirect_to housings_url, notice: 'Housing was successfully created.' }
+      #  format.json { render :show, status: :created, location: @housing }
       else
         format.html { render :new }
         format.json { render json: @housing.errors, status: :unprocessable_entity }
@@ -64,8 +64,8 @@ class HousingsController < UserHistoryController
   def update
     respond_to do |format|
       if @housing.update(housing_params)
-        format.html { redirect_to @housing, notice: 'Housing was successfully updated.' }
-        format.json { render :show, status: :ok, location: @housing }
+        format.html { redirect_to housings_url, notice: 'Housing was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @housing }
       else
         format.html { render :edit }
         format.json { render json: @housing.errors, status: :unprocessable_entity }
