@@ -45,8 +45,8 @@ class ClientJournalsController < ProtectForgeryApplication
 
     respond_to do |format|
       if @client_journal.save
-        format.html { redirect_to @client_journal, notice: 'Client journal was successfully created.' }
-        format.json { render :show, status: :created, location: @client_journal }
+        format.html { redirect_to client_journals_url, notice: 'Client journal was successfully created.' }
+      #  format.json { render :show, status: :created, location: @client_journal }
       else
         format.html { render :new }
         format.json { render json: @client_journal.errors, status: :unprocessable_entity }
@@ -59,8 +59,8 @@ class ClientJournalsController < ProtectForgeryApplication
   def update
     respond_to do |format|
       if @client_journal.update(client_journal_params)
-        format.html { redirect_to @client_journal, notice: 'Client journal was successfully updated.' }
-        format.json { render :show, status: :ok, location: @client_journal }
+        format.html { redirect_to client_journals_url, notice: 'Client journal was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @client_journal }
       else
         format.html { render :edit }
         format.json { render json: @client_journal.errors, status: :unprocessable_entity }
