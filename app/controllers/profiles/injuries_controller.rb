@@ -50,7 +50,7 @@ class InjuriesController < UserProfilesController
     respond_to do |format|
       if @injury.save
         format.html { redirect_to injuries_url, notice: 'Injury was successfully created.' }
-        format.json { render :show, status: :created, location: @injury }
+      #  format.json { render :show, status: :created, location: @injury }
       else
         format.html { render :new }
         format.json { render json: @injury.errors, status: :unprocessable_entity }
@@ -64,7 +64,7 @@ class InjuriesController < UserProfilesController
     respond_to do |format|
       if @injury.update(injury_params)
         format.html { redirect_to injuries_url, notice: 'Injury was successfully updated.' }
-        format.json { render :show, status: :ok, location: @injury }
+      #  format.json { render :show, status: :ok, location: @injury }
       else
         format.html { render :edit }
         format.json { render json: @injury.errors, status: :unprocessable_entity }
