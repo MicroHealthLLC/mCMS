@@ -50,8 +50,8 @@ class OtherHistoriesController < UserHistoryController
 
     respond_to do |format|
       if @other_history.save
-        format.html { redirect_to @other_history, notice: 'OtherHistory was successfully created.' }
-        format.json { render :show, status: :created, location: @other_history }
+        format.html { redirect_to other_histories_url, notice: 'OtherHistory was successfully created.' }
+      #  format.json { render :show, status: :created, location: @other_history }
       else
         format.html { render :new }
         format.json { render json: @other_history.errors, status: :unprocessable_entity }
@@ -64,8 +64,8 @@ class OtherHistoriesController < UserHistoryController
   def update
     respond_to do |format|
       if @other_history.update(other_history_params)
-        format.html { redirect_to @other_history, notice: 'OtherHistory was successfully updated.' }
-        format.json { render :show, status: :ok, location: @other_history }
+        format.html { redirect_to other_histories_url, notice: 'OtherHistory was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @other_history }
       else
         format.html { render :edit }
         format.json { render json: @other_history.errors, status: :unprocessable_entity }
