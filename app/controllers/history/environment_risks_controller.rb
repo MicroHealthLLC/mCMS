@@ -50,8 +50,8 @@ class EnvironmentRisksController < UserHistoryController
 
     respond_to do |format|
       if @environment_risk.save
-        format.html { redirect_to @environment_risk, notice: 'EnvironmentRisk was successfully created.' }
-        format.json { render :show, status: :created, location: @environment_risk }
+        format.html { redirect_to environment_risks_url, notice: 'EnvironmentRisk was successfully created.' }
+      #  format.json { render :show, status: :created, location: @environment_risk }
       else
         format.html { render :new }
         format.json { render json: @environment_risk.errors, status: :unprocessable_entity }
@@ -64,8 +64,8 @@ class EnvironmentRisksController < UserHistoryController
   def update
     respond_to do |format|
       if @environment_risk.update(environment_risk_params)
-        format.html { redirect_to @environment_risk, notice: 'EnvironmentRisk was successfully updated.' }
-        format.json { render :show, status: :ok, location: @environment_risk }
+        format.html { redirect_to environment_risks_url, notice: 'EnvironmentRisk was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @environment_risk }
       else
         format.html { render :edit }
         format.json { render json: @environment_risk.errors, status: :unprocessable_entity }
