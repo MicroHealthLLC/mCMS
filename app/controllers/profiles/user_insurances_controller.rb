@@ -49,11 +49,11 @@ class UserInsurancesController < UserProfilesController
 
     respond_to do |format|
       if @user_insurance.save
-        format.html { redirect_to @user_insurance, notice: 'Insurance was successfully created.' }
-        format.json { render :show, status: :created, location: @user_insurance }
+        format.html { redirect_to user_insurances_url, notice: 'Insurance was successfully created.' }
+      #  format.json { render :show, status: :created, location: @user_insurance }
       else
         format.html { render :new }
-        format.json { render json: @user_insurance.errors, status: :unprocessable_entity }
+      #  format.json { render json: @user_insurance.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -63,11 +63,11 @@ class UserInsurancesController < UserProfilesController
   def update
     respond_to do |format|
       if @user_insurance.update(user_insurance_params)
-        format.html { redirect_to @user_insurance, notice: 'Insurance was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user_insurance }
+        format.html { redirect_to user_insurances_url, notice: 'Insurance was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @user_insurance }
       else
         format.html { render :edit }
-        format.json { render json: @user_insurance.errors, status: :unprocessable_entity }
+      #  format.json { render json: @user_insurance.errors, status: :unprocessable_entity }
       end
     end
   end
