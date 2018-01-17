@@ -55,7 +55,7 @@ class AffiliationsController < UserProfilesController
       #  format.json { render :show, status: :created, location: @affiliation }
       else
         format.html { render :new }
-      #  format.json { render json: @affiliation.errors, status: :unprocessable_entity }
+        format.json { render json: @affiliation.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -69,7 +69,7 @@ class AffiliationsController < UserProfilesController
       #  format.json { render :show, status: :ok, location: @affiliation }
       else
         format.html { render :edit }
-      #  format.json { render json: @affiliation.errors, status: :unprocessable_entity }
+        format.json { render json: @affiliation.errors, status: :unprocessable_entity }
       end
     end
   end
