@@ -53,10 +53,10 @@ class PositionsController < UserProfilesController
     respond_to do |format|
       if @position.save
         format.html { redirect_to positions_url, notice: 'Position was successfully created.' }
-        format.json { render :show, status: :created, location: @position }
+      #  format.json { render :show, status: :created, location: @position }
       else
         format.html { render :new }
-        format.json { render json: @position.errors, status: :unprocessable_entity }
+      #  format.json { render json: @position.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -67,10 +67,10 @@ class PositionsController < UserProfilesController
     respond_to do |format|
       if @position.update(position_params)
         format.html { redirect_to positions_url, notice: 'Position was successfully updated.' }
-        format.json { render :show, status: :ok, location: @position }
+      #  format.json { render :show, status: :ok, location: @position }
       else
         format.html { render :edit }
-        format.json { render json: @position.errors, status: :unprocessable_entity }
+      #  format.json { render json: @position.errors, status: :unprocessable_entity }
       end
     end
   end
