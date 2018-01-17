@@ -54,7 +54,7 @@ class LanguagesController < UserProfilesController
       #  format.json { render :show, status: :created, location: @language }
       else
         format.html { render :new }
-      #  format.json { render json: @language.errors, status: :unprocessable_entity }
+        format.json { render json: @language.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -68,7 +68,7 @@ class LanguagesController < UserProfilesController
       #  format.json { render :show, status: :ok, location: @language }
       else
         format.html { render :edit }
-      #  format.json { render json: @language.errors, status: :unprocessable_entity }
+        format.json { render json: @language.errors, status: :unprocessable_entity }
       end
     end
   end
