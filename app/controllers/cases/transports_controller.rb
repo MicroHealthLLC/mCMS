@@ -65,8 +65,8 @@ class TransportsController  <  UserCasesController
 
     respond_to do |format|
       if @transport.save
-        format.html { redirect_to @transport, notice: 'Transport was successfully created.' }
-        format.json { render :show, status: :created, location: @transport }
+        format.html { redirect_to back_index_case_url, notice: 'Transport was successfully created.' }
+      #  format.json { render :show, status: :created, location: @transport }
       else
         format.html { render :new }
         format.json { render json: @transport.errors, status: :unprocessable_entity }
@@ -79,8 +79,8 @@ class TransportsController  <  UserCasesController
   def update
     respond_to do |format|
       if @transport.update(transport_params)
-        format.html { redirect_to @transport, notice: 'Transport was successfully updated.' }
-        format.json { render :show, status: :ok, location: @transport }
+        format.html { redirect_to back_index_case_url, notice: 'Transport was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @transport }
       else
         format.html { render :edit }
         format.json { render json: @transport.errors, status: :unprocessable_entity }
