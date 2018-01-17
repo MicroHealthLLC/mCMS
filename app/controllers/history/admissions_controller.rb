@@ -49,8 +49,8 @@ class AdmissionsController < UserHistoryController
 
     respond_to do |format|
       if @admission.save
-        format.html { redirect_to @admission, notice: 'Admission was successfully created.' }
-        format.json { render :show, status: :created, location: @admission }
+        format.html { redirect_to admissions_url, notice: 'Admission was successfully created.' }
+      #  format.json { render :show, status: :created, location: @admission }
       else
         format.html { render :new }
         format.json { render json: @admission.errors, status: :unprocessable_entity }
@@ -63,8 +63,8 @@ class AdmissionsController < UserHistoryController
   def update
     respond_to do |format|
       if @admission.update(admission_params)
-        format.html { redirect_to @admission, notice: 'Admission was successfully updated.' }
-        format.json { render :show, status: :ok, location: @admission }
+        format.html { redirect_to admissions_url, notice: 'Admission was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @admission }
       else
         format.html { render :edit }
         format.json { render json: @admission.errors, status: :unprocessable_entity }
