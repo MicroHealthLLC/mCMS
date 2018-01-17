@@ -52,7 +52,7 @@ class WorkerCompensationsController < UserProfilesController
     respond_to do |format|
       if @worker_compensation.save
         format.html { redirect_to worker_compensations_url, notice: 'WorkerCompensation was successfully created.' }
-        format.json { render :show, status: :created, location: @worker_compensation }
+      #  format.json { render :show, status: :created, location: @worker_compensation }
       else
         format.html { render :new }
         format.json { render json: @worker_compensation.errors, status: :unprocessable_entity }
@@ -66,7 +66,7 @@ class WorkerCompensationsController < UserProfilesController
     respond_to do |format|
       if @worker_compensation.update(worker_compensation_params)
         format.html { redirect_to worker_compensations_url, notice: 'WorkerCompensation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @worker_compensation }
+      #  format.json { render :show, status: :ok, location: @worker_compensation }
       else
         format.html { render :edit }
         format.json { render json: @worker_compensation.errors, status: :unprocessable_entity }
