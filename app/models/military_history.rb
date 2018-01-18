@@ -48,7 +48,8 @@ class MilitaryHistory < ApplicationRecord
   def self.safe_attributes
     [
         :user_id, :text, :service_type_id, :service_status_id,
-        :date_started, :date_ended, :note
+        :date_started, :date_ended, :note,
+        military_history_attachments_attributes: [Attachment.safe_attributes]
     ]
   end
 

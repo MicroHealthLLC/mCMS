@@ -53,8 +53,10 @@ class FamilyHistory < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:name, :user_id, :icdcm_code_id, :date_identified, :family_status_id, :snomed,
-     :family_type_id, :description]
+    [:name, :user_id, :icdcm_code_id, :date_identified,
+     :family_status_id, :snomed,
+     :family_type_id, :description,
+     family_history_attachments_attributes: [Attachment.safe_attributes]]
   end
 
   def to_pdf(pdf, show_user = true)
