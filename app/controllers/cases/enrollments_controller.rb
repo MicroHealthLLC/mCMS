@@ -67,8 +67,8 @@ class EnrollmentsController < UserCasesController
     respond_to do |format|
       if @enrollment.save
         set_link_to_appointment(@enrollment)
-        format.html { redirect_to back_index_case_url, notice: 'Enrollment was successfully created.' }
-      #  format.json { render :show, status: :created, location: @enrollment }
+        format.html { redirect_to @enrollment, notice: 'Enrollment was successfully created.' }
+        format.json { render :show, status: :created, location: @enrollment }
       else
         format.html { render :new }
         format.json { render json: @enrollment.errors, status: :unprocessable_entity }
