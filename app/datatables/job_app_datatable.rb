@@ -5,6 +5,8 @@ class JobAppDatatable < AjaxDatatablesRails::Base
     @sortable_columns ||= %w{
        JobApp.title
       Occupation.code
+      JobApp.employer
+      JobApp.date_applied
       Enumeration.name
     }
   end
@@ -14,6 +16,8 @@ class JobAppDatatable < AjaxDatatablesRails::Base
     @searchable_columns ||= %w{
       JobApp.title
       Occupation.code
+      JobApp.employer
+      JobApp.date_applied
       Enumeration.name
     }
   end
@@ -25,6 +29,8 @@ class JobAppDatatable < AjaxDatatablesRails::Base
       [
           @view.link_to_edit_if_can( job_app.title, {ctrl: :job_apps, object: job_app }) ,
           job_app.occupation.to_s ,
+          job_app.employer.to_s ,
+          @view.format_date(job_app.date_applied) ,
           job_app.app_state.to_s ,
       ]
 

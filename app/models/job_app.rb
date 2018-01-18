@@ -14,6 +14,7 @@ class JobApp < ApplicationRecord
 
   def self.safe_attributes
     [:title, :occupation_id, :description, :app_state_id,
+     :employer, :location_lat, :location_long, :date_applied,
      :user_id, job_app_attachments_attributes: [Attachment.safe_attributes]]
   end
 

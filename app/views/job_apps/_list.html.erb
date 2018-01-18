@@ -3,6 +3,8 @@
   <tr>
     <th>Title</th>
     <th>Occupation</th>
+    <th>Employer</th>
+    <th>Date applied</th>
     <th>App state</th>
   </tr>
   </thead>
@@ -13,7 +15,9 @@
 </table>
 <% columns= [  { "searchable": true, "orderable": true },
                { "searchable": true, "orderable": true },
-            
+               { "searchable": true, "orderable": true },
+               { "searchable": true, "orderable": true },
+
                { "searchable": true, "orderable": true }]
 %>
 <%= render partial: 'datatable_script', locals: {

@@ -57,7 +57,9 @@ class Socioeconomic < ApplicationRecord
 
   def self.safe_attributes
     [:name, :user_id, :icdcm_code_id, :date_identified, :date_resolved, :snomed,
-     :socioeconomic_status_id, :socioeconomic_type_id, :description]
+     :socioeconomic_status_id, :socioeconomic_type_id, :description,
+     socioeconomic_attachments_attributes: [Attachment.safe_attributes]
+    ]
   end
 
   def to_pdf(pdf, show_user = true)
