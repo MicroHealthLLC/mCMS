@@ -45,8 +45,8 @@ class CaseOrganizationsController < UserCasesController
     respond_to do |format|
       if @case_organization.save
         set_link_to_appointment(@case_organization)
-        format.html { redirect_to case_organizations_url, notice: 'CaseOrganization was successfully created.' }
-      #  format.json { render :show, status: :created, location: @case_organization }
+        format.html { redirect_to @case_organization, notice: 'CaseOrganization was successfully created.' }
+        format.json { render :show, status: :created, location: @case_organization }
       else
         format.html { render :new }
         format.json { render json: @case_organization.errors, status: :unprocessable_entity }
