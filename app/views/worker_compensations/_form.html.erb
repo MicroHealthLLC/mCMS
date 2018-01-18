@@ -19,7 +19,7 @@
       <div class="form-group">
         <%= f.label t(:injury), class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :injury_id, options_for_select(Injury.visible.map{|inj| [inj.to_s, inj.id] }, selected: f.object.injury.try(:id)) , {} ,{class: 'form-control', required: true} %>
+          <%= f.select :injury_id, options_for_select(Injury.visible.map{|inj| [inj.to_s, inj.id] }, selected: f.object.injury.try(:id)) , {} ,{class: 'form-control'} %>
         </div>
       </div>
 

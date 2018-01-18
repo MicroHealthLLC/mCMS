@@ -12,7 +12,7 @@ class Transport < ApplicationRecord
 
   has_many :transport_notes, foreign_key: :owner_id, dependent: :destroy
 
-  validates_presence_of :user_id
+  validates_presence_of :user_id, :reason
 
   def self.include_enumerations
     includes(:transport_type, :transport_status, :case, :transport_location).
