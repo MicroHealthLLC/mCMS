@@ -152,8 +152,8 @@ class TasksController < UserCasesController
   def update
     respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to back_url, notice: 'Task was successfully updated.' }
-        format.json { render :show, status: :ok, location: @task }
+        format.html { redirect_to back_index_case_url, notice: 'Task was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }
         format.json { render json: @task.errors, status: :unprocessable_entity }
