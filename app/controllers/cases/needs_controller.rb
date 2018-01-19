@@ -83,13 +83,8 @@ class NeedsController < UserCasesController
                      date_identified: Date.today,
                      case_id: params[:case_id])
 
+    set_breadcrumbs
 
-    if @need.case
-      add_breadcrumb @need.case, @need.case
-      add_breadcrumb I18n.t(:needs), case_path(@need.case) + '#tabs-needs'
-    else
-      add_breadcrumb I18n.t(:needs), :needs_path
-    end
   end
 
   # GET /needs/1/edit
@@ -149,15 +144,19 @@ class NeedsController < UserCasesController
   def set_need
     @need = Need.find(params[:id])
     @case = @need.case
+    set_breadcrumbs
+    add_breadcrumb @need, needs_path(@need)
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
+
+  def set_breadcrumbs
     if @need.case
       add_breadcrumb @need.case, @need.case
       add_breadcrumb I18n.t(:needs), case_path(@need.case) + '#tabs-needs'
     else
       add_breadcrumb I18n.t(:needs), :needs_path
     end
-    add_breadcrumb @need, needs_path(@need)
-  rescue ActiveRecord::RecordNotFound
-    render_404
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

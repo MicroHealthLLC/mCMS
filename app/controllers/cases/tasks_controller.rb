@@ -62,7 +62,7 @@ class TasksController < UserCasesController
     @plans = @task.plans
     @available_plans = @task.available_plans
   end
-  
+
 
   def add_plan
     respond_to do |format|
@@ -112,14 +112,7 @@ class TasksController < UserCasesController
                        related_to_type: params[:type])
     end
 
-    if @task.case
-      add_breadcrumb @task.case, @task.case
-      add_breadcrumb I18n.t('tasks'), case_path(@task.case) + '#tabs-tasks'
-    else
-      add_breadcrumb I18n.t('tasks'), :tasks_path
-
-    end
-
+    set_breadcrumbs
   end
 
   # GET /tasks/1/edit
@@ -182,16 +175,19 @@ class TasksController < UserCasesController
   def set_task
     @task = Task.find(params[:id])
     @case =  @task.case
+    set_breadcrumbs
+    add_breadcrumb @task.to_s, @task
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
+
+  def set_breadcrumbs
     if @task.case
       add_breadcrumb @task.case, @task.case
       add_breadcrumb I18n.t('tasks'), case_path(@task.case) + '#tabs-tasks'
     else
       add_breadcrumb I18n.t('tasks'), :tasks_path
-
     end
-     add_breadcrumb @task.to_s, @task
-  rescue ActiveRecord::RecordNotFound
-    render_404
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

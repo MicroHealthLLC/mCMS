@@ -74,14 +74,8 @@ class ReferralsController < UserCasesController
                              referral_date: Date.today ,
                              case_id: params[:case_id])
 
-    if @referral.case
-      add_breadcrumb @referral.case, @referral.case
-      add_breadcrumb I18n.t(:referrals), case_path(@referral.case) + '#tabs-referrals'
 
-    else
-      add_breadcrumb I18n.t(:referrals), :referrals_path
-
-    end
+    set_breadcrumbs
   end
 
 # GET /referrals/1/edit
@@ -149,17 +143,20 @@ class ReferralsController < UserCasesController
   def set_referral
     @referral = Referral.includes(:user, :referred_by, :referred_to).find(params[:id])
     @case =  @referral.case
+    set_breadcrumbs
+    add_breadcrumb @referral.to_s, @referral
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
+
+  def set_breadcrumbs
     if @referral.case
       add_breadcrumb @referral.case, @referral.case
       add_breadcrumb I18n.t(:referrals), case_path(@referral.case) + '#tabs-referrals'
 
     else
       add_breadcrumb I18n.t(:referrals), :referrals_path
-
     end
-    add_breadcrumb @referral.to_s, @referral
-  rescue ActiveRecord::RecordNotFound
-    render_404
   end
 
 # Never trust parameters from the scary internet, only allow the white list through.

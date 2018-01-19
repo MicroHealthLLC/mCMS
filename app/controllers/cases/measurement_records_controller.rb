@@ -51,13 +51,7 @@ class MeasurementRecordsController < UserCasesController
         @measurement_record = MeasurementRecord.new(measurement_params)
         @measurement_record.user_id = User.current.id
 
-
-        if @measurement_record.case
-          add_breadcrumb @measurement_record.case, @measurement_record.case
-          add_breadcrumb 'Measurements', case_path(@measurement_record.case) + '#tabs-measurement_records'
-        else
-          add_breadcrumb 'Measurements', :measurement_records_path
-        end
+        set_breadcrumbs
 
       }
       format.js{
@@ -130,15 +124,19 @@ class MeasurementRecordsController < UserCasesController
     @measurement_record = MeasurementRecord.find(params[:id])
     @component = @measurement_record.component
     @case =  @measurement_record.case
-    if @measurement_record.case
-    add_breadcrumb @measurement_record.case, @measurement_record.case
-    add_breadcrumb 'Measurements', case_path(@measurement_record.case) + '#tabs-measurement_records'
-    else
-    add_breadcrumb 'Measurements', :measurement_records_path
-    end
+    set_breadcrumbs
     add_breadcrumb @measurement_record, @measurement_record
   rescue ActiveRecord::RecordNotFound
     render_404
+  end
+
+  def set_breadcrumbs
+    if @measurement_record.case
+      add_breadcrumb @measurement_record.case, @measurement_record.case
+      add_breadcrumb 'Measurements', case_path(@measurement_record.case) + '#tabs-measurement_records'
+    else
+      add_breadcrumb 'Measurements', :measurement_records_path
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

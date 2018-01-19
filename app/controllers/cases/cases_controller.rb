@@ -148,6 +148,7 @@ class CasesController < UserCasesController
       @case_watcher = CaseWatcher.new(case_id: @case.id)
       @users = User.power_user.includes(:core_demographic).references(:core_demographic).where.not(id: @watchers)
     end
+    add_breadcrumb 'Case watchers', case_path(@case) + '#tabs-watcher'
   end
 
   # GET /cases/new
@@ -156,6 +157,7 @@ class CasesController < UserCasesController
                      date_start: Date.today,
                      subcase_id: params[:subcase_id],
                      user_id: User.current.id)
+    set_breadcrumbs
   end
 
   # GET /cases/1/edit
@@ -280,10 +282,18 @@ class CasesController < UserCasesController
   # Use callbacks to share common setup or constraints between actions.
   def set_case
     @case = Case.find(params[:id])
-    add_breadcrumb @case.case.to_s, case_path(@case.case) if @case.case
+    set_breadcrumbs
     add_breadcrumb @case.to_s, case_path(@case)
   rescue ActiveRecord::RecordNotFound
     render_404
+  end
+
+  def set_breadcrumbs
+    if @case.case
+      add_breadcrumb @case.case.to_s, case_path(@case.case)
+      add_breadcrumb 'Subcases', case_path(@case.case) + '#tabs-subcases'
+    end
+
   end
 
   def set_case_with_includes

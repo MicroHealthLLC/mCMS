@@ -15,6 +15,7 @@ class AppointmentCapturesController < UserCasesController
     @appointment_capture = AppointmentCapture.new(user_id: User.current.id,
                                                   appointment_id: @appointment.id
     )
+    set_breadcrumbs
   rescue ActiveRecord::RecordNotFound
     render_404
   end
@@ -68,6 +69,13 @@ class AppointmentCapturesController < UserCasesController
   def set_appointment_capture
     @appointment_capture = AppointmentCapture.find(params[:id])
     @appointment = @appointment_capture.appointment
+    set_breadcrumbs
+    add_breadcrumb @appointment_capture.to_s, appointment_capture_path(@appointment_capture)
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
+
+  def set_breadcrumbs
     if @appointment.case
       add_breadcrumb @appointment.case, @appointment.case
       add_breadcrumb I18n.t(:appointments), case_path(@appointment.case) + '#tabs-appointments'
@@ -76,9 +84,6 @@ class AppointmentCapturesController < UserCasesController
     end
 
     add_breadcrumb @appointment, appointment_path(@appointment)
-    add_breadcrumb @appointment_capture.to_s, appointment_capture_path(@appointment_capture)
-  rescue ActiveRecord::RecordNotFound
-    render_404
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

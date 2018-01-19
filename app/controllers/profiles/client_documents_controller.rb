@@ -85,7 +85,7 @@ class ClientDocumentsController <  ProtectForgeryApplication
   # Use callbacks to share common setup or constraints between actions.
   def set_document
     @document = Document.find(params[:id])
-    add_breadcrumb @document, document_path(@document)
+    add_breadcrumb @document, client_document_path(@document)
   rescue ActiveRecord::RecordNotFound
     render_404
   end

@@ -49,6 +49,7 @@ class DocumentsController < UserCasesController
                              date: Date.today,
                              related_to_id: params[:related_to],
                              related_to_type: params[:type])
+    set_breadcrumbs
   end
 
   # GET /documents/1/edit
@@ -97,15 +98,19 @@ class DocumentsController < UserCasesController
   def set_document
     @document = Document.find(params[:id])
     @case =  @document.case
+    set_breadcrumbs
+    add_breadcrumb @document, document_path(@document)
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
+
+  def set_breadcrumbs
     if @document.case
       add_breadcrumb @document.case,  @document.case
       add_breadcrumb I18n.t(:documents), case_path(@document.case) + "#tabs-documents"
     else
       add_breadcrumb I18n.t(:documents), :documents_path
     end
-    add_breadcrumb @document, document_path(@document)
-  rescue ActiveRecord::RecordNotFound
-    render_404
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

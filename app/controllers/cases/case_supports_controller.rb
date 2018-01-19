@@ -58,12 +58,7 @@ class CaseSupportsController < UserCasesController
                                     date_started: Date.today,
                                     case_id: params[:case_id])
 
-    if @case_support.case
-      add_breadcrumb @case_support.case, @case_support.case
-      add_breadcrumb I18n.t(:cases_supports), case_path(@case_support.case) + "#tabs-case_supports"
-    else
-      add_breadcrumb I18n.t(:cases_supports), :case_supports_path
-    end
+    set_breadcrumbs
   end
 
   # GET /case_supports/1/edit
@@ -136,6 +131,13 @@ class CaseSupportsController < UserCasesController
   def set_case_support
     @case_support = CaseSupport.find(params[:id])
     @case =  @case_support.case
+    set_breadcrumbs
+    add_breadcrumb @case_support, @case_support
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
+
+  def set_breadcrumbs
     if @case_support.case
       add_breadcrumb @case_support.case, @case_support.case
       add_breadcrumb I18n.t(:cases_supports), case_path(@case_support.case) + "#tabs-case_supports"
@@ -143,11 +145,7 @@ class CaseSupportsController < UserCasesController
       add_breadcrumb I18n.t(:cases_supports), :case_supports_path
     end
 
-    add_breadcrumb @case_support, @case_support
-  rescue ActiveRecord::RecordNotFound
-    render_404
   end
-
   # Never trust parameters from the scary internet, only allow the white list through.
   def case_support_params
     params.require(:case_support).permit(CaseSupport.safe_attributes)

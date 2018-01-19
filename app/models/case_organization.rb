@@ -14,7 +14,7 @@ class CaseOrganization < ApplicationRecord
   end
 
   def to_s
-    id
+    organization
   end
 
   def extend_informations

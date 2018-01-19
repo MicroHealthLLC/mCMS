@@ -13,8 +13,8 @@ class CaseWatchersController < UserCasesController
 
   def edit
     @watchers = @case.watchers.pluck :user_id
-    @users = User.power_user.includes(:core_demographic).references(:core_demographic).where.not(id: @watchers)
-
+    @users = User.power_user.includes(:core_demographic).references(:core_demographic).where.not(id: @watchers) +  [@case_watcher.user]
+    @users = @users.compact
   end
 
   def show
@@ -37,6 +37,7 @@ class CaseWatchersController < UserCasesController
     @case_watcher = CaseWatcher.find(params[:id])
     @case = @case_watcher.case
     add_breadcrumb @case, @case
+    add_breadcrumb 'Case watchers', case_path(@case) + '#tabs-watcher'
     add_breadcrumb @case_watcher.user, @case_watcher
   rescue ActiveRecord::RecordNotFound
     render_404

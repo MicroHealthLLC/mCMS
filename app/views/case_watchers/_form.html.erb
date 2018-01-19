@@ -7,7 +7,7 @@
           <div class="form-group">
             <%= f.label :user, class: 'col-md-2 control-label' %>
             <div class="col-md-9">
-              <%= f.select 'user_id', options_for_select(@users.map{|user| [user.name, user.id]}), {}, {class: 'form-control'} %>
+              <%= f.select 'user_id', options_for_select(@users.map{|user| [user.name, user.id]}, selected: f.object.user_id), {}, {class: 'form-control'} %>
             </div>
           </div>
 

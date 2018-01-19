@@ -96,12 +96,7 @@ class AppointmentsController < UserCasesController
                                    with_who_id: User.current_user.id,
                                    related_to_id: params[:related_to])
 
-    if @appointment.case
-      add_breadcrumb @appointment.case, @appointment.case
-      add_breadcrumb I18n.t(:appointments), case_path(@appointment.case) + "#tabs-appointments"
-    else
-      add_breadcrumb I18n.t(:appointments), :appointments_path
-    end
+    set_breadcrumbs
   end
 
   # GET /appointments/1/edit
@@ -168,16 +163,20 @@ class AppointmentsController < UserCasesController
     @appointment = Appointment.includes(:appointment_notes, :user=> :core_demographic).find(params[:id])
 
 
+
+    set_breadcrumbs
+    add_breadcrumb @appointment.to_s, appointment_url(@appointment)
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
+
+  def set_breadcrumbs
     if @appointment.case
       add_breadcrumb @appointment.case, @appointment.case
       add_breadcrumb I18n.t(:appointments), case_path(@appointment.case) + "#tabs-appointments"
     else
       add_breadcrumb I18n.t(:appointments), :appointments_path
     end
-
-    add_breadcrumb @appointment.to_s, appointment_url(@appointment)
-  rescue ActiveRecord::RecordNotFound
-    render_404
   end
 
   def set_appointment_with_includes

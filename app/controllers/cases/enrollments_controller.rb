@@ -47,12 +47,7 @@ class EnrollmentsController < UserCasesController
                                  case_id: params[:case_id])
 
     @case = @enrollment.case
-    if  @case
-      add_breadcrumb @case,  @case
-      add_breadcrumb I18n.t('enrollments'), case_path(@case) + '#tabs-enrollments'
-    else
-      add_breadcrumb I18n.t('enrollments'), :enrollments_path
-    end
+    set_breadcrumbs
   end
 
   # GET /enrollments/1/edit
@@ -106,16 +101,20 @@ class EnrollmentsController < UserCasesController
   def set_enrollment
     @enrollment = Enrollment.includes(:user).find(params[:id])
     @case = @enrollment.case
-    if  @case
-      add_breadcrumb @case,  @case
+    set_breadcrumbs
+    add_breadcrumb @enrollment.to_s, @enrollment
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
+
+  def set_breadcrumbs
+    if   @enrollment.case
+      add_breadcrumb @enrollment.case,  @enrollment.case
       add_breadcrumb I18n.t('enrollments'), case_path(@case) + '#tabs-enrollments'
     else
       add_breadcrumb I18n.t('enrollments'), :enrollments_path
     end
 
-    add_breadcrumb @enrollment.to_s, @enrollment
-  rescue ActiveRecord::RecordNotFound
-    render_404
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

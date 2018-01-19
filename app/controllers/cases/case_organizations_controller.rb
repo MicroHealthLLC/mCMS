@@ -29,6 +29,7 @@ class CaseOrganizationsController < UserCasesController
   def new
     @case = Case.visible.find(params[:case_id])
     @case_organization = CaseOrganization.new(case_id: @case.id)
+    set_breadcrumbs
   rescue ActiveRecord::RecordNotFound
     render_404
   end
@@ -83,11 +84,17 @@ class CaseOrganizationsController < UserCasesController
   def set_case_organization
     @case_organization = CaseOrganization.find(params[:id])
     @case = @case_organization.case
-    add_breadcrumb @case, @case
+    set_breadcrumbs
     add_breadcrumb @case_organization, case_organization_path(@case_organization)
   rescue ActiveRecord::RecordNotFound
     render_404
   end
+
+   def set_breadcrumbs
+     add_breadcrumb @case_organization.case, @case_organization.case
+     add_breadcrumb 'Case Organizations', case_path(@case_organization.case) + '#tabs-case_organizations'
+
+   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def case_organization_params

@@ -106,13 +106,7 @@ class GoalsController <  UserCasesController
     if params[:need_id]
       @goal.need_goals.build(need_id: params[:need_id])
     end
-
-    if @goal.case
-      add_breadcrumb @goal.case, @goal.case
-      add_breadcrumb I18n.t(:goals), case_path(@goal.case) + '#tabs-goals'
-    else
-      add_breadcrumb I18n.t(:goals), :goals_path
-    end
+    set_breadcrumbs
   end
 
   # GET /goals/1/edit
@@ -171,16 +165,20 @@ class GoalsController <  UserCasesController
   def set_goal
     @goal = Goal.find(params[:id])
     @case = @goal.case
+
+    set_breadcrumbs
+    add_breadcrumb @goal, goal_path(@goal)
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
+
+  def set_breadcrumbs
     if @goal.case
       add_breadcrumb @goal.case, @goal.case
       add_breadcrumb I18n.t(:goals), case_path(@goal.case) + '#tabs-goals'
     else
       add_breadcrumb I18n.t(:goals), :goals_path
     end
-
-    add_breadcrumb @goal, goal_path(@goal)
-  rescue ActiveRecord::RecordNotFound
-    render_404
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

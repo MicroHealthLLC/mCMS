@@ -47,15 +47,9 @@ class TeleconsultsController  < UserCasesController
     @teleconsult = Teleconsult.new(user_id: User.current.id,
                                    date: Date.today,
                                    case_id: params[:case_id])
+    set_breadcrumbs
 
-    if @teleconsult.case
-      add_breadcrumb @teleconsult.case, @teleconsult.case
-      add_breadcrumb I18n.t(:teleconsults), case_path(@teleconsult.case) + '#tabs-teleconsults'
 
-    else
-      add_breadcrumb I18n.t(:teleconsults), :teleconsults_path
-
-    end
   end
 
   # GET /teleconsults/1/edit
@@ -108,17 +102,19 @@ class TeleconsultsController  < UserCasesController
   def set_teleconsult
     @teleconsult = Teleconsult.find(params[:id])
     @case = @teleconsult.case
-    if @teleconsult.case
-      add_breadcrumb @teleconsult.case, @teleconsult.case
-      add_breadcrumb I18n.t(:teleconsults), case_path(@teleconsult.case) + '#tabs-teleconsults'
-
-    else
-      add_breadcrumb I18n.t(:teleconsults), :teleconsults_path
-
-    end
+    set_breadcrumbs
     add_breadcrumb @teleconsult.to_s, @teleconsult
   rescue ActiveRecord::RecordNotFound
     render_404
+  end
+
+  def set_breadcrumbs
+    if @teleconsult.case
+      add_breadcrumb @teleconsult.case, @teleconsult.case
+      add_breadcrumb I18n.t(:teleconsults), case_path(@teleconsult.case) + '#tabs-teleconsults'
+    else
+      add_breadcrumb I18n.t(:teleconsults), :teleconsults_path
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

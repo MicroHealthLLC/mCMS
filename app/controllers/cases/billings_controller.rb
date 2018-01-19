@@ -43,6 +43,7 @@ class BillingsController < UserProfilesController
     @billing = Billing.new(user_id: User.current.id,
                            appointment_id: @appointment.id
     )
+    set_breadcrumbs
   end
 
   # GET /billings/1/edit
@@ -94,10 +95,21 @@ class BillingsController < UserProfilesController
   def set_billing
     @billing = Billing.find(params[:id])
     @appointment = @billing.appointment
-    add_breadcrumb @appointment.to_s, @appointment
+    set_breadcrumbs
     add_breadcrumb @billing.to_s, @billing
   rescue ActiveRecord::RecordNotFound
     render_404
+  end
+
+  def set_breadcrumbs
+    if @appointment.case
+      add_breadcrumb @appointment.case, @appointment.case
+      add_breadcrumb I18n.t(:appointments), case_path(@appointment.case) + '#tabs-appointments'
+    else
+      add_breadcrumb I18n.t(:appointments), :appointments_path
+    end
+
+    add_breadcrumb @appointment, appointment_path(@appointment)
   end
 
   def set_appointment

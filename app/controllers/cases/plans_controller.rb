@@ -43,7 +43,6 @@ class PlansController < UserCasesController
     set_client_profile(@plan)
     @goals = @plan.goals
     @tasks = @plan.tasks
-    @measurement_records = @plan.measurement_records
   end
 
   def links
@@ -101,18 +100,14 @@ class PlansController < UserCasesController
       @plan.goal_plans.build(goal_id: params[:goal_id])
     end
 
-    if @plan.case
-      add_breadcrumb @plan.case, @plan.case
-      add_breadcrumb I18n.t('plans'), case_path(@plan.case) + '#tabs-plans'
-    else
-      add_breadcrumb I18n.t('plans'), :plans_path
-    end
+    set_breadcrumbs
+
+
   end
 
   # GET /plans/1/edit
   def edit
     @tasks = @plan.tasks
-    @measurement_records = @plan.measurement_records
 
     @goals = @plan.goals
   end
@@ -165,17 +160,19 @@ class PlansController < UserCasesController
   def set_plan
     @plan = Plan.find(params[:id])
     @case = @plan.case
+    set_breadcrumbs
+    add_breadcrumb @plan.to_s, @plan
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
 
+  def set_breadcrumbs
     if @plan.case
       add_breadcrumb @plan.case, @plan.case
       add_breadcrumb I18n.t('plans'), case_path(@plan.case) + '#tabs-plans'
     else
       add_breadcrumb I18n.t('plans'), :plans_path
     end
-
-    add_breadcrumb @plan.to_s, @plan
-  rescue ActiveRecord::RecordNotFound
-    render_404
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

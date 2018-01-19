@@ -44,14 +44,7 @@ class TransportsController  <  UserCasesController
   # GET /transports/new
   def new
     @transport = Transport.new(user_id: User.current.id, case_id: params[:case_id])
-    if @transport.case
-      add_breadcrumb @transport.case, @transport.case
-      add_breadcrumb I18n.t(:transports), case_path(@transport.case) + '#tabs-transports'
-
-    else
-      add_breadcrumb I18n.t(:transports), :transports_path
-
-    end
+    set_breadcrumbs
   end
 
   # GET /transports/1/edit
@@ -103,17 +96,18 @@ class TransportsController  <  UserCasesController
   def set_transport
     @transport = Transport.find(params[:id])
     @case = @transport.case
-    if @transport.case
-      add_breadcrumb @transport.case, @transport.case
-      add_breadcrumb I18n.t(:transports), case_path(@transport.case) + '#tabs-transports'
-
-    else
-      add_breadcrumb I18n.t(:transports), :transports_path
-
-    end
     add_breadcrumb @transport, @transport
   rescue ActiveRecord::RecordNotFound
     render_404
+  end
+
+  def set_breadcrumbs
+    if @transport.case
+      add_breadcrumb @transport.case, @transport.case
+      add_breadcrumb I18n.t(:transports), case_path(@transport.case) + '#tabs-transports'
+    else
+      add_breadcrumb I18n.t(:transports), :transports_path
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
