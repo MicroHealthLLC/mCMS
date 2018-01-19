@@ -44,8 +44,8 @@ class AppointmentDispositionsController < ProtectForgeryApplication
   def update
     respond_to do |format|
       if @appointment_disposition.update(appointment_disposition_params)
-        format.html { redirect_to @appointment_disposition, notice: 'Appointment disposition was successfully updated.' }
-        format.json { render :show, status: :ok, location: @appointment_disposition }
+        format.html { redirect_to appointment_path(@appointment)+'#tabs-disposition', notice: 'Appointment disposition was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @appointment_disposition }
       else
         format.html { render :edit }
         format.json { render json: @appointment_disposition.errors, status: :unprocessable_entity }
