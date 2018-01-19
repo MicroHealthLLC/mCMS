@@ -6,6 +6,12 @@ class DailyLiving < ApplicationRecord
   belongs_to :daily_living_type, :optional=> true
   validates_presence_of :user_id
 
+  before_validation do
+    if self.snomed.blank?
+      errors[:base] << "Daily living type cannot be blank"
+    end
+  end
+
   has_many :daily_living_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :daily_living_attachments, reject_if: :all_blank, allow_destroy: true
 

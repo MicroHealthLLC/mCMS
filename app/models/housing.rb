@@ -11,6 +11,11 @@ class Housing < ApplicationRecord
 
   validates_presence_of :user_id
 
+  before_validation do
+    if self.snomed.blank?
+      errors[:base] << "Housing type cannot be blank"
+    end
+  end
 
   def self.enumeration_columns
     [

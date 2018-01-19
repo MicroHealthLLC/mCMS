@@ -13,7 +13,7 @@ class CaseSupport < ApplicationRecord
 
   has_many :appointment_links, as: :linkable
 
-  validates_presence_of :case_id, :user_id
+  validates_presence_of :case_id, :user_id, :first_name, :last_name
 
   def extend_informations
     case_support_extend_demography || CaseSupportExtendDemography.new(case_support_id: self.id)

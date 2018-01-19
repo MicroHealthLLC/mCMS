@@ -75,10 +75,15 @@ class InjuriesController < UserProfilesController
 # DELETE /injuries/1
 # DELETE /injuries/1.json
   def destroy
-    @injury.destroy
-    respond_to do |format|
-      format.html { redirect_to injuries_url, notice: 'Injury was successfully destroyed.' }
-      format.json { head :no_content }
+    if @injury.worker_compensations.present?
+      flash[:error] = 'Injury is linked to Worker compensation and cannot be deleted'
+      redirect_to :back
+    else
+      @injury.destroy
+      respond_to do |format|
+        format.html { redirect_to injuries_url, notice: 'Injury was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
   end
 

@@ -9,6 +9,11 @@ class Financial < ApplicationRecord
   accepts_nested_attributes_for :financial_attachments, reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :user_id
+  before_validation do
+    if self.snomed.blank?
+      errors[:base] << "Financial type cannot be blank"
+    end
+  end
 
   def self.enumeration_columns
     [

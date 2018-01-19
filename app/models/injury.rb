@@ -6,6 +6,9 @@ class Injury < ApplicationRecord
   belongs_to :injury_type, optional: true
   belongs_to :injury_status, optional: true
 
+
+  has_many :worker_compensations
+
   has_many :injury_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :injury_attachments, reject_if: :all_blank, allow_destroy: true
 
