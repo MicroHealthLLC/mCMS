@@ -46,6 +46,41 @@ class ClientDocumentsController <  ProtectForgeryApplication
     render 'documents/edit'
   end
 
+  def create
+    @document = Document.new(document_params)
+
+    respond_to do |format|
+      if @document.save
+        set_link_to_appointment(@document)
+        format.html { redirect_to back_url, notice: 'Document was successfully created.' }
+      else
+        format.html { render 'documents/new' }
+      end
+    end
+  end
+
+  # PATCH/PUT /documents/1
+  # PATCH/PUT /documents/1.json
+  def update
+    respond_to do |format|
+      if @document.update(document_params)
+        format.html { redirect_to back_url, notice: 'Document was successfully updated.' }
+      else
+        format.html { 'documents/edit' }
+      end
+    end
+  end
+
+  # DELETE /documents/1
+  # DELETE /documents/1.json
+  def destroy
+    @document.destroy
+    respond_to do |format|
+      format.html { redirect_to back_index_case_url, notice: 'Document was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
 
   private
   # Use callbacks to share common setup or constraints between actions.

@@ -274,7 +274,7 @@ Rails.application.routes.draw do
   end
   get 'all_files', to: "documents#all_files"
   resources :documents
-  resources :client_documents, only: [:index, :new, :show, :edit]
+  resources :client_documents
 
 
   resources :surveys do

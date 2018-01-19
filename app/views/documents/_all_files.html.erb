@@ -13,7 +13,12 @@
       <tr>
         <td>
           <% begin %>
-              <%= link_to_edit_if_can(attachment.owner.to_s, {ctrl: attachment.owner.class.table_name, object:  attachment.owner }) %>
+              <% if attachment.owner.is_a? Document %>
+                  <%= link_to_edit_if_can(attachment.owner.to_s, {ctrl: (attachment.owner.case ? :documents  : :client_documents), object:  attachment.owner }) %>
+              <% else %>
+                  <%= link_to_edit_if_can(attachment.owner.to_s, {ctrl: attachment.owner.class.table_name, object:  attachment.owner }) %>
+
+              <% end %>
           <%rescue %>
               <%= link_to(attachment.owner.to_s, attachment.owner ) %>
           <% end %>

@@ -63,7 +63,6 @@ class CasesController < UserCasesController
   end
 
   def all_files
-
     @appointment_files = Appointment.my_appointments.map(&:appointment_attachments)
     @document_files = Document.visible.map(&:document_attachments)
     @task_files = Task.

@@ -12,7 +12,11 @@
   <tbody>
   <% @files.each do |attachment| %>
       <tr>
-        <td>      <%= link_to attachment.owner,  attachment.owner %>    </td>
+        <% if attachment.owner.is_a? Document %>
+            <%= link_to attachment.owner, (attachment.owner.case ? attachment.owner : client_document_path(attachment.owner)) %>
+        <% else %>
+            <td>      <%= link_to attachment.owner,  attachment.owner %>    </td>
+        <% end %>
         <td>      <%= link_to_case attachment.owner.case %>    </td>
         <td>     <%= render 'attachments/file', attachment: attachment %>   </td>
         <td>      <%= format_date attachment.created_at %>    </td>
@@ -23,7 +27,7 @@
 
 <script>
     $(document).ready(function(){
-         initDataTable('files_table')
+        initDataTable('files_table')
     } );
 </script>
 

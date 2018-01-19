@@ -19,8 +19,10 @@ class NotesController < UserCasesController
     @note_template = NoteTemplate.find(params[:note_template_id]) rescue nil
   end
 
+  # TODO make on each breadcrumn it own value
   def new
     @note = Note.new(type: params[:type], owner_id: params[:owner_id], user_id: User.current_user.id)
+    set_breadcrumbs
 
     if @note.is_a? PostNote
       @breadcrumbs = []
@@ -76,20 +78,7 @@ class NotesController < UserCasesController
   def set_note
     @note = Note.find(params[:id])
 
-    if @note.object.is_a? Case
-      add_breadcrumb @note.object, case_path(@note.object)
-      add_breadcrumb I18n.t('notes'), case_path(@note.object) + "#tabs-notes"
-    elsif @note.object.is_a? Appointment
-      if @note.object.case
-        add_breadcrumb @note.object.case, case_path(@note.object.case)
-      end
-      add_breadcrumb @note.object, appointment_path(@note.object) + "#tabs-note"
-    else
-      add_breadcrumb @note.object.to_s, @note.object
-
-      add_breadcrumb I18n.t('notes'), :notes_path
-    end
-
+    set_breadcrumbs
 
     add_breadcrumb @note.id, @note
 
@@ -138,5 +127,39 @@ class NotesController < UserCasesController
              :note
            end
     params.require(type).permit(Note.safe_attributes)
+  end
+
+  def set_breadcrumbs
+    if @note.object.is_a? Case
+      add_breadcrumb @note.object, case_path(@note.object)
+      add_breadcrumb I18n.t('notes'), case_path(@note.object) + "#tabs-notes"
+    elsif @note.object.is_a? Appointment
+      if @note.object.case
+        add_breadcrumb @note.object.case, case_path(@note.object.case)
+      end
+      add_breadcrumb @note.object, appointment_path(@note.object) + "#tabs-note"
+    elsif @note.object.is_a? Document
+      if @note.object.try(:case)
+        add_breadcrumb @note.object.case, case_path(@note.object.case)
+        add_breadcrumb 'Documents', case_path(@note.object.case) + '#tabs-documents'
+      else
+        @breadcrumbs = []
+        add_breadcrumb 'Client Profile', '/profile_record'
+        add_breadcrumb 'Documents', '/profile_record#tabs-documents'
+      end
+      add_breadcrumb @note.object.to_s, @note.object
+
+      add_breadcrumb I18n.t('notes'), :notes_path
+    else
+      if @note.object.try(:case)
+        add_breadcrumb @note.object.case, case_path(@note.object.case)
+      else
+        @breadcrumbs = []
+      end
+      add_breadcrumb @note.object.to_s, @note.object
+
+      add_breadcrumb I18n.t('notes'), :notes_path
+    end
+
   end
 end
