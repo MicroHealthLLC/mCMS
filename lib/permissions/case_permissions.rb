@@ -1,12 +1,13 @@
 RedCarpet::AccessControl.map do |map|
 # case user
   map.project_module :document do |map|
-    map.permission :view_documents,   {:documents => [:index]},  :read => true
-    map.permission :show_documents,   {:documents => [:show]},  :read => true
-    map.permission :create_documents, {:documents => [:new, :create]},  :read => true
-    map.permission :edit_documents,   {:documents => [ :edit, :update]},  :read => true
-    map.permission :delete_documents, {:documents => [ :destroy]},  :read => true
-    map.permission :manage_documents, {:documents => [:all_files, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :view_documents,   {:client_documents => [:index], :documents => [:index]},  :read => true
+    map.permission :show_documents,   {:client_documents => [:show], :documents => [:show]},  :read => true
+    map.permission :create_documents, {:client_documents => [:new, :create], :documents => [:new, :create]},  :read => true
+    map.permission :edit_documents,   {:client_documents => [ :edit, :update], :documents => [ :edit, :update]},  :read => true
+    map.permission :delete_documents, {:client_documents => [ :destroy], :documents => [ :destroy]},  :read => true
+    map.permission :manage_documents, {:documents => [:all_files, :index, :show, :new, :create, :edit, :update, :destroy],
+                                       :client_documents => [:all_files, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :transports do |map|

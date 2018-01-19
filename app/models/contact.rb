@@ -6,6 +6,8 @@ class Contact < ApplicationRecord
   belongs_to :gender_type, foreign_key: :gender_id, optional: true
   has_one :contact_extend_demography
 
+  validates_presence_of :user_id, :first_name, :last_name
+
   has_many :contact_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :contact_attachments, reject_if: :all_blank, allow_destroy: true
 

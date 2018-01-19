@@ -20,6 +20,12 @@ class Appointment < ApplicationRecord
 
   validates_presence_of :date, :title, :with_who_id, :with_who_type
 
+  before_validation do
+    if self.related_to_id.blank?
+      errors[:base] << 'Appointment must be linked to case'
+    end
+  end
+
   # attr_accessor :with_who
 
   scope :not_related, -> {where(related_to_id: nil)}
