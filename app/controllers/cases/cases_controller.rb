@@ -178,6 +178,7 @@ class CasesController < UserCasesController
       @checklists = ChecklistTemplate.order('title ASC') #- ChecklistTemplate.where(id: ChecklistCase.where(assigned_to_id: @case.id).pluck(:checklist_template_id))
       @checklist = ChecklistCase.new(assigned_to_id: @case.id)
     end
+    add_breadcrumb 'Checklists', case_path(@case) + '#tabs-checklists'
   end
 
   def new_assign_survey
@@ -193,6 +194,7 @@ class CasesController < UserCasesController
       @survey = SurveyCase.new(assigned_to_id: @case.id)
 
     end
+    add_breadcrumb 'Surveys', case_path(@case) + '#tabs-surveys'
   end
 
   # POST /cases
