@@ -51,7 +51,6 @@ class ClientDocumentsController <  ProtectForgeryApplication
 
     respond_to do |format|
       if @document.save
-        set_link_to_appointment(@document)
         format.html { redirect_to back_url, notice: 'Document was successfully created.' }
       else
         format.html { render 'documents/new' }
@@ -105,10 +104,6 @@ class ClientDocumentsController <  ProtectForgeryApplication
   end
 
   def back_url
-    if @document.case
-      @document.case
-    else
       client_documents_url
-    end
   end
 end
