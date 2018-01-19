@@ -45,8 +45,8 @@ class AppointmentCapturesController < UserCasesController
   def update
     respond_to do |format|
       if @appointment_capture.update(appointment_capture_params)
-        format.html { redirect_to @appointment_capture, notice: 'Appointment capture was successfully updated.' }
-        format.json { render :show, status: :ok, location: @appointment_capture }
+        format.html { redirect_to appointment_path(@appointment)+'#tabs-capture', notice: 'Appointment capture was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @appointment_capture }
       else
         format.html { render :edit }
         format.json { render json: @appointment_capture.errors, status: :unprocessable_entity }
@@ -59,7 +59,7 @@ class AppointmentCapturesController < UserCasesController
   def destroy
     @appointment_capture.destroy
     respond_to do |format|
-      format.html { redirect_to appointment_path(@appointment)+'#tabs-capture'  , notice: 'Appointment capture was successfully destroyed.' }
+      format.html { redirect_to appointment_path(@appointment)+'#tabs-capture', notice: 'Appointment capture was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

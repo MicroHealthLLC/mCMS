@@ -99,8 +99,8 @@ class MeasurementRecordsController < UserCasesController
   def update
     respond_to do |format|
       if @measurement_record.update(measurement_record_params)
-        format.html { redirect_to @measurement_record, notice: 'Measurement record was successfully updated.' }
-        format.json { render :show, status: :ok, location: @measurement_record }
+        format.html { redirect_to back_index_case_url, notice: 'Measurement record was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @measurement_record }
       else
         format.html { render :edit }
         format.json { render json: @measurement_record.errors, status: :unprocessable_entity }

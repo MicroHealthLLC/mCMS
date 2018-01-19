@@ -141,8 +141,8 @@ class GoalsController <  UserCasesController
     @tasks = @plans.map(&:tasks).flatten.uniq
     respond_to do |format|
       if @goal.update(goal_params)
-        format.html { redirect_to @goal, notice: 'Goal was successfully updated.' }
-        format.json { render :show, status: :ok, location: @goal }
+        format.html { redirect_to back_index_case_url, notice: 'Goal was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @goal }
       else
         format.html { render :edit }
         format.json { render json: @goal.errors, status: :unprocessable_entity }
@@ -155,7 +155,7 @@ class GoalsController <  UserCasesController
   def destroy
     @goal.destroy
     respond_to do |format|
-      format.html { redirect_to goals_url, notice: 'Goal was successfully destroyed.' }
+      format.html { redirect_to back_index_case_url, notice: 'Goal was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

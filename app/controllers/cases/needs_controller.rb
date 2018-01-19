@@ -120,8 +120,8 @@ class NeedsController < UserCasesController
 
     respond_to do |format|
       if @need.update(need_params)
-        format.html { redirect_to @need, notice: 'Need was successfully updated.' }
-        format.json { render :show, status: :ok, location: @need }
+        format.html { redirect_to back_index_case_url, notice: 'Need was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @need }
       else
         format.html { render :edit }
         format.json { render json: @need.errors, status: :unprocessable_entity }

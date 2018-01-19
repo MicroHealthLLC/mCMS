@@ -36,7 +36,7 @@ module Inventory
     # PATCH/PUT /product_assigns/1
     def update
       if @product_assign.update(product_assign_params)
-        redirect_to @product_assign, notice: 'Product assign was successfully updated.'
+        redirect_to product_assigns_url, notice: 'Product assign was successfully updated.'
       else
         render :edit
       end

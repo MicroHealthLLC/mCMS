@@ -50,8 +50,8 @@ class AppointmentProceduresController < ProtectForgeryApplication
   def update
     respond_to do |format|
       if @appointment_procedure.update(appointment_procedure_params)
-        format.html { redirect_to @appointment_procedure, notice: 'Appointment procedure was successfully updated.' }
-        format.json { render :show, status: :ok, location: @appointment_procedure }
+        format.html { redirect_to appointment_path(@appointment)+'#tabs-procedure', notice: 'Appointment procedure was successfully updated.' }
+      #  format.json { render :show, status: :ok, location: @appointment_procedure }
       else
         format.html { render :edit }
         format.json { render json: @appointment_procedure.errors, status: :unprocessable_entity }
@@ -64,7 +64,7 @@ class AppointmentProceduresController < ProtectForgeryApplication
   def destroy
     @appointment_procedure.destroy
     respond_to do |format|
-      format.html { redirect_to appointment_path(@appointment)+'#tabs-procedure ', notice: 'Appointment procedure was successfully destroyed.' }
+      format.html { redirect_to appointment_path(@appointment)+'#tabs-procedure', notice: 'Appointment procedure was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
