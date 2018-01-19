@@ -85,7 +85,7 @@ class BillingsController < UserProfilesController
   def destroy
     @billing.destroy
     respond_to do |format|
-      format.html { redirect_to billings_url, notice: 'Billing was successfully destroyed.' }
+      format.html { redirect_to appointment_path(@appointment) + '#tabs-billing', notice: 'Billing was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

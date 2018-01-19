@@ -145,7 +145,7 @@ class NotesController < UserCasesController
       else
         @breadcrumbs = []
         add_breadcrumb 'Client Profile', '/profile_record'
-        add_breadcrumb 'Documents', '/profile_record#tabs-documents'
+        add_breadcrumb 'Client documents', '/profile_record#tabs-documents'
       end
       add_breadcrumb @note.object.to_s, @note.object
 
