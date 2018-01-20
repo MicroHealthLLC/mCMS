@@ -30,7 +30,7 @@ class SocioeconomicDatatable < AjaxDatatablesRails::Base
     records.map do |socioeconomic|
       [
           @view.link_to_edit_if_can( socioeconomic.name, {ctrl: :socioeconomics, object: socioeconomic } ),
-          @view.link_to_edit_if_can(socioeconomic.snomed, {ctrl: :socioeconomics, object: socioeconomic }) ,
+          socioeconomic.snomed.present? ? @view.link_to_edit_if_can(socioeconomic.snomed, {ctrl: :socioeconomics, object: socioeconomic }) : '' ,
           @view.format_date( socioeconomic.date_identified) ,
           @view.format_date( socioeconomic.date_resolved) ,
           socioeconomic.socioeconomic_status.to_s,

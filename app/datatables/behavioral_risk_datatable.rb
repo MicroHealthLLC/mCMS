@@ -30,7 +30,7 @@ class BehavioralRiskDatatable < AjaxDatatablesRails::Base
     records.map do |behavioral_risk|
       [
           @view.link_to_edit_if_can( behavioral_risk.name, {ctrl: :behavioral_risks, object: behavioral_risk }) ,
-          @view.link_to( behavioral_risk.snomed, behavioral_risk),
+          behavioral_risk.snomed.present? ? @view.link_to( behavioral_risk.snomed, behavioral_risk) : '',
           @view.format_date( behavioral_risk.date_started) ,
           @view.format_date(  behavioral_risk.date_ended) ,
           behavioral_risk.behavioral_risk_status.to_s ,

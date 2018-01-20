@@ -6,7 +6,7 @@ class Goal < ApplicationRecord
   belongs_to :priority_type, optional: true
   belongs_to :goal_status, optional: true
   belongs_to :goal_type, optional: true
-
+  validates_presence_of :user_id, :name
   has_many :need_goals, dependent: :destroy
   has_many :needs, through: :need_goals
 

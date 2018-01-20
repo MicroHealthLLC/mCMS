@@ -26,7 +26,6 @@ class RelatedClientDatatable < AjaxDatatablesRails::Base
     records.map do |related_client|
       [
           @view.link_to_edit_if_can( related_client.related_client, {ctrl: :related_clients, object: related_client }) ,
-
           related_client.snomed ,
           @view.format_date( related_client.date_start) ,
           @view.format_date( related_client.date_end) ,

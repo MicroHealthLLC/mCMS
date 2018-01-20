@@ -1,13 +1,18 @@
-
 <script>
-  $( function() {
-    $tabs = $( "#<%= tab_name %>" ).tabs({
-        activate: function (e, ui) {
-            window.location.hash = ui.newTab.find("a").attr("href")
-        }
-    });
-  } );
+    function hashLinks() {
+        $(".links a").prop("hash", location.hash.replace(/#tabs/,"#for"))
+    }
+    $( function() {
+        $("#<%= tab_name %>").tabs({
+            activate: function(event, ui) {
+                hash = ui.newTab.find("[href]").prop("hash");
+                history.pushState({}, '', hash);
+                hashLinks()
+            }
+        });
+    } );
 </script>
+
 <section id="widget-grid" class="show_tab">
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

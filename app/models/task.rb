@@ -6,6 +6,7 @@ class Task < ApplicationRecord
   belongs_to :task_type, optional: true
   belongs_to :task_status_type, optional: true
 
+  validates_presence_of :user_id, :title
   has_many :task_notes, foreign_key: :owner_id, dependent: :destroy
   has_many :sub_tasks, class_name: 'Task', foreign_key: :sub_task_id
 

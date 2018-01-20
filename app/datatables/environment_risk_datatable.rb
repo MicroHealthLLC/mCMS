@@ -30,7 +30,7 @@ class EnvironmentRiskDatatable < AjaxDatatablesRails::Base
     records.map do |environment_risk|
       [
           @view.link_to_edit_if_can( environment_risk.name, {ctrl: :environment_risks, object: environment_risk } ),
-          @view.link_to_edit_if_can(environment_risk.snomed, {ctrl: :environment_risks, object: environment_risk }) ,
+          environment_risk.snomed.present? ? @view.link_to_edit_if_can(environment_risk.snomed, {ctrl: :environment_risks, object: environment_risk }) : ''  ,
           environment_risk.date_started ,
           environment_risk.date_ended ,
           environment_risk.environment_status.to_s,

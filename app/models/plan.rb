@@ -6,7 +6,7 @@ class Plan < ApplicationRecord
   belongs_to :priority_type, optional: true
   belongs_to :plan_status, optional: true
   belongs_to :plan_type, optional: true
-  validates_presence_of :name
+  validates_presence_of :name, :user_id
   has_many :plan_notes, foreign_key: :owner_id, dependent: :destroy
 
   has_many :goal_plans, dependent: :destroy

@@ -6,6 +6,8 @@ class Need < ApplicationRecord
   belongs_to :need_enum, optional: true
   belongs_to :priority_type, optional: true
   belongs_to :need_status, optional: true
+  validates_presence_of :user_id, :case_id, :need_enum_id
+
 
   has_many :appointment_links, as: :linkable
 

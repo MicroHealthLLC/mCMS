@@ -28,7 +28,7 @@ class FamilyHistoryDatatable < AjaxDatatablesRails::Base
     records.map do |family_history|
       [
           @view.link_to_edit_if_can( family_history.name, {ctrl: :family_histories, object: family_history }) ,
-          @view.link_to_edit_if_can( family_history.snomed, {ctrl: :family_histories, object: family_history }) ,
+         family_history.snomed.present? ? @view.link_to_edit_if_can( family_history.snomed, {ctrl: :family_histories, object: family_history }) : '' ,
           @view.format_date( family_history.date_identified) ,
           family_history.family_status.to_s,
           family_history.family_type.to_s ,
