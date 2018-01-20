@@ -1,96 +1,112 @@
-<%= form_for(product, html: { class: 'form-horizontal' }) do |f| %>
-    <fieldset>
-      <legend></legend>
-      <% if product.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(product.errors.count, "error") %> prohibited this productfrom being saved:</h2>
+<div class="row">
+  <div class="col-xs-12 col-md-8">
+    <%= form_for(product, html: { class: 'form-horizontal' }) do |f| %>
+        <fieldset>
+          <legend></legend>
+          <% if product.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(product.errors.count, "error") %> prohibited this productfrom being saved:</h2>
 
-            <ul>
-              <% product.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-              <% end %>
-            </ul>
+                <ul>
+                  <% product.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+          <% end %>
+
+          <div class="form-group">
+            <%= f.label :name , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :name , class: 'form-control' %>
+            </div>
           </div>
-      <% end %>
 
-      <div class="form-group">
-        <%= f.label :name , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :name , class: 'form-control' %>
-        </div>
-      </div>
+          <div class="form-group">
+            <%= f.label t(:description) , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_area :description , class: 'form-control ck-editor' %>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <%= f.label t(:description) , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_area :description , class: 'form-control ck-editor' %>
-        </div>
-      </div>
+          <div class="form-group">
+            <%= f.label :product_category, class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :product_category_id, options_for_select(Inventory::ProductCategory.active.pluck(:name, :id), selected: f.object.product_category.try(:id)), {},{ class: 'form-control'} %>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <%= f.label :product_category, class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :product_category_id, options_for_select(Inventory::ProductCategory.active.pluck(:name, :id), selected: f.object.product_category.try(:id)), {},{ class: 'form-control'} %>
-        </div>
-      </div>
+          <div class="form-group">
+            <%= f.label :manufacturer , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :manufacturer , class: 'form-control' %>
+              <%= f.hidden_field :location_lat, class: 'form-control' %>
+              <%= f.hidden_field :location_long, class: 'form-control' %>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <%= f.label :product_type, class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :product_type_id, options_for_select(Inventory::ProductType.active.pluck(:name, :id), selected: f.object.product_type.try(:id)), {},{ class: 'form-control'} %>
-        </div>
-      </div>
+          <div class="form-group">
+            <%= f.label :model , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :model , class: 'form-control' %>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <%= f.label :manufacturer , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :manufacturer , class: 'form-control' %>
-        </div>
-      </div>
+          <div class="form-group">
+            <%= f.label :serial , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :serial , class: 'form-control' %>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <%= f.label :model , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :model , class: 'form-control' %>
-        </div>
-      </div>
+          <div class="form-group">
+            <%= f.label :unit_cost , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :unit_cost , class: 'form-control' %>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <%= f.label :serial , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :serial , class: 'form-control' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :unit_cost , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :unit_cost , class: 'form-control' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :product_location, class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :product_location_id, options_for_select(Inventory::ProductLocation.active.pluck(:name, :id), selected: f.object.product_location.try(:id)), {},{ class: 'form-control'} %>
-        </div>
-      </div>
+          <div class="form-group">
+            <%= f.label :product_location, class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :product_location , class: 'form-control' %>
+              <%= f.hidden_field :product_location_lat, class: 'form-control' %>
+              <%= f.hidden_field :product_location_long, class: 'form-control' %>
+            </div>
+          </div>
 
 
-      <div class="form-group">
-        <%= f.label :product_status, class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :product_status_id, options_for_select(Inventory::ProductStatus.active.pluck(:name, :id), selected: f.object.product_status.try(:id)), {},{ class: 'form-control'} %>
-        </div>
-      </div>
+          <div class="form-group">
+            <%= f.label :product_status, class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :product_status_id, options_for_select(Inventory::ProductStatus.active.pluck(:name, :id), selected: f.object.product_status.try(:id)), {},{ class: 'form-control'} %>
+            </div>
+          </div>
 
 
-      <div class="form-group" >
-        <div class="col-md-11">
-          <%= link_to t('button_cancel'), inventory.products_path , class: 'btn btn-warning pull-right' %>
-          <%= f.submit t('button_save'), class: 'btn btn-success pull-right' %>
-        </div>
-      </div>
-    </fieldset>
-<% end %>
+          <div class="form-group" >
+            <div class="col-md-11">
+              <%= link_to t('button_cancel'), inventory.products_path , class: 'btn btn-warning pull-right' %>
+              <%= f.submit t('button_save'), class: 'btn btn-success pull-right' %>
+            </div>
+          </div>
+        </fieldset>
+    <% end %>
+  </div>
+  <div class="col-xs-12 col-md-4">
+    <%= render partial: 'map', locals: {
+        location: 'product_manufacturer',
+        location_lat: 'product_location_lat',
+        location_long: 'product_location_long',
+        object: product
 
+    } %> <%= render partial: 'map2', locals: {
+        location: 'product_product_location',
+        location_lat: 'product_product_location_lat',
+        location_long: 'product_product_location_long',
+        object: product,
+        location_lat_value: product.product_location_lat,
+        location_long_value: product.product_location_long
+
+    } %></div>
+</div>

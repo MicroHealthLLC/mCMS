@@ -3,7 +3,6 @@ module Inventory
     belongs_to :product_category, optional: true
     belongs_to :product_type, optional: true
     belongs_to :product_status, optional: true
-    belongs_to :product_location, optional: true
 
     has_many :product_assigns
 
@@ -17,10 +16,6 @@ module Inventory
       super || ProductType.default
     end
 
-     def product_location
-      super || ProductLocation.default
-    end
-
     def product_status
       super || ProductStatus.default
     end
@@ -30,7 +25,8 @@ module Inventory
     end
 
     def self.safe_attributes
-      [:name, :description, :product_category_id, :product_type_id,
+      [:name, :description, :product_category_id, :product_type_id, :location_lat, :location_long,
+       :product_location,  :product_location_lat, :product_location_long,
        :manufacturer, :model, :serial, :unit_cost, :product_location_id, :product_status_id]
     end
 
@@ -39,7 +35,6 @@ module Inventory
 
       pdf.table([[ "Name: ", " #{name}"]], :column_widths => [ 150, 373])
       pdf.table([[ "Description: ", " #{ActionView::Base.full_sanitizer.sanitize(description)}"]], :column_widths => [ 150, 373])
-      pdf.table([[ "Product type: ", " #{product_type}"]], :column_widths => [ 150, 373])
       pdf.table([[ "Product status: ", " #{product_status}"]], :column_widths => [ 150, 373])
       pdf.table([[ "Product category: ", " #{product_category}"]], :column_widths => [ 150, 373])
       pdf.table([[ "manufacturer: ", " #{manufacturer}"]], :column_widths => [ 150, 373])

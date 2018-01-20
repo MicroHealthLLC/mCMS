@@ -58,6 +58,8 @@
             <%= f.label :manufacturer , class: 'col-md-2 control-label' %>
             <div class="col-md-9">
               <%= f.text_field :manufacturer , class: 'form-control' %>
+              <%= f.hidden_field :location_lat, class: 'form-control' %>
+              <%= f.hidden_field :location_long, class: 'form-control' %>
             </div>
           </div>
 
@@ -112,7 +114,7 @@
   </div>
   <div class="col-xs-12 col-md-4">
     <%= render partial: 'map', locals: {
-        location: 'immunization_location',
+        location: 'immunization_manufacturer',
         location_lat: 'immunization_location_lat',
         location_long: 'immunization_location_long',
         object: immunization
