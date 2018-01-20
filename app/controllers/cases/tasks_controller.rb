@@ -126,12 +126,13 @@ class TasksController < UserCasesController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
+    @case = @task.case
     @note = TaskNote.new(user_id: User.current.id)
 
     respond_to do |format|
       if @task.save
         set_link_to_appointment(@task)
-        format.html { redirect_to back_url, notice: 'Task was successfully created.' }
+        format.html { redirect_to back_index_case_url, notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
       else
         format.html { render :new }
@@ -201,14 +202,6 @@ class TasksController < UserCasesController
 
   def authorize_delete
     raise Unauthorized unless @task.can?(:delete_tasks, :manage_tasks, :manage_roles)
-  end
-
-  def back_url
-    if @task.case
-      case_url(@task.case)
-    else
-      tasks_url
-    end
   end
 
 end

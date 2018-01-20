@@ -23,6 +23,9 @@
           <%= f.hidden_field :snomed %>
           <script>
             $(document).ready(function(){
+                $('#snomed').on('keyup', function(){
+                    $('#financial_snomed').val('');
+                })
               $('#snomed').autocomplete({
                 source: "/snomed.json?default=financial",
                 minLength: 2,

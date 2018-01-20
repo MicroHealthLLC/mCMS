@@ -23,6 +23,9 @@
           <%= f.hidden_field :snomed %>
           <script>
             $(document).ready(function(){
+                $('#snomed').on('keyup', function(){
+                    $('#daily_living_snomed').val('');
+                })
               $('#snomed').autocomplete({
                 source: "/snomed.json?default=self-care",
                 minLength: 2,

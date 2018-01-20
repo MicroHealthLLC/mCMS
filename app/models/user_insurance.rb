@@ -10,7 +10,7 @@ class UserInsurance < ApplicationRecord
   has_many :user_insurance_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :user_insurance_attachments, reject_if: :all_blank, allow_destroy: true
 
-
+  validates_presence_of :user_id, :insurance
   def self.enumeration_columns
     [
         ["#{InsuranceType}", 'insurance_type_id'],

@@ -55,10 +55,10 @@ class TransportsController  <  UserCasesController
   # POST /transports.json
   def create
     @transport = Transport.new(transport_params)
-
+    @case = @transport.case
     respond_to do |format|
       if @transport.save
-        format.html { redirect_to @transport, notice: 'Transport was successfully created.' }
+        format.html { redirect_to back_index_case_url, notice: 'Transport was successfully created.' }
         format.json { render :show, status: :created, location: @transport }
       else
         format.html { render :new }
@@ -96,6 +96,7 @@ class TransportsController  <  UserCasesController
   def set_transport
     @transport = Transport.find(params[:id])
     @case = @transport.case
+    set_breadcrumbs
     add_breadcrumb @transport, @transport
   rescue ActiveRecord::RecordNotFound
     render_404

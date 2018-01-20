@@ -10,7 +10,7 @@ class Affiliation < ApplicationRecord
   has_many :affiliation_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :affiliation_attachments, reject_if: :all_blank, allow_destroy: true
 
-  validates_presence_of :name
+  validates_presence_of :name, :user_id
 
   def self.enumeration_columns
     [

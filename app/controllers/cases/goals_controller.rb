@@ -121,11 +121,11 @@ class GoalsController <  UserCasesController
   # POST /goals.json
   def create
     @goal = Goal.new(goal_params)
-
+    @case = @goal.case
     respond_to do |format|
       if @goal.save
         set_link_to_appointment(@goal)
-        format.html { redirect_to @goal, notice: 'Goal was successfully created.' }
+        format.html { redirect_to back_index_case_url, notice: 'Goal was successfully created.' }
         format.json { render :show, status: :created, location: @goal }
       else
         format.html { render :new }

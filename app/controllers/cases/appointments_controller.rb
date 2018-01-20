@@ -96,6 +96,7 @@ class AppointmentsController < UserCasesController
                                    with_who_id: User.current_user.id,
                                    related_to_id: params[:related_to])
 
+
     set_breadcrumbs
   end
 
@@ -117,12 +118,13 @@ class AppointmentsController < UserCasesController
   # POST /appointments.json
   def create
     @appointment = Appointment.new(appointment_params)
+    @case = @appointment.case
     # @appointment.with_who = User.find(params[:appointment][:with_who_id]) rescue nil
 
     respond_to do |format|
       if @appointment.save
         set_link_to_appointment(@appointment)
-        format.html { redirect_to @appointment, notice: 'Appointment was successfully created.' }
+        format.html { redirect_to back_index_case_url, notice: 'Appointment was successfully created.' }
         format.json { render :show, status: :created, location: @appointment }
       else
         format.html { render :new }
@@ -212,5 +214,4 @@ class AppointmentsController < UserCasesController
   def authorize_delete
     raise Unauthorized unless @appointment.can?(:delete_appointments, :manage_appointments, :manage_roles)
   end
-
 end

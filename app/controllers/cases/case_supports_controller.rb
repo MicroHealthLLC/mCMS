@@ -69,11 +69,11 @@ class CaseSupportsController < UserCasesController
   # POST /case_supports.json
   def create
     @case_support = CaseSupport.new(case_support_params)
-
+    @case =  @case_support.case
     respond_to do |format|
       if @case_support.save
         set_link_to_appointment(@case_support)
-        format.html { redirect_to @case_support, notice: 'Case support was successfully created.' }
+        format.html { redirect_to back_index_case_url, notice: 'Case support was successfully created.' }
         format.json { render :show, status: :created, location: @case_support }
       else
         format.html { render :new }

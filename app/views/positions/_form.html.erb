@@ -27,6 +27,9 @@
             <%= f.hidden_field :snomed %>
             <script>
               $(document).ready(function(){
+                  $('#snomed').on('keyup', function(){
+                      $('#position_snomed').val('');
+                  })
                 $('#snomed').autocomplete({
                   source: "/snomed.json?default=occupation",
                   minLength: 2,

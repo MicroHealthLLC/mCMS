@@ -116,11 +116,11 @@ class PlansController < UserCasesController
   # POST /plans.json
   def create
     @plan = Plan.new(plan_params)
-
+    @case = @plan.case
     respond_to do |format|
       if @plan.save
         set_link_to_appointment(@plan)
-        format.html { redirect_to @plan, notice: 'Plan was successfully created.' }
+        format.html { redirect_to back_index_case_url, notice: 'Plan was successfully created.' }
         format.json { render :show, status: :created, location: @plan }
       else
         format.html { render :new }

@@ -60,11 +60,11 @@ class DocumentsController < UserCasesController
   # POST /documents.json
   def create
     @document = Document.new(document_params)
-
+    @document.case
     respond_to do |format|
       if @document.save
         set_link_to_appointment(@document)
-        format.html { redirect_to back_url, notice: 'Document was successfully created.' }
+        format.html { redirect_to back_index_case_url, notice: 'Document was successfully created.' }
       else
         format.html { render :new }
       end
@@ -76,7 +76,7 @@ class DocumentsController < UserCasesController
   def update
     respond_to do |format|
       if @document.update(document_params)
-        format.html { redirect_to back_url, notice: 'Document was successfully updated.' }
+        format.html { redirect_to back_index_case_url, notice: 'Document was successfully updated.' }
       else
         format.html { render :edit }
       end

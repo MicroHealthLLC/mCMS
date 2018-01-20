@@ -35,7 +35,7 @@ class JsignaturesController < UserCasesController
         render json: JsignatureDatatable.new(view_context,options)
       }
     end
-    
+
   end
 
   # GET /jsignatures/1
@@ -85,7 +85,7 @@ class JsignaturesController < UserCasesController
     respond_to do |format|
       if @jsignature.save
         set_link_to_appointment(@jsignature)
-        format.html { redirect_to @jsignature, notice: 'Jsignature was successfully created.' }
+        format.html { redirect_to redirect_url, notice: 'Jsignature was successfully created.' }
         format.json { render :show, status: :created, location: @jsignature }
       else
         format.html { render :new }
@@ -99,7 +99,7 @@ class JsignaturesController < UserCasesController
   def update
     respond_to do |format|
       if @jsignature.update(jsignature_params)
-        format.html { redirect_to @jsignature, notice: 'Jsignature was successfully updated.' }
+        format.html { redirect_to redirect_url, notice: 'Jsignature was successfully updated.' }
         format.json { render :show, status: :ok, location: @jsignature }
       else
         format.html { render :edit }
@@ -113,7 +113,7 @@ class JsignaturesController < UserCasesController
   def destroy
     @jsignature.destroy
     respond_to do |format|
-      format.html { redirect_to back_index_case_url, notice: 'Jsignature was successfully destroyed.' }
+      format.html { redirect_to redirect_url, notice: 'Jsignature was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -165,5 +165,19 @@ class JsignaturesController < UserCasesController
 
   def authorize
     true
+  end
+
+  def redirect_url
+    @owner = @jsignature.signature_owner
+
+    if @jsignature.signature_owner_type == 'User'
+      '/profile_record#tabs-signature'
+    else
+      if @owner.is_a? Case
+        case_path(@owner) + '#tabs-signatures'
+      else
+        @jsignature
+      end
+    end
   end
 end

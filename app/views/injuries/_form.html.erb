@@ -30,6 +30,9 @@
             <%= f.hidden_field :snomed_occupation %>
             <script>
               $(document).ready(function(){
+                  $('#snomed_occupation').on('keyup', function(){
+                      $('#injury_snomed_occupation').val('');
+                  })
                 $('#snomed_occupation').autocomplete({
                   source: "/snomed.json?default=disorder",
                   minLength: 2,
@@ -63,6 +66,9 @@
             <%= f.hidden_field :snomed_event %>
             <script>
               $(document).ready(function(){
+                  $('#snomed_event').on('keyup', function(){
+                      $('#injury_snomed_event').val('');
+                  })
                 $('#snomed_event').autocomplete({
                   source: "/snomed.json?default=event",
                   minLength: 2,

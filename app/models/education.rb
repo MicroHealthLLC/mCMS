@@ -7,6 +7,7 @@ class Education < ApplicationRecord
   has_many :education_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :education_attachments, reject_if: :all_blank, allow_destroy: true
 
+  validates_presence_of :user_id, :education_type
   def visible?
     User.current == user or User.current.allowed_to?(:edit_educations) or User.current.allowed_to?(:manage_educations)
   end

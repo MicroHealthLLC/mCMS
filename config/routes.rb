@@ -189,6 +189,7 @@ Rails.application.routes.draw do
   resources :referral_notes, except: [:index], controller: :notes
   resources :job_app_notes, except: [:index], controller: :notes
   resources :client_journal_notes, except: [:index], controller: :notes
+  resources :transport_notes, except: [:index], controller: :notes
   resources :attempt_notes, controller: :notes
   resources :notes do
     collection do

@@ -25,6 +25,9 @@
             <%= f.hidden_field :name %>
             <script>
               $(document).ready(function(){
+                  $('#snomed').on('keyup', function(){
+                      $('#laboratory_examination_snomed').val('');
+                  })
                 $('#snomed').autocomplete({
                   source: "/snomed.json?default=procedure",
                   minLength: 2,

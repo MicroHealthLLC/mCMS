@@ -32,6 +32,9 @@
                   <%= f.hidden_field :gender %>
                   <script>
                     $(document).ready(function(){
+                        $('#snomed_gender').on('keyup', function(){
+                            $('#core_demographic_gender').val('');
+                        })
                       $('#snomed_gender').autocomplete({
                         source: "/snomed.json?default=gender finding",
                         minLength: 2,

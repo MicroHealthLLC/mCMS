@@ -98,11 +98,11 @@ class NeedsController < UserCasesController
   # POST /needs.json
   def create
     @need = Need.new(need_params)
-
+    @case = @need.case
     respond_to do |format|
       if @need.save
         set_link_to_appointment(@need)
-        format.html { redirect_to @need, notice: 'Need was successfully created.' }
+        format.html { redirect_to back_index_case_url, notice: 'Need was successfully created.' }
         format.json { render :show, status: :created, location: @need }
       else
         format.html { render :new }

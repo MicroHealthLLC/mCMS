@@ -99,6 +99,8 @@ class NotesController < UserCasesController
              :checklist_note
            elsif params[:survey_note]
              :survey_note
+           elsif params[:transport_note]
+             :transport_note
            elsif params[:case_note]
              :case_note
            elsif params[:task_note]
@@ -153,6 +155,7 @@ class NotesController < UserCasesController
     else
       if @note.object.try(:case)
         add_breadcrumb @note.object.case, case_path(@note.object.case)
+        set_owner_case_path
       else
         @breadcrumbs = []
       end
@@ -160,6 +163,46 @@ class NotesController < UserCasesController
 
       add_breadcrumb I18n.t('notes'), :notes_path
     end
+  end
 
+  def set_owner_case_path
+    owner_klass = @note.object.class
+    @object_case = @note.object.try(:case)
+    return if @object_case.nil?
+    tabs_name = case owner_klass.to_s
+                  when 'Transport'
+                    'transports'
+                  when 'Referral'
+                    'referrals'
+                  when 'Need'
+                    'needs'
+                  when 'Plan'
+                    'plans'
+                  when 'Goal'
+                    'goals'
+                  when 'Task'
+                    'tasks'
+                  when 'Case'
+                    'subcases'
+                  when 'Document'
+                    'documents'
+                  when 'Appointment'
+                    "appointments"
+                  when 'ChecklistCase'
+                    "checklists"
+                  else
+                    ''
+
+                end
+    add_breadcrumb I18n.t(tabs_name), case_path(@object_case) + '#tabs-'+tabs_name if tabs_name.present?
+    #   if params[:checklist_note]
+    #     :checklist_note
+    #   elsif params[:survey_note]
+    #     :survey_note
+    #   elsif params[:post_note]
+    #     :post_note
+    #   elsif params[:job_app_note]
+    #     :job_app_note
+    #
   end
 end

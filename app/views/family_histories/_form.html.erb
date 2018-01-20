@@ -29,6 +29,9 @@
           <%= f.hidden_field :snomed %>
           <script>
             $(document).ready(function(){
+                $('#snomed').on('keyup', function(){
+                    $('#family_history_snomed').val('');
+                })
               $('#snomed').autocomplete({
                 source: "/snomed.json?default=family history",
                 minLength: 2,

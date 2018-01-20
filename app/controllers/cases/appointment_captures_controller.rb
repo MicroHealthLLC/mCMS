@@ -28,10 +28,10 @@ class AppointmentCapturesController < UserCasesController
   # POST /appointment_captures.json
   def create
     @appointment_capture = AppointmentCapture.new(appointment_capture_params)
-
+    @appointment = @appointment_capture.appointment
     respond_to do |format|
       if @appointment_capture.save
-        format.html { redirect_to @appointment_capture, notice: 'Appointment capture was successfully created.' }
+        format.html { redirect_to appointment_path(@appointment)+'#tabs-capture', notice: 'Appointment capture was successfully created.' }
         format.json { render :show, status: :created, location: @appointment_capture }
       else
         format.html { render :new }

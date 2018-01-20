@@ -28,6 +28,9 @@
             <%= f.hidden_field :snomed %>
             <script>
               $(document).ready(function(){
+                  $('#snomed').on('keyup', function(){
+                      $('#problem_list_snomed').val('');
+                  })
                 $('#snomed').autocomplete({
                   source: "/snomed.json?default=disorder",
                   minLength: 2,

@@ -86,10 +86,11 @@ class ReferralsController < UserCasesController
 # POST /referrals.json
   def create
     @referral = Referral.new(referral_params)
+    @case =  @referral.case
     respond_to do |format|
       if @referral.save
         set_link_to_appointment(@referral)
-        format.html { redirect_to @referral, notice: 'Referral was successfully created.' }
+        format.html { redirect_to back_index_case_url, notice: 'Referral was successfully created.' }
         format.json { render :show, status: :created, location: @referral }
       else
         format.html { render :new }

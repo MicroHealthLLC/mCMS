@@ -4,7 +4,13 @@ class MilitaryHistory < ApplicationRecord
   belongs_to :service_status, optional: true
   belongs_to :service_type, optional: true
 
-  validates_presence_of :text, :user_id
+  validates_presence_of :user_id
+
+  before_validation do
+    if self.text.blank?
+      errors[:base] << "Service name cannot be blank"
+    end
+  end
 
   has_many :military_history_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :military_history_attachments, reject_if: :all_blank, allow_destroy: true
@@ -24,11 +30,11 @@ class MilitaryHistory < ApplicationRecord
 
   def self.csv_attributes
     [
-    'Service Name',
-      'Service type',
-    'Service status',
-      'Date started',
-    'Date ended',
+        'Service Name',
+        'Service type',
+        'Service status',
+        'Date started',
+        'Date ended',
     ]
   end
 

@@ -21,16 +21,19 @@
           <%= f.text_field :medication, class: 'form-control', placeholder: 'Type to Search' %>
           <%= f.hidden_field :snomed %>
           <script>
-            $(document).ready(function(){
-              $('#immunization_medication').autocomplete({
-                source: "/snomed.json?default=vaccine",
-                minLength: 2,
-                select: function( event, ui ) {
-                  $('#immunization_medication').val(ui.item.id)
-                  $('#immunization_snomed').val(ui.item.id)
-                }
+              $(document).ready(function(){
+                  $('#immunization_medication').on('keyup', function(){
+                      $('#immunization_snomed').val('');
+                  })
+                  $('#immunization_medication').autocomplete({
+                      source: "/snomed.json?default=vaccine",
+                      minLength: 2,
+                      select: function( event, ui ) {
+                          $('#immunization_medication').val(ui.item.id);
+                          $('#immunization_snomed').val(ui.item.id);
+                      }
+                  })
               })
-            })
           </script>
         </div>
       </div>

@@ -94,6 +94,9 @@
                 <%= f.hidden_field :gender %>
                 <script>
                   $(document).ready(function(){
+                      $('#snomed_gender').on('keyup', function(){
+                          $('#user_core_demographic_attributes_gender').val('');
+                      })
                     $('#snomed_gender').autocomplete({
                       source: "/snomed.json?default=gender",
                       minLength: 2,
@@ -130,6 +133,9 @@
                 <%= f.hidden_field :religion %>
                 <script>
                   $(document).ready(function(){
+                      $('#snomed').on('keyup', function(){
+                          $('#user_core_demographic_attributes_religion').val('');
+                      })
                     $('#snomed').autocomplete({
                       source: "/snomed.json?default=religion",
                       minLength: 2,
@@ -156,6 +162,9 @@
                 <%= f.hidden_field :ethnicity %>
                 <script>
                   $(document).ready(function(){
+                      $('#snomed_ethnicity').on('keyup', function(){
+                          $('#user_core_demographic_attributes_ethnicity').val('');
+                      })
                     $('#snomed_ethnicity').autocomplete({
                       source: "/snomed.json?default=ethnic",
                       minLength: 2,

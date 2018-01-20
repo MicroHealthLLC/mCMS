@@ -33,10 +33,10 @@ class AppointmentProceduresController < ProtectForgeryApplication
   # POST /appointment_procedures.json
   def create
     @appointment_procedure = AppointmentProcedure.new(appointment_procedure_params)
-
+    @appointment = @appointment_procedure.appointment
     respond_to do |format|
       if @appointment_procedure.save
-        format.html { redirect_to @appointment_procedure, notice: 'Appointment procedure was successfully created.' }
+        format.html { redirect_to appointment_path(@appointment)+'#tabs-procedure', notice: 'Appointment procedure was successfully created.' }
         format.json { render :show, status: :created, location: @appointment_procedure }
       else
         format.html { render :new }

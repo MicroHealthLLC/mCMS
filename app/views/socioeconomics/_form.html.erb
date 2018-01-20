@@ -28,6 +28,9 @@
           <%= f.hidden_field :snomed %>
           <script>
             $(document).ready(function(){
+                $('#snomed').on('keyup', function(){
+                    $('#socioeconomic_snomed').val('');
+                })
               $('#snomed').autocomplete({
                 source: "/snomed.json?default=social concept",
                 minLength: 2,

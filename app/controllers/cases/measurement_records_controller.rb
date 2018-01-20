@@ -86,9 +86,10 @@ class MeasurementRecordsController < UserCasesController
                                  flag: params["flag_#{i}"]
                              })
       @measurement_record = MeasurementRecord.new(measure_params).save
+      @case =  @measurement_record.case
     end
     respond_to do |format|
-      format.html { redirect_to measurement_records_path, notice: 'Measurement record was successfully created.' }
+      format.html { redirect_to back_index_case_url, notice: 'Measurement record was successfully created.' }
       format.json { render :show, status: :created, location: @measurement_record }
 
     end

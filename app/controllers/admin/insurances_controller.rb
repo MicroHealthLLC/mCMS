@@ -57,10 +57,15 @@ class InsurancesController < ProtectForgeryApplication
   # DELETE /insurances/1
   # DELETE /insurances/1.json
   def destroy
-    @insurance.destroy
-    respond_to do |format|
-      format.html { redirect_to insurances_url, notice: 'Insurance was successfully destroyed.' }
-      format.json { head :no_content }
+    if @insurance.user_insurances.present?
+      flash[:error] = 'This insurance is linked to existing user insurances and could not be deleted'
+      redirect_to insurances_url
+    else
+      @insurance.destroy
+      respond_to do |format|
+        format.html { redirect_to insurances_url, notice: 'Insurance was successfully destroyed.' }
+        format.json { head :no_content }
+        end
     end
   end
 

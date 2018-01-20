@@ -8,6 +8,7 @@ class Allergy < ApplicationRecord
   accepts_nested_attributes_for :allergy_attachments, reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :user_id
+
   before_validation do
     if self.snomed.blank?
       errors[:base] << "Allergy type cannot be blank"

@@ -60,11 +60,11 @@ class TeleconsultsController  < UserCasesController
   # POST /teleconsults.json
   def create
     @teleconsult = Teleconsult.new(teleconsult_params)
-
+    @case = @teleconsult.case
     respond_to do |format|
       if @teleconsult.save
         set_link_to_appointment(@teleconsult)
-        format.html { redirect_to @teleconsult, notice: 'Teleconsult was successfully created.' }
+        format.html { redirect_to back_index_case_url, notice: 'Teleconsult was successfully created.' }
         format.json { render :show, status: :created, location: @teleconsult }
       else
         format.html { render :new }

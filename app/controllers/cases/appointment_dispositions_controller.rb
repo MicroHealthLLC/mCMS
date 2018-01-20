@@ -28,10 +28,10 @@ class AppointmentDispositionsController < ProtectForgeryApplication
   # POST /appointment_dispositions.json
   def create
     @appointment_disposition = AppointmentDisposition.new(appointment_disposition_params)
-
+    @appointment = @appointment_disposition.appointment
     respond_to do |format|
       if @appointment_disposition.save
-        format.html { redirect_to @appointment_disposition, notice: 'Appointment disposition was successfully created.' }
+        format.html { redirect_to   appointment_path(@appointment)+'#tabs-disposition', notice: 'Appointment disposition was successfully created.' }
         format.json { render :show, status: :created, location: @appointment_disposition }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class AppointmentDispositionsController < ProtectForgeryApplication
   def update
     respond_to do |format|
       if @appointment_disposition.update(appointment_disposition_params)
-        format.html { redirect_to appointment_path(@appointment)+'#tabs-disposition', notice: 'Appointment disposition was successfully updated.' }
+        format.html { redirect_to  appointment_path(@appointment)+'#tabs-disposition', notice: 'Appointment disposition was successfully updated.' }
       #  format.json { render :show, status: :ok, location: @appointment_disposition }
       else
         format.html { render :edit }

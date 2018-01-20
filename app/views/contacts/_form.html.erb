@@ -58,6 +58,9 @@
           <%= f.hidden_field :language %>
           <script>
             $(document).ready(function(){
+                $('#snomed').on('keyup', function(){
+                    $('#contact_snomed').val('');
+                })
               $('#snomed').autocomplete({
                 source: "/snomed.json?default=language",
                 minLength: 2,

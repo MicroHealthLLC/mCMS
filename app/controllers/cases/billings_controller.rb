@@ -54,10 +54,10 @@ class BillingsController < UserProfilesController
   # POST /billings.json
   def create
     @billing = Billing.new(billing_params)
-
+    @appointment = @billing.appointment
     respond_to do |format|
       if @billing.save
-        format.html { redirect_to @billing, notice: 'Billing was successfully created.' }
+        format.html { redirect_to appointment_path(@appointment) + '#tabs-billing', notice: 'Billing was successfully created.' }
         format.json { render :show, status: :created, location: @billing }
       else
         format.html { render :new }
@@ -71,7 +71,7 @@ class BillingsController < UserProfilesController
   def update
     respond_to do |format|
       if @billing.update(billing_params)
-        format.html { redirect_to @billing, notice: 'Billing was successfully updated.' }
+        format.html { redirect_to appointment_path(@appointment) + '#tabs-billing', notice: 'Billing was successfully updated.' }
         format.json { render :show, status: :ok, location: @billing }
       else
         format.html { render :edit }

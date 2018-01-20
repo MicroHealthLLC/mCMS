@@ -8,7 +8,14 @@ class LaboratoryExamination < ApplicationRecord
   accepts_nested_attributes_for :laboratory_examination_attachments, reject_if: :all_blank, allow_destroy: true
 
 
-  validates_presence_of :user_id, :name
+  validates_presence_of :user_id
+
+  before_validation do
+    if self.snomed.blank?
+      errors[:base] << "Name cannot be blank"
+    end
+  end
+
 
   def self.enumeration_columns
     [["#{LaboratoryResultStatus}", 'laboratory_result_status_id' ]]

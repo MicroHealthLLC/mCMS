@@ -10,7 +10,13 @@ class OtherSkill < ApplicationRecord
 
 
 
-  validates_presence_of :name
+  validates_presence_of :user_id
+  before_validation do
+    if self.name.blank?
+      errors[:base] << "Skill cannot be blank"
+    end
+  end
+
   before_create :check_private_author
   default_scope -> {where(is_private: false).or(where(private_author_id: User.current.id)) }
 
