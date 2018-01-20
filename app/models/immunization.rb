@@ -53,6 +53,7 @@ class Immunization < ApplicationRecord
     
   def self.safe_attributes
     [:user_id, :medication, :immunization_cvx_id, :total_number_of_doses, :doses_given,
+     :location_lat, :location_long,
      :next_date_due, :date_immunized, :manufacturer, :lot_number, :snomed,
      :expiration_date, :immunization_status_id, :description,
      immunization_attachments_attributes: [Attachment.safe_attributes]]
