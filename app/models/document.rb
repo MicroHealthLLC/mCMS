@@ -52,16 +52,12 @@ class Document < ApplicationRecord
     ]
   end
 
-  def document_type
-    snomed
-  end
-
   def visible?
     User.current == user or User.current.allowed_to?(:edit_documents) or User.current.allowed_to?(:manage_documents)
   end
 
   def self.safe_attributes
-    [:title, :description, :is_client_document, :related_to_id, :snomed,
+    [:title, :description, :is_client_document, :related_to_id, :snomed, :expiration_date,
      :related_to_type, :user_id, :document_type_id, :date, :private_author_id,
      :is_private, document_attachments_attributes: [Attachment.safe_attributes]]
   end
@@ -89,6 +85,7 @@ class Document < ApplicationRecord
     output<< "<b>Title: </b> #{title}<br/>"
     output<< "<b>Description: </b> #{description}<br/>"
     output<< "<b>Document type: </b> #{document_type}<br/>"
+    output<< "<b>Expiration date: </b> #{expiration_date}<br/>"
     output.html_safe
   end
 

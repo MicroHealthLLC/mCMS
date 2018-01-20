@@ -6,7 +6,8 @@ class DocumentDatatable < AjaxDatatablesRails::Base
         'Document.title',
         @options[:show_case] ? 'Case.title' : nil ,
         'Enumeration.name',
-        'Document.date'
+        'Document.date',
+        'Document.expiration_date'
     ].compact
   end
 
@@ -15,8 +16,9 @@ class DocumentDatatable < AjaxDatatablesRails::Base
     @searchable_columns ||= [
         'Document.title',
         @options[:show_case] ? 'Case.title' : nil ,
-        'Enumeration.name',
-        'Document.date'
+        'Enumeration.name', 'Document.date',
+        'Document.expiration_date'
+
     ].compact
   end
 
@@ -29,6 +31,7 @@ class DocumentDatatable < AjaxDatatablesRails::Base
       tab << @view.link_to_case(document.case) if @options[:show_case]
       tab << document.document_type.to_s
       tab << @view.format_date(document.date).to_s
+      tab << @view.format_date(document.expiration_date).to_s
       if  @options[:appointment_id] and User.current_user.can?(:manage_roles)
         tab << @view.link_to("<i class='fa fa-unlink fa-lg'></i>".html_safe, @view.unlink_appointment_path(appointment_id: @appointment.id, type: 'Document', id: document.id ))
       end

@@ -90,10 +90,6 @@ class ClientDocumentsController <  ProtectForgeryApplication
     render_404
   end
 
-  def authorize
-    super('documents', params[:action])
-  end
-
   # Never trust parameters from the scary internet, only allow the white list through.
   def document_params
     params.require(:document).permit(Document.safe_attributes)
