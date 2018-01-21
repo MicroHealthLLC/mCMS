@@ -31,6 +31,7 @@ class Enrollment < ApplicationRecord
   def self.csv_attributes
     [
         'Name',
+        'Location',
         'Enrollment Type',
         'Enrollment Status',
         'Date start',
@@ -78,7 +79,7 @@ class Enrollment < ApplicationRecord
   def for_mail
     output = ""
     output<< "<h2>Enrollment ##{id} </h2><br/>"
-    output<<"<b>Location : </b> #{location}<br/>"
+    output<<"<b>Location : </b> #{enrollment_location}<br/>"
     output<<"<b>Enrollment Type : </b> #{enrollment_type}<br/>"
     output<<"<b>Enrollment Status : </b> #{enrollment_status}<br/>"
     output<<"<b>Date start : </b> #{date_start}<br/>"
@@ -89,7 +90,7 @@ class Enrollment < ApplicationRecord
 
   def little_description
     output = 'Enrollment'
-    output<< "<p> Location: #{location} </p>"
+    output<< "<p> Location: #{enrollment_location} </p>"
     output<< "<p> Enrollment Type: #{enrollment_type} </p>"
     output<< "<p> Enrollment Status: #{enrollment_status} </p>"
     output<< "<p>  Date start: : #{date_start} </p>"

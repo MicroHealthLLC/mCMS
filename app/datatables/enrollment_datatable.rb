@@ -4,7 +4,7 @@ class EnrollmentDatatable < AjaxDatatablesRails::Base
     # Declare strings in this format: ModelName.column_name
     @sortable_columns ||= %w{
     Enrollment.name
-    Enrollment.location
+    Enrollment.enrollment_location
       Enumeration.name
       Enumeration.name
       Enrollment.date_start
@@ -16,7 +16,7 @@ class EnrollmentDatatable < AjaxDatatablesRails::Base
     # Declare strings in this format: ModelName.column_name
     @searchable_columns ||= %w{
       Enrollment.name
-      Enrollment.location
+      Enrollment.enrollment_location
       Enumeration.name
       Enumeration.name
       Enrollment.date_start
@@ -30,7 +30,7 @@ class EnrollmentDatatable < AjaxDatatablesRails::Base
     records.map do |enrollment|
       arr =  [
           @view.link_to_edit_if_can( enrollment.name, {ctrl: :enrollments, object: enrollment }),
-          enrollment.location.to_s,
+          enrollment.enrollment_location.to_s,
           enrollment.enrollment_type.to_s,
           enrollment.enrollment_status.to_s,
           @view.format_date( enrollment.date_start),
