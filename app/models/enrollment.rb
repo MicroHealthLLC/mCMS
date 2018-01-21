@@ -12,7 +12,8 @@ class Enrollment < ApplicationRecord
   validates_presence_of :name, :user_id, :case_id
 
   def self.safe_attributes
-    [:user_id, :name, :location_lat, :location_long, :enrollment_type_id, :enrollment_status_id, :case_id,
+    [:user_id, :name, :location_lat, :location_long,
+     :enrollment_location_lat, :enrollment_location_long, :enrollment_location, :enrollment_type_id, :enrollment_status_id, :case_id,
      :date_start, :date_end, :note, enrollment_attachments_attributes: [Attachment.safe_attributes]]
   end
 
@@ -77,6 +78,7 @@ class Enrollment < ApplicationRecord
   def for_mail
     output = ""
     output<< "<h2>Enrollment ##{id} </h2><br/>"
+    output<<"<b>Location : </b> #{location}<br/>"
     output<<"<b>Enrollment Type : </b> #{enrollment_type}<br/>"
     output<<"<b>Enrollment Status : </b> #{enrollment_status}<br/>"
     output<<"<b>Date start : </b> #{date_start}<br/>"
@@ -87,6 +89,7 @@ class Enrollment < ApplicationRecord
 
   def little_description
     output = 'Enrollment'
+    output<< "<p> Location: #{location} </p>"
     output<< "<p> Enrollment Type: #{enrollment_type} </p>"
     output<< "<p> Enrollment Status: #{enrollment_status} </p>"
     output<< "<p>  Date start: : #{date_start} </p>"

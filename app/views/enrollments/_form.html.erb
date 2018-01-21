@@ -28,6 +28,15 @@
         </div>
 
         <div class="form-group">
+          <%= f.label 'Location', class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.text_field :enrollment_location, class: 'form-control' %>
+            <%= f.hidden_field :enrollment_location_lat, class: 'form-control' %>
+            <%= f.hidden_field :enrollment_location_long, class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
           <%= f.label t(:enrollment_type), class: 'col-md-2 control-label' %>
           <div class="col-md-9">
             <%= f.select :enrollment_type_id, options_for_select(EnrollmentType.active.pluck(:name, :id), selected: f.object.enrollment_type.try(:id)) , {} ,{class: 'form-control'} %>
@@ -89,5 +98,14 @@
       location_lat: 'enrollment_location_lat',
       location_long: 'enrollment_location_long',
       object: enrollment
-  } %></div>
+  } %>
+    <%= render partial: 'map2', locals: {
+        location: 'enrollment_enrollment_location',
+        location_lat: 'enrollment_enrollment_location_lat',
+        location_long: 'enrollment_enrollment_location_long',
+        object: enrollment,
+        location_lat_value: enrollment.enrollment_location_lat,
+        location_long_value: enrollment.enrollment_location_long
+    } %>
+  </div>
 </div>
