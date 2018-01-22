@@ -22,8 +22,6 @@
           <%= f.label t(:label_name), class: 'col-md-2 control-label' %>
           <div class="col-md-9">
             <%= f.text_field :name, class: 'form-control' %>
-            <%= f.hidden_field :location_lat, class: 'form-control' %>
-            <%= f.hidden_field :location_long, class: 'form-control' %>
           </div>
         </div>
 
@@ -31,8 +29,8 @@
           <%= f.label 'Location', class: 'col-md-2 control-label' %>
           <div class="col-md-9">
             <%= f.text_field :enrollment_location, class: 'form-control' %>
-            <%= f.hidden_field :enrollment_location_lat, class: 'form-control' %>
-            <%= f.hidden_field :enrollment_location_long, class: 'form-control' %>
+            <%= f.hidden_field :location_lat, class: 'form-control' %>
+            <%= f.hidden_field :location_long, class: 'form-control' %>
           </div>
         </div>
 
@@ -94,18 +92,10 @@
   </div>
   <div class="col-xs-12 col-md-4">
   <%= render partial: 'map', locals: {
-      location: 'enrollment_name',
+      location: 'enrollment_enrollment_location',
       location_lat: 'enrollment_location_lat',
       location_long: 'enrollment_location_long',
       object: enrollment
   } %>
-    <%= render partial: 'map2', locals: {
-        location: 'enrollment_enrollment_location',
-        location_lat: 'enrollment_enrollment_location_lat',
-        location_long: 'enrollment_enrollment_location_long',
-        object: enrollment,
-        location_lat_value: enrollment.enrollment_location_lat,
-        location_long_value: enrollment.enrollment_location_long
-    } %>
   </div>
 </div>
