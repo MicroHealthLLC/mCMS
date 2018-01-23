@@ -1,10 +1,11 @@
 class JobApp < ApplicationRecord
   audited except: [:created_by_id, :updated_by_id]
   belongs_to :user
+  belongs_to :case
   belongs_to :app_state, optional: true
   belongs_to :occupation, optional: true
 
-  validates_presence_of :user_id, :title
+  validates_presence_of :user_id, :title,  :case_id
 
   has_many :job_app_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :job_app_attachments, reject_if: :all_blank, allow_destroy: true
@@ -13,7 +14,7 @@ class JobApp < ApplicationRecord
   has_many :jobs
 
   def self.safe_attributes
-    [:title, :occupation_id, :description, :app_state_id,
+    [:title, :occupation_id, :description, :app_state_id, :case_id,
      :employer, :location_lat, :location_long, :date_applied,
      :user_id, job_app_attachments_attributes: [Attachment.safe_attributes]]
   end

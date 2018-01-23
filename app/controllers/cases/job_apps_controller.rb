@@ -1,6 +1,4 @@
 class JobAppsController <  UserCasesController
-  add_breadcrumb 'Occupational History', '/occupational_record'
-  add_breadcrumb I18n.t(:job_apps), :job_apps_path
   before_action :set_job_app, only: [:show, :edit, :update, :destroy]
 # before_action :find_optional_user
 
@@ -39,7 +37,9 @@ class JobAppsController <  UserCasesController
 
 # GET /job_apps/new
   def new
-    @job_app = JobApp.new(user_id: User.current.id)
+    @job_app = JobApp.new(user_id: User.current.id, case_id: params[:case_id])
+    @case = @job_app.case
+    set_breadcrumbs
   end
 
 # GET /job_apps/1/edit
@@ -50,10 +50,11 @@ class JobAppsController <  UserCasesController
 # POST /job_apps.json
   def create
     @job_app = JobApp.new(job_app_params)
-
+    @case = @job_app.case
+    set_breadcrumbs
     respond_to do |format|
       if @job_app.save
-        format.html { redirect_to job_apps_url, notice: 'JobApp was successfully created.' }
+        format.html { redirect_to back_index_case_url, notice: 'JobApp was successfully created.' }
         #  format.json { render :show, status: :created, location: @job_app }
       else
         format.html { render :new }
@@ -67,7 +68,7 @@ class JobAppsController <  UserCasesController
   def update
     respond_to do |format|
       if @job_app.update(job_app_params)
-        format.html { redirect_to job_apps_url, notice: 'JobApp was successfully updated.' }
+        format.html { redirect_to back_index_case_url, notice: 'JobApp was successfully updated.' }
         #  format.json { render :show, status: :ok, location: @job_app }
       else
         format.html { render :edit }
@@ -81,7 +82,7 @@ class JobAppsController <  UserCasesController
   def destroy
     @job_app.destroy
     respond_to do |format|
-      format.html { redirect_to job_apps_url, notice: 'JobApp was successfully destroyed.' }
+      format.html { redirect_to back_index_case_url, notice: 'JobApp was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -90,9 +91,21 @@ class JobAppsController <  UserCasesController
 # Use callbacks to share common setup or constraints between actions.
   def set_job_app
     @job_app = JobApp.find(params[:id])
+    @case = @job_app.case
+    set_breadcrumbs
     add_breadcrumb @job_app, @job_app
   rescue ActiveRecord::RecordNotFound
     render_404
+  end
+
+  def set_breadcrumbs
+    if  @job_app.case
+      add_breadcrumb @job_app.case,  @job_app.case
+      add_breadcrumb 'Job applications', case_path(@job_app.case) + '#tabs-job_applications'
+    else
+      add_breadcrumb 'Job applications', :job_apps_path
+    end
+
   end
 
 # Never trust parameters from the scary internet, only allow the white list through.

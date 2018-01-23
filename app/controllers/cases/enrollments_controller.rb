@@ -108,9 +108,9 @@ class EnrollmentsController < UserCasesController
   end
 
   def set_breadcrumbs
-    if   @enrollment.case
+    if @enrollment.case
       add_breadcrumb @enrollment.case,  @enrollment.case
-      add_breadcrumb I18n.t('enrollments'), case_path(@case) + '#tabs-enrollments'
+      add_breadcrumb I18n.t('enrollments'), case_path( @enrollment.case) + '#tabs-enrollments'
     else
       add_breadcrumb I18n.t('enrollments'), :enrollments_path
     end

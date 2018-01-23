@@ -10,7 +10,7 @@ class WorkerCompensation < ApplicationRecord
   has_many :worker_compensation_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :worker_compensation_attachments, reject_if: :all_blank, allow_destroy: true
 
-  validates_presence_of :user_id, :injury_id
+  validates_presence_of :user_id, :injury_id, :case_id
 
   def self.enumeration_columns
     [

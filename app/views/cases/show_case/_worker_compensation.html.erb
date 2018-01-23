@@ -11,7 +11,7 @@
         <% if can?(:create_worker_compensations, :manage_roles, :manage_worker_compensations) %>
         <li>
           <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-          <%= link_to t('new_worker_compensation'), new_worker_compensation_path, class: 'dropdown-item' %>
+          <%= link_to t('new_worker_compensation'), new_worker_compensation_path(case_id: @case.try(:id)), class: 'dropdown-item' %>
         </li>
         <div class='dropdown-item-dividier'></div>
         <% end %>

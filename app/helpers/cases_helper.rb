@@ -62,11 +62,11 @@ module CasesHelper
     end
 
     if @worker_compensations
-      tabs<<  {:name => 'worker_compensation', :partial => 'cases/show_case/worker_compensation', :label => :worker_compensation}
+      tabs<<  {:name => 'worker_compensations', :partial => 'cases/show_case/worker_compensation', :label => :worker_compensation}
     end
 
     if @job_apps
-      tabs<<  {:name => 'job_application', :partial => 'cases/show_case/job_app', :label => :job_application}
+      tabs<<  {:name => 'job_applications', :partial => 'cases/show_case/job_app', :label => :job_application}
     end
 
     if @surveys
