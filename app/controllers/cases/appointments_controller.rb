@@ -163,8 +163,7 @@ class AppointmentsController < UserCasesController
   # Use callbacks to share common setup or constraints between actions.
   def set_appointment
     @appointment = Appointment.includes(:appointment_notes, :user=> :core_demographic).find(params[:id])
-
-
+    @case=  @appointment.case
 
     set_breadcrumbs
     add_breadcrumb @appointment.to_s, appointment_url(@appointment)
