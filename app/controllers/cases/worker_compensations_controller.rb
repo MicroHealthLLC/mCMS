@@ -10,6 +10,7 @@ class WorkerCompensationsController <  UserCasesController
 # GET /worker_compensations
 # GET /worker_compensations.json
   def index
+    add_breadcrumb 'Worker Compensations', :worker_compensations_path
     options = Hash.new
     options[:status_type] = params[:status_type]
     options[:case_id] = params[:case_id]
@@ -100,9 +101,9 @@ class WorkerCompensationsController <  UserCasesController
   def set_breadcrumbs
     if  @worker_compensation.case
       add_breadcrumb @worker_compensation.case,  @worker_compensation.case
-      add_breadcrumb 'Job applications', case_path( @worker_compensation.case) + '#tabs-worker_compensations'
+      add_breadcrumb 'Worker Compensations', case_path( @worker_compensation.case) + '#tabs-worker_compensations'
     else
-      add_breadcrumb 'Job applications', :job_apps_path
+      add_breadcrumb 'Worker Compensations', :worker_compensations_path
     end
 
   end

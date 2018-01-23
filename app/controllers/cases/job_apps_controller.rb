@@ -10,6 +10,7 @@ class JobAppsController <  UserCasesController
 # GET /job_apps
 # GET /job_apps.json
   def index
+    add_breadcrumb 'Job applications', :job_apps_path
     options = Hash.new
     options[:status_type] = params[:status_type]
     options[:case_id] = params[:case_id]
