@@ -22,7 +22,8 @@
 %>
 <%= render partial: 'datatable_script', locals: {
     model_table: 'job_apps_table',
-    url: job_apps_path(format: :csv, status_type: params[:status_type]),
+    url: job_apps_path(format: :csv, status_type: params[:status_type], case_id: @case.try(:id), appointment_id: @appointment.try(:id)),
     columns: columns.flatten,
-    ajax_url: job_apps_path(format: :json, status_type: params[:status_type])
+    ajax_url: job_apps_path(format: :json, status_type: params[:status_type], case_id: @case.try(:id), appointment_id: @appointment.try(:id))
+
 } %>

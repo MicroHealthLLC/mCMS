@@ -1,14 +1,17 @@
-<section id="widget-grid" class="job_applications_section">
+<section id="widget-grid" class="worker_compensations_section">
   <div class="col-xs-12 btn-edition tabs-section">
-    <%= render partial: 'state_button_filter_with_remote', locals: {controller_name: 'job_apps', container: 'job_apps_container'} %>
+     <%= render partial: 'application/state_button_filter_with_remote',
+               locals: {controller_name: 'worker_compensations', container: 'worker_compensations_container',
+                        other_options: {appointment_id: @appointment.try(:id), case_id: @case.try(:id) }} %>
+
 
     <div class="btn-group">
       <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
-      <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:230px;">
-        <% if can?(:create_job_applications, :manage_roles, :manage_job_applications) %>
+      <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:220px;">
+        <% if can?(:create_worker_compensations, :manage_roles, :manage_worker_compensations) %>
         <li>
           <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-          <%= link_to t('new_job_application'), new_job_app_path, class: 'dropdown-item' %>
+          <%= link_to t('new_worker_compensation'), new_worker_compensation_path, class: 'dropdown-item' %>
         </li>
         <div class='dropdown-item-dividier'></div>
         <% end %>
@@ -26,11 +29,11 @@
   </div>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <%= render partial: 'job_apps/list',
+      <%= render partial: 'worker_compensations/list',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     wid_id: 'job_apps',
-                     wid_title: t('job_applications')
+                     wid_id: 'worker_compensations',
+                     wid_title: t('worker_compensations')
                  } %>
     </article>
   </div>

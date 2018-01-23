@@ -49,20 +49,22 @@
         <% end %>
       </ul>
     </div>
-    <div class="btn-group">
-      <button class="btn btn-primary">
-        Show attempt For
-      </button>
-      <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <% SurveyCase.visible.for_survey(@survey).includes(:case).references(:case).each do |survey_case| %>
-            <li>
-              <%= link_to survey_case.case, new_attempt_path(survey_id: survey_case.survey_id, case_id: survey_case.case.id) %>
-            </li>
-        <% end %>
-      </ul>
-    </div>
+    <% unless User.current.can?(:manage_roles) %>
+        <div class="btn-group">
+          <button class="btn btn-primary">
+            Show attempt For
+          </button>
+          <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <% SurveyCase.visible.for_survey(@survey).includes(:case).references(:case).each do |survey_case| %>
+                <li>
+                  <%= link_to survey_case.case, new_attempt_path(survey_id: survey_case.survey_id, case_id: survey_case.case.id) %>
+                </li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
   </div>
 </div>

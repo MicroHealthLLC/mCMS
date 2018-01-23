@@ -1,4 +1,4 @@
-class JobAppsController < UserProfilesController
+class JobAppsController <  UserCasesController
   add_breadcrumb 'Occupational History', '/occupational_record'
   add_breadcrumb I18n.t(:job_apps), :job_apps_path
   before_action :set_job_app, only: [:show, :edit, :update, :destroy]
@@ -12,19 +12,20 @@ class JobAppsController < UserProfilesController
 # GET /job_apps
 # GET /job_apps.json
   def index
+    options = Hash.new
+    options[:status_type] = params[:status_type]
+    options[:case_id] = params[:case_id]
+    options[:appointment_id] = params[:appointment_id]
     respond_to do |format|
-      format.html{  redirect_to occupational_record_path + "#tabs-job_application" }
-     format.js{ render 'application/index' }
+      format.html{   }
+      format.js{ render 'application/index' }
       format.pdf{}
-      format.csv{ params[:length] = 500
-        options = Hash.new
-        options[:status_type] = params[:status_type]
+      format.csv{
+        params[:length] = 500
         json = JobAppDatatable.new(view_context, options).as_json
         send_data JobApp.to_csv(json[:data]), filename: "JobApp-#{Date.today}.csv"
       }
       format.json{
-        options = Hash.new
-        options[:status_type] = params[:status_type]
         render json: JobAppDatatable.new(view_context,options)
       }
     end
@@ -53,7 +54,7 @@ class JobAppsController < UserProfilesController
     respond_to do |format|
       if @job_app.save
         format.html { redirect_to job_apps_url, notice: 'JobApp was successfully created.' }
-      #  format.json { render :show, status: :created, location: @job_app }
+        #  format.json { render :show, status: :created, location: @job_app }
       else
         format.html { render :new }
         format.json { render json: @job_app.errors, status: :unprocessable_entity }
@@ -67,7 +68,7 @@ class JobAppsController < UserProfilesController
     respond_to do |format|
       if @job_app.update(job_app_params)
         format.html { redirect_to job_apps_url, notice: 'JobApp was successfully updated.' }
-      #  format.json { render :show, status: :ok, location: @job_app }
+        #  format.json { render :show, status: :ok, location: @job_app }
       else
         format.html { render :edit }
         format.json { render json: @job_app.errors, status: :unprocessable_entity }

@@ -41,7 +41,7 @@ class EmployeeDatatable < AjaxDatatablesRails::Base
           user.gender.to_s,
           user.email ,
 
-          user.birthday ,
+          @view.format_date(user.birthday) ,
           user.organization.to_s,
           user.state,
           @view.link_to('<i class="fa fa-download" ></i>'.html_safe,  @view.all_informations_path(format: 'pdf'))

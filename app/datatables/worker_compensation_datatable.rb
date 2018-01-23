@@ -38,8 +38,21 @@ class WorkerCompensationDatatable < AjaxDatatablesRails::Base
   end
 
   def get_raw_records
-    scope = WorkerCompensation.include_enumerations
-    scope.for_status @options[:status_type]
+    # scope = WorkerCompensation.include_enumerations
+    # scope.for_status @options[:status_type]
+
+    @appointment = Appointment.find @options[:appointment_id] if @options[:appointment_id]
+    if @options[:appointment_id]
+      @appointment_links = @appointment.appointment_links.includes(:linkable)
+      WorkerCompensation.include_enumerations.where(id: @appointment_links.where(linkable_type: 'WorkerCompensation').map(&:linkable).map(&:id))
+    else
+      scope = if @options[:case_id]
+                Case.find(@options[:case_id]).worker_compensations.include_enumerations
+              else
+                WorkerCompensation.include_enumerations
+              end
+      scope.for_status @options[:status_type]
+    end
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

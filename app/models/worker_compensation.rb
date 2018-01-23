@@ -2,6 +2,7 @@ class WorkerCompensation < ApplicationRecord
   audited except: [:created_by_id, :updated_by_id]
   belongs_to :user
   belongs_to :injury
+  belongs_to :case
 
   belongs_to :compensation_type, optional: true
   belongs_to :compensation_status, optional: true
@@ -58,7 +59,7 @@ class WorkerCompensation < ApplicationRecord
 
   def self.safe_attributes
     [
-        :user_id, :injury_id, :compensation_type_id, :compensation_status_id,
+        :user_id, :injury_id, :compensation_type_id, :compensation_status_id, :case_id,
         :description, :date_of_compensation_start, :date_of_compensation_end,
         worker_compensation_attachments_attributes: [Attachment.safe_attributes]
     ]

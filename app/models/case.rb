@@ -27,6 +27,8 @@ class Case < ApplicationRecord
   has_many :referrals, dependent: :destroy
   has_many :jsignatures, as: :signature_owner, dependent: :destroy
   has_many :enrollments, dependent: :destroy
+  has_many :worker_compensations, dependent: :destroy
+  has_many :job_apps, dependent: :destroy
   has_many :case_supports, dependent: :destroy
   has_many :teleconsults, dependent: :destroy
   has_many :case_organizations, dependent: :destroy

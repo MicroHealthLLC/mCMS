@@ -1,4 +1,4 @@
-class WorkerCompensationsController < UserProfilesController
+class WorkerCompensationsController <  UserCasesController
   add_breadcrumb 'Occupational History', '/occupational_record'
   add_breadcrumb I18n.t(:worker_compensations), :worker_compensations_path
   before_action :set_worker_compensation, only: [:show, :edit, :update, :destroy]
@@ -12,19 +12,20 @@ class WorkerCompensationsController < UserProfilesController
 # GET /worker_compensations
 # GET /worker_compensations.json
   def index
+    options = Hash.new
+    options[:status_type] = params[:status_type]
+    options[:case_id] = params[:case_id]
+    options[:appointment_id] = params[:appointment_id]
     respond_to do |format|
-      format.html{  redirect_to occupational_record_path + "#tabs-worker_compensation" }
+      format.html{  }
      format.js{ render 'application/index' }
       format.pdf{}
-      format.csv{ params[:length] = 500
-        options = Hash.new
-        options[:status_type] = params[:status_type]
+      format.csv{
+        params[:length] = 500
         json = WorkerCompensationDatatable.new(view_context, options).as_json
         send_data WorkerCompensation.to_csv(json[:data]), filename: "WorkerCompensation-#{Date.today}.csv"
       }
       format.json{
-        options = Hash.new
-        options[:status_type] = params[:status_type]
         render json: WorkerCompensationDatatable.new(view_context,options)
       }
     end
@@ -37,7 +38,8 @@ class WorkerCompensationsController < UserProfilesController
 
 # GET /worker_compensations/new
   def new
-    @worker_compensation = WorkerCompensation.new(user_id: User.current.id)
+    @worker_compensation = WorkerCompensation.new(user_id: User.current.id,
+    case_id: params[:case_id])
   end
 
 # GET /worker_compensations/1/edit

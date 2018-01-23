@@ -22,7 +22,8 @@
 %>
 <%= render partial: 'datatable_script', locals: {
     model_table: 'worker_compensation_table',
-    url: worker_compensations_path(format: :csv, status_type: params[:status_type]),
+    url: worker_compensations_path(format: :csv, status_type: params[:status_type], case_id: @case.try(:id), appointment_id: @appointment.try(:id)),
     columns: columns.flatten,
-    ajax_url: worker_compensations_path(format: :json, status_type: params[:status_type])
+    ajax_url: worker_compensations_path(format: :json, status_type: params[:status_type], case_id: @case.try(:id), appointment_id: @appointment.try(:id))
+
 } %>

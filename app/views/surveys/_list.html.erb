@@ -3,7 +3,12 @@
   <tr>
     <th>Name</th>
     <th>Survey type</th>
-    <th>Attempts</th>
+    <% if params[:controller] == 'cases' %>
+        <th>Attempts </th>
+        <% else %>
+        <th>Max attempts numbers </th>
+        <%end %>
+
     <th>Last updated</th>
     <th></th>
     <% if User.current.admin? %>
@@ -23,14 +28,14 @@
             <% if params[:controller] == 'cases' %>
                 <td><%= survey.attempts.where(participant: @case).count %></td>
             <% else %>
-                <td><%= survey.attempts.where(participant: User.current).count %></td>
+                <td><%= survey.attempts_number %></td>
             <% end %>
             <td><%= survey.attempts.last.answers.last.updated_at.strftime('%d/%m/%y %H:%M') rescue '' %></td>
 
             <% if params[:controller] == 'cases' %>
                  <td><%= link_to 'Show attempts', attempts_path(survey_id: survey.id, case_id: @case.id) %> </td>
             <% else %>
-                 <td><%= link_to 'Show attempts', attempts_path(survey_id: survey.id) %> </td>
+
             <% end %>
 
 

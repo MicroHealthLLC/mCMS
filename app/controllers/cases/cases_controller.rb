@@ -78,6 +78,10 @@ class CasesController < UserCasesController
     @cases               = @case.sub_cases     if module_enabled?('subcases')
     @relations           = @case.relations
 
+    @worker_compensations  = [] if module_enabled?( 'worker_compensations')  && can?(:manage_roles, :view_worker_compensations, :manage_worker_compensations)
+    @job_apps              = [] if module_enabled?( 'job_applications')  && can?(:manage_roles, :view_job_applications, :manage_job_applications)
+
+
     @teleconsults        = []  if module_enabled?('teleconsults') && can?(:manage_roles, :view_teleconsults, :manage_teleconsults)
     @transports          = []  if module_enabled?('transports') && can?(:manage_roles, :view_transports, :manage_transports)
     @enrollments         = []  if module_enabled?('enrollments') && can?(:manage_roles, :view_enrollments, :manage_enrollments)

@@ -57,7 +57,7 @@ class UserCasesController < ProtectForgeryApplication
     @appointments_case = Appointment.visible.opened
     @modules = [
         'Referral', 'Need', 'Goal', 'Case',
-        'Task', 'CaseSupport', 'ChecklistCase',
+        'Task', 'CaseSupport', 'ChecklistCase', 'WorkerCompensation', 'JobApp',
         'Note', 'Appointment', 'Enrollment', 'Jsignature',
         'Document', 'Teleconsult', 'Plan'
     ]

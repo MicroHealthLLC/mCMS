@@ -42,7 +42,7 @@ class UserDatatable < AjaxDatatablesRails::Base
           user.first_name,
           user.last_name,
 
-          user.birthday,
+          @view.format_date(user.birthday),
           user.role.to_s,
           user.state,
 

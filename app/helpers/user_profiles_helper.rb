@@ -59,14 +59,6 @@ module UserProfilesHelper
       tabs<<  {:name => 'injuries', :partial => 'user_profiles/occupational_record/injuries', :label => :injuries}
     end
 
-    if @worker_compensations
-      tabs<<  {:name => 'worker_compensation', :partial => 'user_profiles/occupational_record/worker_compensation', :label => :worker_compensation}
-    end
-
-    if @job_apps
-      tabs<<  {:name => 'job_application', :partial => 'user_profiles/occupational_record/job_app', :label => :job_application}
-    end
-
     if @resumes
       tabs<<  {:name => 'resume', :partial => 'user_profiles/occupational_record/resume', :label => :resume}
     end

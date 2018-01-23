@@ -64,7 +64,7 @@ class MeasurementRecord < ApplicationRecord
   end
 
   def to_s
-    id
+    measurement
   end
 
   def self.safe_attributes

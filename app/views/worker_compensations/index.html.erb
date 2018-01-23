@@ -1,7 +1,20 @@
-<%= link_to 'Print', params.permit(:from, :to, :status_type).merge(format: 'pdf'), class: 'pull-right btn btn-primary'  %>
-<%= link_to(t('new_worker_compensation'), new_worker_compensation_path, class:'btn btn-primary pull-right margin-bottom-10') if can?(:create_worker_compensations, :manage_roles, :manage_worker_compensations) %>
 <section id="widget-grid" class="worker_compensations_section">
-  <%= render partial: 'state_button_filter'%>
+  <%= render partial: 'state_button_filter_with_remote', locals: {controller_name: 'worker_compensations', container: 'worker_compensations_container'} %>
+  <div class="btn-group pull-right btn-edition">
+    <button class="btn btn-primary">
+      Add Enrollment For
+    </button>
+    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <% @cases_for_btn.each do |c| %>
+          <li>
+            <%= link_to c, new_worker_compensation_path(case_id: c.id) %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'list',
