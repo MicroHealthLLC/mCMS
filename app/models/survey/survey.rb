@@ -36,7 +36,7 @@ class Survey::Survey < ApplicationRecord
   validate  :check_active_requirements
 
 
-  def case
+  def cases
     survey_cases.where(assigned_to_id: Case.visible.pluck(:id)).map(&:case).flatten
   end
 

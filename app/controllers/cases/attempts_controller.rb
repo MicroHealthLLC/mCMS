@@ -10,15 +10,10 @@ class AttemptsController < UserCasesController
     if params[:case_id]
       @case = Case.find( params[:case_id])
       @attempts = scope.where(participant_type: 'Case', participant_id: params[:case_id])
-      add_breadcrumb @case, @case
-      add_breadcrumb 'Surveys', case_path(@case) + '#tabs-surveys'
-
-      add_breadcrumb @survey , "/attempts"
-
+      add_breadcrumb 'Attempts', "/attempts?case_id=#{params[:case_id]}&survey_id=#{@survey.id}"
     else
       @attempts = scope.where(participant: User.current)
-  end
-  add_breadcrumb @measurement_record, @measurement_record
+    end
   rescue ActiveRecord::RecordNotFound
     render_404
   end
@@ -41,7 +36,11 @@ class AttemptsController < UserCasesController
 
   def show
     @attempt = Survey::Attempt.find(params[:id])
+    @survey = @attempt.survey
     @case = @attempt.participant
+    set_breadcrumbs
+    add_breadcrumb 'Attempts', "/attempts?case_id=#{@case.id}&survey_id=#{@survey.id}"
+    add_breadcrumb @attempt.id, "/survey_attempt/#{@attempt.id}"
   rescue ActiveRecord::RecordNotFound
     render_404
   end
@@ -66,7 +65,7 @@ class AttemptsController < UserCasesController
       #
       # end
       redirect_to survey_attempt_url(@attempt)
-       else
+    else
       render :action => :new
     end
   end
@@ -75,8 +74,19 @@ class AttemptsController < UserCasesController
 
   def load_active_survey
     @survey =  Survey::Survey.includes(:questions=> [:options]).find(params[:survey_id])
+    @case = Case.find(params[:case_id]) if params[:case_id]
+    set_breadcrumbs
   rescue ActiveRecord::RecordNotFound
     render_404
+  end
+
+  def set_breadcrumbs
+    if @case
+      add_breadcrumb @case, @case
+      add_breadcrumb I18n.t(:surveys), case_path(@case) + '#tabs-surveys'
+    else
+      add_breadcrumb I18n.t(:surveys), '/surveys'
+    end
   end
 
   def normalize_attempts_data
