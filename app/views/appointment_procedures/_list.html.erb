@@ -16,7 +16,7 @@
 
   <% captures.each do |capture| %>
       <tr>
-        <td><%= link_to capture.hcpc , capture  %></td>
+        <td><%= link_to_edit_if_can(capture.hcpc, {ctrl: :appointment_procedures, object: capture })%></td>
         <td><%= capture.modifier   %></td>
         <td><%= format_date capture.date_recorded   %></td>
         <td><%= capture.unit   %></td>

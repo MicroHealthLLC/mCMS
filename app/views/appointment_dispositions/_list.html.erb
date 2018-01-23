@@ -11,7 +11,8 @@
 
   <% captures.each do |capture| %>
       <tr>
-        <td><%= link_to capture.disposition, capture %></td>
+        <td><%= link_to_edit_if_can(capture.disposition, {ctrl: :appointment_dispositions, object: capture })%></td>
+
         <td><%= capture.related_to   %></td>
         <td><%= format_date capture.date_recorded   %></td>
       </tr>

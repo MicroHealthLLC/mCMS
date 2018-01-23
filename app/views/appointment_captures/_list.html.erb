@@ -10,7 +10,7 @@
 
   <% captures.each do |capture| %>
       <tr>
-        <td><%= link_to capture.icdcm_code, capture  %></td>
+        <td><%= link_to_edit_if_can(capture.icdcm_code, {ctrl: :appointment_captures, object: capture })%></td>
         <td><%= format_date capture.date_recorded   %></td>
       </tr>
   <% end %>
