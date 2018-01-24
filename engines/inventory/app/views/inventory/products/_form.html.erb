@@ -93,15 +93,8 @@
         </fieldset>
     <% end %>
   </div>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBgNAFiZb48uAk4jb4U0gRSeuHQS9EuCyk&libraries=places&callback=callMapInit "
-          async defer></script>
-  <%  params[:googleapi_loaded]= true %>
-  <script type="text/javascript">
-    function callMapInit(){
-        initMap();
-        initMap2();
-    }
-  </script>
+
+
   <div class="col-xs-12 col-md-4">
     <%= render partial: 'map', locals: {
         location: 'product_manufacturer',
