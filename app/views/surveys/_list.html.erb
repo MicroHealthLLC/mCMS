@@ -35,7 +35,6 @@
              <% if params[:controller] == 'cases' %>
                  <td><%= link_to 'Show attempts', attempts_path(survey_id: survey.id, case_id: @case.id) %> </td>
              <% else %>
-                 <td><%= link_to 'Show attempts', attempts_path(survey_id: survey.id) %> </td>
              <% end %>
 
             <% if User.current.admin? %>
