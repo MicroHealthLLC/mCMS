@@ -6,8 +6,7 @@ class Task < ApplicationRecord
   belongs_to :task_type, optional: true
   belongs_to :task_status_type, optional: true
 
-  validates_presence_of :user_id, :title
-  has_many :task_notes, foreign_key: :owner_id, dependent: :destroy
+ has_many :task_notes, foreign_key: :owner_id, dependent: :destroy
   has_many :sub_tasks, class_name: 'Task', foreign_key: :sub_task_id
 
   has_many :plan_tasks, dependent: :destroy
@@ -26,7 +25,7 @@ class Task < ApplicationRecord
   belongs_to :case, optional: true, foreign_key: :related_to_id
   default_scope -> {where(is_private: false).or(where(private_author_id: User.current.id)) }
 
-  validates_presence_of :title
+  validates_presence_of :user_id, :title
 
   before_destroy do
     self.sub_tasks.update_all(sub_task_id: nil)
