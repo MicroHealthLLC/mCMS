@@ -62,7 +62,8 @@ class AppointmentDatatable < AjaxDatatablesRails::Base
       arr<< [
           appointment.appointment_type.to_s,
           appointment.appointment_status.to_s,
-          appointment.start_time_to_time
+          appointment.start_time_to_time,
+          appointment.end_time_to_time
       ]
       if @options[:appointment_id] and User.current_user.can?(:manage_roles)
         arr<<  @view.link_to("<i class='fa fa-unlink fa-lg'></i>".html_safe, @view.unlink_appointment_path(appointment_id: @appointment.id, type: 'Appointment', id: need.id ))
