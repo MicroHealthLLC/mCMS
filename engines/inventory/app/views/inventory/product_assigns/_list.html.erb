@@ -12,7 +12,7 @@
   <tbody>
   <% @product_assigns.each do |product_assign| %>
       <tr>
-        <td><%= link_to product_assign.product, product_assign %></td>
+        <td><%= link_to product_assign.product, edit_product_assign_path(product_assign) %></td>
         <td><%= product_assign.user %></td>
         <td><%= format_date product_assign.date %></td>
         <td><%= product_assign.assignment_status %></td>

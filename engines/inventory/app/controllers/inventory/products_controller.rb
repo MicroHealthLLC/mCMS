@@ -20,6 +20,7 @@ module Inventory
 
     # GET /products/1/edit
     def edit
+      @product_assigns = @product.product_assigns
     end
 
     # POST /products
