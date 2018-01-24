@@ -5,7 +5,7 @@ class AppointmentDisposition < ApplicationRecord
   belongs_to :user
   belongs_to :appointment
 
-  validates_presence_of :user_id, :appointment_id, :note
+  validates_presence_of :user_id, :appointment_id, :note, :disposition_id
 
   def self.safe_attributes
     [

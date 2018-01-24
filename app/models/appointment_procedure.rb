@@ -8,7 +8,7 @@ class AppointmentProcedure < ApplicationRecord
   belongs_to :em_code,  optional: true
   belongs_to :emergency,  optional: true
   belongs_to :epsdt,  optional: true
-  validates_presence_of :user_id, :appointment_id, :note
+  validates_presence_of :user_id, :appointment_id, :note, :hcpc_id
 
   def self.safe_attributes
     [

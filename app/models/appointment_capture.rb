@@ -5,7 +5,7 @@ class AppointmentCapture < ApplicationRecord
   belongs_to :appointment
   belongs_to :icdcm_code, :foreign_key => 'icdcm_code_id', class_name: 'Icd10datum'
 
-  validates_presence_of :user_id, :appointment_id, :note
+  validates_presence_of :user_id, :appointment_id, :note, :icdcm_code_id
 
   def self.safe_attributes
     [
