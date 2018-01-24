@@ -64,7 +64,7 @@ class TaskDatatable < AjaxDatatablesRails::Base
           task.task_type.to_s ,
           task.task_status_type.to_s ,
           @view.format_date_time( task.date_start ),
-          @view.format_date( task.date_completed)
+          @view.format_date_time( task.date_completed)
       ]
       if @options[:appointment_id] and User.current_user.can?(:manage_roles)
         arr<<  @view.link_to("<i class='fa fa-unlink fa-lg'></i>".html_safe, @view.unlink_appointment_path(appointment_id: @appointment.id, type: 'Need', id: task.id ))
