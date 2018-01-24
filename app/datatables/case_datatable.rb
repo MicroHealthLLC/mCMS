@@ -40,7 +40,7 @@ class CaseDatatable < AjaxDatatablesRails::Base
       records.map do |c|
         [
             "<b>#{c.user.to_s}<b/>".html_safe,
-            @view.link_to(c.title, @view.case_path(c), 'data-turbolinks'=> false ),
+            @view.link_to_edit_if_can( c.title, {ctrl: :cases, object: c } ),
             c.priority_type.to_s,
             c.case_type.to_s,
             c.case_status_type.to_s,
@@ -54,7 +54,7 @@ class CaseDatatable < AjaxDatatablesRails::Base
     else
       records.map do |c|
         [
-            @view.link_to(c.title, @view.case_path(c), 'data-turbolinks'=> false ),
+            @view.link_to_edit_if_can( c.title, {ctrl: :cases, object: c } ),
             c.priority_type.to_s,
             c.case_type.to_s,
             c.case_status_type.to_s,

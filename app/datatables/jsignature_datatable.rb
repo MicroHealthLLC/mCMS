@@ -37,7 +37,7 @@ class JsignatureDatatable < AjaxDatatablesRails::Base
       arr = Array.new
 
       arr<< [
-          @view.link_to(jsignature.person_name, jsignature ),
+          @view.link_to_edit_if_can( jsignature.person_name, {ctrl: :jsignatures, object: jsignature } ) ,
           jsignature.user.to_s ,
           jsignature.user.user_title ,
           @view.format_date_time( jsignature.created_at ),

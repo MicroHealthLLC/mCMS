@@ -50,7 +50,7 @@
           <div class='dropdown-item-dividier'></div>
           <li>
             <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-            <%= link_to 'TimeLine', '#', class: 'dropdown-item', onclick: "openNav()" %>
+            <%= link_to 'TimeLine', timeline_case_path(@case), class: 'dropdown-item' %>
           </li>
         <% end %>
       </ul>

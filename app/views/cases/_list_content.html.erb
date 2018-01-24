@@ -19,7 +19,7 @@
   <% if @cases.any? %>
       <% @cases.each do |c| %>
           <tr>
-            <td><%= link_to(c.title, case_path(c) ) %></td>
+            <td><%= link_to_edit_if_can( c.title, {ctrl: :cases, object: c } )%></td>
             <td><%= c.priority_type %></td>
             <td><%= c.case_type %></td>
             <td><%= c.case_status_type %></td>
