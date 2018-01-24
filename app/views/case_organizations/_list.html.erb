@@ -16,7 +16,7 @@
             <td><%= link_to_case c_o.case%></td>
         <% end %>
         <td><%= link_to c_o.organization, c_o.organization %></td>
-        <td><%= link_to c_o.association_type, c_o %></td>
+        <td><%= link_to_edit_if_can c_o.association_type, {ctrl: :case_organizations , object: c_o } %></td>
       </tr>
   <% end %>
   </tbody>

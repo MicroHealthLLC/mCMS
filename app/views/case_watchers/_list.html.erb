@@ -13,7 +13,7 @@
   <% if case_watchers.present? %>
       <% case_watchers.each do |case_watcher| %>
           <tr>
-            <td><%= link_to case_watcher.user, case_watcher %></td>
+            <td><%= link_to_edit_if_can case_watcher.user, {ctrl: :case_watchers, object: case_watcher } %></td>
             <% if show_case %>
                 <td><%= link_to case_watcher.case, case_watcher.case %></td>
             <% end %>
