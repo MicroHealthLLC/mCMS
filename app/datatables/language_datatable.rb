@@ -6,6 +6,7 @@ class LanguageDatatable < AjaxDatatablesRails::Base
       Language.snomed
       Enumeration.name
       Enumeration.name
+      Language.date
       Language.updated_at
     }
   end
@@ -16,6 +17,7 @@ class LanguageDatatable < AjaxDatatablesRails::Base
       Language.snomed
       Enumeration.name
       Enumeration.name
+      Language.date
       Language.updated_at
     }
   end
@@ -28,6 +30,7 @@ class LanguageDatatable < AjaxDatatablesRails::Base
           @view. link_to_edit_if_can(language.language_type, {ctrl: :languages, object: language }),
           language.language_status.to_s,
           language.proficiency_type.to_s,
+          @view.format_date( language.date),
           @view.format_date( language.updated_at)
       ]
 

@@ -65,7 +65,7 @@ class Language < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:user_id, :note, :language_type_id, :proficiency_id, :status_id, :snomed,
+    [:user_id, :note, :language_type_id, :proficiency_id, :status_id, :snomed, :date,
      language_attachments_attributes: [Attachment.safe_attributes]]
   end
 
@@ -79,6 +79,7 @@ class Language < ApplicationRecord
     pdf.table([[" Language "]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})
     pdf.table([[ "Language type: ", " #{language_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Language Status: ", " #{language_status}"]], :column_widths => [ 150, 373])
+    pdf.table([[ "Date: ", " #{date}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Proficiency: ", " #{proficiency_type}"]], :column_widths => [ 150, 373])
     pdf.table([[ "Note: ", " #{ActionView::Base.full_sanitizer.sanitize(note)}"]], :column_widths => [ 150, 373])
   end
@@ -92,6 +93,7 @@ class Language < ApplicationRecord
     output<< "<h2>Language ##{id} </h2>"
     output<< "<b>Language type: </b> #{language_type}<br/>"
     output<< "<b>Language Status: </b> #{language_status}<br/>"
+    output<< "<b>Date: </b> #{date}<br/>"
     output<< "<b>Proficiency: </b> #{proficiency_type}<br/>"
     output<< "<b>Note: </b> #{note}<br/>"
 
