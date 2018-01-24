@@ -33,7 +33,7 @@
 
           <li>
             <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
-            <%= link_to 'Cancel', measurement_records_path, class: 'dropdown-item' %>
+            <%= link_to 'Cancel', case_path(@measurement_record.case) + '#tabs-measurement_records', class: 'dropdown-item' %>
           </li>
       </ul>
     </div>
