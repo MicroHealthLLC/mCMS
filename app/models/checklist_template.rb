@@ -41,7 +41,9 @@ class ChecklistTemplate < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:title, :description, :user_id, :checklist_status_type_id, :related_to_id, :related_to_type, :checklist_type, checklists_attributes: [Checklist.safe_attributes]]
+    [:title, :description, :user_id, :checklist_status_type_id,
+     :related_to_id, :related_to_type, :checklist_type_id,
+     checklists_attributes: [Checklist.safe_attributes]]
   end
 
   def to_s
