@@ -76,6 +76,7 @@ class AppointmentProceduresController < ProtectForgeryApplication
     @appointment = @appointment_procedure.appointment
 
     set_breadcrumbs
+    add_breadcrumb 'Procedures', appointment_path(@appointment)+'#tabs-procedure'
     add_breadcrumb @appointment_procedure, @appointment_procedure
   rescue ActiveRecord::RecordNotFound
     render_404
