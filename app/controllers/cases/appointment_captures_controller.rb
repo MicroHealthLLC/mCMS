@@ -70,6 +70,7 @@ class AppointmentCapturesController < UserCasesController
     @appointment_capture = AppointmentCapture.find(params[:id])
     @appointment = @appointment_capture.appointment
     set_breadcrumbs
+    add_breadcrumb 'Assessments', appointment_path(@appointment)+'#tabs-capture'
     add_breadcrumb @appointment_capture.to_s, appointment_capture_path(@appointment_capture)
   rescue ActiveRecord::RecordNotFound
     render_404
