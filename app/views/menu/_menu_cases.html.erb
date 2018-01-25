@@ -11,6 +11,11 @@
             <li class="<%= menu_active?('cases') %>">
               <a href="/cases" title="<%= t(:cases) %>"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent">Case Records</span></a>
             </li>
+            <% if @case %>
+                <li class="<%= menu_active?('cases', 'timeline') %>">
+                  <a href="<%= "/cases/#{@case.id}/timeline" %> " title="<%= 'Case timeline' %>"><i class="fa fa-lg fa-fw fa-clock-o"></i><span class="menu-item-parent">Case Timeline</span></a>
+                </li>
+            <% end %>
         <% end %>
 
     <% else %>
