@@ -96,6 +96,7 @@ class BillingsController < UserProfilesController
     @billing = Billing.find(params[:id])
     @appointment = @billing.appointment
     set_breadcrumbs
+    add_breadcrumb 'Billings', appointment_path(@appointment) + '#tabs-billing'
     add_breadcrumb @billing.to_s, @billing
   rescue ActiveRecord::RecordNotFound
     render_404
