@@ -13,12 +13,22 @@
           <div class='dropdown-item-dividier'></div>
         <% end %>
 
-        <% if @case.can?(:edit_cases, :manage_roles, :manage_cases) %>
-          <li>
-            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-            <%= link_to t('button_edit'), edit_case_path(@case), class: 'dropdown-item' %>
-          </li>
-          <div class='dropdown-item-dividier'></div>
+        <% if params[:action] == 'show' %>
+          <% if @case.can?(:edit_cases, :manage_roles, :manage_cases) %>
+            <li>
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              <%= link_to t('button_edit'), edit_case_path(@case), class: 'dropdown-item' %>
+            </li>
+            <div class='dropdown-item-dividier'></div>
+          <% end %>
+        <% else %>
+          <% if @case.can?(:show_cases, :manage_roles, :manage_cases) %>
+            <li>
+              <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+              <%= link_to 'Show', case_path(@case), class: 'dropdown-item' %>
+            </li>
+            <div class='dropdown-item-dividier'></div>
+          <% end %>
         <% end %>
 
           <li>
