@@ -101,7 +101,7 @@
       <% end %>
     <div class="form-group" >
       <div class="col-md-11">
-        <%= link_to t('button_cancel'), plans_path, class: 'btn btn-warning pull-right' %>
+        <%= link_to t('button_cancel'), plan_back_url(@plan) + '#tabs-plans', class: 'btn btn-warning pull-right' %>
         <%= f.submit t('button_save'), class: 'btn btn-success pull-right' %>
       </div>
     </div>
