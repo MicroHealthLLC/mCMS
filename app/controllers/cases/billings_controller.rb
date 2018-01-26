@@ -40,7 +40,8 @@ class BillingsController < UserProfilesController
 
   # GET /billings/new
   def new
-    @billing = Billing.new(user_id: User.current.id,
+   @appointment = Appointment.find(params[:appointment_id])
+   @billing = Billing.new(user_id: User.current.id,
                            appointment_id: @appointment.id
     )
     set_breadcrumbs
