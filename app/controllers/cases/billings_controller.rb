@@ -1,6 +1,6 @@
 class BillingsController < UserProfilesController
 
-  add_breadcrumb I18n.t('billings'), :billings_path
+  # add_breadcrumb I18n.t('billings'), :billings_path
   before_action :set_appointment, only: [:new]
   before_action :set_billing, only: [:show, :edit, :update, :destroy]
 
