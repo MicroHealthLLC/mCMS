@@ -33,7 +33,7 @@
 
           <li>
             <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
-            <%= link_to 'Cancel', @appointment_procedure.appointment, class: 'dropdown-item' %>
+            <%= link_to 'Cancel', appointment_path(@appointment)+'#tabs-procedure', class: 'dropdown-item' %>
           </li>
       </ul>
     </div>
