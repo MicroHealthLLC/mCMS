@@ -71,7 +71,7 @@ class AppointmentDispositionsController < ProtectForgeryApplication
     @appointment = @appointment_disposition.appointment
     set_breadcrumbs
     add_breadcrumb 'Dispositions', appointment_path(@appointment)+'#tabs-disposition'
-    add_breadcrumb @appointment_disposition, @appointment_disposition
+    add_breadcrumb @appointment_disposition.to_s, appointment_disposition_path(@appointment_disposition)
   rescue ActiveRecord::RecordNotFound
     render_404
   end
