@@ -1,5 +1,5 @@
 class AppointmentDispositionsController < ProtectForgeryApplication
-  # add_breadcrumb I18n.t(:appointments), :appointments_path
+  add_breadcrumb I18n.t(:appointments), :appointments_path
   before_action :set_appointment_disposition, only: [:show, :edit, :update, :destroy]
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
@@ -69,7 +69,6 @@ class AppointmentDispositionsController < ProtectForgeryApplication
   def set_appointment_disposition
     @appointment_disposition = AppointmentDisposition.find(params[:id])
     @appointment = @appointment_disposition.appointment
-    @case = @appointment.case
     set_breadcrumbs
     add_breadcrumb 'Dispositions', appointment_path(@appointment)+'#tabs-disposition'
     add_breadcrumb @appointment_disposition.to_s, appointment_disposition_path(@appointment_disposition)
