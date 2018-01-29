@@ -8,6 +8,7 @@ class JsignaturesController < UserCasesController
 
   # before_action :set_appointment_links, only: [:show]
 
+  include JsignaturesHelper
   def index
     options = Hash.new
     options[:status_type] = params[:status_type]
@@ -52,20 +53,7 @@ class JsignaturesController < UserCasesController
     )
 
 
-    if @jsignature.signature_owner_type == 'User'
-      @breadcrumbs = []
-      add_breadcrumb 'Client Profile', '/profile_record'
-      add_breadcrumb 'Signatures', '/profile_record#tabs-signature'
-      add_breadcrumb @owner.to_s, @jsignature
-    else
-      add_breadcrumb @owner.to_s, @owner
-      if @owner.is_a? Case
-        add_breadcrumb I18n.t(:jsignatures), case_path(@owner) + '#tabs-signatures'
-      end
-      if @jsignature.to_s
-        add_breadcrumb @jsignature, @jsignature
-      end
-    end
+  set_breadcrumbs
 
   rescue ActiveRecord::RecordNotFound
     render_404
@@ -81,7 +69,9 @@ class JsignaturesController < UserCasesController
   # POST /jsignatures.json
   def create
     @jsignature = Jsignature.new(jsignature_params)
+    @owner = params[:owner_type] == 'User' ? User.find(params[:owner_id]) : params[:owner_type].constantize.visible.find( params[:owner_id])
 
+    set_breadcrumbs
     respond_to do |format|
       if @jsignature.save
         set_link_to_appointment(@jsignature)
@@ -123,7 +113,12 @@ class JsignaturesController < UserCasesController
   def set_jsignature
     @jsignature = Jsignature.find(params[:id])
     @owner = @jsignature.signature_owner
+    set_breadcrumbs
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
 
+  def set_breadcrumbs
     if @jsignature.signature_owner_type == 'User'
       @breadcrumbs = []
       add_breadcrumb 'Client Profile', '/profile_record'
@@ -132,14 +127,12 @@ class JsignaturesController < UserCasesController
     else
       add_breadcrumb @owner.to_s, @owner
       if @owner.is_a? Case
-        @case = @owner
         add_breadcrumb I18n.t(:jsignatures), case_path(@owner) + '#tabs-signatures'
       end
-      add_breadcrumb @jsignature, @jsignature
+      if @jsignature.to_s
+        add_breadcrumb @jsignature, @jsignature
+      end
     end
-
-  rescue ActiveRecord::RecordNotFound
-    render_404
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
@@ -165,19 +158,5 @@ class JsignaturesController < UserCasesController
 
   def authorize
     true
-  end
-
-  def redirect_url
-    @owner = @jsignature.signature_owner
-
-    if @jsignature.signature_owner_type == 'User'
-      '/profile_record#tabs-signature'
-    else
-      if @owner.is_a? Case
-        case_path(@owner) + '#tabs-signatures'
-      else
-        @jsignature
-      end
-    end
   end
 end
