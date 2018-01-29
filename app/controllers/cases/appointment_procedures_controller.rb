@@ -1,6 +1,6 @@
 class AppointmentProceduresController < ProtectForgeryApplication
 
-  # add_breadcrumb I18n.t(:appointments), :appointments_path
+  add_breadcrumb I18n.t(:appointments), :appointments_path
   before_action :set_appointment_procedure, only: [:show, :edit, :update, :destroy]
 
   before_action :authorize_edit, only: [:edit, :update]
