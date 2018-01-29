@@ -115,6 +115,7 @@ class NeedsController < UserCasesController
   # PATCH/PUT /needs/1.json
   def update
     @goals = @need.goals
+    @goals = @need.goals
     @plans = @goals.map(&:plans).flatten.uniq
     @tasks = @plans.map(&:tasks).flatten.uniq
 

@@ -133,7 +133,8 @@ class PlansController < UserCasesController
   # PATCH/PUT /plans/1.json
   def update
     @tasks = @plan.tasks
-    @measurement_records = @plan.measurement_records
+
+    @goals = @plan.goals
     respond_to do |format|
       if @plan.update(plan_params)
         format.html { redirect_to back_index_case_url, notice: 'Plan was successfully updated.' }

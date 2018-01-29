@@ -19,6 +19,11 @@ class Plan < ApplicationRecord
   has_many :appointment_links, as: :linkable
 
   after_save :update_percent_done
+  before_validation do
+    if self.date_due.present? and self.date_start.present? and self.date_start > self.date_due
+      errors[:base] << "Due date cannot be ealer than start date"
+    end
+  end
 
   def update_percent_done
     # PlanGoalWorker.perform_in(1.second, self.id)

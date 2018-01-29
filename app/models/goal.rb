@@ -20,6 +20,12 @@ class Goal < ApplicationRecord
 
   has_many :goal_notes, foreign_key: :owner_id, dependent: :destroy
 
+  before_validation do
+    if self.date_due.present? and self.date_start.present? and self.date_start > self.date_due
+      errors[:base] << "Due date cannot be ealer than start date"
+    end
+  end
+
   after_save :update_percent_done
 
   def update_percent_done

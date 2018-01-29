@@ -139,6 +139,8 @@ class GoalsController <  UserCasesController
   def update
     @plans = @goal.plans
     @tasks = @plans.map(&:tasks).flatten.uniq
+
+    @needs = @goal.needs
     respond_to do |format|
       if @goal.update(goal_params)
         format.html { redirect_to back_index_case_url, notice: 'Goal was successfully updated.' }

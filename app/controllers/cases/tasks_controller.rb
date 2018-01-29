@@ -144,6 +144,10 @@ class TasksController < UserCasesController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
+    @note = TaskNote.new(user_id: User.current.id)
+
+    @plans = @task.plans
+
     respond_to do |format|
       if @task.update(task_params)
         format.html { redirect_to back_index_case_url, notice: 'Task was successfully updated.' }

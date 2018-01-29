@@ -47,6 +47,12 @@ class Case < ApplicationRecord
   default_scope -> {where(is_private: false).or(where(private_author_id: User.current.id)) }
 
   validates_presence_of :title
+  before_validation do
+    if self.date_due.present? and self.date_start.present? and self.date_start > self.date_due
+      errors[:base] << "Due date cannot be ealer than start date"
+    end
+  end
+
   before_create :check_private_author
 
   before_destroy do
