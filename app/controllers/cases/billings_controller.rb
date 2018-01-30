@@ -1,6 +1,6 @@
 class BillingsController < UserProfilesController
 
-  add_breadcrumb I18n.t('billings'), :billings_path
+  # add_breadcrumb I18n.t('billings'), :billings_path
   before_action :set_appointment, only: [:new]
   before_action :set_billing, only: [:show, :edit, :update, :destroy]
 
@@ -96,6 +96,7 @@ class BillingsController < UserProfilesController
     @billing = Billing.find(params[:id])
     @appointment = @billing.appointment
     set_breadcrumbs
+    add_breadcrumb 'Billings', appointment_path(@appointment) + '#tabs-billing'
     add_breadcrumb @billing.to_s, @billing
   rescue ActiveRecord::RecordNotFound
     render_404
