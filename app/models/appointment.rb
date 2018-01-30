@@ -26,6 +26,12 @@ class Appointment < ApplicationRecord
     end
   end
 
+  before_validation do
+    if self.date.present? and self.end_time.present? and self.date > self.end_time
+      errors[:base] << "End date cannot be ealer than start date"
+    end
+  end
+
   # attr_accessor :with_who
 
   scope :not_related, -> {where(related_to_id: nil)}

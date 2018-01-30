@@ -18,6 +18,12 @@ class Contact < ApplicationRecord
         references(:contact_status, :contact_type)
   end
 
+  before_validation do
+    if self.date_started.present? and self.date_ended.present? and self.date_started > self.date_ended
+      errors[:base] << "End date cannot be ealer than start date"
+    end
+  end
+
   def self.csv_attributes
     [
     I18n.t('label_name') ,
