@@ -16,7 +16,7 @@ class Note < ApplicationRecord
                     'AttemptNote'        ,
                     'ReferralNote'
   ]
-  validates_presence_of :type, :owner_id
+  validates_presence_of :type, :owner_id, :note
 
   def self.safe_attributes
     [:user_id, :owner_id, :type, :note, :is_private, :private_author_id]
