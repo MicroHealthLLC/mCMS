@@ -74,7 +74,7 @@ class GoalDatatable < AjaxDatatablesRails::Base
           @view.format_date( goal.date_due) ,
           @view.format_date( goal.date_completed)
       ]
-      if @options[:appointment_id] and User.current_user.can?(:manage_roles)
+      if @appointment and @options[:appointment_id] and User.current_user.can?(:manage_roles)
         arr<<  @view.link_to("<i class='fa fa-unlink fa-lg'></i>".html_safe, @view.unlink_appointment_path(appointment_id: @appointment.id, type: 'Goal', id: goal.id ))
       end
       arr.flatten
@@ -83,7 +83,7 @@ class GoalDatatable < AjaxDatatablesRails::Base
 
   def get_raw_records
     @appointment = Appointment.find @options[:appointment_id] if @options[:appointment_id]
-    if @options[:appointment_id]
+    if @appointment
       @appointment_links = @appointment.appointment_links.includes(:linkable)
       Goal.include_enumerations.where(id: @appointment_links.where(linkable_type: 'Goal').map(&:linkable).map(&:id))
     else
