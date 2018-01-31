@@ -9,14 +9,14 @@ module AppointmentsHelper
 
   def appointment_tabs
     tabs =  [ ]
-    tabs<< {:name => 'capture', :partial => 'appointments/partials/captures', :label => 'Assessment'}
-    tabs<< {:name => 'disposition', :partial => 'appointments/partials/disposition', :label => 'Disposition'}
-    tabs<< {:name => 'procedure', :partial => 'appointments/partials/procedure', :label => 'Procedure'}
+    tabs<< {:name => 'capture', :partial => 'appointments/partials/captures', :label => 'Assessments'}
+    tabs<< {:name => 'disposition', :partial => 'appointments/partials/disposition', :label => 'Dispositions'}
+    tabs<< {:name => 'procedure', :partial => 'appointments/partials/procedure', :label => 'Procedures'}
     if module_enabled? 'billings'
-      tabs<< {:name => 'billing', :partial => 'appointments/partials/billing', :label => 'Billing'}
+      tabs<< {:name => 'billing', :partial => 'appointments/partials/billing', :label => 'Billings'}
     end
-    tabs<< {:name => 'note', :partial => 'appointments/partials/notes', :label => 'Note'}
-    tabs<< {:name => 'signature', :partial => 'appointments/partials/signature', :label => 'Signature'}
+    tabs<< {:name => 'note', :partial => 'appointments/partials/notes', :label => 'Notes'}
+    tabs<< {:name => 'signature', :partial => 'appointments/partials/signature', :label => 'Signatures'}
     tabs
   end
 
