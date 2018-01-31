@@ -70,7 +70,6 @@ class AppointmentDispositionsController < ProtectForgeryApplication
     @appointment_disposition = AppointmentDisposition.find(params[:id])
     @appointment = @appointment_disposition.appointment
     set_breadcrumbs
-    add_breadcrumb 'Dispositions', appointment_path(@appointment)+'#tabs-disposition'
     add_breadcrumb @appointment_disposition, @appointment_disposition
   rescue ActiveRecord::RecordNotFound
     render_404
@@ -85,6 +84,7 @@ class AppointmentDispositionsController < ProtectForgeryApplication
     end
 
     add_breadcrumb @appointment, appointment_path(@appointment)
+    add_breadcrumb 'Dispositions', appointment_path(@appointment)+'#tabs-disposition'
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
