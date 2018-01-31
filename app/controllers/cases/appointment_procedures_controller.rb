@@ -76,7 +76,6 @@ class AppointmentProceduresController < ProtectForgeryApplication
     @appointment = @appointment_procedure.appointment
 
     set_breadcrumbs
-    add_breadcrumb 'Procedures', appointment_path(@appointment)+'#tabs-procedure'
     add_breadcrumb @appointment_procedure, @appointment_procedure
   rescue ActiveRecord::RecordNotFound
     render_404
@@ -91,7 +90,9 @@ class AppointmentProceduresController < ProtectForgeryApplication
     end
 
     add_breadcrumb @appointment, appointment_path(@appointment)
+    add_breadcrumb 'Procedures', appointment_path(@appointment)+'#tabs-procedure'
   end
+  
   # Never trust parameters from the scary internet, only allow the white list through.
   def appointment_procedure_params
     params.require(:appointment_procedure).permit(AppointmentProcedure.safe_attributes)
