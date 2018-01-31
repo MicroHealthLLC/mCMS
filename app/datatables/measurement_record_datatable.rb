@@ -35,7 +35,7 @@ class MeasurementRecordDatatable < AjaxDatatablesRails::Base
     records.map do |measurement_record|
       [
           @view.link_to_edit_if_can( measurement_record.measurement, {ctrl: :measurement_records, object: measurement_record }),
-          measurement_record.component.component,
+          measurement_record.component.try(:component),
           measurement_record.measure,
           measurement_record.measured_by.to_s,
           @view.format_date_time(  measurement_record.date_time),
