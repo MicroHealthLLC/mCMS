@@ -1,141 +1,16 @@
 <!DOCTYPE html>
-<html lang="en-us" class="<%=  Setting.theme_style(User.current.can?(:manage_roles) ) %>">
-<%= render partial: 'shared/head' %>
-<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>MH SVG Edit</title>
-
-    <link rel="icon" type="image/png" href="/MH_SVG_Edit/images/logo.png"/>
-    <link rel="stylesheet" href="/MH_SVG_Edit/jgraduate/css/jPicker.css" type="text/css"/>
-    <link rel="stylesheet" href="/MH_SVG_Edit/jgraduate/css/jgraduate.css" type="text/css"/>
-    <link rel="stylesheet" href="/MH_SVG_Edit/svg-editor.css" type="text/css"/>
-    <link rel="stylesheet" href="/MH_SVG_Edit/spinbtn/JQuerySpinBtn.css" type="text/css"/>
-    <link rel="stylesheet" href="/MH_SVG_Edit/custom.css" type="text/css"/>
-
-    <!--{if jquery_release}>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <!{else}-->
-    <script src="/MH_SVG_Edit/jquery.js"></script>
-    <!--{endif}-->
-
-    <script src="/MH_SVG_Edit/js-hotkeys/jquery.hotkeys.min.js"></script>
-    <script src="/MH_SVG_Edit/jquerybbq/jquery.bbq.min.js"></script>
-    <script src="/MH_SVG_Edit/svgicons/jquery.svgicons.js"></script>
-    <script src="/MH_SVG_Edit/jgraduate/jquery.jgraduate.min.js"></script>
-    <script src="/MH_SVG_Edit/spinbtn/JQuerySpinBtn.min.js"></script>
-    <script src="/MH_SVG_Edit/touch.js"></script>
-
-    <!--{if svg_edit_release}>
-      <script src="/MH_SVG_Edit/svgedit.compiled.js"></script>
-    <!{else}-->
-    <script src="/MH_SVG_Edit/svgedit.js"></script>
-    <script src="/MH_SVG_Edit/jquery-svg.js"></script>
-    <script src="/MH_SVG_Edit/contextmenu/jquery.contextMenu.js"></script>
-    <script src="/MH_SVG_Edit/pathseg.js"></script>
-    <script src="/MH_SVG_Edit/browser.js"></script>
-    <script src="/MH_SVG_Edit/svgtransformlist.js"></script>
-    <script src="/MH_SVG_Edit/math.js"></script>
-    <script src="/MH_SVG_Edit/units.js"></script>
-    <script src="/MH_SVG_Edit/svgutils.js"></script>
-    <script src="/MH_SVG_Edit/sanitize.js"></script>
-    <script src="/MH_SVG_Edit/history.js"></script>
-    <script src="/MH_SVG_Edit/historyrecording.js"></script>
-    <script src="/MH_SVG_Edit/coords.js"></script>
-    <script src="/MH_SVG_Edit/recalculate.js"></script>
-    <script src="/MH_SVG_Edit/select.js"></script>
-    <script src="/MH_SVG_Edit/draw.js"></script>
-    <script src="/MH_SVG_Edit/layer.js"></script>
-    <script src="/MH_SVG_Edit/path.js"></script>
-    <script src="/MH_SVG_Edit/svgcanvas.js"></script>
-    <script src="/MH_SVG_Edit/svg-editor.js"></script>
-    <script src="/MH_SVG_Edit/locale/locale.js"></script>
-    <script src="/MH_SVG_Edit/contextmenu.js"></script>
-    <!--{endif}-->
-
-    <!-- always minified scripts -->
-    <script src="/MH_SVG_Edit/jquery-ui/jquery-ui-1.8.17.custom.min.js"></script>
-    <script src="/MH_SVG_Edit/jgraduate/jpicker.js"></script>
-
-
-    <script src="/MH_SVG_Edit/FileSaver.js"></script>
-
-    <!-- If you do not wish to add extensions by URL, you can load them
-    by creating the following file and adding by calls to svgEditor.setConfig -->
-    <!--<script src="/MH_SVG_Edit/config.js"></script>-->
-
-    <!-- feeds -->
-    <link rel="alternate" type="application/atom+xml" title="SVG-edit General Discussion" href="http://groups.google.com/group/svg-edit/feed/atom_v1_0_msgs.xml" />
-    <link rel="alternate" type="application/atom+xml" title="SVG-edit Updates (Issues/Fixes/Commits)" href="http://code.google.com/feeds/p/svg-edit/updates/basic" />
-
-
-
-<!-- #BODY -->
-<!-- Possible Classes
-  * 'smart-style-{SKIN#}'
-  * 'smart-rtl'         - Switch theme mode to RTL
-  * 'menu-on-top'       - Switch to top navigation (no DOM change required)
-  * 'no-menu'       - Hides the menu completely
-  * 'hidden-menu'       - Hides the main menu but still accessable by hovering over left edge
-  * 'fixed-header'      - Fixes the header
-  * 'fixed-navigation'  - Fixes the main menu
-  * 'fixed-ribbon'      - Fixes breadcrumb
-  * 'fixed-page-footer' - Fixes footer
-  * 'container'         - boxed layout mode (non-responsive: will not work with fixed-navigation & fixed-ribbon)
--->
-
-<body class="<%=  Setting.theme(User.current.can?(:manage_roles)).values.join(' ') %>"
-      data-user-id="<%= user_signed_in? ? current_user.id : ''  %>">
-
-<!-- HEADER -->
-<%= render partial: 'shared/header' %>
-<!-- END HEADER -->
-
+<html>
+<head>
+  <title>Svg edit</title>
+  <%= csrf_meta_tags %>
+  <%= render partial: 'svg_style' %>
+</head>
+<body>
 <!-- Left panel : Navigation area -->
 <!-- Note: This width of the aside area can be adjusted through LESS variables -->
-<%= render partial: 'menu/base_menu' %>
+<%#= render partial: 'menu/base_menu' %>
 <!-- END NAVIGATION -->
+<%= yield %>
 
-<!-- MAIN PANEL -->
-<div id="main" role="main">
-  <!-- END RIBBON -->
-
-  <div id="content">
-    <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <div class="no-padding">
-          <%= render_flash_messages %>
-          <% if breadcrumbs.present? %>
-              <ol class="breadcrumb">
-                <%= render_breadcrumbs :tag => :li, :separator => "" %>
-              </ol>
-          <% end %>
-          <%= yield %>
-        </div>
-        <div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-<!-- END MAIN PANEL -->
-<%#= render partial: 'shared/shortcuts' %>
-<!-- PAGE FOOTER -->
-<div class="page-footer">
-  <%= render partial: 'shared/footer' %>
-</div>
-<!-- END PAGE FOOTER -->
-
-<%= javascript_include_tag 'smart_admin/smart_admin' %>
-<script>
-  $(document).ready(function() {
-    toastr.options = {
-      "progressBar": true,
-      "timeOut": "20000"
-    }
-    // DO NOT REMOVE : GLOBAL FUNCTIONS!
-    pageSetUp();
-  });
-</script>
 </body>
-
 </html>
