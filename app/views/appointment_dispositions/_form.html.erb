@@ -1,13 +1,13 @@
 <fieldset>
   <legend></legend>
 
-  <%= form_for(appointment_capture, html: { class: 'form-horizontal' }) do |f| %>
-      <% if appointment_capture.errors.any? %>
+  <%= form_for(appointment_disposition, html: { class: 'form-horizontal' }) do |f| %>
+      <% if appointment_disposition.errors.any? %>
           <div id="error_explanation">
-            <h2><%= pluralize(appointment_capture.errors.count, "error") %> prohibited this capture from being saved:</h2>
+            <h2><%= pluralize(appointment_disposition.errors.count, "error") %> prohibited this disposition from being saved:</h2>
 
             <ul>
-              <% appointment_capture.errors.full_messages.each do |message| %>
+              <% appointment_disposition.errors.full_messages.each do |message| %>
                   <li><%= message %></li>
               <% end %>
             </ul>
