@@ -66,7 +66,7 @@ module CasesHelper
     end
 
     if @job_apps
-      tabs<<  {:name => 'job_applications', :partial => 'cases/show_case/job_app', :label => :job_application}
+      tabs<<  {:name => 'job_applications', :partial => 'cases/show_case/job_app', :label => 'Job Applications'}
     end
 
     if @surveys
@@ -74,11 +74,11 @@ module CasesHelper
     end
 
     if @case_organizations
-      tabs<<  {:name => 'case_organizations', :partial => 'cases/show_case/case_organizations', :label => 'Share Organization'}
+      tabs<<  {:name => 'case_organizations', :partial => 'cases/show_case/case_organizations', :label => 'Share Organizations'}
     end
 
     if @watchers
-      tabs<< {:name => 'watcher', :partial => 'cases/show_case/watcher', :label => 'Share Individual'}
+      tabs<< {:name => 'watcher', :partial => 'cases/show_case/watcher', :label => 'Share Individuals'}
     end
 
     tabs
