@@ -40,19 +40,19 @@ module UserProfilesHelper
     end
 
     if @other_skills
-      tabs<<  {:name => 'other_skill', :partial => 'user_profiles/occupational_record/other_skill', :label => :other_skill}
+      tabs<<  {:name => 'other_skill', :partial => 'user_profiles/occupational_record/other_skill', :label => 'Skills'}
     end
 
     if @certifications
-      tabs<<  {:name => 'certification', :partial => 'user_profiles/occupational_record/certification', :label => :certification}
+      tabs<<  {:name => 'certification', :partial => 'user_profiles/occupational_record/certification', :label => 'Certifications'}
     end
 
     if @clearances
-      tabs<<  {:name => 'clearance', :partial => 'user_profiles/occupational_record/clearence', :label => :clearance}
+      tabs<<  {:name => 'clearance', :partial => 'user_profiles/occupational_record/clearence', :label => 'Clearances'}
     end
 
     if @positions
-      tabs<<  {:name => 'position', :partial => 'user_profiles/occupational_record/position', :label => :position}
+      tabs<<  {:name => 'position', :partial => 'user_profiles/occupational_record/position', :label => 'Positions'}
     end
 
     if @injuries
@@ -60,7 +60,7 @@ module UserProfilesHelper
     end
 
     if @resumes
-      tabs<<  {:name => 'resume', :partial => 'user_profiles/occupational_record/resume', :label => :resume}
+      tabs<<  {:name => 'resume', :partial => 'user_profiles/occupational_record/resume', :label => 'Resumes'}
     end
 
       if @military_histories
