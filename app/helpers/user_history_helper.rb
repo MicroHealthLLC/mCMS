@@ -50,13 +50,13 @@ module UserHistoryHelper
       tabs<<  {:name => 'socioeconomic', :partial => 'user_history/socio_record/socioeconomic', :label => :socioeconomic}
     end
     if @environment_risks
-      tabs<<  {:name => 'environment_risk', :partial => 'user_history/socio_record/environment_risk', :label => :environment_risk}
+      tabs<<  {:name => 'environment_risk', :partial => 'user_history/socio_record/environment_risk', :label => 'Environment Risks'}
     end
     if @housings
       tabs<<  {:name => 'housing', :partial => 'user_history/socio_record/housing', :label => :housing}
     end
     if @financials
-      tabs<<  {:name => 'financial', :partial => 'user_history/socio_record/financial', :label => :financial}
+      tabs<<  {:name => 'financial', :partial => 'user_history/socio_record/financial', :label => 'Financials'}
     end
     if @legals
       tabs<<  {:name => 'legal', :partial => 'user_history/socio_record/legal', :label => :legal}
