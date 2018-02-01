@@ -2,34 +2,34 @@ module UserHistoryHelper
   def medical_record_tab
     tabs = []
     if @admissions
-      tabs<<  {:name => 'admission', :partial => 'user_history/medical_record/admission', :label => :admission}
+      tabs<<  {:name => 'admission', :partial => 'user_history/medical_record/admission', :label => 'Admissions'}
     end
     if @problem_lists
-      tabs<<  {:name => 'problem_list', :partial => 'user_history/medical_record/problem_list', :label => :problem_list}
+      tabs<<  {:name => 'problem_list', :partial => 'user_history/medical_record/problem_list', :label => 'Problem Lists'}
     end
     if @health_care_facilities
-      tabs<<  {:name => 'health_care_facility', :partial => 'user_history/medical_record/health_care_facility', :label => :health_care_facility}
+      tabs<<  {:name => 'health_care_facility', :partial => 'user_history/medical_record/health_care_facility', :label => 'Health Care Facilities'}
     end
     if @surgicals
-      tabs<<  {:name => 'surgical', :partial => 'user_history/medical_record/surgical', :label => :surgical}
+      tabs<<  {:name => 'surgical', :partial => 'user_history/medical_record/surgical', :label => 'Surgeries'}
     end
     if @medicals
       tabs<<  {:name => 'medical', :partial => 'user_history/medical_record/medical', :label => :medical}
     end
     if @medications
-      tabs<<  {:name => 'medication', :partial => 'user_history/medical_record/medication', :label => :medication}
+      tabs<<  {:name => 'medication', :partial => 'user_history/medical_record/medication', :label => 'Medications'}
     end
     if @behavioral_risks
-      tabs<<  {:name => 'behavioral_risk', :partial => 'user_history/medical_record/behavioral_risk', :label => :behavioral_risk}
+      tabs<<  {:name => 'behavioral_risk', :partial => 'user_history/medical_record/behavioral_risk', :label => 'Behavioral Risks'}
     end
     if @family_histories
       tabs<<  {:name => 'family_history', :partial => 'user_history/medical_record/family_history', :label => :family_history}
     end
     if @immunizations
-      tabs<<  {:name => 'immunization', :partial => 'user_history/medical_record/immunization', :label => :immunization}
+      tabs<<  {:name => 'immunization', :partial => 'user_history/medical_record/immunization', :label => 'Immunizations'}
     end
     if @allergies
-      tabs<<  {:name => 'allergy', :partial => 'user_history/medical_record/allergy', :label => :allergy}
+      tabs<<  {:name => 'allergy', :partial => 'user_history/medical_record/allergy', :label => 'Allergies'}
     end
     if @laboratory_examinations
       tabs<<  {:name => 'laboratory_examination', :partial => 'user_history/medical_record/laboratory_examination', :label => 'Laboratory'}
