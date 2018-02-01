@@ -69,6 +69,7 @@ class AppointmentDispositionsController < ProtectForgeryApplication
   def set_appointment_disposition
     @appointment_disposition = AppointmentDisposition.find(params[:id])
     @appointment = @appointment_disposition.appointment
+    @case = @appointment.case
     set_breadcrumbs
     add_breadcrumb @appointment_disposition, @appointment_disposition
   rescue ActiveRecord::RecordNotFound
