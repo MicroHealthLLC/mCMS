@@ -88,7 +88,7 @@ class Teleconsult < ApplicationRecord
     output = 'Teleconsult'
     output<< "<p> Type: #{contact_type} </p>"
     output<< "<p>Status:  #{consult_status}</p>"
-    output<< "<p> Date & Time: #{date} #{time}</p>"
+    output<< "<p> Date & Time: #{format_date date} #{time}</p>"
     output.html_safe
   end
 

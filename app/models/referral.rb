@@ -100,7 +100,7 @@ class Referral < ApplicationRecord
     output = 'Referral'
     output<< "<p> Type: #{referral_type} </p>"
     output<< "<p> Status:#{referral_status} </p>"
-    output<< "<p> date: #{referral_date} </p>"
+    output<< "<p> date: #{format_date referral_date} </p>"
 
     output.html_safe
   end

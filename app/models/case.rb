@@ -67,8 +67,8 @@ class Case < ApplicationRecord
   def little_description
     output = 'Case'
     output<< "<p> #{case_type} </p>"
-    output<< "<p> #{date_start} </p>"
-    output<< "<p> #{date_due} </p>"
+    output<< "<p> #{format_date date_start} </p>"
+    output<< "<p> #{format_date date_due} </p>"
 
     output.html_safe
   end

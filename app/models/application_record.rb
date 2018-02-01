@@ -1,6 +1,8 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
+  include DateTimeHelper
+
   belongs_to :updated_by, optional: true, class_name: 'User'
   belongs_to :created_by, optional: true, class_name: 'User'
 

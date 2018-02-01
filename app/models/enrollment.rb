@@ -93,7 +93,7 @@ class Enrollment < ApplicationRecord
     output<< "<p> Location: #{enrollment_location} </p>"
     output<< "<p> Enrollment Type: #{enrollment_type} </p>"
     output<< "<p> Enrollment Status: #{enrollment_status} </p>"
-    output<< "<p>  Date start: : #{date_start} </p>"
+    output<< "<p>  Date start: : #{format_date date_start} </p>"
 
     output.html_safe
   end

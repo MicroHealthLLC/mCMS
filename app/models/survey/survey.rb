@@ -14,7 +14,7 @@ class Survey::Survey < ApplicationRecord
   has_many :questions, :dependent => :destroy
   has_many :survey_users,  :dependent => :destroy
   has_many :survey_notes, foreign_key: :owner_id, :dependent => :destroy
-  has_many :survey_cases, :dependent => :destroy
+  has_many :survey_cases, :dependent => :restrict_with_error
 
   belongs_to :survey_type, optional: true
 

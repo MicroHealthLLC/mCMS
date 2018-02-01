@@ -53,10 +53,11 @@ class OrganizationsController < ProtectForgeryApplication
   # DELETE /organizations/1
   # DELETE /organizations/1.json
   def destroy
-    @organization.destroy
-    respond_to do |format|
-      format.html { redirect_to organizations_url, notice: 'Organization was successfully destroyed.' }
-      format.json { head :no_content }
+    if @organization.destroy
+      redirect_to organizations_url, notice: 'Organization was successfully destroyed.'
+    else
+      flash[:error] = @organization.errors.full_messages.join('<br/>')
+      redirect_to edit_organization_url(@organization),
     end
   end
 

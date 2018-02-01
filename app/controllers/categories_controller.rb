@@ -61,7 +61,7 @@ class CategoriesController < ProtectForgeryApplication
   def create
     @category = Category.new(category_params)
     if @category.save
-      redirect_to @category
+      redirect_to categories_path
     else
       flash[:error] = "Unable to save category: #{@category.errors.full_messages.to_sentence}"
       redirect_to "/"
@@ -77,12 +77,12 @@ class CategoriesController < ProtectForgeryApplication
 
   def update
     @category.update_attributes(category_params)
-    redirect_to edit_category_path(@category)
+    redirect_to categories_path(@category)
   end
 
   def destroy
     @category.destroy
-    redirect_to manage_categories_path
+    redirect_to categories_path
   end
 
   def manage

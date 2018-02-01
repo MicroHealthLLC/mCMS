@@ -7,6 +7,8 @@ class Measurement < ApplicationRecord
   belongs_to :measured_by
   belongs_to :measurement_name
 
+  has_many :measurement_records, :foreign_key => 'component_id', :dependent => :restrict_with_error
+
   def gender
     gender_type || GenderType.default
   end

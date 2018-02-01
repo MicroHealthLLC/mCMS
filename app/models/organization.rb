@@ -5,7 +5,7 @@ class Organization < ApplicationRecord
   has_one :organization_extend_demography, :dependent => :destroy
 
   has_many :job_details
-  has_many :case_organizations
+  has_many :case_organizations, :dependent => :restrict_with_error
 
   has_many :organization_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :organization_attachments, reject_if: :all_blank, allow_destroy: true

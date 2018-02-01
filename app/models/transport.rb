@@ -59,6 +59,20 @@ class Transport < ApplicationRecord
      :transport_location_id, :transport_status, :date_time]
   end
 
+  def little_description
+    output = 'Transport'
+    output<<"<p>Reason:  #{reason}</p>"
+    output<<"<p>Transport Type:  #{transport_type}</p>"
+    output<<"<p>Transport Status:  #{transport_status}</p>"
+    output<<"<p>Transport Location:  #{transport_location}</p>"
+    output<<"<p>date & time:  #{ format_date_time date_time}</p>"
+
+
+    output.html_safe
+  end
+
+
+
   def to_pdf(pdf, show_user = true)
     pdf.font_size(25){  pdf.table([[ "Transport ##{id}"]], :row_colors => ['eeeeee'], :column_widths => [ 523], :cell_style=> {align: :center})}
     user.to_pdf_brief_info(pdf) if show_user

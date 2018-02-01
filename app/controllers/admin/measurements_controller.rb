@@ -56,10 +56,17 @@ class MeasurementsController < ApplicationController
   # DELETE /measurements/1
   # DELETE /measurements/1.json
   def destroy
-    @measurement.destroy
-    respond_to do |format|
-      format.html { redirect_to measurements_url, notice: 'Measurement was successfully destroyed.' }
-      format.json { head :no_content }
+    if  @measurement.destroy
+      respond_to do |format|
+        format.html { redirect_to measurements_url, notice: 'Measurement was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      flash[:error] = @measurement.errors.full_messages.join('<br/>')
+      respond_to do |format|
+        format.html { redirect_to edit_measurement_url(@measurement) }
+        format.json { head :no_content }
+      end
     end
   end
 

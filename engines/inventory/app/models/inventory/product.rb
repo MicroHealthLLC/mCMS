@@ -4,7 +4,7 @@ module Inventory
     belongs_to :product_type, optional: true
     belongs_to :product_status, optional: true
 
-    has_many :product_assigns
+    has_many :product_assigns, :dependent => :restrict_with_error
 
     validates_presence_of :name
 

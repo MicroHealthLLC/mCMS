@@ -102,11 +102,11 @@ class Appointment < ApplicationRecord
   end
 
   def start_time_to_time
-    date.strftime("#{Setting['format_date']} %I:%M %p") if date
+    format_date_time date
   end
 
   def end_time_to_time
-    end_time.strftime("#{Setting['format_date']} %I:%M %p") if end_time
+    format_date_time end_time
   end
 
   def with_who

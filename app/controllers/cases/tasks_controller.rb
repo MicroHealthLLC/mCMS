@@ -88,6 +88,8 @@ class TasksController < UserCasesController
     set_client_profile(@task)
     @notes = @task.task_notes
     @tasks = @task.sub_tasks
+
+    @plans = @task.plans
   end
 
   # GET /tasks/new
@@ -118,7 +120,7 @@ class TasksController < UserCasesController
   # GET /tasks/1/edit
   def edit
     @note = TaskNote.new(user_id: User.current.id)
-
+    @notes = @task.task_notes
     @plans = @task.plans
   end
 

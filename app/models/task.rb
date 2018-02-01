@@ -135,6 +135,19 @@ class Task < ApplicationRecord
     end
   end
 
+  def little_description
+    output = 'Action'
+    output<<"<p>Title:  #{title}</p>"
+    output<<"<p>Description:  #{description} </p>"
+    output<<"<p>Task type:  #{task_type}</p>"
+    output<<"<p>Status:  #{task_status_type}</p>"
+    output<<"<p>Priority:  #{priority_type}</p>"
+    output<<"<p>Date start:  #{format_date date_start}</p>"
+    output<<"<p>Date due:  #{ format_date date_due}</p>"
+
+    output.html_safe
+  end
+
   def can_send_email?
     true
   end

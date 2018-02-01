@@ -63,10 +63,12 @@ class SurveysController < ProtectForgeryApplication
   end
 
   def destroy
-    @survey.destroy
-    respond_to do |format|
-      format.html { redirect_to surveys_url, notice: 'Survey was successfully destroyed.' }
-      format.json { head :no_content }
+
+    if  @survey.destroy
+      redirect_to surveys_url, notice: 'Survey was successfully destroyed.'
+    else
+      flash[:error] = @survey.errors.full_messages.join('<br/>')
+      redirect_to edit_survey_url(@survey),
     end
   end
 
