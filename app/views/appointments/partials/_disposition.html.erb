@@ -24,8 +24,8 @@
       <%= render partial: 'appointment_dispositions/list',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     captures: @appointment.appointment_dispositions,
-                     wid_id: 'capture',
+                     dispositions: @appointment.appointment_dispositions,
+                     wid_id: 'disposition',
                      wid_title: 'Disposition'
                  } %>
     </article>
