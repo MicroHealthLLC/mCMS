@@ -3,27 +3,27 @@ module UserProfilesHelper
     tabs = [
         {:name => 'core_demographic', :partial => 'user_profiles/profile_record/core_demography', :label => :core_demography},
         {:name => 'extend_demographic', :partial => 'user_profiles/profile_record/extend_demography', :label => :extend_demography},
-        {:name => 'related_client', :partial => 'user_profiles/profile_record/related_client', :label => :related_client}
+        {:name => 'related_client', :partial => 'user_profiles/profile_record/related_client', :label => 'Related Clients'}
     ]
-    tabs << {:name => 'identification', :partial => 'devise/registrations/shared/identification_form', :label => :identification}
+    tabs << {:name => 'identification', :partial => 'devise/registrations/shared/identification_form', :label => 'Identifications'}
 
     if @languages
       tabs<<  {:name => 'languages', :partial => 'user_profiles/profile_record/languages', :label => :languages}
     end
     if @contacts
-      tabs<<  {:name => 'contact', :partial => 'user_profiles/profile_record/contact', :label => :contact}
+      tabs<<  {:name => 'contact', :partial => 'user_profiles/profile_record/contact', :label => 'Contacts'}
     end
     if @affiliations
-      tabs<<  {:name => 'affiliation', :partial => 'user_profiles/profile_record/affiliation', :label => :affiliation}
+      tabs<<  {:name => 'affiliation', :partial => 'user_profiles/profile_record/affiliation', :label => 'Affiliations'}
     end
     if @user_insurances
-      tabs<<  {:name => 'user_insurance', :partial => 'user_profiles/profile_record/user_insurance', :label => 'Insurance'}
+      tabs<<  {:name => 'user_insurance', :partial => 'user_profiles/profile_record/user_insurance', :label => 'Insurances'}
     end
     if @documents
-      tabs<<  {:name => 'document', :partial => 'user_profiles/profile_record/document', :label => :document}
+      tabs<<  {:name => 'document', :partial => 'user_profiles/profile_record/document', :label => 'Documents'}
     end
     if @jsignatures
-      tabs<<  {:name => 'signature', :partial => 'user_profiles/profile_record/signature', :label => :signature}
+      tabs<<  {:name => 'signature', :partial => 'user_profiles/profile_record/signature', :label => 'Signatures'}
     end
     tabs << {:name => 'password', :partial => 'devise/registrations/shared/password', :label => :password}
     if can?(:manage_roles, :manage_user_job_details, :manage_organizations)
