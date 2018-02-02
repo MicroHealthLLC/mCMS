@@ -9,6 +9,11 @@ class Socioeconomic < ApplicationRecord
   accepts_nested_attributes_for :socioeconomic_attachments, reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :user_id, :name
+  before_validation do
+    if self.date_resolved.present? and self.date_identified.present? and self.date_identified > self.date_resolved
+      errors[:base] << "Date resolved cannot be earlier than date identified"
+    end
+  end
 
   def self.enumeration_columns
     [
