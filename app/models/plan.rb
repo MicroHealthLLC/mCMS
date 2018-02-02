@@ -21,7 +21,10 @@ class Plan < ApplicationRecord
   after_save :update_percent_done
   before_validation do
     if self.date_due.present? and self.date_start.present? and self.date_start > self.date_due
-      errors[:base] << "Due date cannot be ealer than start date"
+      errors[:base] << "Due date cannot be earlier than start date"
+    end
+    if self.date_completed.present? and self.date_start.present? and self.date_start > self.date_completed
+      errors[:base] << "Completed date cannot be earlier than start date"
     end
   end
 
