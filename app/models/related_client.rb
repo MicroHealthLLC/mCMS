@@ -4,6 +4,11 @@ class RelatedClient < ApplicationRecord
   belongs_to :related_client, class_name: 'User'
 
   validates_presence_of :user_id, :related_client_id
+  before_validation do
+    if self.date_end.present? and self.date_start.present? and self.date_start > self.date_end
+      errors[:base] << "End date cannot be earlier than start date"
+    end
+  end
 
   def self.include_enumerations
     includes(:related_client).
