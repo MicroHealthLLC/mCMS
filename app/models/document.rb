@@ -5,6 +5,12 @@ class Document < ApplicationRecord
   belongs_to :case, optional: true, foreign_key: :related_to_id
 
   validates_presence_of :title
+  before_validation do
+    if self.expiration_date.present? and self.date.present? and self.date > self.expiration_date
+      errors[:base] << "Expiration date cannot be earlier than date"
+    end
+  end
+  
   scope :not_private, -> {where(is_private: false)}
   scope :not_related, -> {where(related_to_id: nil)}
 
