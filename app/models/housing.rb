@@ -15,6 +15,9 @@ class Housing < ApplicationRecord
     if self.snomed.blank?
       errors[:base] << "Housing type cannot be blank"
     end
+    if self.date_end.present? and self.date_start.present? and self.date_start > self.date_end
+      errors[:base] << "End date cannot be earlier than start date"
+    end
   end
 
   def self.enumeration_columns
