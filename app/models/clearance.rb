@@ -7,6 +7,11 @@ class Clearance < ApplicationRecord
   has_many :clearance_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :clearance_attachments, reject_if: :all_blank, allow_destroy: true
 
+  before_validation do
+    if self.date_expired.present? and self.date_received.present? and self.date_received > self.date_expired
+      errors[:base] << "Date expired cannot be earlier than date received"
+    end
+  end
 
   def self.enumeration_columns
     [
