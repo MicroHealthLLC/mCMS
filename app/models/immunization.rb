@@ -12,6 +12,15 @@ class Immunization < ApplicationRecord
     if self.snomed.blank?
       errors[:base] << "Medication cannot be blank"
     end
+    if self.expiration_date.present? and self.date_immunized.present? and self.date_immunized > self.expiration_date
+      errors[:base] << "Expiration date cannot be earlier than date immunized"
+    end
+    if self.next_date_due.present? and self.date_immunized.present? and self.date_immunized > self.next_date_due
+      errors[:base] << "Next date due cannot be earlier than date immunized"
+    end
+    if self.next_date_due.present? and self.expiration_date.present? and self.expiration_date > self.next_date_due
+      errors[:base] << "Next date due cannot be earlier than expiration date"
+    end
   end
 
   def self.enumeration_columns
