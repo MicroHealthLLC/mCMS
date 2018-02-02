@@ -8,6 +8,11 @@ class Legal < ApplicationRecord
   accepts_nested_attributes_for :legal_attachments, reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :user_id, :title
+  before_validation do
+    if self.date_end.present? and self.date_start.present? and self.date_start > self.date_end
+      errors[:base] << "End date cannot be earlier than start date"
+    end
+  end
 
   def self.enumeration_columns
     [
