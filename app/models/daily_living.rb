@@ -10,6 +10,9 @@ class DailyLiving < ApplicationRecord
     if self.snomed.blank?
       errors[:base] << "Daily living type cannot be blank"
     end
+    if self.date_end.present? and self.date_start.present? and self.date_start > self.date_end
+      errors[:base] << "End date cannot be earlier than start date"
+    end
   end
 
   has_many :daily_living_attachments, foreign_key: :owner_id, dependent: :destroy
