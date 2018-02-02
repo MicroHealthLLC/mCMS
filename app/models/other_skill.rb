@@ -15,6 +15,9 @@ class OtherSkill < ApplicationRecord
     if self.name.blank?
       errors[:base] << "Skill cannot be blank"
     end
+    if self.date_expired.present? and self.date_received.present? and self.date_received > self.date_expired
+      errors[:base] << "Date expired cannot be earlier than date received"
+    end
   end
 
   before_create :check_private_author
