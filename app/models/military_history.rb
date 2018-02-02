@@ -10,6 +10,9 @@ class MilitaryHistory < ApplicationRecord
     if self.text.blank?
       errors[:base] << "Service name cannot be blank"
     end
+    if self.date_ended.present? and self.date_started.present? and self.date_started > self.date_ended
+      errors[:base] << "Date ended cannot be earlier than date started"
+    end
   end
 
   has_many :military_history_attachments, foreign_key: :owner_id, dependent: :destroy
