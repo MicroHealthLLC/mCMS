@@ -27,8 +27,8 @@ class Task < ApplicationRecord
 
   validates_presence_of :user_id, :title
   before_validation do
-    if self.date_due.present? and self.date_start.present? and self.date_start > self.date_due
-      errors[:base] << "Due date cannot be ealer than start date"
+    if self.date_completed.present? and self.date_start.present? and self.date_start > self.date_completed
+      errors[:base] << "Completed date cannot be ealer than start date"
     end
   end
 
