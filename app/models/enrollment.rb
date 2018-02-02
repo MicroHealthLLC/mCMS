@@ -10,6 +10,11 @@ class Enrollment < ApplicationRecord
   has_many :appointment_links, as: :linkable
 
   validates_presence_of :name, :user_id, :case_id
+  before_validation do
+    if self.date_end.present? and self.date_start.present? and self.date_start > self.date_end
+      errors[:base] << "End date cannot be earlier than start date"
+    end
+  end
 
   def self.safe_attributes
     [:user_id, :name, :location_lat, :location_long,
