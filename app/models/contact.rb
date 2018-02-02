@@ -20,7 +20,7 @@ class Contact < ApplicationRecord
 
   before_validation do
     if self.date_started.present? and self.date_ended.present? and self.date_started > self.date_ended
-      errors[:base] << "End date cannot be ealer than start date"
+      errors[:base] << "Date ended cannot be earlier than date started"
     end
   end
 
