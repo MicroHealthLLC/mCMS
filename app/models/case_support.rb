@@ -14,6 +14,11 @@ class CaseSupport < ApplicationRecord
   has_many :appointment_links, as: :linkable
 
   validates_presence_of :case_id, :user_id, :first_name, :last_name
+  before_validation do
+    if self.date_ended.present? and self.date_started.present? and self.date_started > self.date_ended
+      errors[:base] << "Date ended cannot be earlier than date started"
+    end
+  end
 
   def extend_informations
     case_support_extend_demography || CaseSupportExtendDemography.new(case_support_id: self.id)
