@@ -9,6 +9,11 @@ class BehavioralRisk < ApplicationRecord
   accepts_nested_attributes_for :behavioral_risk_attachments, reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :user_id, :name
+  before_validation do
+    if self.date_ended.present? and self.date_started.present? and self.date_started > self.date_ended
+      errors[:base] << "Date ended cannot be earlier than date started"
+    end
+  end
 
   def self.enumeration_columns
     [
