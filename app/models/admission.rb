@@ -8,6 +8,11 @@ class Admission < ApplicationRecord
   accepts_nested_attributes_for :admission_attachments, reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :care_family_name, :user_id
+  before_validation do
+    if self.date_discharged.present? and self.date_admitted.present? and self.date_admitted > self.date_discharged
+      errors[:base] << "Discharged date cannot be earlier than admitted date"
+    end
+  end
 
   def admission_status
     if admission_status_id
