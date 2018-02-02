@@ -6,6 +6,11 @@ class HealthCareFacility < ApplicationRecord
   belongs_to :health_care_facility_type, :optional=> true
 
   validates_presence_of :name, :user_id
+  before_validation do
+    if self.date_end.present? and self.date_started.present? and self.date_started > self.date_end
+      errors[:base] << "End date cannot be earlier than date started"
+    end
+  end
 
   has_many :health_care_facility_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :health_care_facility_attachments, reject_if: :all_blank, allow_destroy: true
