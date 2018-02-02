@@ -9,6 +9,11 @@ class ProblemList < ApplicationRecord
   accepts_nested_attributes_for :problem_list_attachments, reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :user_id, :name
+  before_validation do
+    if self.date_resolved.present? and self.date_onset.present? and self.date_onset > self.date_resolved
+      errors[:base] << "Date resolved cannot be earlier than date onset"
+    end
+  end
 
   def self.enumeration_columns
     [
