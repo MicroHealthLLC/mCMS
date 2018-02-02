@@ -7,7 +7,12 @@ class Medication < ApplicationRecord
   accepts_nested_attributes_for :medication_attachments, reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :user_id, :medication
-
+  before_validation do
+    if self.date_expired.present? and self.date_prescribed.present? and self.date_prescribed > self.date_expired
+      errors[:base] << "Date expired cannot be earlier than date prescribed"
+    end
+  end
+  
   def self.enumeration_columns
     [
         ["#{MedicationStatus}", 'medication_status_id']
