@@ -13,7 +13,11 @@ class Injury < ApplicationRecord
   accepts_nested_attributes_for :injury_attachments, reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :user_id, :injury_name
-
+  before_validation do
+    if self.date_resolved.present? and self.date_of_injury.present? and self.date_of_injury > self.date_resolved
+      errors[:base] << "Date resolved cannot be earlier than date of injury"
+    end
+  end
 
   def self.enumeration_columns
     [
