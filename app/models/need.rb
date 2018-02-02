@@ -7,6 +7,14 @@ class Need < ApplicationRecord
   belongs_to :priority_type, optional: true
   belongs_to :need_status, optional: true
   validates_presence_of :user_id, :case_id, :need_enum_id
+  before_validation do
+    if self.date_due.present? and self.date_identified.present? and self.date_identified > self.date_due
+      errors[:base] << "Due date cannot be earlier than date identified"
+    end
+    if self.date_completed.present? and self.date_identified.present? and self.date_identified > self.date_completed
+      errors[:base] << "Completed date cannot be earlier than date identified"
+    end
+  end
 
 
   has_many :appointment_links, as: :linkable
