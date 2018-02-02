@@ -8,6 +8,12 @@ class Education < ApplicationRecord
   accepts_nested_attributes_for :education_attachments, reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :user_id, :education_type
+  before_validation do
+    if self.date_expired.present? and self.date_recieved.present? and self.date_recieved > self.date_expired
+      errors[:base] << "Date expired cannot be earlier than date received"
+    end
+  end  
+  
   def visible?
     User.current == user or User.current.allowed_to?(:edit_educations) or User.current.allowed_to?(:manage_educations)
   end
