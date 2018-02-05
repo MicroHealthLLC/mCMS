@@ -63,6 +63,14 @@ class JobApp < ApplicationRecord
     end
   end
 
+  def little_description
+    output = 'Job Application'
+    output<< "<p>Title #{title}</p>"
+    output<< "<p>Occupation #{occupation}</p>"
+    output<< "<p>State #{app_state}</p/>"
+    output.html_safe
+  end
+  
   def can_send_email?
     true
   end
