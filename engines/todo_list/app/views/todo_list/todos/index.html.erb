@@ -8,15 +8,15 @@
       <!--<button id="reset_todos" class="btn btn-primary pull-right">Reset</button>-->
       <!--<button id="export_todos" class="btn btn-primary pull-right">Export ToDos</button>-->
       <!--<button id="import_todos" class="btn btn-primary pull-right">Import ToDos</button>-->
-      <button id="btn_save" class="btn btn-primary">Save</button>
+      <button id="btn_save" class="btn btn-success">Save</button>
       
       <div id="importtodos" hidden>
         <h4>Upload File</h4>
         <form id="upload_form" enctype="multipart/form-data" action="" method="post">
           <input type="file" id="loadjson" name="files[]" multiple/>
           <textarea hidden id="preview" name="preview" rows="5"></textarea><br>
-          <button id="submit_upload" class="btn btn-primary pull-right">Submit</button>
-          <button id="cancel_upload" class="btn btn-primary pull-right">Cancel</button>
+          <button id="cancel_upload" class="btn btn-warning pull-right">Cancel</button>
+          <button id="submit_upload" class="btn btn-success pull-right">Submit</button>
         </form>
       </div>
     </div>
