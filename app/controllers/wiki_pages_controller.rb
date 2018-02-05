@@ -60,6 +60,14 @@ class WikiPagesController < ProtectForgeryApplication
     end
   end
 
+  def destroy
+    return not_allowed unless destroy_allowed?
+
+    @page.destroy
+
+    redirect_to url_for(action: :all)
+  end
+
   # Check is it allowed for current user to see current page. Designed to be redefined by application programmer
   def show_allowed?
     User.current.can?(:manage_wikis, :manage_roles)

@@ -43,7 +43,7 @@ RedCarpet::AccessControl.map do |map|
     map.permission :create_tasks, {:tasks => [:link_plan, :add_plan, :new, :create]},  :read => true
     map.permission :edit_tasks, {:tasks => [:edit, :update]},  :read => true
     map.permission :delete_tasks, {:tasks => [:destroy]},  :read => true
-    map.permission :manage_tasks, {:tasks => [:link_plan, :add_plan, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_tasks, {:tasks => [:delete_sub_task_relation, :link_plan, :add_plan, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
   map.project_module :enrollments do |map|

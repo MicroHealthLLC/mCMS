@@ -6,8 +6,9 @@ class Task < ApplicationRecord
   belongs_to :task_type, optional: true
   belongs_to :task_status_type, optional: true
 
- has_many :task_notes, foreign_key: :owner_id, dependent: :destroy
+  has_many :task_notes, foreign_key: :owner_id, dependent: :destroy
   has_many :sub_tasks, class_name: 'Task', foreign_key: :sub_task_id
+  belongs_to :parent_task, :foreign_key => :sub_task_id, class_name: 'Task', optional: true
 
   has_many :plan_tasks, dependent: :destroy
   has_many :plans, through: :plan_tasks
@@ -34,6 +35,10 @@ class Task < ApplicationRecord
 
   before_destroy do
     self.sub_tasks.update_all(sub_task_id: nil)
+  end
+
+  def is_subtask?
+    sub_task_id.present?
   end
 
   def self.include_enumerations

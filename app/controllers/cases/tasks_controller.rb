@@ -121,6 +121,7 @@ class TasksController < UserCasesController
   def edit
     @note = TaskNote.new(user_id: User.current.id)
     @notes = @task.task_notes
+    @tasks = @task.sub_tasks
     @plans = @task.plans
   end
 
@@ -192,6 +193,12 @@ class TasksController < UserCasesController
     if @task.case
       add_breadcrumb @task.case, @task.case
       add_breadcrumb I18n.t('tasks'), case_path(@task.case) + '#tabs-tasks'
+    elsif @task.is_subtask? and  @parent_task = @task.parent_task and @parent_task.case
+      add_breadcrumb @parent_task.case, @parent_task.case
+      add_breadcrumb I18n.t('tasks'), case_path(@parent_task.case) + '#tabs-tasks'
+      add_breadcrumb @parent_task.to_s, @parent_task
+
+        @task.case = @parent_task.case
     else
       add_breadcrumb I18n.t('tasks'), :tasks_path
     end

@@ -18,7 +18,7 @@ class GroupsController < ProtectForgeryApplication
   def create
     @group = Group.new(group_params)
     if @group.save
-      redirect_to @group
+      redirect_to edit_group_url(@group)
     else
       redirect_to "/"
     end
