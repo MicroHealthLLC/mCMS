@@ -4,12 +4,19 @@
 
 <%= thredded_page do %>
     <div class="col-xs-12 btn-edition">
-      <% if policy(messageboard).update? %>
-          <a class="btn btn-success pull-right" href="<%= edit_messageboard_path(messageboard) %>">
-            <%= t('thredded.nav.edit_messageboard') %>
-          </a>
-      <% end %>
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+        <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:250px;">
+          <% if policy(messageboard).update? %>
+            <li>
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+              <%= link_to t('thredded.nav.edit_messageboard'), edit_messageboard_path(messageboard), class: 'dropdown-item' %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </div>
+ 
     <div class="thredded--svg-definitions ">
       <%= inline_svg 'thredded/follow.svg', id: 'thredded-follow-icon', title: nil %>
       <%= inline_svg 'thredded/unfollow.svg', id: 'thredded-unfollow-icon' %>
