@@ -49,10 +49,14 @@
         </div>
 
         <div class="col-xs-3">
-          <div id="quickSwitch" style="padding: 10px" class="form-group">
-            <select ng-model="switchTo" id="fileslist" ng-options="name for name in switchToList" ng-change="switchToKanban(switchTo)">
-              <option>Switch to ...</option>
-            </select>
+          <div id="filesSlider">
+           <h2>MH Planner</h2>
+            <div id="quickSwitch" style="padding: 10px" class="form-group">
+              <select ng-model="switchTo" id="fileslist" ng-options="name for name in switchToList" ng-change="switchToKanban(switchTo)">
+                <option>Switch to ...</option>
+              </select>
+            </div>
+            <a class="iconbtn" title="Close Kanban Slider" ng-click="hideFiles()"><i class="glyphicon glyphicon-collapse-up"></i></a>
           </div>
         </div>
       </div>
@@ -106,10 +110,10 @@
 
 <script>
   function showFiles() {
-    if ($("#quickSwitch").style.display === "none") {
-      $("#quickSwitch").style.display = "block"
-    } else {
-      $("#quickSwitch").style.display = "none"
-    }
+      $("#filesSlider").show();
   }
+  function hideFiles() {
+      $("#filesSlider").hide();
+  }
+  
 </script>
