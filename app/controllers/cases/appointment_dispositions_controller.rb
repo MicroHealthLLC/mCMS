@@ -69,7 +69,6 @@ class AppointmentDispositionsController < ProtectForgeryApplication
   def set_appointment_disposition
     @appointment_disposition = AppointmentDisposition.find(params[:id])
     @appointment = @appointment_disposition.appointment
-    @case = @appointment.case
     set_breadcrumbs
     add_breadcrumb @appointment_disposition, @appointment_disposition
   rescue ActiveRecord::RecordNotFound
@@ -78,7 +77,7 @@ class AppointmentDispositionsController < ProtectForgeryApplication
 
   def set_breadcrumbs
     if @appointment.case
-      add_breadcrumb 'Case Records', cases_path(@case)
+      add_breadcrumb 'Case Records', cases_path(@appointment.case)
       add_breadcrumb @appointment.case, @appointment.case
       add_breadcrumb I18n.t(:appointments), case_path(@appointment.case) + '#tabs-appointments'
     else
