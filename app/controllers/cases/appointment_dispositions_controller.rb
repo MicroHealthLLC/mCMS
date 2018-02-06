@@ -78,6 +78,7 @@ class AppointmentDispositionsController < ProtectForgeryApplication
 
   def set_breadcrumbs
     if @appointment.case
+      add_breadcrumb 'Case Records', cases_path(@case)
       add_breadcrumb @appointment.case, @appointment.case
       add_breadcrumb I18n.t(:appointments), case_path(@appointment.case) + '#tabs-appointments'
     else
