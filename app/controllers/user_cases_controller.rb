@@ -28,6 +28,7 @@ class UserCasesController < ProtectForgeryApplication
   def set_appointment_store_id
     begin
       @appointment = Appointment.visible.find(params[:appointment_store_id])
+      @case = @appointment.case
       flash[:notice] = "All Module's changes will be linked to <a href='/appointments/#{@appointment.id}'>#{@appointment}".html_safe
       session[:appointment_store_id] = @appointment.id
     rescue ActiveRecord::RecordNotFound
@@ -35,7 +36,8 @@ class UserCasesController < ProtectForgeryApplication
       session[:appointment_store_id] = nil
     end
     puts "#{session[:appointment_store_id]}"
-    redirect_back(fallback_location: root_url)
+    # redirect_back(fallback_location: root_url)
+    redirect_to case_path(@case)
   end
 
   private
