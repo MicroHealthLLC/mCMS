@@ -19,7 +19,13 @@
             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
             <%= link_to t('thredded.posts.edit'), post.edit_path, class: 'dropdown-item' %>
           </li>
+          <div class='dropdown-item-dividier'></div>
         <% end %>
+
+         <li>
+          <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+          <%= link_to 'Cancel', messageboard_topics_path(messageboard), class: 'dropdown-item' %>
+        </li>
       </ul>
     </div>
   </div>
