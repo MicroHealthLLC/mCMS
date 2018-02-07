@@ -58,7 +58,7 @@
           <option>Switch to ...</option>
         </select>
       </div>
-      <a class="iconbtn" title="Close Kanban Slider" id="closesliderbtn" onclick="hideFiles()"><i class="glyphicon glyphicon-collapse-up"></i></a>
+      <a class="iconbtn" title="Close Kanban Slider" id="closesliderbtn"><i class="glyphicon glyphicon-collapse-up"></i></a>
     </div>
   </div>
 
@@ -108,11 +108,12 @@
 </div>
 
 <script>
-  function showFiles() {
-      $("#filesSlider").show();
-  }
-  function hideFiles() {
-      $("#filesSlider").hide();
-  }
-  
+  $(document).ready(function() {
+    $("#opensliderbtn").click(function () {
+        $("#filesSlider").show();
+    });
+    $("#closensliderbtn").click(function () {
+        $("#filesSlider").hide();
+    });
+  });  
 </script>
