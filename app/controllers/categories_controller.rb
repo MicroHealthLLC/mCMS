@@ -81,8 +81,13 @@ class CategoriesController < ProtectForgeryApplication
   end
 
   def destroy
-    @category.destroy
-    redirect_to categories_path
+    if @category.children.present || @category.document_managers.present ?
+      flash[:error] = 'This category is linked and could not be deleted'
+      redirect_to categories_path(@category)
+    else    
+      @category.destroy
+      redirect_to categories_path
+    end
   end
 
   def manage
