@@ -45,25 +45,21 @@ module Inventory
 
     # DELETE /products/1
     def destroy
-      if  @product.destroy
-        redirect_to products_url, notice: 'Product was successfully destroyed.'
-      else
-        flash[:error] = @product.errors.full_messages.join('<br/>')
-        redirect_to edit_product_url(@product),
-      end
+      @product.destroy
+      redirect_to products_url, notice: 'Product was successfully destroyed.'
     end
 
     private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product
-      @product = Product.find(params[:id])
-    rescue ActiveRecord::RecordNotFound
-      render_404
-    end
+      # Use callbacks to share common setup or constraints between actions.
+      def set_product
+        @product = Product.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        render_404
+      end
 
-    # Only allow a trusted parameter "white list" through.
-    def product_params
-      params.require(:product).permit(Product.safe_attributes)
-    end
+      # Only allow a trusted parameter "white list" through.
+      def product_params
+        params.require(:product).permit(Product.safe_attributes)
+      end
   end
 end
