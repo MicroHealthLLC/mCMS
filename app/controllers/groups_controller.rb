@@ -52,7 +52,7 @@ class GroupsController < ProtectForgeryApplication
   end
 
   def destroy
-   if @group.memberships.present || @group.users.present || @group.categories.present ?
+   if @group.memberships.present || @group.users.present || @group.categories.present?
     flash[:error] = 'This group is linked and could not be deleted'
     redirect_to @group
    else       
