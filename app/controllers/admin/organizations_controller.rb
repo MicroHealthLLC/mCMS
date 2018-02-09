@@ -57,7 +57,7 @@ class OrganizationsController < ProtectForgeryApplication
       redirect_to organizations_url, notice: 'Organization was successfully destroyed.'
     else
       flash[:error] = @organization.errors.full_messages.join('<br/>')
-      redirect_to edit_organization_url(@organization),
+      redirect_to edit_organization_url(@organization)
     end
   end
 
