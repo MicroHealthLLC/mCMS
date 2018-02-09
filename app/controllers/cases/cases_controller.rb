@@ -99,7 +99,7 @@ class CasesController < UserCasesController
     @timeline << @case.transports
     @timeline << @case.case_supports.active
     @timeline << @case.worker_compensations
-    @timeline << @case.job_apps.active
+    @timeline << @case.job_apps
     @timeline.flatten!.compact!
     @timeline.sort_by!{|a| Time.now - a.updated_at }
     respond_to do |format|
