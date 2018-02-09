@@ -1,7 +1,7 @@
 class BillingsController < UserProfilesController
 
   # add_breadcrumb I18n.t('billings'), :billings_path
-  before_action :set_appointment, only: [:new]
+  # before_action :set_appointment, only: [:new]
   before_action :set_billing, only: [:show, :edit, :update, :destroy]
 
   before_action :authorize_edit, only: [:links, :add_action, :edit, :update]
@@ -114,10 +114,10 @@ class BillingsController < UserProfilesController
     add_breadcrumb 'Billings', appointment_path(@appointment) + '#tabs-billing'
   end
 
-  def set_appointment
-   @appointment = Appointment.find(params[:appointment_id])
-   add_breadcrumb @appointment.to_s, @appointment
-  end
+#  def set_appointment
+#   @appointment = Appointment.find(params[:appointment_id])
+#   add_breadcrumb @appointment.to_s, @appointment
+#  end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def billing_params
