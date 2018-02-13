@@ -43,7 +43,7 @@ class ChecklistCasesController < UserCasesController
   def destroy
     @checklist_case.destroy
     respond_to do |format|
-      format.html { redirect_to checklist_templates_url, notice: 'Template was successfully destroyed.' }
+      format.html { redirect_to back_index_case_url, notice: 'Template was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
