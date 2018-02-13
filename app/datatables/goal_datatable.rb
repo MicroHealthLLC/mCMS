@@ -92,6 +92,7 @@ class GoalDatatable < AjaxDatatablesRails::Base
               else
                 Goal.root.include_enumerations
               end
+      scope = scope.where('goals.assigned_to_id = :user', user: User.current.id)
       scope.for_manager_status @options[:status_type]
     end
   end
