@@ -17,13 +17,7 @@
   <nav class="navbar">
     <div class="navbar-inner">
       <div class="row">
-        <div class="col-xs-2 col-sm-2" style="margin-top:10px;">
-          <% if User.current.can?(:manage_kanban_projects, :manage_roles) %>
-            <a class="iconbtn" title="Open Kanban Slider" id="opensliderbtn" onclick="showFiles()"><i class="glyphicon glyphicon-th-list"></i></a>
-          <% end %>
-        </div>
-
-        <div class="navbar-header col-xs-10 col-sm-5" style="margin-top:5px;">
+        <div class="navbar-header col-xs-4">
           <span id="kanbanName" class="navbar-brand" ng-model="kanban" ng-hide="editingName"><a class="renameKanban" ng-click="editingKanbanName()">{{kanban.name}}</a></span>
           <div ng-show="editingName" class="pull-left">
             <form ng-submit="rename()" >
@@ -33,12 +27,13 @@
                 </span>
                 <input type="text" name="kanbanName" ng-model="newName" class="form-control" />
               </div>
-              <input type="submit" class="glyphicon glyphicon-ok"/>
+             </span>
+                <input type="submit" class="glyphicon glyphicon-ok"/>
             </form>
           </div>
         </div>
 
-        <div class="col-xs-12 col-sm-5" style="margin-top:10px;">
+        <div class="col-xs-4" style="margin-top:10px;">
           <% if User.current.can?(:manage_kanban_projects, :manage_roles) %>
             <a class="mpkNew iconbtn" title="New Kanban Board" ng-click="kanbanMenu.openNewKanban()"><i class="glyphicon glyphicon-file"></i><sup>+</sup></a>
             <a class='iconbtn' title="Delete Kanban" ng-click="kanbanMenu.delete()"><i class="glyphicon glyphicon-remove"></i></a>
@@ -46,20 +41,17 @@
           <% end %>
             <a class='iconbtn' title="Open Archive" ng-click="kanbanMenu.openArchive(kanban)"><i class="glyphicon glyphicon-folder-open"></i></a>
         </div>
+
+        <div class="col-xs-4">
+          <div id="quickSwitch" style="padding: 10px" class="form-group">
+            <select ng-model="switchTo" id="fileslist" ng-options="name for name in switchToList" ng-change="switchToKanban(switchTo)">
+              <option>Switch to ...</option>
+            </select>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
-
-  <div class="row" id="filesSlider">
-    <div class="col-xs-12">
-      <div id="quickSwitch" style="padding: 10px" class="form-group">
-        <select ng-model="switchTo" id="fileslist" ng-options="name for name in switchToList" ng-change="switchToKanban(switchTo)">
-          <option>Switch to ...</option>
-        </select>
-      </div>
-      <a class="iconbtn" title="Close Kanban Slider" id="closesliderbtn"><i class="glyphicon glyphicon-collapse-up"></i></a>
-    </div>
-  </div>
 
   <div class="row" id="info" ng-show="showInfo">
     <div class="col-xs-12">
@@ -105,14 +97,3 @@
 <footer></footer>
 <%= javascript_include_tag 'kanban/application' %>
 </div>
-
-<script>
-  $(document).ready(function() {
-    $("#opensliderbtn").click(function () {
-        $("#filesSlider").show();
-    });
-    $("#closensliderbtn").click(function () {
-        $("#filesSlider").hide();
-    });
-  });  
-</script>
