@@ -12,7 +12,11 @@
   <tbody>
   <% @product_assigns.each do |product_assign| %>
       <tr>
+      <% if can?(:edit_product_assigns, :manage_product_assigns, :manage_roles) %>
         <td><%= link_to product_assign.product, edit_product_assign_path(product_assign) %></td>
+      <% else %>
+        <td><%= link_to product_assign.product, product_assign_path(product_assign) %></td>
+      <% end %>        
         <td><%= product_assign.user %></td>
         <td><%= format_date product_assign.date %></td>
         <td><%= product_assign.assignment_status %></td>
