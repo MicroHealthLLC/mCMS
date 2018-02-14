@@ -20,7 +20,7 @@ RedCarpet::AccessControl.map do |map|
   end
 
   map.project_module :client_journal do |map|
-    map.permission :view_client_journals,   {:client_journals => [:index, :show]},  :read => true
+    map.permission :view_client_journals,   {:client_journals => [:index]},  :read => true
     map.permission :show_client_journals,   {:client_journals => [:show]},  :read => true
     map.permission :create_client_journals, {:client_journals => [:new, :create]},  :read => true
     map.permission :edit_client_journals,   {:client_journals => [ :edit, :update]},  :read => true
@@ -29,7 +29,7 @@ RedCarpet::AccessControl.map do |map|
   end
 
   map.project_module :billings do |map|
-    map.permission :view_billings,   {:billings => [:index, :show]},  :read => true
+    map.permission :view_billings,   {:billings => [:index]},  :read => true
     map.permission :show_billings,   {:billings => [:show]},  :read => true
     map.permission :create_billings, {:billings => [:new, :create]},  :read => true
     map.permission :edit_billings,   {:billings => [ :edit, :update]},  :read => true
@@ -67,7 +67,7 @@ RedCarpet::AccessControl.map do |map|
   map.project_module :teleconsults do |map|
     map.permission :view_teleconsults, {:teleconsults => [:index]},  :read => true
     map.permission :show_teleconsults, {:teleconsults => [:show]},  :read => true
-    map.permission :create_teleconsults, {:teleconsults => [ :new, :create]},  :read => true
+    map.permission :create_teleconsults, {:teleconsults => [:new, :create]},  :read => true
     map.permission :edit_teleconsults, {:teleconsults => [:edit, :update]},  :read => true
     map.permission :delete_teleconsults, {:teleconsults => [:destroy]},  :read => true
     map.permission :manage_teleconsults, {:teleconsults => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
@@ -76,7 +76,7 @@ RedCarpet::AccessControl.map do |map|
   map.project_module :referrals do |map|
     map.permission :view_referrals, {:referrals => [:index]},  :read => true
     map.permission :show_referrals, {:referrals => [:show]},  :read => true
-    map.permission :create_referrals, {:referrals => [ :find_organization, :new, :create]},  :read => true
+    map.permission :create_referrals, {:referrals => [:find_organization, :new, :create]},  :read => true
     map.permission :edit_referrals, {:referrals => [:find_organization, :edit, :update]},  :read => true
     map.permission :delete_referrals, {:referrals => [:destroy]},  :read => true
     map.permission :manage_referrals, {:referrals => [:find_organization, :links, :add_referral, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
