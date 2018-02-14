@@ -46,5 +46,15 @@ module AppointmentsHelper
     tabs
   end
 
-
+  # NOTE: When rest of code updated, switch top of appointment_case_tabs with link to this
+  def appt_care_plan_tab
+    tabs = [ ]
+    tabs<< {:name => 'needs', partial: 'cases/show_case/needs' , :label => 'Needs'} if module_enabled?('needs')
+    tabs<< {:name => 'goals', partial: 'cases/show_case/goals' , :label => 'Goals'} if module_enabled?('goals')
+    tabs<< {:name => 'plans', partial: 'cases/show_case/plans' , :label => 'Plans'} if module_enabled?('plans')
+    tabs<< {:name => 'tasks', partial: 'cases/show_case/tasks' , :label => 'Actions'} if module_enabled?('tasks')
+    tabs<< {:name => 'signatures', partial: 'cases/show_case/jsignatures', :label => 'Signatures'} if module_enabled?('jsignatures')
+    tabs
+  end
+  
 end
