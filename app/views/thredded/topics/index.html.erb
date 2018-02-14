@@ -3,6 +3,7 @@
 <% content_for :thredded_breadcrumbs, render('thredded/shared/breadcrumbs') %>
 
 <%= thredded_page do %>
+  <div class="row">
     <div class="col-xs-12 btn-edition">
       <div class="btn-group">
         <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
@@ -16,6 +17,7 @@
         </ul>
       </div>
     </div>
+  </div>
  
     <div class="thredded--svg-definitions ">
       <%= inline_svg 'thredded/follow.svg', id: 'thredded-follow-icon', title: nil %>

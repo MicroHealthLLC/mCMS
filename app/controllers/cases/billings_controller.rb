@@ -116,7 +116,7 @@ class BillingsController < UserProfilesController
 
   def set_appointment
    @appointment = Appointment.find(params[:appointment_id])
-   add_breadcrumb @appointment.to_s, @appointment
+#   add_breadcrumb @appointment.to_s, @appointment
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

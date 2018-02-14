@@ -1,7 +1,7 @@
 <div class="col-xs-12">
 
   <fieldset>
-    <legend>Checklist Templates</legend>
+    <legend></legend>
     <%= simple_form_for(@checklist, url: checklist_case_path(@checklist_case), html: { method: :put, class: 'form-horizontal' }) do |f| %>
         <% data = @checklist
            if data.errors.any? %>
@@ -55,7 +55,7 @@
 
         <div class="form-group margin-top-10" >
           <div class="col-md-11">
-            <%= link_to t('button_cancel'), checklist_templates_path, class: 'btn btn-warning pull-right' %>
+            <%= link_to t('button_cancel'), (@checklist_case.case ? case_path(@checklist_case.case) + '#tabs-checklists' : :back), class: 'btn btn-warning pull-right' %>
             <%= f.submit t('button_save'), class: 'btn btn-success pull-right' %>
           </div>
         </div>

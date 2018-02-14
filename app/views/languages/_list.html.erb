@@ -4,7 +4,6 @@
     <th><%= t('language_type') %></th>
     <th><%= t('language_status') %></th>
     <th><%= t(:proficiency) %></th>
-    <th><%= t(:label_date) %></th>
     <th><%= t('label_date') %></th>
   </tr>
   </thead>
@@ -15,7 +14,6 @@
 <% columns= [  { "searchable": true, "orderable": true },
                 { "searchable": true, "orderable": true },
                 { "searchable": true, "orderable": true },
-                { "searchable": true, "orderable": true },
                 { "searchable": true, "orderable": true }]
 %>
 <%= render partial: 'datatable_script', locals: {
@@ -24,5 +22,4 @@
     columns: columns.flatten,
     ajax_url: languages_path(format: :json, status_type: params[:status_type])
 } %>
-
 
