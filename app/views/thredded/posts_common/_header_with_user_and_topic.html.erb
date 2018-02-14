@@ -4,6 +4,7 @@
 <% post_user_link ||= user_link(post.user) %>
 <header>
   <%= image_tag post.avatar_url, class: 'img-circle', width: '50px' if post.user %>
+  <br />
   <h2 class="" style="display: inline-block;">
     <%=
       topic_link = link_to(topic.title, post.permalink_path)
