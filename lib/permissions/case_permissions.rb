@@ -133,8 +133,11 @@ RedCarpet::AccessControl.map do |map|
     map.permission :edit_appointments, {:appointments => [:edit, :update]},  :read => true
     map.permission :delete_appointments, {:appointments => [:destroy]},  :read => true
     map.permission :manage_appointments, {:appointments => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :show_dipositions, {:appointment_dispositions => [:show]},  :read => true
     map.permission :manage_dipositions, {:appointment_dispositions => [:calendar, :index, :show, :cms_form, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :show_assessment, {:appointment_captures => [:show]},  :read => true
     map.permission :manage_assessment, {:appointment_captures => [:calendar, :index, :show, :cms_form, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :show_procedures, {:appointment_procedures => [:show]},  :read => true
     map.permission :manage_procedures, {:appointment_procedures => [:calendar, :index, :show, :cms_form, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
