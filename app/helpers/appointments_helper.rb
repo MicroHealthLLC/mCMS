@@ -22,97 +22,27 @@ module AppointmentsHelper
 
   def appointment_case_tabs
     tabs =  [ ]
-    if @needs or @plans or @goals or @tasks or @jsignatures
-      tabs<< {:name => 'care_plan', :partial => 'cases/show_case/care_plan', :label => :care_plan}
-    end
-    if @cases
-      tabs<<  {:name => 'subcases', :partial => 'cases/show_case/subcases', :label => :subcases}
-    end
-
-    if @case_supports
-      tabs<< {:name => 'case_supports', :partial => 'cases/show_case/case_support', :label => :case_supports}
-    end
-
-    if @notes
-      tabs<<  {:name => 'notes', :partial => 'cases/show_case/notes', :label => :notes}
-    end
-
-    if @documents
-      tabs<< {:name => 'documents', :partial => 'cases/show_case/documents', :label => :documents}
-    end
-
-    if @enrollments
-      tabs<< {:name => 'enrollments', :partial => 'cases/show_case/enrollments', :label => :enrollments}
-    end
-
-    if @teleconsults
-      tabs<< {:name => 'teleconsults', :partial => 'cases/show_case/teleconsults', :label => :teleconsults}
-    end
-
-    if @checklists
-      tabs<< {:name => 'checklists', :partial => 'cases/show_case/checklists', :label => :checklists}
-    end
-
-    if @transports
-      tabs<< {:name => 'transports', :partial => 'cases/show_case/transports', :label => :transports}
-    end
-
-    if @measurement_records
-      tabs<< {:name => 'measurement_records', :partial => 'cases/show_case/measurement_records', :label => 'Measurements'}
-    end
-
-    if @appointments
-      tabs<< {:name => 'appointments', :partial => 'cases/show_case/appointments', :label => :appointments}
-    end
-
-    if @referrals
-      tabs<<    {:name => 'referrals', :partial => 'cases/show_case/referrals', :label => :referrals}
-    end
-
-    if @worker_compensations
-      tabs<<  {:name => 'worker_compensations', :partial => 'cases/show_case/worker_compensation', :label => :worker_compensation}
-    end
-
-    if @job_apps
-      tabs<<  {:name => 'job_applications', :partial => 'cases/show_case/job_app', :label => 'Job Applications'}
-    end
-
-    if @surveys
-      tabs<< {:name => 'surveys', :partial => 'cases/show_case/surveys', :label => :surveys}
-    end
-
-    if @case_organizations
-      tabs<<  {:name => 'case_organizations', :partial => 'cases/show_case/case_organizations', :label => 'Share Organizations'}
-    end
-
-    if @watchers
-      tabs<< {:name => 'watcher', :partial => 'cases/show_case/watcher', :label => 'Share Individuals'}
-    end
+    tabs<< {:name => 'subcases', partial: 'cases/show_case/subcases' , :label => 'Subcases'} if module_enabled?('subcases')
+    tabs<< {:name => 'case_support', partial: 'cases/show_case/case_support' , :label => 'Case support'} if module_enabled?('case_supports')
+    tabs<< {:name => 'notes', partial: 'cases/show_case/notes' , :label => 'Notes'} if module_enabled?('notes')
+    tabs<< {:name => 'needs', partial: 'cases/show_case/needs' , :label => 'Needs'} if module_enabled?('needs')
+    tabs<< {:name => 'goals', partial: 'cases/show_case/goals' , :label => 'Goals'} if module_enabled?('goals')
+    tabs<< {:name => 'plans', partial: 'cases/show_case/plans' , :label => 'Plans'} if module_enabled?('plans')
+    tabs<< {:name => 'tasks', partial: 'cases/show_case/tasks' , :label => 'Actions'} if module_enabled?('tasks')
+    tabs<< {:name => 'signatures', partial: 'cases/show_case/jsignatures', :label => 'Signatures'} if module_enabled?('jsignatures')
+    tabs<< {:name => 'documents', partial: 'cases/show_case/documents', :label => 'Documents'} if module_enabled?('documents')
+    tabs<< {:name => 'enrollments', partial: 'cases/show_case/enrollments' , :label => 'Enrollments'} if module_enabled?('enrollments')
+    tabs<< {:name => 'teleconsults', partial: 'cases/show_case/teleconsults' , :label => 'Teleconsults'} if module_enabled?('teleconsults')
+    tabs<< {:name => 'checklists', partial: 'cases/show_case/checklists' , :label => 'Checklists'} if module_enabled?('checklists')
+    tabs<< {:name => 'transports', partial: 'cases/show_case/transports', :label => 'Transports'} if module_enabled?('transports')
+    tabs<< {:name => 'measurement_records', partial: 'cases/show_case/measurement_records', :label => 'Measurements'} if module_enabled?('measurement_records')
+    tabs<< {:name => 'appointments', partial: 'cases/show_case/appointments' , :label => 'Appointments'} if module_enabled?('appointments')
+    tabs<< {:name => 'referrals', partial: 'cases/show_case/referrals', :label => 'Referrals'} if module_enabled?('referrals')
+    tabs<< {:name => 'worker_compensations', partial: 'cases/show_case/worker_compensation', :label => 'Worker Comp'} if module_enabled?('worker_compensations')
+    tabs<< {:name => 'job_applications', partial: 'cases/show_case/job_app', :label => 'Job Applications'} if module_enabled?('job_apps')
+  
     tabs
   end
 
-  def care_plan_tab
-    tabs = [ ]
-    if @needs
-      tabs<<  {:name => 'needs', :partial => 'cases/show_case/needs', :label => :needs}
-    end
-
-    if @goals
-      tabs<<  {:name => 'goals', :partial => 'cases/show_case/goals', :label => :goals}
-    end
-
-    if @plans
-      tabs<< {:name => 'plans', :partial => 'cases/show_case/plans', :label => :plans}
-    end
-
-    if @tasks
-      tabs<< {:name => 'tasks', :partial => 'cases/show_case/tasks', :label => :tasks}
-    end
-
-    if @jsignatures
-      tabs<<  {:name => 'signatures', :partial => 'cases/show_case/jsignatures', :label => :signatures}
-    end
-    tabs
-  end
 
 end
