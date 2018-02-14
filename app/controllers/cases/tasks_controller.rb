@@ -175,7 +175,7 @@ class TasksController < UserCasesController
   def delete_sub_task_relation
     @task.sub_task_id = nil
     @task.save
-    redirect_to tasks_url
+    redirect_to edit_task_path(@task)
   end
 
   private
