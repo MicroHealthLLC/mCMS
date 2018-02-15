@@ -3,10 +3,11 @@ RedCarpet::AccessControl.map do |map|
   map.project_module :organizations do |map|
     map.permission :manage_user_job_details, {:job_details => [:create, :update]},  :read => true
     map.permission :view_organizations, {:organizations => [:index]},  :read => true
+    map.permission :show_organizations, {:organizations => [:show]},  :read => true
     map.permission :create_organizations, {:organizations => [:new, :create]},  :read => true
     map.permission :edit_organizations, {:organizations => [:edit, :update]},  :read => true
     map.permission :delete_organizations, {:organizations => [:destroy]},  :read => true
-    map.permission :manage_organizations, {:job_details => [:create, :update], :organizations => [:new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_organizations, {:job_details => [:create, :update], :organizations => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
 
@@ -45,7 +46,7 @@ RedCarpet::AccessControl.map do |map|
         :behavioral_risks => [:index, :show, :new, :create, :edit, :update, :destroy],
         :immunizations => [:index, :show, :new, :create, :edit, :update, :destroy],
         :surgicals => [:index, :show, :new, :create, :edit, :update, :destroy],
-        :jsignatures => [:index,:show, :new, :create],
+        :jsignatures => [:index, :show, :new, :create],
         :environment_risks => [:index, :show, :new, :create, :edit, :update, :destroy],
         :socioeconomics => [:index, :show, :new, :create, :edit, :update, :destroy],
         :service_histories => [:index, :show, :new, :create, :edit, :update, :destroy],
