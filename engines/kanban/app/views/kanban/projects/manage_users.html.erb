@@ -7,6 +7,6 @@
           </div>
         <% end %>
     </div>
-
+    <%= link_to 'Cancel', 'kanban#/kanban/' + @project.name, class: 'btn btn-warning pull-right' %>
     <%= submit_tag :save , class: 'btn btn-success pull-right' %>
 <% end %>
