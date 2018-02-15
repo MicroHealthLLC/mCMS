@@ -11,6 +11,8 @@ class Transport < ApplicationRecord
   accepts_nested_attributes_for :transport_attachments, reject_if: :all_blank, allow_destroy: true
 
   has_many :transport_notes, foreign_key: :owner_id, dependent: :destroy
+  
+  has_many :appointment_links, as: :linkable
 
   validates_presence_of :user_id, :reason
 
