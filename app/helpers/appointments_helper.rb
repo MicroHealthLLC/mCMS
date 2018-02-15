@@ -22,11 +22,14 @@ module AppointmentsHelper
 
   def appointment_case_tabs
     tabs =  [ ]
-    tabs<< {:name => 'needs', partial: 'cases/show_case/needs' , :label => 'Needs'} if module_enabled?('needs')
-    tabs<< {:name => 'goals', partial: 'cases/show_case/goals' , :label => 'Goals'} if module_enabled?('goals')
-    tabs<< {:name => 'plans', partial: 'cases/show_case/plans' , :label => 'Plans'} if module_enabled?('plans')
-    tabs<< {:name => 'tasks', partial: 'cases/show_case/tasks' , :label => 'Actions'} if module_enabled?('tasks')
-    tabs<< {:name => 'signatures', partial: 'cases/show_case/jsignatures', :label => 'Signatures'} if module_enabled?('jsignatures')
+  #  tabs<< {:name => 'needs', partial: 'cases/show_case/needs' , :label => 'Needs'} if module_enabled?('needs')
+  #  tabs<< {:name => 'goals', partial: 'cases/show_case/goals' , :label => 'Goals'} if module_enabled?('goals')
+  #  tabs<< {:name => 'plans', partial: 'cases/show_case/plans' , :label => 'Plans'} if module_enabled?('plans')
+  #  tabs<< {:name => 'tasks', partial: 'cases/show_case/tasks' , :label => 'Actions'} if module_enabled?('tasks')
+  #  tabs<< {:name => 'signatures', partial: 'cases/show_case/jsignatures', :label => 'Signatures'} if module_enabled?('jsignatures')
+    if module_enabled?('needs') or module_enabled?('goals') or module_enabled?('plans')s or module_enabled?('tasks') or module_enabled?('jsignatures')
+      tabs<< {:name => 'appt_care_plan', partial: 'appointments/appt_care_plan', :label => 'Care Plan'}
+    end    
     tabs<< {:name => 'subcases', partial: 'cases/show_case/subcases' , :label => 'Subcases'} if module_enabled?('subcases')
     tabs<< {:name => 'case_support', partial: 'cases/show_case/case_support' , :label => 'Case Supports'} if module_enabled?('case_supports')
     tabs<< {:name => 'notes', partial: 'cases/show_case/notes' , :label => 'Notes'} if module_enabled?('notes')
