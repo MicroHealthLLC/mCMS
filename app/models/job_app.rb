@@ -12,6 +12,8 @@ class JobApp < ApplicationRecord
 
   has_many :job_app_notes, foreign_key: :owner_id, dependent: :destroy
   has_many :jobs
+  
+  has_many :appointment_links, as: :linkable
 
   def self.safe_attributes
     [:title, :occupation_id, :description, :app_state_id, :case_id,
