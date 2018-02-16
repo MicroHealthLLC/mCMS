@@ -2,7 +2,7 @@
     <div class="btn-group">
       <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
       <ul class="dropdown-menu dropdown-links" role="menu">
-        <% if @product_assign.can?(:manage_roles, :manages_product_assigns, :delete_product_assigns) %>
+        <% if @product_assign.can?(:manage_roles, :manage_product_assigns, :delete_product_assigns) %>
           <li>
             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
               <%= link_to('Delete', product_assign_path(@product_assign), class: 'dropdown-item',
