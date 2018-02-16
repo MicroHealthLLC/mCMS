@@ -43,7 +43,7 @@ module AppointmentsHelper
     tabs<< {:name => 'referrals', partial: 'cases/show_case/referrals', :label => 'Referrals'} if module_enabled?('referrals')
     tabs<< {:name => 'worker_compensations', partial: 'cases/show_case/worker_compensation', :label => 'Worker Comp'} if module_enabled?('worker_compensations')
     tabs<< {:name => 'job_applications', partial: 'cases/show_case/job_app', :label => 'Job Applications'} if module_enabled?('job_apps')
-    tabs<< {:name => 'surveys', partial: 'cases/show_case/surveys', :label => 'Surveys'} if module_enabled?('surveys')
+ #   tabs<< {:name => 'surveys', partial: 'cases/show_case/surveys', :label => 'Surveys'} if module_enabled?('surveys')
     tabs<< {:name => 'case_organizations', partial: 'cases/show_case/case_organizations', :label => 'Share Organizations'} if module_enabled?('case_organizations')
     tabs<< {:name => 'watcher', partial: 'cases/show_case/watcher', :label => 'Share Individuals'} if module_enabled?('watcher')
     tabs
