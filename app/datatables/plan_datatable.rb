@@ -90,10 +90,9 @@ class PlanDatatable < AjaxDatatablesRails::Base
       scope = if @options[:case_id]
                 Case.find(@options[:case_id]).plans.include_enumerations
               else
-                Plan.root.include_enumerations
+                Plan.include_enumerations
               end
-    scope = scope.where('plans.assigned_to_id = :user', user: User.current.id)
-    scope.for_manager_status @options[:status_type]
+      scope.for_manager_status @options[:status_type]
     end
   end
 

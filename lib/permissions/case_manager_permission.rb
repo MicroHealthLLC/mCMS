@@ -3,10 +3,11 @@ RedCarpet::AccessControl.map do |map|
   map.project_module :organizations do |map|
     map.permission :manage_user_job_details, {:job_details => [:create, :update]},  :read => true
     map.permission :view_organizations, {:organizations => [:index]},  :read => true
+    map.permission :show_organizations, {:organizations => [:show]},  :read => true
     map.permission :create_organizations, {:organizations => [:new, :create]},  :read => true
     map.permission :edit_organizations, {:organizations => [:edit, :update]},  :read => true
     map.permission :delete_organizations, {:organizations => [:destroy]},  :read => true
-    map.permission :manage_organizations, {:job_details => [:create, :update], :organizations => [:new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :manage_organizations, {:job_details => [:create, :update], :organizations => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
 
@@ -26,8 +27,8 @@ RedCarpet::AccessControl.map do |map|
         :certifications => [:index, :show, :new, :create, :edit, :update, :destroy],
         :contacts => [:search, :index, :show, :new, :create, :edit, :update, :destroy, :remove],
         :chat_rooms => [:conference, :show, :create_or_find],
-        :document => [:all_files, :index,:new,  :show, :create, :edit, :update, :destroy],
-        :other_skills => [:index,:new,  :show, :create, :edit, :update, :destroy],
+        :document => [:all_files, :index, :new, :show, :create, :edit, :update, :destroy],
+        :other_skills => [:index, :new, :show, :create, :edit, :update, :destroy],
         :injuries => [:index, :show, :new, :create, :edit, :update, :destroy],
         :worker_compensations => [:index, :show, :new, :create, :edit, :update, :destroy],
         :job_applications => [:index, :show, :new, :create, :edit, :update, :destroy],
@@ -45,7 +46,7 @@ RedCarpet::AccessControl.map do |map|
         :behavioral_risks => [:index, :show, :new, :create, :edit, :update, :destroy],
         :immunizations => [:index, :show, :new, :create, :edit, :update, :destroy],
         :surgicals => [:index, :show, :new, :create, :edit, :update, :destroy],
-        :jsignatures => [:index,:show, :new, :create],
+        :jsignatures => [:index, :show, :new, :create],
         :environment_risks => [:index, :show, :new, :create, :edit, :update, :destroy],
         :socioeconomics => [:index, :show, :new, :create, :edit, :update, :destroy],
         :service_histories => [:index, :show, :new, :create, :edit, :update, :destroy],
@@ -67,7 +68,7 @@ RedCarpet::AccessControl.map do |map|
         :resumes => [:index, :show, :new, :create, :edit, :update, :destroy],
         :related_clients => [:index, :show, :new, :create, :edit, :update, :destroy],
         :surveys => [:new_assign_survey, :index, :show, :new, :create, :edit, :update, :destroy, :show],
-        :attempts => [:index, :show, :new, :create, :show],
+        :attempts => [:index, :show, :new, :create],
         :tasks => [:delete_sub_task_relation, :link_plan, :add_plan, :index, :my, :show, :new, :create, :edit, :update, :destroy],
         :cases => [:timeline, :new_assign, :my, :all_files, :subcases, :watchers, :index, :show, :new, :create, :edit, :update, :destroy],
         :case_supports => [:search, :index, :show, :new, :create, :edit, :update, :destroy],
@@ -76,11 +77,11 @@ RedCarpet::AccessControl.map do |map|
         :appointment_captures => [:show, :new, :create, :edit, :update, :destroy],
         :appointment_dispositions => [:show, :new, :create, :edit, :update, :destroy],
         :appointment_procedures => [:show, :new, :create, :edit, :update, :destroy],
-        :needs => [:links, :add_goal,:index, :show, :new, :create, :edit, :update, :destroy],
+        :needs => [:links, :add_goal, :index, :show, :new, :create, :edit, :update, :destroy],
         :news => [:index, :show, :new, :create, :edit, :update, :destroy],
         :referrals => [:links, :add_referral, :find_organization, :index, :show, :new, :create, :edit, :update, :destroy],
         :notes => [:index, :show, :new, :create, :edit, :update, :destroy, :get_template_note],
-        :plans => [:link_goal, :add_goal,:links, :add_action, :index, :show, :new, :create, :edit, :update, :destroy],
+        :plans => [:link_goal, :add_goal, :links, :add_action, :index, :show, :new, :create, :edit, :update, :destroy],
         :measurement_records => [:index, :show, :new, :create, :edit, :update, :destroy],
         :goals => [:link_need, :add_need, :links, :add_plan, :index, :show, :new, :create, :edit, :update, :destroy],
         :checklist_cases => [:index, :show, :new, :create, :edit, :update, :destroy],

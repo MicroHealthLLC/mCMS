@@ -26,6 +26,10 @@ RedCarpet::AccessControl.map do |map|
 
    map.project_module :product_assigns do |map|
     map.permission :view_product_assigns, {'inventory/product_assigns' => [:index, :show]},  :read => true
+    map.permission :edit_product_assigns, {'inventory/product_assigns' => [:edit, :update]},  :read => true
+    map.permission :create_product_assigns, {'inventory/product_assigns' => [:new, :create]},  :read => true
+    map.permission :delete_product_assigns, {'inventory/product_assigns' => [:destroy]},  :read => true
+    map.permission :manage_product_assigns, {'inventory/product_assigns' => [:index, :new, :show, :edit, :create, :update, :destroy]},  :read => true
   end
 
   map.project_module :kanban do |map|

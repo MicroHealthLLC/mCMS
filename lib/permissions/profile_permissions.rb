@@ -37,11 +37,6 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_job_applications, {:job_apps => [:index, :show, :new, :create, :edit, :update, :destroy], :jobs => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
-  map.project_module :jsignatures do |map|
-    map.permission :create_jsignatures, {:jsignatures => [:new, :create]},  :read => true
-    map.permission :manage_jsignatures, {:jsignatures => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
-  end
-
   map.project_module :injuries do |map|
     map.permission :view_injuries, {:injuries => [:index]},  :read => true
     map.permission :show_injuries, {:injuries => [:show]},  :read => true
@@ -52,7 +47,8 @@ RedCarpet::AccessControl.map do |map|
   end
 
   map.project_module :jsignatures do |map|
-    map.permission :view_jsignatures, {:jsignatures => [:index, :show]},  :read => true
+    map.permission :view_jsignatures, {:jsignatures => [:index]},  :read => true
+    map.permission :show_jsignatures, {:jsignatures => [:show]},  :read => true
     map.permission :create_jsignatures, {:jsignatures => [:new, :create]},  :read => true
     map.permission :edit_jsignatures, {:jsignatures => [:edit, :update]},  :read => true
     map.permission :delete_jsignatures, {:jsignatures => [:destroy]},  :read => true

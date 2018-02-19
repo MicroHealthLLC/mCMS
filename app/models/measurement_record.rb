@@ -6,6 +6,9 @@ class MeasurementRecord < ApplicationRecord
   belongs_to :gender_type, optional: true, foreign_key: :gender_id
   belongs_to :recorded_by, optional: true, class_name: 'User'
   belongs_to :measurement_status, optional: true
+  
+  has_many :appointment_links, as: :linkable
+  
   validates_presence_of :user_id, :measurement,
                         :component, :date_time, :recorded_by_id
 

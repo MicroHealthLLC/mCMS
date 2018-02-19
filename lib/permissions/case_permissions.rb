@@ -20,7 +20,7 @@ RedCarpet::AccessControl.map do |map|
   end
 
   map.project_module :client_journal do |map|
-    map.permission :view_client_journals,   {:client_journals => [:index, :show]},  :read => true
+    map.permission :view_client_journals,   {:client_journals => [:index]},  :read => true
     map.permission :show_client_journals,   {:client_journals => [:show]},  :read => true
     map.permission :create_client_journals, {:client_journals => [:new, :create]},  :read => true
     map.permission :edit_client_journals,   {:client_journals => [ :edit, :update]},  :read => true
@@ -29,7 +29,7 @@ RedCarpet::AccessControl.map do |map|
   end
 
   map.project_module :billings do |map|
-    map.permission :view_billings,   {:billings => [:index, :show]},  :read => true
+    map.permission :view_billings,   {:billings => [:index]},  :read => true
     map.permission :show_billings,   {:billings => [:show]},  :read => true
     map.permission :create_billings, {:billings => [:new, :create]},  :read => true
     map.permission :edit_billings,   {:billings => [ :edit, :update]},  :read => true
@@ -67,7 +67,7 @@ RedCarpet::AccessControl.map do |map|
   map.project_module :teleconsults do |map|
     map.permission :view_teleconsults, {:teleconsults => [:index]},  :read => true
     map.permission :show_teleconsults, {:teleconsults => [:show]},  :read => true
-    map.permission :create_teleconsults, {:teleconsults => [ :new, :create]},  :read => true
+    map.permission :create_teleconsults, {:teleconsults => [:new, :create]},  :read => true
     map.permission :edit_teleconsults, {:teleconsults => [:edit, :update]},  :read => true
     map.permission :delete_teleconsults, {:teleconsults => [:destroy]},  :read => true
     map.permission :manage_teleconsults, {:teleconsults => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
@@ -76,7 +76,7 @@ RedCarpet::AccessControl.map do |map|
   map.project_module :referrals do |map|
     map.permission :view_referrals, {:referrals => [:index]},  :read => true
     map.permission :show_referrals, {:referrals => [:show]},  :read => true
-    map.permission :create_referrals, {:referrals => [ :find_organization, :new, :create]},  :read => true
+    map.permission :create_referrals, {:referrals => [:find_organization, :new, :create]},  :read => true
     map.permission :edit_referrals, {:referrals => [:find_organization, :edit, :update]},  :read => true
     map.permission :delete_referrals, {:referrals => [:destroy]},  :read => true
     map.permission :manage_referrals, {:referrals => [:find_organization, :links, :add_referral, :index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
@@ -133,8 +133,20 @@ RedCarpet::AccessControl.map do |map|
     map.permission :edit_appointments, {:appointments => [:edit, :update]},  :read => true
     map.permission :delete_appointments, {:appointments => [:destroy]},  :read => true
     map.permission :manage_appointments, {:appointments => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
-    map.permission :manage_dipositions, {:appointment_dispositions => [:calendar, :index, :show, :cms_form, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :show_dispositions, {:appointment_dispositions => [:show]},  :read => true
+    map.permission :create_dispositions, {:appointment_dispositions => [:new, :create]},  :read => true
+    map.permission :edit_dispositions, {:appointment_dispositions => [:edit, :update]},  :read => true
+    map.permission :delete_dispositions, {:appointment_dispositions => [:destroy]},  :read => true
+    map.permission :manage_dispositions, {:appointment_dispositions => [:calendar, :index, :show, :cms_form, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :show_assessment, {:appointment_captures => [:show]},  :read => true
+    map.permission :create_assessment, {:appointment_captures => [:new, :create]},  :read => true
+    map.permission :edit_assessment, {:appointment_captures => [:edit, :update]},  :read => true
+    map.permission :delete_assessment, {:appointment_captures => [:destroy]},  :read => true
     map.permission :manage_assessment, {:appointment_captures => [:calendar, :index, :show, :cms_form, :new, :create, :edit, :update, :destroy]},  :read => true
+    map.permission :show_procedures, {:appointment_procedures => [:show]},  :read => true
+    map.permission :create_procedures, {:appointment_procedures => [:new, :create]},  :read => true
+    map.permission :edit_procedures, {:appointment_procedures => [:edit, :update]},  :read => true
+    map.permission :delete_procedures, {:appointment_procedures => [:destroy]},  :read => true
     map.permission :manage_procedures, {:appointment_procedures => [:calendar, :index, :show, :cms_form, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
@@ -185,7 +197,8 @@ RedCarpet::AccessControl.map do |map|
   end
 
   map.project_module :checklists do |map|
-    map.permission :view_checklists, {:checklist_cases => [:index, :show]},  :read => true
+    map.permission :view_checklists, {:checklist_cases => [:index]},  :read => true
+    map.permission :show_checklists, {:checklist_cases => [:show]},  :read => true
     map.permission :create_checklists, {:checklist_cases => [:new, :create], :cases=> [:new_assign]},  :read => true
     map.permission :edit_checklists, {:checklist_cases => [:edit, :update]},  :read => true
     map.permission :delete_checklists, {:checklist_cases => [:destroy]},  :read => true

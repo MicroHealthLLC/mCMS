@@ -8,6 +8,7 @@ class WorkerCompensation < ApplicationRecord
   belongs_to :compensation_status, optional: true
 
   has_many :worker_compensation_attachments, foreign_key: :owner_id, dependent: :destroy
+  has_many :appointment_links, as: :linkable
   accepts_nested_attributes_for :worker_compensation_attachments, reject_if: :all_blank, allow_destroy: true
 
   validates_presence_of :user_id, :injury_id, :case_id
