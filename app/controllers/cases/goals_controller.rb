@@ -155,11 +155,20 @@ class GoalsController <  UserCasesController
   # DELETE /goals/1
   # DELETE /goals/1.json
   def destroy
-    @goal.destroy
-    respond_to do |format|
-      format.html { redirect_to back_index_case_url, notice: 'Goal was successfully destroyed.' }
-      format.json { head :no_content }
+    if @goal.plans.exists?
+      flash[:error] = "Cannot delete goal because it has plans attached"
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.json { head :no_content }
+      end
+    else
+      @goal.destroy
+      respond_to do |format|
+        format.html { redirect_to back_index_case_url, notice: 'Goal was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
+
   end
 
   private

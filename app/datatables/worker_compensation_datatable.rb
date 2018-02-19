@@ -44,7 +44,7 @@ class WorkerCompensationDatatable < AjaxDatatablesRails::Base
     @appointment = Appointment.find @options[:appointment_id] if @options[:appointment_id]
     if @options[:appointment_id]
       @appointment_links = @appointment.appointment_links.includes(:linkable)
-      WorkerCompensation.include_enumerations.where(id: @appointment_links.where(linkable_type: 'WorkerCompensation').map(&:linkable).map(&:id))
+      WorkerCompensation.include_enumerations.where(id: @appointment_links.where(linkable_type: 'WorkerCompensation').map(&:linkable).compact.map(&:id))
     else
       scope = if @options[:case_id]
                 Case.find(@options[:case_id]).worker_compensations.include_enumerations

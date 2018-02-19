@@ -72,7 +72,7 @@ class ReferralDatatable < AjaxDatatablesRails::Base
     @appointment = Appointment.find @options[:appointment_id] if @options[:appointment_id]
     if @options[:appointment_id]
       @appointment_links = @appointment.appointment_links.includes(:linkable)
-      Referral.include_enumerations.where(id: @appointment_links.where(linkable_type: 'Referral').map(&:linkable).map(&:id))
+      Referral.include_enumerations.where(id: @appointment_links.where(linkable_type: 'Referral').map(&:linkable).compact.map(&:id))
     else
       scope = if @options[:case_id]
                 Case.find(@options[:case_id]).referrals.include_enumerations

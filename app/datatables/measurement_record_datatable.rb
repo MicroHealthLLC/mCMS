@@ -51,7 +51,7 @@ class MeasurementRecordDatatable < AjaxDatatablesRails::Base
     if @options[:appointment_id]
       @appointment_links = @appointment.appointment_links.includes(:linkable)
       MeasurementRecord.include_enumerations.
-          where(id: @appointment_links.where(linkable_type: 'MeasurementRecord').map(&:linkable).map(&:id))
+          where(id: @appointment_links.where(linkable_type: 'MeasurementRecord').map(&:linkable).compact.map(&:id))
     else
       scope = if @options[:case_id]
                 Case.find(@options[:case_id]).measurement_records.include_enumerations

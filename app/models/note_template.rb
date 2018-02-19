@@ -16,7 +16,7 @@ class NoteTemplate < ApplicationRecord
     extra_org = if options[:type] && options[:owner_id]
                   model_note = Note.new(type: options[:type], owner_id: options[:owner_id]).object
                   organizations = model_note.try(:organizations)
-                  organizations ? organizations.map(&:id) : nil
+                  organizations ? organizations.compact.map(&:id) : nil
                 else
                   nil
                 end

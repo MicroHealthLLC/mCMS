@@ -44,7 +44,7 @@ class JobAppDatatable < AjaxDatatablesRails::Base
     @appointment = Appointment.find @options[:appointment_id] if @options[:appointment_id]
     if @options[:appointment_id]
       @appointment_links = @appointment.appointment_links.includes(:linkable)
-      JobApp.include_enumerations.where(id: @appointment_links.where(linkable_type: 'JobApp').map(&:linkable).map(&:id))
+      JobApp.include_enumerations.where(id: @appointment_links.where(linkable_type: 'JobApp').map(&:linkable).compact.map(&:id))
     else
       scope = if @options[:case_id]
                 Case.find(@options[:case_id]).job_apps.include_enumerations

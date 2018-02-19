@@ -85,7 +85,7 @@ class PlanDatatable < AjaxDatatablesRails::Base
     @appointment = Appointment.find @options[:appointment_id] if @options[:appointment_id]
     if @options[:appointment_id]
       @appointment_links = @appointment.appointment_links.includes(:linkable)
-      Plan.include_enumerations.where(id: @appointment_links.where(linkable_type: 'Plan').map(&:linkable).map(&:id))
+      Plan.include_enumerations.where(id: @appointment_links.where(linkable_type: 'Plan').map(&:linkable).compact.map(&:id))
     else
       scope = if @options[:case_id]
                 Case.find(@options[:case_id]).plans.include_enumerations

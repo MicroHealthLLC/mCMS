@@ -149,11 +149,20 @@ class PlansController < UserCasesController
   # DELETE /plans/1
   # DELETE /plans/1.json
   def destroy
-    @plan.destroy
-    respond_to do |format|
-      format.html { redirect_to back_index_case_url, notice: 'Plan was successfully destroyed.' }
-      format.json { head :no_content }
+    if @plan.tasks.exists?
+      flash[:error] = "Cannot delete plan because it has actions attached"
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.json { head :no_content }
+      end
+    else
+      @plan.destroy
+      respond_to do |format|
+        format.html { redirect_to back_index_case_url, notice: 'Plan was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
+
   end
 
   private

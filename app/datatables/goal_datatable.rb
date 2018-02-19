@@ -85,7 +85,7 @@ class GoalDatatable < AjaxDatatablesRails::Base
     @appointment = Appointment.find @options[:appointment_id] if @options[:appointment_id]
     if @appointment
       @appointment_links = @appointment.appointment_links.includes(:linkable)
-      Goal.include_enumerations.where(id: @appointment_links.where(linkable_type: 'Goal').map(&:linkable).map(&:id))
+      Goal.include_enumerations.where(id: @appointment_links.where(linkable_type: 'Goal').map(&:linkable).compact.compact.map(&:id))
     else
       scope = if @options[:case_id]
                 Case.find(@options[:case_id]).goals.include_enumerations

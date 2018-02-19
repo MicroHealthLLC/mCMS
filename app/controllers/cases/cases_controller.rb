@@ -206,11 +206,20 @@ class CasesController < UserCasesController
   # DELETE /cases/1
   # DELETE /cases/1.json
   def destroy
-    @case.destroy
-    respond_to do |format|
-      format.html { redirect_to cases_url, notice: 'Case was successfully destroyed.' }
-      format.json { head :no_content }
+    if @case.subcases.exists?
+      flash[:error] = "Cannot delete this case because it has subcases attached"
+      respond_to do |format|
+        format.html { redirect_to :back }
+        format.json { head :no_content }
+      end
+    else
+      @case.destroy
+      respond_to do |format|
+        format.html { redirect_to cases_url, notice: 'Case was successfully destroyed.' }
+        format.json { head :no_content }
+      end
     end
+
   end
 
   def delete_sub_case_relation

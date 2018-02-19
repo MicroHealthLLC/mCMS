@@ -63,7 +63,7 @@ class TeleconsultDatatable < AjaxDatatablesRails::Base
     if @options[:appointment_id]
       @appointment_links = @appointment.appointment_links.includes(:linkable)
       Teleconsult.include_enumerations.
-          where(id: @appointment_links.where(linkable_type: 'Teleconsult').map(&:linkable).map(&:id))
+          where(id: @appointment_links.where(linkable_type: 'Teleconsult').map(&:linkable).compact.map(&:id))
     else
       scope = if @options[:case_id]
                 Case.find(@options[:case_id]).teleconsults.include_enumerations

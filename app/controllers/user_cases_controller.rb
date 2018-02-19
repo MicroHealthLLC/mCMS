@@ -37,7 +37,12 @@ class UserCasesController < ProtectForgeryApplication
     end
     puts "#{session[:appointment_store_id]}"
     # redirect_back(fallback_location: root_url)
-    redirect_to case_path(@case)
+    if @case
+      redirect_to case_path(@case)
+    else
+      redirect_to cases_path
+    end
+
   end
 
   private
