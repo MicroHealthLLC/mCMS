@@ -67,7 +67,7 @@
                                   min_measure = parseFloat($(this).parent('td').children('.min_measure').val())
                                   max_measure = parseFloat($(this).parent('td').children('.max_measure').val())
                                   if(max_measure < val)
-                                      $('#flag_<%= index %> option[value="Hight"]').prop('selected', true);
+                                      $('#flag_<%= index %> option[value="High"]').prop('selected', true);
                                   else if(val< min_measure)
                                       $('#flag_<%= index %> option[value="Low"]').prop('selected', true);
                                   else
@@ -82,7 +82,7 @@
 
                     <td><%= select_tag "recorded_by_id_#{index}",  options_for_select(User.power_user.map{|u| [u.name, u.id]}, selected: User.current_user.id), {class: 'form-control'}%></td>
                     <td><%= text_field_tag "date_time_#{index}", Time.now ,class: 'form-control datetimepicker' %></td>
-                    <td class="flag_measure"><%= select_tag "flag_#{index}",options_for_select( ['', 'Low', 'Normal', 'Hight']),  class: 'form-control' %></td>
+                    <td class="flag_measure"><%= select_tag "flag_#{index}",options_for_select( ['', 'Low', 'Normal', 'High']),  class: 'form-control' %></td>
                     <td><%= select_tag "measurement_status_id_#{index}", options_for_select(MeasurementStatus.active.pluck(:name, :id), selected: f.object.measurement_status.try(:id)),{ class: 'form-control'} %></td>
                   </tr>
               <% end %>
