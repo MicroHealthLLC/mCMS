@@ -48,7 +48,7 @@
                   if(max_measure < val)
                   {
                     $('#measurement_record_flag option[value="Hight"]').prop('selected', true);
-                    $('#select2-measurement_record_flag-container').html('Hight')
+                    $('#select2-measurement_record_flag-container').html('High')
                   }else if(val< min_measure)
                   {
                     $('#measurement_record_flag option[value="Low"]').prop('selected', true);
@@ -87,7 +87,7 @@
       <div class="form-group">
         <%= f.label :flag , class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :flag, options_for_select( ['', 'Low', 'Normal', 'Hight'], selected: f.object.flag), {},{ class: 'form-control'} %>
+          <%= f.select :flag, options_for_select( ['', 'Low', 'Normal', 'High'], selected: f.object.flag), {},{ class: 'form-control'} %>
         </div>
       </div>
 
