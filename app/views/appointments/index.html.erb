@@ -6,11 +6,6 @@
       <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:230px;">
         <% if can?(:manage_roles, :manages_appointments, :view_appointments) %>
         <li>
-          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-          <%= link_to 'New Appointment', new_appointment_path, class: 'dropdown-item' %>
-        </li>
-        <div class='dropdown-item-dividier'></div>
-        <li>
           <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
           <%= link_to 'Calendar', calendar_appointments_path, class: 'dropdown-item' %>
         </li>
@@ -23,23 +18,6 @@
       </ul>
     </div>
   </div>
-  <% if false && can?(:create_appointments, :manage_roles, :manage_appointments) %>
-      <div class="btn-group pull-right btn-edition">
-        <button class="btn btn-primary">
-          Add Appointment For
-        </button>
-        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <% @cases_for_btn.each do |c| %>
-              <li>
-                <%= link_to c, new_appointment_path(case_id: c.id) %>
-              </li>
-          <% end %>
-        </ul>
-      </div>
-  <% end %>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'list',
