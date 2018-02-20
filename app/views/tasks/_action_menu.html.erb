@@ -56,7 +56,7 @@
           </li>
         <% end %>
 
-        <% if @task.related_to_id and @task.can?(:edit_tasks, :manage_tasks, :manage_roles) %>
+        <% if @task.sub_task_id and @task.can?(:edit_tasks, :manage_tasks, :manage_roles) %>
             <div class='dropdown-item-dividier'></div>
           <li>
             <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>

@@ -154,7 +154,7 @@ class TasksController < UserCasesController
     respond_to do |format|
       if @task.update(task_params)
         format.html { redirect_to back_index_case_url, notice: 'Action was successfully updated.' }
-      #  format.json { render :show, status: :ok, location: @task }
+        #  format.json { render :show, status: :ok, location: @task }
       else
         format.html { render :edit }
         format.json { render json: @task.errors, status: :unprocessable_entity }
@@ -173,6 +173,7 @@ class TasksController < UserCasesController
   end
 
   def delete_sub_task_relation
+    @task.related_to_id = @task.parent_task.related_to_id if  @task.parent_task
     @task.sub_task_id = nil
     @task.save
     redirect_to edit_task_path(@task)
@@ -190,15 +191,20 @@ class TasksController < UserCasesController
   end
 
   def set_breadcrumbs
-    if @task.case
-      add_breadcrumb @task.case, @task.case
-      add_breadcrumb I18n.t('tasks'), case_path(@task.case) + '#tabs-tasks'
-    elsif @task.is_subtask? and  @parent_task = @task.parent_task and @parent_task.case
+    if @task.is_subtask? and  @parent_task = @task.parent_task and @parent_task.case
       add_breadcrumb @parent_task.case, @parent_task.case
       add_breadcrumb I18n.t('tasks'), case_path(@parent_task.case) + '#tabs-tasks'
       add_breadcrumb @parent_task.to_s, @parent_task
 
-        @task.case = @parent_task.case
+      @task.case = @parent_task.case
+
+    elsif @task.is_subtask? and  @parent_task = @task.parent_task
+      add_breadcrumb I18n.t('tasks'), tasks_path
+      add_breadcrumb @parent_task.to_s, @parent_task
+      @task.case = @parent_task.case
+    elsif @task.case
+      add_breadcrumb @task.case, @task.case
+      add_breadcrumb I18n.t('tasks'), case_path(@task.case) + '#tabs-tasks'
     else
       add_breadcrumb I18n.t('tasks'), :tasks_path
     end

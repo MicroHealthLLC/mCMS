@@ -14,7 +14,7 @@ module Inventory
     end
 
     def to_s
-      product.name
+      product.try(:name)
     end
 
     def to_pdf(pdf, show_user = true)
