@@ -14,6 +14,7 @@
 
     <th><%= t('date_start') %></th>
     <th><%= t('date_end') %></th>
+    <th><%= t('date_due') %></th>
     <% if @appointment %>
         <th></th>
     <% end %>
@@ -36,7 +37,7 @@
    columns << [ { "searchable": true, "orderable": true },
                 { "searchable": true, "orderable": true },
                 { "searchable": true, "orderable": true },
-
+                { "searchable": true, "orderable": true },
                 { "searchable": true, "orderable": true }]
    if @appointment and can?(:manage_roles)
      columns << { "searchable": false, "orderable": false }
