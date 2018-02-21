@@ -61,11 +61,18 @@ class ChecklistsController < ProtectForgeryApplication
   end
 
   def destroy
-    @checklist.destroy
-    respond_to do |format|
-      format.html { redirect_to checklist_templates_url, notice: 'Template was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    if @checklist.destroy
+      respond_to do |format|
+        format.html { redirect_to checklist_templates_url, notice: 'Template was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      flash[:error] = @checklist.errors.full_messages.join('<br/>')
+      respond_to do |format|
+        format.html { redirect_to edit_checklist_templates_url(@checklist) }
+        format.json { head :no_content }
+      end
+    end      
   end
 
   private

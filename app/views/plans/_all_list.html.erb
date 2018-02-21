@@ -26,7 +26,7 @@
   <% @plans.each do |plan| %>
       <tr>
         <% if User.current.can?(:manage_roles) %>
-            <th><%= plan.user %></th>
+            <td><%= plan.user %></td>
         <% end %>
         <td><%= link_to_edit_if_can plan.name, {ctrl: :plans, object: plan } %></td>
         <% if show_case %>

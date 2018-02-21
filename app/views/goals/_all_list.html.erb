@@ -3,7 +3,7 @@
   <thead>
   <tr>
     <% if User.current.can?(:manage_roles) %>
-        <th><%= t('goal') %></th>
+        <th><%= t('client') %></th>
     <% end %>
     <th>Name</th>
     <% if show_case %>
@@ -26,7 +26,7 @@
   <% @goals.each do |goal| %>
       <tr>
         <% if User.current.can?(:manage_roles) %>
-            <th><%= goal.user %></th>
+            <td><%= goal.user %></td>
         <% end %>
         <td><%= link_to_edit_if_can goal.name, {ctrl: :goals, object: goal } %></td>
         <% if show_case %>

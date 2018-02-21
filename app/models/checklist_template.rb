@@ -3,9 +3,9 @@ class ChecklistTemplate < ApplicationRecord
   belongs_to :checklist_status_type, optional: true
   belongs_to :checklist_type, optional: true
 
-  has_many :checklists, dependent: :destroy
-  has_many :checklist_users, dependent: :destroy
-  has_many :checklist_cases, dependent: :destroy
+  has_many :checklists, :dependent => :restrict_with_error
+  has_many :checklist_users, :dependent => :restrict_with_error
+  has_many :checklist_cases, :dependent => :restrict_with_error
   accepts_nested_attributes_for :checklists, reject_if: :all_blank, allow_destroy: true
 
   has_many :checklist_answers, dependent: :destroy

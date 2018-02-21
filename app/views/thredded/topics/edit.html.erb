@@ -34,7 +34,7 @@
 
         <div class="form-group" >
           <div class="col-md-11">
-            <%= link_to t('button_cancel'), messageboard_topics_path(@topic.messageboard, @topic), class: 'btn btn-warning pull-right' %>
+            <%= link_to t('button_cancel'), topic_path(@topic), class: 'btn btn-warning pull-right' %>
             <%= form.submit t('thredded.topics.form.update_btn'), class: 'btn btn-success pull-right' %>
           </div>
         </div>

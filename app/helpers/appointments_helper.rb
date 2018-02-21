@@ -30,8 +30,8 @@ module AppointmentsHelper
  #   if module_enabled?('needs') or module_enabled?('goals') or module_enabled?('plans') or module_enabled?('tasks') or module_enabled?('jsignatures')
  #     tabs<< {:name => 'appt_care_plan', partial: 'appointments/appt_care_plan', :label => 'Care Plan'}
  #   end    
-    tabs<< {:name => 'subcases', partial: 'cases/show_case/subcases' , :label => 'Subcases'} if module_enabled?('subcases')
-    tabs<< {:name => 'case_supports', partial: 'cases/show_case/case_support' , :label => 'Case Supports'} if module_enabled?('case_supports')
+    tabs<< {:name => 'subcases', partial: 'cases/show_case/subcases' , :label => 'SubCases'} if module_enabled?('subcases')
+    tabs<< {:name => 'case_supports', partial: 'cases/show_case/case_support' , :label => 'Case Supports'} # if module_enabled?('case_support')
     tabs<< {:name => 'notes', partial: 'cases/show_case/notes' , :label => 'Notes'} if module_enabled?('notes')
     tabs<< {:name => 'documents', partial: 'cases/show_case/documents', :label => 'Documents'} if module_enabled?('documents')
     tabs<< {:name => 'enrollments', partial: 'cases/show_case/enrollments' , :label => 'Enrollments'} if module_enabled?('enrollments')
@@ -42,10 +42,10 @@ module AppointmentsHelper
     tabs<< {:name => 'appointments', partial: 'cases/show_case/appointments' , :label => 'Appointments'} if module_enabled?('appointments')
     tabs<< {:name => 'referrals', partial: 'cases/show_case/referrals', :label => 'Referrals'} if module_enabled?('referrals')
     tabs<< {:name => 'worker_compensations', partial: 'cases/show_case/worker_compensation', :label => 'Worker Comp'} if module_enabled?('worker_compensations')
-    tabs<< {:name => 'job_applications', partial: 'cases/show_case/job_app', :label => 'Job Applications'} if module_enabled?('job_apps')
- #   tabs<< {:name => 'surveys', partial: 'cases/show_case/surveys', :label => 'Surveys'} if module_enabled?('surveys')
- #   tabs<< {:name => 'case_organizations', partial: 'cases/show_case/case_organizations', :label => 'Share Organizations'} if module_enabled?('case_organizations')
- #   tabs<< {:name => 'watcher', partial: 'cases/show_case/watcher', :label => 'Share Individuals'} if module_enabled?('watcher')
+    tabs<< {:name => 'job_applications', partial: 'cases/show_case/job_app', :label => 'Job Applications'}
+  #  tabs<< {:name => 'surveys', partial: 'cases/show_case/surveys', :label => 'Surveys'} # if module_enabled?('surveys')
+  #  tabs<< {:name => 'case_organizations', partial: 'cases/show_case/case_organizations', :label => 'Share Organizations'}
+  #  tabs<< {:name => 'watcher', partial: 'cases/show_case/watcher', :label => 'Share Individuals'} # if module_enabled?('watchers')
     tabs
   end
 
