@@ -206,7 +206,7 @@ class CasesController < UserCasesController
   # DELETE /cases/1
   # DELETE /cases/1.json
   def destroy
-    if @case.subcases.exists?
+    if @case.sub_cases.exists?
       flash[:error] = "Cannot delete this case because it has subcases attached"
       respond_to do |format|
         format.html { redirect_to :back }
