@@ -92,7 +92,11 @@
 
       <div class="form-group" >
         <div class="col-md-11">
-          <%= link_to t('button_cancel'), case_back_url(f.object), class: 'btn btn-warning pull-right' %>
+          <% if @case.subcase_id %>
+            <%= link_to t('button_cancel'), case_back_url(@case) + '#tabs-subcases', class: 'btn btn-warning pull-right' %>
+          <% else %>            
+            <%= link_to t('button_cancel'), case_back_url(f.object), class: 'btn btn-warning pull-right' %>
+          <% end %>
           <%= f.submit t('button_save'), class: 'btn btn-success pull-right' %>
         </div>
       </div>
