@@ -315,7 +315,7 @@ class CasesController < UserCasesController
   def set_breadcrumbs
     if @case.case
       add_breadcrumb @case.case.to_s, case_path(@case.case)
-      add_breadcrumb 'Subcases', case_path(@case.case) + '#tabs-subcases'
+      add_breadcrumb 'SubCases', case_path(@case.case) + '#tabs-subcases'
     end
 
   end
