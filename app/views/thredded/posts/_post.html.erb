@@ -1,9 +1,9 @@
 <% #cache(post, expires_in: 1.week) do %>
 
   <%= content_tag :article, id: dom_id(post), class: 'post' do %>
-    <hr/>
-    <%= render 'thredded/posts_common/header', post: post %>
+    <hr style="border-top: 1px solid #999;"/>
     <%= render 'thredded/posts_common/actions', post: post %>
+    <%= render 'thredded/posts_common/header', post: post %>
     <%= render 'thredded/posts_common/content', post: post %>
     <% if post.pending_moderation? && !Thredded.content_visible_while_pending_moderation %>
       <p class="alert alert-warning"><%= t 'thredded.posts.pending_moderation_notice' %></p>
