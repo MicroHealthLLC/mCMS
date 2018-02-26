@@ -69,7 +69,7 @@ class ChecklistsController < ProtectForgeryApplication
     else
       flash[:error] = @checklist.errors.full_messages.join('<br/>')
       respond_to do |format|
-        format.html { redirect_to edit_checklist_templates_url(@checklist) }
+        format.html { redirect_to edit_checklist_template_url(@checklist) }
         format.json { head :no_content }
       end
     end      
