@@ -10,14 +10,14 @@ class IdentificationsController < UserProfilesController
   # GET /identifications.json
   def index
     respond_to do |format|
-      format.html{  redirect_to  User.current.can?(:manage_roles) ? edit_user_registration_path + "#tabs-identification" : profile_record_path + "#tabs-identification" }
+      format.html{  redirect_to  profile_record_path + "#tabs-identification" }
       format.js{ render 'application/index' }
       format.pdf{}
       format.csv{ params[:length] = 500
         options = Hash.new
         options[:status_type] = params[:status_type]
         json = IdentificationDatatable.new(view_context, options).as_json
-        send_data Identification.to_csv(json[:data]), filename: "identification-#{Date.today}.csv"
+        send_data Identification.to_csv(json[:data]), filename: "Identification-#{Date.today}.csv"
       }
       format.json{
         options = Hash.new
