@@ -6,7 +6,6 @@
   <% if messageboard_or_nil.try(:persisted?) %>
     <li><%= link_to messageboard.name, messageboard_topics_path(messageboard) %></li>
   <% end %>
-    <li><%= link_to @topic.title, topic_path(@topic) %></li>
     <li><%= link_to t('thredded.nav.edit_post'), edit_post_path(@post) %></li>
   </ol>
 <% end %>
@@ -18,5 +17,6 @@
                topic:        topic,
                post:         @post,
                button_text:  t('thredded.posts.form.update_btn') %>
-  </section>
+    <%= link_to t('button_cancel'), post_path(@post), class: 'btn btn-warning pull-right' %>
+</section>
 <% end %>
