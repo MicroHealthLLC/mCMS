@@ -44,8 +44,8 @@ module AppointmentsHelper
     tabs<< {:name => 'worker_compensations', partial: 'cases/show_case/worker_compensation', :label => 'Worker Comp'} if module_enabled?('worker_compensations')
     tabs<< {:name => 'job_applications', partial: 'cases/show_case/job_app', :label => 'Job Applications'}
   #  tabs<< {:name => 'surveys', partial: 'cases/show_case/surveys', :label => 'Surveys'} # if module_enabled?('surveys')
-  #  tabs<< {:name => 'case_organizations', partial: 'cases/show_case/case_organizations', :label => 'Share Organizations'}
-  #  tabs<< {:name => 'watcher', partial: 'cases/show_case/watcher', :label => 'Share Individuals'} # if module_enabled?('watchers')
+    tabs<< {:name => 'case_organizations', partial: 'cases/show_case/case_organizations', :label => 'Share Organizations'}
+    tabs<< {:name => 'watcher', partial: 'cases/show_case/watcher', :label => 'Share Individuals'} # if module_enabled?('watchers')
     tabs
   end
 
