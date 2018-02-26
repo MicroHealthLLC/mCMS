@@ -20,6 +20,7 @@
 
         <% if policy(@new_post).create? %>
             <div class="post-form--wrapper">
+              <hr style="border-top: 2px solid #999;"/>
               <h3 class="post-form--title">Add a post</h3>
               <%= render 'thredded/posts/form',
                          topic:       topic,
