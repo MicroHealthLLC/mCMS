@@ -1,7 +1,7 @@
 class Role < ApplicationRecord
   belongs_to :role_type
-  has_many :job_details
-  has_many :users
+  has_many :job_details, :dependent => :restrict_with_error
+  has_many :users, :dependent => :restrict_with_error
 
   # before_save do
   #   self.name = role_type
