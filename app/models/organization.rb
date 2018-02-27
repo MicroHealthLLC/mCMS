@@ -2,9 +2,9 @@ class Organization < ApplicationRecord
   has_many :users
   belongs_to :user
   belongs_to :organization_type
-  has_one :organization_extend_demography, :dependent => :destroy
+  has_one :organization_extend_demography, :dependent => :restrict_with_error
 
-  has_many :job_details
+  has_many :job_details, :dependent => :restrict_with_error
   has_many :case_organizations, :dependent => :restrict_with_error
 
   has_many :organization_attachments, foreign_key: :owner_id, dependent: :destroy
