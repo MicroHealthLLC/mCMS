@@ -33,11 +33,7 @@
 
           <li>
             <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
-          <% if @case.subcase_id %>
-            <%= link_to t('button_cancel'), case_back_url(@case) + '#tabs-subcases', class: 'dropdown-item' %>
-          <% else %>            
             <%= link_to t('button_cancel'), case_back_url(@case), class: 'dropdown-item' %>
-          <% end %>   
           </li>
           <div class='dropdown-item-dividier'></div>
 
@@ -52,14 +48,6 @@
             <%= link_to t('button_history_changes'), "/histories/#{@case.class}/#{@case.id}", class: 'dropdown-item' %>
           </li>
  
-        <% if @case.subcase_id and @case.can?(:edit_cases, :manage_roles, :manage_cases) %>
-            <div class='dropdown-item-dividier'></div>
-         <li>
-            <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>
-            <%= link_to 'Unlink', delete_sub_case_relation_case_path(@case), class: 'dropdown-item' %>
-          </li>
-        <% end %>
-
         <% if @case.can?(:manage_roles, :manage_cases) %>
           <div class='dropdown-item-dividier'></div>
           <li>

@@ -31,24 +31,24 @@ module ApplicationHelper
         {:name => 'extend_demographic', :partial => 'devise/registrations/shared/extend_demography', :label => :extend_demography}
 
     ]
-    tabs << {:name => 'identification', :partial => 'devise/registrations/shared/identification_form', :label => :identification}
+    tabs << {:name => 'identification', :partial => 'devise/registrations/shared/identification_form', :label => 'Identifications'}
 
     tabs << {:name => 'password', :partial => 'devise/registrations/shared/password', :label => :password}
     if can?(:manage_roles, :manage_user_job_details, :manage_organizations)
       tabs << {:name => 'organization', :partial => 'devise/registrations/shared/job_detail', :label => :organization}
     end
-    tabs << {:name => 'signature', :partial => 'devise/registrations/shared/signature', :label => :signature}
+    tabs << {:name => 'signature', :partial => 'devise/registrations/shared/signature', :label => 'Signatures'}
     if @languages
       tabs<<  {:name => 'languages', :partial => 'user_profiles/profile_record/languages', :label => :languages}
     end
     if @contacts
-      tabs<<  {:name => 'contact', :partial => 'user_profiles/profile_record/contact', :label => :contact}
+      tabs<<  {:name => 'contact', :partial => 'user_profiles/profile_record/contact', :label => 'Contacts'}
     end
     if @documents
-      tabs<<  {:name => 'document', :partial => 'user_profiles/profile_record/document', :label => :document}
+      tabs<<  {:name => 'document', :partial => 'user_profiles/profile_record/document', :label => 'Documents'}
     end
     if @related_clients
-      tabs << {:name => 'related_client', :partial => 'devise/registrations/shared/related_client', :label => :related_client}
+      tabs << {:name => 'related_client', :partial => 'devise/registrations/shared/related_client', :label => 'Related Clients'}
     end
     tabs
   end
