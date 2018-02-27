@@ -1,7 +1,7 @@
 class Insurance < ApplicationRecord
 
-  has_many :user_insurances
-  has_one :insurance_extend_demography, :dependent => :destroy
+  has_many :user_insurances, :dependent => :restrict_with_error
+  has_one :insurance_extend_demography, :dependent => :restrict_with_error
 
   def self.safe_attributes
     [:name]
