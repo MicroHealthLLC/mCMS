@@ -60,7 +60,7 @@ class CaseOrganizationsController < UserCasesController
   def update
     respond_to do |format|
       if @case_organization.update(case_organization_params)
-        format.html { redirect_to case_organizations_url, notice: 'Case Organization was successfully updated.' }
+        format.html { redirect_to case_path(@case_organization.case) + '#tabs-case_organizations', notice: 'Case Organization was successfully updated.' }
       #  format.json { render :show, status: :ok, location: @case_organization }
       else
         format.html { render :edit }
@@ -74,7 +74,7 @@ class CaseOrganizationsController < UserCasesController
   def destroy
     @case_organization.destroy
     respond_to do |format|
-      format.html { redirect_to case_organizations_url, notice: 'Case Organization was successfully destroyed.' }
+      format.html { redirect_to case_path(@case_organization.case) + '#tabs-case_organizations', notice: 'Case Organization was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
