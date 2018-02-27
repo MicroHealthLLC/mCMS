@@ -27,7 +27,7 @@
       </fieldset>
     </div>
 
-      <%= render partial: 'map', locals: {
+      <%= render partial: 'map_address', locals: {
           location: "#{f.object_name.gsub(/[\[\]]+/, '_').chop}_address",
           object: f.object
       } %>
