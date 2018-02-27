@@ -89,6 +89,7 @@ class NeedsController < UserCasesController
 
   # GET /needs/1/edit
   def edit
+    set_client_profile(@need)
     @goals = @need.goals
     @plans = @goals.map(&:plans).flatten.uniq
     @tasks = @plans.map(&:tasks).flatten.uniq

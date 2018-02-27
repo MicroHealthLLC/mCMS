@@ -137,6 +137,7 @@ class CasesController < UserCasesController
 
   # GET /cases/1/edit
   def edit
+    set_client_profile(@case)
     set_models_permissions
   end
 

@@ -119,6 +119,7 @@ class TasksController < UserCasesController
 
   # GET /tasks/1/edit
   def edit
+    set_client_profile(@task)
     @note = TaskNote.new(user_id: User.current.id)
     @notes = @task.task_notes
     @tasks = @task.sub_tasks
@@ -173,9 +174,18 @@ class TasksController < UserCasesController
   end
 
   def delete_sub_task_relation
-    @task.related_to_id = @task.parent_task.related_to_id if  @task.parent_task
-    @task.sub_task_id = nil
-    @task.save
+    if params[:subtasks]
+      @task.sub_tasks.each do |task|
+        task.related_to_id = @task.related_to_id
+        task.sub_task_id = nil
+        task.save
+      end
+    else
+      @task.related_to_id = @task.parent_task.related_to_id if  @task.parent_task
+      @task.sub_task_id = nil
+      @task.save
+    end
+
     redirect_to edit_task_path(@task)
   end
 

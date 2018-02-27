@@ -102,6 +102,7 @@ class AppointmentsController < UserCasesController
 
   # GET /appointments/1/edit
   def edit
+    set_client_profile(@appointment)
     @case=  @appointment.case
     @billings =  @appointment.billings
     # update_rails = @appointment.updated_at.to_date

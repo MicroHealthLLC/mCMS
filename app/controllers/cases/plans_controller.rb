@@ -107,6 +107,7 @@ class PlansController < UserCasesController
 
   # GET /plans/1/edit
   def edit
+    set_client_profile(@plan)
     @tasks = @plan.tasks
 
     @goals = @plan.goals

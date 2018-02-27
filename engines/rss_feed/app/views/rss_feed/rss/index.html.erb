@@ -82,10 +82,14 @@
 </script>
 <%= javascript_include_tag 'rss_feed/application' %>
 <script>
-  $( "#searchfromdate, #searchtodate" ).datepicker({inline: false});
+  $( "#searchfromdate, #searchtodate" ).datepicker({inline: false,
+      "prevText":'<i class="fa fa-chevron-left"></i>',
+      "nextText":'<i class="fa fa-chevron-right"></i>'});
   var today = new Date();
   var thisdate = (today.getMonth() + 1) + "/" + today.getDate() + "/" + today.getFullYear();
-  $( "#searchfromdate, #searchtodate" ).datepicker({maxDate: today});
+  $( "#searchfromdate, #searchtodate" ).datepicker({maxDate: today,
+      "prevText":'<i class="fa fa-chevron-left"></i>',
+      "nextText":'<i class="fa fa-chevron-right"></i>'});
   $( "#searchtodate" ).datepicker("setDate", thisdate);
   $( "#searchfromdate, #searchtodate" ).datepicker("option", "maxDate", thisdate);
 </script>
