@@ -3,9 +3,10 @@ module UserProfilesHelper
     tabs = [
         {:name => 'core_demographic', :partial => 'user_profiles/profile_record/core_demography', :label => :core_demography},
         {:name => 'extend_demographic', :partial => 'user_profiles/profile_record/extend_demography', :label => :extend_demography},
-        {:name => 'related_client', :partial => 'user_profiles/profile_record/related_client', :label => 'Related Clients'}
+        {:name => 'related_client', :partial => 'user_profiles/profile_record/related_client', :label => 'Related Clients'},
+        {:name => 'identification', :partial => 'user_profiles/profile_record/identification', :label => 'Identifications'}
     ]
-    tabs << {:name => 'identification', :partial => 'devise/registrations/shared/identification_form', :label => 'Identifications'}
+    # tabs << {:name => 'identification', :partial => 'devise/registrations/shared/identification_form', :label => 'Identifications'}
 
     if @languages
       tabs<<  {:name => 'languages', :partial => 'user_profiles/profile_record/languages', :label => :languages}
