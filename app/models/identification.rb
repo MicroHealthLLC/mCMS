@@ -6,8 +6,8 @@ class Identification < ApplicationRecord
   validates_uniqueness_of :identification_type_id, scope: [:extend_demography_id]
 
   def self.include_enumerations
-    includes(:issued_by_type_id, :status, :identification_type_id).
-        references(:issued_by_type_id, :status, :identification_type_id)
+    includes(:issued_by_type_id, :identification_type_id).
+        references(:issued_by_type_id, :identification_type_id)
   end
 
   def self.safe_attributes
