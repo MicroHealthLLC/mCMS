@@ -17,5 +17,6 @@
                topic:        topic,
                post:         @post,
                button_text:  t('thredded.posts.form.update_btn') %>
+    <%= link_to t('button_cancel'), topic_path(@topic), class: 'btn btn-warning pull-right' %>
 </section>
 <% end %>
