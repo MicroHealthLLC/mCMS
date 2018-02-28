@@ -20,10 +20,6 @@
       <%= f.simple_fields_for :identifications do |identification| %>
           <%= render 'identifications/identification_fields', :f => identification %>
       <% end %>
-
-      <div id="identifications" class="col-xs-11 margin-top-10" style="padding-right: 2px; margin-left: 6px;" >
-        <%= link_to_add_association 'add identification', f, :identifications, class: 'btn btn-success  ', partial: 'identifications/identification_fields' %>
-      </div>
     </div>
     <div class="">
       <div class="col-sm-4 col-md-3 col-lg-3"> </div>
