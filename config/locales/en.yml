@@ -110,6 +110,9 @@ en:
   education_certification: Certification
  # TASK
 
+# Insurance
+  new_identification: New Identification
+
  # EMPLOYEE
   employees: Clients
   new_employee: New Client
