@@ -5,20 +5,17 @@ class Identification < ApplicationRecord
   validates_presence_of :identification_number, :identification_type_id
   validates_uniqueness_of :identification_type_id, scope: [:extend_demography_id]
 
-  def self.safe_attributes
-    [:id, :identification_number, :status, :date_expired, :issued_by_type_id, :date_issued, :note, :identification_type_id, :_destroy]
+  def self.include_enumerations
+    includes(:issued_by_type_id).
+        references(:issued_by_type_id)
+    includes(:status).
+        references(:status)
+    includes(:identification_type_id).
+        references(:identification_type_id)
   end
 
-  def to_html
-    output = "<div class='col-xs-12'>"
-    output<< "<div class='col-xs-2'>#{identification_type} </div>"
-    output<< "<div class='col-xs-2'>#{identification_number} </div>"
-    output<< "<div class='col-xs-2'>#{status} </div>"
-    output<< "<div class='col-xs-2'>#{date_expired} </div>"
-    output<< "<div class='col-xs-2'>#{issued_by_type} </div>"
-    output<< "<div class='col-xs-2'>#{date_issued} </div>"
-    output<< "</div>"
-    output.html_safe
+  def self.safe_attributes
+    [:id, :identification_number, :status, :date_expired, :issued_by_type_id, :date_issued, :note, :identification_type_id, :_destroy]
   end
 
   def identification_type
