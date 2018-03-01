@@ -12,3 +12,85 @@
     </article>
   </div>
 </section>
+
+
+<section id="widget-grid" class="referrals_section">
+  <div class="col-xs-12 btn-edition tabs-section">
+    <%= render partial: 'state_button_filter'%>
+    <% if can?(:manage_referrals, :manage_roles) %>
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+        <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:240px">
+          <li>
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+            <%= link_to t('new_referral_result'), new_referral_referral_result_path(@referral), class: 'dropdown-item' %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'referral_results/list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                         referral_results: @referral.referral_results,
+                         wid_id: 'referral_results',
+                         wid_title: t('referral_results')
+                 } %>
+    </article>
+  </div>
+</section>
+
+
+<section id="widget-grid" class="referrals_section">
+  <div class="col-xs-12 btn-edition tabs-section">
+    <%= render partial: 'state_button_filter'%>
+    <div class="btn-group">
+      <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+      <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:270px">
+        <li>
+          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+          <%= link_to 'Manage Referral Relation', links_referral_path(@referral), class: 'dropdown-item' %>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                         referrals: @referral.referral_children,
+                         wid_id: 'referrals',
+                         wid_title: 'Relation',
+                         show_case_column: false
+                 } %>
+    </article>
+  </div>
+</section>
+
+
+<section id="widget-grid" class="referrals_section">
+  <div class="col-xs-12 btn-edition tabs-section">
+    <%= render partial: 'state_button_filter'%>
+    <% if can?(:add_notes, :manage_roles) %>
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+        <ul class="dropdown-menu dropdown-links" role="menu">
+          <li>
+            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+            <%= link_to t('add_note'), new_note_path(type: 'ReferralNote', owner_id: @referral.id), class: 'dropdown-item' %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+   <%= render partial: 'notes/notes',
+             layout: 'shared/smart_widget_wrapper',
+             locals: {
+                     notes: @referral.referral_notes,
+                     wid_id: 'referral_notes',
+                     wid_title: 'Notes'
+             } %>
+</section>
