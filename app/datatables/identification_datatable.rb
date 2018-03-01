@@ -29,12 +29,12 @@ class IdentificationDatatable < AjaxDatatablesRails::Base
   def data
     records.map do |identification|
       [
-          @view.link_to_edit_if_can(identification.issued_by_type, {ctrl: :identifications, object: identification }),
+          @view.link_to_edit_if_can(identification.identification_type, {ctrl: :identifications, object: identification }),
           identification.identification_number,
           identification.status,
-          identification.identification_type,
           @view.format_date( identification.date_expired),
-          @view.format_date( identification.date_issued),
+          identification.issued_by_type,
+          @view.format_date( identification.date_issued)
       ]
     end
   end
