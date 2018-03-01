@@ -3,7 +3,10 @@
     <script>
       $( function() {
         dateFormat = 'YYYY-MM-DD';
-        $('#from').datetimepicker({format: dateFormat});
+        $('#from').datetimepicker({
+          format: dateFormat,
+          useCurrent: false //Important! See issue #1075
+        });
         $('#to').datetimepicker({
           format: dateFormat,
           useCurrent: false //Important! See issue #1075
