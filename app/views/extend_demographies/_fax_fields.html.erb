@@ -1,8 +1,10 @@
-<div class="nested-fields row bordered">
+<div class="nested-fields row ">
   <fieldset>
 
     <div class="col-md-12">
-      <%= link_to_remove_association "remove", f, class: 'btn btn-warning pull-right' %>
+      <% if params[:controller] != 'faxes' %>
+          <%= link_to_remove_association "remove", f, class: 'btn btn-warning pull-right' %>
+      <% end %>
       <div class="form-group col-md-12">
         <%= f.label t('label_fax_type'), class: 'col-md-2 control-label' %>
         <div class="col-md-8">

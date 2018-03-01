@@ -8,7 +8,7 @@
         <% if can?(:create_identifications, :manage_identifications, :manage_roles) %>
         <li>
           <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-          <%= link_to t(:new_identification), new_identification_path, class: 'dropdown-item' %>
+          <%= link_to t(:new_identification), new_extend_demography_identification_path(User.current.extend_informations), class: 'dropdown-item' %>
         </li>
         <div class='dropdown-item-dividier'></div>
         <% end %>

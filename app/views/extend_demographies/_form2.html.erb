@@ -38,7 +38,7 @@
             <%= render 'extend_demographies/email_fields', :f => mail %>
         <% end %>
         <div id="emails" class="col-xs-11 margin-top-10" style="padding-right: 2px; margin-left: 6px;">
-          <%= link_to_add_association 'add email', f, :emails, class: 'btn btn-success  ', partial: 'extend_demographies/email_fields' %>
+          <%= link_to 'add email', new_extend_demography_email_path(extend_demography), class: 'btn btn-success  ' %>
 
         </div>
       </div>
@@ -47,7 +47,7 @@
             <%= render 'extend_demographies/fax_fields', :f => fax %>
         <% end %>
         <div id="faxes" class="col-xs-11 margin-top-10" style="padding-right: 2px; margin-left: 6px;" >
-          <%= link_to_add_association 'add fax number', f, :faxes, class: 'btn btn-success  ', partial: 'extend_demographies/fax_fields' %>
+          <%= link_to 'add fax number', new_extend_demography_fax_path(extend_demography), class: 'btn btn-success  ' %>
         </div>
       </div>
 
@@ -57,7 +57,7 @@
         <% end %>
 
         <div id="phones" class="col-xs-11 margin-top-10" style="padding-right: 2px; margin-left: 6px;" >
-          <%= link_to_add_association 'add phone', f, :phones, class: 'btn btn-success  ', partial: 'extend_demographies/phone_fields' %>
+          <%= link_to 'add phone', new_extend_demography_phone_path(extend_demography), class: 'btn btn-success  ' %>
         </div>
       </div>
 
@@ -67,7 +67,7 @@
         <% end %>
 
         <div id="social_media" class="col-xs-11 margin-top-10" style="padding-right: 2px; margin-left: 6px;" >
-          <%= link_to_add_association 'add social media', f, :social_media, class: 'btn btn-success  ', partial: 'extend_demographies/social_media_fields' %>
+          <%= link_to 'add social media', new_extend_demography_social_medium_path(extend_demography), class: 'btn btn-success  ' %>
         </div>
       </div>
 
@@ -77,7 +77,7 @@
         <% end %>
 
         <div id="addresses" class="col-xs-11 margin-top-10" style="padding-right: 2px; margin-left: 6px;" >
-          <%= link_to_add_association 'add address', f, :addresses, class: 'make_address btn btn-success  ', partial: 'extend_demographies/address_fields' %>
+          <%= link_to 'add address', new_extend_demography_address_path(extend_demography), class: 'btn btn-success  ' %>
         </div>
       </div>
     </div>
@@ -95,8 +95,8 @@
 <script>
     $( function() {
         $tabs = $( "#tabs" ).tabs()
-      $('.make_address').on('click', function(){
-        setTimeout(function(){initMap();}, 1000);
-      })
+        $('.make_address').on('click', function(){
+            setTimeout(function(){initMap();}, 1000);
+        })
     } );
 </script>

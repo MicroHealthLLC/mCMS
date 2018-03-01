@@ -17,7 +17,7 @@
           <% if @identification.can?(:edit_identifications, :manage_identifications, :manage_roles) %>
             <li>
               <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-              <%= link_to 'Edit', edit_identification_path(@identification), class: 'dropdown-item' %>
+              <%= link_to 'Edit', edit_extend_demography_identification_path(@extend_demography, @identification), class: 'dropdown-item' %>
             </li>
             <div class='dropdown-item-dividier'></div>
           <% end %>

@@ -1,12 +1,14 @@
-<div class="nested-fields row bordered">
+<div class="nested-fields row">
   <div class="row">
     <div class="col-xs-12 col-md-12">
       <fieldset>
 
         <div class="col-md-12">
+          <% if params[:controller] != 'addresses' %>
           <%= link_to_remove_association("remove", f, class: 'btn btn-warning pull-right',
             :data => {:confirm => t(:text_are_you_sure)})
           %>
+              <% end %>
 
           <div class="form-group col-md-12">
             <%= f.label :address_type , class: 'col-md-2 control-label' %>
@@ -19,6 +21,8 @@
             <%= f.label :address , class: 'col-md-2 control-label' %>
             <div class="col-md-8">
               <%= f.text_field :address , class: 'form-control address' %>
+              <%= f.hidden_field :location_lat , class: 'form-control address' %>
+              <%= f.hidden_field :location_long , class: 'form-control address' %>
             </div>
           </div>
 

@@ -23,6 +23,7 @@ module MHRM
     config.autoload_paths += Dir[Rails.root.join('app', 'controllers/cases')]
     config.autoload_paths += Dir[Rails.root.join('app', 'controllers/profiles')]
     config.autoload_paths += Dir[Rails.root.join('app', 'controllers/history')]
+    config.autoload_paths += Dir[Rails.root.join('app', 'controllers/extend_demography')]
 
     config.time_zone = "Pacific Time (US & Canada)"
     config.active_record.time_zone_aware_types = [:datetime, :time]

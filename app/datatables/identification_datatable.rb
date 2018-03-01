@@ -29,10 +29,10 @@ class IdentificationDatatable < AjaxDatatablesRails::Base
   def data
     records.map do |identification|
       [
-          @view.link_to_edit_if_can(identification.issued_by_type_id, {ctrl: :identifications, object: identification }),
+          @view.link_to_edit_if_can(identification.issued_by_type, {ctrl: :identifications, object: identification }),
           identification.identification_number,
           identification.status,
-          identification.identification_type_id,
+          identification.identification_type,
           @view.format_date( identification.date_expired),
           @view.format_date( identification.date_issued),
       ]
@@ -40,10 +40,7 @@ class IdentificationDatatable < AjaxDatatablesRails::Base
   end
 
   def get_raw_records
-    scope = Identification.include_enumerations
-    scope.for_status @options[:status]
-    scope.for_identification_type_id @options[:identification_type_id]
-    scope.for_issued_by_type_id @options[:issued_by_type_id]
+    scope = User.current.extend_informations.identifications.include_enumerations
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

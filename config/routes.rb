@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   resources :military_histories
   get 'occupation', to: 'idcdata#occupation'
   resources :resumes
-  resources :identifications
   resources :related_clients
   resources :case_organizations
   resources :radiologic_examinations
@@ -338,6 +337,16 @@ Rails.application.routes.draw do
     get 'home/index', as: 'home'
   end
 
+  resources :identifications, except: [:new, :create]
+
+  resources :extend_demographies do
+    resources :emails, only: [:new, :create]
+    resources :faxes, only: [:new, :create]
+    resources :phones, only: [:new, :create]
+    resources :identifications
+    resources :social_media, only: [:new, :create]
+    resources :addresses, only: [:new, :create]
+  end
   resources :enumerations do
     collection do
       post 'upload'
