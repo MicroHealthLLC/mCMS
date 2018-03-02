@@ -1,0 +1,22 @@
+
+
+    <p>
+      <strong>Referral:</strong>
+      <%= link_to @referral, @referral %>
+    </p>
+
+    <p>
+      <strong>Result date:</strong>
+      <%= format_date @referral_result.result_date %>
+    </p>
+
+    <p>
+      <strong>Result:</strong>
+      <%= @referral_result.result.html_safe %>
+    </p>
+    <p>
+      <strong><%= t('attachments') %>:</strong>
+      <% @referral_result.referral_result_attachments.each do |attachment| %>
+          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
+      <% end %>
+    </p>

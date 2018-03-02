@@ -1,27 +1,14 @@
-<%= render partial: 'action_menu' %>
-<div class="row">
-  <div class="col-xs12">
 
-    <p>
-      <strong>Referral:</strong>
-      <%= link_to @referral, @referral %>
-    </p>
-
-    <p>
-      <strong>Result date:</strong>
-      <%= format_date @referral_result.result_date %>
-    </p>
-
-    <p>
-      <strong>Result:</strong>
-      <%= @referral_result.result.html_safe %>
-    </p>
-    <p>
-      <strong><%= t('attachments') %>:</strong>
-      <% @referral_result.referral_result_attachments.each do |attachment| %>
-          <%= render 'attachments/attachment_show_only', :attachment => attachment %>
-      <% end %>
-    </p>
-
+<section id="widget-grid" class="positions_section">
+  <%= render partial: 'action_menu' %>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'show',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
+                     wid_id: 'referral_result',
+                     wid_title: 'Referral Result'
+                 } %>
+    </article>
   </div>
-</div>
+</section>

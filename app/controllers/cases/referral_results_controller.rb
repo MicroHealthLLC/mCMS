@@ -74,7 +74,7 @@ class ReferralResultsController < ProtectForgeryApplication
   # Use callbacks to share common setup or constraints between actions.
   def set_referral_result
     @referral_result = ReferralResult.find(params[:id])
-    add_breadcrumb @referral.to_s, @referral
+    # add_breadcrumb @referral_result.to_s, referral_referral_result_path(@referral_result.referral, @referral_result)
   rescue ActiveRecord::RecordNotFound
     render_404
   end

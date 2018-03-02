@@ -8,4 +8,27 @@ class WikiPage < ActiveRecord::Base
   validates_presence_of :title, :content
 
   acts_as_wiki_page
+
+  def self_and_ascendants(ids = [])
+    if ids.include? self.id
+      return [self]
+    end
+    if self.parent
+     return [self] + [self.parent.self_and_ascendants(ids << self.id)].flatten.compact
+    end
+    [self]
+  end
+
+  def self_and_descendants_ids
+    descendants_ids = WikiPage.where(sub_page_id: self.id)
+    result =  [self.id] + descendants_ids.pluck(:id)
+    found = true
+    while found
+      des = WikiPage.where(sub_page_id: [result - descendants_ids.pluck(:id)] )
+      result += des.pluck(:id)
+      descendants_ids = des
+      found = des.blank?
+    end
+    result.uniq
+  end
 end
