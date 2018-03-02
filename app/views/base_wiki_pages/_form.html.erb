@@ -28,7 +28,12 @@
       <div class="form-group">
         <%= f.label 'Sub-page to', class: 'col-md-2 control-label' %>
         <div class="col-md-9">
-          <%= f.select :sub_page_id, options_for_select(WikiPage.pluck(:title, :id).insert(0, ['_', '0']), selected: f.object.sub_page_id),{}, {class: 'form-control'} %>
+          <% scope = WikiPage.where.not(id: f.object.id)
+             if f.object.persisted?
+               scope = scope.where.not(id: f.object.self_and_descendants_ids)
+             end
+             wikies = scope.pluck(:title, :id).insert(0, ['_', '0']) %>
+          <%= f.select :sub_page_id, options_for_select(wikies, selected: f.object.sub_page_id),{}, {class: 'form-control'} %>
         </div>
       </div>
 
