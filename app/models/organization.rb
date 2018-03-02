@@ -37,7 +37,7 @@ class Organization < ApplicationRecord
   end
 
   def extend_informations
-    organization_extend_demography || OrganizationExtendDemography.new(organization_id: self.id)
+    organization_extend_demography || OrganizationExtendDemography.create(organization_id: self.id)
   end
 
 

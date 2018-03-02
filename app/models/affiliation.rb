@@ -71,7 +71,7 @@ class Affiliation < ApplicationRecord
   end
 
   def extend_informations
-    affiliation_extend_demography || AffiliationExtendDemography.new(affiliation_id: self.id)
+    affiliation_extend_demography || AffiliationExtendDemography.create(affiliation_id: self.id)
   end
 
   def to_pdf(pdf, show_user = true)

@@ -31,7 +31,7 @@ class Department < ApplicationRecord
   end
 
   def department_informations
-    department_extend_demography || DepartmentExtendDemography.new(department_id: self.id)
+    department_extend_demography || DepartmentExtendDemography.create(department_id: self.id)
   end
 
   def in_use?

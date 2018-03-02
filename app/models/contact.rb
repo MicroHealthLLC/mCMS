@@ -99,7 +99,7 @@ class Contact < ApplicationRecord
   end
 
   def extend_informations
-    contact_extend_demography || ContactExtendDemography.new(contact_id: self.id)
+    contact_extend_demography || ContactExtendDemography.create(contact_id: self.id)
   end
 
   def to_s

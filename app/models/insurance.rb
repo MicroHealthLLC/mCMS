@@ -8,7 +8,7 @@ class Insurance < ApplicationRecord
   end
 
   def extend_informations
-    insurance_extend_demography || InsuranceExtendDemography.new(insurance_id: self.id)
+    insurance_extend_demography || InsuranceExtendDemography.create(insurance_id: self.id)
   end
 
   def to_s

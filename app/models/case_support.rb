@@ -21,7 +21,7 @@ class CaseSupport < ApplicationRecord
   end
 
   def extend_informations
-    case_support_extend_demography || CaseSupportExtendDemography.new(case_support_id: self.id)
+    case_support_extend_demography || CaseSupportExtendDemography.create(case_support_id: self.id)
   end
 
   def self.enumeration_columns
