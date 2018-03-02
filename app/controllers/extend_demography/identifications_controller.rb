@@ -120,10 +120,6 @@ class IdentificationsController < UserProfilesController
     true
   end
 
-  def email_params
-    params.require(:phone).permit(Phone.safe_attributes)
-  end
-
   def url_back
     if @extend_demography.department_id
       departments_path
