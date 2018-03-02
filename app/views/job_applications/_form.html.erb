@@ -1,6 +1,6 @@
 
 <div class="row">
-  <div class="col-xs-12 col-md-6">
+  <div class="col-xs-12 col-md-8">
     <fieldset>
       <legend></legend>
       <%= form_for(job_application, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
@@ -106,7 +106,7 @@
       <% end %>
     </fieldset>
   </div>
-  <div class="col-xs-12 col-md-6">
+  <div class="col-xs-12 col-md-4">
     <%= render partial: 'map', locals: {
         location: 'job_application_employer',
         location_lat: 'job_application_location_lat',
