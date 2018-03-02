@@ -69,10 +69,13 @@ module Thredded
 
     def post
       @post ||= (for_a_private_topic? ? Thredded::PrivatePost : Thredded::Post).find(params[:id])
+      @topic ||= messageboard.topics.find_by_slug!(params[:id])
+      @post
     end
 
     def current_page
       params[:page].nil? ? 1 : params[:page].to_i
     end
+
   end
 end
