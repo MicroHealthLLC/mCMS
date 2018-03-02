@@ -1,5 +1,5 @@
 class ReferralResultsController < ProtectForgeryApplication
-  add_breadcrumb I18n.t(:home), :root_path
+  # add_breadcrumb I18n.t(:home), :root_path
   before_action  :authenticate_user!
   before_action :authorize
 
@@ -73,7 +73,7 @@ class ReferralResultsController < ProtectForgeryApplication
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_referral_result
-    @referral_result = ReferralResult.find(params[:id])
+    @referral_result = ReferralResult.find(params[:id])   
     # add_breadcrumb @referral_result.to_s, referral_referral_result_path(@referral_result.referral, @referral_result)
   rescue ActiveRecord::RecordNotFound
     render_404
@@ -87,11 +87,23 @@ class ReferralResultsController < ProtectForgeryApplication
   # Use callbacks to share common setup or constraints between actions.
   def set_referral
     @referral = Referral.find(params[:referral_id])
+    @case = @referral.case
+    set_breadcrumbs
     add_breadcrumb @referral.to_s, @referral
   rescue ActiveRecord::RecordNotFound
     render_404
   end
 
+  def set_breadcrumbs
+    if @referral.case
+      add_breadcrumb 'Case Records', :cases_path
+      add_breadcrumb @referral.case, @referral.case
+      add_breadcrumb I18n.t(:referrals), case_path(@referral.case) + '#tabs-referrals'
+    else
+      add_breadcrumb I18n.t(:referrals), :referrals_path
+    end
+  end  
+  
   # Never trust parameters from the scary internet, only allow the white list through.
   def authorize
     super('referrals', params[:action])
