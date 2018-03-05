@@ -99,7 +99,7 @@ class CasesController < UserCasesController
     @timeline << @case.transports
     @timeline << @case.case_supports.active
     @timeline << @case.worker_compensations
-    @timeline << @case.job_apps
+    # @timeline << @case.job_apps
     @timeline.flatten!.compact!
     @timeline.sort_by!{|a| Time.now - a.updated_at }
     respond_to do |format|
@@ -273,7 +273,6 @@ class CasesController < UserCasesController
     @relations           = @case.relations
 
     @worker_compensations  = [] if module_enabled?( 'worker_compensations')  && can?(:manage_roles, :view_worker_compensations, :manage_worker_compensations)
-    @job_apps              = [] if module_enabled?( 'job_applications')  && can?(:manage_roles, :view_job_applications, :manage_job_applications)
 
 
     @teleconsults        = []  if module_enabled?('teleconsults') && can?(:manage_roles, :view_teleconsults, :manage_teleconsults)

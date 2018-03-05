@@ -26,5 +26,6 @@ class UserProfilesController < ProtectForgeryApplication
     @injuries              = [] if module_enabled?( 'injuries')  && can?(:manage_roles, :view_injuries, :manage_injuries)
     @resumes               = [] if module_enabled?( 'resumes')  && can?(:manage_roles, :view_resumes, :manage_resumes)
     @military_histories    = [] if module_enabled?( 'military_histories')  && can?(:manage_roles, :view_military_histories, :manage_military_histories)
+    @job_apps              = [] if module_enabled?( 'job_applications')  && can?(:manage_roles, :view_job_applications, :manage_job_applications)
   end
 end

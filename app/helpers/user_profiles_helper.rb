@@ -63,9 +63,14 @@ module UserProfilesHelper
       tabs<<  {:name => 'resume', :partial => 'user_profiles/occupational_record/resume', :label => 'Resumes'}
     end
 
-      if @military_histories
+    if @military_histories
       tabs<<  {:name => 'military_history', :partial => 'user_profiles/occupational_record/military_history', :label => :military_history}
     end
+
+    if @job_apps
+      tabs<<  {:name => 'job_applications', :partial => 'cases/show_case/job_app', :label => 'Job Applications'}
+    end
+
 
     tabs
   end

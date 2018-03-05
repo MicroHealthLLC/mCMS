@@ -5,7 +5,7 @@ class JobApp < ApplicationRecord
   belongs_to :app_state, optional: true
   belongs_to :occupation, optional: true
 
-  validates_presence_of :user_id, :title,  :case_id
+  validates_presence_of :user_id, :title
 
   has_many :job_app_attachments, foreign_key: :owner_id, dependent: :destroy
   accepts_nested_attributes_for :job_app_attachments, reject_if: :all_blank, allow_destroy: true
