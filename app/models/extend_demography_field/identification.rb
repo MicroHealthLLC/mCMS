@@ -1,5 +1,6 @@
 class Identification < ApplicationRecord
   belongs_to :identification_type, optional: true
+  belongs_to :identification_status, optional: true
   belongs_to :issued_by_type, optional: true
   belongs_to :extend_demography, optional: true
 
@@ -7,12 +8,12 @@ class Identification < ApplicationRecord
   validates_uniqueness_of :identification_type_id, scope: [:extend_demography_id]
 
   def self.safe_attributes
-    [:id, :identification_number, :status, :date_expired, :issued_by_type_id, :date_issued, :note, :identification_type_id, :_destroy]
+    [:id, :identification_number, :status, :date_expired, :issued_by_type_id, :date_issued, :note, :identification_type_id, :identification_status_id, :_destroy]
   end
 
   def self.include_enumerations
-    includes(:issued_by_type, :identification_type).
-        references(:issued_by_type, :identification_type)
+    includes(:issued_by_type, :identification_type, :identification_status).
+        references(:issued_by_type, :identification_type, :identification_status)
   end
 
   def to_html
@@ -32,6 +33,14 @@ class Identification < ApplicationRecord
       super
     else
       IdentificationType.default
+    end
+  end
+
+  def identification_status
+    if identification_status_id
+      super
+    else
+      IdentificationStatus.default
     end
   end
 

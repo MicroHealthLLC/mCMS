@@ -33,6 +33,7 @@ en:
   enumeration_gender_type: Gender
   enumeration_survey_type: Survey
   enumeration_identification_type: Identification
+  enumeration_identification_status: Identification Status
   enumeration_location_type: Location
   enumeration_language_type: Language
   enumeration_language_status: Language Status

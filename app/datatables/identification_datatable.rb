@@ -4,11 +4,11 @@ class IdentificationDatatable < AjaxDatatablesRails::Base
     # Declare strings in this format: ModelName.column_name
     @sortable_columns ||= %w{
       Identification.identification_number
-      Identification.status
+      Enumeration.name
       Identification.date_expired
-      Identification.issued_by_type_id
+      Enumeration.name
       Identification.date_issued
-      Identification.identification_type_id
+      Enumeration.name
     }
   end
 
@@ -16,11 +16,11 @@ class IdentificationDatatable < AjaxDatatablesRails::Base
     # Declare strings in this format: ModelName.column_name
     @searchable_columns ||= %w{
       Identification.identification_number
-      Identification.status
+      Enumeration.name
       Identification.date_expired
-      Identification.issued_by_type_id
+      Enumeration.name
       Identification.date_issued
-      Identification.identification_type_id
+      Enumeration.name
     }
   end
 
@@ -31,7 +31,7 @@ class IdentificationDatatable < AjaxDatatablesRails::Base
       [
           @view.link_to_edit_if_can(identification.identification_type, {ctrl: :identifications, object: identification }),
           identification.identification_number,
-          identification.status,
+          identification.identification_status,
           @view.format_date( identification.date_expired),
           identification.issued_by_type,
           @view.format_date( identification.date_issued)
@@ -40,7 +40,7 @@ class IdentificationDatatable < AjaxDatatablesRails::Base
   end
 
   def get_raw_records
-    scope = User.current.extend_informations.identifications.include_enumerations
+    user.current.extend_informations.identifications.include_enumerations
   end
 
   # ==== Insert 'presenter'-like methods below if necessary
