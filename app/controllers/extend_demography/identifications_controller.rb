@@ -1,6 +1,6 @@
 class IdentificationsController < UserProfilesController
-#  add_breadcrumb 'Client Profile', '/profile_record'
-#  add_breadcrumb I18n.t(:identifications), :identifications_path
+  add_breadcrumb 'Client Profile', '/profile_record'
+  add_breadcrumb I18n.t(:identifications), :identifications_path
   before_action :set_extend_demography, only: [:new, :create]
   before_action :set_identification, only: [:show, :edit, :update, :destroy]
   before_action :authorize_edit, only: [:edit, :update]
