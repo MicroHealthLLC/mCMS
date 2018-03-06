@@ -280,7 +280,7 @@ class User < ApplicationRecord
   end
 
   def extend_informations
-    user_extend_demography || UserExtendDemography.create(user_id: self.id)
+    UserExtendDemography.where(user_id: self.id).first_or_create
   end
 
   def can?(*args)

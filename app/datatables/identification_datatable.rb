@@ -3,24 +3,24 @@ class IdentificationDatatable < AjaxDatatablesRails::Base
   def sortable_columns
     # Declare strings in this format: ModelName.column_name
     @sortable_columns ||= %w{
+      Enumeration.name
       Identification.identification_number
       Enumeration.name
       Identification.date_expired
       Enumeration.name
       Identification.date_issued
-      Enumeration.name
     }
   end
 
   def searchable_columns
     # Declare strings in this format: ModelName.column_name
     @searchable_columns ||= %w{
+      Enumeration.name
       Identification.identification_number
       Enumeration.name
       Identification.date_expired
       Enumeration.name
       Identification.date_issued
-      Enumeration.name
     }
   end
 
@@ -40,7 +40,7 @@ class IdentificationDatatable < AjaxDatatablesRails::Base
   end
 
   def get_raw_records
-    user.current.extend_informations.identifications.include_enumerations
+    User.current.extend_informations.identifications.include_enumerations
   end
 
   # ==== Insert 'presenter'-like methods below if necessary

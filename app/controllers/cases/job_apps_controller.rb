@@ -1,6 +1,4 @@
-class JobAppsController <  UserHistoryController
-  add_breadcrumb 'Occupational History', '/occupational_record'
-  add_breadcrumb 'Job applications', :job_apps_path
+class JobAppsController <  UserCasesController
   before_action :set_job_app, only: [:show, :edit, :update, :destroy]
 # before_action :find_optional_user
 
@@ -35,12 +33,14 @@ class JobAppsController <  UserHistoryController
 # GET /job_apps/1
 # GET /job_apps/1.json
   def show
-
+    @jobs = @job_app.jobs
   end
 
 # GET /job_apps/new
   def new
-    @job_app = JobApp.new(user_id: User.current.id)
+    @job_app = JobApp.new(user_id: User.current.id, case_id: params[:case_id])
+    @case = @job_app.case
+    set_breadcrumbs
   end
 
 # GET /job_apps/1/edit
@@ -52,7 +52,7 @@ class JobAppsController <  UserHistoryController
   def create
     @job_app = JobApp.new(job_app_params)
     @case = @job_app.case
-
+    set_breadcrumbs
     respond_to do |format|
       if @job_app.save
         format.html { redirect_to back_index_case_url, notice: 'JobApp was successfully created.' }
@@ -93,9 +93,22 @@ class JobAppsController <  UserHistoryController
   def set_job_app
     @job_app = JobApp.find(params[:id])
     @jobs = @job_app.jobs
+    @case = @job_app.case
+    set_breadcrumbs
     add_breadcrumb @job_app, @job_app
   rescue ActiveRecord::RecordNotFound
     render_404
+  end
+
+  def set_breadcrumbs
+    if  @job_app.case
+      add_breadcrumb @job_app.case,  @job_app.case
+      add_breadcrumb 'Job applications', case_path(@job_app.case) + '#tabs-job_applications'
+    else
+      add_breadcrumb 'Occupational History', '/occupational_record'
+      add_breadcrumb 'Job applications', :job_apps_path
+    end
+
   end
 
 # Never trust parameters from the scary internet, only allow the white list through.
