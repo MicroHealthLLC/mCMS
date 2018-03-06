@@ -85,12 +85,16 @@
       </div>
     <% end %>
   </div>
-   <%= render partial: 'notes/list',
-             layout: 'shared/smart_widget_wrapper',
-             locals: {
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <%= render partial: 'notes/list',
+                 layout: 'shared/smart_widget_wrapper',
+                 locals: {
                      notes: @referral.referral_notes,
                      wid_id: 'referral_notes',
                      wid_title: 'Notes'
-             } %>
+                 } %>
+    </article>
+  </div>
 </section>
 
