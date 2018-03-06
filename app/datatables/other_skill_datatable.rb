@@ -1,4 +1,4 @@
-class OtherSkillDatatable < AjaxDatatablesRails::Base
+class OtherSkillDatatable < Abstract
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name

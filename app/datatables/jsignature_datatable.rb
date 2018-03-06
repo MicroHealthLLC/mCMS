@@ -1,4 +1,4 @@
-class JsignatureDatatable < AjaxDatatablesRails::Base
+class JsignatureDatatable < Abstract
 
   def sortable_columns
 

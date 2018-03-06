@@ -1,4 +1,4 @@
-class TeleconsultDatatable < AjaxDatatablesRails::Base
+class TeleconsultDatatable < Abstract
 
   def sortable_columns
     return @sortable_columns if @sortable_columns

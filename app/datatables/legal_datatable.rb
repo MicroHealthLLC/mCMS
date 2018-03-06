@@ -1,4 +1,4 @@
-class LegalDatatable < AjaxDatatablesRails::Base
+class LegalDatatable < Abstract
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name

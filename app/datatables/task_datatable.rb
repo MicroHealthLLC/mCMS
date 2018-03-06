@@ -1,4 +1,4 @@
-class TaskDatatable < AjaxDatatablesRails::Base
+class TaskDatatable < Abstract
 
   def sortable_columns
 

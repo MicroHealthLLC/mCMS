@@ -1,4 +1,4 @@
-class CaseDatatable < AjaxDatatablesRails::Base
+class CaseDatatable < Abstract
 
   def_delegators :@view,
                  :link_to

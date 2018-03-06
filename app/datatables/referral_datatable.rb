@@ -1,4 +1,4 @@
-class ReferralDatatable < AjaxDatatablesRails::Base
+class ReferralDatatable < Abstract
 
   def sortable_columns
 

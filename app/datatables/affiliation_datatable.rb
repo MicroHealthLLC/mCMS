@@ -1,4 +1,4 @@
-class AffiliationDatatable < AjaxDatatablesRails::Base
+class AffiliationDatatable < Abstract
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name

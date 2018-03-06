@@ -1,4 +1,4 @@
-class MeasurementRecordDatatable < AjaxDatatablesRails::Base
+class MeasurementRecordDatatable < Abstract
 
   def sortable_columns
     return @sortable_columns if @sortable_columns

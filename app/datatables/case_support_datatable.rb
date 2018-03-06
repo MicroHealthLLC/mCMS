@@ -1,4 +1,4 @@
-class CaseSupportDatatable < AjaxDatatablesRails::Base
+class CaseSupportDatatable < Abstract
 
   def sortable_columns
 

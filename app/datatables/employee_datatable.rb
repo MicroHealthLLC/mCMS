@@ -1,4 +1,4 @@
-class EmployeeDatatable < AjaxDatatablesRails::Base
+class EmployeeDatatable < Abstract
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name

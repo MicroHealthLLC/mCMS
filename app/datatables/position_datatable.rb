@@ -1,4 +1,4 @@
-class PositionDatatable < AjaxDatatablesRails::Base
+class PositionDatatable < Abstract
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name

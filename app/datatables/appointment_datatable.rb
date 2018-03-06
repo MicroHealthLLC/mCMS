@@ -1,4 +1,4 @@
-class AppointmentDatatable < AjaxDatatablesRails::Base
+class AppointmentDatatable < Abstract
 
   def sortable_columns
 

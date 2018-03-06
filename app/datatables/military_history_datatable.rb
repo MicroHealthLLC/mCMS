@@ -1,4 +1,4 @@
-class MilitaryHistoryDatatable < AjaxDatatablesRails::Base
+class MilitaryHistoryDatatable < Abstract
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name

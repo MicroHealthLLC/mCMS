@@ -1,4 +1,4 @@
-class TransportDatatable < AjaxDatatablesRails::Base
+class TransportDatatable < Abstract
 
   def sortable_columns
     return @sortable_columns if @sortable_columns

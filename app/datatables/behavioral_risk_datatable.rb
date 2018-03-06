@@ -1,4 +1,4 @@
-class BehavioralRiskDatatable < AjaxDatatablesRails::Base
+class BehavioralRiskDatatable < Abstract
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name

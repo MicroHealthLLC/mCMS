@@ -1,4 +1,4 @@
-class GoalDatatable < AjaxDatatablesRails::Base
+class GoalDatatable < Abstract
 
   def sortable_columns
 

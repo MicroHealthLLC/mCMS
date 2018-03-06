@@ -1,4 +1,4 @@
-class IdentificationDatatable < AjaxDatatablesRails::Base
+class IdentificationDatatable < Abstract
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name

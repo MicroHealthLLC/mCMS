@@ -1,4 +1,4 @@
-class InjuryDatatable < AjaxDatatablesRails::Base
+class InjuryDatatable < Abstract
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name

@@ -1,4 +1,4 @@
-class ResumeDatatable < AjaxDatatablesRails::Base
+class ResumeDatatable < Abstract
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name

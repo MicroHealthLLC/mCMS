@@ -1,4 +1,4 @@
-class PlanDatatable < AjaxDatatablesRails::Base
+class PlanDatatable < Abstract
 
   def sortable_columns
 
@@ -21,7 +21,7 @@ class PlanDatatable < AjaxDatatablesRails::Base
           'Plan.percent_done',
           'Plan.date_start',
           'Plan.date_due',
-          'Plan.date_completed',
+          'Plan.date_completed'
         ]
 
     @sortable_columns = arr.flatten
@@ -47,7 +47,7 @@ class PlanDatatable < AjaxDatatablesRails::Base
              'Plan.percent_done',
              'Plan.date_start',
              'Plan.date_due',
-             'Plan.date_completed',
+             'Plan.date_completed'
     ]
 
     @searchable_columns = arr.flatten

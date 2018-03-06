@@ -1,4 +1,4 @@
-class NeedDatatable < AjaxDatatablesRails::Base
+class NeedDatatable < Abstract
 
   def sortable_columns
 

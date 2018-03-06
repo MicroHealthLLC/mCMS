@@ -1,4 +1,4 @@
-class ContactDatatable < AjaxDatatablesRails::Base
+class ContactDatatable < Abstract
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name

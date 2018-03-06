@@ -1,4 +1,4 @@
-class MedicationDatatable < AjaxDatatablesRails::Base
+class MedicationDatatable < Abstract
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name

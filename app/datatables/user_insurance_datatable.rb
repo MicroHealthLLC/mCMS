@@ -1,4 +1,4 @@
-class UserInsuranceDatatable < AjaxDatatablesRails::Base
+class UserInsuranceDatatable < Abstract
 
   def sortable_columns
     # Declare strings in this format: ModelName.column_name
