@@ -57,7 +57,7 @@
   </div>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <%= render partial: 'list',
+      <%= render partial: 'simple_list',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
                          referrals: @referral.referral_children,
@@ -85,7 +85,7 @@
       </div>
     <% end %>
   </div>
-   <%= render partial: 'notes/notes',
+   <%= render partial: 'notes/list',
              layout: 'shared/smart_widget_wrapper',
              locals: {
                      notes: @referral.referral_notes,

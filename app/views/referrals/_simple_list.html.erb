@@ -1,0 +1,45 @@
+<% show_case = @case.nil? %>
+<table class="table table-responsive" id="referral_table">
+  <thead>
+  <tr>
+    <th>Title</th>
+    <% if show_case %>
+        <th><%= t('case') %></th>
+    <% end %>
+    <th>Referral Type</th>
+    <th>Referral Date</th>
+    <th>Referral Appointment</th>
+    <th>Referral Status</th>
+    <th>Referred By</th>
+    <th>Referred To</th>
+    <% if @appointment %>
+        <th></th>
+    <% end %>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% referrals.each do |referral| %>
+      <tr>
+        <td><%= link_to_edit_if_can referral.title, {ctrl: :referrals, object: referral } %></td>
+        <% if show_case %>
+            <td><%= link_to_case referral.case %></td>
+        <% end %>
+        <td><%= referral.referral_type %></td>
+        <td><%= format_date referral.referral_date %></td>
+        <td><%= referral.referral_appointment %></td>
+        <td><%= referral.referral_status %></td>
+        <td><%= referral.referred_by %></td>
+        <td><%= referral.referred_to_address %></td>
+        <% if @appointment %>
+            <td><%= link_to "<i class='fa fa-unlink fa-lg'></i>".html_safe, unlink_appointment_path(appointment_id: @appointment.id, type: 'Referral', id: referral.id ) %></td>
+        <% end %>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+    $(document).ready(function(){
+        initDataTable('referral_table')
+    })
+</script>
