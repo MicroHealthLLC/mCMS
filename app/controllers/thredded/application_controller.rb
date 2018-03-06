@@ -31,13 +31,13 @@ module Thredded
                 Thredded::Errors::MessageboardReadDenied do |exception|
       @error   = exception
       @message = if @error.is_a?(Pundit::NotAuthorizedError)
-                   t('thredded.errors.not_authorized')
+                   I18n.t('thredded.errors.not_authorized')
                  else
                    exception.message
                  end
       render template: 'thredded/error_pages/forbidden', status: :forbidden
     end
-
+    add_breadcrumb I18n.t('thredded.nav.all_messageboards'), '/forum'
     protected
 
     def thredded_current_user

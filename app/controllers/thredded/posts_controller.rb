@@ -17,12 +17,18 @@ module Thredded
     end
 
     def edit
+      add_breadcrumb messageboard.name, messageboard_topics_path(@messageboard)
+      add_breadcrumb topic.title,  topic_path(topic)
+      add_breadcrumb I18n.t('thredded.nav.edit_post') ,  ''
       authorize post, :update?
     end
 
     def update
       authorize post, :update?
       post.update_attributes(post_params.except(:user, :ip))
+
+      add_breadcrumb messageboard.name, messageboard_topics_path(@messageboard)
+      add_breadcrumb I18n.t('thredded.nav.edit_post') ,  ''
 
       redirect_to post_path(post, user: thredded_current_user)
     end

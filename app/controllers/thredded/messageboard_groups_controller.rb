@@ -3,11 +3,13 @@
 module Thredded
   class MessageboardGroupsController < Thredded::ApplicationController
     def new
+      add_breadcrumb I18n.t('thredded.messageboard_group.create'), ''
       @messageboard_group = MessageboardGroup.new
       authorize @messageboard_group, :create?
     end
 
     def create
+      add_breadcrumb I18n.t('thredded.messageboard_group.create'), ''
       @messageboard_group = MessageboardGroup.new(messageboard_group_params)
       authorize @messageboard_group, :create?
 

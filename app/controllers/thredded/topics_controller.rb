@@ -13,7 +13,7 @@ module Thredded
 
     def index
       authorize_reading messageboard
-
+      add_breadcrumb  messageboard.name, messageboard_topics_path(messageboard)
       @topics = Thredded::TopicsPageView.new(
         thredded_current_user,
         policy_scope(messageboard.topics)
@@ -27,6 +27,8 @@ module Thredded
 
     def show
       authorize topic, :read?
+      add_breadcrumb  messageboard.name, messageboard_topics_path(messageboard)
+      add_breadcrumb  topic.title, topic_path(topic)
       page_scope = policy_scope(topic.posts)
         .order_oldest_first
         .includes(:user, :messageboard, :postable)
@@ -87,10 +89,19 @@ module Thredded
     end
 
     def edit
+      topic
+      add_breadcrumb  messageboard.name, messageboard_topics_path(messageboard)
+      add_breadcrumb  @topic.title, topic_path(@topic)
+      add_breadcrumb  I18n.t('thredded.nav.edit_topic'), edit_messageboard_topic_path(@topic.messageboard, @topic)
+
       authorize topic, :update?
     end
 
     def update
+      topic
+      add_breadcrumb  messageboard.name, messageboard_topics_path(messageboard)
+      add_breadcrumb  @topic.title, topic_path(@topic)
+      add_breadcrumb  I18n.t('thredded.nav.edit_topic'), edit_messageboard_topic_path(@topic.messageboard, @topic)
       authorize topic, :update?
       if topic.update(topic_params.merge(last_user_id: thredded_current_user.id))
         redirect_to messageboard_topic_url(messageboard, topic),
