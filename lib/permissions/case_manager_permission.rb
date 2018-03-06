@@ -17,6 +17,7 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_roles, {
         :sms => [:show, :send_sms],
         :employees => [:index],
+        :identifications => [:index, :show, :new, :create, :edit, :update, :destroy],
         :educations => [:index, :show, :new, :create, :edit, :update, :destroy],
         :transports => [:index, :show, :new, :create, :edit, :update, :destroy],
         :languages => [:index, :show, :new, :create, :edit, :update, :destroy],

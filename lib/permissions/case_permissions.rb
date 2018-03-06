@@ -55,15 +55,6 @@ RedCarpet::AccessControl.map do |map|
     map.permission :manage_enrollments, {:enrollments => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
 
-  map.project_module :related_clients do |map|
-    map.permission :view_related_clients, {:related_clients => [:index]},  :read => true
-    map.permission :show_related_clients, {:related_clients => [:show]},  :read => true
-    map.permission :create_related_clients, {:related_clients => [ :new, :create]},  :read => true
-    map.permission :edit_related_clients, {:related_clients => [:edit, :update]},  :read => true
-    map.permission :delete_related_clients, {:related_clients => [:destroy]},  :read => true
-    map.permission :manage_related_clients, {:related_clients => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
-  end
-
   map.project_module :teleconsults do |map|
     map.permission :view_teleconsults, {:teleconsults => [:index]},  :read => true
     map.permission :show_teleconsults, {:teleconsults => [:show]},  :read => true
@@ -204,4 +195,18 @@ RedCarpet::AccessControl.map do |map|
     map.permission :delete_checklists, {:checklist_cases => [:destroy]},  :read => true
     map.permission :manage_checklists, {:cases=> [:new_assign], :checklist_cases => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
   end
+
+  map.project_module :worker_compensations do |map|
+    map.permission :view_worker_compensations, {:worker_compensations => [:index]},  :read => true
+    map.permission :show_worker_compensations, {:worker_compensations => [:show]},  :read => true
+    map.permission :create_worker_compensations, {:worker_compensations => [:new, :create]},  :read => true
+    map.permission :edit_worker_compensations, {:worker_compensations => [:edit, :update]},  :read => true
+    map.permission :delete_worker_compensations, {:worker_compensations => [:destroy]},  :read => true
+    map.permission :manage_worker_compensations, {:worker_compensations => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
+  map.project_module :sms do |map|
+    map.permission :send_sms, {:sms => [:show, :send_sms]},  :read => true
+  end
+  
 end
