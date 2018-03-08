@@ -1,0 +1,36 @@
+#appname {margin: 10px 0 10px 10px;font-family:verdana,helvetica,sans-serif;font-size:24px;font-weight:bold;color:#DD9036;}
+.mh {color:#1D336F;}
+button.iconbtn {border: none; box-shadow: none; background-color:transparent; margin: 5px 5px; padding: 5px; font-size: 18px;}
+button.iconbtn:hover {background-color:#ddd;}
+#filenameslist {margin-left:10px;}
+#filenameslist p {margin-bottom:10px;}
+.editbtn {font-size:16px; margin-right:20px;}
+#searchinput {width:350px; margin:10px 10px 20px 10px; box-shadow:none;}
+#docslistingdiv {
+  background-color: transparent;
+  z-index:-2000;
+  position:absolute;
+  margin-top:40px;
+  width: 530px;
+  padding:10px; 
+  overflow: hidden;
+}
+.slide {
+  border: 1px solid rgba(153, 153, 153, .7);
+  background-color: rgba(204, 204, 204, .3);
+  padding: 5px;
+  transition: .5s cubic-bezier(0, 1, 0.5, 1);
+  transform: translateY(0);
+}
+.slide-up {
+  transform: translateY(-100%);
+}
+#list_search {
+  margin-top:0px;
+  padding:10px 10px 20px 10px;
+  width:500px;
+  background-color:white;
+  border:1px solid #666;
+  font-family:helvetica,sans-serif;
+  font-size:14px;"
+}
