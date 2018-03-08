@@ -130,11 +130,4 @@ class DocumentsController < UserCasesController
     raise Unauthorized unless @document.can?(:delete_documents, :manage_documents, :manage_roles)
   end
 
-  def back_url
-    if @document.case
-      @document.case
-    else
-      client_documents_url
-    end
-  end
 end
