@@ -1,9 +1,6 @@
 
   <%= stylesheet_link_tag 'kanban/application' %>
   <%= stylesheet_link_tag 'kanban/themes/default-bright', id:"themeStylesheet"%>
-<div class="module-title">
-  <h2 class='module-title-text'>PLANNER</h2>
-</div>
 
 <div ng-app="mpk">
 <!--[if lt IE 7]>
@@ -14,9 +11,33 @@
 
 <script type="text/ng-template" id="kanban.html">
 
+  <div id="docslistingdiv">
+    <div id="list_search" class="slide slide-up">
+      <button id="closeSliderbtn" class="iconbtn" style="float:right;"><i class="glyphicon glyphicon-collapse-up"></i></button>
+      <p id="appname"><span class="mh">MH</span> Planner</p>
+      <input type="search" id="searchinput" value="" />
+      <button id="searchbtn" class="iconbtn"><i class="glyphicon glyphicon-search"></i></button>
+      <div id="quickSwitch" class="form-group" style="display:none;">
+        <form>
+          <select ng-model="switchTo" id="changekanban" ng-options="name for name in switchToList" ng-change="switchToKanban(switchTo)">
+            <option>Switch to ...</option>
+          </select>
+        </form>
+      </div>
+      <div id="filenameslist">
+        <p ng-repeat="name in switchToList" ng-bind-html-unsafe="name" >
+          <i class="glyphicon glyphicon-edit editbtn"></i>{{ name }}
+        </p>
+      </div>
+    </div>
+  </div>
+  
   <nav class="navbar">
     <div class="navbar-inner">
       <div class="row">
+        <div class="col-xs-2">
+          <button id="openSliderbtn" class="iconbtn"><i class="glyphicon glyphicon-th-list"></i></button>
+        </div>
         <div class="navbar-header col-xs-4">
           <span id="kanbanName" class="navbar-brand" ng-model="kanban" ng-hide="editingName"><a class="renameKanban" ng-click="editingKanbanName()">{{kanban.name}}</a></span>
           <div ng-show="editingName" class="pull-left">
@@ -32,8 +53,7 @@
             </form>
           </div>
         </div>
-
-        <div class="col-xs-4" style="margin-top:10px;">
+        <div class="col-xs-6" style="margin-top:10px;">
           <% if User.current.can?(:manage_kanban_projects, :manage_roles) %>
             <a class="mpkNew iconbtn" title="New Kanban Board" ng-click="kanbanMenu.openNewKanban()"><i class="glyphicon glyphicon-file"></i><sup>+</sup></a>
             <a class='iconbtn' title="Delete Kanban" ng-click="kanbanMenu.delete()"><i class="glyphicon glyphicon-remove"></i></a>
@@ -42,14 +62,6 @@
             <a class='iconbtn' title="Manage Users" href="/kanban/projects/manage_users"><i class="glyphicon glyphicon-user"></i></a>
           <% end %>
             <a class='iconbtn' title="Open Archive" ng-click="kanbanMenu.openArchive(kanban)"><i class="glyphicon glyphicon-folder-open"></i></a>
-        </div>
-
-        <div class="col-xs-4">
-          <div id="quickSwitch" style="padding: 10px" class="form-group">
-            <select ng-model="switchTo" id="fileslist" ng-options="name for name in switchToList" ng-change="switchToKanban(switchTo)">
-              <option>Switch to ...</option>
-            </select>
-          </div>
         </div>
       </div>
     </div>
@@ -62,7 +74,6 @@
       <span id="spinner" class="pull-right" spin="spinConfig" spin-if="showSpinner"></span>
     </div>
   </div>
-
 
   <div class="container-fluid" id="kanban" ng-controller="KanbanController">
     <div id="columns">
