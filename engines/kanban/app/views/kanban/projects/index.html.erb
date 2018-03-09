@@ -37,6 +37,8 @@
           <% if User.current.can?(:manage_kanban_projects, :manage_roles) %>
             <a class="mpkNew iconbtn" title="New Kanban Board" ng-click="kanbanMenu.openNewKanban()"><i class="glyphicon glyphicon-file"></i><sup>+</sup></a>
             <a class='iconbtn' title="Delete Kanban" ng-click="kanbanMenu.delete()"><i class="glyphicon glyphicon-remove"></i></a>
+            <a class='iconbtn' title="Export Kanban to file" ng-click="kanbanMenu.openExport(allKanbans, kanban.name)" href=""><i class="glyphicon glyphicon-save"></i></a>
+            <a class='iconbtn' title="Import Kanban from file" ng-click="kanbanMenu.openImport()" href=""><i class="glyphicon glyphicon-open"></i></a>
             <a class='iconbtn' title="Manage Users" href="/kanban/projects/manage_users"><i class="glyphicon glyphicon-user"></i></a>
           <% end %>
             <a class='iconbtn' title="Open Archive" ng-click="kanbanMenu.openArchive(kanban)"><i class="glyphicon glyphicon-folder-open"></i></a>
