@@ -24,3 +24,4 @@
 //= require  ./scripts/themes.82ae94b8.js
 
 //= require  ./scripts/script.js
+//= require  ./scripts/script_planner.js
