@@ -55,6 +55,7 @@ class JobAppsController <  UserCasesController
     set_breadcrumbs
     respond_to do |format|
       if @job_app.save
+        set_link_to_appointment(@job_app)
         format.html { redirect_to back_index_case_url, notice: 'JobApp was successfully created.' }
         #  format.json { render :show, status: :created, location: @job_app }
       else

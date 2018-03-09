@@ -86,7 +86,10 @@ class MeasurementRecordsController < UserCasesController
                                  flag: params["flag_#{i}"]
                              })
       @measurement_record = MeasurementRecord.new(measure_params)
-      @measurement_record.save
+      if @measurement_record.save
+        set_link_to_appointment(@measurement_record)
+      end
+
       @case =  @measurement_record.case
     end
     respond_to do |format|

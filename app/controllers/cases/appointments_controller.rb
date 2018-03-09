@@ -1,5 +1,7 @@
 class AppointmentsController < UserCasesController
 
+  include ApplicationHelper
+
   before_action :set_appointment, only: [:edit, :update, :destroy]
   before_action :set_appointment_with_includes, only: [:show, :cms_form]
   before_action :authorize_edit, only: [:edit, :update]
@@ -66,12 +68,12 @@ class AppointmentsController < UserCasesController
     @billings =  @appointment.billings
     # update_rails = @appointment.updated_at.to_date
     @appointment_links = @appointment.appointment_links.includes(:linkable)
-    @jsignatures= @appointment.jsignatures
-    @cases       = @appointment_links.where(linkable_type: 'Case').map(&:linkable)
-
-    @checklists  = @appointment_links.where(linkable_type: 'ChecklistCase').map(&:linkable)
+    # @jsignatures= @appointment.jsignatures
+    # @cases       = @appointment_links.where(linkable_type: 'Case').map(&:linkable)
+    #
+    # @checklists  = @appointment_links.where(linkable_type: 'ChecklistCase').map(&:linkable)
     @notes       = @appointment_links.where(linkable_type: 'Note').map(&:linkable)
-    @appointments= @appointment_links.where(linkable_type: 'Appointment').map(&:linkable)
+    # @appointments= @appointment_links.where(linkable_type: 'Appointment').map(&:linkable)
 
   end
 
@@ -105,14 +107,17 @@ class AppointmentsController < UserCasesController
     set_client_profile(@appointment)
     @case=  @appointment.case
     @billings =  @appointment.billings
-    # update_rails = @appointment.updated_at.to_date
+    # # update_rails = @appointment.updated_at.to_date
     @appointment_links = @appointment.appointment_links.includes(:linkable)
-    @jsignatures= @appointment.jsignatures
-    @cases       = @appointment_links.where(linkable_type: 'Case').map(&:linkable)
-
-    @checklists  = @appointment_links.where(linkable_type: 'ChecklistCase').map(&:linkable)
+    # @jsignatures= @appointment.jsignatures
+    # @cases       = @appointment_links.where(linkable_type: 'Case').map(&:linkable)
+    #
+    # @checklists  = @appointment_links.where(linkable_type: 'ChecklistCase').map(&:linkable)
     @notes       = @appointment_links.where(linkable_type: 'Note').map(&:linkable)
-    @appointments= @appointment_links.where(linkable_type: 'Appointment').map(&:linkable)
+    # @appointments= @appointment_links.where(linkable_type: 'Appointment').map(&:linkable)
+
+
+    set_models_permissions
   end
 
   # POST /appointments
@@ -200,6 +205,37 @@ class AppointmentsController < UserCasesController
     add_breadcrumb @appointment.to_s, appointment_url(@appointment)
   rescue ActiveRecord::RecordNotFound
     render_404
+  end
+
+  def set_models_permissions
+
+    @worker_compensations  = [] if module_enabled?( 'worker_compensations')  && can?(:manage_roles, :view_worker_compensations, :manage_worker_compensations)
+    @job_apps              = [] if module_enabled?( 'job_applications')  && can?(:manage_roles, :view_job_applications, :manage_job_applications)
+
+    @teleconsults        = []  if module_enabled?('teleconsults') && can?(:manage_roles, :view_teleconsults, :manage_teleconsults)
+    @transports          = []  if module_enabled?('transports') && can?(:manage_roles, :view_transports, :manage_transports)
+    @enrollments         = []  if module_enabled?('enrollments') && can?(:manage_roles, :view_enrollments, :manage_enrollments)
+
+    @measurement_records = []  if module_enabled?('measurement_records')  && can?(:manage_roles, :view_measurement_records, :manage_measurement_records)
+    @needs               = []  if module_enabled?('needs') && can?(:manage_roles, :view_needs, :manage_needs)
+    @goals               = []  if module_enabled?('goals') && can?(:manage_roles, :view_goals, :manage_goals)
+
+    @plans               = []  if module_enabled?('plans') && can?(:manage_roles, :view_plans, :manage_plans)
+    @tasks               = []  if module_enabled?('tasks') && can?(:manage_roles, :view_tasks, :manage_tasks)
+    @referrals           = []  if module_enabled?('referrals')  && can?(:manage_roles, :view_referrals, :manage_referrals)
+
+    @case_supports       = []  if module_enabled?('case_support')  && can?(:manage_roles, :view_case_supports, :manage_case_supports)
+    @documents           = []  if module_enabled?('documents') && can?(:manage_roles, :view_documents, :manage_documents)
+    @appointments        = []  if module_enabled?('appointments') && can?(:manage_roles, :view_appointments, :manage_appointments)
+
+    @jsignatures         = []  if module_enabled?('jsignatures') && can?(:manage_roles, :view_jsignatures, :manage_jsignatures)
+
+
+    @checklists          = @appointment_links.where(linkable_type: 'ChecklistCase').map(&:linkable)    if module_enabled?('checklists') && can?(:manage_roles, :view_checklists, :manage_checklists)
+
+    @case_organizations  =  @appointment_links.where(linkable_type: 'CaseOrganization').map(&:linkable)      if module_enabled?('case_organizations') && can?(:manage_roles, :view_case_managements, :manage_case_managements)
+
+
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
