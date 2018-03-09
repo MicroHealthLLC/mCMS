@@ -34,50 +34,139 @@
         <li><a id="link-tabs-addresses" href="#tabs-addresses">Addresses</a></li>
       </ul>
       <div id='tabs-emails' >
-        <%= f.simple_fields_for :emails do |mail| %>
-            <%= render 'extend_demographies/email_fields', :f => mail %>
-        <% end %>
-        <div id="emails" class="col-xs-11 margin-top-10" style="padding-right: 2px; margin-left: 6px;">
-          <%= link_to 'add email', new_extend_demography_email_path(extend_demography), class: 'btn btn-success  ' %>
-
+        <div class="col-xs-12 btn-edition tabs-section">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+            <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:210px;">
+              <li>
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                <%= link_to 'add email', new_extend_demographies_email_path(extend_demography), class: 'dropdown-item' %>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <%= render partial: 'extend_demographies/emails/emails',
+                       layout: 'shared/smart_widget_wrapper',
+                       locals: {
+                           f: f,
+                           extend_demography: extend_demography,
+                           wid_id: 'email',
+                           wid_title: 'Emails'
+                       }
+            %>
+          </article>
         </div>
       </div>
+
       <div id='tabs-faxes' >
-        <%= f.simple_fields_for :faxes do |fax| %>
-            <%= render 'extend_demographies/fax_fields', :f => fax %>
-        <% end %>
-        <div id="faxes" class="col-xs-11 margin-top-10" style="padding-right: 2px; margin-left: 6px;" >
-          <%= link_to 'add fax number', new_extend_demography_fax_path(extend_demography), class: 'btn btn-success  ' %>
+        <div class="col-xs-12 btn-edition tabs-section">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+            <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:210px;">
+              <li>
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                <%= link_to 'add fax number', new_extend_demographies_fax_path(extend_demography), class: 'dropdown-item' %>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <%= render partial: 'extend_demographies/faxes/faxes',
+                       layout: 'shared/smart_widget_wrapper',
+                       locals: {
+                           f: f,
+                           extend_demography: extend_demography,
+                           wid_id: 'faxes',
+                           wid_title: 'Faxes'
+                       }
+            %>
+          </article>
         </div>
       </div>
 
       <div id='tabs-phones' >
-        <%= f.simple_fields_for :phones do |phone| %>
-            <%= render 'extend_demographies/phone_fields', :f => phone %>
-        <% end %>
-
-        <div id="phones" class="col-xs-11 margin-top-10" style="padding-right: 2px; margin-left: 6px;" >
-          <%= link_to 'add phone', new_extend_demography_phone_path(extend_demography), class: 'btn btn-success  ' %>
+        <div class="col-xs-12 btn-edition tabs-section">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+            <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:210px;">
+              <li>
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                <%= link_to 'add phone', new_extend_demographies_phone_path(extend_demography), class: 'dropdown-item' %>
+              </li>
+            </ul>
+          </div>
         </div>
+        <div class="row">
+          <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <%= render partial: 'extend_demographies/phones/phones',
+                       layout: 'shared/smart_widget_wrapper',
+                       locals: {
+                           f: f,
+                           extend_demography: extend_demography,
+                           wid_id: 'phones',
+                           wid_title: 'Phones'
+                       }
+            %>
+          </article>
+        </div>
+
       </div>
 
       <div id='tabs-social_media' >
-        <%= f.simple_fields_for :social_media do |sm| %>
-            <%= render 'extend_demographies/social_media_fields', :f => sm %>
-        <% end %>
-
-        <div id="social_media" class="col-xs-11 margin-top-10" style="padding-right: 2px; margin-left: 6px;" >
-          <%= link_to 'add social media', new_extend_demography_social_medium_path(extend_demography), class: 'btn btn-success  ' %>
+        <div class="col-xs-12 btn-edition tabs-section">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+            <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:210px;">
+              <li>
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                <%= link_to 'add Social media', new_extend_demographies_social_medium_path(extend_demography), class: 'dropdown-item' %>
+              </li>
+            </ul>
+          </div>
         </div>
+        <div class="row">
+          <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <%= render partial: 'extend_demographies/social_media/social_media',
+                       layout: 'shared/smart_widget_wrapper',
+                       locals: {
+                           f: f,
+                           extend_demography: extend_demography,
+                           wid_id: 'social_media',
+                           wid_title: 'Social media'
+                       }
+            %>
+          </article>
+        </div>
+
       </div>
 
       <div id='tabs-addresses' >
-        <%= f.simple_fields_for :addresses do |address| %>
-            <%= render 'extend_demographies/address_fields', :f => address %>
-        <% end %>
-
-        <div id="addresses" class="col-xs-11 margin-top-10" style="padding-right: 2px; margin-left: 6px;" >
-          <%= link_to 'add address', new_extend_demography_address_path(extend_demography), class: 'btn btn-success  ' %>
+        <div class="col-xs-12 btn-edition tabs-section">
+          <div class="btn-group">
+            <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
+            <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:210px;">
+              <li>
+                <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                <%= link_to 'add address', new_extend_demographies_address_path(extend_demography), class: 'dropdown-item' %>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <%= render partial: 'extend_demographies/addresses/addresses',
+                       layout: 'shared/smart_widget_wrapper',
+                       locals: {
+                           f: f,
+                           extend_demography: extend_demography,
+                           wid_id: 'addresses',
+                           wid_title: 'Addresses'
+                       }
+            %>
+          </article>
         </div>
       </div>
     </div>

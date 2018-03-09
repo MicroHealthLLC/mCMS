@@ -337,15 +337,16 @@ Rails.application.routes.draw do
     get 'home/index', as: 'home'
   end
 
-  resources :identifications, except: [:new, :create]
 
-  resources :extend_demographies do
-    resources :emails, only: [:new, :create]
-    resources :faxes, only: [:new, :create]
-    resources :phones, only: [:new, :create]
-    resources :identifications
-    resources :social_media, only: [:new, :create]
-    resources :addresses, only: [:new, :create]
+  namespace :extend_demographies do
+    scope ':extend_demography_id' do
+      resources :emails, except: [:index]
+      resources :faxes, except: [:index]
+      resources :phones, except: [:index]
+      resources :identifications
+      resources :social_media, except: [:index]
+      resources :addresses, except: [:index]
+    end
   end
   resources :enumerations do
     collection do

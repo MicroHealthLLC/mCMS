@@ -8,7 +8,7 @@
         <% if can?(:create_identifications, :manage_identifications, :manage_roles) %>
         <li>
           <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-          <%= link_to t(:new_identification), new_extend_demography_identification_path(User.current.extend_informations), class: 'dropdown-item' %>
+          <%= link_to t(:new_identification), new_extend_demographies_identification_path(User.current.extend_informations), class: 'dropdown-item' %>
         </li>
         <div class='dropdown-item-dividier'></div>
         <% end %>
@@ -26,10 +26,10 @@
   </div>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <%= render partial: 'identifications/list',
+      <%= render partial: 'extend_demographies/identifications/list',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     identifications: @identifications,
+                     identifications: User.current.extend_informations.identifications,
                      wid_id: 'identifications',
                      wid_title: 'Identifications',
                      extend_demography: User.current.extend_informations

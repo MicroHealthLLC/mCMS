@@ -1,8 +1,8 @@
-<div class="nested-fields row">
+<div class="row">
   <fieldset>
 
     <div class="col-md-12">
-       <div class="  form-group col-md-12">
+      <div class="  form-group col-md-12">
         <%= f.label :identification_type_id, class: 'col-md-2 control-label' %>
         <div class="col-md-8">
           <%= f.select :identification_type_id, options_for_select(IdentificationType.active.pluck(:name, :id), selected: f.object.identification_type.try(:id) ), {} , {class: 'form-control'}%>
@@ -17,13 +17,13 @@
       </div>
 
       <div class="  form-group col-md-12">
-        <%= f.label :identification_status_id, class: 'col-md-2 control-label' %>
+        <%= f.label :status, class: 'col-md-2 control-label' %>
         <div class="col-md-8">
-          <%= f.select :identification_status_id, options_for_select(IdentificationStatus.active.pluck(:name, :id), selected: f.object.identification_status.try(:id) ), {} , {class: 'form-control'}%>
+          <%= f.select :status, [['Active', true], ['Inactive', false]] ,{},  {class: 'form-control'} %>
         </div>
       </div>
 
-
+      
       <div class="  form-group col-md-12">
         <%= f.label :date_expired , class: 'col-md-2 control-label' %>
         <div class="col-md-8">

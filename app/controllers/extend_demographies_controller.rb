@@ -56,31 +56,4 @@ class ExtendDemographiesController < ProtectForgeryApplication
     params.require(type).permit(ExtendDemography.safe_attributes)
   end
 
-  def url_back
-    if @extend_demography.department_id
-      departments_path
-    elsif @extend_demography.contact_id
-      contacts_url
-    elsif @extend_demography.organization_id
-      organizations_path
-    elsif @extend_demography.affiliation_id
-      affiliations_path
-    elsif @extend_demography.insurance_id
-      insurances_path
-    elsif @extend_demography.case_support_id
-      case_support_path
-    elsif User.current != User.current_user
-      '/profile_record#tabs-extend_demographic'
-    else
-      if  User.current.can?(:manage_roles)
-        if @user != User.current
-          user_path(@user) + '#tabs-extend_demographic'
-        else
-          :back
-        end
-      else
-        '/profile_record#tabs-extend_demographic'
-      end
-    end
-  end
 end

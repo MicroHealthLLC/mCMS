@@ -4,12 +4,6 @@
       <fieldset>
 
         <div class="col-md-12">
-          <% if params[:controller] != 'addresses' %>
-          <%= link_to_remove_association("remove", f, class: 'btn btn-warning pull-right',
-            :data => {:confirm => t(:text_are_you_sure)})
-          %>
-              <% end %>
-
           <div class="form-group col-md-12">
             <%= f.label :address_type , class: 'col-md-2 control-label' %>
             <div class="col-md-8">
