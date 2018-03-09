@@ -53,7 +53,7 @@ class JsignaturesController < UserCasesController
     )
 
 
-  set_breadcrumbs
+    set_breadcrumbs
 
   rescue ActiveRecord::RecordNotFound
     render_404
@@ -69,7 +69,7 @@ class JsignaturesController < UserCasesController
   # POST /jsignatures.json
   def create
     @jsignature = Jsignature.new(jsignature_params)
-    @owner = params[:owner_type] == 'User' ? User.find(params[:owner_id]) : params[:owner_type].constantize.visible.find( params[:owner_id])
+    @owner = @jsignature.signature_owner
 
     set_breadcrumbs
     respond_to do |format|
@@ -119,20 +119,29 @@ class JsignaturesController < UserCasesController
   end
 
   def set_breadcrumbs
-    if @jsignature.signature_owner_type == 'User'
-      @breadcrumbs = []
-      add_breadcrumb 'Client Profile', '/profile_record'
-      add_breadcrumb 'Signatures', '/profile_record#tabs-signature'
-      add_breadcrumb @owner.to_s, @jsignature
-    else
-      add_breadcrumb @owner.to_s, @owner
-      if @owner.is_a? Case
+    case @jsignature.signature_owner_type
+      when 'User'
+        @breadcrumbs = []
+        add_breadcrumb 'Client Profile', '/profile_record'
+        add_breadcrumb 'Signatures', '/profile_record#tabs-signature'
+        add_breadcrumb @owner.to_s, @jsignature
+      when 'Case'
+        add_breadcrumb @owner.to_s, @owner
         add_breadcrumb I18n.t(:jsignatures), case_path(@owner) + '#tabs-signatures'
-      end
-      if @jsignature.to_s
-        add_breadcrumb @jsignature, @jsignature
-      end
+      when 'Appointment'
+        if @owner.case
+          add_breadcrumb @owner.case, case_path(@owner.case)
+          add_breadcrumb I18n.t(:appointments), case_path(@owner.case) + "#tabs-appointments"
+        else
+          add_breadcrumb I18n.t(:appointments), appointments_path
+        end
+        add_breadcrumb @owner.to_s, @owner
+        add_breadcrumb I18n.t(:jsignatures), appointment_path(@owner) + '#tabs-signatures'
+      when 'UserInsurance'
+        add_breadcrumb @owner.to_s, @owner
+      else
     end
+    add_breadcrumb(@jsignature, @jsignature) if @jsignature.to_s
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
