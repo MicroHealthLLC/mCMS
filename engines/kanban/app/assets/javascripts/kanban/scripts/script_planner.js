@@ -10,6 +10,7 @@ $("document").ready(function () {
     for (n = 1; n < editbtns.length; n+=1) {
       editbtns[n].addEventListener("click", function () {
         currentIndex = $(this).closest("p").index();
+        location.reload();
         document.getElementById("changekanban").value = currentIndex;
         $("#changekanban").change();
       });
