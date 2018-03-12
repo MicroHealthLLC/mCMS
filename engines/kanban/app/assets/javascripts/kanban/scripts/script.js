@@ -305,7 +305,8 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
                     {
                         c.remove(a.kanban.name);
                         var b = j(c);
-                        c.setLastUsed(b.length > 0 ? b[0] : void 0), a.kanban = void 0, a.allKanbans = Object.keys(c.all()), a.allKanbans.length > 0 && a.switchToKanban(a.allKanbans[0]), a.switchToList = a.allKanbans.slice(0), a.switchToList.splice(0, 0, "Switch to ...")
+                        c.setLastUsed(b.length > 0 ? b[0] : void 0), a.kanban = void 0, a.allKanbans = Object.keys(c.all()), a.allKanbans.length > 0 && a.switchToKanban(a.allKanbans[0]), a.switchToList = a.allKanbans.slice(0), a.switchToList.splice(0, 0, "Switch to ...");
+                        location.reload();
                     }
                     else
                         alert(json['errors'])
@@ -333,7 +334,8 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
             type: 'POST',
             async: false,
             success: function (json) {
-                c.renameLastUsedTo(a.newName), a.allKanbans = Object.keys(c.all()), a.editingName = !1, a.switchToKanban(a.newName)
+                c.renameLastUsedTo(a.newName), a.allKanbans = Object.keys(c.all()), a.editingName = !1, a.switchToKanban(a.newName);
+                location.reload();
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert(xhr.status);
@@ -342,7 +344,8 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
     }, a.openKanbanShortcut = function() {
         a.$broadcast("TriggerOpen")
     }, a.switchToKanban = function(b) {
-        "Switch to ..." != b && (a.kanban = c.get(b), c.setLastUsed(b), a.newName = b, f.path("/kanban/" + b), a.switchTo = "Switch to ...")
+        "Switch to ..." != b && (a.kanban = c.get(b), c.setLastUsed(b), a.newName = b, f.path("/kanban/" + b), a.switchTo = "Switch to ...");
+        location.reload();
     }, a.openHelpShortcut = function() {
         a.$broadcast("TriggerHelp")
     }, a.spinConfig = {
@@ -394,6 +397,7 @@ var NewKanbanController = ["$scope", "kanbanRepository", "kanbanManipulator", fu
                     a.kanbanName = "";
                     a.numberOfColumns = 3;
                     b.setLastUsed(d.name);
+                    location.reload();
                     a.$emit("NewKanbanAdded");
                     localStorage.setItem("myPersonalKanban", angular.toJson(json['data'], !1))
                 }
@@ -697,8 +701,11 @@ angular.module("mpk").controller("ExportController", ["$scope", "kanbanRepositor
             if (c(d)) {
                 var e = {};
                 e[d.name] = d, b["import"](e)
-            } else b["import"](d);
-            a.$emit("DownloadFinished"), a.showImportModal = !1
+            } else {
+                b["import"](d);
+                location.reload();
+                a.$emit("DownloadFinished"), a.showImportModal = !1
+            }
         } catch (f) {
             a.model.readError = !0
         } else a.model.readError = !0
