@@ -10,7 +10,7 @@
   </tr>
   </thead>
   <tbody>
-  <% formular.form_details.each do |detail| %>
+  <% formular.form_details.visible.includes(:form_results).references(:form_results).each do |detail| %>
       <tr>
         <% parsed_form.each_with_index do |form, index| %>
             <% result = detail.form_results.where(name: form['name']).first_or_initialize %>
