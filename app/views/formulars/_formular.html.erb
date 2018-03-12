@@ -1,24 +1,27 @@
-<section id="widget-grid" class="cases_list">
+<% formular = tab[:formular] %>
+<section id="widget-grid" class="signatures_section">
   <div class="col-xs-12 btn-edition tabs-section">
     <div class="btn-group">
       <button type="button" class="btn btn-primary dropdown-toggle actions-tab" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ACTIONS <span class="caret"></span></button>
       <ul class="dropdown-menu dropdown-links" role="menu" style="min-width:180px;">
-        <% if can?(:create_formulars, :manage_formulars, :manage_roles) %>
+        <% if can?(:add_jsignatures, :manage_roles) %>
             <li>
               <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-              <%= link_to 'New Form', new_formular_path, class: 'dropdown-item' %>
+              <%= link_to "Add #{formular.name}", new_formular_form_detail_path(formular), class: 'dropdown-item' %>
             </li>
+            <div class='dropdown-item-dividier'></div>
         <% end %>
       </ul>
     </div>
   </div>
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <%= render partial: 'list',
+      <%= render partial: 'form_details/list',
                  layout: 'shared/smart_widget_wrapper',
                  locals: {
-                     wid_id: 'formulars',
-                     wid_title: 'Forms'
+                     formular: formular,
+                     wid_id: 'details',
+                     wid_title: formular.name
                  } %>
     </article>
   </div>

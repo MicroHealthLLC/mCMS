@@ -1,0 +1,24 @@
+
+<table class="table table-responsive" id="forms">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Placement</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @formulars.each do |formular| %>
+      <tr>
+        <td><%= link_to formular.name, edit_formular_path(formular) %></td>
+        <td><%= formular.placement %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+      initDataTable('forms')
+  })
+</script>

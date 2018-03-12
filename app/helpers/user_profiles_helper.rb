@@ -30,6 +30,12 @@ module UserProfilesHelper
       tabs << {:name => 'organization', :partial => 'devise/registrations/shared/job_detail', :label => :organization}
     end
 
+    if can?(:manage_roles, :manage_form_details)
+      Formular.for(1).each do |formular|
+        tabs << {:name => formular.name, :partial => 'formulars/formular', :label => formular.name, formular: formular}
+      end
+    end
+
     tabs
   end
 
@@ -69,6 +75,11 @@ module UserProfilesHelper
 
     if @job_apps
       tabs<<  {:name => 'job_applications', :partial => 'cases/show_case/job_app', :label => 'Job Applications'}
+    end
+    if can?(:manage_roles, :manage_form_details)
+      Formular.for(2).each do |formular|
+        tabs << {:name => formular.name, :partial => 'formulars/formular', :label => formular.name, formular: formular}
+      end
     end
 
 

@@ -1,0 +1,1 @@
+json.partial! "form_results/form_result", form_result: @form_result

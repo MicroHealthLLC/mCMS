@@ -11,6 +11,16 @@ RedCarpet::AccessControl.map do |map|
   end
 
 
+  map.project_module :form_details do |map|
+    map.permission :view_form_details, {:form_details => [:index]},  :read => true
+    map.permission :show_form_details, {:form_details => [:show]},  :read => true
+    map.permission :create_form_details, {:form_details => [:new, :create]},  :read => true
+    map.permission :edit_form_details, {:form_details => [:edit, :update]},  :read => true
+    map.permission :delete_form_details, {:form_details => [:destroy]},  :read => true
+    map.permission :manage_form_details, {:form_details => [:index, :show, :new, :create, :edit, :update, :destroy]},  :read => true
+  end
+
+
   map.project_module :employee do |map|
     map.permission :view_collaborate, {},  :read => true
     map.permission :view_personal_organizer, {},  :read => true
@@ -19,6 +29,8 @@ RedCarpet::AccessControl.map do |map|
         :employees => [:index],
         :identifications => [:index, :show, :new, :create, :edit, :update, :destroy],
         :educations => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :formulars => [:index, :show, :new, :create, :edit, :update, :destroy],
+        :form_details => [:index, :show, :new, :create, :edit, :update, :destroy],
         :transports => [:index, :show, :new, :create, :edit, :update, :destroy],
         :languages => [:index, :show, :new, :create, :edit, :update, :destroy],
         :daily_livings => [:index, :show, :new, :create, :edit, :update, :destroy],

@@ -1,0 +1,57 @@
+<%= javascript_include_tag 'form_builder/form-builder.min' %>
+<%= javascript_include_tag 'form_builder/form-render.min' %>
+<%= form_for [@formular, @form_detail] , html: { class: 'form-horizontal' } do |f| %>
+    <fieldset>
+      <legend>
+
+      </legend>
+      <div class="col-md-11">
+        <%= f.hidden_field :user_id %>
+        <%= f.hidden_field :formular_id %>
+        <div id="formbuilder_content" >
+
+        </div>
+        <script>
+            $(document).ready(function(){
+                $('#formbuilder_content').formRender({
+                    formData: <%= raw @formular.form %>
+                });
+            })
+        </script>
+      </div>
+
+
+    </fieldset>
+
+    <div class="form-group" >
+      <div class="col-md-11">
+        <%= link_to t('button_cancel'), @formular , class: 'btn btn-warning pull-right' %>
+        <%= f.submit t(:button_save), class: 'btn btn-success pull-right' %>
+      </div>
+    </div>
+<% end %>
+
+<script>
+    $(document).ready(function(){
+        <% @form_detail.form_results.each do |result| %>
+          $('#<%= result.name %>').val("<%= raw result.value %>")
+        <% end %>
+    })
+</script>
+
+<style>
+  .fb-select.form-group select{
+    display: none;
+  }
+  #fb-rendered-form {
+    clear: both;
+    display: none;
+  }
+
+  #fb-rendered-form button{
+    float:right;
+  }
+</style>
+
+
+

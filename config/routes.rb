@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :formulars
+
+  resources :formulars do
+    resources :form_details, except: [:index]
+  end
   resources :email_templates, except: [:show] do
     collection do
       get 'load_available_variables'

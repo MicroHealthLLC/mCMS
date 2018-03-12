@@ -31,7 +31,7 @@
           <div class="form-group">
             <%= f.label 'Placement', class: 'col-md-2 control-label' %>
             <div class="col-md-9">
-              <%= f.select :placement, options_for_select([['Profile Record', 1],['Occupation Record', 2],['Health Record', 3],['Socioeconomic Record', 4]], selected: f.object.placement) , {} ,{class: 'form-control'} %>
+              <%= f.select :placement, options_for_select(Formular::EMPLACEMENT, selected: f.object.placement) , {} ,{class: 'form-control'} %>
             </div>
           </div>
         </div>
@@ -52,8 +52,10 @@
 
 
 
-        <div class="form-actions">
-          <%= f.submit :submit %>
+        <div class="form-group" >
+          <div class="col-md-11">
+            <%= f.submit t(:button_save), class: 'btn btn-success pull-right' %>
+          </div>
         </div>
 
 
@@ -70,7 +72,11 @@
                             });
                         },
                         disabledActionButtons: ['save'],
-                        defaultFields: <%= raw( f.object.form || []) %>
+                        defaultFields: <%= raw( f.object.form || []) %>,
+                        disabledAttrs: [
+                            'access', 'required'
+                        ],
+                        disableFields: ['file', 'button', 'radio']
                     },
                     formBuilder = $fbEditor.formBuilder(fbOptions);
 
@@ -94,7 +100,9 @@
 
 
 <style>
-
+  .fb-select.form-group select{
+    display: none !important;
+  }
   #fb-rendered-form {
     clear: both;
     display: none;

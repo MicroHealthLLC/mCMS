@@ -1,37 +1,11 @@
-<p id="notice"><%= notice %></p>
+<%= link_to 'Edit', edit_formular_path(@formular), class: 'btn btn-info'%>
+<%= link_to 'New', new_formular_form_detail_path(@formular), class: 'btn btn-warning' %>
+<%= link_to 'Back', formulars_path, class: 'btn btn-warning' %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @formular.name %>
-</p>
-
-<p>
-  <strong>Icon:</strong>
-  <%= @formular.icon %>
-</p>
-
-<p>
-  <strong>Placement:</strong>
-  <%= @formular.placement %>
-</p>
-
-
-
-<%= link_to 'Edit', edit_formular_path(@formular) %> |
-<%= link_to 'Back', formulars_path %>
-
-
-<%= javascript_include_tag 'form_builder/form-builder.min' %>
-<%= javascript_include_tag 'form_builder/form-render.min' %>
-
-<p id="formbuilder_content" >
-
-</p>
-<script>
-    $(document).ready(function(){
-
-        $('#formbuilder_content').formRender({
-            formData: <%= raw @formular.form %>
-        });
-    })
-</script>
+<%= render partial: 'list',
+           layout: 'shared/smart_widget_wrapper',
+           locals: {
+               formular: @formular,
+               wid_id: 'details',
+               wid_title: 'Form details'
+           } %>

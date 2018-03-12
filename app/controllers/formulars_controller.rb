@@ -1,6 +1,7 @@
-class FormularsController < ApplicationController
-  before_filter :require_admin
+class FormularsController < ProtectForgeryApplication
+  before_action  :authenticate_user!
   before_action :set_formular, only: [:show, :edit, :update, :destroy]
+  before_action :authorize
 
   # GET /formulars
   # GET /formulars.json
@@ -11,6 +12,9 @@ class FormularsController < ApplicationController
   # GET /formulars/1
   # GET /formulars/1.json
   def show
+    @details = @formular.form_details.
+        includes(:form_results).
+        references(:form_results)
   end
 
   # GET /formulars/new
@@ -26,7 +30,6 @@ class FormularsController < ApplicationController
   # POST /formulars.json
   def create
     @formular = Formular.new(formular_params)
-    @formular.form.gsub!("\r", '').gsub!("\n", '').gsub!("\t", '')
     respond_to do |format|
       if @formular.save
         format.html { redirect_to @formular, notice: 'Formular was successfully created.' }
@@ -70,6 +73,6 @@ class FormularsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def formular_params
-      params.require(:formular).permit(:name, :icon, :placement, :form)
+      params.require(:formular).permit(Formular.safe_attributes)
     end
 end
