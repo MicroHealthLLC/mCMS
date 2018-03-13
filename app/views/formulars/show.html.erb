@@ -2,7 +2,7 @@
 <%= link_to 'New', new_formular_form_detail_path(@formular), class: 'btn btn-warning' %>
 <%= link_to 'Back', formulars_path, class: 'btn btn-warning' %>
 
-<%= render partial: 'list',
+<%= render partial: 'form_details/list',
            layout: 'shared/smart_widget_wrapper',
            locals: {
                formular: @formular,
