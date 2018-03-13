@@ -39,7 +39,7 @@ module UserHistoryHelper
     end
     if can?(:manage_roles, :manage_form_details)
       Formular.for(3).each do |formular|
-        tabs << {:name => formular.name, :partial => 'formulars/formular', :label => formular.name, formular: formular}
+        tabs << {:name => formular.name.parameterize, :partial => 'formulars/formular', :label => formular.name, formular: formular}
       end
     end
 
@@ -75,7 +75,7 @@ module UserHistoryHelper
 
     if can?(:manage_roles, :manage_form_details)
       Formular.for(4).each do |formular|
-        tabs << {:name => formular.name, :partial => 'formulars/formular', :label => formular.name, formular: formular}
+        tabs << {:name => formular.name.parameterize, :partial => 'formulars/formular', :label => formular.name, formular: formular}
       end
     end
     tabs

@@ -32,7 +32,7 @@ module UserProfilesHelper
 
     if can?(:manage_roles, :manage_form_details)
       Formular.for(1).each do |formular|
-        tabs << {:name => formular.name, :partial => 'formulars/formular', :label => formular.name, formular: formular}
+        tabs << {:name => formular.name.parameterize, :partial => 'formulars/formular', :label => formular.name, formular: formular}
       end
     end
 
@@ -78,7 +78,7 @@ module UserProfilesHelper
     end
     if can?(:manage_roles, :manage_form_details)
       Formular.for(2).each do |formular|
-        tabs << {:name => formular.name, :partial => 'formulars/formular', :label => formular.name, formular: formular}
+        tabs << {:name => formular.name.parameterize, :partial => 'formulars/formular', :label => formular.name, formular: formular}
       end
     end
 
