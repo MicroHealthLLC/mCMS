@@ -10,12 +10,13 @@ $("document").ready(function () {
     for (n = 1; n < editbtns.length; n+=1) {
       editbtns[n].addEventListener("click", function () {
         currentIndex = $(this).closest("p").index();
-        location.reload();
-        document.getElementById("changekanban").value = currentIndex;
-        $("#changekanban").change();
+        $("#changekanban").val(currentIndex);
+        setTimeout(function () {
+          $("#changekanban").change();
+        }, 600);
       });
     }
- });
+  });
   $("#closeSliderbtn").click(function () {
     slide.classList.add("slide-up");
     setTimeout(function () {
