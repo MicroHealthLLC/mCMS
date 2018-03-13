@@ -321,6 +321,10 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
         a.$broadcast("OpenSwitchTheme", c.getTheme())
     }, a.kanbanMenu.openArchive = function(b) {
         a.$broadcast("OpenArchive", b)
+    }, a.kanbanMenu.openExport = function(b, c) {
+       a.$broadcast("OpenExport", b, c)
+    }, a.kanbanMenu.openImport= function() {
+       a.$broadcast("OpenImport")
     }, a.editingKanbanName = function() {
         a.editingName = !0
     }, a.editingName = !1, a.rename = function() {
