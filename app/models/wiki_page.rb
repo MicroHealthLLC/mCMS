@@ -27,7 +27,7 @@ class WikiPage < ActiveRecord::Base
       des = WikiPage.where(sub_page_id: [result - descendants_ids.pluck(:id)] )
       result += des.pluck(:id)
       descendants_ids = des
-      found = des.blank?
+      found = des.present?
     end
     result.uniq
   end
