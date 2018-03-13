@@ -53,6 +53,7 @@ module ExtendDemographies
 
     def set_email
       @email = @extend_demography.emails.find(params[:id])
+      @url_back = url_back
     rescue ActiveRecord::RecordNotFound
       render_404
     end
