@@ -17,4 +17,15 @@ class Formular < ApplicationRecord
   def self.safe_attributes
     [:name, :icon, :placement, :form]
   end
+
+  def emplacement
+    case placement
+      when 1 then 'Profile Record'
+      when 2 then 'Occupation Record'
+      when 3 then 'Health Record'
+      when 4 then 'Socioeconomic Record'
+      else ''
+
+    end
+  end
 end

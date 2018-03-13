@@ -1,7 +1,12 @@
-<%= link_to 'Edit', edit_formular_path(@formular), class: 'btn btn-info'%>
-<%= link_to 'New', new_formular_form_detail_path(@formular), class: 'btn btn-warning' %>
-<%= link_to 'Back', formulars_path, class: 'btn btn-warning' %>
 
+<section id="widget-grid" class="cases_list">
+  <div class="col-xs-12 btn-edition tabs-section">
+    <div class="btn-group">
+      <%= render partial: 'action_menu' %>
+    </div>
+  </div>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 <%= render partial: 'form_details/list',
            layout: 'shared/smart_widget_wrapper',
            locals: {
@@ -9,3 +14,6 @@
                wid_id: 'details',
                wid_title: 'Form details'
            } %>
+    </article>
+  </div>
+</section>

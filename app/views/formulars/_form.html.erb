@@ -1,9 +1,6 @@
 
 <fieldset>
-  <legend> Form Content </legend>
-
-
-
+  <legend> </legend>
 
   <div class="row">
     <%= form_for( @formular, html: { class: 'form-horizontal', id: 'formular_form',  :multipart => true}) do |f| %>
@@ -54,6 +51,8 @@
 
         <div class="form-group" >
           <div class="col-md-11">
+            <%= link_to t('button_cancel'), formulars_path, class: 'btn btn-warning pull-right' %>
+
             <%= f.submit t(:button_save), class: 'btn btn-success pull-right' %>
           </div>
         </div>
