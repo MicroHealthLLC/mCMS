@@ -60,7 +60,7 @@ class DocumentsController < UserCasesController
   # POST /documents.json
   def create
     @document = Document.new(document_params)
-    @document.case
+    @case =  @document.case
     respond_to do |format|
       if @document.save
         set_link_to_appointment(@document)
