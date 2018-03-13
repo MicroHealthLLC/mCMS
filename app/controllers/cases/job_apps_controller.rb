@@ -106,6 +106,7 @@ class JobAppsController <  UserCasesController
       add_breadcrumb @job_app.case,  @job_app.case
       add_breadcrumb 'Job applications', case_path(@job_app.case) + '#tabs-job_applications'
     else
+      @breadcrumbs = []
       add_breadcrumb 'Occupational History', '/occupational_record'
       add_breadcrumb 'Job applications', :job_apps_path
     end
