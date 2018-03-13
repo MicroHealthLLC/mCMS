@@ -11,7 +11,7 @@
   </thead>
   <% identifications.each do |identification| %>
   <tr>
-    <td><%= identification.identification_type %></td>
+    <td><%= link_to identification.identification_type, edit_extend_demographies_identification_path(identification.extend_demography, identification) %></td>
     <td><%= identification.identification_number %></td>
     <td><%= identification.identification_status %></td>
     <td><%= format_date identification.date_expired %></td>

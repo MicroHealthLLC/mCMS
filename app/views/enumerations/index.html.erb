@@ -44,7 +44,7 @@
         <% tabs.each_with_index do |(key, enums), idx| %>
             <div id="<%= "tabs-#{key.to_s}" %>" style="display: <%= idx.zero? ? 'block' : 'none' %>" class="nav-tabs-div ui-tabs-panel ui-widget-content ui-corner-bottom"  >
               <% enums.each_with_index do |klass, kj| %>
-                  <h3><%= klass.to_s %></h3>
+                  <h3><%= t klass::OptionName %></h3>
                   <div class="row">
                     <p><%= link_to I18n.t("enumeration_new_label"), new_enumeration_path(:type => klass.name), class: 'btn btn-primary'  %></p>
                     <% enumerations = klass.where(nil) %>
