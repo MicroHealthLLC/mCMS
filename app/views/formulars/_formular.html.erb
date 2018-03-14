@@ -1,5 +1,21 @@
 <% formulars = tab[:formulars] %>
 <section id="widget-grid" class="signatures_section">
+  <div class="btn-group pull-left btn-edition">
+    <button class="btn btn-primary">
+      Add Form For
+    </button>
+    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <% formulars.each do |form| %>
+          <li>
+            <%= link_to "#{form.name}", new_formular_form_detail_path(form), class: 'dropdown-item' %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+
   <div class="row">
     <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
       <%= render partial: 'formulars/list',
