@@ -1,7 +1,9 @@
 class Formular < ApplicationRecord
+  include OrganizationConcern
   validates_presence_of :name, :form
   validates_uniqueness_of :name
 
+  belongs_to :organization
   has_many :form_details, dependent: :destroy
   # has_many :form_results, through: :form_details, dependent: :destroy
 
@@ -23,7 +25,7 @@ class Formular < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:name, :icon, :placement, :form]
+    [:name, :icon, :placement, :form, :organization_id]
   end
 
   def emplacement

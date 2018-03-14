@@ -75,8 +75,8 @@ module UserHistoryHelper
     end
 
     if can?(:manage_roles, :manage_form_details, :view_form_details)
-      if Formular.for(Formular::SOCIOECONOMIC_RECORD).any?
-        tabs << {:name => 'forms', :partial => 'formulars/formular', :label => 'forms', formulars: Formular.for(Formular::SOCIOECONOMIC_RECORD) }
+      if Formular.from_organization.for(Formular::SOCIOECONOMIC_RECORD).any?
+        tabs << {:name => 'forms', :partial => 'formulars/formular', :label => 'forms', formulars: Formular.from_organization.for(Formular::SOCIOECONOMIC_RECORD) }
       end
     end
 
