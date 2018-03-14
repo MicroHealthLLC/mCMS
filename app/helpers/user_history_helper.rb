@@ -37,11 +37,12 @@ module UserHistoryHelper
     if @radiologic_examinations
       tabs<<  {:name => 'radiologic_examination', :partial => 'user_history/medical_record/radiologic_examination', :label => 'Radiology'}
     end
-    if can?(:manage_roles, :manage_form_details)
-      Formular.for(3).each do |formular|
-        tabs << {:name => formular.name.parameterize, :partial => 'formulars/formular', :label => formular.name, formular: formular}
+    if can?(:manage_roles, :manage_form_details, :view_form_details)
+      if Formular.for(Formular::HEALTH_RECORD).any?
+        tabs << {:name => 'forms', :partial => 'formulars/formular', :label => 'forms', formulars: Formular.for(Formular::HEALTH_RECORD) }
       end
     end
+
 
     tabs
   end
@@ -73,11 +74,12 @@ module UserHistoryHelper
       tabs<<  {:name => 'other_history', :partial => 'user_history/socio_record/other_history', :label => :other_history}
     end
 
-    if can?(:manage_roles, :manage_form_details)
-      Formular.for(4).each do |formular|
-        tabs << {:name => formular.name.parameterize, :partial => 'formulars/formular', :label => formular.name, formular: formular}
+    if can?(:manage_roles, :manage_form_details, :view_form_details)
+      if Formular.for(Formular::SOCIOECONOMIC_RECORD).any?
+        tabs << {:name => 'forms', :partial => 'formulars/formular', :label => 'forms', formulars: Formular.for(Formular::SOCIOECONOMIC_RECORD) }
       end
     end
+
     tabs
   end
 end

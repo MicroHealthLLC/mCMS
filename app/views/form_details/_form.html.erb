@@ -34,15 +34,15 @@
 <script>
     $(document).ready(function(){
         <% @form_detail.form_results.each do |result| %>
+        if($('input[name=<%= result.name %>][type=radio]').length > 0 )
+            $('input[name=<%= result.name %>][value="<%= result.value %>"]').attr('checked', 'checked')
+        else
           $('#<%= result.name %>').val("<%= raw result.value %>")
         <% end %>
     })
 </script>
 
 <style>
-  .fb-select.form-group select{
-    display: none;
-  }
   #fb-rendered-form {
     clear: both;
     display: none;

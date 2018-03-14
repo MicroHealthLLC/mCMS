@@ -82,6 +82,13 @@ module CasesHelper
       tabs<< {:name => 'watcher', :partial => 'cases/show_case/watcher', :label => 'Share Individuals'}
     end
 
+    if can?(:manage_roles, :manage_form_details, :view_form_details)
+      if Formular.for(Formular::CASE_RECORD).any?
+        tabs << {:name => 'forms', :partial => 'formulars/formular', :label => 'forms', formulars: Formular.for(Formular::CASE_RECORD) }
+      end
+    end
+
+
     tabs
   end
 

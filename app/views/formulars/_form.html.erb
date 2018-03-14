@@ -75,7 +75,7 @@
                         disabledAttrs: [
                             'access', 'required'
                         ],
-                        disableFields: ['file', 'button', 'radio']
+                        disableFields: ['file', 'button']
                     },
                     formBuilder = $fbEditor.formBuilder(fbOptions);
 
@@ -88,7 +88,7 @@
                     json = formBuilder.actions.getData('json', true);
                     $('#form_builder_content').val(json);
                     $(this).submit();
-                })
+                });
             })
         </script>
     <% end %>
@@ -99,9 +99,6 @@
 
 
 <style>
-  .fb-select.form-group select{
-    display: none !important;
-  }
   #fb-rendered-form {
     clear: both;
     display: none;

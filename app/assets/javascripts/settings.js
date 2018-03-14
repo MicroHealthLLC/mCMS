@@ -118,6 +118,7 @@ var named_function = function(){
         theme: "bootstrap"
     });
     $( "label select" ).select2("destroy");
+    $( ".fb-select.form-group select" ).select2("destroy");
     $('.clockpicker').datetimepicker({format: 'LT'});
     $('.datetimepicker').datetimepicker({
         format: 'YYYY-MM-DD LT'
