@@ -7,7 +7,7 @@ module OrganizationConcern
       org = User.current_user.organization
       extra_org = get_extra_organization options
 
-      where(organization_id: [nil, org.id, extra_org].flatten)
+      where(organization_id: [nil, org.try(:id), extra_org].flatten)
     end
 
     def self.get_extra_organization(options)
