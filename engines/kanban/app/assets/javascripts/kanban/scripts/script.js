@@ -129,7 +129,16 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
         renameLastUsedTo: function(a) {
             var b = this.getLastUsed();
             return delete this.kanbansByName[b.name], b.name = a, this.kanbansByName[a] = b, this.lastUsed = a, !0
-        }
+        },
+        "import":function(a) {
+            var b = this;
+            angular.forEach(Object.keys(a), function(c) {
+                b.kanbansByName[c] = a[c]
+            });
+            var c = Object.keys(a);
+            this.setLastUsed(a[c[0]]),
+            this.save()
+        }        
     }
 }]), angular.module("mpk").factory("kanbanManipulator", function() {
     return {
