@@ -4,6 +4,7 @@
   <tr>
     <th>Description</th>
     <th>Placement</th>
+    <th></th>
   </tr>
   </thead>
 
@@ -16,6 +17,7 @@
             <td><%= link_to formular.name, formular_path(formular) %></td>
         <% end %>
         <td><%= formular.emplacement %></td>
+        <td><%= delete_link formular, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
   <% end %>
   </tbody>

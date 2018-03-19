@@ -11,7 +11,7 @@ module ExtendDemographiesHelper
     elsif @extend_demography.insurance_id
       insurances_path
     elsif @extend_demography.case_support_id
-      case_support_path
+      edit_case_support_path(@extend_demography.case_support_id)
     elsif User.current != User.current_user
       '/profile_record#tabs-extend_demographic'
     else
