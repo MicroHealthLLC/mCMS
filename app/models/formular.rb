@@ -4,6 +4,7 @@ class Formular < ApplicationRecord
   validates_uniqueness_of :name
 
   belongs_to :form_type
+  belongs_to :user
 
   belongs_to :organization
   has_many :form_details, dependent: :destroy
@@ -47,7 +48,7 @@ class Formular < ApplicationRecord
   end
 
   def self.safe_attributes
-    [:name, :icon, :placement, :form_type_id, :description, :form, :organization_id]
+    [:name, :icon, :placement, :form_type_id, :description, :form, :organization_id, :user_id]
   end
 
   def emplacement
