@@ -18,7 +18,7 @@ module ExtendDemographies
       @email = Email.new(email_params)
       @email.extend_demography_id = @extend_demography.id
       if @email.save
-        redirect_to url_back
+        redirect_to @url_back
       else
         render :new
       end
