@@ -2,7 +2,7 @@ class Note < ApplicationRecord
   audited except: [:created_by_id, :updated_by_id]
   belongs_to :user
   scope :not_private, -> {where(is_private: false)}
-  default_scope -> {where(is_private: false).or(where(private_author_id: User.current.id)).includes(:user) }
+  default_scope -> {where(is_private: false).or(where(private_author_id: User.current_user.id)).includes(:user) }
 
   CASES_MODULE = [  'TaskNote'           ,
                     'SurveyNote'         ,
@@ -26,7 +26,7 @@ class Note < ApplicationRecord
 
   def check_private_author
     if self.is_private
-      self.private_author_id = User.current.id
+      self.private_author_id = User.current_user.id
     end
   end
 

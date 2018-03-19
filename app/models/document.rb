@@ -20,7 +20,7 @@ class Document < ApplicationRecord
   accepts_nested_attributes_for :document_attachments, reject_if: :all_blank, allow_destroy: true
   has_many :appointment_links, as: :linkable
 
-  default_scope -> {where(is_private: false).or(where(private_author_id: User.current.id)) }
+  default_scope -> {where(is_private: false).or(where(private_author_id: User.current_user.id)) }
 
   def self.for_profile
     where(related_to_id: nil)
@@ -48,7 +48,7 @@ class Document < ApplicationRecord
 
   def check_private_author
     if self.is_private
-      self.private_author_id = User.current.id
+      self.private_author_id = User.current_user.id
     end
   end
 
