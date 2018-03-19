@@ -1,26 +1,29 @@
-<table class="table table-responsive ">
+<table class="table table-responsive " id="insurances_table">
   <thead>
   <tr>
     <th><%= t :insurance %></th>
     <th><%= 'Created at' %></th>
-    <th colspan="2"></th>
+    <th ></th>
+    <th ></th>
   </tr>
   </thead>
 
   <tbody>
-  <% if insurances.any? %>
-      <% insurances.each do |insurance| %>
-          <tr>
-            <td><%= insurance.name %></td>
-            <td><%= format_date insurance.created_at %></td>
-            <td><%= edit_link edit_insurance_path(insurance) %></td>
-            <td><%= delete_link insurance_path(insurance) %></td>
-          </tr>
-      <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
+
+  <% insurances.each do |insurance| %>
+      <tr>
+        <td><%= insurance.name %></td>
+        <td><%= format_date insurance.created_at %></td>
+        <td><%= edit_link edit_insurance_path(insurance) %></td>
+        <td><%= delete_link insurance_path(insurance) %></td>
       </tr>
   <% end %>
+
   </tbody>
 </table>
+<script>
+  $(document).ready(function(){
+      initDataTable('insurances_table')
+  })
+</script>
+

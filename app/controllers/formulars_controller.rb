@@ -8,7 +8,7 @@ class FormularsController < ProtectForgeryApplication
   def index
     respond_to do |format|
       format.html{
-        @formulars = Formular.include_enumerations.filter_status(params[:status])
+        @formulars = Formular.include_enumerations.filter_status(params[:status_type])
       }
       format.js{ render 'application/index' }
       format.pdf{}
