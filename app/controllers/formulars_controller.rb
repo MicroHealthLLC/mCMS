@@ -6,7 +6,13 @@ class FormularsController < ProtectForgeryApplication
   # GET /formulars
   # GET /formulars.json
   def index
-    @formulars = Formular.all
+    respond_to do |format|
+      format.html{
+        @formulars = Formular.include_enumerations.filter_status(params[:status])
+      }
+      format.js{ render 'application/index' }
+      format.pdf{}
+    end
   end
 
   # GET /formulars/1

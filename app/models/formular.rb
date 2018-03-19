@@ -3,6 +3,8 @@ class Formular < ApplicationRecord
   validates_presence_of :name, :form
   validates_uniqueness_of :name
 
+  belongs_to :form_type
+
   belongs_to :organization
   has_many :form_details, dependent: :destroy
   # has_many :form_results, through: :form_details, dependent: :destroy
@@ -24,8 +26,28 @@ class Formular < ApplicationRecord
     where(placement: emplacement)
   end
 
+
+  def self.enumeration_columns
+    [
+        ["#{FormType}", 'form_type_id']
+    ]
+  end
+
+  def self.include_enumerations
+    includes(:form_type).references(:form_type)
+  end
+
+
+  def form_type
+    if form_type_id
+      super
+    else
+      FormType.default
+    end
+  end
+
   def self.safe_attributes
-    [:name, :icon, :placement, :form, :organization_id]
+    [:name, :icon, :placement, :form_type_id, :description, :form, :organization_id]
   end
 
   def emplacement

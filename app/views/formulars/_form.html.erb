@@ -19,10 +19,16 @@
 
         <div class="form-inputs">
           <div class="form-group">
-            <%= f.label t(:description) , class: 'col-md-2 control-label' %>
+            <%= f.label t(:label_name) , class: 'col-md-2 control-label' %>
             <div class="col-md-9">
               <%= f.text_area :form , class: 'form-control', style: 'display: none', id: 'form_builder_content' %>
               <%= f.text_field :name , class: 'form-control' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label t(:description) , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :description , class: 'form-control' %>
             </div>
           </div>
           <div class="form-group">
@@ -38,6 +44,16 @@
               <%= f.select :placement, options_for_select(Formular::EMPLACEMENT, selected: f.object.placement) , {} ,{class: 'form-control'} %>
             </div>
           </div>
+
+
+          <div class="form-group">
+            <%= f.label 'Form Type', class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :form_type_id, options_for_select(FormType.active.pluck(:name, :id), selected: f.object.form_type.try(:id)) , {} ,{class: 'form-control'} %>
+            </div>
+          </div>
+
+
         </div>
 
 
