@@ -21,7 +21,7 @@
   </thead>
 
   <tbody>
-  <% if @tasks.any? %>
+
       <% @tasks.each do |task| %>
           <tr>
             <% if User.current.allowed_to?(:manage_roles) %>
@@ -45,15 +45,11 @@
           </tr>
       <% end %>
 
-  <% else %>
-      <tr align="center">
-        <td colspan="11"><%= t('label_no_data') %></td>
-      </tr>
-  <% end %>
+
   </tbody>
 </table>
 <script>
   $(document).ready(function(){
-    <% if @tasks.present? %>  initDataTable('tasks_table') <% end %>
+    initDataTable('tasks_table')
   } );
 </script>
