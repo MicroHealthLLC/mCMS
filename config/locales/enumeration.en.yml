@@ -23,6 +23,8 @@ en:
   enumeration_deployment_operation: Deployment Operation
   enumeration_education_type: Education
   enumeration_education_status: Education Status
+  enumeration_form_type: Form Type
+  enumeration_risk_type: Risk Type
   enumeration_priority_type: Priority
   enumeration_task_type: Action Type
   enumeration_task_status_type: Action Status
