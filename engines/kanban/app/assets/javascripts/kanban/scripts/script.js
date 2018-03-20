@@ -713,11 +713,10 @@ angular.module("mpk").controller("ExportController", ["$scope", "kanbanRepositor
             if (c(d)) {
                 var e = {};
                 e[d.name] = d, b["import"](e)
-            } else {
+            } else 
                 b["import"](d);
-                location.reload();
-                a.$emit("DownloadFinished"), a.showImportModal = !1
-            }
+            location.reload();
+            a.$emit("DownloadFinished"), a.showImportModal = !1
         } catch (f) {
             a.model.readError = !0
         } else a.model.readError = !0
