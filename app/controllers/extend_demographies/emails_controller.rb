@@ -53,7 +53,6 @@ module ExtendDemographies
 
     def set_email
       @email = @extend_demography.emails.find(params[:id])
-      @url_back = url_back
     rescue ActiveRecord::RecordNotFound
       render_404
     end
@@ -66,6 +65,7 @@ module ExtendDemographies
     # Use callbacks to share common setup or constraints between actions.
     def set_extend_demography
       @extend_demography = ExtendDemography.find(params[:extend_demography_id])
+      @url_back = url_back
     rescue ActiveRecord::RecordNotFound
       render_404
     end
