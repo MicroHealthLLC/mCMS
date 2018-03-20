@@ -11,9 +11,6 @@ $("document").ready(function () {
       editbtns[n].addEventListener("click", function () {
         currentIndex = $(this).closest("p").index();
         $("#changekanban").val(currentIndex).change();
-     //   setTimeout(function () {
-     //     $("#changekanban").change();
-     //   }, 600);
       });
     }
   });
