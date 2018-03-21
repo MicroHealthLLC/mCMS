@@ -3,6 +3,8 @@ class UsersController < ProtectForgeryApplication
   before_action :find_user, except: [:restore, :index, :active, :audit, :recently_connected]
 
   before_filter :require_admin, only: [:index, :destroy, :active]
+  before_filter :authorize, except: [:index, :destroy, :active]
+
   def index
     respond_to do |format|
       format.html{}
@@ -153,5 +155,9 @@ class UsersController < ProtectForgeryApplication
     @user = User.find params[:id]
   rescue ActiveRecord::RecordNotFound
     render_404
+  end
+
+  def authorize
+    render_403 unless User.current.can?(:manage_roles)
   end
 end

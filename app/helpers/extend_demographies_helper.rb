@@ -49,11 +49,15 @@ module ExtendDemographiesHelper
       when 'OrganizationExtendDemography'
         add_breadcrumb I18n.t(:organizations), :organizations_path
       when 'UserExtendDemography'
-        add_breadcrumb 'Client Profile', '/profile_record'
-      else
+        if User.current.can?(:manage_roles)
+          add_breadcrumb 'Users', '/users'
+        else
+          add_breadcrumb 'Client Profile', '/profile_record'
+        end
+          else
         # nothing to do
     end
-    if object.is_a? User
+    if !User.current.can?(:manage_roles) and object.is_a? User
       add_breadcrumb object, '/profile_record'
     else
       add_breadcrumb object, object
