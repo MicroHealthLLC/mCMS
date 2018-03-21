@@ -3,17 +3,9 @@ class UsersController < ProtectForgeryApplication
   before_action :find_user, except: [:restore, :index, :active, :audit, :recently_connected]
 
   before_filter :require_admin, only: [:index, :destroy, :active]
-  before_filter :authorize, except: [:index, :destroy, :active]
-
-  def index
-    respond_to do |format|
-      format.html{}
-      format.json{
-        options = Hash.new
-        render json: UserDatatable.new(view_context,options)
-      }
-    end
-  end
+  before_filter :authorize, except: [:index, :destroy, :active, :search_users,
+                                     :image_upload, :remove_image,
+                                     :recently_connected]
 
   def recently_connected
     respond_to do |format|
@@ -22,6 +14,44 @@ class UsersController < ProtectForgeryApplication
             recently_active.
             includes(:core_demographic).
             where.not(id: current_user.id )
+      }
+    end
+  end
+
+  def search_users
+    q = params[:q]
+    respond_to do |format|
+      format.js{
+        @recently_connected = User.
+            where('login like ? OR email like ?', "#{q}%",  "#{q}%").
+            includes(:core_demographic).
+            where.not(id: current_user.id )
+      }
+    end
+  end
+
+
+  def image_upload
+    @user.avatar = params[:images]
+    @user.save
+    render 'uploader/image_upload'
+  end
+
+  def remove_image
+    @user.remove_avatar!
+    @user.save
+    render 'uploader/remove_image'
+  end
+
+
+
+  # authorized by admin
+  def index
+    respond_to do |format|
+      format.html{}
+      format.json{
+        options = Hash.new
+        render json: UserDatatable.new(view_context,options)
       }
     end
   end
@@ -38,6 +68,18 @@ class UsersController < ProtectForgeryApplication
   rescue ActiveRecord::RecordNotFound
     render_404
   end
+
+  def destroy
+    @user.destroy
+    flash[:notice] = I18n.t('notice_successful_delete')
+    redirect_to :back
+  end
+
+  # authorized by manage roles
+
+
+
+
 
   def audit
     @users = User.includes(:core_demographic).
@@ -70,17 +112,7 @@ class UsersController < ProtectForgeryApplication
     redirect_to :back
   end
 
-  def search_users
-    q = params[:q]
-    respond_to do |format|
-      format.js{
-        @recently_connected = User.
-            where('login like ? OR email like ?', "#{q}%",  "#{q}%").
-            includes(:core_demographic).
-            where.not(id: current_user.id )
-      }
-    end
-  end
+
 
   def show
     unless User.current_user.can?(:manage_roles)
@@ -92,6 +124,12 @@ class UsersController < ProtectForgeryApplication
     @educations    = @user.educations
     @documents     = @user.documents
     @organizations = @user.organizations
+  end
+
+  def attachments
+    @user.update(params.require(:user).permit(user_attachments_attributes: [Attachment.safe_attributes]))
+    @user.save
+    redirect_to user_path(@user)
   end
 
 
@@ -109,11 +147,6 @@ class UsersController < ProtectForgeryApplication
     redirect_to user_path(@user)
   end
 
-  def attachments
-    @user.update(params.require(:user).permit(user_attachments_attributes: [Attachment.safe_attributes]))
-    @user.save
-    redirect_to user_path(@user)
-  end
 
   def change_basic_info
     if @user.update(params.require(:user).permit(User.safe_attributes + [:admin]))
@@ -124,23 +157,8 @@ class UsersController < ProtectForgeryApplication
     redirect_to user_path(@user)
   end
 
-  def image_upload
-    @user.avatar = params[:images]
-    @user.save
-    render 'uploader/image_upload'
-  end
 
-  def remove_image
-    @user.remove_avatar!
-    @user.save
-    render 'uploader/remove_image'
-  end
 
-  def destroy
-    @user.destroy
-    flash[:notice] = I18n.t('notice_successful_delete')
-    redirect_to :back
-  end
 
   def require_change_password
     @user.password_changed_at = 181.days.ago
