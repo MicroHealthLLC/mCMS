@@ -7,7 +7,9 @@
     <th>Form Type</th>
     <th>Organization</th>
     <th>Placement</th>
-    <th></th>
+    <% if User.current.can?(:manage_roles) %>
+        <th></th>
+    <% end %>
   </tr>
   </thead>
 
@@ -23,7 +25,9 @@
         <td><%= formular.form_type %></td>
         <td><%= formular.organization %></td>
         <td><%= formular.emplacement %></td>
-        <td><%= delete_link formular, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if User.current.can?(:manage_roles) %>
+            <td><%= delete_link formular, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
   <% end %>
   </tbody>

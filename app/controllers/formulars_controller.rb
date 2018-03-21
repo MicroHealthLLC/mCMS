@@ -1,7 +1,7 @@
 class FormularsController < ProtectForgeryApplication
   before_action  :authenticate_user!
   before_action :set_formular, only: [:show, :edit, :update, :destroy]
-  before_action :authorize
+  before_action :authorize, except: [:show]
 
   # GET /formulars
   # GET /formulars.json
@@ -38,7 +38,7 @@ class FormularsController < ProtectForgeryApplication
     @formular = Formular.new(formular_params)
     respond_to do |format|
       if @formular.save
-        format.html { redirect_to @formular, notice: 'Formular was successfully created.' }
+        format.html { redirect_to formulars_path, notice: 'Formular was successfully created.' }
         format.json { render :show, status: :created, location: @formular }
       else
         format.html { render :new }
@@ -52,7 +52,7 @@ class FormularsController < ProtectForgeryApplication
   def update
     respond_to do |format|
       if @formular.update(formular_params)
-        format.html { redirect_to @formular, notice: 'Formular was successfully updated.' }
+        format.html { redirect_to formulars_path, notice: 'Formular was successfully updated.' }
         format.json { render :show, status: :ok, location: @formular }
       else
         format.html { render :edit }
@@ -81,4 +81,8 @@ class FormularsController < ProtectForgeryApplication
     def formular_params
       params.require(:formular).permit(Formular.safe_attributes)
     end
+
+  def authorize
+    render_403 unless User.current.can?(:manage_roles)
+  end
 end
