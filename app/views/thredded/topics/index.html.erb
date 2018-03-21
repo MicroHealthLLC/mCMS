@@ -32,6 +32,7 @@
 
     <% end %>
 
+    <button id="cancelTopic_btn" class='btn btn-warning pull-right' onclick='cancelTopicForm();'>Cancel</button>
 
       <div class="row">
 
@@ -62,3 +63,13 @@
 
 
 <% end %>
+
+<script>
+  $(document).ready(function() {
+    $("#cancelTopic_btn").hide();
+  });
+    function cancelTopicForm() {
+      $(this).closest("form").reset().addClass("thredded--is-compact").removeClass("thredded--is-expended");
+      $(this).hide();
+    }
+</script>
