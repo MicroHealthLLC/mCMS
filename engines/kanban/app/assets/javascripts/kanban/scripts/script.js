@@ -76,7 +76,7 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
         theme: "default-bright",
         lastUpdated: 0,
         add: function(a) {
-            return this.kanbansByName[a.name] = a, a
+            return this.kanbansByName[a.name] = a, this.save(), a
         },
         all: function() {
             return this.kanbansByName
@@ -349,7 +349,7 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
             type: 'POST',
             async: false,
             success: function (json) {
-                c.renameLastUsedTo(a.newName), a.allKanbans = Object.keys(c.all()), a.editingName = !1, a.switchToKanban(a.newName);
+                c.renameLastUsedTo(a.newName), c.save(), a.allKanbans = Object.keys(c.all()), a.editingName = !1, a.switchToKanban(a.newName);
                 location.reload();
             },
             error: function (xhr, ajaxOptions, thrownError) {
@@ -359,7 +359,7 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
     }, a.openKanbanShortcut = function() {
         a.$broadcast("TriggerOpen")
     }, a.switchToKanban = function(b) {
-        "Switch to ..." != b && (a.kanban = c.get(b), c.setLastUsed(b), a.newName = b, f.path("/kanban/" + b), location.reload(), a.switchTo = "Switch to ...")
+        "Switch to ..." != b && (a.kanban = c.get(b), c.setLastUsed(b), a.newName = b, f.path("/kanban/" + b), c.save(), location.reload(), a.switchTo = "Switch to ...")
     }, a.openHelpShortcut = function() {
         a.$broadcast("TriggerHelp")
     }, a.spinConfig = {
