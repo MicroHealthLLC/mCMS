@@ -288,6 +288,7 @@ Rails.application.routes.draw do
       get    'edit_answer'
       post   'edit_answer'
       delete 'delete_answer'
+      get 'copy'
     end
 
     collection do
@@ -303,7 +304,7 @@ Rails.application.routes.draw do
   resources :checklist_templates, controller: :checklists do
     member do
       match 'save', via: [:patch, :put, :post]
-      get 'copy'
+      get 'save'
     end
     collection do
       get 'display'

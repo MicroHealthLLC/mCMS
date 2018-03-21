@@ -13,7 +13,7 @@ module SurveysHelper
   end
 
   def survey_scope(resource)
-    if action_name =~ /new|create/
+    if action_name =~ /new|create|copy/
       surveys_path(resource)
     elsif action_name =~ /edit|update/
       survey_path(resource)

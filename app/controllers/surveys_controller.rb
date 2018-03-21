@@ -1,7 +1,7 @@
 class SurveysController < ProtectForgeryApplication
   before_action  :authenticate_user!
   before_filter :load_survey, :only => [:show, :edit, :update, :new_note, :destroy]
-  before_action :require_admin, only: [:edit, :new, :create, :destroy, :update]
+  before_action :require_admin, only: [:copy, :edit, :new, :create, :destroy, :update]
   def index
     scope = Survey::Survey
     if User.current.admin?
@@ -11,6 +11,19 @@ class SurveysController < ProtectForgeryApplication
       scope = SurveyCase.visible
     end
     @surveys = scope
+  end
+
+  def copy
+    @survey_from = Survey::Survey.includes(:survey_notes, :questions=> [:options]).find(params[:id])
+    @survey = @survey_from.deep_dup
+    @survey.questions = @survey_from.questions.map do |question|
+      q = question.dup
+      q.options =  question.options.map(&:dup)
+      q
+    end
+    render :new
+  rescue ActiveRecord::RecordNotFound
+    render_404
   end
 
   def new_assign
