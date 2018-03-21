@@ -5,9 +5,13 @@ module ExtendDemographies
     before_action :set_extend_demography
     before_action :authorize
 
-    before_action :set_email, only: [:edit, :update, :destroy]
+    before_action :set_email, only: [:show, :edit, :update, :destroy]
     before_action :set_breadcrumbs
 
+
+    def show
+      render :edit
+    end
 
 
     def new

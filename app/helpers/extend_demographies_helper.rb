@@ -53,6 +53,11 @@ module ExtendDemographiesHelper
       else
         # nothing to do
     end
-    add_breadcrumb object, object
+    if object.is_a? User
+      add_breadcrumb object, '/profile_record'
+    else
+      add_breadcrumb object, object
+    end
+
   end
 end

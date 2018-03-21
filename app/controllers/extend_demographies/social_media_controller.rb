@@ -4,10 +4,14 @@ module ExtendDemographies
     before_action :set_extend_demography
     before_action :authorize
 
-    before_action :set_social_medium, only: [:edit, :update, :destroy]
+    before_action :set_social_medium, only: [:show, :edit, :update, :destroy]
     before_action :set_breadcrumbs
 
     include ExtendDemographiesHelper
+
+    def show
+      render :edit
+    end
 
     def new
       @social_media = @extend_demography.social_media.build
