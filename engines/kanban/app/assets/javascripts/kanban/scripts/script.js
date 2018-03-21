@@ -97,6 +97,8 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
             return angular.toJson(a, !1)
         },
         save: function() {
+            var a = this.prepareSerializedKanbans();
+            return localStorage.setItem("myPersonalKanban",a), this.kanbansByName
         },
         load: function() {
             var a = angular.fromJson(localStorage.getItem("myPersonalKanban"));
