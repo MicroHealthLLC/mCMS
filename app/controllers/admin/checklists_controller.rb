@@ -33,6 +33,15 @@ class ChecklistsController < ProtectForgeryApplication
     @checklist.checklists.build
   end
 
+  def copy
+    @checklist_from = ChecklistTemplate.includes(:checklists).find(params[:id])
+    @checklist = @checklist_from.deep_dup
+    @checklist.checklists = @checklist_from.checklists.map(&:dup)
+    render :new
+  rescue ActiveRecord::RecordNotFound
+    render_404
+  end
+
   def edit
   end
 

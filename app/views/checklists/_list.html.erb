@@ -11,6 +11,7 @@
     <% if User.current.admin? %>
         <th ></th>
         <th ></th>
+        <th ></th>
     <% end %>
   </tr>
   </thead>
@@ -32,6 +33,7 @@
         <td><%= checklist_template.checklists.count %></td>
 
         <% if User.current.admin? %>
+            <td><%= copy_link copy_checklist_template_path(checklist_template) %></td>
             <td><%= edit_link edit_checklist_template_path(checklist_template) %></td>
             <td><%= delete_link checklist_template_path(checklist_template) %></td>
         <% end %>

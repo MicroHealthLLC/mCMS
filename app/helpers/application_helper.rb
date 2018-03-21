@@ -145,6 +145,10 @@ module ApplicationHelper
     link_to "<i class='fa fa-lg fa-edit'></i>".html_safe, url, options
   end
 
+  def copy_link(url, options={})
+    link_to "<i class='fa fa-lg fa-copy'></i>".html_safe, url, options
+  end
+
   def render_employee_information
     output = "<div class='row'>"
     output<< "<div class='col-xs-2 col-sm-2 col-md-2' style='padding:0; top: -4px; margin-left: 5px;' >#{image_tag(User.current.profile_image, size: '35x35', class:'')}</div>"
