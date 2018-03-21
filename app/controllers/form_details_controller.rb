@@ -117,10 +117,10 @@ class FormDetailsController < ApplicationController
   end
 
   def authorize_edit
-    raise Unauthorized unless @form_detail.can?(:edit_form_details, :manage_form_details, :manage_roles)
+    raise Unauthorized unless @form_detail.can?(:edit_form_details, :manage_form_details, :manage_roles) and User.current == @form_detail.user
   end
 
   def authorize_delete
-    raise Unauthorized unless @form_detail.can?(:delete_form_details, :manage_form_details, :manage_roles)
+    raise Unauthorized unless @form_detail.can?(:delete_form_details, :manage_form_details, :manage_roles) and User.current == @form_detail.user
   end
 end

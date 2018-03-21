@@ -1,0 +1,36 @@
+<% details = FormDetail.includes(:formular).references(:formular).where(formular_id: formulars.pluck(:id), user_id: User.current.id) %>
+<table class="table table-responsive" id="forms_table">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Form Type</th>
+    <th>Organization</th>
+    <th>Placement</th>
+    <th>Filled by</th>
+    <th>Date</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% details.each do |detail| %>
+      <% formular = detail.formular %>
+      <tr>
+        <td><%= link_to formular.name, edit_formular_form_detail_path(formular, detail) %></td>
+
+        <td><%= formular.description %></td>
+        <td><%= formular.form_type %></td>
+        <td><%= formular.organization %></td>
+        <td><%= formular.emplacement %></td>
+        <td><%= detail.user %></td>
+        <td><%= format_date detail.created_at %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<script>
+    $(document).ready(function(){
+        initDataTable('forms_table')
+    })
+</script>
