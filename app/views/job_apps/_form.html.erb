@@ -39,24 +39,26 @@
               </script>
             </div>
           </div>
-          <div class="form-group">
-            <%= f.label :occupation, class: 'col-md-2 control-label' %>
-            <div class="col-md-9">
-              <%= text_field_tag :occupation, f.object.occupation,  class: 'form-control' %>
-              <%= f.hidden_field :occupation_id %>
-              <script>
-                  $(document).ready(function(){
-                      $('#occupation').autocomplete({
-                          source: "/occupation.json?",
-                          minLength: 2,
-                          select: function( event, ui ) {
-                              $('#job_app_occupation_id').val(ui.item.id)
-                          }
+          <% unless f.object.case %>
+              <div class="form-group">
+                <%= f.label :occupation, class: 'col-md-2 control-label' %>
+                <div class="col-md-9">
+                  <%= text_field_tag :occupation, f.object.occupation,  class: 'form-control' %>
+                  <%= f.hidden_field :occupation_id %>
+                  <script>
+                      $(document).ready(function(){
+                          $('#occupation').autocomplete({
+                              source: "/occupation.json?",
+                              minLength: 2,
+                              select: function( event, ui ) {
+                                  $('#job_app_occupation_id').val(ui.item.id)
+                              }
+                          })
                       })
-                  })
-              </script>
-            </div>
-          </div>
+                  </script>
+                </div>
+              </div>
+          <% end %>
 
           <div class="form-group">
             <%= f.label :employer, class: 'col-md-2 control-label' %>

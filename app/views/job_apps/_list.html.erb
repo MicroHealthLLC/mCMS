@@ -2,7 +2,9 @@
   <thead>
   <tr>
     <th>Title</th>
-    <th>Occupation</th>
+    <% if @case.nil? %>
+        <th>Occupation</th>
+    <% end %>
     <th>Employer</th>
     <th>Date applied</th>
     <th>App state</th>
@@ -13,12 +15,17 @@
 
   </tbody>
 </table>
-<% columns= [  { "searchable": true, "orderable": true },
-               { "searchable": true, "orderable": true },
-               { "searchable": true, "orderable": true },
-               { "searchable": true, "orderable": true },
+<% columns= [  { "searchable": true, "orderable": true } ]
+   if @case
+     columns << { "searchable": true, "orderable": true }
+   end
 
-               { "searchable": true, "orderable": true }]
+
+   columns <<      [{ "searchable": true, "orderable": true },
+                    { "searchable": true, "orderable": true },
+
+                    { "searchable": true, "orderable": true }]
+   columns.flatten!
 %>
 <%= render partial: 'datatable_script', locals: {
     model_table: 'job_apps_table',
