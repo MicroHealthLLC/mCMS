@@ -304,7 +304,7 @@ Rails.application.routes.draw do
   resources :checklist_templates, controller: :checklists do
     member do
       match 'save', via: [:patch, :put, :post]
-      get 'save'
+      get 'copy'
     end
     collection do
       get 'display'
