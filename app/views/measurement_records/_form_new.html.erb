@@ -26,33 +26,32 @@
         <div class="col-md-9">
           <%= f.select :measurement, options_for_select(Measurement.all.map(&:to_s).uniq.insert(0, ''), selected: f.object.measurement), {},{ class: 'form-control'} %>
           <script>
-            $(document).ready(function(){
-              $('#measurement_record_measurement').on('change', function(){
-                val = $(this).val();
-                $.getScript("<%= new_measurement_record_path(format: :js) %>?case_id=<%=f.object.case_id%>&plan_id=<%=f.object.plan_id%>&measurement="+val)
+              $(document).ready(function(){
+                  $('#measurement_record_measurement').on('change', function(){
+                      val = $(this).val();
+                      $.getScript("<%= new_measurement_record_path(format: :js) %>?case_id=<%=f.object.case_id%>&plan_id=<%=f.object.plan_id%>&measurement="+val)
+                  })
               })
-            })
           </script>
         </div>
       </div>
       <% if f.object.measurement %>
           <div class="col-md-12">
-            <table class="table table-responsive tabled-bordered" style="min-height:370px;">
-              <thead>
-              <th>Component</th>
-              <th>Measure</th>
-              <th>Recorded by</th>
-              <th>Date & Time</th>
-              <th>Flag</th>
-              <th>Status</th>
-              </thead>
-              <tbody>
+            <div style="min-height:370px;">
+              <div class="row" style="font-weight: bold;">
+                <div class="col-xs-2" >Component</div>
+                <div class="col-xs-2" >Measure</div>
+                <div class="col-xs-2" >Recorded by</div>
+                <div class="col-xs-2" >Date & Time</div>
+                <div class="col-xs-2" >Flag</div>
+                <div class="col-xs-2" >Status</div>
+              </div>
               <%= hidden_field_tag "measurement_count", f.object.measurement_parents.count %>
               <% f.object.measurement_parents.each_with_index do |measurement, index| %>
-                  <tr>
-                    <td><%= hidden_field_tag "component_id_#{index}", measurement.id %>
-                      <%= measurement.component %></td>
-                    <td><%= text_field_tag "measure_#{index}", '', class: 'form-control' %>
+                  <div class="row">
+                     <div class="col-xs-2"><%= hidden_field_tag "component_id_#{index}", measurement.id %>
+                      <%= measurement.component %> </div>
+                     <div class="col-xs-2"><%= text_field_tag "measure_#{index}", '', class: 'form-control' %>
                       <%= hidden_field_tag "measured_by_#{index}", measurement.measured_by.try(:name) %>
                       <%= measurement.measured_by.try(:name) %>
                       <%= hidden_field_tag "min_measure", measurement.lower_measure, class: 'min_measure' %>
@@ -78,16 +77,16 @@
 //                         alert( $(this).val())
                           })
                       </script>
-                    </td>
+                     </div>
 
-                    <td><%= select_tag "recorded_by_id_#{index}",  options_for_select(User.power_user.map{|u| [u.name, u.id]}, selected: User.current_user.id), {class: 'form-control'}%></td>
-                    <td><%= text_field_tag "date_time_#{index}", Time.now ,class: 'form-control datetimepicker' %></td>
-                    <td class="flag_measure"><%= select_tag "flag_#{index}",options_for_select( ['', 'Low', 'Normal', 'High']),  class: 'form-control' %></td>
-                    <td><%= select_tag "measurement_status_id_#{index}", options_for_select(MeasurementStatus.active.pluck(:name, :id), selected: f.object.measurement_status.try(:id)),{ class: 'form-control'} %></td>
-                  </tr>
+                     <div class="col-xs-2"><%= select_tag "recorded_by_id_#{index}",  options_for_select(User.power_user.map{|u| [u.name, u.id]}, selected: User.current_user.id), {class: 'form-control'}%> </div>
+                     <div class="col-xs-2"><%= text_field_tag "date_time_#{index}", Time.now ,class: 'form-control datetimepicker' %> </div>
+                     <div class="col-xs-2" class="flag_measure"><%= select_tag "flag_#{index}",options_for_select( ['', 'Low', 'Normal', 'High']),  class: 'form-control' %> </div>
+                     <div class="col-xs-2"><%= select_tag "measurement_status_id_#{index}", options_for_select(MeasurementStatus.active.pluck(:name, :id), selected: f.object.measurement_status.try(:id)),{ class: 'form-control'} %> </div>
+                  </div>
               <% end %>
               </tbody>
-            </table>
+            </div>
           </div>
 
 
