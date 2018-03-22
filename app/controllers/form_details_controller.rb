@@ -105,17 +105,6 @@ class FormDetailsController < ApplicationController
     params.require(:form_detail).permit(:user_id, :formular_id)
   end
 
-  def back_url
-    case @formular.placement.to_i
-      when 1 then '/profile_record#tabs-forms'
-      when 2 then '/occupation_record#tabs-forms'
-      when 3 then '/medical_record#tabs-forms'
-      when 4 then '/socioeconomic_record#tabs-forms'
-      when 5 then '/cases'
-        else root_path
-    end
-  end
-
   def authorize_edit
     raise Unauthorized unless @form_detail.can?(:edit_form_details, :manage_form_details, :manage_roles) and User.current == @form_detail.user
   end

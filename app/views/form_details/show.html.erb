@@ -1,34 +1,63 @@
-<p id="notice"><%= notice %></p>
+<%= javascript_include_tag 'form_builder/form-builder.min' %>
+<%= javascript_include_tag 'form_builder/form-render.min' %>
 
-<p>
-  <strong>User:</strong>
-  <%= @form_result.user_id %>
-</p>
+<section id="widget-grid" class="cases_list">
+  <div class="col-xs-12 btn-edition tabs-section">
+    <div class="btn-group">
+      <%= render partial: 'action_menu' %>
+    </div>
+  </div>
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <p>
+        <strong>User:</strong>
+        <%= @form_detail.user %>
+      </p>
 
-<p>
-  <strong>Formular:</strong>
-  <%= @form_result.formular_id %>
-</p>
+      <p>
+        <strong>Formular:</strong>
+        <%= @form_detail.formular.name %>
+      </p>
 
-<p>
-  <strong>Type:</strong>
-  <%= @form_result.type %>
-</p>
+      <p>
+        <strong>Form Type:</strong>
+        <%= @form_detail.formular.form_type %>
+      </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @form_result.name %>
-</p>
+      <div id="formbuilder_content" >
 
-<p>
-  <strong>Value:</strong>
-  <%= @form_result.value %>
-</p>
+      </div>
+      <script>
+          $(document).ready(function(){
+              $('#formbuilder_content').formRender({
+                  formData: <%= raw @formular.form %>
+              });
+          })
+      </script>
 
-<p>
-  <strong>Long value:</strong>
-  <%= @form_result.long_value %>
-</p>
 
-<%= link_to 'Edit', edit_form_result_path(@form_result) %> |
-<%= link_to 'Back', form_results_path %>
+      <script>
+          $(document).ready(function(){
+              <% @form_detail.form_results.each do |result| %>
+              if($('input[name=<%= result.name %>][type=radio]').length > 0 )
+                  $('input[name=<%= result.name %>][value="<%= result.value %>"]').attr('checked', 'checked')
+              else
+                  $('#<%= result.name %>').val("<%= raw result.value %>")
+              <% end %>
+          })
+      </script>
+
+      <style>
+        #fb-rendered-form {
+          clear: both;
+          display: none;
+        }
+
+        #fb-rendered-form button{
+          float:right;
+        }
+      </style>
+    </article>
+  </div>
+</section>
+
