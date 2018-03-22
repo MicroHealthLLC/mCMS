@@ -66,11 +66,11 @@
 
 <script>
     $(document).ready(function () {
-        $("#cancelTopic_btn").hide();
-    });
-    function cancelTopicForm() {
         var thisform = $("#cancelTopic_btn").closest("form");
-        thisform.reset().addClass("thredded--is-compact").removeClass("thredded--is-expended");
         $("#cancelTopic_btn").hide();
-    }
+        function cancelTopicForm() {
+            thisform.reset().addClass("thredded--is-compact").removeClass("thredded--is-expended");
+            $("#cancelTopic_btn").hide();
+        }
+    });
 </script>
