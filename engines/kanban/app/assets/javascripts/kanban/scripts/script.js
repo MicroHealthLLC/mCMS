@@ -359,7 +359,7 @@ mpkModule.config(["$routeProvider", "$locationProvider", function(a) {
     }, a.openKanbanShortcut = function() {
         a.$broadcast("TriggerOpen")
     }, a.switchToKanban = function(b) {
-        "Switch to ..." != b && (a.kanban = c.get(b), c.setLastUsed(b), a.newName = b, f.path("/kanban/" + b), c.save(), location.reload(), a.switchTo = "Switch to ...")
+        "Switch to ..." != b && (a.kanban = c.get(b), c.setLastUsed(b), a.newName = b, f.path("/kanban/" + b), c.save(), /* location.reload(), */  a.switchTo = "Switch to ...")
     }, a.openHelpShortcut = function() {
         a.$broadcast("TriggerHelp")
     }, a.spinConfig = {
