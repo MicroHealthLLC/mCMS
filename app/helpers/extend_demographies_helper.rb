@@ -50,6 +50,11 @@ module ExtendDemographiesHelper
         add_breadcrumb I18n.t(:organizations), :organizations_path
       when 'UserExtendDemography'
         if User.current.can?(:manage_roles)
+          if object == User.current
+            add_breadcrumb 'Users', '/'
+          else
+            add_breadcrumb 'Users', '/users'
+          end
           add_breadcrumb 'Users', '/users'
         else
           add_breadcrumb 'Client Profile', '/profile_record#tabs-extend_demographic'
@@ -60,7 +65,11 @@ module ExtendDemographiesHelper
     if !User.current.can?(:manage_roles) and object.is_a? User
       add_breadcrumb object, '/profile_record#tabs-extend_demographic'
     else
-      add_breadcrumb object, object
+      if object == User.current
+        add_breadcrumb object, '/users/edit#tabs-extend_demographic'
+      else
+        add_breadcrumb object, object
+      end
     end
 
   end
