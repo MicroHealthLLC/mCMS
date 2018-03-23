@@ -7,6 +7,7 @@ class FormDetailsController < ApplicationController
   before_action :authorize_edit, only: [:edit, :update]
   before_action :authorize_delete, only: [:destroy]
 
+  include FormDetailsHelper
 
   # GET /form_results/1
   # GET /form_results/1.json
