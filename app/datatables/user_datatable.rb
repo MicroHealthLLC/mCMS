@@ -54,7 +54,7 @@ class UserDatatable < Abstract
   end
 
   def get_raw_records
-    User.unscoped.include_enumerations
+    User.unscoped.include_enumerations.where.not(id: User.current.id)
   end
 
   def link_user user
