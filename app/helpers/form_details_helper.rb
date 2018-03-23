@@ -5,7 +5,7 @@ module FormDetailsHelper
       when 2 then '/occupation_record#tabs-forms'
       when 3 then '/medical_record#tabs-forms'
       when 4 then '/socioeconomic_record#tabs-forms'
-      when 5 then (@form_detail and @form_detail.case_id) ? edit_case_path(@form_detail.case) : '/cases'
+      when 5 then (@form_detail and @form_detail.case_id) ? edit_case_path(@form_detail.case)+'#tabs-forms' : '/cases'
       else :back
     end
   end
