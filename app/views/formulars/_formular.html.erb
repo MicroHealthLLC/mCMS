@@ -15,7 +15,11 @@
             <ul class="dropdown-menu">
               <% forms.each do |form| %>
                   <li>
-                    <%= link_to "#{form.name}", new_formular_form_detail_path(form), class: 'dropdown-item' %>
+                    <% if @case %>
+                        <%= link_to "#{form.name}", new_formular_form_detail_path(form, case_id: @case.id), class: 'dropdown-item' %>
+                    <% else %>
+                        <%= link_to "#{form.name}", new_formular_form_detail_path(form), class: 'dropdown-item' %>
+                    <% end %>
                   </li>
               <% end %>
             </ul>

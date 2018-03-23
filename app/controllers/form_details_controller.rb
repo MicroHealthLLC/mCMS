@@ -16,7 +16,7 @@ class FormDetailsController < ApplicationController
 
   # GET /form_results/new
   def new
-    @form_detail = @formular.form_details.new(user_id: User.current.id)
+    @form_detail = @formular.form_details.new(user_id: User.current.id, case_id: params[:case_id])
   end
 
   # GET /form_results/1/edit
@@ -27,6 +27,7 @@ class FormDetailsController < ApplicationController
   # POST /form_results.json
   def create
     @form_detail = @formular.form_details.new(user_id: User.current.id)
+    @form_detail.case_id = params[:form_detail][:case_id]
     respond_to do |format|
       if @form_detail.save
         form = JSON.parse @formular.form

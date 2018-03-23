@@ -1,4 +1,7 @@
 <% details = FormDetail.includes(:formular).references(:formular).where(formular_id: formulars.pluck(:id), user_id: User.current.id) %>
+<% if @case
+     details = details.where(case_id: @case.id)
+   end %>
 <table class="table table-responsive" id="forms_table">
   <thead>
   <tr>

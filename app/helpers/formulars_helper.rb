@@ -9,7 +9,7 @@ module FormularsHelper
         when 2 then '/occupation_record'
         when 3 then '/medical_record'
         when 4 then '/socioeconomic_record'
-        when 5 then '/cases'
+        when 5 then
         else root_path
       end
     end
