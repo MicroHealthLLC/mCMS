@@ -4,7 +4,7 @@
                  'data-thredded-topic-form' => true,
                  'data-autocomplete-url' => autocomplete_users_path,
                  'data-autocomplete-min-length' => Thredded.autocomplete_min_length,
-                 onclick: '$(this).addClass("thredded--is-expended");$(this).removeClass("thredded--is-compact");$("#cancelTopic_btn").show();'
+                 onclick: '$(this).addClass("thredded--is-expended");$(this).removeClass("thredded--is-compact");$("#cancelTopic_div").show();'
              } do |form| %>
     <%= form.label :title, t('thredded.topics.form.title_label') %>
     <div class="form-group thredded--form-list on-top">
