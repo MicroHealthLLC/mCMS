@@ -40,7 +40,7 @@ class FormDetailsController < ApplicationController
           )
         end
 
-        format.html { redirect_to back_url , notice: 'Form result was successfully created.' }
+        format.html { redirect_to form_detail_back_url , notice: 'Form result was successfully created.' }
         format.json { render :show, status: :created, location: @form_detail }
       else
         format.html { render :new }
@@ -67,7 +67,7 @@ class FormDetailsController < ApplicationController
           form_result.save
         end
 
-        format.html { redirect_to back_url, notice: 'Form result was successfully updated.' }
+        format.html { redirect_to form_detail_back_url, notice: 'Form result was successfully updated.' }
         format.json { render :show, status: :ok, location: @form_detail }
       else
         format.html { render :edit }

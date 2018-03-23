@@ -1,5 +1,5 @@
 module FormDetailsHelper
-  def back_url
+  def form_detail_back_url
     case @formular.placement.to_i
       when 1 then '/profile_record#tabs-forms'
       when 2 then '/occupation_record#tabs-forms'
