@@ -1,12 +1,15 @@
-<%= t @enumeration.option_name %>
+<section id="widget-grid" class="show_customer_account">
+  <div class="row">
+    <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-<%=form_for :enumeration, object: @enumeration, :url => enumeration_path(@enumeration), html: {method: 'put', class: 'form-horizontal' } do |f| %>
-    <%= f.hidden_field :type  %>
-    <%= render :partial => 'form', :locals => {:f => f} %>
-    <div class="form-group" >
-      <div class="col-md-11">
-        <%= link_to t('button_cancel'), enumerations_path, class: 'btn btn-warning pull-right' %>
-        <%= f.submit t(:button_save), class: 'btn btn-success pull-right' %>
-      </div>
-    </div>
-<% end %>
+          <%= render :partial => 'form',
+                     layout: 'shared/smart_widget_wrapper',
+                     locals: {
+                         wid_id: 'enumeration',
+                         wid_title: "Edit #{t @enumeration.option_name}"
+                     }  %>
+
+
+    </article>
+  </div>
+</section>

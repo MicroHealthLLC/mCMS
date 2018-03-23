@@ -3,6 +3,8 @@ class Role < ApplicationRecord
   has_many :job_details, :dependent => :restrict_with_error
   has_many :users, :dependent => :restrict_with_error
 
+  validates_uniqueness_of :role_type_id
+  validates_presence_of :role_type_id
   # before_save do
   #   self.name = role_type
   # end

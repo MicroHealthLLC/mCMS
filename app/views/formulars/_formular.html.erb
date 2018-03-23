@@ -8,10 +8,19 @@
       <span class="caret"></span>
     </button>
     <ul class="dropdown-menu">
-      <% formulars.each do |form| %>
-          <li>
-            <%= link_to "#{form.name}", new_formular_form_detail_path(form), class: 'dropdown-item' %>
+      <% form_types = formulars.group_by{|f| f.form_type } %>
+      <% form_types.each do |form_type, forms| %>
+          <li class="dropdown-submenu" >
+            <%= link_to (form_type || 'Other'), '#' %>
+            <ul class="dropdown-menu">
+              <% forms.each do |form| %>
+                  <li>
+                    <%= link_to "#{form.name}", new_formular_form_detail_path(form), class: 'dropdown-item' %>
+                  </li>
+              <% end %>
+            </ul>
           </li>
+
       <% end %>
     </ul>
   </div>
