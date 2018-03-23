@@ -57,13 +57,13 @@ module ExtendDemographiesHelper
           end
           add_breadcrumb 'Users', '/users'
         else
-          add_breadcrumb 'Client Profile', '/profile_record#tabs-extend_demographic'
+          add_breadcrumb 'Client Profile', '/profile_record'
         end
           else
         # nothing to do
     end
     if !User.current.can?(:manage_roles) and object.is_a? User
-      add_breadcrumb object, '/profile_record#tabs-extend_demographic'
+      add_breadcrumb object, '/profile_record'
     else
       if object == User.current
         add_breadcrumb object, '/users/edit#tabs-extend_demographic'
