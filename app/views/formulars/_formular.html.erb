@@ -11,7 +11,7 @@
       <% form_types = formulars.group_by{|f| f.form_type } %>
       <% form_types.each do |form_type, forms| %>
           <li class="dropdown-submenu" >
-            <%= link_to (form_type || 'Other'), '#' %>
+            <%= link_to "New #{(form_type || 'Other')}", '#' %>
             <ul class="dropdown-menu">
               <% forms.each do |form| %>
                   <li>
