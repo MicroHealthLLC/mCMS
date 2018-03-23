@@ -32,9 +32,9 @@
 
     <% end %>
 
-    <div class="row" id="cancelTopic_div" style="margin-top: -65px;">
+    <div class="row" id="cancelTopic_div" style="margin: -65px 0 65px 0;">
       <div class="col-sm-12">
-         <button id="cancelTopic_btn" class='btn btn-warning pull-right' onclick='cancelTopicForm();' style='margin-right: 160px;'>Cancel</button>
+         <button id="cancelTopic_btn" class='btn btn-warning pull-right' style='margin-right: 160px;'>Cancel</button>
       </div>
     </div>
 
@@ -70,11 +70,12 @@
 
 <script>
     $(document).ready(function () {
+        var cancelTopic_btn = document.getElementById("cancelTopic_btn");
         var thisform = $("#cancelTopic_btn").closest("form");
         $("#cancelTopic_div").hide();
-        function cancelTopicForm() {
+        cancelTopic_btn.addEventListener("click", function () {
             thisform.reset().addClass("thredded--is-compact").removeClass("thredded--is-expended");
             $("#cancelTopic_div").hide();
-        }
+        });
     });
 </script>
