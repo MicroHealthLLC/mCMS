@@ -16,7 +16,7 @@
   </tbody>
 </table>
 <% columns= [  { "searchable": true, "orderable": true } ]
-   if @case
+   if @case.nil?
      columns << { "searchable": true, "orderable": true }
    end
 
