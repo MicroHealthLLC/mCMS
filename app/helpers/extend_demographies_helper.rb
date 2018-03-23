@@ -1,30 +1,36 @@
 module ExtendDemographiesHelper
   def url_back
-    if @extend_demography.department_id
-      departments_path
-    elsif @extend_demography.contact_id
-      contacts_url
-    elsif @extend_demography.organization_id
-      organizations_path
-    elsif @extend_demography.affiliation_id
-      affiliations_path
-    elsif @extend_demography.insurance_id
-      insurances_path
-    elsif @extend_demography.case_support_id
-      edit_case_support_path(@extend_demography.case_support_id)
-    elsif User.current != User.current_user
-      '/profile_record#tabs-extend_demographic'
+    url = if @extend_demography.department_id
+            departments_path
+          elsif @extend_demography.contact_id
+            contact_path(@extend_demography.contact)
+          elsif @extend_demography.organization_id
+            organization_path(@extend_demography.organization)
+          elsif @extend_demography.affiliation_id
+            affiliation_path(@extend_demography.affiliation)
+          elsif @extend_demography.insurance_id
+            insurance_path(@extend_demography.insurance)
+          elsif @extend_demography.case_support_id
+            edit_case_support_path(@extend_demography.case_support_id)
+          elsif User.current != User.current_user
+            '/profile_record'
+          else
+            if  User.current.can?(:manage_roles)
+              if @extend_demography.user != User.current
+                user_path(@extend_demography.user)
+              else
+                '/users/edit'
+              end
+            else
+              '/profile_record'
+            end
+          end
+    if @identification and @extend_demography.organization_id.nil? and  @extend_demography.insurance_id.nil?
+      url + '#tabs-identification'
     else
-      if  User.current.can?(:manage_roles)
-        if @extend_demography.user != User.current
-          user_path(@extend_demography.user) + '#tabs-extend_demographic'
-        else
-          '/users/edit#tabs-extend_demographic'
-        end
-      else
-        '/profile_record#tabs-extend_demographic'
-      end
+      url + '#tabs-extend_demographic'
     end
+
   end
 
   def extend_demography_breadcrumb

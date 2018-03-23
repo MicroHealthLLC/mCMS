@@ -16,6 +16,14 @@ class ExtendDemography < ApplicationRecord
   has_many :social_media, foreign_key: :extend_demography_id
   accepts_nested_attributes_for :social_media, reject_if: :all_blank, allow_destroy: true
 
+  belongs_to :contact
+  belongs_to :organization
+  belongs_to :affiliation
+  belongs_to :insurance
+  belongs_to :case_support
+  belongs_to :user
+
+
   def object
   end
 
