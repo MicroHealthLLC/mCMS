@@ -71,11 +71,9 @@
 <script>
     $(document).ready(function () {
         var cancelTopic_btn = document.getElementById("cancelTopic_btn");
-        var thisform = $("#cancelTopic_btn").closest("form");
         $("#cancelTopic_div").hide();
         cancelTopic_btn.addEventListener("click", function () {
-            thisform.reset().addClass("thredded--is-compact").removeClass("thredded--is-expended");
-            $("#cancelTopic_div").hide();
+            location.reload();
         });
     });
 </script>
