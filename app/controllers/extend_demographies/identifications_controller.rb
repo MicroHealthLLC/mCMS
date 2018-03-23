@@ -117,7 +117,6 @@ module ExtendDemographies
 
     def set_extend_demography
       @extend_demography = ExtendDemography.find(params[:extend_demography_id])
-      @url_back = url_back
     rescue ActiveRecord::RecordNotFound
       render_404
     end

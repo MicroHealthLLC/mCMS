@@ -16,8 +16,8 @@ module ExtendDemographiesHelper
       '/profile_record#tabs-extend_demographic'
     else
       if  User.current.can?(:manage_roles)
-        if @user != User.current
-          user_path(@user) + '#tabs-extend_demographic'
+        if @extend_demography.user != User.current
+          user_path(@extend_demography.user) + '#tabs-extend_demographic'
         else
           '/users/edit#tabs-extend_demographic'
         end
