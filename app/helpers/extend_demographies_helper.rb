@@ -5,7 +5,7 @@ module ExtendDemographiesHelper
           elsif @extend_demography.contact_id
             contact_path(@extend_demography.contact)
           elsif @extend_demography.organization_id
-            organization_path(@extend_demography.organization)
+            organizations_url
           elsif @extend_demography.affiliation_id
             affiliation_path(@extend_demography.affiliation)
           elsif @extend_demography.insurance_id
@@ -25,6 +25,7 @@ module ExtendDemographiesHelper
               '/profile_record'
             end
           end
+    return url if  @extend_demography.organization_id
     if @identification and @extend_demography.organization_id.nil? and  @extend_demography.insurance_id.nil?
       url + '#tabs-identification'
     else
