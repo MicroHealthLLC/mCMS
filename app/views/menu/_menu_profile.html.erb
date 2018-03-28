@@ -3,6 +3,11 @@
       <a href= "/profile_record" title="Profile record"><i class="fa fa-lg fa-fw fa-user"></i> <span class="menu-item-parent">Client Profile</span></a>
     </li>
 
+    <% if module_enabled?('timeline') %>
+        <li class="<%= menu_active?('timeline') %>">
+          <a href="/timeline/index" title="Timeline"><i class="fa fa-lg fa-fw fa-square"></i><span class="menu-item-parent">Timeline</span></a>
+        </li>
+    <% end %>
 
 <% else %>
     <li class="<%= menu_active?('devise/registrations') %>">

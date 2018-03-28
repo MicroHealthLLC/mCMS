@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'timeline/index'
+
   resources :formulars do
     resources :form_details, except: [:index]
   end
