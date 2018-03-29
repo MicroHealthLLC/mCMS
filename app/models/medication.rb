@@ -86,7 +86,6 @@ class Medication < ApplicationRecord
     output = ""
     output<< "<h2>Medication ##{id} </h2><br/>"
     output<<"<b>Medication : </b> #{medication_synonym}<br/>"
-    output<<"<b>Medication  TTY: </b> #{medication_tty}<br/>"
     output<<"<b>Direction : </b> #{description}<br/>"
     output<<"<b>count : </b> #{dose}<br/>"
     output<<"<b>Date Prescribed: </b> #{date_prescribed}<br/>"
