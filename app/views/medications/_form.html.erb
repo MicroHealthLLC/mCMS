@@ -23,22 +23,37 @@
           <%= f.hidden_field :medication_tty, class: 'form-control' %>
           <%= f.hidden_field :medication, class: 'form-control' %>
           <%= f.hidden_field :medication_synonym, class: 'form-control' %>
+          <p hidden style="display: none" id="mediation_dialog">
+            <b>LABEL: </b><span><%= f.object.medication_synonym %></span><br/>
+            <b>NAME: </b><span><%= f.object.medication %></span><br/>
+            <b>RXCUI: </b><span><%= f.object.rxcui %></span><br/>
+            <b>TTY: </b><span><%= f.object.medication_tty %></span><br/>
+          </p>
 
           <script>
-            $(document).ready(function(){
-              $('#med').autocomplete({
-                source: "/medication_fetch.json",
-                minLength: 2,
-                select: function( event, ui ) {
-                  $('#medication_medication').val(ui.item.name)
-                  $('#medication_rxcui').val(ui.item.rxcui)
-                  $('#medication_medication_tty').val(ui.item.tty)
-                  $('#medication_medication_synonym').val(ui.item.label)
-                }
+              $(document).ready(function(){
+                  $('#med').autocomplete({
+                      source: "/medication_fetch.json",
+                      minLength: 2,
+                      select: function( event, ui ) {
+                          $('#medication_medication').val(ui.item.name);
+                          $('#medication_rxcui').val(ui.item.rxcui);
+                          $('#medication_medication_tty').val(ui.item.tty);
+                          $('#medication_medication_synonym').val(ui.item.label);
+                          $("#mediation_dialog").html("" +
+                              "<b>LABEL: </b><span>"+ui.item.label+"</span><br/>" +
+                              "<b>NAME: </b><span>"+ui.item.name+"</span><br/>" +
+                              "<b>RXCUI: </b><span>"+ui.item.rxcui+"</span><br/>" +
+                              "<b>TTY: </b><span>"+ui.item.tty+"</span><br/>"
+                            )
+                      }
+                  })
               })
-            })
           </script>
 
+        </div>
+        <div class="col-md-1">
+          <%= link_to 'Info', "#", class: 'btn btn-info', onclick: '$("#mediation_dialog").dialog();' %>
         </div>
       </div>
 
