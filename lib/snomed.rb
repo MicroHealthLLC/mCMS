@@ -33,12 +33,13 @@ module Snomed
     json = get_json(term, default_search, options)
     data = []
 
+    new_ticket = get_st
     if json['result']['results'].first['name'] == 'NO RESULTS'
       json = get_json(term, default_search, options.reverse_merge({searchType: 'approximate', pageSize: 200 }))
       if json['result']['results']
         results = json['result']['results'].select{|v| v['name'].include?(term) }
         data = results.map do |d|
-          {id: d['name'], name: d['name'], label: d['name'] }
+          {id: d['name'], name: d['name'], label: d['name'], uri: "#{d['uri']}?ticket=#{new_ticket}", ui: d['ui'] }
         end
         if data.empty?
           data = [{id: 'NO RESULTS', name: 'NO RESULTS', label: 'NO RESULTS' }]
@@ -47,7 +48,7 @@ module Snomed
     # data = get_snomed_from_ihtsdotools(term, default_search)
     elsif json['result']['results']
       data = json['result']['results'].map do |d|
-        {id: d['name'], name: d['name'], label: d['name'] }
+        {id: d['name'], name: d['name'], label: d['name'], uri: "#{d['uri']}?ticket=#{new_ticket}", ui: d['ui'] }
       end
     end
 

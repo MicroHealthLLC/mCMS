@@ -21,6 +21,9 @@
         <div class="col-md-9">
           <%= text_field_tag :icdcm_code, f.object.icdcm_code,  class: 'form-control', placeholder: 'Type to Search' %>
           <%= f.hidden_field :icdcm_code_id %>
+          <p hidden style="display: none" id="dialog">
+            <%= f.object.icdcm_code %>
+          </p>
           <script>
               $(document).ready(function(){
                   $('#icdcm_code').autocomplete({
@@ -28,10 +31,14 @@
                       minLength: 2,
                       select: function( event, ui ) {
                           $('#appointment_capture_icdcm_code_id').val(ui.item.id)
+                          $('#dialog').html(ui.item.label)
                       }
                   })
               })
           </script>
+        </div>
+        <div class="col-md-1">
+          <%= link_to 'Info', "#", class: 'btn btn-info', onclick: '$("#other_history_dialog").dialog();' %>
         </div>
       </div>
 

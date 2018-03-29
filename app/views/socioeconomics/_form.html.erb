@@ -36,10 +36,20 @@
                 minLength: 2,
                 select: function( event, ui ) {
                   $('#socioeconomic_snomed').val(ui.item.id)
+                    $('#link_info').show();
+                    $('#dialog').html(
+                        "<b>ID:</b><span> "+ ui.item.ui +"</span><br/>"+
+                        "<b>NAME:</b><span> "+ ui.item.label+"</span><br/>"+
+                        "<b>URI:</b><span><a target='_blank' href='" + ui.item.uri +"' > click here</a></span>"
+                    )
                 }
               })
             })
           </script>
+        </div>
+        <p hidden style="display: none" id="dialog">           </p>
+        <div class="col-md-1" style="display: none" id="link_info">
+          <%= link_to 'Info', "#", class: 'btn btn-info', onclick: '$("#dialog").dialog();' %>
         </div>
       </div>
       <div class="form-group">
