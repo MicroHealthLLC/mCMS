@@ -6,6 +6,7 @@ module TimelineHelper
         {:name => 'health_record', :partial => 'timeline/tabs/health_record_timeline', :label => :health_record},
         {:name => 'socioeconomic_record', :partial => 'timeline/tabs/socioeconomic_timeline', :label => :socioeconomic},
         {:name => 'case_record', :partial => 'timeline/tabs/case_timeline', :label => :case_record},
+        {:name => 'other_record', :partial => 'timeline/tabs/other_record_timeline', :label => :other_record},
 
     ]
     tabs

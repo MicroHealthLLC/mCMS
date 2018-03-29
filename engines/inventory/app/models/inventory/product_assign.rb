@@ -25,8 +25,15 @@ module Inventory
       pdf.table([[ "Product: ", " #{product.name}"]], :column_widths => [ 150, 373])
       pdf.table([[ "Date: ", " #{date}"]], :column_widths => [ 150, 373])
       pdf.table([[ "Assignment status: ", " #{assignment_status}"]], :column_widths => [ 150, 373])
-      end
+    end
 
-
+    def for_mail
+      output = ""
+      output<< "<h2>Inventory ##{id} </h2>"
+      output<<"<b>Product: : </b> #{product.name}<br/>"
+      output<<"<b>Date: </b> #{date}<br/>"
+      output<<"<b>Assignment status: </b> #{assignment_status}<br/>"
+      output.html_safe
+    end
   end
 end

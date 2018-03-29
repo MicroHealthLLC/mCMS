@@ -2,12 +2,20 @@ class TimelineController < ProtectForgeryApplication
   include ApplicationHelper
   before_action  :authenticate_user!
   def index
-    # timeline for client patient
-    load_client_profile_timeline
-    load_occupational_record_timeline
-    load_medical_record_timeline
-    load_socioeconomic_record_timeline
-    load_cases_timeline
+    if User.current.can?(:manage_roles)
+      redirect_to root_path
+    else
+      # timeline for client patient
+      load_client_profile_timeline
+      load_occupational_record_timeline
+      load_medical_record_timeline
+      load_socioeconomic_record_timeline
+      load_cases_timeline
+
+      #Inventory, all files and client journals
+      other_record_timeline
+    end
+
   end
 
   def load_client_profile_timeline
@@ -99,6 +107,15 @@ class TimelineController < ProtectForgeryApplication
 
     @timeline.flatten!.compact!
     @timeline.sort_by!{|a| Time.now - a.updated_at }
+  end
+
+  def other_record_timeline
+    @record_timeline = []
+    @record_timeline << Inventory::ProductAssign.visible if module_enabled?('inventory/product_assigns')  && can?(:manage_roles, :view_product_assigns)
+    @record_timeline << ClientJournal.visible if module_enabled?('client_journals')  && can?(:manage_roles, :view_client_journals, :manage_client_journals)
+    @record_timeline << Attachment.visible if module_enabled?('all_files')  && can?(:manage_roles, :manage_documents)
+    @record_timeline.flatten!.compact!
+    @record_timeline.sort_by!{|a| Time.now - a.updated_at }
   end
 
 end
