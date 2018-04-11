@@ -180,7 +180,6 @@ gem "audited", "~> 4.4"
 gem 'rails_email_validator'
 gem "simple_calendar", "~> 2.0"
 gem 'sidekiq'
-gem 'newrelic_rpm'
 gem 'twilio-ruby', '~> 4.11.1'
 gem 'textris'
 
