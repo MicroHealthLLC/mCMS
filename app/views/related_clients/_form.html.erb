@@ -3,7 +3,7 @@
   <%= form_for(related_client, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
       <% if related_client.errors.any? %>
           <div id="error_explanation">
-            <h2><%= pluralize(related_client.errors.count, "error") %> prohibited this problem list from being saved:</h2>
+            <h2><%= pluralize(related_client.errors.count, "error") %> prohibited this related client from being saved:</h2>
 
             <ul>
               <% related_client.errors.full_messages.each do |message| %>
