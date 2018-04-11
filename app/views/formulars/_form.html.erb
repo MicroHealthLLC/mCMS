@@ -6,7 +6,7 @@
     <%= form_for( @formular, html: { class: 'form-horizontal', id: 'formular_form',  :multipart => true}) do |f| %>
         <% if  @formular.errors.any? %>
             <div id="error_explanation">
-              <h2><%= pluralize( @formular.errors.count, "error") %> prohibited this daily living from being saved:</h2>
+              <h2><%= pluralize( @formular.errors.count, "error") %> prohibited this form from being saved:</h2>
 
               <ul>
                 <%  @formular.errors.full_messages.each do |message| %>
