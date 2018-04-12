@@ -4,7 +4,7 @@
   <%= form_for(legal, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
       <% if legal.errors.any? %>
           <div id="error_explanation">
-            <h2><%= pluralize(legal.errors.count, "error") %> prohibited this daily living from being saved:</h2>
+            <h2><%= pluralize(legal.errors.count, "error") %> prohibited this legal from being saved:</h2>
 
             <ul>
               <% legal.errors.full_messages.each do |message| %>

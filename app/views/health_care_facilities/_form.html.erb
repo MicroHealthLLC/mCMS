@@ -5,7 +5,7 @@
       <%= form_for(health_care_facility, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
           <% if health_care_facility.errors.any? %>
               <div id="error_explanation">
-                <h2><%= pluralize(health_care_facility.errors.count, "error") %> prohibited this health case from being saved:</h2>
+                <h2><%= pluralize(health_care_facility.errors.count, "error") %> prohibited this health care facility from being saved:</h2>
 
                 <ul>
                   <% health_care_facility.errors.full_messages.each do |message| %>

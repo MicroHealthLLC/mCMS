@@ -4,7 +4,7 @@
   <%= form_for(@social_media, url: url,  html: {  class: 'form-horizontal' }) do |f| %>
       <% if @social_media.errors.any? %>
           <div id="error_explanation">
-            <h2><%= pluralize(@social_media.errors.count, "error") %> prohibited this education from being saved:</h2>
+            <h2><%= pluralize(@social_media.errors.count, "error") %> prohibited this social media from being saved:</h2>
 
             <ul>
               <% @social_media.errors.full_messages.each do |message| %>

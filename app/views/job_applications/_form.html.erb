@@ -6,7 +6,7 @@
       <%= form_for(job_application, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
           <% if job_application.errors.any? %>
               <div id="error_explanation">
-                <h2><%= pluralize(job_application.errors.count, "error") %> prohibited this Injury from being saved:</h2>
+                <h2><%= pluralize(job_application.errors.count, "error") %> prohibited this job application from being saved:</h2>
 
                 <ul>
                   <% job_application.errors.full_messages.each do |message| %>

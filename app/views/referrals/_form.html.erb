@@ -5,7 +5,7 @@
     <%= form_for(referral, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
         <% if referral.errors.any? %>
             <div id="error_explanation">
-              <h2><%= pluralize(referral.errors.count, "error") %> prohibited this problem list from being saved:</h2>
+              <h2><%= pluralize(referral.errors.count, "error") %> prohibited this referral from being saved:</h2>
 
               <ul>
                 <% referral.errors.full_messages.each do |message| %>
