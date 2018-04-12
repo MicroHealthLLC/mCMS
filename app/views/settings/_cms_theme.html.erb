@@ -24,6 +24,7 @@
           <span   data-target='#theme_style' data-style="smart-style-3"  id="smart-style-3" data-skinlogo="img/logo-pale.png" class="cms_styles btn btn-xs btn-block txt-color-white margin-top-5" style="background:#f78c40"><i class="fa fa-check fa-fw"></i>Google Skin</span>
           <span   data-target='#theme_style' data-style="smart-style-4"  id="smart-style-4" data-skinlogo="img/logo-pale.png" class="cms_styles btn btn-xs btn-block txt-color-white margin-top-5" style="background: #bbc0cf; border: 1px solid #59779E; color: #17273D !important;"><i class="fa fa-check fa-fw"></i>PixelSmash</span>
           <span   data-target='#theme_style' data-style="smart-style-5"  id="smart-style-5" data-skinlogo="img/logo-pale.png" class="cms_styles btn btn-xs btn-block txt-color-white margin-top-5" style="background: rgba(153, 179, 204, 0.2); border: 1px solid rgba(121, 161, 221, 0.8); color: #17273D !important;"><i class="fa fa-check fa-fw"></i>Glass</span>
+          <span   data-target='#theme_style' data-style="smart-style-6"  id="smart-style-6" data-skinlogo="img/logo-pale.png" class="cms_styles btn btn-xs btn-block txt-color-white margin-top-5" style="background: #2196F3; border: 1px solid rgba(0, 0, 0, 0.3); color: #FFF !important;"><i class="fa fa-check fa-fw"></i>MaterialDesign</span>
           <%= hidden_field_tag :theme_style, @admin_theme_setting["theme_style"] %>
           <script>
             $( function() {
@@ -48,6 +49,7 @@
             <span   data-target='#client_theme_style' data-style="smart-style-3" id="client-smart-style-3" data-skinlogo="img/logo-pale.png" class="cms_styles btn btn-xs btn-block txt-color-white margin-top-5" style="background:#f78c40"><i class="fa fa-check fa-fw"></i>Google Skin</span>
             <span   data-target='#client_theme_style' data-style="smart-style-4" id="client-smart-style-4" data-skinlogo="img/logo-pale.png" class="cms_styles btn btn-xs btn-block txt-color-white margin-top-5" style="background: #bbc0cf; border: 1px solid #59779E; color: #17273D !important;"><i class="fa fa-check fa-fw"></i>PixelSmash</span>
             <span   data-target='#client_theme_style' data-style="smart-style-5" id="client-smart-style-5" data-skinlogo="img/logo-pale.png" class="cms_styles btn btn-xs btn-block txt-color-white margin-top-5" style="background: rgba(153, 179, 204, 0.2); border: 1px solid rgba(121, 161, 221, 0.8); color: #17273D !important;"><i class="fa fa-check fa-fw"></i>Glass</span>
+            <span   data-target='#client_theme_style' data-style="smart-style-6" id="client-smart-style-6" data-skinlogo="img/logo-pale.png" class="cms_styles btn btn-xs btn-block txt-color-white margin-top-5" style="background: #2196F3; border: 1px solid rgba(0, 0, 0, 0.3); color: #FFF !important;"><i class="fa fa-check fa-fw"></i>MaterialDesign</span>
             <%= hidden_field_tag :client_theme_style, @client_theme_setting["theme_style"] %>
             <div class="form-group margin-top-10" >
               <div class="col-xs-12">
@@ -92,6 +94,7 @@
       $('body').removeClass("smart-style-3");
       $('body').removeClass("smart-style-4");
       $('body').removeClass("smart-style-5");
+      $('body').removeClass("smart-style-6");
       $('body').addClass(id);
 
       $('html').removeClass("smart-style-0");
@@ -100,6 +103,7 @@
       $('html').removeClass("smart-style-3");
       $('html').removeClass("smart-style-4");
       $('html').removeClass("smart-style-5");
+      $('html').removeClass("smart-style-6");
       $('html').addClass(id)
     })
     $('#smart-fixed-header').on('change', function(){
