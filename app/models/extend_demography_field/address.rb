@@ -55,20 +55,20 @@ class Address < ApplicationRecord
   end
 
   def to_s
-    "(#{address_type}) #{full_address}"
+    address
   end
 
   def to_html
     output = "<div class='col-xs-12'>"
     output<< "<div class='col-xs-2'>#{address_type} </div>"
-    # output<< "<div class='col-xs-8'>#{full_address} </div>"
+    output<< "<div class='col-xs-8'>#{address} </div>"
     # output<< "<div class='col-xs-2'>#{state_type}  #{country_type} </div>"
     output<< "</div>"
     output.html_safe
   end
 
   def to_pdf(pdf, show_user = true)
-    pdf.table([[ "Address type:", " #{address_type} ", " Address:", " #{full_address}"]], :column_widths => [ 100,150, 100, 173])
+    pdf.table([[ "Address type:", " #{address_type} ", " Address:", " #{address}"]], :column_widths => [ 100,150, 100, 173])
   end
 
 end

@@ -1,14 +1,14 @@
-<table class="table  table-responsive">
+<table class="table  table-responsive" id="organization_table">
   <thead>
   <tr>
     <th><%= t :label_name %></th>
     <th><%= t :organization_type %></th>
-    <th colspan="2"></th>
+    <th ></th>
+    <th ></th>
   </tr>
   </thead>
 
   <tbody>
-  <% if organizations.any? %>
       <% organizations.each do |organization| %>
           <tr>
             <td><%= organization.name %></td>
@@ -17,11 +17,10 @@
             <td><%= delete_link( organization)%></td>
           </tr>
       <% end %>
-  <% else %>
-      <tr align="center">
-        <td colspan="4"><%= t('label_no_data') %></td>
-      </tr>
-  <% end %>
-
   </tbody>
 </table>
+<script>
+  $(document).ready(function(){
+      initDataTable('organization_table')
+  })
+</script>
