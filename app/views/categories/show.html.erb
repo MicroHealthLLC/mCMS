@@ -12,6 +12,15 @@
   </div>
 </section>
 
-<% if false %>
-    <%= render partial: "document_managers/documents_list" %>
+<% if @categories %>
+    <div class="row">
+      <article class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <%= render partial: 'list',
+                   layout: 'shared/smart_widget_wrapper',
+                   locals: {
+                       wid_id: 'categories',
+                       wid_title: ' '
+                   } %>
+      </article>
+    </div>
 <% end %>

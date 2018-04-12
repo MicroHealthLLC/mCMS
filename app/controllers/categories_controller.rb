@@ -54,28 +54,33 @@ class CategoriesController < ProtectForgeryApplication
   def new
     @category = Category.new
     # Get categories and groups for selection dropdowns
-    @categories = Category.all.map {|cat| [cat.name, cat.id]}
+    @parent_categories = Category.all.map {|cat| [cat.name, cat.id]}
     @groups = Group.all.map {|group| [group.name, group.id]}
   end
 
   def create
     @category = Category.new(category_params)
+    @parent_categories = Category.all.map {|cat| [cat.name, cat.id]}
     if @category.save
       redirect_to categories_path
     else
       flash[:error] = "Unable to save category: #{@category.errors.full_messages.to_sentence}"
-      redirect_to "/"
+     render :new
     end
   end
 
   def edit
     # Get categories and groups for selection dropdowns
-    @categories = Category.all.map {|cat| [cat.name, cat.id]}
-    @categories.delete([@category.name, @category.id])
+    @categories = @category.children
+    @parent_categories = Category.all.map {|cat| [cat.name, cat.id]}
+    @parent_categories.delete([@category.name, @category.id])
     @groups = Group.all.map {|group| [group.name, group.id]}
   end
 
   def update
+    @categories = @category.children
+    @parent_categories = Category.all.map {|cat| [cat.name, cat.id]}
+    @parent_categories.delete([@category.name, @category.id])
     @category.update_attributes(category_params)
     redirect_to categories_path(@category)
   end
