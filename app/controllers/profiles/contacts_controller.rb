@@ -112,6 +112,7 @@ class ContactsController < UserProfilesController
   # Use callbacks to share common setup or constraints between actions.
   def set_contact
     @contact = Contact.find(params[:id])
+    @extend_demography = @contact.extend_informations
     add_breadcrumb @contact, @contact
   rescue ActiveRecord::RecordNotFound
     render_404
