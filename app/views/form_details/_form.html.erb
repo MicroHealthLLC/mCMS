@@ -35,10 +35,20 @@
 <script>
     $(document).ready(function(){
         <% @form_detail.form_results.each do |result| %>
-        if($('input[name=<%= result.name %>][type=radio]').length > 0 )
-            $('input[name=<%= result.name %>][value="<%= result.value %>"]').attr('checked', 'checked')
-        else
-          $('#<%= result.name %>').val("<%= raw result.value %>")
+          if($('input[name=<%= result.name %>][type=radio]').length > 0 )
+              $('input[name=<%= result.name %>][value="<%= result.value %>"]').attr('checked', 'checked')
+          else if( $('input[name="<%= result.name %>[]"][type=checkbox]').length > 0){
+
+              <% if (JSON.parse(result.value).is_a?(Array) rescue false )%>
+                <% JSON.parse(result.value).each do |value| %>
+                  $('input[name="<%= result.name %>[]"][value="<%= raw value %>"]').attr('checked', 'checked')
+                <% end %>
+              <% else %>
+                $('input[name="<%= result.name %>[]"][value="<%= result.value %>"]').attr('checked', 'checked')
+              <% end %>
+
+          }else
+            $('#<%= result.name %>').val('<%= raw result.value %>')
         <% end %>
     })
 </script>
