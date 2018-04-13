@@ -35,7 +35,7 @@
           <a class="ui-tabs-anchor" id="link-tabs-faxes" href="#tabs-faxes">Faxes</a></li>
         <li class="ui-state-default ui-corner-top">
           <a class="ui-tabs-anchor" id="link-tabs-phones" href="#tabs-phones">Phones</a></li>
-        <% unless extend_demography.object.is_a?(Affiliation) %>
+        <% unless extend_demography.object.is_a?(Affiliation) or  extend_demography.object.is_a?(Contact) %>
             <li class="ui-state-default ui-corner-top">
               <a class="ui-tabs-anchor" id="link-tabs-identifications" href="#tabs-identifications">Identifications</a></li>
         <% end %>
@@ -123,7 +123,7 @@
         </div>
       </div>
 
-      <% unless extend_demography.object.is_a?(Affiliation)%>
+      <% unless extend_demography.object.is_a?(Affiliation) or  extend_demography.object.is_a?(Contact)%>
           <div id='tabs-identifications' class="nav-tabs-div ui-tabs-panel ui-widget-content ui-corner-bottom"  >
           <div class="col-xs-12 btn-edition tabs-section">
             <div class="btn-group">
