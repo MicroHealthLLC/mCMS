@@ -5,7 +5,7 @@
        <div class="  form-group col-md-12">
         <%= f.label :identification_type_id, class: 'col-md-2 control-label' %>
         <div class="col-md-8">
-          <%= f.select :identification_type_id, options_for_select(IdentificationType.active.where.not(id: @extend_demography.identifications.pluck(:identification_type_id) - [f.object.identification_type_id] ).pluck(:name, :id), selected: f.object.identification_type.try(:id) ), {} , {class: 'form-control'}%>
+          <%= f.select :identification_type_id, options_for_select(IdentificationType.active.pluck(:name, :id), selected: f.object.identification_type.try(:id) ), {} , {class: 'form-control'}%>
         </div>
       </div>
 
