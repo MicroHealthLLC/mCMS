@@ -10,47 +10,56 @@
           </ul>
         </div>
     <% end %>
-    <fieldset>
-      <legend></legend>
-      <%= f.hidden_field :user_id %>
-      <div class="form-group">
-        <%= f.label t('label_name'), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :name, class: 'form-control' %>
-        </div>
-      </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+          <%= f.hidden_field :user_id %>
+          <div class="form-group">
+            <%= f.label t('label_name'), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :name, class: 'form-control' %>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <%= f.label t('organization_type'), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :organization_type_id, options_helper(OrganizationType, organization.organization_type_id) ,{}, {class: 'form-control'} %>
-        </div>
+          <div class="form-group">
+            <%= f.label t('organization_type'), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :organization_type_id, options_helper(OrganizationType, organization.organization_type_id) ,{}, {class: 'form-control'} %>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-md-12">
+              <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+            </div>
+            <%= f.simple_fields_for :organization_attachments do |attachment| %>
+                <%= render 'attachments/attachment_show', :f => attachment %>
+            <% end %>
+            <div id="attachment_fields" class="col-xs-2 margin-top-10 " style="padding-right: 2px;" >
+              <%= link_to_add_association 'add file', f, :organization_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+            </div>
+          </div>
+        </fieldset>
       </div>
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+          <div class="form-group">
+            <%= f.label t(:label_note), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_area :note, class: 'form-control ck-editor' %>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
 
-      <div class="form-group">
-        <%= f.label t(:label_note), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_area :note, class: 'form-control ck-editor' %>
-        </div>
-      </div>
 
-      <div class="form-group">
-        <div class="col-md-12">
-          <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
-        </div>
-        <%= f.simple_fields_for :organization_attachments do |attachment| %>
-            <%= render 'attachments/attachment_show', :f => attachment %>
-        <% end %>
-        <div id="attachment_fields" class="col-xs-2 margin-top-10 " style="padding-right: 2px;" >
-          <%= link_to_add_association 'add file', f, :organization_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
-        </div>
+    <div class="form-group" >
+      <div class="col-md-11">
+        <%= link_to t('button_cancel'), organizations_path, class: 'btn btn-warning pull-right' %>
+        <%= f.submit t('button_save'), class: 'btn btn-success pull-right' %>
       </div>
-
-      <div class="form-group" >
-        <div class="col-md-11">
-          <%= link_to t('button_cancel'), organizations_path, class: 'btn btn-warning pull-right' %>
-          <%= f.submit t('button_save'), class: 'btn btn-success pull-right' %>
-        </div>
-      </div>
+    </div>
     </fieldset>
 <% end %>

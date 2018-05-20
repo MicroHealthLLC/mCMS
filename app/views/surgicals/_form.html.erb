@@ -1,114 +1,135 @@
-<div class="row">
-  <div class="col-xs-12 col-md-8">
-    <fieldset>
-  <legend></legend>
-  <%= form_for(surgical, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
-      <% if surgical.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(surgical.errors.count, "error") %> prohibited this surgery from being saved:</h2>
 
-            <ul>
-              <% surgical.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-              <% end %>
-            </ul>
+<%= form_for(surgical, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+    <% if surgical.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(surgical.errors.count, "error") %> prohibited this surgery from being saved:</h2>
+
+          <ul>
+            <% surgical.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <%= f.hidden_field :user_id %>
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+          <div class="form-group">
+            <%= f.label :name , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :name, class: 'form-control' %>
+            </div>
           </div>
-      <% end %>
 
-      <%= f.hidden_field :user_id %>
-
-      <div class="form-group">
-        <%= f.label :name , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :name, class: 'form-control' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:hcpc), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= text_field_tag :hcpc, f.object.hcpc,  class: 'form-control' , placeholder: 'Type to Search'%>
-          <%= f.hidden_field :hcpc_id %>
-          <script>
-              $(document).ready(function(){
-                  $('#hcpc').autocomplete({
-                      source: "/hcpc.json",
-                      minLength: 2,
-                      select: function( event, ui ) {
-                          $('#surgical_hcpc_id').val(ui.item.id)
-                      }
+          <div class="form-group">
+            <%= f.label t(:hcpc), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= text_field_tag :hcpc, f.object.hcpc,  class: 'form-control' , placeholder: 'Type to Search'%>
+              <%= f.hidden_field :hcpc_id %>
+              <script>
+                  $(document).ready(function(){
+                      $('#hcpc').autocomplete({
+                          source: "/hcpc.json",
+                          minLength: 2,
+                          select: function( event, ui ) {
+                              $('#surgical_hcpc_id').val(ui.item.id)
+                          }
+                      })
                   })
-              })
-          </script>
-        </div>
+              </script>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <%= f.label :medical_facility , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :medical_facility, class: 'form-control' %>
+              <%= f.hidden_field :location_lat, class: 'form-control' %>
+              <%= f.hidden_field :location_long, class: 'form-control' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :surgery_date , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :surgery_date, class: 'form-control date_picker' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label t(:surgery_type), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :surgery_type_id, options_for_select(SurgeryType.active.pluck(:name, :id), selected: f.object.surgery_type.try(:id)) , {} ,{class: 'form-control'} %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label t(:surgery_status), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :surgery_status_id, options_for_select(SurgeryStatus.active.pluck(:name, :id), selected: f.object.surgery_status.try(:id)) , {} ,{class: 'form-control'} %>
+            </div>
+          </div>
+        </fieldset>
       </div>
 
 
-      <div class="form-group">
-        <%= f.label :medical_facility , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :medical_facility, class: 'form-control' %>
-          <%= f.hidden_field :location_lat, class: 'form-control' %>
-          <%= f.hidden_field :location_long, class: 'form-control' %>
-        </div>
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+
+          <%= render partial: 'map', locals: {
+              location: 'surgical_medical_facility',
+              location_lat: 'surgical_location_lat',
+              location_long: 'surgical_location_long',
+              object: surgical
+
+          } %>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+
+          <div class="form-group">
+            <%= f.label t(:description) , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_area :description , class: 'form-control ck-editor' %>
+            </div>
+          </div>
+
+        </fieldset>
       </div>
 
-      <div class="form-group">
-        <%= f.label :surgery_date , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :surgery_date, class: 'form-control date_picker' %>
-        </div>
-      </div>
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
 
-      <div class="form-group">
-        <%= f.label t(:surgery_type), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :surgery_type_id, options_for_select(SurgeryType.active.pluck(:name, :id), selected: f.object.surgery_type.try(:id)) , {} ,{class: 'form-control'} %>
-        </div>
+          <div class="form-group">
+            <div class="col-md-12">
+              <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+            </div>
+            <%= f.simple_fields_for :surgical_attachments do |attachment| %>
+                <%= render 'attachments/attachment_show', :f => attachment %>
+            <% end %>
+            <div id="attachment_fields" class="col-xs-2 margin-top-10 " style="padding-right: 2px;" >
+              <%= link_to_add_association 'add file', f, :surgical_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+            </div>
+          </div>
+        </fieldset>
       </div>
+    </div>
 
-      <div class="form-group">
-        <%= f.label t(:surgery_status), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :surgery_status_id, options_for_select(SurgeryStatus.active.pluck(:name, :id), selected: f.object.surgery_status.try(:id)) , {} ,{class: 'form-control'} %>
-        </div>
+    <div class="form-group" >
+      <div class="col-md-11">
+        <%= link_to t('button_cancel'), surgicals_path, class: 'btn btn-warning pull-right' %>
+        <%= f.submit t(:button_save), class: 'btn btn-success pull-right' %>
       </div>
-
-      <div class="form-group">
-        <%= f.label t(:description) , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_area :description , class: 'form-control ck-editor' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="col-md-12">
-          <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
-        </div>
-        <%= f.simple_fields_for :surgical_attachments do |attachment| %>
-            <%= render 'attachments/attachment_show', :f => attachment %>
-        <% end %>
-        <div id="attachment_fields" class="col-xs-2 margin-top-10 " style="padding-right: 2px;" >
-          <%= link_to_add_association 'add file', f, :surgical_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
-        </div>
-      </div>
-
-      <div class="form-group" >
-        <div class="col-md-11">
-          <%= link_to t('button_cancel'), surgicals_path, class: 'btn btn-warning pull-right' %>
-          <%= f.submit t(:button_save), class: 'btn btn-success pull-right' %>
-        </div>
-      </div>
-  <% end %>
-</fieldset>
-</div>
-<div class="col-xs-12 col-md-4">
-  <%= render partial: 'map', locals: {
-      location: 'surgical_medical_facility',
-      location_lat: 'surgical_location_lat',
-      location_long: 'surgical_location_long',
-      object: surgical
-
-  } %>
-</div>
-</div>
+    </div>
+<% end %>

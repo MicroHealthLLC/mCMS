@@ -1,22 +1,22 @@
-<div class="row">
-  <div class="col-xs-12 col-md-8">
-    <fieldset>
-      <legend></legend>
-      <%= form_for(immunization, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
-          <% if immunization.errors.any? %>
-              <div id="error_explanation">
-                <h2><%= pluralize(immunization.errors.count, "error") %> prohibited this immunization from being saved:</h2>
 
-                <ul>
-                  <% immunization.errors.full_messages.each do |message| %>
-                      <li><%= message %></li>
-                  <% end %>
-                </ul>
-              </div>
-          <% end %>
+<%= form_for(immunization, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+    <% if immunization.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(immunization.errors.count, "error") %> prohibited this immunization from being saved:</h2>
 
-          <%= f.hidden_field :user_id %>
+          <ul>
+            <% immunization.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
+    <%= f.hidden_field :user_id %>
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
           <div class="form-group">
             <%= f.label :medication , class: 'col-md-2 control-label' %>
             <div class="col-md-9">
@@ -95,6 +95,28 @@
             </div>
           </div>
 
+        </fieldset>
+      </div>
+
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+          <%= render partial: 'map', locals: {
+              location: 'immunization_manufacturer',
+              location_lat: 'immunization_location_lat',
+              location_long: 'immunization_location_long',
+              object: immunization
+
+          } %>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+
 
           <div class="form-group">
             <%= f.label t(:description) , class: 'col-md-2 control-label' %>
@@ -102,6 +124,12 @@
               <%= f.text_area :description , class: 'form-control ck-editor' %>
             </div>
           </div>
+        </fieldset>
+      </div>
+
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
 
           <div class="form-group">
             <div class="col-md-12">
@@ -114,23 +142,14 @@
               <%= link_to_add_association 'add file', f, :immunization_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
             </div>
           </div>
+        </fieldset>
+      </div>
+    </div>
 
-          <div class="form-group" >
-            <div class="col-md-11">
-              <%= link_to t('button_cancel'), immunizations_path, class: 'btn btn-warning pull-right' %>
-              <%= f.submit t(:button_save), class: 'btn btn-success pull-right' %>
-            </div>
-          </div>
-      <% end %>
-    </fieldset>
-  </div>
-  <div class="col-xs-12 col-md-4">
-    <%= render partial: 'map', locals: {
-        location: 'immunization_manufacturer',
-        location_lat: 'immunization_location_lat',
-        location_long: 'immunization_location_long',
-        object: immunization
-
-    } %></div>
-</div>
-
+    <div class="form-group" >
+      <div class="col-md-11">
+        <%= link_to t('button_cancel'), immunizations_path, class: 'btn btn-warning pull-right' %>
+        <%= f.submit t(:button_save), class: 'btn btn-success pull-right' %>
+      </div>
+    </div>
+<% end %>

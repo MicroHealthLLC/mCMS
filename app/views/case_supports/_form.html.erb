@@ -1,99 +1,119 @@
-<fieldset>
-  <legend></legend>
-  <%= form_for(case_support, html: { class: 'form-horizontal',  :multipart => true }) do |f| %>
-      <% if case_support.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(case_support.errors.count, "error") %> prohibited this case support from being saved:</h2>
 
-            <ul>
-              <% case_support.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-              <% end %>
-            </ul>
+<%= form_for(case_support, html: { class: 'form-horizontal',  :multipart => true }) do |f| %>
+    <% if case_support.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(case_support.errors.count, "error") %> prohibited this case support from being saved:</h2>
+
+          <ul>
+            <% case_support.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :not_show_in_search %>
+    <%= f.hidden_field :case_id %>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+          <div class="form-group">
+            <%= f.label t('profile.first_name'), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :first_name, placeholder: 'First name', class: 'form-control', required: true %>
+            </div>
           </div>
-      <% end %>
-      <%= f.hidden_field :user_id %>
-      <%= f.hidden_field :not_show_in_search %>
-      <%= f.hidden_field :case_id %>
-      <div class="form-group">
-        <%= f.label t('profile.first_name'), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :first_name, placeholder: 'First name', class: 'form-control', required: true %>
-        </div>
-      </div>
 
-      <div class="form-group">
-        <%= f.label t('profile.middle_name'), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :middle_name, placeholder: 'Middle name', class: 'form-control' %>
-        </div>
-      </div>
+          <div class="form-group">
+            <%= f.label t('profile.middle_name'), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :middle_name, placeholder: 'Middle name', class: 'form-control' %>
+            </div>
+          </div>
 
-      <div class="form-group">
-        <%= f.label t('profile.last_name'), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :last_name, placeholder: 'Last name', class: 'form-control', required: true %>
-        </div>
-      </div>
-      <div class="form-group">
-        <%= f.label t('case_support_type'), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :case_support_type_id, options_for_select(CaseSupportType.active.pluck(:name, :id), selected: f.object.case_support_type.try(:id)), {},{ class: 'form-control'} %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t('support_status'), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :support_status_id, options_for_select(SupportStatus.active.pluck(:name, :id), selected: f.object.support_status.try(:id)), {},{ class: 'form-control'} %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:date_started), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :date_started , class: 'form-control date_picker' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:date_end), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :date_ended , class: 'form-control date_picker' %>
-        </div>
-      </div>
+          <div class="form-group">
+            <%= f.label t('profile.last_name'), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :last_name, placeholder: 'Last name', class: 'form-control', required: true %>
+            </div>
+          </div>
 
 
-
-      <div class="form-group">
-        <%= f.label :note , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_area :note, class: 'form-control ck-editor' %>
-        </div>
+        </fieldset>
       </div>
 
-      <div class="form-group">
-        <div class="col-md-12">
-          <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
-        </div>
-        <%= f.simple_fields_for :case_support_attachments do |attachment| %>
-            <%= render 'attachments/attachment_show', :f => attachment %>
-        <% end %>
-        <div id="attachment_fields" class="col-xs-2 margin-top-10 " style="padding-right: 2px;" >
-          <%= link_to_add_association 'add file', f, :case_support_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
-        </div>
-      </div>
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
 
-      <div class="form-group" >
-        <div class="col-md-11">
-          <%= link_to t('button_cancel'), case_url(@case_support.case) + '#tabs-case_supports', class: 'btn btn-warning pull-right' %>
-          <%= f.submit t('button_save'), class: 'btn btn-success pull-right' %>
-        </div>
+          <div class="form-group">
+            <%= f.label :note , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_area :note, class: 'form-control ck-editor' %>
+            </div>
+          </div>
+        </fieldset>
       </div>
-  <% end %>
-</fieldset>
-<script>
-  $(document).ready(function(){
-    $('.date_picker').datepicker({ dateFormat: 'dd-mm-yy' });
-  })
-</script>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+          <div class="form-group">
+            <%= f.label t('case_support_type'), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :case_support_type_id, options_for_select(CaseSupportType.active.pluck(:name, :id), selected: f.object.case_support_type.try(:id)), {},{ class: 'form-control'} %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label t('support_status'), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :support_status_id, options_for_select(SupportStatus.active.pluck(:name, :id), selected: f.object.support_status.try(:id)), {},{ class: 'form-control'} %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label t(:date_started), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :date_started , class: 'form-control date_picker' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label t(:date_end), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :date_ended , class: 'form-control date_picker' %>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+          <div class="form-group">
+            <div class="col-md-12">
+              <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+            </div>
+            <%= f.simple_fields_for :case_support_attachments do |attachment| %>
+                <%= render 'attachments/attachment_show', :f => attachment %>
+            <% end %>
+            <div id="attachment_fields" class="col-xs-2 margin-top-10 " style="padding-right: 2px;" >
+              <%= link_to_add_association 'add file', f, :case_support_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="form-group" >
+      <div class="col-md-11">
+        <%= link_to t('button_cancel'), case_url(@case_support.case) + '#tabs-case_supports', class: 'btn btn-warning pull-right' %>
+        <%= f.submit t('button_save'), class: 'btn btn-success pull-right' %>
+      </div>
+    </div>
+<% end %>
+

@@ -1,23 +1,23 @@
 
-<div class="row">
-  <div class="col-xs-12 col-md-8">
+<%= form_for(medical, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+    <% if medical.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(medical.errors.count, "error") %> prohibited this medical from being saved:</h2>
 
-    <fieldset>
-      <legend></legend>
-      <%= form_for(medical, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
-          <% if medical.errors.any? %>
-              <div id="error_explanation">
-                <h2><%= pluralize(medical.errors.count, "error") %> prohibited this medical from being saved:</h2>
+          <ul>
+            <% medical.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
-                <ul>
-                  <% medical.errors.full_messages.each do |message| %>
-                      <li><%= message %></li>
-                  <% end %>
-                </ul>
-              </div>
-          <% end %>
+    <%= f.hidden_field :user_id %>
 
-          <%= f.hidden_field :user_id %>
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
           <div class="form-group">
             <%= f.label :name , class: 'col-md-2 control-label' %>
             <div class="col-md-9">
@@ -31,24 +31,24 @@
               <%= text_field_tag :snomed, f.object.snomed,  class: 'form-control' , placeholder: 'Type to Search' %>
               <%= f.hidden_field :snomed %>
               <script>
-                $(document).ready(function(){
-                    $('#snomed').on('keyup', function(){
-                        $('#medical_snomed').val('');
-                    })
-                  $('#snomed').autocomplete({
-                    source: "/snomed.json?default=disorder",
-                    minLength: 2,
-                    select: function( event, ui ) {
-                      $('#medical_snomed').val(ui.item.id)
-                        $('#link_info').show();
-                        $('#dialog').html(
-                            "<b>ID:</b><span> "+ ui.item.ui +"</span><br/>"+
-                            "<b>NAME:</b><span> "+ ui.item.label+"</span><br/>"+
-                            "<b>URI:</b><span><a target='_blank' href='" + ui.item.uri +"' > click here</a></span>"
-                        )
-                    }
+                  $(document).ready(function(){
+                      $('#snomed').on('keyup', function(){
+                          $('#medical_snomed').val('');
+                      })
+                      $('#snomed').autocomplete({
+                          source: "/snomed.json?default=disorder",
+                          minLength: 2,
+                          select: function( event, ui ) {
+                              $('#medical_snomed').val(ui.item.id)
+                              $('#link_info').show();
+                              $('#dialog').html(
+                                  "<b>ID:</b><span> "+ ui.item.ui +"</span><br/>"+
+                                  "<b>NAME:</b><span> "+ ui.item.label+"</span><br/>"+
+                                  "<b>URI:</b><span><a target='_blank' href='" + ui.item.uri +"' > click here</a></span>"
+                              )
+                          }
+                      })
                   })
-                })
               </script>
             </div>
             <p hidden style="display: none" id="dialog">
@@ -91,13 +91,47 @@
             </div>
           </div>
 
+        </fieldset>
+      </div>
+
+
+
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+
+          <%= render partial: 'map', locals: {
+              location: 'medical_medical_facility',
+              location_lat: 'medical_location_lat',
+              location_long: 'medical_location_long',
+              object: medical
+
+          } %>
+
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+
+
+
           <div class="form-group">
             <%= f.label t(:description) , class: 'col-md-2 control-label' %>
             <div class="col-md-9">
               <%= f.text_area :description , class: 'form-control ck-editor' %>
             </div>
           </div>
+        </fieldset>
+      </div>
 
+
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
           <div class="form-group">
             <div class="col-md-12">
               <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
@@ -109,24 +143,13 @@
               <%= link_to_add_association 'add file', f, :medical_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
             </div>
           </div>
-
-          <div class="form-group" >
-            <div class="col-md-11">
-              <%= link_to t('button_cancel'), medicals_path, class: 'btn btn-warning pull-right' %>
-              <%= f.submit t(:button_save), class: 'btn btn-success pull-right' %>
-            </div>
-          </div>
-      <% end %>
-    </fieldset>
-
-  </div>
-  <div class="col-xs-12 col-md-4">
-    <%= render partial: 'map', locals: {
-        location: 'medical_medical_facility',
-        location_lat: 'medical_location_lat',
-        location_long: 'medical_location_long',
-        object: medical
-
-    } %>
-  </div>
-</div>
+        </fieldset>
+      </div>
+    </div>
+    <div class="form-group" >
+      <div class="col-md-11">
+        <%= link_to t('button_cancel'), medicals_path, class: 'btn btn-warning pull-right' %>
+        <%= f.submit t(:button_save), class: 'btn btn-success pull-right' %>
+      </div>
+    </div>
+<% end %>

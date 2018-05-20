@@ -41,6 +41,7 @@ function createCookie(name,value,days) {
 function initDataTable(table_id)
 {
     $('#'+table_id).DataTable({
+        responsive: true,
         display: [[0, 'desc']],
         "bDestroy": true,
         "sDom": "<'dt-toolbar'" +
@@ -107,7 +108,7 @@ var named_function = function(){
     $('a').attr('data-turbolinks', "false");
     // initialize persistent state
     $('.date_picker').datepicker({
-        dateFormat: 'yy-mm-dd',
+        dateFormat: 'dd-mm-yy',
         "prevText":'<i class="fa fa-chevron-left"></i>',
         "nextText":'<i class="fa fa-chevron-right"></i>'
     });

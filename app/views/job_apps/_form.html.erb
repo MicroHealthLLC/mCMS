@@ -1,23 +1,24 @@
-<div class="row">
-  <div class="col-xs-12 col-md-8">
 
-    <fieldset>
-      <legend></legend>
-      <%= form_for(job_app, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
-          <% if job_app.errors.any? %>
-              <div id="error_explanation">
-                <h2><%= pluralize(job_app.errors.count, "error") %> prohibited this job app from being saved:</h2>
+<%= form_for(job_app, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+    <% if job_app.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(job_app.errors.count, "error") %> prohibited this job app from being saved:</h2>
 
-                <ul>
-                  <% job_app.errors.full_messages.each do |message| %>
-                      <li><%= message %></li>
-                  <% end %>
-                </ul>
-              </div>
-          <% end %>
+          <ul>
+            <% job_app.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
 
-          <%= f.hidden_field :user_id %>
-          <%= f.hidden_field :case_id %>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :case_id %>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-7">
+        <fieldset>
+          <legend></legend>
           <div class="form-group">
             <%= f.label t(:title), class: 'col-md-2 control-label' %>
             <div class="col-md-9">
@@ -68,12 +69,6 @@
               <%= f.hidden_field :location_long, class: 'form-control' %>
             </div>
           </div>
-          <div class="form-group">
-            <%= f.label :description, class: 'col-md-2 control-label' %>
-            <div class="col-md-9">
-              <%= f.text_area :description , class: 'form-control ck-editor' %>
-            </div>
-          </div>
 
           <div class="form-group">
             <%= f.label 'Date applied' , class: 'col-md-2 control-label' %>
@@ -88,6 +83,44 @@
             </div>
           </div>
 
+        </fieldset>
+      </div>
+
+
+      <div class="col-xs-12 col-md-5">
+        <fieldset>
+          <legend></legend>
+
+          <%= render partial: 'map', locals: {
+              location: 'job_app_employer',
+              location_lat: 'job_app_location_lat',
+              location_long: 'job_app_location_long',
+              object: job_app
+
+          } %>
+
+        </fieldset>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-xs-12 col-md-7">
+        <fieldset>
+          <legend></legend>
+          <div class="form-group">
+            <%= f.label :description, class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_area :description , class: 'form-control ck-editor' %>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+
+      <div class="col-xs-12 col-md-5">
+        <fieldset>
+          <legend></legend>
           <div class="form-group">
             <div class="col-md-12">
               <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
@@ -99,23 +132,17 @@
               <%= link_to_add_association 'add file', f, :job_app_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
             </div>
           </div>
+        </fieldset>
+      </div>
+    </div>
 
-          <div class="form-group" >
-            <div class="col-md-11">
-              <%= link_to t('button_cancel'), (@job_app.case ? case_path(@job_app.case) : '/occupational_record') + '#tabs-job_applications', class: 'btn btn-warning pull-right' %>
-              <%= f.submit t(:button_save), class: 'btn btn-success pull-right' %>
-            </div>
-          </div>
-      <% end %>
-    </fieldset>
-  </div>
-  <div class="col-xs-12 col-md-4">
-    <%= render partial: 'map', locals: {
-        location: 'job_app_employer',
-        location_lat: 'job_app_location_lat',
-        location_long: 'job_app_location_long',
-        object: job_app
 
-    } %></div>
-</div>
 
+
+    <div class="form-group" >
+      <div class="col-md-11">
+        <%= link_to t('button_cancel'), (@job_app.case ? case_path(@job_app.case) : '/occupational_record') + '#tabs-job_applications', class: 'btn btn-warning pull-right' %>
+        <%= f.submit t(:button_save), class: 'btn btn-success pull-right' %>
+      </div>
+    </div>
+<% end %>

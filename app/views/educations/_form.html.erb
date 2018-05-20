@@ -1,28 +1,30 @@
 
-<div class="row">
-  <div class="col-xs-12 col-md-8">
-    <% if EducationType.count.zero? %>
-        <h2>Education Type must be present</h2>
-    <% end %>
-    <% if ClearenceType.count.zero? %>
-        <h2>Clearence Type must be present</h2>
-    <% end %>
-    <%= form_for(education, html: { class: 'form-horizontal' }) do |f| %>
-        <% if education.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(education.errors.count, "error") %> prohibited this education from being saved:</h2>
+<% if EducationType.count.zero? %>
+    <h2>Education Type must be present</h2>
+<% end %>
+<% if ClearenceType.count.zero? %>
+    <h2>Clearence Type must be present</h2>
+<% end %>
+<%= form_for(education, html: { class: 'form-horizontal' }) do |f| %>
+    <% if education.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(education.errors.count, "error") %> prohibited this education from being saved:</h2>
 
-              <ul>
-                <% education.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-        <% end %>
+          <ul>
+            <% education.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+    <%= f.hidden_field :user_id %>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-7">
         <fieldset>
           <legend></legend>
-
-          <%= f.hidden_field :user_id %>
           <div class="form-group">
             <%= f.label t('education_type'), class: 'col-md-2 control-label' %>
             <div class="col-md-9">
@@ -30,7 +32,7 @@
             </div>
           </div>
 
-           <div class="form-group">
+          <div class="form-group">
             <%= f.label :institution, class: 'col-md-2 control-label' %>
             <div class="col-md-9">
               <%= f.text_field :institution, class: 'form-control' %>
@@ -60,13 +62,46 @@
             </div>
           </div>
 
+        </fieldset>
+      </div>
+
+
+
+      <div class="col-xs-12 col-md-5">
+        <fieldset>
+          <legend></legend>
+
+          <%= render partial: 'map', locals: {
+              location: 'education_institution',
+              location_lat: 'education_location_lat',
+              location_long: 'education_location_long',
+              object: education
+
+          } %>
+        </fieldset>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-xs-12 col-md-7">
+        <fieldset>
+          <legend></legend>
+
+
           <div class="form-group">
             <%= f.label t(:label_note) , class: 'col-md-2 control-label' %>
             <div class="col-md-9">
               <%= f.text_area :note , class: 'form-control ck-editor' %>
             </div>
           </div>
+        </fieldset>
+      </div>
 
+
+      <div class="col-xs-12 col-md-5">
+        <fieldset>
+          <legend></legend>
           <div class="form-group">
             <div class="col-md-12">
               <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
@@ -78,22 +113,15 @@
               <%= link_to_add_association 'add file', f, :education_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
             </div>
           </div>
-
-          <div class="form-group" >
-            <div class="col-md-11">
-              <%= link_to t('button_cancel'), educations_path, class: 'btn btn-warning pull-right' %>
-              <%= f.submit t('button_save'), class: 'btn btn-success pull-right' %>
-            </div>
-          </div>
         </fieldset>
-    <% end %>
-  </div>
-  <div class="col-xs-12 col-md-4">
-    <%= render partial: 'map', locals: {
-        location: 'education_institution',
-        location_lat: 'education_location_lat',
-        location_long: 'education_location_long',
-        object: education
+      </div>
+    </div>
 
-    } %></div>
-</div>
+    <div class="form-group" >
+      <div class="col-md-11">
+        <%= link_to t('button_cancel'), educations_path, class: 'btn btn-warning pull-right' %>
+        <%= f.submit t('button_save'), class: 'btn btn-success pull-right' %>
+      </div>
+    </div>
+
+<% end %>

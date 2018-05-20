@@ -1,130 +1,155 @@
-<fieldset>
-  <legend></legend>
-  <%= form_for(task, html: { class: 'form-horizontal' }) do |f| %>
-      <% if task.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
-            <ul>
-              <% task.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-              <% end %>
-            </ul>
+<%= form_for(task, html: { class: 'form-horizontal' }) do |f| %>
+    <% if task.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+          <ul>
+            <% task.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :for_individual_id %>
+    <%= f.hidden_field :related_to_type %>
+    <%= f.hidden_field :related_to_id %>
+    <%= f.hidden_field :sub_task_id %>
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+          <div class="form-group">
+            <%= f.label t(:case), class: 'col-md-2 control-label' %>
+            <div class="col-md-9" style="padding-top: 7px">
+              <%= link_to f.object.case, f.object.case if f.object.case %>
+            </div>
           </div>
-      <% end %>
 
+          <div class="form-group">
+            <div class="col-md-3 pull-right">
+              <label class="toggle">
+                <%= f.check_box :is_private %>
+                <i data-swchon-text="ON" data-swchoff-text="OFF"></i><%= f.label t(:private) %>
+              </label>
+            </div>
+          </div>
 
-      <%= f.hidden_field :user_id %>
-      <%= f.hidden_field :for_individual_id %>
-      <%= f.hidden_field :related_to_type %>
-      <%= f.hidden_field :related_to_id %>
-      <%= f.hidden_field :sub_task_id %>
-      <div class="form-group">
-        <%= f.label t(:case), class: 'col-md-2 control-label' %>
-        <div class="col-md-9" style="padding-top: 7px">
-          <%= link_to f.object.case, f.object.case if f.object.case %>
+          <div class="form-group">
+            <%= f.label t(:title), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :title, class: 'form-control' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= label_tag :note_template_label, 'note template', class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= select_tag :note_template, options_for_select(NoteTemplate.pluck(:title, :id).insert(0, [ ''])), {class: 'control-label' } %>
+            </div>
+          </div>
+          <div class="form-group">
+          <%= f.label :performed_by , class: 'col-md-2 control-label' %>
+          <div class="col-md-9">
+            <%= f.select :assigned_to_id, options_for_select(User.power_user.map{|user| [user.name, user.id]}, selected: f.object.assigned_to_id), {} , {class: 'form-control use_select2', style: 'padding: 0' } %>
+          </div>
         </div>
+
+          <div class="form-group">
+            <%= f.label t(:task_type) , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :task_type_id, options_for_select(TaskType.active.pluck(:name, :id), selected: f.object.task_type.try(:id)), {} , {class: 'form-control'} %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :status , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :task_status_type_id, options_for_select(TaskStatusType.active.pluck(:name, :id), selected: f.object.task_status_type.try(:id)), {} , {class: 'form-control'} %>
+            </div>
+          </div>
+        </fieldset>
       </div>
 
-      <div class="form-group">
-        <div class="col-md-3 pull-right">
-          <label class="toggle">
-            <%= f.check_box :is_private %>
-            <i data-swchon-text="ON" data-swchoff-text="OFF"></i><%= f.label t(:private) %>
-          </label>
-        </div>
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+
+          <div class="form-group">
+            <%= f.label t(:description), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_area :description , class: 'form-control ck-editor note_text' %>
+            </div>
+          </div>
+        </fieldset>
+      </div></div>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+
+
+          <div class="form-group">
+            <%= f.label :date_start, class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :date_start, value: format_date_time(f.object.date_start), class: 'form-control datetimepicker' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label t(:date_end) , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :date_completed, value: format_date_time(f.object.date_completed) , class: 'form-control datetimepicker' %>
+            </div>
+          </div>
+          <%= f.simple_fields_for :plan_tasks do |form| %>
+              <%= form.hidden_field :plan_id %>
+              <%= form.hidden_field :task_id %>
+          <% end %>
+        </fieldset>
       </div>
 
-      <div class="form-group">
-        <%= f.label t(:title), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :title, class: 'form-control' %>
-        </div>
-      </div>
 
-      <div class="form-group">
-        <%= label_tag :note_template_label, 'note template', class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= select_tag :note_template, options_for_select(NoteTemplate.pluck(:title, :id).insert(0, [ ''])), {class: 'control-label' } %>
-        </div>
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+          <div class="form-group">
+            <div class="col-md-12">
+              <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+            </div>
+            <%= f.simple_fields_for :task_attachments do |attachment| %>
+                <%= render 'attachments/attachment_show', :f => attachment %>
+            <% end %>
+            <div id="attachment_fields" class="col-md-2 margin-top-10 " style="padding-right: 2px;" >
+              <%= link_to_add_association 'add file', f, :task_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+            </div>
+          </div>
+        </fieldset>
       </div>
+    </div>
 
-      <div class="form-group">
-        <%= f.label t(:description), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_area :description , class: 'form-control ck-editor note_text' %>
-        </div>
+    <div class="form-group" >
+      <div class="col-md-11">
+        <%= link_to t('button_cancel'), get_back_url(f.object) + '#tabs-tasks', class: 'btn btn-warning pull-right' %>
+        <%= f.submit t('button_save'), class: 'btn btn-success pull-right' %>
       </div>
+    </div>
+<% end %>
 
-      <div class="form-group">
-        <%= f.label :performed_by , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :assigned_to_id, options_for_select(User.power_user.map{|user| [user.name, user.id]}, selected: f.object.assigned_to_id), {} , {class: 'form-control use_select2', style: 'padding: 0' } %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:task_type) , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :task_type_id, options_for_select(TaskType.active.pluck(:name, :id), selected: f.object.task_type.try(:id)), {} , {class: 'form-control'} %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :status , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :task_status_type_id, options_for_select(TaskStatusType.active.pluck(:name, :id), selected: f.object.task_status_type.try(:id)), {} , {class: 'form-control'} %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :date_start, class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :date_start, value: format_date_time(f.object.date_start), class: 'form-control datetimepicker' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:date_end) , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :date_completed, value: format_date_time(f.object.date_completed) , class: 'form-control datetimepicker' %>
-        </div>
-      </div>
-      <%= f.simple_fields_for :plan_tasks do |form| %>
-          <%= form.hidden_field :plan_id %>
-          <%= form.hidden_field :task_id %>
-      <% end %>
-
-      <div class="form-group">
-        <div class="col-md-12">
-          <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
-        </div>
-        <%= f.simple_fields_for :task_attachments do |attachment| %>
-            <%= render 'attachments/attachment_show', :f => attachment %>
-        <% end %>
-        <div id="attachment_fields" class="col-md-2 margin-top-10 " style="padding-right: 2px;" >
-          <%= link_to_add_association 'add file', f, :task_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
-        </div>
-      </div>
-
-      <div class="form-group" >
-        <div class="col-md-11">
-          <%= link_to t('button_cancel'), get_back_url(f.object) + '#tabs-tasks', class: 'btn btn-warning pull-right' %>
-          <%= f.submit t('button_save'), class: 'btn btn-success pull-right' %>
-        </div>
-      </div>
-  <% end %>
-</fieldset>
 <script>
-  $(document).ready(function(){
-    var note_id = $('.note_text').attr('id')
-    $('#note_template').on('change', function(){
+    $(document).ready(function(){
+        var note_id = $('.note_text').attr('id')
+        $('#note_template').on('change', function(){
 
-      if($(this).val()!= '')
-        $.getScript('/notes/get_template_note.js?note_id='+note_id+'&note_template_id='+$(this).val());
-      else
-        CKEDITOR.instances[note_id].setData('');
+            if($(this).val()!= '')
+                $.getScript('/notes/get_template_note.js?note_id='+note_id+'&note_template_id='+$(this).val());
+            else
+                CKEDITOR.instances[note_id].setData('');
 
+        })
     })
-  })
 </script>

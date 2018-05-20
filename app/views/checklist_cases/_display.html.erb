@@ -1,46 +1,51 @@
-<div class="col-xs-12">
 
-  <fieldset>
-    <legend></legend>
-    <%= simple_form_for(@checklist, url: checklist_case_path(@checklist_case), html: { method: :put, class: 'form-horizontal' }) do |f| %>
-        <% data = @checklist
-           if data.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(data.errors.count, "error") %> :</h2>
+<%= simple_form_for(@checklist, url: checklist_case_path(@checklist_case), html: { method: :put, class: 'form-horizontal' }) do |f| %>
+    <% data = @checklist
+       if data.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(data.errors.count, "error") %> :</h2>
 
-              <ul>
-                <% data.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                <% end %>
-              </ul>
-            </div>
-        <% end %>
-        <%= f.hidden_field :user_id %>
+          <ul>
+            <% data.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <%= f.hidden_field :user_id %>
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+          <p>
+            <strong>Case:</strong>
+            <%= link_to_case @checklist_case.case  %>
+          </p>
+          <p>
+            <strong>Title:</strong>
+            <%=  @checklist.title %>
+          </p>
 
-        <div class="row">
-          <div class="col-xs-12">
-            <p>
-              <strong>Case:</strong>
-              <%= link_to_case @checklist_case.case  %>
-            </p>
-            <p>
-              <strong>Title:</strong>
-              <%=  @checklist.title %>
-            </p>
+          <p>
+            <strong>Description:</strong>
+            <%=  @checklist.description.html_safe %>
+          </p>
+          <p>
+            <strong>Type:</strong>
+            <%=  @checklist.checklist_type %>
+          </p>
+        </fieldset>
+      </div>
 
-            <p>
-              <strong>Description:</strong>
-              <%=  @checklist.description.html_safe %>
-            </p>
-            <p>
-              <strong>Type:</strong>
-              <%=  @checklist.checklist_type %>
-            </p>
-            <p>
-              <strong>Checklist status:</strong>
-              <%= f.select :checklist_status_type_id, options_for_select(ChecklistStatusType.active.pluck(:name, :id).insert(0, ['']), selected: @checklist_case.checklist_status_type.try(:id)), {},{ class: 'form-control'} %>
-            </p>
-          </div>
+
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+          <p>
+            <strong>Checklist status:</strong>
+            <%= f.select :checklist_status_type_id, options_for_select(ChecklistStatusType.active.pluck(:name, :id).insert(0, ['']), selected: @checklist_case.checklist_status_type.try(:id)), {},{ class: 'form-control'} %>
+          </p>
+
 
           <div id='checklists' class="col-xs-12">
             <% f.object.checklists.each_with_index do |checklist, index| %>
@@ -51,15 +56,15 @@
                 %>
             <% end %>
           </div>
-        </div>
 
-        <div class="form-group margin-top-10" >
-          <div class="col-md-11">
-            <%= link_to t('button_cancel'), (@checklist_case.case ? case_path(@checklist_case.case) + '#tabs-checklists' : :back), class: 'btn btn-warning pull-right' %>
-            <%= f.submit t('button_save'), class: 'btn btn-success pull-right' %>
-          </div>
-        </div>
-    <% end %>
-  </fieldset>
+        </fieldset>
+      </div>
+    </div>
 
-</div>
+    <div class="form-group margin-top-10" >
+      <div class="col-md-11">
+        <%= link_to t('button_cancel'), (@checklist_case.case ? case_path(@checklist_case.case) + '#tabs-checklists' : :back), class: 'btn btn-warning pull-right' %>
+        <%= f.submit t('button_save'), class: 'btn btn-success pull-right' %>
+      </div>
+    </div>
+<% end %>

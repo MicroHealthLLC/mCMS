@@ -1,23 +1,23 @@
 
-<div class="row">
-  <div class="col-xs-12 col-md-8">
-    <fieldset>
-      <legend></legend>
-      <%= simple_form_for(certification, html: { class: 'form-horizontal',  :multipart => true }) do |f| %>
-          <% data = certification
-             if data.errors.any? %>
-              <div id="error_explanation">
-                <h2><%= pluralize(data.errors.count, "error") %> :</h2>
+<%= simple_form_for(certification, html: { class: 'form-horizontal',  :multipart => true }) do |f| %>
+    <% data = certification
+       if data.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(data.errors.count, "error") %> :</h2>
 
-                <ul>
-                  <% data.errors.full_messages.each do |message| %>
-                      <li><%= message %></li>
-                  <% end %>
-                </ul>
-              </div>
-          <% end %>
-          <%= f.hidden_field :user_id %>
+          <ul>
+            <% data.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <%= f.hidden_field :user_id %>
 
+    <div class="row">
+      <div class="col-xs-12 col-md-7">
+        <fieldset>
+          <legend></legend>
           <div class="form-group">
             <%= f.label t('label_name'), class: 'col-md-2 control-label' %>
             <div class="col-md-9">
@@ -63,12 +63,40 @@
             </div>
           </div>
 
+        </fieldset>
+      </div>
+
+
+      <div class="col-xs-12 col-md-5">
+        <fieldset>
+          <legend></legend>
+          <%= render partial: 'map', locals: {
+              location: 'certification_certifying_organization',
+              location_lat: 'certification_location_lat',
+              location_long: 'certification_location_long',
+              object: certification
+
+          } %>
+        </fieldset>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-7">
+        <fieldset>
+          <legend></legend>
           <div class="form-group">
             <%= f.label t(:label_note) , class: 'col-md-2 control-label' %>
             <div class="col-md-9">
               <%= f.text_area :note , class: 'form-control ck-editor' %>
             </div>
           </div>
+        </fieldset>
+      </div>
+
+      <div class="col-xs-12 col-md-5">
+        <fieldset>
+          <legend></legend>
 
           <div class="form-group">
             <div class="col-md-12">
@@ -82,22 +110,13 @@
             </div>
           </div>
 
-          <div class="form-group" >
-            <div class="col-md-11">
-              <%= link_to t('button_cancel'), certifications_path, class: 'btn btn-warning pull-right' %>
-              <%= f.submit t('button_save'), class: 'btn btn-success pull-right' %>
-            </div>
-          </div>
-      <% end %>
-    </fieldset>
-  </div>
-  <div class="col-xs-12 col-md-4">
-    <%= render partial: 'map', locals: {
-        location: 'certification_certifying_organization',
-        location_lat: 'certification_location_lat',
-        location_long: 'certification_location_long',
-        object: certification
-
-    } %>
-  </div>
-</div>
+        </fieldset>
+      </div>
+    </div>
+    <div class="form-group" >
+      <div class="col-md-11">
+        <%= link_to t('button_cancel'), certifications_path, class: 'btn btn-warning pull-right' %>
+        <%= f.submit t('button_save'), class: 'btn btn-success pull-right' %>
+      </div>
+    </div>
+<% end %>

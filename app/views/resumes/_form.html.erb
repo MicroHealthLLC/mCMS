@@ -1,71 +1,100 @@
-<fieldset>
-  <legend></legend>
-  <%= form_for(resume, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
-      <% if resume.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(resume.errors.count, "error") %> prohibited this resume from being saved:</h2>
 
-            <ul>
-              <% resume.errors.full_messages.each do |message| %>
-                  <li><%= message %></li>
-              <% end %>
-            </ul>
+<%= form_for(resume, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+    <% if resume.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(resume.errors.count, "error") %> prohibited this resume from being saved:</h2>
+
+          <ul>
+            <% resume.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <%= f.hidden_field :user_id %>
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+          <div class="form-group">
+            <%= f.label :title , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :title, class: 'form-control' %>
+            </div>
           </div>
-      <% end %>
+          <div class="form-group">
+            <%= f.label t(:resume_type), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :resume_type_id, options_for_select(ResumeType.active.pluck(:name, :id), selected: f.object.resume_type.try(:id)) , {} ,{class: 'form-control'} %>
+            </div>
+          </div>
 
-      <%= f.hidden_field :user_id %>
-
-      <div class="form-group">
-        <%= f.label :title , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :title, class: 'form-control' %>
-        </div>
-      </div>
-
-       <div class="form-group">
-        <%= f.label :date , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :date, class: 'form-control date_picker' %>
-        </div>
+          <div class="form-group">
+            <%= f.label t(:resume_status), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :resume_status_id, options_for_select(ResumeStatus.active.pluck(:name, :id), selected: f.object.resume_status.try(:id)) , {} ,{class: 'form-control'} %>
+            </div>
+          </div>
+        </fieldset>
       </div>
 
-      <div class="form-group">
-        <%= f.label t(:resume_type), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :resume_type_id, options_for_select(ResumeType.active.pluck(:name, :id), selected: f.object.resume_type.try(:id)) , {} ,{class: 'form-control'} %>
-        </div>
+
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+
+          <div class="form-group">
+            <%= f.label :date , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :date, class: 'form-control date_picker' %>
+            </div>
+          </div>
+
+        </fieldset>
       </div>
-      
-     <div class="form-group">
-        <%= f.label t(:resume_status), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :resume_status_id, options_for_select(ResumeStatus.active.pluck(:name, :id), selected: f.object.resume_status.try(:id)) , {} ,{class: 'form-control'} %>
-        </div>
-      </div>
-      <div class="form-group">
-        <%= f.label t(:note) , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_area :note , class: 'form-control ck-editor' %>
-        </div>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+          <div class="form-group">
+            <%= f.label t(:note) , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_area :note , class: 'form-control ck-editor' %>
+            </div>
+          </div>
+
+        </fieldset>
       </div>
 
-      <div class="form-group">
-        <div class="col-md-12">
-          <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
-        </div>
-        <%= f.simple_fields_for :resume_attachments do |attachment| %>
-            <%= render 'attachments/attachment_show', :f => attachment %>
-        <% end %>
-        <div id="attachment_fields" class="col-xs-2 margin-top-10 " style="padding-right: 2px;" >
-          <%= link_to_add_association 'add file', f, :resume_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
-        </div>
-      </div>
 
-      <div class="form-group" >
-        <div class="col-md-11">
-          <%= link_to t('button_cancel'), resumes_path, class: 'btn btn-warning pull-right' %>
-          <%= f.submit t(:button_save), class: 'btn btn-success pull-right' %>
-        </div>
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+          <div class="form-group">
+            <div class="col-md-12">
+              <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+            </div>
+            <%= f.simple_fields_for :resume_attachments do |attachment| %>
+                <%= render 'attachments/attachment_show', :f => attachment %>
+            <% end %>
+            <div id="attachment_fields" class="col-xs-2 margin-top-10 " style="padding-right: 2px;" >
+              <%= link_to_add_association 'add file', f, :resume_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+            </div>
+          </div>
+        </fieldset>
       </div>
-  <% end %>
+    </div>
+
+    <div class="form-group" >
+      <div class="col-md-11">
+        <%= link_to t('button_cancel'), resumes_path, class: 'btn btn-warning pull-right' %>
+        <%= f.submit t(:button_save), class: 'btn btn-success pull-right' %>
+      </div>
+    </div>
+<% end %>
 </fieldset>

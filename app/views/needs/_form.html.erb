@@ -10,89 +10,109 @@
           </ul>
         </div>
     <% end %>
-    <fieldset>
-      <legend></legend>
 
-      <%= f.hidden_field :user_id %>
-      <%= f.hidden_field :case_id %>
 
-      <div class="form-group">
-        <%= f.label t(:case), class: 'col-md-2 control-label' %>
-        <div class="col-md-9" style="padding-top: 7px">
-          <%= link_to f.object.case, f.object.case if f.object.case %>
-        </div>
+
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :case_id %>
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+
+          <div class="form-group">
+            <%= f.label t(:case), class: 'col-md-2 control-label' %>
+            <div class="col-md-9" style="padding-top: 7px">
+              <%= link_to f.object.case, f.object.case if f.object.case %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label t(:need) , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :need_enum_id, options_for_select(NeedEnum.active.pluck(:name, :id), selected: f.object.need_enum.try(:id)), {} , {class: 'form-control'} %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label t(:priority) , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :priority_type_id, options_for_select(PriorityType.active.pluck(:name, :id), selected: f.object.priority_type.try(:id)), {} , {class: 'form-control'} %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label t(:need_status) , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :need_status_id, options_for_select(NeedStatus.active.pluck(:name, :id), selected: f.object.need_status.try(:id)), {} , {class: 'form-control'} %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :percent_done , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :percent_done, options_for_select((0..100).step(1).to_a.map{|v| ["#{v}%", v]}, selected: f.object.percent_done), {} , {class: 'form-control'} %>
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <%= f.label :assigned_to , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :assigned_to_id, options_for_select(User.power_user.map{|user| [user.name, user.id]}, selected: f.object.assigned_to_id), {} , {class: 'form-control use_select2', style: 'padding: 0' } %>
+            </div>
+          </div>
+
+        </fieldset>
       </div>
 
-      <div class="form-group">
-        <%= f.label t(:need) , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :need_enum_id, options_for_select(NeedEnum.active.pluck(:name, :id), selected: f.object.need_enum.try(:id)), {} , {class: 'form-control'} %>
-        </div>
+
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+          <div class="form-group">
+            <%= f.label t('description'), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_area :description , class: 'form-control ck-editor' %>
+            </div>
+          </div>
+
+        </fieldset>
       </div>
+    </div>
 
-       <div class="form-group">
-        <%= f.label t(:priority) , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :priority_type_id, options_for_select(PriorityType.active.pluck(:name, :id), selected: f.object.priority_type.try(:id)), {} , {class: 'form-control'} %>
-        </div>
+    <div class="row">
+      <div class="col-xs-12 col-md-6">
+        <fieldset>
+          <legend></legend>
+          <div class="form-group">
+            <%= f.label t(:date_identified) , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :date_identified , class: 'form-control date_picker' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label t('date_due') , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :date_due , class: 'form-control date_picker' %>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <%= f.label t(:date_completed) , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :date_completed , class: 'form-control date_picker' %>
+            </div>
+          </div>
+        </fieldset>
       </div>
-
-      <div class="form-group">
-        <%= f.label t(:need_status) , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :need_status_id, options_for_select(NeedStatus.active.pluck(:name, :id), selected: f.object.need_status.try(:id)), {} , {class: 'form-control'} %>
-        </div>
+    </div>
+    <div class="form-group" >
+      <div class="col-md-11">
+        <%= link_to t('button_cancel'), need_back_url(f.object), class: 'btn btn-warning pull-right' %>
+        <%= f.submit t('button_save'), class: 'btn btn-success pull-right' %>
       </div>
-
-      <div class="form-group">
-        <%= f.label :percent_done , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :percent_done, options_for_select((0..100).step(1).to_a.map{|v| ["#{v}%", v]}, selected: f.object.percent_done), {} , {class: 'form-control'} %>
-        </div>
-      </div>
-
-
-      <div class="form-group">
-        <%= f.label :assigned_to , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :assigned_to_id, options_for_select(User.power_user.map{|user| [user.name, user.id]}, selected: f.object.assigned_to_id), {} , {class: 'form-control use_select2', style: 'padding: 0' } %>
-        </div>
-      </div>
-
-
-      <div class="form-group">
-        <%= f.label t('description'), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_area :description , class: 'form-control ck-editor' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:date_identified) , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :date_identified , class: 'form-control date_picker' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t('date_due') , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :date_due , class: 'form-control date_picker' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:date_completed) , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :date_completed , class: 'form-control date_picker' %>
-        </div>
-      </div>
-
-      <div class="form-group" >
-        <div class="col-md-11">
-          <%= link_to t('button_cancel'), need_back_url(f.object), class: 'btn btn-warning pull-right' %>
-          <%= f.submit t('button_save'), class: 'btn btn-success pull-right' %>
-        </div>
-      </div>
+    </div>
 <% end %>
-</fieldset>
+

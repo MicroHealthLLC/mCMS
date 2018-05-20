@@ -1,101 +1,116 @@
-<div class="row">
-<div class="col-xs-12 col-md-8">
 
-  <fieldset>
-    <legend></legend>
-    <%= form_for(enrollment, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
-        <% if enrollment.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(enrollment.errors.count, "error") %> prohibited this enrollment from being saved:</h2>
+<%= form_for(enrollment, html: { class: 'form-horizontal',  :multipart => true}) do |f| %>
+    <% if enrollment.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(enrollment.errors.count, "error") %> prohibited this enrollment from being saved:</h2>
 
-              <ul>
-                <% enrollment.errors.full_messages.each do |message| %>
-                    <li><%= message %></li>
-                <% end %>
-              </ul>
+          <ul>
+            <% enrollment.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :case_id %>
+
+    <div class="row">
+      <div class="col-xs-12 col-md-7">
+        <fieldset>
+          <legend></legend>
+
+          <div class="form-group">
+            <%= f.label t(:label_name), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :name, class: 'form-control' %>
             </div>
-        <% end %>
-        <%= f.hidden_field :user_id %>
-        <%= f.hidden_field :case_id %>
-
-        <div class="form-group">
-          <%= f.label t(:label_name), class: 'col-md-2 control-label' %>
-          <div class="col-md-9">
-            <%= f.text_field :name, class: 'form-control' %>
           </div>
-        </div>
 
-        <div class="form-group">
-          <%= f.label 'Location', class: 'col-md-2 control-label' %>
-          <div class="col-md-9">
-            <%= f.text_field :enrollment_location, class: 'form-control' %>
-            <%= f.hidden_field :location_lat, class: 'form-control' %>
-            <%= f.hidden_field :location_long, class: 'form-control' %>
+          <div class="form-group">
+            <%= f.label 'Location', class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :enrollment_location, class: 'form-control' %>
+              <%= f.hidden_field :location_lat, class: 'form-control' %>
+              <%= f.hidden_field :location_long, class: 'form-control' %>
+            </div>
           </div>
-        </div>
-
-        <div class="form-group">
-          <%= f.label t(:enrollment_type), class: 'col-md-2 control-label' %>
-          <div class="col-md-9">
-            <%= f.select :enrollment_type_id, options_for_select(EnrollmentType.active.pluck(:name, :id), selected: f.object.enrollment_type.try(:id)) , {} ,{class: 'form-control'} %>
+          <div class="form-group">
+            <%= f.label t(:enrollment_type), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :enrollment_type_id, options_for_select(EnrollmentType.active.pluck(:name, :id), selected: f.object.enrollment_type.try(:id)) , {} ,{class: 'form-control'} %>
+            </div>
           </div>
-        </div>
 
-        <div class="form-group">
-          <%= f.label t(:enrollment_status), class: 'col-md-2 control-label' %>
-          <div class="col-md-9">
-            <%= f.select :enrollment_status_id, options_for_select(EnrollmentStatus.active.pluck(:name, :id), selected: f.object.enrollment_status.try(:id)) , {} ,{class: 'form-control'} %>
+          <div class="form-group">
+            <%= f.label t(:enrollment_status), class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.select :enrollment_status_id, options_for_select(EnrollmentStatus.active.pluck(:name, :id), selected: f.object.enrollment_status.try(:id)) , {} ,{class: 'form-control'} %>
+            </div>
           </div>
-        </div>
-
-        <div class="form-group">
+          <div class="form-group">
           <%= f.label t(:date_start) , class: 'col-md-2 control-label' %>
           <div class="col-md-9">
             <%= f.text_field :date_start , class: 'form-control date_picker' %>
           </div>
         </div>
 
-        <div class="form-group">
-          <%= f.label t(:date_end) , class: 'col-md-2 control-label' %>
-          <div class="col-md-9">
-            <%= f.text_field :date_end , class: 'form-control date_picker' %>
+          <div class="form-group">
+            <%= f.label t(:date_end) , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_field :date_end , class: 'form-control date_picker' %>
+            </div>
           </div>
-        </div>
+        </fieldset>
+      </div>
 
-        <div class="form-group">
-          <%= f.label t(:note) , class: 'col-md-2 control-label' %>
-          <div class="col-md-9">
-            <%= f.text_area :note , class: 'form-control ck-editor' %>
-          </div>
-        </div>
 
-        <div class="form-group">
-          <div class="col-md-12">
-            <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
-          </div>
-          <%= f.simple_fields_for :enrollment_attachments do |attachment| %>
-              <%= render 'attachments/attachment_show', :f => attachment %>
-          <% end %>
-          <div id="attachment_fields" class="col-xs-2 margin-top-10 " style="padding-right: 2px;" >
-            <%= link_to_add_association 'add file', f, :enrollment_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
-          </div>
-        </div>
+      <div class="col-xs-12 col-md-5">
+        <%= render partial: 'map', locals: {
+            location: 'enrollment_enrollment_location',
+            location_lat: 'enrollment_location_lat',
+            location_long: 'enrollment_location_long',
+            object: enrollment
+        } %>
+      </div>
+    </div>
 
-        <div class="form-group" >
-          <div class="col-md-11">
-            <%= link_to t('button_cancel'), case_path(@enrollment.case) + '#tabs-enrollments', class: 'btn btn-warning pull-right' %>
-            <%= f.submit t(:button_save), class: 'btn btn-success pull-right' %>
+    <div class="row">
+      <div class="col-xs-12 col-md-7">
+        <fieldset>
+          <legend></legend>
+          <div class="form-group">
+            <%= f.label t(:note) , class: 'col-md-2 control-label' %>
+            <div class="col-md-9">
+              <%= f.text_area :note , class: 'form-control ck-editor' %>
+            </div>
           </div>
-        </div>
-    <% end %>
-  </fieldset>
-  </div>
-  <div class="col-xs-12 col-md-4">
-  <%= render partial: 'map', locals: {
-      location: 'enrollment_enrollment_location',
-      location_lat: 'enrollment_location_lat',
-      location_long: 'enrollment_location_long',
-      object: enrollment
-  } %>
-  </div>
-</div>
+        </fieldset>
+      </div>
+
+
+      <div class="col-xs-12 col-md-5">
+        <fieldset>
+          <legend></legend>
+
+          <div class="form-group">
+            <div class="col-md-12">
+              <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+            </div>
+            <%= f.simple_fields_for :enrollment_attachments do |attachment| %>
+                <%= render 'attachments/attachment_show', :f => attachment %>
+            <% end %>
+            <div id="attachment_fields" class="col-xs-2 margin-top-10 " style="padding-right: 2px;" >
+              <%= link_to_add_association 'add file', f, :enrollment_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+            </div>
+          </div>
+
+        </fieldset>
+      </div>
+    </div>
+    <div class="form-group" >
+      <div class="col-md-11">
+        <%= link_to t('button_cancel'), case_path(@enrollment.case) + '#tabs-enrollments', class: 'btn btn-warning pull-right' %>
+        <%= f.submit t(:button_save), class: 'btn btn-success pull-right' %>
+      </div>
+    </div>
+<% end %>

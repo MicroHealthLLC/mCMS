@@ -14,6 +14,8 @@
           </div>
       <% end %>
       <%= f.hidden_field :user_id %>
+
+
       <div class="form-group">
         <div class="col-md-3 pull-right">
           <label class="toggle">
@@ -22,60 +24,91 @@
           </label>
         </div>
       </div>
-      <div class="form-group">
-        <%= f.label t(:other_skill), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :name, class: 'form-control' %>
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <fieldset>
+            <legend></legend>
+
+            <div class="form-group">
+              <%= f.label t(:other_skill), class: 'col-md-2 control-label' %>
+              <div class="col-md-9">
+                <%= f.text_field :name, class: 'form-control' %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label t(:skill_status), class: 'col-md-2 control-label' %>
+              <div class="col-md-9">
+                <%= f.select :status_id, options_for_select(OtherSkillStatus.active.pluck(:name, :id), f.object.skill_status.try(:id) ),{} , {class: 'form-control'} %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :skill_type, class: 'col-md-2 control-label' %>
+              <div class="col-md-9">
+                <%= f.select :skill_type_id, options_for_select(OtherSkillType.active.pluck(:name, :id), f.object.skill_type.try(:id) ),{} , {class: 'form-control'} %>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+
+
+        <div class="col-xs-12 col-md-6">
+          <fieldset>
+            <legend></legend>
+
+
+            <div class="form-group">
+              <%= f.label t('education_date_received'), class: 'col-md-2 control-label' %>
+              <div class="col-md-9">
+                <%= f.text_field :date_received , class: 'form-control date_picker' %>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <%= f.label t(:education_date_expired), class: 'col-md-2 control-label' %>
+              <div class="col-md-9">
+                <%= f.text_field :date_expired , class: 'form-control date_picker' %>
+              </div>
+            </div>
+          </fieldset>
         </div>
       </div>
 
-      <div class="form-group">
-        <%= f.label t(:skill_status), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :status_id, options_for_select(OtherSkillStatus.active.pluck(:name, :id), f.object.skill_status.try(:id) ),{} , {class: 'form-control'} %>
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <fieldset>
+            <legend></legend>
+
+            <div class="form-group">
+              <%= f.label t(:label_note) , class: 'col-md-2 control-label' %>
+              <div class="col-md-9">
+                <%= f.text_area :note , class: 'form-control ck-editor' %>
+              </div>
+            </div>
+
+          </fieldset>
+        </div>
+
+        <div class="col-xs-12 col-md-6">
+          <fieldset>
+            <legend></legend>
+
+            <div class="form-group">
+              <div class="col-md-12">
+                <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
+              </div>
+              <%= f.simple_fields_for :skill_attachments do |attachment| %>
+                  <%= render 'attachments/attachment_show', :f => attachment %>
+              <% end %>
+              <div id="attachment_fields" class="col-xs-2 margin-top-10 " style="padding-right: 2px;" >
+                <%= link_to_add_association 'add file', f, :skill_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
+              </div>
+            </div>
+
+          </fieldset>
         </div>
       </div>
-      <div class="form-group">
-        <%= f.label :skill_type, class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.select :skill_type_id, options_for_select(OtherSkillType.active.pluck(:name, :id), f.object.skill_type.try(:id) ),{} , {class: 'form-control'} %>
-        </div>
-      </div>
-
-
-      <div class="form-group">
-        <%= f.label t('education_date_received'), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :date_received , class: 'form-control date_picker' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:education_date_expired), class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_field :date_expired , class: 'form-control date_picker' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= f.label t(:label_note) , class: 'col-md-2 control-label' %>
-        <div class="col-md-9">
-          <%= f.text_area :note , class: 'form-control ck-editor' %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="col-md-12">
-          <%= f.label t(:attachments) , class: 'col-md-2 control-label' %>
-        </div>
-        <%= f.simple_fields_for :skill_attachments do |attachment| %>
-            <%= render 'attachments/attachment_show', :f => attachment %>
-        <% end %>
-        <div id="attachment_fields" class="col-xs-2 margin-top-10 " style="padding-right: 2px;" >
-          <%= link_to_add_association 'add file', f, :skill_attachments, class: 'btn btn-success pull-right', partial: 'attachments/attachment_fields' %>
-        </div>
-      </div>
-
       <div class="form-group" >
         <div class="col-md-11">
           <%= link_to t('button_cancel'), other_skills_path, class: 'btn btn-warning pull-right' %>
