@@ -8,6 +8,8 @@
 /.bundle
 /.idea/*
 /config/database.yml
+/config/emails.yml
+/config/application.yml
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
